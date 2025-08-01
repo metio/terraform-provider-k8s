@@ -184,7 +184,7 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Azure       *struct {
-					ContainerName     *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Container         *string `tfsdk:"container" json:"container,omitempty"`
 					CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 					Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
@@ -242,6 +242,7 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1383,7 +1384,7 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"container_name": schema.StringAttribute{
+											"container": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            true,
@@ -1781,6 +1782,14 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,

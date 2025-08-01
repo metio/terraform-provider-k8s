@@ -48,16 +48,21 @@ type NotificationToolkitFluxcdIoProviderV1Beta3ManifestData struct {
 		CertSecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
-		Channel   *string `tfsdk:"channel" json:"channel,omitempty"`
-		Interval  *string `tfsdk:"interval" json:"interval,omitempty"`
-		Proxy     *string `tfsdk:"proxy" json:"proxy,omitempty"`
+		Channel          *string `tfsdk:"channel" json:"channel,omitempty"`
+		CommitStatusExpr *string `tfsdk:"commit_status_expr" json:"commitStatusExpr,omitempty"`
+		Interval         *string `tfsdk:"interval" json:"interval,omitempty"`
+		Proxy            *string `tfsdk:"proxy" json:"proxy,omitempty"`
+		ProxySecretRef   *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-		Suspend  *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
-		Timeout  *string `tfsdk:"timeout" json:"timeout,omitempty"`
-		Type     *string `tfsdk:"type" json:"type,omitempty"`
-		Username *string `tfsdk:"username" json:"username,omitempty"`
+		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		Suspend            *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
+		Timeout            *string `tfsdk:"timeout" json:"timeout,omitempty"`
+		Type               *string `tfsdk:"type" json:"type,omitempty"`
+		Username           *string `tfsdk:"username" json:"username,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -150,8 +155,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 					},
 
 					"cert_secret_ref": schema.SingleNestedAttribute{
-						Description:         "CertSecretRef specifies the Secret containing a PEM-encoded CA certificate (in the 'ca.crt' key). Note: Support for the 'caFile' key has been deprecated.",
-						MarkdownDescription: "CertSecretRef specifies the Secret containing a PEM-encoded CA certificate (in the 'ca.crt' key). Note: Support for the 'caFile' key has been deprecated.",
+						Description:         "CertSecretRef specifies the Secret containing TLS certificates for secure communication. Supported configurations: - CA-only: Server authentication (provide ca.crt only) - mTLS: Mutual authentication (provide ca.crt + tls.crt + tls.key) - Client-only: Client authentication with system CA (provide tls.crt + tls.key only) Legacy keys 'caFile', 'certFile', 'keyFile' are supported but deprecated. Use 'ca.crt', 'tls.crt', 'tls.key' instead.",
+						MarkdownDescription: "CertSecretRef specifies the Secret containing TLS certificates for secure communication. Supported configurations: - CA-only: Server authentication (provide ca.crt only) - mTLS: Mutual authentication (provide ca.crt + tls.crt + tls.key) - Client-only: Client authentication with system CA (provide tls.crt + tls.key only) Legacy keys 'caFile', 'certFile', 'keyFile' are supported but deprecated. Use 'ca.crt', 'tls.crt', 'tls.key' instead.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",
@@ -177,6 +182,14 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 						},
 					},
 
+					"commit_status_expr": schema.StringAttribute{
+						Description:         "CommitStatusExpr is a CEL expression that evaluates to a string value that can be used to generate a custom commit status message for use with eligible Provider types (github, gitlab, gitea, bitbucketserver, bitbucket, azuredevops). Supported variables are: event, provider, and alert.",
+						MarkdownDescription: "CommitStatusExpr is a CEL expression that evaluates to a string value that can be used to generate a custom commit status message for use with eligible Provider types (github, gitlab, gitea, bitbucketserver, bitbucket, azuredevops). Supported variables are: event, provider, and alert.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"interval": schema.StringAttribute{
 						Description:         "Interval at which to reconcile the Provider with its Secret references. Deprecated and not used in v1beta3.",
 						MarkdownDescription: "Interval at which to reconcile the Provider with its Secret references. Deprecated and not used in v1beta3.",
@@ -189,8 +202,8 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 					},
 
 					"proxy": schema.StringAttribute{
-						Description:         "Proxy the HTTP/S address of the proxy server.",
-						MarkdownDescription: "Proxy the HTTP/S address of the proxy server.",
+						Description:         "Proxy the HTTP/S address of the proxy server. Deprecated: Use ProxySecretRef instead. Will be removed in v1.",
+						MarkdownDescription: "Proxy the HTTP/S address of the proxy server. Deprecated: Use ProxySecretRef instead. Will be removed in v1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -198,6 +211,23 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 							stringvalidator.LengthAtMost(2048),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https)://.*$`), ""),
 						},
+					},
+
+					"proxy_secret_ref": schema.SingleNestedAttribute{
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configuration for this Provider. The Secret should contain an 'address' key with the HTTP/S address of the proxy server. Optional 'username' and 'password' keys can be provided for proxy authentication.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configuration for this Provider. The Secret should contain an 'address' key with the HTTP/S address of the proxy server. Optional 'username' and 'password' keys can be provided for proxy authentication.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"secret_ref": schema.SingleNestedAttribute{
@@ -215,6 +245,14 @@ func (r *NotificationToolkitFluxcdIoProviderV1Beta3Manifest) Schema(_ context.Co
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_account_name": schema.StringAttribute{
+						Description:         "ServiceAccountName is the name of the service account used to authenticate with services from cloud providers. An error is thrown if a static credential is also defined inside the Secret referenced by the SecretRef.",
+						MarkdownDescription: "ServiceAccountName is the name of the service account used to authenticate with services from cloud providers. An error is thrown if a static credential is also defined inside the Secret referenced by the SecretRef.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"suspend": schema.BoolAttribute{

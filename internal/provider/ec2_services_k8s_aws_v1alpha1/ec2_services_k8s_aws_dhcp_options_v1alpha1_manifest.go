@@ -135,8 +135,8 @@ func (r *Ec2ServicesK8SAwsDhcpoptionsV1Alpha1Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "DhcpOptionsSpec defines the desired state of DhcpOptions. Describes a set of DHCP options.",
-				MarkdownDescription: "DhcpOptionsSpec defines the desired state of DhcpOptions. Describes a set of DHCP options.",
+				Description:         "DhcpOptionsSpec defines the desired state of DhcpOptions. The set of DHCP options.",
+				MarkdownDescription: "DhcpOptionsSpec defines the desired state of DhcpOptions. The set of DHCP options.",
 				Attributes: map[string]schema.Attribute{
 					"dhcp_configurations": schema.ListNestedAttribute{
 						Description:         "A DHCP configuration option.",

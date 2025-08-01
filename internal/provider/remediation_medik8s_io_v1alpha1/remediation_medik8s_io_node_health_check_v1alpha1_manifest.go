@@ -56,6 +56,8 @@ type RemediationMedik8SIoNodeHealthCheckV1Alpha1ManifestData struct {
 			} `tfsdk:"remediation_template" json:"remediationTemplate,omitempty"`
 			Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"escalating_remediations" json:"escalatingRemediations,omitempty"`
+		HealthyDelay        *string   `tfsdk:"healthy_delay" json:"healthyDelay,omitempty"`
+		MaxUnhealthy        *string   `tfsdk:"max_unhealthy" json:"maxUnhealthy,omitempty"`
 		MinHealthy          *string   `tfsdk:"min_healthy" json:"minHealthy,omitempty"`
 		PauseRequests       *[]string `tfsdk:"pause_requests" json:"pauseRequests,omitempty"`
 		RemediationTemplate *struct {
@@ -243,9 +245,28 @@ func (r *RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest) Schema(_ context.C
 						Computed: false,
 					},
 
+					"healthy_delay": schema.StringAttribute{
+						Description:         "HealthyDelay is the time before NHC would allow a node to be healthy again. A negative value means that NHC will never consider the node healthy and a manual intervention is expected",
+						MarkdownDescription: "HealthyDelay is the time before NHC would allow a node to be healthy again. A negative value means that NHC will never consider the node healthy and a manual intervention is expected",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^-?([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
+						},
+					},
+
+					"max_unhealthy": schema.StringAttribute{
+						Description:         "Remediation is allowed if no more than 'MaxUnhealthy' nodes selected by 'selector' are not healthy. Expects either a non-negative integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 0% is valid and will block all remediation. MaxUnhealthy should not be used with remediators that delete nodes (e.g. MachineDeletionRemediation), as this breaks the logic for counting healthy and unhealthy nodes. MinHealthy and MaxUnhealthy are configuring the same aspect, and they cannot be used at the same time.",
+						MarkdownDescription: "Remediation is allowed if no more than 'MaxUnhealthy' nodes selected by 'selector' are not healthy. Expects either a non-negative integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 0% is valid and will block all remediation. MaxUnhealthy should not be used with remediators that delete nodes (e.g. MachineDeletionRemediation), as this breaks the logic for counting healthy and unhealthy nodes. MinHealthy and MaxUnhealthy are configuring the same aspect, and they cannot be used at the same time.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"min_healthy": schema.StringAttribute{
-						Description:         "Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy. Expects either a positive integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 100% is valid and will block all remediation.",
-						MarkdownDescription: "Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy. Expects either a positive integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 100% is valid and will block all remediation.",
+						Description:         "Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy. Expects either a non-negative integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 100% is valid and will block all remediation. MinHealthy and MaxUnhealthy are configuring the same aspect, and they cannot be used at the same time.",
+						MarkdownDescription: "Remediation is allowed if at least 'MinHealthy' nodes selected by 'selector' are healthy. Expects either a non-negative integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. 100% is valid and will block all remediation. MinHealthy and MaxUnhealthy are configuring the same aspect, and they cannot be used at the same time.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

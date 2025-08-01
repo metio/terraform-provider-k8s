@@ -7,6 +7,7 @@ package pxc_percona_com_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -45,12 +46,13 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 	Spec *struct {
 		AllowUnsafeConfigurations *bool `tfsdk:"allow_unsafe_configurations" json:"allowUnsafeConfigurations,omitempty"`
 		Backup                    *struct {
-			AllowParallel    *bool              `tfsdk:"allow_parallel" json:"allowParallel,omitempty"`
-			Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			BackoffLimit     *int64             `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
-			Image            *string            `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy  *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ImagePullSecrets *[]struct {
+			ActiveDeadlineSeconds *int64             `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
+			AllowParallel         *bool              `tfsdk:"allow_parallel" json:"allowParallel,omitempty"`
+			Annotations           *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			BackoffLimit          *int64             `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+			Image                 *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy       *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecrets      *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			Pitr *struct {
@@ -68,13 +70,19 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				TimeoutSeconds     *float64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"pitr" json:"pitr,omitempty"`
 			Schedule *[]struct {
-				Keep        *int64  `tfsdk:"keep" json:"keep,omitempty"`
-				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				Keep      *int64  `tfsdk:"keep" json:"keep,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Retention *struct {
+					Count             *int64  `tfsdk:"count" json:"count,omitempty"`
+					DeleteFromStorage *bool   `tfsdk:"delete_from_storage" json:"deleteFromStorage,omitempty"`
+					Type              *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"retention" json:"retention,omitempty"`
 				Schedule    *string `tfsdk:"schedule" json:"schedule,omitempty"`
 				StorageName *string `tfsdk:"storage_name" json:"storageName,omitempty"`
 			} `tfsdk:"schedule" json:"schedule,omitempty"`
-			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
-			Storages           *struct {
+			ServiceAccountName      *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			StartingDeadlineSeconds *int64  `tfsdk:"starting_deadline_seconds" json:"startingDeadlineSeconds,omitempty"`
+			Storages                *struct {
 				Affinity *struct {
 					NodeAffinity *struct {
 						PreferredDuringSchedulingIgnoredDuringExecution *[]struct {
@@ -208,6 +216,8 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Azure       *struct {
+					BlockSize         *int64  `tfsdk:"block_size" json:"blockSize,omitempty"`
+					Concurrency       *int64  `tfsdk:"concurrency" json:"concurrency,omitempty"`
 					Container         *string `tfsdk:"container" json:"container,omitempty"`
 					CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
@@ -290,6 +300,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -397,6 +408,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 					} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
 				} `tfsdk:"volume" json:"volume,omitempty"`
 			} `tfsdk:"storages" json:"storages,omitempty"`
+			SuspendedDeadlineSeconds *int64 `tfsdk:"suspended_deadline_seconds" json:"suspendedDeadlineSeconds,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		CrVersion                 *string `tfsdk:"cr_version" json:"crVersion,omitempty"`
 		EnableCRValidationWebhook *bool   `tfsdk:"enable_cr_validation_webhook" json:"enableCRValidationWebhook,omitempty"`
@@ -579,6 +591,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				TrafficPolicy            *string            `tfsdk:"traffic_policy" json:"trafficPolicy,omitempty"`
@@ -590,6 +603,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				OnlyReaders              *bool              `tfsdk:"only_readers" json:"onlyReaders,omitempty"`
@@ -597,7 +611,6 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose_replicas" json:"exposeReplicas,omitempty"`
 			ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
-			ForceUnsafeBootstrap  *bool   `tfsdk:"force_unsafe_bootstrap" json:"forceUnsafeBootstrap,omitempty"`
 			GracePeriod           *int64  `tfsdk:"grace_period" json:"gracePeriod,omitempty"`
 			HookScript            *string `tfsdk:"hook_script" json:"hookScript,omitempty"`
 			Image                 *string `tfsdk:"image" json:"image,omitempty"`
@@ -651,6 +664,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessDelaySec *int64 `tfsdk:"liveness_delay_sec" json:"livenessDelaySec,omitempty"`
 			LivenessProbes   *struct {
@@ -682,7 +696,6 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probes" json:"livenessProbes,omitempty"`
-			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 			NodeSelector             *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodDisruptionBudget      *struct {
@@ -699,6 +712,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -754,7 +768,6 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probes" json:"readinessProbes,omitempty"`
 			ReplicasExternalTrafficPolicy    *string            `tfsdk:"replicas_external_traffic_policy" json:"replicasExternalTrafficPolicy,omitempty"`
-			ReplicasLoadBalancerIP           *string            `tfsdk:"replicas_load_balancer_ip" json:"replicasLoadBalancerIP,omitempty"`
 			ReplicasLoadBalancerSourceRanges *[]string          `tfsdk:"replicas_load_balancer_source_ranges" json:"replicasLoadBalancerSourceRanges,omitempty"`
 			ReplicasServiceAnnotations       *map[string]string `tfsdk:"replicas_service_annotations" json:"replicasServiceAnnotations,omitempty"`
 			ReplicasServiceEnabled           *bool              `tfsdk:"replicas_service_enabled" json:"replicasServiceEnabled,omitempty"`
@@ -1230,6 +1243,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -1594,12 +1608,71 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Image           *string `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			CustomClusterName *string `tfsdk:"custom_cluster_name" json:"customClusterName,omitempty"`
+			Enabled           *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Image             *string `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy   *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			LivenessProbes    *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TcpSocket           *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"liveness_probes" json:"livenessProbes,omitempty"`
 			ProxysqlParams  *string `tfsdk:"proxysql_params" json:"proxysqlParams,omitempty"`
 			PxcParams       *string `tfsdk:"pxc_params" json:"pxcParams,omitempty"`
-			Resources       *struct {
+			ReadinessProbes *struct {
+				Exec *struct {
+					Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				HttpGet *struct {
+					Host        *string `tfsdk:"host" json:"host,omitempty"`
+					HttpHeaders *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http_get" json:"httpGet,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TcpSocket           *struct {
+					Host *string `tfsdk:"host" json:"host,omitempty"`
+					Port *string `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"readiness_probes" json:"readinessProbes,omitempty"`
+			Resources *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
 					Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -1789,13 +1862,13 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				TrafficPolicy            *string            `tfsdk:"traffic_policy" json:"trafficPolicy,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
 			ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
-			ForceUnsafeBootstrap  *bool   `tfsdk:"force_unsafe_bootstrap" json:"forceUnsafeBootstrap,omitempty"`
 			GracePeriod           *int64  `tfsdk:"grace_period" json:"gracePeriod,omitempty"`
 			HookScript            *string `tfsdk:"hook_script" json:"hookScript,omitempty"`
 			Image                 *string `tfsdk:"image" json:"image,omitempty"`
@@ -1849,6 +1922,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessDelaySec *int64 `tfsdk:"liveness_delay_sec" json:"livenessDelaySec,omitempty"`
 			LivenessProbes   *struct {
@@ -1880,7 +1954,6 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probes" json:"livenessProbes,omitempty"`
-			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 			NodeSelector             *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodDisruptionBudget      *struct {
@@ -1897,6 +1970,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2425,6 +2499,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -2835,13 +2910,13 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerClass        *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
 				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				TrafficPolicy            *string            `tfsdk:"traffic_policy" json:"trafficPolicy,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
 			ExternalTrafficPolicy *string `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
-			ForceUnsafeBootstrap  *bool   `tfsdk:"force_unsafe_bootstrap" json:"forceUnsafeBootstrap,omitempty"`
 			GracePeriod           *int64  `tfsdk:"grace_period" json:"gracePeriod,omitempty"`
 			HookScript            *string `tfsdk:"hook_script" json:"hookScript,omitempty"`
 			Image                 *string `tfsdk:"image" json:"image,omitempty"`
@@ -2895,6 +2970,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessDelaySec *int64 `tfsdk:"liveness_delay_sec" json:"livenessDelaySec,omitempty"`
 			LivenessProbes   *struct {
@@ -2926,7 +3002,6 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probes" json:"livenessProbes,omitempty"`
-			LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 			LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 			NodeSelector             *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodDisruptionBudget      *struct {
@@ -2943,6 +3018,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -3487,6 +3563,7 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -3742,6 +3819,17 @@ type PxcPerconaComPerconaXtraDbclusterV1ManifestData struct {
 			Schedule               *string `tfsdk:"schedule" json:"schedule,omitempty"`
 			VersionServiceEndpoint *string `tfsdk:"version_service_endpoint" json:"versionServiceEndpoint,omitempty"`
 		} `tfsdk:"upgrade_options" json:"upgradeOptions,omitempty"`
+		Users *[]struct {
+			Dbs               *[]string `tfsdk:"dbs" json:"dbs,omitempty"`
+			Grants            *[]string `tfsdk:"grants" json:"grants,omitempty"`
+			Hosts             *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
+			Name              *string   `tfsdk:"name" json:"name,omitempty"`
+			PasswordSecretRef *struct {
+				Key  *string `tfsdk:"key" json:"key,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"password_secret_ref" json:"passwordSecretRef,omitempty"`
+			WithGrantOption *bool `tfsdk:"with_grant_option" json:"withGrantOption,omitempty"`
+		} `tfsdk:"users" json:"users,omitempty"`
 		VaultSecretName *string `tfsdk:"vault_secret_name" json:"vaultSecretName,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -3835,6 +3923,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"active_deadline_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"allow_parallel": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -4011,6 +4107,45 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 											Computed:            false,
 										},
 
+										"retention": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"count": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+													},
+												},
+
+												"delete_from_storage": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("count"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"schedule": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -4034,6 +4169,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 							},
 
 							"service_account_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"starting_deadline_seconds": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -4936,6 +5079,22 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"block_size": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"concurrency": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"container": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -5482,6 +5641,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -6220,6 +6387,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"suspended_deadline_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -7453,6 +7628,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"load_balancer_class": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"load_balancer_ip": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -7537,6 +7720,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"load_balancer_class": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"load_balancer_ip": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -7584,14 +7775,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 							},
 
 							"external_traffic_policy": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"force_unsafe_bootstrap": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -7936,6 +8119,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Optional: true,
 										Computed: false,
 									},
+
+									"stop_signal": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -8143,14 +8334,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed: false,
 							},
 
-							"load_balancer_ip": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"load_balancer_source_ranges": schema.ListAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -8256,6 +8439,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -8629,14 +8820,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 							},
 
 							"replicas_external_traffic_policy": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"replicas_load_balancer_ip": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -11825,6 +12008,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 													Optional: true,
 													Computed: false,
 												},
+
+												"stop_signal": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -14312,6 +14503,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed: false,
 							},
 
+							"custom_cluster_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -14336,6 +14535,199 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"liveness_probes": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"proxysql_params": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -14350,6 +14742,199 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"readiness_probes": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"command": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"port": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http_get": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_headers": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tcp_socket": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"resources": schema.SingleNestedAttribute{
@@ -15637,6 +16222,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"load_balancer_class": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"load_balancer_ip": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -15676,14 +16269,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 							},
 
 							"external_traffic_policy": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"force_unsafe_bootstrap": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -16028,6 +16613,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Optional: true,
 										Computed: false,
 									},
+
+									"stop_signal": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -16235,14 +16828,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed: false,
 							},
 
-							"load_balancer_ip": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"load_balancer_source_ranges": schema.ListAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -16348,6 +16933,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -19892,6 +20485,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 													Optional: true,
 													Computed: false,
 												},
+
+												"stop_signal": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -22681,6 +23282,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"load_balancer_class": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"load_balancer_ip": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -22720,14 +23329,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 							},
 
 							"external_traffic_policy": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"force_unsafe_bootstrap": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -23072,6 +23673,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 										Optional: true,
 										Computed: false,
 									},
+
+									"stop_signal": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -23279,14 +23888,6 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Computed: false,
 							},
 
-							"load_balancer_ip": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"load_balancer_source_ranges": schema.ListAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -23392,6 +23993,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -27047,6 +27656,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 													Optional: true,
 													Computed: false,
 												},
+
+												"stop_signal": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -28784,6 +29401,85 @@ func (r *PxcPerconaComPerconaXtraDbclusterV1Manifest) Schema(_ context.Context, 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"users": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"dbs": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"grants": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"hosts": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"password_secret_ref": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"with_grant_option": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,

@@ -46,27 +46,34 @@ type KarpenterK8SAwsEc2NodeClassV1ManifestData struct {
 	Spec *struct {
 		AmiFamily        *string `tfsdk:"ami_family" json:"amiFamily,omitempty"`
 		AmiSelectorTerms *[]struct {
-			Alias *string            `tfsdk:"alias" json:"alias,omitempty"`
-			Id    *string            `tfsdk:"id" json:"id,omitempty"`
-			Name  *string            `tfsdk:"name" json:"name,omitempty"`
-			Owner *string            `tfsdk:"owner" json:"owner,omitempty"`
-			Tags  *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Alias        *string            `tfsdk:"alias" json:"alias,omitempty"`
+			Id           *string            `tfsdk:"id" json:"id,omitempty"`
+			Name         *string            `tfsdk:"name" json:"name,omitempty"`
+			Owner        *string            `tfsdk:"owner" json:"owner,omitempty"`
+			SsmParameter *string            `tfsdk:"ssm_parameter" json:"ssmParameter,omitempty"`
+			Tags         *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"ami_selector_terms" json:"amiSelectorTerms,omitempty"`
 		AssociatePublicIPAddress *bool `tfsdk:"associate_public_ip_address" json:"associatePublicIPAddress,omitempty"`
 		BlockDeviceMappings      *[]struct {
 			DeviceName *string `tfsdk:"device_name" json:"deviceName,omitempty"`
 			Ebs        *struct {
-				DeleteOnTermination *bool   `tfsdk:"delete_on_termination" json:"deleteOnTermination,omitempty"`
-				Encrypted           *bool   `tfsdk:"encrypted" json:"encrypted,omitempty"`
-				Iops                *int64  `tfsdk:"iops" json:"iops,omitempty"`
-				KmsKeyID            *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
-				SnapshotID          *string `tfsdk:"snapshot_id" json:"snapshotID,omitempty"`
-				Throughput          *int64  `tfsdk:"throughput" json:"throughput,omitempty"`
-				VolumeSize          *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
-				VolumeType          *string `tfsdk:"volume_type" json:"volumeType,omitempty"`
+				DeleteOnTermination      *bool   `tfsdk:"delete_on_termination" json:"deleteOnTermination,omitempty"`
+				Encrypted                *bool   `tfsdk:"encrypted" json:"encrypted,omitempty"`
+				Iops                     *int64  `tfsdk:"iops" json:"iops,omitempty"`
+				KmsKeyID                 *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
+				SnapshotID               *string `tfsdk:"snapshot_id" json:"snapshotID,omitempty"`
+				Throughput               *int64  `tfsdk:"throughput" json:"throughput,omitempty"`
+				VolumeInitializationRate *int64  `tfsdk:"volume_initialization_rate" json:"volumeInitializationRate,omitempty"`
+				VolumeSize               *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
+				VolumeType               *string `tfsdk:"volume_type" json:"volumeType,omitempty"`
 			} `tfsdk:"ebs" json:"ebs,omitempty"`
 			RootVolume *bool `tfsdk:"root_volume" json:"rootVolume,omitempty"`
 		} `tfsdk:"block_device_mappings" json:"blockDeviceMappings,omitempty"`
+		CapacityReservationSelectorTerms *[]struct {
+			Id      *string            `tfsdk:"id" json:"id,omitempty"`
+			OwnerID *string            `tfsdk:"owner_id" json:"ownerID,omitempty"`
+			Tags    *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+		} `tfsdk:"capacity_reservation_selector_terms" json:"capacityReservationSelectorTerms,omitempty"`
 		Context             *string `tfsdk:"context" json:"context,omitempty"`
 		DetailedMonitoring  *bool   `tfsdk:"detailed_monitoring" json:"detailedMonitoring,omitempty"`
 		InstanceProfile     *string `tfsdk:"instance_profile" json:"instanceProfile,omitempty"`
@@ -225,9 +232,17 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 									Computed:            false,
 								},
 
+								"ssm_parameter": schema.StringAttribute{
+									Description:         "SSMParameter is the name (or ARN) of the SSM parameter containing the Image ID.",
+									MarkdownDescription: "SSMParameter is the name (or ARN) of the SSM parameter containing the Image ID.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"tags": schema.MapAttribute{
-									Description:         "Tags is a map of key/value tags used to select subnets Specifying '*' for a value selects all values for a given tag key.",
-									MarkdownDescription: "Tags is a map of key/value tags used to select subnets Specifying '*' for a value selects all values for a given tag key.",
+									Description:         "Tags is a map of key/value tags used to select amis. Specifying '*' for a value selects all values for a given tag key.",
+									MarkdownDescription: "Tags is a map of key/value tags used to select amis. Specifying '*' for a value selects all values for a given tag key.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -290,8 +305,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"kms_key_id": schema.StringAttribute{
-											Description:         "KMSKeyID (ARN) of the symmetric Key Management Service (KMS) CMK used for encryption.",
-											MarkdownDescription: "KMSKeyID (ARN) of the symmetric Key Management Service (KMS) CMK used for encryption.",
+											Description:         "Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for EBS encryption.",
+											MarkdownDescription: "Identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for EBS encryption.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -311,6 +326,18 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"volume_initialization_rate": schema.Int64Attribute{
+											Description:         "VolumeInitializationRate specifies the Amazon EBS Provisioned Rate for Volume Initialization, in MiB/s, at which to download the snapshot blocks from Amazon S3 to the volume. This is also known as volume initialization. Specifying a volume initialization rate ensures that the volume is initialized at a predictable and consistent rate after creation. Only allowed if SnapshotID is set. Valid Range: Minimum value of 100. Maximum value of 300.",
+											MarkdownDescription: "VolumeInitializationRate specifies the Amazon EBS Provisioned Rate for Volume Initialization, in MiB/s, at which to download the snapshot blocks from Amazon S3 to the volume. This is also known as volume initialization. Specifying a volume initialization rate ensures that the volume is initialized at a predictable and consistent rate after creation. Only allowed if SnapshotID is set. Valid Range: Minimum value of 100. Maximum value of 300.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(100),
+												int64validator.AtMost(300),
+											},
 										},
 
 										"volume_size": schema.StringAttribute{
@@ -343,6 +370,48 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 								"root_volume": schema.BoolAttribute{
 									Description:         "RootVolume is a flag indicating if this device is mounted as kubelet root dir. You can configure at most one root volume in BlockDeviceMappings.",
 									MarkdownDescription: "RootVolume is a flag indicating if this device is mounted as kubelet root dir. You can configure at most one root volume in BlockDeviceMappings.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"capacity_reservation_selector_terms": schema.ListNestedAttribute{
+						Description:         "CapacityReservationSelectorTerms is a list of capacity reservation selector terms. Each term is ORed together to determine the set of eligible capacity reservations.",
+						MarkdownDescription: "CapacityReservationSelectorTerms is a list of capacity reservation selector terms. Each term is ORed together to determine the set of eligible capacity reservations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"id": schema.StringAttribute{
+									Description:         "ID is the capacity reservation id in EC2",
+									MarkdownDescription: "ID is the capacity reservation id in EC2",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^cr-[0-9a-z]+$`), ""),
+									},
+								},
+
+								"owner_id": schema.StringAttribute{
+									Description:         "Owner is the owner id for the ami.",
+									MarkdownDescription: "Owner is the owner id for the ami.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]{12}$`), ""),
+									},
+								},
+
+								"tags": schema.MapAttribute{
+									Description:         "Tags is a map of key/value tags used to select capacity reservations. Specifying '*' for a value selects all values for a given tag key.",
+									MarkdownDescription: "Tags is a map of key/value tags used to select capacity reservations. Specifying '*' for a value selects all values for a given tag key.",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -577,8 +646,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"security_group_selector_terms": schema.ListNestedAttribute{
-						Description:         "SecurityGroupSelectorTerms is a list of or security group selector terms. The terms are ORed.",
-						MarkdownDescription: "SecurityGroupSelectorTerms is a list of or security group selector terms. The terms are ORed.",
+						Description:         "SecurityGroupSelectorTerms is a list of security group selector terms. The terms are ORed.",
+						MarkdownDescription: "SecurityGroupSelectorTerms is a list of security group selector terms. The terms are ORed.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{
@@ -601,8 +670,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"tags": schema.MapAttribute{
-									Description:         "Tags is a map of key/value tags used to select subnets Specifying '*' for a value selects all values for a given tag key.",
-									MarkdownDescription: "Tags is a map of key/value tags used to select subnets Specifying '*' for a value selects all values for a given tag key.",
+									Description:         "Tags is a map of key/value tags used to select security groups. Specifying '*' for a value selects all values for a given tag key.",
+									MarkdownDescription: "Tags is a map of key/value tags used to select security groups. Specifying '*' for a value selects all values for a given tag key.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -616,8 +685,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"subnet_selector_terms": schema.ListNestedAttribute{
-						Description:         "SubnetSelectorTerms is a list of or subnet selector terms. The terms are ORed.",
-						MarkdownDescription: "SubnetSelectorTerms is a list of or subnet selector terms. The terms are ORed.",
+						Description:         "SubnetSelectorTerms is a list of subnet selector terms. The terms are ORed.",
+						MarkdownDescription: "SubnetSelectorTerms is a list of subnet selector terms. The terms are ORed.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{

@@ -134,16 +134,20 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
-			CurveCert      *string `tfsdk:"curve_cert" json:"curveCert,omitempty"`
-			LogLevel       *int64  `tfsdk:"log_level" json:"logLevel,omitempty"`
-			MinimalService *bool   `tfsdk:"minimal_service" json:"minimalService,omitempty"`
-			MungeSecret    *string `tfsdk:"munge_secret" json:"mungeSecret,omitempty"`
-			NoWaitSocket   *bool   `tfsdk:"no_wait_socket" json:"noWaitSocket,omitempty"`
-			OptionFlags    *string `tfsdk:"option_flags" json:"optionFlags,omitempty"`
+			CurveCert      *string            `tfsdk:"curve_cert" json:"curveCert,omitempty"`
+			DisableSocket  *bool              `tfsdk:"disable_socket" json:"disableSocket,omitempty"`
+			Environment    *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
+			LogLevel       *int64             `tfsdk:"log_level" json:"logLevel,omitempty"`
+			MinimalService *bool              `tfsdk:"minimal_service" json:"minimalService,omitempty"`
+			MungeSecret    *string            `tfsdk:"munge_secret" json:"mungeSecret,omitempty"`
+			NoWaitSocket   *bool              `tfsdk:"no_wait_socket" json:"noWaitSocket,omitempty"`
+			OptionFlags    *string            `tfsdk:"option_flags" json:"optionFlags,omitempty"`
 			Scheduler      *struct {
 				QueuePolicy *string `tfsdk:"queue_policy" json:"queuePolicy,omitempty"`
+				Simple      *bool   `tfsdk:"simple" json:"simple,omitempty"`
 			} `tfsdk:"scheduler" json:"scheduler,omitempty"`
 			SubmitCommand *string `tfsdk:"submit_command" json:"submitCommand,omitempty"`
+			Topology      *string `tfsdk:"topology" json:"topology,omitempty"`
 			Wrap          *string `tfsdk:"wrap" json:"wrap,omitempty"`
 		} `tfsdk:"flux" json:"flux,omitempty"`
 		Interactive *bool              `tfsdk:"interactive" json:"interactive,omitempty"`
@@ -164,6 +168,9 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 		Pod *struct {
 			Annotations                  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			AutomountServiceAccountToken *bool              `tfsdk:"automount_service_account_token" json:"automountServiceAccountToken,omitempty"`
+			DnsPolicy                    *string            `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			HostIPC                      *bool              `tfsdk:"host_ipc" json:"hostIPC,omitempty"`
+			HostPID                      *bool              `tfsdk:"host_pid" json:"hostPID,omitempty"`
 			Labels                       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			NodeSelector                 *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			Resources                    *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
@@ -962,6 +969,23 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"disable_socket": schema.BoolAttribute{
+								Description:         "Disable specifying the socket path",
+								MarkdownDescription: "Disable specifying the socket path",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"environment": schema.MapAttribute{
+								Description:         "Environment If defined, set these envars for the flux view.",
+								MarkdownDescription: "Environment If defined, set these envars for the flux view.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"log_level": schema.Int64Attribute{
 								Description:         "Log level to use for flux logging (only in non TestMode)",
 								MarkdownDescription: "Log level to use for flux logging (only in non TestMode)",
@@ -1013,6 +1037,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"simple": schema.BoolAttribute{
+										Description:         "Use sched-simple (no support for GPU)",
+										MarkdownDescription: "Use sched-simple (no support for GPU)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1022,6 +1054,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							"submit_command": schema.StringAttribute{
 								Description:         "Modify flux submit to be something else",
 								MarkdownDescription: "Modify flux submit to be something else",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"topology": schema.StringAttribute{
+								Description:         "Specify a custom Topology",
+								MarkdownDescription: "Specify a custom Topology",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1163,6 +1203,30 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							"automount_service_account_token": schema.BoolAttribute{
 								Description:         "Automatically mount the service account name",
 								MarkdownDescription: "Automatically mount the service account name",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"dns_policy": schema.StringAttribute{
+								Description:         "Pod DNS policy (defaults to ClusterFirst)",
+								MarkdownDescription: "Pod DNS policy (defaults to ClusterFirst)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"host_ipc": schema.BoolAttribute{
+								Description:         "Use Host IPC",
+								MarkdownDescription: "Use Host IPC",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"host_pid": schema.BoolAttribute{
+								Description:         "Use Host PID",
+								MarkdownDescription: "Use Host PID",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

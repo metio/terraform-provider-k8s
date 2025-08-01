@@ -59,8 +59,9 @@ type ImageToolkitFluxcdIoImageUpdateAutomationV1Beta2ManifestData struct {
 					Email *string `tfsdk:"email" json:"email,omitempty"`
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"author" json:"author,omitempty"`
-				MessageTemplate *string `tfsdk:"message_template" json:"messageTemplate,omitempty"`
-				SigningKey      *struct {
+				MessageTemplate       *string            `tfsdk:"message_template" json:"messageTemplate,omitempty"`
+				MessageTemplateValues *map[string]string `tfsdk:"message_template_values" json:"messageTemplateValues,omitempty"`
+				SigningKey            *struct {
 					SecretRef *struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -264,8 +265,17 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta2Manifest) Schema(_ cont
 									},
 
 									"message_template": schema.StringAttribute{
-										Description:         "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
-										MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made.",
+										Description:         "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made. Note: The 'Updated' template field has been removed. Use 'Changed' instead.",
+										MarkdownDescription: "MessageTemplate provides a template for the commit message, into which will be interpolated the details of the change made. Note: The 'Updated' template field has been removed. Use 'Changed' instead.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"message_template_values": schema.MapAttribute{
+										Description:         "MessageTemplateValues provides additional values to be available to the templating rendering.",
+										MarkdownDescription: "MessageTemplateValues provides additional values to be available to the templating rendering.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -473,8 +483,8 @@ func (r *ImageToolkitFluxcdIoImageUpdateAutomationV1Beta2Manifest) Schema(_ cont
 							"strategy": schema.StringAttribute{
 								Description:         "Strategy names the strategy to be used.",
 								MarkdownDescription: "Strategy names the strategy to be used.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.OneOf("Setters"),

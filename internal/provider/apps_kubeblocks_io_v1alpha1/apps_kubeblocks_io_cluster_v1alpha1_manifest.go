@@ -53,13 +53,16 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		AvailabilityPolicy *string `tfsdk:"availability_policy" json:"availabilityPolicy,omitempty"`
 		Backup             *struct {
-			CronExpression          *string `tfsdk:"cron_expression" json:"cronExpression,omitempty"`
-			Enabled                 *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Method                  *string `tfsdk:"method" json:"method,omitempty"`
-			PitrEnabled             *bool   `tfsdk:"pitr_enabled" json:"pitrEnabled,omitempty"`
-			RepoName                *string `tfsdk:"repo_name" json:"repoName,omitempty"`
-			RetentionPeriod         *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
-			StartingDeadlineMinutes *int64  `tfsdk:"starting_deadline_minutes" json:"startingDeadlineMinutes,omitempty"`
+			ContinuousMethod          *string `tfsdk:"continuous_method" json:"continuousMethod,omitempty"`
+			CronExpression            *string `tfsdk:"cron_expression" json:"cronExpression,omitempty"`
+			Enabled                   *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			IncrementalBackupEnabled  *bool   `tfsdk:"incremental_backup_enabled" json:"incrementalBackupEnabled,omitempty"`
+			IncrementalCronExpression *string `tfsdk:"incremental_cron_expression" json:"incrementalCronExpression,omitempty"`
+			Method                    *string `tfsdk:"method" json:"method,omitempty"`
+			PitrEnabled               *bool   `tfsdk:"pitr_enabled" json:"pitrEnabled,omitempty"`
+			RepoName                  *string `tfsdk:"repo_name" json:"repoName,omitempty"`
+			RetentionPeriod           *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
+			StartingDeadlineMinutes   *int64  `tfsdk:"starting_deadline_minutes" json:"startingDeadlineMinutes,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		ClusterDefinitionRef *string `tfsdk:"cluster_definition_ref" json:"clusterDefinitionRef,omitempty"`
 		ClusterVersionRef    *string `tfsdk:"cluster_version_ref" json:"clusterVersionRef,omitempty"`
@@ -320,8 +323,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 				} `tfsdk:"scheduling_policy" json:"schedulingPolicy,omitempty"`
 				VolumeClaimTemplates *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-					Spec *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Name        *string            `tfsdk:"name" json:"name,omitempty"`
+					Spec        *struct {
 						AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 						Resources   *struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -914,8 +919,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 				} `tfsdk:"secret_refs" json:"secretRefs,omitempty"`
 			} `tfsdk:"user_resource_refs" json:"userResourceRefs,omitempty"`
 			VolumeClaimTemplates *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
-				Spec *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				Name        *string            `tfsdk:"name" json:"name,omitempty"`
+				Spec        *struct {
 					AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 					Resources   *struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -1666,8 +1673,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
 					} `tfsdk:"scheduling_policy" json:"schedulingPolicy,omitempty"`
 					VolumeClaimTemplates *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
-						Spec *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Name        *string            `tfsdk:"name" json:"name,omitempty"`
+						Spec        *struct {
 							AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 							Resources   *struct {
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -2260,8 +2269,10 @@ type AppsKubeblocksIoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"secret_refs" json:"secretRefs,omitempty"`
 				} `tfsdk:"user_resource_refs" json:"userResourceRefs,omitempty"`
 				VolumeClaimTemplates *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
-					Spec *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Name        *string            `tfsdk:"name" json:"name,omitempty"`
+					Spec        *struct {
 						AccessModes *map[string]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 						Resources   *struct {
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -2733,6 +2744,14 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Description:         "Specifies the backup configuration of the Cluster.",
 						MarkdownDescription: "Specifies the backup configuration of the Cluster.",
 						Attributes: map[string]schema.Attribute{
+							"continuous_method": schema.StringAttribute{
+								Description:         "Specifies the backup method to use, if not set, use the first continuous method.",
+								MarkdownDescription: "Specifies the backup method to use, if not set, use the first continuous method.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cron_expression": schema.StringAttribute{
 								Description:         "The cron expression for the schedule. The timezone is in UTC. See https://en.wikipedia.org/wiki/Cron.",
 								MarkdownDescription: "The cron expression for the schedule. The timezone is in UTC. See https://en.wikipedia.org/wiki/Cron.",
@@ -2744,6 +2763,22 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 							"enabled": schema.BoolAttribute{
 								Description:         "Specifies whether automated backup is enabled for the Cluster.",
 								MarkdownDescription: "Specifies whether automated backup is enabled for the Cluster.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"incremental_backup_enabled": schema.BoolAttribute{
+								Description:         "Specifies whether to enable incremental backup.",
+								MarkdownDescription: "Specifies whether to enable incremental backup.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"incremental_cron_expression": schema.StringAttribute{
+								Description:         "The cron expression for the incremental backup schedule. The timezone is in UTC. See https://en.wikipedia.org/wiki/Cron.",
+								MarkdownDescription: "The cron expression for the incremental backup schedule. The timezone is in UTC. See https://en.wikipedia.org/wiki/Cron.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4577,6 +4612,24 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 												MarkdownDescription: "Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "Specifies the annotations for the PVC of the volume.",
+															MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "Specifies the labels for the PVC of the volume.",
+															MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"name": schema.StringAttribute{
 															Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 															MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
@@ -8480,7 +8533,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.LengthAtMost(256),
-															stringvalidator.RegexMatches(regexp.MustCompile(`^/[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 														},
 													},
 
@@ -8532,7 +8584,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 														Computed:            false,
 														Validators: []validator.String{
 															stringvalidator.LengthAtMost(256),
-															stringvalidator.RegexMatches(regexp.MustCompile(`^/[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 														},
 													},
 
@@ -8640,6 +8691,24 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Specifies the annotations for the PVC of the volume.",
+												MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "Specifies the labels for the PVC of the volume.",
+												MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"name": schema.StringAttribute{
 												Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 												MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
@@ -13725,6 +13794,24 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 														MarkdownDescription: "Defines VolumeClaimTemplates to override. Add new or override existing volume claim templates.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
+																"annotations": schema.MapAttribute{
+																	Description:         "Specifies the annotations for the PVC of the volume.",
+																	MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"labels": schema.MapAttribute{
+																	Description:         "Specifies the labels for the PVC of the volume.",
+																	MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"name": schema.StringAttribute{
 																	Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 																	MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
@@ -17628,7 +17715,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.LengthAtMost(256),
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^/[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 																},
 															},
 
@@ -17680,7 +17766,6 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 																Computed:            false,
 																Validators: []validator.String{
 																	stringvalidator.LengthAtMost(256),
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^/[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 																},
 															},
 
@@ -17788,6 +17873,24 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "Specifies a list of PersistentVolumeClaim templates that represent the storage requirements for the Component. Each template specifies the desired characteristics of a persistent volume, such as storage class, size, and access modes. These templates are used to dynamically provision persistent volumes for the Component.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"annotations": schema.MapAttribute{
+														Description:         "Specifies the annotations for the PVC of the volume.",
+														MarkdownDescription: "Specifies the annotations for the PVC of the volume.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"labels": schema.MapAttribute{
+														Description:         "Specifies the labels for the PVC of the volume.",
+														MarkdownDescription: "Specifies the labels for the PVC of the volume.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"name": schema.StringAttribute{
 														Description:         "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",
 														MarkdownDescription: "Refers to the name of a volumeMount defined in either: - 'componentDefinition.spec.runtime.containers[*].volumeMounts' - 'clusterDefinition.spec.componentDefs[*].podSpec.containers[*].volumeMounts' (deprecated) The value of 'name' must match the 'name' field of a volumeMount specified in the corresponding 'volumeMounts' array.",

@@ -235,8 +235,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 												"header_name": schema.StringAttribute{
 													Description:         "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
 													MarkdownDescription: "HeaderName is the name of the HTTP request header that will be used to calculate the hash key. If the header specified is not present on a request, no hash will be produced.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),
@@ -255,8 +255,8 @@ func (r *ProjectcontourIoExtensionServiceV1Alpha1Manifest) Schema(_ context.Cont
 												"parameter_name": schema.StringAttribute{
 													Description:         "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
 													MarkdownDescription: "ParameterName is the name of the HTTP request query parameter that will be used to calculate the hash key. If the query parameter specified is not present on a request, no hash will be produced.",
-													Required:            false,
-													Optional:            true,
+													Required:            true,
+													Optional:            false,
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.LengthAtLeast(1),

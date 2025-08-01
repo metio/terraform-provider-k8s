@@ -73,7 +73,8 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 			Replicas       *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources      *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -262,6 +263,10 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Image *struct {
+					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+					Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+				} `tfsdk:"image" json:"image,omitempty"`
 				Iscsi *struct {
 					ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 					ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -430,12 +435,14 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 					Value             *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"node_placement" json:"nodePlacement,omitempty"`
-			OverloadMaxHeapSize *int64             `tfsdk:"overload_max_heap_size" json:"overloadMaxHeapSize,omitempty"`
-			PodAnnotations      *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
-			Replicas            *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-			Resources           *struct {
+			OverloadMaxDownstreamConnections *int64             `tfsdk:"overload_max_downstream_connections" json:"overloadMaxDownstreamConnections,omitempty"`
+			OverloadMaxHeapSize              *int64             `tfsdk:"overload_max_heap_size" json:"overloadMaxHeapSize,omitempty"`
+			PodAnnotations                   *map[string]string `tfsdk:"pod_annotations" json:"podAnnotations,omitempty"`
+			Replicas                         *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+			Resources                        *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -487,6 +494,9 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 					Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 				} `tfsdk:"https" json:"https,omitempty"`
 				Listener *struct {
+					Compression *struct {
+						Algorithm *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
+					} `tfsdk:"compression" json:"compression,omitempty"`
 					ConnectionBalancer                *string `tfsdk:"connection_balancer" json:"connectionBalancer,omitempty"`
 					DisableAllowChunkedLength         *bool   `tfsdk:"disable_allow_chunked_length" json:"disableAllowChunkedLength,omitempty"`
 					DisableMergeSlashes               *bool   `tfsdk:"disable_merge_slashes" json:"disableMergeSlashes,omitempty"`
@@ -523,9 +533,14 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 					} `tfsdk:"tls" json:"tls,omitempty"`
 				} `tfsdk:"metrics" json:"metrics,omitempty"`
 				Network *struct {
-					AdminPort      *int64 `tfsdk:"admin_port" json:"adminPort,omitempty"`
-					NumTrustedHops *int64 `tfsdk:"num_trusted_hops" json:"numTrustedHops,omitempty"`
+					AdminPort            *int64 `tfsdk:"admin_port" json:"adminPort,omitempty"`
+					NumTrustedHops       *int64 `tfsdk:"num_trusted_hops" json:"numTrustedHops,omitempty"`
+					StripTrailingHostDot *bool  `tfsdk:"strip_trailing_host_dot" json:"stripTrailingHostDot,omitempty"`
 				} `tfsdk:"network" json:"network,omitempty"`
+				OmEnforcedHealth *struct {
+					Address *string `tfsdk:"address" json:"address,omitempty"`
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"om_enforced_health" json:"omEnforcedHealth,omitempty"`
 				Service *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -667,7 +682,6 @@ type ProjectcontourIoContourDeploymentV1Alpha1ManifestData struct {
 					Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
 					KeyFile  *string `tfsdk:"key_file" json:"keyFile,omitempty"`
 				} `tfsdk:"tls" json:"tls,omitempty"`
-				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"xds_server" json:"xdsServer,omitempty"`
 		} `tfsdk:"runtime_settings" json:"runtimeSettings,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -774,8 +788,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Strategy describes the deployment strategy to use to replace existing pods with new pods.",
 										Attributes: map[string]schema.Attribute{
 											"rolling_update": schema.SingleNestedAttribute{
-												Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
-												MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
+												Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
+												MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
 												Attributes: map[string]schema.Attribute{
 													"max_surge": schema.StringAttribute{
 														Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.",
@@ -950,6 +964,14 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													Optional:            false,
 													Computed:            false,
 												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -1018,8 +1040,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Strategy describes the deployment strategy to use to replace existing DaemonSet pods with new pods.",
 										Attributes: map[string]schema.Attribute{
 											"rolling_update": schema.SingleNestedAttribute{
-												Description:         "Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345",
-												MarkdownDescription: "Rolling update config params. Present only if type = 'RollingUpdate'. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be. Same as Deployment 'strategy.rollingUpdate'. See https://github.com/kubernetes/kubernetes/issues/35345",
+												Description:         "Rolling update config params. Present only if type = 'RollingUpdate'.",
+												MarkdownDescription: "Rolling update config params. Present only if type = 'RollingUpdate'.",
 												Attributes: map[string]schema.Attribute{
 													"max_surge": schema.StringAttribute{
 														Description:         "The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption.",
@@ -1080,8 +1102,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										MarkdownDescription: "Strategy describes the deployment strategy to use to replace existing pods with new pods.",
 										Attributes: map[string]schema.Attribute{
 											"rolling_update": schema.SingleNestedAttribute{
-												Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
-												MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
+												Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
+												MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
 												Attributes: map[string]schema.Attribute{
 													"max_surge": schema.StringAttribute{
 														Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.",
@@ -1195,12 +1217,12 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"aws_elastic_block_store": schema.SingleNestedAttribute{
-											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1236,8 +1258,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"azure_disk": schema.SingleNestedAttribute{
-											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"caching_mode": schema.StringAttribute{
 													Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -1293,8 +1315,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"azure_file": schema.SingleNestedAttribute{
-											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"read_only": schema.BoolAttribute{
 													Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -1326,8 +1348,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"cephfs": schema.SingleNestedAttribute{
-											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"monitors": schema.ListAttribute{
 													Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -1367,8 +1389,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1393,8 +1415,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"cinder": schema.SingleNestedAttribute{
-											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -1417,8 +1439,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1490,8 +1512,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1511,8 +1533,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"csi": schema.SingleNestedAttribute{
-											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -1535,8 +1557,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1890,8 +1912,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																},
 
 																"volume_attributes_class_name": schema.StringAttribute{
-																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1933,8 +1955,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 											MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+													MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1980,8 +2002,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"flex_volume": schema.SingleNestedAttribute{
-											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the driver to use for this volume.",
@@ -2021,8 +2043,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2039,8 +2061,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"flocker": schema.SingleNestedAttribute{
-											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"dataset_name": schema.StringAttribute{
 													Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -2064,12 +2086,12 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"gce_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2105,8 +2127,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"git_repo": schema.SingleNestedAttribute{
-											Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-											MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 											Attributes: map[string]schema.Attribute{
 												"directory": schema.StringAttribute{
 													Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -2138,8 +2160,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"glusterfs": schema.SingleNestedAttribute{
-											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 											Attributes: map[string]schema.Attribute{
 												"endpoints": schema.StringAttribute{
 													Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -2171,8 +2193,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"host_path": schema.SingleNestedAttribute{
-											Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
-											MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+											Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 											Attributes: map[string]schema.Attribute{
 												"path": schema.StringAttribute{
 													Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
@@ -2185,6 +2207,31 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 												"type": schema.StringAttribute{
 													Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 													MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"image": schema.SingleNestedAttribute{
+											Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											Attributes: map[string]schema.Attribute{
+												"pull_policy": schema.StringAttribute{
+													Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"reference": schema.StringAttribute{
+													Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+													MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2216,8 +2263,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2277,8 +2324,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2369,8 +2416,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"photon_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2394,8 +2441,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"portworx_volume": schema.SingleNestedAttribute{
-											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2439,8 +2486,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 												},
 
 												"sources": schema.ListNestedAttribute{
-													Description:         "sources is the list of volume projections",
-													MarkdownDescription: "sources is the list of volume projections",
+													Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+													MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"cluster_trust_bundle": schema.SingleNestedAttribute{
@@ -2578,8 +2625,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2732,8 +2779,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2797,8 +2844,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"quobyte": schema.SingleNestedAttribute{
-											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"group": schema.StringAttribute{
 													Description:         "group to map volume access to Default is no group",
@@ -2854,12 +2901,12 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"rbd": schema.SingleNestedAttribute{
-											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2911,8 +2958,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2937,8 +2984,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"scale_io": schema.SingleNestedAttribute{
-											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -2977,8 +3024,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3103,8 +3150,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"storageos": schema.SingleNestedAttribute{
-											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -3127,8 +3174,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3161,8 +3208,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"vsphere_volume": schema.SingleNestedAttribute{
-											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -3326,6 +3373,14 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 								Computed: false,
 							},
 
+							"overload_max_downstream_connections": schema.Int64Attribute{
+								Description:         "OverloadMaxDownstreamConn defines the envoy global downstream connection limit controlled by the overload manager. When the value is greater than 0 the overload manager is enabled and listeners will begin rejecting connections when the the connection threshold is hit. Metrics and health listeners are not subject to the connection limits, however, they still count against the global limit.",
+								MarkdownDescription: "OverloadMaxDownstreamConn defines the envoy global downstream connection limit controlled by the overload manager. When the value is greater than 0 the overload manager is enabled and listeners will begin rejecting connections when the the connection threshold is hit. Metrics and health listeners are not subject to the connection limits, however, they still count against the global limit.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"overload_max_heap_size": schema.Int64Attribute{
 								Description:         "OverloadMaxHeapSize defines the maximum heap memory of the envoy controlled by the overload manager. When the value is greater than 0, the overload manager is enabled, and when envoy reaches 95% of the maximum heap size, it performs a shrink heap operation, When it reaches 98% of the maximum heap size, Envoy Will stop accepting requests. More info: https://projectcontour.io/docs/main/config/overload-manager/",
 								MarkdownDescription: "OverloadMaxHeapSize defines the maximum heap memory of the envoy controlled by the overload manager. When the value is greater than 0, the overload manager is enabled, and when envoy reaches 95% of the maximum heap size, it performs a shrink heap operation, When it reaches 98% of the maximum heap size, Envoy Will stop accepting requests. More info: https://projectcontour.io/docs/main/config/overload-manager/",
@@ -3368,6 +3423,14 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -3723,6 +3786,26 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										Description:         "Listener hold various configurable Envoy listener values.",
 										MarkdownDescription: "Listener hold various configurable Envoy listener values.",
 										Attributes: map[string]schema.Attribute{
+											"compression": schema.SingleNestedAttribute{
+												Description:         "Compression defines configuration related to compression in the default HTTP Listener filters.",
+												MarkdownDescription: "Compression defines configuration related to compression in the default HTTP Listener filters.",
+												Attributes: map[string]schema.Attribute{
+													"algorithm": schema.StringAttribute{
+														Description:         "Algorithm selects the response compression type applied in the compression HTTP filter of the default Listener filters. Values: 'gzip' (default), 'brotli', 'zstd', 'disabled'. Setting this to 'disabled' will make Envoy skip 'Accept-Encoding: gzip,deflate' request header and always return uncompressed response.",
+														MarkdownDescription: "Algorithm selects the response compression type applied in the compression HTTP filter of the default Listener filters. Values: 'gzip' (default), 'brotli', 'zstd', 'disabled'. Setting this to 'disabled' will make Envoy skip 'Accept-Encoding: gzip,deflate' request header and always return uncompressed response.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("gzip", "brotli", "zstd", "disabled"),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"connection_balancer": schema.StringAttribute{
 												Description:         "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
 												MarkdownDescription: "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
@@ -4013,6 +4096,42 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 												Optional:            true,
 												Computed:            false,
 											},
+
+											"strip_trailing_host_dot": schema.BoolAttribute{
+												Description:         "EnvoyStripTrailingHostDot defines if trailing dot of the host should be removed from host/authority header before any processing of request by HTTP filters or routing. This affects the upstream host header. Without setting this option to true, incoming requests with host example.com. will not match against route with domains match set to example.com. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=strip_trailing_host_dot for more information. Contour's default is false.",
+												MarkdownDescription: "EnvoyStripTrailingHostDot defines if trailing dot of the host should be removed from host/authority header before any processing of request by HTTP filters or routing. This affects the upstream host header. Without setting this option to true, incoming requests with host example.com. will not match against route with domains match set to example.com. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=strip_trailing_host_dot for more information. Contour's default is false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"om_enforced_health": schema.SingleNestedAttribute{
+										Description:         "OMEnforcedHealth defines the endpoint Envoy uses to serve health checks with the envoy overload manager actions, such as global connection limits, enforced. The configured values must be different from the endpoints configured by [EnvoyConfig.Metrics] and [EnvoyConfig.Health] This is disabled by default",
+										MarkdownDescription: "OMEnforcedHealth defines the endpoint Envoy uses to serve health checks with the envoy overload manager actions, such as global connection limits, enforced. The configured values must be different from the endpoints configured by [EnvoyConfig.Metrics] and [EnvoyConfig.Health] This is disabled by default",
+										Attributes: map[string]schema.Attribute{
+											"address": schema.StringAttribute{
+												Description:         "Defines the health address interface.",
+												MarkdownDescription: "Defines the health address interface.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "Defines the health port.",
+												MarkdownDescription: "Defines the health port.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -4115,8 +4234,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"feature_flags": schema.ListAttribute{
-								Description:         "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
-								MarkdownDescription: "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
+								Description:         "FeatureFlags defines toggle to enable new contour features.",
+								MarkdownDescription: "FeatureFlags defines toggle to enable new contour features.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -4560,8 +4679,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																			"value": schema.StringAttribute{
 																				Description:         "Value defines the value of the descriptor entry.",
 																				MarkdownDescription: "Value defines the value of the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -4589,8 +4708,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																			"descriptor_key": schema.StringAttribute{
 																				Description:         "DescriptorKey defines the key to use on the descriptor entry.",
 																				MarkdownDescription: "DescriptorKey defines the key to use on the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -4600,8 +4719,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																			"header_name": schema.StringAttribute{
 																				Description:         "HeaderName defines the name of the header to look for on the request.",
 																				MarkdownDescription: "HeaderName defines the name of the header to look for on the request.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -4719,8 +4838,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																			"value": schema.StringAttribute{
 																				Description:         "Value defines the value of the descriptor entry.",
 																				MarkdownDescription: "Value defines the value of the descriptor entry.",
-																				Required:            false,
-																				Optional:            true,
+																				Required:            true,
+																				Optional:            false,
 																				Computed:            false,
 																				Validators: []validator.String{
 																					stringvalidator.LengthAtLeast(1),
@@ -4733,8 +4852,8 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 																	},
 																},
 															},
-															Required: false,
-															Optional: true,
+															Required: true,
+															Optional: false,
 															Computed: false,
 														},
 													},
@@ -4982,14 +5101,6 @@ func (r *ProjectcontourIoContourDeploymentV1Alpha1Manifest) Schema(_ context.Con
 										Required: false,
 										Optional: true,
 										Computed: false,
-									},
-
-									"type": schema.StringAttribute{
-										Description:         "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
-										MarkdownDescription: "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
 									},
 								},
 								Required: false,

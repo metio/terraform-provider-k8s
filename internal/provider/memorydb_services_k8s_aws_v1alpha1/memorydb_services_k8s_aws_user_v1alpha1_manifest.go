@@ -138,8 +138,8 @@ func (r *MemorydbServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "UserSpec defines the desired state of User. You create users and assign them specific permissions by using an access string. You assign the users to Access Control Lists aligned with a specific role (administrators, human resources) that are then deployed to one or more MemoryDB clusters.",
 				Attributes: map[string]schema.Attribute{
 					"access_string": schema.StringAttribute{
-						Description:         "Access permissions string used for this user.",
-						MarkdownDescription: "Access permissions string used for this user.",
+						Description:         "Access permissions string used for this user. Regex Pattern: 'S'",
+						MarkdownDescription: "Access permissions string used for this user. Regex Pattern: 'S'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -198,8 +198,8 @@ func (r *MemorydbServicesK8SAwsUserV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the user. This value must be unique as it also serves as the user identifier.",
-						MarkdownDescription: "The name of the user. This value must be unique as it also serves as the user identifier.",
+						Description:         "The name of the user. This value must be unique as it also serves as the user identifier. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
+						MarkdownDescription: "The name of the user. This value must be unique as it also serves as the user identifier. Regex Pattern: '^[a-zA-Z][a-zA-Z0-9-]*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

@@ -92,6 +92,54 @@ type KmmSigsXK8SIoModuleV1Beta1ManifestData struct {
 					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
+			InitContainer *struct {
+				Args    *[]string `tfsdk:"args" json:"args,omitempty"`
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+				Env     *[]struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						FieldRef *struct {
+							ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+							FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+						} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+						ResourceFieldRef *struct {
+							ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+							Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+							Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+						} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+				} `tfsdk:"env" json:"env,omitempty"`
+				Image           *string `tfsdk:"image" json:"image,omitempty"`
+				ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+				Resources       *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+				VolumeMounts *[]struct {
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 			Volumes            *[]struct {
 				AwsElasticBlockStore *struct {
@@ -418,7 +466,8 @@ type KmmSigsXK8SIoModuleV1Beta1ManifestData struct {
 					DockerfileConfigMap *struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"dockerfile_config_map" json:"dockerfileConfigMap,omitempty"`
-					KanikoParams *struct {
+					DockerfileOCIArtifact *string `tfsdk:"dockerfile_oci_artifact" json:"dockerfileOCIArtifact,omitempty"`
+					KanikoParams          *struct {
 						Tag *string `tfsdk:"tag" json:"tag,omitempty"`
 					} `tfsdk:"kaniko_params" json:"kanikoParams,omitempty"`
 					Secrets *[]struct {
@@ -443,7 +492,8 @@ type KmmSigsXK8SIoModuleV1Beta1ManifestData struct {
 						DockerfileConfigMap *struct {
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"dockerfile_config_map" json:"dockerfileConfigMap,omitempty"`
-						KanikoParams *struct {
+						DockerfileOCIArtifact *string `tfsdk:"dockerfile_oci_artifact" json:"dockerfileOCIArtifact,omitempty"`
+						KanikoParams          *struct {
 							Tag *string `tfsdk:"tag" json:"tag,omitempty"`
 						} `tfsdk:"kaniko_params" json:"kanikoParams,omitempty"`
 						Secrets *[]struct {
@@ -512,7 +562,14 @@ type KmmSigsXK8SIoModuleV1Beta1ManifestData struct {
 			} `tfsdk:"container" json:"container,omitempty"`
 			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		} `tfsdk:"module_loader" json:"moduleLoader,omitempty"`
-		Selector *map[string]string `tfsdk:"selector" json:"selector,omitempty"`
+		Selector    *map[string]string `tfsdk:"selector" json:"selector,omitempty"`
+		Tolerations *[]struct {
+			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+			Key               *string `tfsdk:"key" json:"key,omitempty"`
+			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+			Value             *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -921,6 +978,330 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 								Computed: false,
 							},
 
+							"init_container": schema.SingleNestedAttribute{
+								Description:         "InitContainer allows defines the init container that will be used by the device plugin",
+								MarkdownDescription: "InitContainer allows defines the init container that will be used by the device plugin",
+								Attributes: map[string]schema.Attribute{
+									"args": schema.ListAttribute{
+										Description:         "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+										MarkdownDescription: "Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"command": schema.ListAttribute{
+										Description:         "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+										MarkdownDescription: "Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"env": schema.ListNestedAttribute{
+										Description:         "List of environment variables to set in the container. Cannot be updated.",
+										MarkdownDescription: "List of environment variables to set in the container. Cannot be updated.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+													MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+													MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+													MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a ConfigMap.",
+															MarkdownDescription: "Selects a key of a ConfigMap.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"field_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+															MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+															Attributes: map[string]schema.Attribute{
+																"api_version": schema.StringAttribute{
+																	Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																	MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"field_path": schema.StringAttribute{
+																	Description:         "Path of the field to select in the specified API version.",
+																	MarkdownDescription: "Path of the field to select in the specified API version.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"resource_field_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+															MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+															Attributes: map[string]schema.Attribute{
+																"container_name": schema.StringAttribute{
+																	Description:         "Container name: required for volumes, optional for env vars",
+																	MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"divisor": schema.StringAttribute{
+																	Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																	MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"resource": schema.StringAttribute{
+																	Description:         "Required: resource to select",
+																	MarkdownDescription: "Required: resource to select",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Selects a key of a secret in the pod's namespace",
+															MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": schema.StringAttribute{
+										Description:         "Image is the name of the container image that the device plugin container will run.",
+										MarkdownDescription: "Image is the name of the container image that the device plugin container will run.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"image_pull_policy": schema.StringAttribute{
+										Description:         "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+										MarkdownDescription: "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": schema.ListNestedAttribute{
+										Description:         "VolumeMounts is a list of volume mounts that are appended to the default ones.",
+										MarkdownDescription: "VolumeMounts is a list of volume mounts that are appended to the default ones.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"mount_path": schema.StringAttribute{
+													Description:         "Path within the container at which the volume should be mounted. Must not contain ':'.",
+													MarkdownDescription: "Path within the container at which the volume should be mounted. Must not contain ':'.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"mount_propagation": schema.StringAttribute{
+													Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+													MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "This must match the Name of a Volume.",
+													MarkdownDescription: "This must match the Name of a Volume.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"read_only": schema.BoolAttribute{
+													Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+													MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+													MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path": schema.StringAttribute{
+													Description:         "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+													MarkdownDescription: "Path within the volume from which the container's volume should be mounted. Defaults to '' (volume's root).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path_expr": schema.StringAttribute{
+													Description:         "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+													MarkdownDescription: "Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to '' (volume's root). SubPathExpr and SubPath are mutually exclusive.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"service_account_name": schema.StringAttribute{
 								Description:         "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
 								MarkdownDescription: "ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
@@ -935,8 +1316,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"aws_elastic_block_store": schema.SingleNestedAttribute{
-											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -976,8 +1357,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"azure_disk": schema.SingleNestedAttribute{
-											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"caching_mode": schema.StringAttribute{
 													Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -1033,8 +1414,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"azure_file": schema.SingleNestedAttribute{
-											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"read_only": schema.BoolAttribute{
 													Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -1066,8 +1447,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"cephfs": schema.SingleNestedAttribute{
-											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"monitors": schema.ListAttribute{
 													Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -1133,8 +1514,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"cinder": schema.SingleNestedAttribute{
-											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -1251,8 +1632,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"csi": schema.SingleNestedAttribute{
-											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -1720,8 +2101,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"flex_volume": schema.SingleNestedAttribute{
-											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the driver to use for this volume.",
@@ -1779,8 +2160,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"flocker": schema.SingleNestedAttribute{
-											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"dataset_name": schema.StringAttribute{
 													Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -1804,8 +2185,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"gce_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -1845,8 +2226,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"git_repo": schema.SingleNestedAttribute{
-											Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-											MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 											Attributes: map[string]schema.Attribute{
 												"directory": schema.StringAttribute{
 													Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -1878,8 +2259,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"glusterfs": schema.SingleNestedAttribute{
-											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 											Attributes: map[string]schema.Attribute{
 												"endpoints": schema.StringAttribute{
 													Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -2134,8 +2515,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"photon_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2159,8 +2540,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"portworx_volume": schema.SingleNestedAttribute{
-											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2562,8 +2943,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"quobyte": schema.SingleNestedAttribute{
-											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"group": schema.StringAttribute{
 													Description:         "group to map volume access to Default is no group",
@@ -2619,8 +3000,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"rbd": schema.SingleNestedAttribute{
-											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -2702,8 +3083,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"scale_io": schema.SingleNestedAttribute{
-											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -2868,8 +3249,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"storageos": schema.SingleNestedAttribute{
-											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -2926,8 +3307,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"vsphere_volume": schema.SingleNestedAttribute{
-											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -3073,6 +3454,14 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 												Required: true,
 												Optional: false,
 												Computed: false,
+											},
+
+											"dockerfile_oci_artifact": schema.StringAttribute{
+												Description:         "DockerfileOCIArtifact specifies an OCI artifact that contains the dockerfile used to build the kernel module container image.",
+												MarkdownDescription: "DockerfileOCIArtifact specifies an OCI artifact that contains the dockerfile used to build the kernel module container image.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"kaniko_params": schema.SingleNestedAttribute{
@@ -3234,6 +3623,14 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 															Required: true,
 															Optional: false,
 															Computed: false,
+														},
+
+														"dockerfile_oci_artifact": schema.StringAttribute{
+															Description:         "DockerfileOCIArtifact specifies an OCI artifact that contains the dockerfile used to build the kernel module container image.",
+															MarkdownDescription: "DockerfileOCIArtifact specifies an OCI artifact that contains the dockerfile used to build the kernel module container image.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"kaniko_params": schema.SingleNestedAttribute{
@@ -3679,8 +4076,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -3691,6 +4088,57 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasou
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"tolerations": schema.ListNestedAttribute{
+						Description:         "If specified, the pod's tolerations.",
+						MarkdownDescription: "If specified, the pod's tolerations.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"effect": schema.StringAttribute{
+									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"key": schema.StringAttribute{
+									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"operator": schema.StringAttribute{
+									Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+									MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"toleration_seconds": schema.Int64Attribute{
+									Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

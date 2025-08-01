@@ -49,6 +49,7 @@ type SubmarinerIoServiceDiscoveryV1Alpha1ManifestData struct {
 		BrokerK8sInsecure        *bool   `tfsdk:"broker_k8s_insecure" json:"brokerK8sInsecure,omitempty"`
 		BrokerK8sRemoteNamespace *string `tfsdk:"broker_k8s_remote_namespace" json:"brokerK8sRemoteNamespace,omitempty"`
 		BrokerK8sSecret          *string `tfsdk:"broker_k8s_secret" json:"brokerK8sSecret,omitempty"`
+		ClusterCIDR              *string `tfsdk:"cluster_cidr" json:"clusterCIDR,omitempty"`
 		ClusterID                *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
 		ClustersetIPCIDR         *string `tfsdk:"clusterset_ip_cidr" json:"clustersetIPCIDR,omitempty"`
 		ClustersetIPEnabled      *bool   `tfsdk:"clusterset_ip_enabled" json:"clustersetIPEnabled,omitempty"`
@@ -193,6 +194,14 @@ func (r *SubmarinerIoServiceDiscoveryV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"broker_k8s_secret": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"cluster_cidr": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

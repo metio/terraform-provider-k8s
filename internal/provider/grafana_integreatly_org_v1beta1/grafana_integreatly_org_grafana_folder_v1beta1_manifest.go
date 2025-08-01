@@ -57,6 +57,7 @@ type GrafanaIntegreatlyOrgGrafanaFolderV1Beta1ManifestData struct {
 		ParentFolderUID *string `tfsdk:"parent_folder_uid" json:"parentFolderUID,omitempty"`
 		Permissions     *string `tfsdk:"permissions" json:"permissions,omitempty"`
 		ResyncPeriod    *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
+		Suspend         *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
 		Title           *string `tfsdk:"title" json:"title,omitempty"`
 		Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -140,16 +141,16 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 				MarkdownDescription: "GrafanaFolderSpec defines the desired state of GrafanaFolder",
 				Attributes: map[string]schema.Attribute{
 					"allow_cross_namespace_import": schema.BoolAttribute{
-						Description:         "Enable matching Grafana instances outside the current namespace",
-						MarkdownDescription: "Enable matching Grafana instances outside the current namespace",
+						Description:         "Allow the Operator to match this resource with Grafanas outside the current namespace",
+						MarkdownDescription: "Allow the Operator to match this resource with Grafanas outside the current namespace",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"instance_selector": schema.SingleNestedAttribute{
-						Description:         "Selects Grafanas for import",
-						MarkdownDescription: "Selects Grafanas for import",
+						Description:         "Selects Grafana instances for import",
+						MarkdownDescription: "Selects Grafana instances for import",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -226,14 +227,22 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"resync_period": schema.StringAttribute{
-						Description:         "How often the folder is synced, defaults to 5m if not set",
-						MarkdownDescription: "How often the folder is synced, defaults to 5m if not set",
+						Description:         "How often the resource is synced, defaults to 10m0s if not set",
+						MarkdownDescription: "How often the resource is synced, defaults to 10m0s if not set",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(ns|us|µs|ms|s|m|h))+$`), ""),
 						},
+					},
+
+					"suspend": schema.BoolAttribute{
+						Description:         "Suspend pauses synchronizing attempts and tells the operator to ignore changes",
+						MarkdownDescription: "Suspend pauses synchronizing attempts and tells the operator to ignore changes",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"title": schema.StringAttribute{
@@ -245,15 +254,19 @@ func (r *GrafanaIntegreatlyOrgGrafanaFolderV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"uid": schema.StringAttribute{
-						Description:         "Manually specify the UID the Folder is created with",
-						MarkdownDescription: "Manually specify the UID the Folder is created with",
+						Description:         "Manually specify the UID the Folder is created with. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40",
+						MarkdownDescription: "Manually specify the UID the Folder is created with. Can be any string consisting of alphanumeric characters, - and _ with a maximum length of 40",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(40),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9-_]+$`), ""),
+						},
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

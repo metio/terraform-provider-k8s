@@ -305,6 +305,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				MaxPendingRequests *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
 				MaxRequests        *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
 				MaxRetries         *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+				TrackRemaining     *bool  `tfsdk:"track_remaining" json:"trackRemaining,omitempty"`
 			} `tfsdk:"circuit_breakers" json:"circuitBreakers,omitempty"`
 			DisableGrpcWeb                     *bool   `tfsdk:"disable_grpc_web" json:"disableGrpcWeb,omitempty"`
 			DisableKubernetesDestinations      *bool   `tfsdk:"disable_kubernetes_destinations" json:"disableKubernetesDestinations,omitempty"`
@@ -2377,6 +2378,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											int64validator.AtLeast(0),
 											int64validator.AtMost(4.294967295e+09),
 										},
+									},
+
+									"track_remaining": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

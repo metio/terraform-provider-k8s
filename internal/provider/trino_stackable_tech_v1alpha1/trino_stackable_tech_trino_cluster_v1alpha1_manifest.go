@@ -66,8 +66,7 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"catalog_label_selector" json:"catalogLabelSelector,omitempty"`
-			ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
-			Tls           *struct {
+			Tls *struct {
 				InternalSecretClass *string `tfsdk:"internal_secret_class" json:"internalSecretClass,omitempty"`
 				ServerSecretClass   *string `tfsdk:"server_secret_class" json:"serverSecretClass,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -104,9 +103,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-				QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-				Resources             *struct {
+				QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+				QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -115,26 +115,19 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 						RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 					} `tfsdk:"memory" json:"memory,omitempty"`
-					Storage *struct {
-						Data *struct {
-							Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-							Selectors *struct {
-								MatchExpressions *[]struct {
-									Key      *string   `tfsdk:"key" json:"key,omitempty"`
-									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-							} `tfsdk:"selectors" json:"selectors,omitempty"`
-							StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-						} `tfsdk:"data" json:"data,omitempty"`
-					} `tfsdk:"storage" json:"storage,omitempty"`
+					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
+				ListenerClass       *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -167,9 +160,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-					QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-					Resources             *struct {
+					QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+					QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -178,26 +172,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 							Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 							RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 						} `tfsdk:"memory" json:"memory,omitempty"`
-						Storage *struct {
-							Data *struct {
-								Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-								Selectors *struct {
-									MatchExpressions *[]struct {
-										Key      *string   `tfsdk:"key" json:"key,omitempty"`
-										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-								} `tfsdk:"selectors" json:"selectors,omitempty"`
-								StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-							} `tfsdk:"data" json:"data,omitempty"`
-						} `tfsdk:"storage" json:"storage,omitempty"`
+						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"coordinators" json:"coordinators,omitempty"`
 		Image *struct {
@@ -237,9 +223,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-				QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-				Resources             *struct {
+				QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+				QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -248,26 +235,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 						RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 					} `tfsdk:"memory" json:"memory,omitempty"`
-					Storage *struct {
-						Data *struct {
-							Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-							Selectors *struct {
-								MatchExpressions *[]struct {
-									Key      *string   `tfsdk:"key" json:"key,omitempty"`
-									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-							} `tfsdk:"selectors" json:"selectors,omitempty"`
-							StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-						} `tfsdk:"data" json:"data,omitempty"`
-					} `tfsdk:"storage" json:"storage,omitempty"`
+					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -300,9 +279,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-					QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-					Resources             *struct {
+					QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+					QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -311,26 +291,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 							Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 							RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 						} `tfsdk:"memory" json:"memory,omitempty"`
-						Storage *struct {
-							Data *struct {
-								Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-								Selectors *struct {
-									MatchExpressions *[]struct {
-										Key      *string   `tfsdk:"key" json:"key,omitempty"`
-										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-								} `tfsdk:"selectors" json:"selectors,omitempty"`
-								StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-							} `tfsdk:"data" json:"data,omitempty"`
-						} `tfsdk:"storage" json:"storage,omitempty"`
+						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"workers" json:"workers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -423,8 +395,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_class": schema.StringAttribute{
-											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
-											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
+											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -443,8 +415,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"extra_scopes": schema.ListAttribute{
-													Description:         "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
-													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													Description:         "An optional list of extra scopes which get merged with the scopes defined in the AuthenticationClass",
+													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the AuthenticationClass",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -548,17 +520,6 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required: true,
 								Optional: false,
 								Computed: false,
-							},
-
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this TrinoCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this TrinoCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable", "external-stable"),
-								},
 							},
 
 							"tls": schema.SingleNestedAttribute{
@@ -813,6 +774,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -868,92 +837,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
-											"storage": schema.SingleNestedAttribute{
+											"storage": schema.MapAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"data": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"capacity": schema.StringAttribute{
-																Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"selectors": schema.SingleNestedAttribute{
-																Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																Attributes: map[string]schema.Attribute{
-																	"match_expressions": schema.ListNestedAttribute{
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		NestedObject: schema.NestedAttributeObject{
-																			Attributes: map[string]schema.Attribute{
-																				"key": schema.StringAttribute{
-																					Description:         "key is the label key that the selector applies to.",
-																					MarkdownDescription: "key is the label key that the selector applies to.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					ElementType:         types.StringType,
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"storage_class": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -984,6 +874,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_overrides": schema.MapAttribute{
 								Description:         "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
 								MarkdownDescription: "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
@@ -997,6 +923,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								MarkdownDescription: "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								Attributes: map[string]schema.Attribute{
+									"listener_class": schema.StringAttribute{
+										Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the coordinator.",
+										MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the coordinator.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_disruption_budget": schema.SingleNestedAttribute{
 										Description:         "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
 										MarkdownDescription: "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
@@ -1219,6 +1153,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1274,92 +1216,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 														Computed: false,
 													},
 
-													"storage": schema.SingleNestedAttribute{
+													"storage": schema.MapAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"data": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Attributes: map[string]schema.Attribute{
-																	"capacity": schema.StringAttribute{
-																		Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-
-																	"selectors": schema.SingleNestedAttribute{
-																		Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		Attributes: map[string]schema.Attribute{
-																			"match_expressions": schema.ListNestedAttribute{
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				NestedObject: schema.NestedAttributeObject{
-																					Attributes: map[string]schema.Attribute{
-																						"key": schema.StringAttribute{
-																							Description:         "key is the label key that the selector applies to.",
-																							MarkdownDescription: "key is the label key that the selector applies to.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"operator": schema.StringAttribute{
-																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"values": schema.ListAttribute{
-																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							ElementType:         types.StringType,
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																				},
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": schema.MapAttribute{
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				ElementType:         types.StringType,
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_class": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: false,
@@ -1388,6 +1251,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{
@@ -1425,8 +1324,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1471,8 +1370,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1680,6 +1579,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1735,92 +1642,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
-											"storage": schema.SingleNestedAttribute{
+											"storage": schema.MapAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"data": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"capacity": schema.StringAttribute{
-																Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"selectors": schema.SingleNestedAttribute{
-																Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																Attributes: map[string]schema.Attribute{
-																	"match_expressions": schema.ListNestedAttribute{
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		NestedObject: schema.NestedAttributeObject{
-																			Attributes: map[string]schema.Attribute{
-																				"key": schema.StringAttribute{
-																					Description:         "key is the label key that the selector applies to.",
-																					MarkdownDescription: "key is the label key that the selector applies to.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					ElementType:         types.StringType,
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"storage_class": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -1849,6 +1677,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -2086,6 +1950,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -2141,92 +2013,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 														Computed: false,
 													},
 
-													"storage": schema.SingleNestedAttribute{
+													"storage": schema.MapAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"data": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Attributes: map[string]schema.Attribute{
-																	"capacity": schema.StringAttribute{
-																		Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-
-																	"selectors": schema.SingleNestedAttribute{
-																		Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		Attributes: map[string]schema.Attribute{
-																			"match_expressions": schema.ListNestedAttribute{
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				NestedObject: schema.NestedAttributeObject{
-																					Attributes: map[string]schema.Attribute{
-																						"key": schema.StringAttribute{
-																							Description:         "key is the label key that the selector applies to.",
-																							MarkdownDescription: "key is the label key that the selector applies to.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"operator": schema.StringAttribute{
-																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"values": schema.ListAttribute{
-																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							ElementType:         types.StringType,
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																				},
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": schema.MapAttribute{
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				ElementType:         types.StringType,
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_class": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: false,
@@ -2255,6 +2048,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

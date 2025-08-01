@@ -276,11 +276,16 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 		} `tfsdk:"backup" json:"backup,omitempty"`
 		Bootstrap *struct {
 			Initdb *struct {
+				BuiltinLocale *string `tfsdk:"builtin_locale" json:"builtinLocale,omitempty"`
 				DataChecksums *bool   `tfsdk:"data_checksums" json:"dataChecksums,omitempty"`
 				Database      *string `tfsdk:"database" json:"database,omitempty"`
 				Encoding      *string `tfsdk:"encoding" json:"encoding,omitempty"`
+				IcuLocale     *string `tfsdk:"icu_locale" json:"icuLocale,omitempty"`
+				IcuRules      *string `tfsdk:"icu_rules" json:"icuRules,omitempty"`
 				Import        *struct {
 					Databases                *[]string `tfsdk:"databases" json:"databases,omitempty"`
+					PgDumpExtraOptions       *[]string `tfsdk:"pg_dump_extra_options" json:"pgDumpExtraOptions,omitempty"`
+					PgRestoreExtraOptions    *[]string `tfsdk:"pg_restore_extra_options" json:"pgRestoreExtraOptions,omitempty"`
 					PostImportApplicationSQL *[]string `tfsdk:"post_import_application_sql" json:"postImportApplicationSQL,omitempty"`
 					Roles                    *[]string `tfsdk:"roles" json:"roles,omitempty"`
 					SchemaOnly               *bool     `tfsdk:"schema_only" json:"schemaOnly,omitempty"`
@@ -289,8 +294,10 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 					} `tfsdk:"source" json:"source,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"import" json:"import,omitempty"`
+				Locale                     *string   `tfsdk:"locale" json:"locale,omitempty"`
 				LocaleCType                *string   `tfsdk:"locale_c_type" json:"localeCType,omitempty"`
 				LocaleCollate              *string   `tfsdk:"locale_collate" json:"localeCollate,omitempty"`
+				LocaleProvider             *string   `tfsdk:"locale_provider" json:"localeProvider,omitempty"`
 				Options                    *[]string `tfsdk:"options" json:"options,omitempty"`
 				Owner                      *string   `tfsdk:"owner" json:"owner,omitempty"`
 				PostInitApplicationSQL     *[]string `tfsdk:"post_init_application_sql" json:"postInitApplicationSQL,omitempty"`
@@ -545,6 +552,12 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"password" json:"password,omitempty"`
+			Plugin *struct {
+				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				IsWALArchiver *bool              `tfsdk:"is_wal_archiver" json:"isWALArchiver,omitempty"`
+				Name          *string            `tfsdk:"name" json:"name,omitempty"`
+				Parameters    *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
+			} `tfsdk:"plugin" json:"plugin,omitempty"`
 			SslCert *struct {
 				Key      *string `tfsdk:"key" json:"key,omitempty"`
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -688,15 +701,26 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 			ReusePVC   *bool `tfsdk:"reuse_pvc" json:"reusePVC,omitempty"`
 		} `tfsdk:"node_maintenance_window" json:"nodeMaintenanceWindow,omitempty"`
 		Plugins *[]struct {
-			Enabled    *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Name       *string            `tfsdk:"name" json:"name,omitempty"`
-			Parameters *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
+			Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			IsWALArchiver *bool              `tfsdk:"is_wal_archiver" json:"isWALArchiver,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Parameters    *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
 		} `tfsdk:"plugins" json:"plugins,omitempty"`
 		PostgresGID *int64 `tfsdk:"postgres_gid" json:"postgresGID,omitempty"`
 		PostgresUID *int64 `tfsdk:"postgres_uid" json:"postgresUID,omitempty"`
 		Postgresql  *struct {
 			EnableAlterSystem *bool `tfsdk:"enable_alter_system" json:"enableAlterSystem,omitempty"`
-			Ldap              *struct {
+			Extensions        *[]struct {
+				Dynamic_library_path   *[]string `tfsdk:"dynamic_library_path" json:"dynamic_library_path,omitempty"`
+				Extension_control_path *[]string `tfsdk:"extension_control_path" json:"extension_control_path,omitempty"`
+				Image                  *struct {
+					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+					Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+				} `tfsdk:"image" json:"image,omitempty"`
+				Ld_library_path *[]string `tfsdk:"ld_library_path" json:"ld_library_path,omitempty"`
+				Name            *string   `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"extensions" json:"extensions,omitempty"`
+			Ldap *struct {
 				BindAsAuth *struct {
 					Prefix *string `tfsdk:"prefix" json:"prefix,omitempty"`
 					Suffix *string `tfsdk:"suffix" json:"suffix,omitempty"`
@@ -727,6 +751,7 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				NodeLabelsAntiAffinity *[]string `tfsdk:"node_labels_anti_affinity" json:"nodeLabelsAntiAffinity,omitempty"`
 			} `tfsdk:"sync_replica_election_constraint" json:"syncReplicaElectionConstraint,omitempty"`
 			Synchronous *struct {
+				DataDurability             *string   `tfsdk:"data_durability" json:"dataDurability,omitempty"`
 				MaxStandbyNamesFromCluster *int64    `tfsdk:"max_standby_names_from_cluster" json:"maxStandbyNamesFromCluster,omitempty"`
 				Method                     *string   `tfsdk:"method" json:"method,omitempty"`
 				Number                     *int64    `tfsdk:"number" json:"number,omitempty"`
@@ -734,9 +759,44 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 				StandbyNamesPre            *[]string `tfsdk:"standby_names_pre" json:"standbyNamesPre,omitempty"`
 			} `tfsdk:"synchronous" json:"synchronous,omitempty"`
 		} `tfsdk:"postgresql" json:"postgresql,omitempty"`
-		PrimaryUpdateMethod     *string `tfsdk:"primary_update_method" json:"primaryUpdateMethod,omitempty"`
-		PrimaryUpdateStrategy   *string `tfsdk:"primary_update_strategy" json:"primaryUpdateStrategy,omitempty"`
-		PriorityClassName       *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+		PrimaryUpdateMethod   *string `tfsdk:"primary_update_method" json:"primaryUpdateMethod,omitempty"`
+		PrimaryUpdateStrategy *string `tfsdk:"primary_update_strategy" json:"primaryUpdateStrategy,omitempty"`
+		PriorityClassName     *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+		Probes                *struct {
+			Liveness *struct {
+				FailureThreshold    *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				IsolationCheck      *struct {
+					ConnectionTimeout *int64 `tfsdk:"connection_timeout" json:"connectionTimeout,omitempty"`
+					Enabled           *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+					RequestTimeout    *int64 `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
+				} `tfsdk:"isolation_check" json:"isolationCheck,omitempty"`
+				PeriodSeconds                 *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold              *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"liveness" json:"liveness,omitempty"`
+			Readiness *struct {
+				FailureThreshold              *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				InitialDelaySeconds           *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				MaximumLag                    *string `tfsdk:"maximum_lag" json:"maximumLag,omitempty"`
+				PeriodSeconds                 *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold              *int64  `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TerminationGracePeriodSeconds *int64  `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				Type                          *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"readiness" json:"readiness,omitempty"`
+			Startup *struct {
+				FailureThreshold              *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				InitialDelaySeconds           *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				MaximumLag                    *string `tfsdk:"maximum_lag" json:"maximumLag,omitempty"`
+				PeriodSeconds                 *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				SuccessThreshold              *int64  `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TerminationGracePeriodSeconds *int64  `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+				TimeoutSeconds                *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				Type                          *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"startup" json:"startup,omitempty"`
+		} `tfsdk:"probes" json:"probes,omitempty"`
 		ProjectedVolumeTemplate *struct {
 			DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 			Sources     *[]struct {
@@ -804,8 +864,9 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 		} `tfsdk:"replica" json:"replica,omitempty"`
 		ReplicationSlots *struct {
 			HighAvailability *struct {
-				Enabled    *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-				SlotPrefix *string `tfsdk:"slot_prefix" json:"slotPrefix,omitempty"`
+				Enabled                    *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				SlotPrefix                 *string `tfsdk:"slot_prefix" json:"slotPrefix,omitempty"`
+				SynchronizeLogicalDecoding *bool   `tfsdk:"synchronize_logical_decoding" json:"synchronizeLogicalDecoding,omitempty"`
 			} `tfsdk:"high_availability" json:"highAvailability,omitempty"`
 			SynchronizeReplicas *struct {
 				Enabled         *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -1121,8 +1182,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1130,8 +1191,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1288,8 +1349,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1297,8 +1358,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1455,8 +1516,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1464,8 +1525,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1622,8 +1683,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1631,8 +1692,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2150,13 +2211,13 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"compression": schema.StringAttribute{
-												Description:         "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
-												MarkdownDescription: "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
+												Description:         "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', and 'snappy'.",
+												MarkdownDescription: "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', and 'snappy'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("gzip", "bzip2", "snappy"),
+													stringvalidator.OneOf("bzip2", "gzip", "snappy"),
 												},
 											},
 
@@ -2438,13 +2499,13 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"compression": schema.StringAttribute{
-												Description:         "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
-												MarkdownDescription: "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
+												Description:         "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', 'lz4', 'snappy', 'xz', and 'zstd'.",
+												MarkdownDescription: "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', 'lz4', 'snappy', 'xz', and 'zstd'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("gzip", "bzip2", "snappy"),
+													stringvalidator.OneOf("bzip2", "gzip", "lz4", "snappy", "xz", "zstd"),
 												},
 											},
 
@@ -2620,6 +2681,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								Description:         "Bootstrap the cluster via initdb",
 								MarkdownDescription: "Bootstrap the cluster via initdb",
 								Attributes: map[string]schema.Attribute{
+									"builtin_locale": schema.StringAttribute{
+										Description:         "Specifies the locale name when the builtin provider is used. This option requires 'localeProvider' to be set to 'builtin'. Available from PostgreSQL 17.",
+										MarkdownDescription: "Specifies the locale name when the builtin provider is used. This option requires 'localeProvider' to be set to 'builtin'. Available from PostgreSQL 17.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"data_checksums": schema.BoolAttribute{
 										Description:         "Whether the '-k' option should be passed to initdb, enabling checksums on data pages (default: 'false')",
 										MarkdownDescription: "Whether the '-k' option should be passed to initdb, enabling checksums on data pages (default: 'false')",
@@ -2644,6 +2713,22 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										Computed:            false,
 									},
 
+									"icu_locale": schema.StringAttribute{
+										Description:         "Specifies the ICU locale when the ICU provider is used. This option requires 'localeProvider' to be set to 'icu'. Available from PostgreSQL 15.",
+										MarkdownDescription: "Specifies the ICU locale when the ICU provider is used. This option requires 'localeProvider' to be set to 'icu'. Available from PostgreSQL 15.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"icu_rules": schema.StringAttribute{
+										Description:         "Specifies additional collation rules to customize the behavior of the default collation. This option requires 'localeProvider' to be set to 'icu'. Available from PostgreSQL 16.",
+										MarkdownDescription: "Specifies additional collation rules to customize the behavior of the default collation. This option requires 'localeProvider' to be set to 'icu'. Available from PostgreSQL 16.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"import": schema.SingleNestedAttribute{
 										Description:         "Bootstraps the new cluster by importing data from an existing PostgreSQL instance using logical backup ('pg_dump' and 'pg_restore')",
 										MarkdownDescription: "Bootstraps the new cluster by importing data from an existing PostgreSQL instance using logical backup ('pg_dump' and 'pg_restore')",
@@ -2654,6 +2739,24 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												ElementType:         types.StringType,
 												Required:            true,
 												Optional:            false,
+												Computed:            false,
+											},
+
+											"pg_dump_extra_options": schema.ListAttribute{
+												Description:         "List of custom options to pass to the 'pg_dump' command. IMPORTANT: Use these options with caution and at your own risk, as the operator does not validate their content. Be aware that certain options may conflict with the operator's intended functionality or design.",
+												MarkdownDescription: "List of custom options to pass to the 'pg_dump' command. IMPORTANT: Use these options with caution and at your own risk, as the operator does not validate their content. Be aware that certain options may conflict with the operator's intended functionality or design.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"pg_restore_extra_options": schema.ListAttribute{
+												Description:         "List of custom options to pass to the 'pg_restore' command. IMPORTANT: Use these options with caution and at your own risk, as the operator does not validate their content. Be aware that certain options may conflict with the operator's intended functionality or design.",
+												MarkdownDescription: "List of custom options to pass to the 'pg_restore' command. IMPORTANT: Use these options with caution and at your own risk, as the operator does not validate their content. Be aware that certain options may conflict with the operator's intended functionality or design.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
 												Computed:            false,
 											},
 
@@ -2716,6 +2819,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										Computed: false,
 									},
 
+									"locale": schema.StringAttribute{
+										Description:         "Sets the default collation order and character classification in the new database.",
+										MarkdownDescription: "Sets the default collation order and character classification in the new database.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"locale_c_type": schema.StringAttribute{
 										Description:         "The value to be passed as option '--lc-ctype' for initdb (default:'C')",
 										MarkdownDescription: "The value to be passed as option '--lc-ctype' for initdb (default:'C')",
@@ -2727,6 +2838,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									"locale_collate": schema.StringAttribute{
 										Description:         "The value to be passed as option '--lc-collate' for initdb (default:'C')",
 										MarkdownDescription: "The value to be passed as option '--lc-collate' for initdb (default:'C')",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"locale_provider": schema.StringAttribute{
+										Description:         "This option sets the locale provider for databases created in the new cluster. Available from PostgreSQL 16.",
+										MarkdownDescription: "This option sets the locale provider for databases created in the new cluster. Available from PostgreSQL 16.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3595,8 +3714,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"prefix": schema.StringAttribute{
-									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Description:         "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
+									MarkdownDescription: "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -4030,13 +4149,13 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"compression": schema.StringAttribute{
-													Description:         "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
-													MarkdownDescription: "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
+													Description:         "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', and 'snappy'.",
+													MarkdownDescription: "Compress a backup file (a tar file per tablespace) while streaming it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', and 'snappy'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("gzip", "bzip2", "snappy"),
+														stringvalidator.OneOf("bzip2", "gzip", "snappy"),
 													},
 												},
 
@@ -4318,13 +4437,13 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 												},
 
 												"compression": schema.StringAttribute{
-													Description:         "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
-													MarkdownDescription: "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2' or 'snappy'.",
+													Description:         "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', 'lz4', 'snappy', 'xz', and 'zstd'.",
+													MarkdownDescription: "Compress a WAL file before sending it to the object store. Available options are empty string (no compression, default), 'gzip', 'bzip2', 'lz4', 'snappy', 'xz', and 'zstd'.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("gzip", "bzip2", "snappy"),
+														stringvalidator.OneOf("bzip2", "gzip", "lz4", "snappy", "xz", "zstd"),
 													},
 												},
 
@@ -4409,6 +4528,48 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										"optional": schema.BoolAttribute{
 											Description:         "Specify whether the Secret or its key must be defined",
 											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"plugin": schema.SingleNestedAttribute{
+									Description:         "The configuration of the plugin that is taking care of WAL archiving and backups for this external cluster",
+									MarkdownDescription: "The configuration of the plugin that is taking care of WAL archiving and backups for this external cluster",
+									Attributes: map[string]schema.Attribute{
+										"enabled": schema.BoolAttribute{
+											Description:         "Enabled is true if this plugin will be used",
+											MarkdownDescription: "Enabled is true if this plugin will be used",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"is_wal_archiver": schema.BoolAttribute{
+											Description:         "Only one plugin can be declared as WALArchiver. Cannot be active if '.spec.backup.barmanObjectStore' configuration is present.",
+											MarkdownDescription: "Only one plugin can be declared as WALArchiver. Cannot be active if '.spec.backup.barmanObjectStore' configuration is present.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name is the plugin name",
+											MarkdownDescription: "Name is the plugin name",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"parameters": schema.MapAttribute{
+											Description:         "Parameters is the configuration of the plugin",
+											MarkdownDescription: "Parameters is the configuration of the plugin",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4831,6 +4992,9 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("rw", "r", "ro"),
+													},
 												},
 
 												"service_template": schema.SingleNestedAttribute{
@@ -5095,8 +5259,8 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"traffic_distribution": schema.StringAttribute{
-																	Description:         "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
-																	MarkdownDescription: "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are topologically close (e.g., same zone). This is an alpha field and requires enabling ServiceTrafficDistribution feature.",
+																	Description:         "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are in the same zone.",
+																	MarkdownDescription: "TrafficDistribution offers a way to express preferences for how traffic is distributed to Service endpoints. Implementations can use this field as a hint, but are not required to guarantee strict adherence. If the field is not set, the implementation will apply its default routing strategy. If set to 'PreferClose', implementations should prioritize endpoints that are in the same zone.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5454,6 +5618,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 									Computed:            false,
 								},
 
+								"is_wal_archiver": schema.BoolAttribute{
+									Description:         "Only one plugin can be declared as WALArchiver. Cannot be active if '.spec.backup.barmanObjectStore' configuration is present.",
+									MarkdownDescription: "Only one plugin can be declared as WALArchiver. Cannot be active if '.spec.backup.barmanObjectStore' configuration is present.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name is the plugin name",
 									MarkdownDescription: "Name is the plugin name",
@@ -5503,6 +5675,81 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"extensions": schema.ListNestedAttribute{
+								Description:         "The configuration of the extensions to be added",
+								MarkdownDescription: "The configuration of the extensions to be added",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"dynamic_library_path": schema.ListAttribute{
+											Description:         "The list of directories inside the image which should be added to dynamic_library_path. If not defined, defaults to '/lib'.",
+											MarkdownDescription: "The list of directories inside the image which should be added to dynamic_library_path. If not defined, defaults to '/lib'.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"extension_control_path": schema.ListAttribute{
+											Description:         "The list of directories inside the image which should be added to extension_control_path. If not defined, defaults to '/share'.",
+											MarkdownDescription: "The list of directories inside the image which should be added to extension_control_path. If not defined, defaults to '/share'.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"image": schema.SingleNestedAttribute{
+											Description:         "The image containing the extension, required",
+											MarkdownDescription: "The image containing the extension, required",
+											Attributes: map[string]schema.Attribute{
+												"pull_policy": schema.StringAttribute{
+													Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"reference": schema.StringAttribute{
+													Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+													MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"ld_library_path": schema.ListAttribute{
+											Description:         "The list of directories inside the image which should be added to ld_library_path.",
+											MarkdownDescription: "The list of directories inside the image which should be added to ld_library_path.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "The name of the extension, required",
+											MarkdownDescription: "The name of the extension, required",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"ldap": schema.SingleNestedAttribute{
@@ -5722,6 +5969,17 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								Description:         "Configuration of the PostgreSQL synchronous replication feature",
 								MarkdownDescription: "Configuration of the PostgreSQL synchronous replication feature",
 								Attributes: map[string]schema.Attribute{
+									"data_durability": schema.StringAttribute{
+										Description:         "If set to 'required', data durability is strictly enforced. Write operations with synchronous commit settings ('on', 'remote_write', or 'remote_apply') will block if there are insufficient healthy replicas, ensuring data persistence. If set to 'preferred', data durability is maintained when healthy replicas are available, but the required number of instances will adjust dynamically if replicas become unavailable. This setting relaxes strict durability enforcement to allow for operational continuity. This setting is only applicable if both 'standbyNamesPre' and 'standbyNamesPost' are unset (empty).",
+										MarkdownDescription: "If set to 'required', data durability is strictly enforced. Write operations with synchronous commit settings ('on', 'remote_write', or 'remote_apply') will block if there are insufficient healthy replicas, ensuring data persistence. If set to 'preferred', data durability is maintained when healthy replicas are available, but the required number of instances will adjust dynamically if replicas become unavailable. This setting relaxes strict durability enforcement to allow for operational continuity. This setting is only applicable if both 'standbyNamesPre' and 'standbyNamesPost' are unset (empty).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("required", "preferred"),
+										},
+									},
+
 									"max_standby_names_from_cluster": schema.Int64Attribute{
 										Description:         "Specifies the maximum number of local cluster pods that can be automatically included in the 'synchronous_standby_names' option in PostgreSQL.",
 										MarkdownDescription: "Specifies the maximum number of local cluster pods that can be automatically included in the 'synchronous_standby_names' option in PostgreSQL.",
@@ -5805,6 +6063,257 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"probes": schema.SingleNestedAttribute{
+						Description:         "The configuration of the probes to be injected in the PostgreSQL Pods.",
+						MarkdownDescription: "The configuration of the probes to be injected in the PostgreSQL Pods.",
+						Attributes: map[string]schema.Attribute{
+							"liveness": schema.SingleNestedAttribute{
+								Description:         "The liveness probe configuration",
+								MarkdownDescription: "The liveness probe configuration",
+								Attributes: map[string]schema.Attribute{
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"isolation_check": schema.SingleNestedAttribute{
+										Description:         "Configure the feature that extends the liveness probe for a primary instance. In addition to the basic checks, this verifies whether the primary is isolated from the Kubernetes API server and from its replicas, ensuring that it can be safely shut down if network partition or API unavailability is detected. Enabled by default.",
+										MarkdownDescription: "Configure the feature that extends the liveness probe for a primary instance. In addition to the basic checks, this verifies whether the primary is isolated from the Kubernetes API server and from its replicas, ensuring that it can be safely shut down if network partition or API unavailability is detected. Enabled by default.",
+										Attributes: map[string]schema.Attribute{
+											"connection_timeout": schema.Int64Attribute{
+												Description:         "Timeout in milliseconds for connections during the primary isolation check",
+												MarkdownDescription: "Timeout in milliseconds for connections during the primary isolation check",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enabled": schema.BoolAttribute{
+												Description:         "Whether primary isolation checking is enabled for the liveness probe",
+												MarkdownDescription: "Whether primary isolation checking is enabled for the liveness probe",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"request_timeout": schema.Int64Attribute{
+												Description:         "Timeout in milliseconds for requests during the primary isolation check",
+												MarkdownDescription: "Timeout in milliseconds for requests during the primary isolation check",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"readiness": schema.SingleNestedAttribute{
+								Description:         "The readiness probe configuration",
+								MarkdownDescription: "The readiness probe configuration",
+								Attributes: map[string]schema.Attribute{
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"maximum_lag": schema.StringAttribute{
+										Description:         "Lag limit. Used only for 'streaming' strategy",
+										MarkdownDescription: "Lag limit. Used only for 'streaming' strategy",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "The probe strategy",
+										MarkdownDescription: "The probe strategy",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pg_isready", "streaming", "query"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"startup": schema.SingleNestedAttribute{
+								Description:         "The startup probe configuration",
+								MarkdownDescription: "The startup probe configuration",
+								Attributes: map[string]schema.Attribute{
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"maximum_lag": schema.StringAttribute{
+										Description:         "Lag limit. Used only for 'streaming' strategy",
+										MarkdownDescription: "Lag limit. Used only for 'streaming' strategy",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "The probe strategy",
+										MarkdownDescription: "The probe strategy",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("pg_isready", "streaming", "query"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"projected_volume_template": schema.SingleNestedAttribute{
@@ -6262,6 +6771,14 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 										Validators: []validator.String{
 											stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9a-z_]*$`), ""),
 										},
+									},
+
+									"synchronize_logical_decoding": schema.BoolAttribute{
+										Description:         "When enabled, the operator automatically manages synchronization of logical decoding (replication) slots across high-availability clusters. Requires one of the following conditions: - PostgreSQL version 17 or later - PostgreSQL version < 17 with pg_failover_slots extension enabled",
+										MarkdownDescription: "When enabled, the operator automatically manages synchronization of logical decoding (replication) slots across high-availability clusters. Requires one of the following conditions: - PostgreSQL version 17 or later - PostgreSQL version < 17 with pg_failover_slots extension enabled",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -7096,16 +7613,16 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

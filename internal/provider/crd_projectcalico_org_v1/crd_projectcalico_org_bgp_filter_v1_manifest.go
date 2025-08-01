@@ -152,12 +152,12 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "BGPFilterSpec contains the IPv4 and IPv6 filter rules of the BGP Filter.",
-				MarkdownDescription: "BGPFilterSpec contains the IPv4 and IPv6 filter rules of the BGP Filter.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"export_v4": schema.ListNestedAttribute{
-						Description:         "The ordered set of IPv4 BGPFilter rules acting on exporting routes to a peer.",
-						MarkdownDescription: "The ordered set of IPv4 BGPFilter rules acting on exporting routes to a peer.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -240,8 +240,8 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"export_v6": schema.ListNestedAttribute{
-						Description:         "The ordered set of IPv6 BGPFilter rules acting on exporting routes to a peer.",
-						MarkdownDescription: "The ordered set of IPv6 BGPFilter rules acting on exporting routes to a peer.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -324,8 +324,8 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"import_v4": schema.ListNestedAttribute{
-						Description:         "The ordered set of IPv4 BGPFilter rules acting on importing routes from a peer.",
-						MarkdownDescription: "The ordered set of IPv4 BGPFilter rules acting on importing routes from a peer.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
@@ -408,8 +408,8 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"import_v6": schema.ListNestedAttribute{
-						Description:         "The ordered set of IPv6 BGPFilter rules acting on importing routes from a peer.",
-						MarkdownDescription: "The ordered set of IPv6 BGPFilter rules acting on importing routes from a peer.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
