@@ -43,6 +43,7 @@ type LonghornIoOrphanV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		DataEngine *string            `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		NodeID     *string            `tfsdk:"node_id" json:"nodeID,omitempty"`
 		OrphanType *string            `tfsdk:"orphan_type" json:"orphanType,omitempty"`
 		Parameters *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
@@ -126,6 +127,17 @@ func (r *LonghornIoOrphanV1Beta2Manifest) Schema(_ context.Context, _ datasource
 				Description:         "OrphanSpec defines the desired state of the Longhorn orphaned data",
 				MarkdownDescription: "OrphanSpec defines the desired state of the Longhorn orphaned data",
 				Attributes: map[string]schema.Attribute{
+					"data_engine": schema.StringAttribute{
+						Description:         "The type of data engine for instance orphan. Can be 'v1', 'v2'.",
+						MarkdownDescription: "The type of data engine for instance orphan. Can be 'v1', 'v2'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("v1", "v2"),
+						},
+					},
+
 					"node_id": schema.StringAttribute{
 						Description:         "The node ID on which the controller is responsible to reconcile this orphan CR.",
 						MarkdownDescription: "The node ID on which the controller is responsible to reconcile this orphan CR.",

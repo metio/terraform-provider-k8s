@@ -42,13 +42,17 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		PrefixListsIDs *[]string `tfsdk:"prefix_lists_i_ds" json:"PrefixListsIDs,omitempty"`
 		CertificateArn *[]string `tfsdk:"certificate_arn" json:"certificateArn,omitempty"`
 		Group          *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"group" json:"group,omitempty"`
-		InboundCIDRs  *[]string `tfsdk:"inbound_cidrs" json:"inboundCIDRs,omitempty"`
-		IpAddressType *string   `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
-		Listeners     *[]struct {
+		InboundCIDRs      *[]string `tfsdk:"inbound_cidrs" json:"inboundCIDRs,omitempty"`
+		IpAddressType     *string   `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
+		IpamConfiguration *struct {
+			Ipv4IPAMPoolId *string `tfsdk:"ipv4_ipam_pool_id" json:"ipv4IPAMPoolId,omitempty"`
+		} `tfsdk:"ipam_configuration" json:"ipamConfiguration,omitempty"`
+		Listeners *[]struct {
 			ListenerAttributes *[]struct {
 				Key   *string `tfsdk:"key" json:"key,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -60,6 +64,9 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"load_balancer_attributes" json:"loadBalancerAttributes,omitempty"`
+		MinimumLoadBalancerCapacity *struct {
+			CapacityUnits *int64 `tfsdk:"capacity_units" json:"capacityUnits,omitempty"`
+		} `tfsdk:"minimum_load_balancer_capacity" json:"minimumLoadBalancerCapacity,omitempty"`
 		NamespaceSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -78,6 +85,7 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
+		TargetType *string `tfsdk:"target_type" json:"targetType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -146,6 +154,15 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 				Description:         "IngressClassParamsSpec defines the desired state of IngressClassParams",
 				MarkdownDescription: "IngressClassParamsSpec defines the desired state of IngressClassParams",
 				Attributes: map[string]schema.Attribute{
+					"prefix_lists_i_ds": schema.ListAttribute{
+						Description:         "PrefixListsIDs defines the security group prefix lists for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						MarkdownDescription: "PrefixListsIDs defines the security group prefix lists for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"certificate_arn": schema.ListAttribute{
 						Description:         "CertificateArn specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.",
 						MarkdownDescription: "CertificateArn specifies the ARN of the certificates for all Ingresses that belong to IngressClass with this IngressClassParams.",
@@ -190,6 +207,23 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 						Validators: []validator.String{
 							stringvalidator.OneOf("ipv4", "dualstack", "dualstack-without-public-ipv4"),
 						},
+					},
+
+					"ipam_configuration": schema.SingleNestedAttribute{
+						Description:         "IPAMConfiguration defines the IPAM settings for a Load Balancer.",
+						MarkdownDescription: "IPAMConfiguration defines the IPAM settings for a Load Balancer.",
+						Attributes: map[string]schema.Attribute{
+							"ipv4_ipam_pool_id": schema.StringAttribute{
+								Description:         "IPv4IPAMPoolId defines the IPAM pool ID used for IPv4 Addresses on the ALB.",
+								MarkdownDescription: "IPv4IPAMPoolId defines the IPAM pool ID used for IPv4 Addresses on the ALB.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"listeners": schema.ListNestedAttribute{
@@ -266,6 +300,23 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 									Optional:            false,
 									Computed:            false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"minimum_load_balancer_capacity": schema.SingleNestedAttribute{
+						Description:         "MinimumLoadBalancerCapacity define the capacity reservation for LoadBalancers for all Ingress that belong to IngressClass with this IngressClassParams.",
+						MarkdownDescription: "MinimumLoadBalancerCapacity define the capacity reservation for LoadBalancers for all Ingress that belong to IngressClass with this IngressClassParams.",
+						Attributes: map[string]schema.Attribute{
+							"capacity_units": schema.Int64Attribute{
+								Description:         "The Capacity Units Value.",
+								MarkdownDescription: "The Capacity Units Value.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -398,6 +449,17 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"target_type": schema.StringAttribute{
+						Description:         "TargetType defines the target type of target groups for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						MarkdownDescription: "TargetType defines the target type of target groups for all Ingresses that belong to IngressClass with this IngressClassParams.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("instance", "ip"),
+						},
 					},
 				},
 				Required: false,

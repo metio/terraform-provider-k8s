@@ -130,46 +130,46 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Schema(_ 
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterResourceSetBindingSpec defines the desired state of ClusterResourceSetBinding.",
-				MarkdownDescription: "ClusterResourceSetBindingSpec defines the desired state of ClusterResourceSetBinding.",
+				Description:         "spec is the desired state of ClusterResourceSetBinding.",
+				MarkdownDescription: "spec is the desired state of ClusterResourceSetBinding.",
 				Attributes: map[string]schema.Attribute{
 					"bindings": schema.ListNestedAttribute{
-						Description:         "Bindings is a list of ClusterResourceSets and their resources.",
-						MarkdownDescription: "Bindings is a list of ClusterResourceSets and their resources.",
+						Description:         "bindings is a list of ClusterResourceSets and their resources.",
+						MarkdownDescription: "bindings is a list of ClusterResourceSets and their resources.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"cluster_resource_set_name": schema.StringAttribute{
-									Description:         "ClusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
-									MarkdownDescription: "ClusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
+									Description:         "clusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
+									MarkdownDescription: "clusterResourceSetName is the name of the ClusterResourceSet that is applied to the owner cluster of the binding.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"resources": schema.ListNestedAttribute{
-									Description:         "Resources is a list of resources that the ClusterResourceSet has.",
-									MarkdownDescription: "Resources is a list of resources that the ClusterResourceSet has.",
+									Description:         "resources is a list of resources that the ClusterResourceSet has.",
+									MarkdownDescription: "resources is a list of resources that the ClusterResourceSet has.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"applied": schema.BoolAttribute{
-												Description:         "Applied is to track if a resource is applied to the cluster or not.",
-												MarkdownDescription: "Applied is to track if a resource is applied to the cluster or not.",
+												Description:         "applied is to track if a resource is applied to the cluster or not.",
+												MarkdownDescription: "applied is to track if a resource is applied to the cluster or not.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 											},
 
 											"hash": schema.StringAttribute{
-												Description:         "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
-												MarkdownDescription: "Hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												Description:         "hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
+												MarkdownDescription: "hash is the hash of a resource's data. This can be used to decide if a resource is changed. For 'ApplyOnce' ClusterResourceSet.spec.strategy, this is no-op as that strategy does not act on change.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"kind": schema.StringAttribute{
-												Description:         "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
-												MarkdownDescription: "Kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+												Description:         "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
+												MarkdownDescription: "kind of the resource. Supported kinds are: Secrets and ConfigMaps.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -179,8 +179,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Schema(_ 
 											},
 
 											"last_applied_time": schema.StringAttribute{
-												Description:         "LastAppliedTime identifies when this resource was last applied to the cluster.",
-												MarkdownDescription: "LastAppliedTime identifies when this resource was last applied to the cluster.",
+												Description:         "lastAppliedTime identifies when this resource was last applied to the cluster.",
+												MarkdownDescription: "lastAppliedTime identifies when this resource was last applied to the cluster.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -190,8 +190,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetBindingV1Alpha3Manifest) Schema(_ 
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name of the resource that is in the same namespace with ClusterResourceSet object.",
-												MarkdownDescription: "Name of the resource that is in the same namespace with ClusterResourceSet object.",
+												Description:         "name of the resource that is in the same namespace with ClusterResourceSet object.",
+												MarkdownDescription: "name of the resource that is in the same namespace with ClusterResourceSet object.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,

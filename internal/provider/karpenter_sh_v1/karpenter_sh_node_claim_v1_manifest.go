@@ -147,7 +147,7 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+|Never)$`), ""),
 						},
 					},
 

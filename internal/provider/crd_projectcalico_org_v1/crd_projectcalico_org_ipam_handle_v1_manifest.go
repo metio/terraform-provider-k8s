@@ -110,8 +110,8 @@ func (r *CrdProjectcalicoOrgIpamhandleV1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPAMHandleSpec contains the specification for an IPAMHandle resource.",
-				MarkdownDescription: "IPAMHandleSpec contains the specification for an IPAMHandle resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"block": schema.MapAttribute{
 						Description:         "",

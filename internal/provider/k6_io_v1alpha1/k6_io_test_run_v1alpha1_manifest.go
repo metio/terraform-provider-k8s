@@ -291,9 +291,10 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"env_from" json:"envFrom,omitempty"`
-				Image        *string `tfsdk:"image" json:"image,omitempty"`
-				Name         *string `tfsdk:"name" json:"name,omitempty"`
-				VolumeMounts *[]struct {
+				Image         *string `tfsdk:"image" json:"image,omitempty"`
+				Name          *string `tfsdk:"name" json:"name,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+				VolumeMounts  *[]struct {
 					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
 					Name              *string `tfsdk:"name" json:"name,omitempty"`
@@ -385,6 +386,7 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1006,9 +1008,10 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"env_from" json:"envFrom,omitempty"`
-				Image        *string `tfsdk:"image" json:"image,omitempty"`
-				Name         *string `tfsdk:"name" json:"name,omitempty"`
-				VolumeMounts *[]struct {
+				Image         *string `tfsdk:"image" json:"image,omitempty"`
+				Name          *string `tfsdk:"name" json:"name,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+				VolumeMounts  *[]struct {
 					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
 					Name              *string `tfsdk:"name" json:"name,omitempty"`
@@ -1100,6 +1103,7 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1736,9 +1740,10 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 				} `tfsdk:"env_from" json:"envFrom,omitempty"`
-				Image        *string `tfsdk:"image" json:"image,omitempty"`
-				Name         *string `tfsdk:"name" json:"name,omitempty"`
-				VolumeMounts *[]struct {
+				Image         *string `tfsdk:"image" json:"image,omitempty"`
+				Name          *string `tfsdk:"name" json:"name,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+				VolumeMounts  *[]struct {
 					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
 					Name              *string `tfsdk:"name" json:"name,omitempty"`
@@ -1830,6 +1835,7 @@ type K6IoTestRunV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -3942,6 +3948,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 											Computed:            false,
 										},
 
+										"restart_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"volume_mounts": schema.ListNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -4561,6 +4575,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -8741,6 +8763,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 											Computed:            false,
 										},
 
+										"restart_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"volume_mounts": schema.ListNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -9360,6 +9390,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -13637,6 +13675,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 											Computed:            false,
 										},
 
+										"restart_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"volume_mounts": schema.ListNestedAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -14256,6 +14302,14 @@ func (r *K6IoTestRunV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sch
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

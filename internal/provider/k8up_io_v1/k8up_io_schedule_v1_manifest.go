@@ -472,10 +472,19 @@ type K8UpIoScheduleV1ManifestData struct {
 					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"backend" json:"backend,omitempty"`
-			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
-			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
-			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
-			PodConfigRef           *struct {
+			ClusterName            *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+			ConcurrentRunsAllowed  *bool   `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
+			FailedJobsHistoryLimit *int64  `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
+			KeepJobs               *int64  `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
+			LabelSelectors         *[]struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"label_selectors" json:"labelSelectors,omitempty"`
+			PodConfigRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
 			PodSecurityContext *struct {
@@ -654,9 +663,10 @@ type K8UpIoScheduleV1ManifestData struct {
 					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"backend" json:"backend,omitempty"`
-			ConcurrentRunsAllowed  *bool  `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
-			FailedJobsHistoryLimit *int64 `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
-			KeepJobs               *int64 `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
+			ClusterName            *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+			ConcurrentRunsAllowed  *bool   `tfsdk:"concurrent_runs_allowed" json:"concurrentRunsAllowed,omitempty"`
+			FailedJobsHistoryLimit *int64  `tfsdk:"failed_jobs_history_limit" json:"failedJobsHistoryLimit,omitempty"`
+			KeepJobs               *int64  `tfsdk:"keep_jobs" json:"keepJobs,omitempty"`
 			PodConfigRef           *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"pod_config_ref" json:"podConfigRef,omitempty"`
@@ -4050,6 +4060,14 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Computed: false,
 							},
 
+							"cluster_name": schema.StringAttribute{
+								Description:         "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+								MarkdownDescription: "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"concurrent_runs_allowed": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -4072,6 +4090,62 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"label_selectors": schema.ListNestedAttribute{
+								Description:         "LabelSelectors is a list of selectors that we filter for. When defined, only PVCs and PreBackupPods matching them are backed up.",
+								MarkdownDescription: "LabelSelectors is a list of selectors that we filter for. When defined, only PVCs and PreBackupPods matching them are backed up.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"match_expressions": schema.ListNestedAttribute{
+											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "key is the label key that the selector applies to.",
+														MarkdownDescription: "key is the label key that the selector applies to.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"operator": schema.StringAttribute{
+														Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"values": schema.ListAttribute{
+														Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"match_labels": schema.MapAttribute{
+											Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_config_ref": schema.SingleNestedAttribute{
@@ -5249,6 +5323,14 @@ func (r *K8UpIoScheduleV1Manifest) Schema(_ context.Context, _ datasource.Schema
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"cluster_name": schema.StringAttribute{
+								Description:         "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+								MarkdownDescription: "ClusterName sets the kubernetes cluster name to send to pushgateway for grouping metrics",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"concurrent_runs_allowed": schema.BoolAttribute{

@@ -380,8 +380,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"execution_role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
+						Description:         "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -405,8 +405,8 @@ func (r *SagemakerServicesK8SAwsModelV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"model_name": schema.StringAttribute{
-						Description:         "The name of the new model.",
-						MarkdownDescription: "The name of the new model.",
+						Description:         "The name of the new model. Regex Pattern: '^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$'",
+						MarkdownDescription: "The name of the new model. Regex Pattern: '^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

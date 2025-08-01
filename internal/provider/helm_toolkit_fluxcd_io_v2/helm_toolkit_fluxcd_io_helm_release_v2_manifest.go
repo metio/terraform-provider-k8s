@@ -76,9 +76,14 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"chart_ref" json:"chartRef,omitempty"`
+		CommonMetadata *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"common_metadata" json:"commonMetadata,omitempty"`
 		DependsOn *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			ReadyExpr *string `tfsdk:"ready_expr" json:"readyExpr,omitempty"`
 		} `tfsdk:"depends_on" json:"dependsOn,omitempty"`
 		DriftDetection *struct {
 			Ignore *[]struct {
@@ -101,6 +106,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 			DisableHooks             *bool   `tfsdk:"disable_hooks" json:"disableHooks,omitempty"`
 			DisableOpenAPIValidation *bool   `tfsdk:"disable_open_api_validation" json:"disableOpenAPIValidation,omitempty"`
 			DisableSchemaValidation  *bool   `tfsdk:"disable_schema_validation" json:"disableSchemaValidation,omitempty"`
+			DisableTakeOwnership     *bool   `tfsdk:"disable_take_ownership" json:"disableTakeOwnership,omitempty"`
 			DisableWait              *bool   `tfsdk:"disable_wait" json:"disableWait,omitempty"`
 			DisableWaitForJobs       *bool   `tfsdk:"disable_wait_for_jobs" json:"disableWaitForJobs,omitempty"`
 			Remediation              *struct {
@@ -114,6 +120,9 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 		} `tfsdk:"install" json:"install,omitempty"`
 		Interval   *string `tfsdk:"interval" json:"interval,omitempty"`
 		KubeConfig *struct {
+			ConfigMapRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
 			SecretRef *struct {
 				Key  *string `tfsdk:"key" json:"key,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -180,6 +189,7 @@ type HelmToolkitFluxcdIoHelmReleaseV2ManifestData struct {
 			DisableHooks             *bool   `tfsdk:"disable_hooks" json:"disableHooks,omitempty"`
 			DisableOpenAPIValidation *bool   `tfsdk:"disable_open_api_validation" json:"disableOpenAPIValidation,omitempty"`
 			DisableSchemaValidation  *bool   `tfsdk:"disable_schema_validation" json:"disableSchemaValidation,omitempty"`
+			DisableTakeOwnership     *bool   `tfsdk:"disable_take_ownership" json:"disableTakeOwnership,omitempty"`
 			DisableWait              *bool   `tfsdk:"disable_wait" json:"disableWait,omitempty"`
 			DisableWaitForJobs       *bool   `tfsdk:"disable_wait_for_jobs" json:"disableWaitForJobs,omitempty"`
 			Force                    *bool   `tfsdk:"force" json:"force,omitempty"`
@@ -525,9 +535,36 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"common_metadata": schema.SingleNestedAttribute{
+						Description:         "CommonMetadata specifies the common labels and annotations that are applied to all resources. Any existing label or annotation will be overridden if its key matches a common one.",
+						MarkdownDescription: "CommonMetadata specifies the common labels and annotations that are applied to all resources. Any existing label or annotation will be overridden if its key matches a common one.",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "Annotations to be added to the object's metadata.",
+								MarkdownDescription: "Annotations to be added to the object's metadata.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "Labels to be added to the object's metadata.",
+								MarkdownDescription: "Labels to be added to the object's metadata.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"depends_on": schema.ListNestedAttribute{
-						Description:         "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
-						MarkdownDescription: "DependsOn may contain a meta.NamespacedObjectReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
+						Description:         "DependsOn may contain a DependencyReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
+						MarkdownDescription: "DependsOn may contain a DependencyReference slice with references to HelmRelease resources that must be ready before this HelmRelease can be reconciled.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -539,8 +576,16 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace of the referent, when not specified it acts as LocalObjectReference.",
-									MarkdownDescription: "Namespace of the referent, when not specified it acts as LocalObjectReference.",
+									Description:         "Namespace of the referent, defaults to the namespace of the HelmRelease resource object that contains the reference.",
+									MarkdownDescription: "Namespace of the referent, defaults to the namespace of the HelmRelease resource object that contains the reference.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ready_expr": schema.StringAttribute{
+									Description:         "ReadyExpr is a CEL expression that can be used to assess the readiness of a dependency. When specified, the built-in readiness check is replaced by the logic defined in the CEL expression. To make the CEL expression additive to the built-in readiness check, the feature gate 'AdditiveCELDependencyCheck' must be set to 'true'.",
+									MarkdownDescription: "ReadyExpr is a CEL expression that can be used to assess the readiness of a dependency. When specified, the built-in readiness check is replaced by the logic defined in the CEL expression. To make the CEL expression additive to the built-in readiness check, the feature gate 'AdditiveCELDependencyCheck' must be set to 'true'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -704,6 +749,14 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 
+							"disable_take_ownership": schema.BoolAttribute{
+								Description:         "DisableTakeOwnership disables taking ownership of existing resources during the Helm install action. Defaults to false.",
+								MarkdownDescription: "DisableTakeOwnership disables taking ownership of existing resources during the Helm install action. Defaults to false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"disable_wait": schema.BoolAttribute{
 								Description:         "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
 								MarkdownDescription: "DisableWait disables the waiting for resources to be ready after a Helm install has been performed.",
@@ -800,9 +853,26 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
 						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
 						Attributes: map[string]schema.Attribute{
+							"config_map_ref": schema.SingleNestedAttribute{
+								Description:         "ConfigMapRef holds an optional name of a ConfigMap that contains the following keys: - 'provider': the provider to use. One of 'aws', 'azure', 'gcp', or 'generic'. Required. - 'cluster': the fully qualified resource name of the Kubernetes cluster in the cloud provider API. Not used by the 'generic' provider. Required when one of 'address' or 'ca.crt' is not set. - 'address': the address of the Kubernetes API server. Required for 'generic'. For the other providers, if not specified, the first address in the cluster resource will be used, and if specified, it must match one of the addresses in the cluster resource. If audiences is not set, will be used as the audience for the 'generic' provider. - 'ca.crt': the optional PEM-encoded CA certificate for the Kubernetes API server. If not set, the controller will use the CA certificate from the cluster resource. - 'audiences': the optional audiences as a list of line-break-separated strings for the Kubernetes ServiceAccount token. Defaults to the 'address' for the 'generic' provider, or to specific values for the other providers depending on the provider. - 'serviceAccountName': the optional name of the Kubernetes ServiceAccount in the same namespace that should be used for authentication. If not specified, the controller ServiceAccount will be used. Mutually exclusive with SecretRef.",
+								MarkdownDescription: "ConfigMapRef holds an optional name of a ConfigMap that contains the following keys: - 'provider': the provider to use. One of 'aws', 'azure', 'gcp', or 'generic'. Required. - 'cluster': the fully qualified resource name of the Kubernetes cluster in the cloud provider API. Not used by the 'generic' provider. Required when one of 'address' or 'ca.crt' is not set. - 'address': the address of the Kubernetes API server. Required for 'generic'. For the other providers, if not specified, the first address in the cluster resource will be used, and if specified, it must match one of the addresses in the cluster resource. If audiences is not set, will be used as the audience for the 'generic' provider. - 'ca.crt': the optional PEM-encoded CA certificate for the Kubernetes API server. If not set, the controller will use the CA certificate from the cluster resource. - 'audiences': the optional audiences as a list of line-break-separated strings for the Kubernetes ServiceAccount token. Defaults to the 'address' for the 'generic' provider, or to specific values for the other providers depending on the provider. - 'serviceAccountName': the optional name of the Kubernetes ServiceAccount in the same namespace that should be used for authentication. If not specified, the controller ServiceAccount will be used. Mutually exclusive with SecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
-								MarkdownDescription: "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
+								Description:         "SecretRef holds an optional name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. Mutually exclusive with ConfigMapRef. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources. Supported only for the generic provider.",
+								MarkdownDescription: "SecretRef holds an optional name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. Mutually exclusive with ConfigMapRef. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources. Supported only for the generic provider.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "Key in the Secret, when not specified an implementation-specific default key is used.",
@@ -820,8 +890,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},
@@ -1292,6 +1362,14 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Manifest) Schema(_ context.Context, _ d
 							"disable_schema_validation": schema.BoolAttribute{
 								Description:         "DisableSchemaValidation prevents the Helm upgrade action from validating the values against the JSON Schema.",
 								MarkdownDescription: "DisableSchemaValidation prevents the Helm upgrade action from validating the values against the JSON Schema.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"disable_take_ownership": schema.BoolAttribute{
+								Description:         "DisableTakeOwnership disables taking ownership of existing resources during the Helm upgrade action. Defaults to false.",
+								MarkdownDescription: "DisableTakeOwnership disables taking ownership of existing resources during the Helm upgrade action. Defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

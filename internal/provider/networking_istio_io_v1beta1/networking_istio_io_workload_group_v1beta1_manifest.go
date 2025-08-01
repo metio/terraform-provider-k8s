@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -53,7 +54,11 @@ type NetworkingIstioIoWorkloadGroupV1Beta1ManifestData struct {
 				Command *[]string `tfsdk:"command" json:"command,omitempty"`
 			} `tfsdk:"exec" json:"exec,omitempty"`
 			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
-			HttpGet          *struct {
+			Grpc             *struct {
+				Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+				Service *string `tfsdk:"service" json:"service,omitempty"`
+			} `tfsdk:"grpc" json:"grpc,omitempty"`
+			HttpGet *struct {
 				Host        *string `tfsdk:"host" json:"host,omitempty"`
 				HttpHeaders *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -200,8 +205,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 										Description:         "Command to run.",
 										MarkdownDescription: "Command to run.",
 										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 								},
@@ -216,6 +221,38 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
+							},
+
+							"grpc": schema.SingleNestedAttribute{
+								Description:         "GRPC call is made and response/error is used to determine health.",
+								MarkdownDescription: "GRPC call is made and response/error is used to determine health.",
+								Attributes: map[string]schema.Attribute{
+									"port": schema.Int64Attribute{
+										Description:         "Port on which the endpoint lives.",
+										MarkdownDescription: "Port on which the endpoint lives.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
+									},
+
+									"service": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"http_get": schema.SingleNestedAttribute{
@@ -241,6 +278,9 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^[-_A-Za-z0-9]+$`), ""),
+													},
 												},
 
 												"value": schema.StringAttribute{
@@ -296,6 +336,9 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"period_seconds": schema.Int64Attribute{
@@ -304,6 +347,9 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"success_threshold": schema.Int64Attribute{
@@ -312,6 +358,9 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"tcp_socket": schema.SingleNestedAttribute{
@@ -349,6 +398,9 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,
@@ -439,8 +491,8 @@ func (r *NetworkingIstioIoWorkloadGroupV1Beta1Manifest) Schema(_ context.Context
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

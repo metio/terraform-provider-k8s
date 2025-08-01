@@ -45,7 +45,8 @@ type PxcPerconaComPerconaXtraDbclusterBackupV1ManifestData struct {
 	PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 	SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 	Spec              *struct {
-		ContainerOptions *struct {
+		ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
+		ContainerOptions      *struct {
 			Args *struct {
 				Xbcloud    *[]string `tfsdk:"xbcloud" json:"xbcloud,omitempty"`
 				Xbstream   *[]string `tfsdk:"xbstream" json:"xbstream,omitempty"`
@@ -77,8 +78,10 @@ type PxcPerconaComPerconaXtraDbclusterBackupV1ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
 		} `tfsdk:"container_options" json:"containerOptions,omitempty"`
-		PxcCluster  *string `tfsdk:"pxc_cluster" json:"pxcCluster,omitempty"`
-		StorageName *string `tfsdk:"storage_name" json:"storageName,omitempty"`
+		PxcCluster               *string `tfsdk:"pxc_cluster" json:"pxcCluster,omitempty"`
+		StartingDeadlineSeconds  *int64  `tfsdk:"starting_deadline_seconds" json:"startingDeadlineSeconds,omitempty"`
+		StorageName              *string `tfsdk:"storage_name" json:"storageName,omitempty"`
+		SuspendedDeadlineSeconds *int64  `tfsdk:"suspended_deadline_seconds" json:"suspendedDeadlineSeconds,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -175,6 +178,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterBackupV1Manifest) Schema(_ context.Con
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
+					"active_deadline_seconds": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"container_options": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -388,7 +399,23 @@ func (r *PxcPerconaComPerconaXtraDbclusterBackupV1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"starting_deadline_seconds": schema.Int64Attribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"storage_name": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"suspended_deadline_seconds": schema.Int64Attribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,

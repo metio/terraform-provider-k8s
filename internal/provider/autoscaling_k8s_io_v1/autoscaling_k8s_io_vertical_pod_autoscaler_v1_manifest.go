@@ -250,24 +250,24 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Manifest) Schema(_ context.Conte
 						MarkdownDescription: "TargetRef points to the controller managing the set of pods for the autoscaler to control - e.g. Deployment, StatefulSet. VerticalPodAutoscaler can be targeted at controller implementing scale subresource (the pod set is retrieved from the controller's ScaleStatus) or some well known controllers (e.g. for DaemonSet the pod set is read from the controller's spec). If VerticalPodAutoscaler cannot use specified target it will report ConfigUnsupported condition. Note that VerticalPodAutoscaler does not require full implementation of scale subresource - it will not use it to modify the replica count. The only thing retrieved is a label selector matching pods grouped by the target resource.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
-								Description:         "API version of the referent",
-								MarkdownDescription: "API version of the referent",
+								Description:         "apiVersion is the API version of the referent",
+								MarkdownDescription: "apiVersion is the API version of the referent",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"kind": schema.StringAttribute{
-								Description:         "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-								MarkdownDescription: "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								Description:         "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+								MarkdownDescription: "kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-								MarkdownDescription: "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+								Description:         "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -328,7 +328,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Manifest) Schema(_ context.Conte
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Off", "Initial", "Recreate", "Auto"),
+									stringvalidator.OneOf("Off", "Initial", "Recreate", "InPlaceOrRecreate", "Auto"),
 								},
 							},
 						},

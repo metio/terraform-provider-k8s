@@ -177,7 +177,7 @@ func (r *ApiCleverCloudComMySqlV1Manifest) Schema(_ context.Context, _ datasourc
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.Int64{
-									int64validator.OneOf(57, 80),
+									int64validator.OneOf(57, 80, 84),
 								},
 							},
 						},

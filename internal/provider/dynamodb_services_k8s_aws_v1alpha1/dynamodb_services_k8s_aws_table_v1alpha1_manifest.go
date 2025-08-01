@@ -51,7 +51,8 @@ type DynamodbServicesK8SAwsTableV1Alpha1ManifestData struct {
 		ContinuousBackups *struct {
 			PointInTimeRecoveryEnabled *bool `tfsdk:"point_in_time_recovery_enabled" json:"pointInTimeRecoveryEnabled,omitempty"`
 		} `tfsdk:"continuous_backups" json:"continuousBackups,omitempty"`
-		DeletionProtectionEnabled *bool `tfsdk:"deletion_protection_enabled" json:"deletionProtectionEnabled,omitempty"`
+		ContributorInsights       *string `tfsdk:"contributor_insights" json:"contributorInsights,omitempty"`
+		DeletionProtectionEnabled *bool   `tfsdk:"deletion_protection_enabled" json:"deletionProtectionEnabled,omitempty"`
 		GlobalSecondaryIndexes    *[]struct {
 			IndexName *string `tfsdk:"index_name" json:"indexName,omitempty"`
 			KeySchema *[]struct {
@@ -87,17 +88,37 @@ type DynamodbServicesK8SAwsTableV1Alpha1ManifestData struct {
 			WriteCapacityUnits *int64 `tfsdk:"write_capacity_units" json:"writeCapacityUnits,omitempty"`
 		} `tfsdk:"provisioned_throughput" json:"provisionedThroughput,omitempty"`
 		SseSpecification *struct {
-			Enabled        *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			KmsMasterKeyID *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
-			SseType        *string `tfsdk:"sse_type" json:"sseType,omitempty"`
+			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			KmsMasterKeyID  *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
+			KmsMasterKeyRef *struct {
+				From *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"from" json:"from,omitempty"`
+			} `tfsdk:"kms_master_key_ref" json:"kmsMasterKeyRef,omitempty"`
+			SseType *string `tfsdk:"sse_type" json:"sseType,omitempty"`
 		} `tfsdk:"sse_specification" json:"sseSpecification,omitempty"`
 		StreamSpecification *struct {
 			StreamEnabled  *bool   `tfsdk:"stream_enabled" json:"streamEnabled,omitempty"`
 			StreamViewType *string `tfsdk:"stream_view_type" json:"streamViewType,omitempty"`
 		} `tfsdk:"stream_specification" json:"streamSpecification,omitempty"`
-		TableClass *string `tfsdk:"table_class" json:"tableClass,omitempty"`
-		TableName  *string `tfsdk:"table_name" json:"tableName,omitempty"`
-		Tags       *[]struct {
+		TableClass    *string `tfsdk:"table_class" json:"tableClass,omitempty"`
+		TableName     *string `tfsdk:"table_name" json:"tableName,omitempty"`
+		TableReplicas *[]struct {
+			GlobalSecondaryIndexes *[]struct {
+				IndexName                     *string `tfsdk:"index_name" json:"indexName,omitempty"`
+				ProvisionedThroughputOverride *struct {
+					ReadCapacityUnits *int64 `tfsdk:"read_capacity_units" json:"readCapacityUnits,omitempty"`
+				} `tfsdk:"provisioned_throughput_override" json:"provisionedThroughputOverride,omitempty"`
+			} `tfsdk:"global_secondary_indexes" json:"globalSecondaryIndexes,omitempty"`
+			KmsMasterKeyID                *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
+			ProvisionedThroughputOverride *struct {
+				ReadCapacityUnits *int64 `tfsdk:"read_capacity_units" json:"readCapacityUnits,omitempty"`
+			} `tfsdk:"provisioned_throughput_override" json:"provisionedThroughputOverride,omitempty"`
+			RegionName         *string `tfsdk:"region_name" json:"regionName,omitempty"`
+			TableClassOverride *string `tfsdk:"table_class_override" json:"tableClassOverride,omitempty"`
+		} `tfsdk:"table_replicas" json:"tableReplicas,omitempty"`
+		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -213,8 +234,8 @@ func (r *DynamodbServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"billing_mode": schema.StringAttribute{
-						Description:         "Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later. * PROVISIONED - We recommend using PROVISIONED for predictable workloads. PROVISIONED sets the billing mode to Provisioned Mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual). * PAY_PER_REQUEST - We recommend using PAY_PER_REQUEST for unpredictable workloads. PAY_PER_REQUEST sets the billing mode to On-Demand Mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand).",
-						MarkdownDescription: "Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later. * PROVISIONED - We recommend using PROVISIONED for predictable workloads. PROVISIONED sets the billing mode to Provisioned Mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.ProvisionedThroughput.Manual). * PAY_PER_REQUEST - We recommend using PAY_PER_REQUEST for unpredictable workloads. PAY_PER_REQUEST sets the billing mode to On-Demand Mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html#HowItWorks.OnDemand).",
+						Description:         "Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later. * PROVISIONED - We recommend using PROVISIONED for predictable workloads. PROVISIONED sets the billing mode to Provisioned capacity mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html). * PAY_PER_REQUEST - We recommend using PAY_PER_REQUEST for unpredictable workloads. PAY_PER_REQUEST sets the billing mode to On-demand capacity mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html).",
+						MarkdownDescription: "Controls how you are charged for read and write throughput and how you manage capacity. This setting can be changed later. * PROVISIONED - We recommend using PROVISIONED for predictable workloads. PROVISIONED sets the billing mode to Provisioned capacity mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html). * PAY_PER_REQUEST - We recommend using PAY_PER_REQUEST for unpredictable workloads. PAY_PER_REQUEST sets the billing mode to On-demand capacity mode (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -235,6 +256,14 @@ func (r *DynamodbServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context, 
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"contributor_insights": schema.StringAttribute{
+						Description:         "Represents the contributor insights action.",
+						MarkdownDescription: "Represents the contributor insights action.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"deletion_protection_enabled": schema.BoolAttribute{
@@ -486,6 +515,40 @@ func (r *DynamodbServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"kms_master_key_ref": schema.SingleNestedAttribute{
+								Description:         "Reference field for KMSMasterKeyID",
+								MarkdownDescription: "Reference field for KMSMasterKeyID",
+								Attributes: map[string]schema.Attribute{
+									"from": schema.SingleNestedAttribute{
+										Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"sse_type": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -533,11 +596,99 @@ func (r *DynamodbServicesK8SAwsTableV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"table_name": schema.StringAttribute{
-						Description:         "The name of the table to create.",
-						MarkdownDescription: "The name of the table to create.",
+						Description:         "The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.",
+						MarkdownDescription: "The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"table_replicas": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"global_secondary_indexes": schema.ListNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"index_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"provisioned_throughput_override": schema.SingleNestedAttribute{
+												Description:         "Replica-specific provisioned throughput settings. If not specified, uses the source table's provisioned throughput settings.",
+												MarkdownDescription: "Replica-specific provisioned throughput settings. If not specified, uses the source table's provisioned throughput settings.",
+												Attributes: map[string]schema.Attribute{
+													"read_capacity_units": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"kms_master_key_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"provisioned_throughput_override": schema.SingleNestedAttribute{
+									Description:         "Replica-specific provisioned throughput settings. If not specified, uses the source table's provisioned throughput settings.",
+									MarkdownDescription: "Replica-specific provisioned throughput settings. If not specified, uses the source table's provisioned throughput settings.",
+									Attributes: map[string]schema.Attribute{
+										"read_capacity_units": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"region_name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"table_class_override": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tags": schema.ListNestedAttribute{

@@ -166,10 +166,10 @@ func (r *VeleroIoBackupRepositoryV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"restic_identifier": schema.StringAttribute{
-						Description:         "ResticIdentifier is the full restic-compatible string for identifying this repository.",
-						MarkdownDescription: "ResticIdentifier is the full restic-compatible string for identifying this repository.",
-						Required:            true,
-						Optional:            false,
+						Description:         "ResticIdentifier is the full restic-compatible string for identifying this repository. This field is only used when RepositoryType is 'restic'.",
+						MarkdownDescription: "ResticIdentifier is the full restic-compatible string for identifying this repository. This field is only used when RepositoryType is 'restic'.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

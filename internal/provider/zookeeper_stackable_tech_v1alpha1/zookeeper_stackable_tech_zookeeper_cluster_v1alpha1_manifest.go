@@ -48,8 +48,7 @@ type ZookeeperStackableTechZookeeperClusterV1Alpha1ManifestData struct {
 			Authentication *[]struct {
 				AuthenticationClass *string `tfsdk:"authentication_class" json:"authenticationClass,omitempty"`
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
-			ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
-			Tls           *struct {
+			Tls *struct {
 				QuorumSecretClass *string `tfsdk:"quorum_secret_class" json:"quorumSecretClass,omitempty"`
 				ServerSecretClass *string `tfsdk:"server_secret_class" json:"serverSecretClass,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -97,8 +96,9 @@ type ZookeeperStackableTechZookeeperClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				MyidOffset *int64 `tfsdk:"myid_offset" json:"myidOffset,omitempty"`
-				Resources  *struct {
+				MyidOffset              *int64  `tfsdk:"myid_offset" json:"myidOffset,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -125,10 +125,16 @@ type ZookeeperStackableTechZookeeperClusterV1Alpha1ManifestData struct {
 				SyncLimit *int64 `tfsdk:"sync_limit" json:"syncLimit,omitempty"`
 				TickTime  *int64 `tfsdk:"tick_time" json:"tickTime,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
+				ListenerClass       *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -162,8 +168,9 @@ type ZookeeperStackableTechZookeeperClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					MyidOffset *int64 `tfsdk:"myid_offset" json:"myidOffset,omitempty"`
-					Resources  *struct {
+					MyidOffset              *int64  `tfsdk:"myid_offset" json:"myidOffset,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -190,10 +197,15 @@ type ZookeeperStackableTechZookeeperClusterV1Alpha1ManifestData struct {
 					SyncLimit *int64 `tfsdk:"sync_limit" json:"syncLimit,omitempty"`
 					TickTime  *int64 `tfsdk:"tick_time" json:"tickTime,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"servers" json:"servers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -299,17 +311,6 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 								Computed: false,
 							},
 
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this ZookeeperCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this ZookeeperCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable"),
-								},
-							},
-
 							"tls": schema.SingleNestedAttribute{
 								Description:         "TLS encryption settings for ZooKeeper (server, quorum). Read more in the [encryption usage guide](https://docs.stackable.tech/home/nightly/zookeeper/usage_guide/encryption).",
 								MarkdownDescription: "TLS encryption settings for ZooKeeper (server, quorum). Read more in the [encryption usage guide](https://docs.stackable.tech/home/nightly/zookeeper/usage_guide/encryption).",
@@ -378,8 +379,8 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -424,8 +425,8 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -639,6 +640,14 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 										},
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -832,6 +841,42 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 								Computed:            false,
 							},
 
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_overrides": schema.MapAttribute{
 								Description:         "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
 								MarkdownDescription: "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
@@ -845,6 +890,14 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 								Description:         "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								MarkdownDescription: "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								Attributes: map[string]schema.Attribute{
+									"listener_class": schema.StringAttribute{
+										Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the ZooKeeper servers.",
+										MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the ZooKeeper servers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_disruption_budget": schema.SingleNestedAttribute{
 										Description:         "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
 										MarkdownDescription: "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
@@ -1073,6 +1126,14 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 												},
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1264,6 +1325,42 @@ func (r *ZookeeperStackableTechZookeeperClusterV1Alpha1Manifest) Schema(_ contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

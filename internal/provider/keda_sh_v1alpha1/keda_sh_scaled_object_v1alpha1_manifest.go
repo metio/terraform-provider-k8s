@@ -77,8 +77,9 @@ type KedaShScaledObjectV1Alpha1ManifestData struct {
 		} `tfsdk:"advanced" json:"advanced,omitempty"`
 		CooldownPeriod *int64 `tfsdk:"cooldown_period" json:"cooldownPeriod,omitempty"`
 		Fallback       *struct {
-			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
-			Replicas         *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+			Behavior         *string `tfsdk:"behavior" json:"behavior,omitempty"`
+			FailureThreshold *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			Replicas         *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 		} `tfsdk:"fallback" json:"fallback,omitempty"`
 		IdleReplicaCount      *int64 `tfsdk:"idle_replica_count" json:"idleReplicaCount,omitempty"`
 		InitialCooldownPeriod *int64 `tfsdk:"initial_cooldown_period" json:"initialCooldownPeriod,omitempty"`
@@ -366,6 +367,9 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("AverageValue", "Value"),
+										},
 									},
 
 									"target": schema.StringAttribute{
@@ -398,6 +402,17 @@ func (r *KedaShScaledObjectV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 						Description:         "Fallback is the spec for fallback options",
 						MarkdownDescription: "Fallback is the spec for fallback options",
 						Attributes: map[string]schema.Attribute{
+							"behavior": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("static", "currentReplicas", "currentReplicasIfHigher", "currentReplicasIfLower"),
+								},
+							},
+
 							"failure_threshold": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",

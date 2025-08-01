@@ -195,7 +195,7 @@ func (r *ApiCleverCloudComElasticSearchV1Manifest) Schema(_ context.Context, _ d
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.Int64{
-									int64validator.OneOf(6, 7, 8),
+									int64validator.OneOf(7, 8),
 								},
 							},
 						},

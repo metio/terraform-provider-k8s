@@ -166,8 +166,8 @@ func (r *CloudfrontServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "A name to identify the function.",
-						MarkdownDescription: "A name to identify the function.",
+						Description:         "A name to identify the function. Regex Pattern: '^[a-zA-Z0-9-_]{1,64}$'",
+						MarkdownDescription: "A name to identify the function. Regex Pattern: '^[a-zA-Z0-9-_]{1,64}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

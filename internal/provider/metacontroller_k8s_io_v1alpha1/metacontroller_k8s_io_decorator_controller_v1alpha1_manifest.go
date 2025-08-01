@@ -120,8 +120,9 @@ type MetacontrollerK8SIoDecoratorControllerV1Alpha1ManifestData struct {
 					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			} `tfsdk:"annotation_selector" json:"annotationSelector,omitempty"`
-			ApiVersion    *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
-			LabelSelector *struct {
+			ApiVersion          *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+			IgnoreStatusChanges *bool   `tfsdk:"ignore_status_changes" json:"ignoreStatusChanges,omitempty"`
+			LabelSelector       *struct {
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -734,6 +735,14 @@ func (r *MetacontrollerK8SIoDecoratorControllerV1Alpha1Manifest) Schema(_ contex
 									MarkdownDescription: "",
 									Required:            true,
 									Optional:            false,
+									Computed:            false,
+								},
+
+								"ignore_status_changes": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 

@@ -46,6 +46,7 @@ type ConfigKoordinatorShClusterColocationProfileV1Alpha1ManifestData struct {
 		Annotations           *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 		KoordinatorPriority   *int64             `tfsdk:"koordinator_priority" json:"koordinatorPriority,omitempty"`
 		LabelKeysMapping      *map[string]string `tfsdk:"label_keys_mapping" json:"labelKeysMapping,omitempty"`
+		LabelSuffixes         *map[string]string `tfsdk:"label_suffixes" json:"labelSuffixes,omitempty"`
 		Labels                *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		NamespaceSelector     *struct {
 			MatchExpressions *[]struct {
@@ -137,8 +138,8 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 				MarkdownDescription: "ClusterColocationProfileSpec is a description of a ClusterColocationProfile.",
 				Attributes: map[string]schema.Attribute{
 					"annotation_keys_mapping": schema.MapAttribute{
-						Description:         "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
-						MarkdownDescription: "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationsToAnnotations[k]] = Pod.Annotations[k] for each key k.",
+						Description:         "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationKeysMapping[k]] = Pod.Annotations[k] for each key k.",
+						MarkdownDescription: "AnnotationKeysMapping describes the annotations that needs to inject into Pod.Annotations with the same values. It sets the Pod.Annotations[AnnotationKeysMapping[k]] = Pod.Annotations[k] for each key k.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -155,16 +156,25 @@ func (r *ConfigKoordinatorShClusterColocationProfileV1Alpha1Manifest) Schema(_ c
 					},
 
 					"koordinator_priority": schema.Int64Attribute{
-						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
-						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority.",
+						Description:         "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority. TODO: remove this field, use Labels instead.",
+						MarkdownDescription: "KoordinatorPriority defines the Pod sub-priority in Koordinator. The priority value will be injected into Pod as label koordinator.sh/priority. Various Koordinator components determine the priority of the Pod in the Koordinator through KoordinatorPriority and the priority value in PriorityClassName. The higher the value, the higher the priority. TODO: remove this field, use Labels instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"label_keys_mapping": schema.MapAttribute{
-						Description:         "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
-						MarkdownDescription: "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelsToLabels[k]] = Pod.Labels[k] for each key k.",
+						Description:         "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelKeysMapping[k]] = Pod.Labels[k] for each key k.",
+						MarkdownDescription: "LabelKeysMapping describes the labels that needs to inject into Pod.Labels with the same values. It sets the Pod.Labels[LabelKeysMapping[k]] = Pod.Labels[k] for each key k.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"label_suffixes": schema.MapAttribute{
+						Description:         "LabelSuffixes describes the labels that needs to inject into Pod.Labels with the same values. It appends the suffix to the Pod.Labels[k] as Pod.Labels[k]+LabelSuffixes[k].",
+						MarkdownDescription: "LabelSuffixes describes the labels that needs to inject into Pod.Labels with the same values. It appends the suffix to the Pod.Labels[k] as Pod.Labels[k]+LabelSuffixes[k].",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

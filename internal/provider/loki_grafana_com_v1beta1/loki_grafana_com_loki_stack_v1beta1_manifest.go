@@ -406,8 +406,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -513,8 +513,8 @@ func (r *LokiGrafanaComLokiStackV1Beta1Manifest) Schema(_ context.Context, _ dat
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

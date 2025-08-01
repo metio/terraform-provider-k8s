@@ -45,8 +45,9 @@ type AppsKubeblocksIoClusterDefinitionV1ManifestData struct {
 	Spec *struct {
 		Topologies *[]struct {
 			Components *[]struct {
-				CompDef *string `tfsdk:"comp_def" json:"compDef,omitempty"`
-				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				CompDef  *string `tfsdk:"comp_def" json:"compDef,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Template *bool   `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"components" json:"components,omitempty"`
 			Default *bool   `tfsdk:"default" json:"default,omitempty"`
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
@@ -139,8 +140,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"comp_def": schema.StringAttribute{
-												Description:         "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Once set, this field cannot be updated.",
-												MarkdownDescription: "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Once set, this field cannot be updated.",
+												Description:         "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Cannot be updated once set.",
+												MarkdownDescription: "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) that defines the Component's characteristics and behavior. The system selects the ComponentDefinition CR with the latest version that matches the pattern. This approach allows: 1. Precise selection by providing the exact name of a ComponentDefinition CR. 2. Flexible and automatic selection of the most up-to-date ComponentDefinition CR by specifying a name prefix or regular expression pattern. Cannot be updated once set.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -150,8 +151,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
-												MarkdownDescription: "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. Cannot be updated once set.",
+												Description:         "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. If the @template field is set to true, the name will be used as a prefix to match the specific components dynamically created. Cannot be updated once set.",
+												MarkdownDescription: "Defines the unique identifier of the component within the cluster topology. It follows IANA Service naming rules and is used as part of the Service's DNS name. The name must start with a lowercase letter, can contain lowercase letters, numbers, and hyphens, and must end with a lowercase letter or number. If the @template field is set to true, the name will be used as a prefix to match the specific components dynamically created. Cannot be updated once set.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -159,6 +160,14 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, 
 													stringvalidator.LengthAtMost(16),
 													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
 												},
+											},
+
+											"template": schema.BoolAttribute{
+												Description:         "Specifies whether the topology component will be considered as a template for instantiating components upon user requests dynamically. Cannot be updated once set.",
+												MarkdownDescription: "Specifies whether the topology component will be considered as a template for instantiating components upon user requests dynamically. Cannot be updated once set.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 									},

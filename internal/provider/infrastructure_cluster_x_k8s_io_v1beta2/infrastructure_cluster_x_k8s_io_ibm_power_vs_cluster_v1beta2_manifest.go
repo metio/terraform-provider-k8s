@@ -69,6 +69,14 @@ type InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2ManifestData struct {
 				DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
 				Port            *int64  `tfsdk:"port" json:"port,omitempty"`
 				Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				Selector        *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"selector" json:"selector,omitempty"`
 			} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
 			BackendPools *[]struct {
 				Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
@@ -253,16 +261,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2Manifest) Schema(_ c
 						MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 						Attributes: map[string]schema.Attribute{
 							"host": schema.StringAttribute{
-								Description:         "The hostname on which the API server is serving.",
-								MarkdownDescription: "The hostname on which the API server is serving.",
+								Description:         "host is the hostname on which the API server is serving.",
+								MarkdownDescription: "host is the hostname on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtMost(512),
+								},
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "The port on which the API server is serving.",
-								MarkdownDescription: "The port on which the API server is serving.",
+								Description:         "port is the port on which the API server is serving.",
+								MarkdownDescription: "port is the port on which the API server is serving.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -424,6 +435,60 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2Manifest) Schema(_ c
 												Validators: []validator.String{
 													stringvalidator.OneOf("http", "https", "tcp", "udp"),
 												},
+											},
+
+											"selector": schema.SingleNestedAttribute{
+												Description:         "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+												MarkdownDescription: "The selector is used to find IBMPowerVSMachines with matching labels. If the label matches, the machine is then added to the load balancer listener configuration.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 									},
@@ -664,8 +729,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterV1Beta2Manifest) Schema(_ c
 					},
 
 					"network": schema.SingleNestedAttribute{
-						Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
-						MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist network will be created by DHCP service. Network.RegEx is not yet supported and system will ignore the value.",
+						Description:         "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
+						MarkdownDescription: "Network is the reference to the Network to use for this cluster. when the field is omitted, A DHCP service will be created in the Power VS workspace and its private network will be used. the DHCP service created network will have the following name format 1. in the case of DHCPServer.Name is not set the name will be DHCPSERVER<CLUSTER_NAME>_Private. 2. if DHCPServer.Name is set the name will be DHCPSERVER<DHCPServer.Name>_Private. when Network.ID is set, its expected that there exist a network in PowerVS workspace with id or else system will give error. when Network.Name is set, system will first check for network with Name in PowerVS workspace, if not exist system will check DHCP network with given Network.name, if that also not exist, it will create a new DHCP service and name will be DHCPSERVER<Network.Name>_Private. Network.RegEx is not yet supported and system will ignore the value.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "ID of resource",

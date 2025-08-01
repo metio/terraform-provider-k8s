@@ -122,7 +122,8 @@ type VeleroIoBackupV1ManifestData struct {
 		UploaderConfig   *struct {
 			ParallelFilesUpload *int64 `tfsdk:"parallel_files_upload" json:"parallelFilesUpload,omitempty"`
 		} `tfsdk:"uploader_config" json:"uploaderConfig,omitempty"`
-		VolumeSnapshotLocations *[]string `tfsdk:"volume_snapshot_locations" json:"volumeSnapshotLocations,omitempty"`
+		VolumeGroupSnapshotLabelKey *string   `tfsdk:"volume_group_snapshot_label_key" json:"volumeGroupSnapshotLabelKey,omitempty"`
+		VolumeSnapshotLocations     *[]string `tfsdk:"volume_snapshot_locations" json:"volumeSnapshotLocations,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -770,6 +771,14 @@ func (r *VeleroIoBackupV1Manifest) Schema(_ context.Context, _ datasource.Schema
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"volume_group_snapshot_label_key": schema.StringAttribute{
+						Description:         "VolumeGroupSnapshotLabelKey specifies the label key to group PVCs under a VGS.",
+						MarkdownDescription: "VolumeGroupSnapshotLabelKey specifies the label key to group PVCs under a VGS.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"volume_snapshot_locations": schema.ListAttribute{
