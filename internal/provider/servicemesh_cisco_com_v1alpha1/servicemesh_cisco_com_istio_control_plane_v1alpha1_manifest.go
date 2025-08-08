@@ -875,15 +875,13 @@ type ServicemeshCiscoComIstioControlPlaneV1Alpha1ManifestData struct {
 				Image                           *struct {
 					ImageType *string `tfsdk:"image_type" json:"imageType,omitempty"`
 				} `tfsdk:"image" json:"image,omitempty"`
-				InterceptionMode   *string `tfsdk:"interception_mode" json:"interceptionMode,omitempty"`
-				MeshId             *string `tfsdk:"mesh_id" json:"meshId,omitempty"`
-				PrivateKeyProvider *struct {
+				InterceptionMode       *string `tfsdk:"interception_mode" json:"interceptionMode,omitempty"`
+				MeshId                 *string `tfsdk:"mesh_id" json:"meshId,omitempty"`
+				ParentShutdownDuration *string `tfsdk:"parent_shutdown_duration" json:"parentShutdownDuration,omitempty"`
+				PrivateKeyProvider     *struct {
 					Cryptomb *struct {
 						PollDelay *string `tfsdk:"poll_delay" json:"pollDelay,omitempty"`
 					} `tfsdk:"cryptomb" json:"cryptomb,omitempty"`
-					Qat *struct {
-						PollDelay *string `tfsdk:"poll_delay" json:"pollDelay,omitempty"`
-					} `tfsdk:"qat" json:"qat,omitempty"`
 				} `tfsdk:"private_key_provider" json:"privateKeyProvider,omitempty"`
 				ProxyAdminPort             *int64             `tfsdk:"proxy_admin_port" json:"proxyAdminPort,omitempty"`
 				ProxyBootstrapTemplatePath *string            `tfsdk:"proxy_bootstrap_template_path" json:"proxyBootstrapTemplatePath,omitempty"`
@@ -1086,11 +1084,6 @@ type ServicemeshCiscoComIstioControlPlaneV1Alpha1ManifestData struct {
 					Port         *int64    `tfsdk:"port" json:"port,omitempty"`
 					Service      *string   `tfsdk:"service" json:"service,omitempty"`
 				} `tfsdk:"opencensus" json:"opencensus,omitempty"`
-				Opentelemetry *struct {
-					MaxTagLength *int64  `tfsdk:"max_tag_length" json:"maxTagLength,omitempty"`
-					Port         *int64  `tfsdk:"port" json:"port,omitempty"`
-					Service      *string `tfsdk:"service" json:"service,omitempty"`
-				} `tfsdk:"opentelemetry" json:"opentelemetry,omitempty"`
 				Prometheus *map[string]string `tfsdk:"prometheus" json:"prometheus,omitempty"`
 				Skywalking *struct {
 					AccessToken *string `tfsdk:"access_token" json:"accessToken,omitempty"`
@@ -1156,6 +1149,10 @@ type ServicemeshCiscoComIstioControlPlaneV1Alpha1ManifestData struct {
 				Probes   *int64  `tfsdk:"probes" json:"probes,omitempty"`
 				Time     *string `tfsdk:"time" json:"time,omitempty"`
 			} `tfsdk:"tcp_keepalive" json:"tcpKeepalive,omitempty"`
+			ThriftConfig *struct {
+				RateLimitTimeout *string `tfsdk:"rate_limit_timeout" json:"rateLimitTimeout,omitempty"`
+				RateLimitUrl     *string `tfsdk:"rate_limit_url" json:"rateLimitUrl,omitempty"`
+			} `tfsdk:"thrift_config" json:"thriftConfig,omitempty"`
 			TrustDomain               *string   `tfsdk:"trust_domain" json:"trustDomain,omitempty"`
 			TrustDomainAliases        *[]string `tfsdk:"trust_domain_aliases" json:"trustDomainAliases,omitempty"`
 			VerifyCertificateAtClient *bool     `tfsdk:"verify_certificate_at_client" json:"verifyCertificateAtClient,omitempty"`
@@ -1961,7 +1958,6 @@ type ServicemeshCiscoComIstioControlPlaneV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			Tracer *string `tfsdk:"tracer" json:"tracer,omitempty"`
 		} `tfsdk:"proxy" json:"proxy,omitempty"`
 		ProxyInit *struct {
 			Cni *struct {
@@ -3469,53 +3465,6 @@ type ServicemeshCiscoComIstioControlPlaneV1Alpha1ManifestData struct {
 		TelemetryV2 *struct {
 			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 		} `tfsdk:"telemetry_v2" json:"telemetryV2,omitempty"`
-		Tracer *struct {
-			CustomTags *struct {
-				Environment *struct {
-					DefaultValue *string `tfsdk:"default_value" json:"defaultValue,omitempty"`
-					Name         *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"environment" json:"environment,omitempty"`
-				Header *struct {
-					DefaultValue *string `tfsdk:"default_value" json:"defaultValue,omitempty"`
-					Name         *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"header" json:"header,omitempty"`
-				Literal *struct {
-					Value *string `tfsdk:"value" json:"value,omitempty"`
-				} `tfsdk:"literal" json:"literal,omitempty"`
-			} `tfsdk:"custom_tags" json:"customTags,omitempty"`
-			Datadog *struct {
-				Address *string `tfsdk:"address" json:"address,omitempty"`
-			} `tfsdk:"datadog" json:"datadog,omitempty"`
-			Lightstep *struct {
-				AccessToken *string `tfsdk:"access_token" json:"accessToken,omitempty"`
-				Address     *string `tfsdk:"address" json:"address,omitempty"`
-			} `tfsdk:"lightstep" json:"lightstep,omitempty"`
-			MaxPathTagLength *int64 `tfsdk:"max_path_tag_length" json:"maxPathTagLength,omitempty"`
-			OpenCensusAgent  *struct {
-				Address *string   `tfsdk:"address" json:"address,omitempty"`
-				Context *[]string `tfsdk:"context" json:"context,omitempty"`
-			} `tfsdk:"open_census_agent" json:"openCensusAgent,omitempty"`
-			Sampling    *float64 `tfsdk:"sampling" json:"sampling,omitempty"`
-			Stackdriver *struct {
-				Debug                    *bool  `tfsdk:"debug" json:"debug,omitempty"`
-				MaxNumberOfAnnotations   *int64 `tfsdk:"max_number_of_annotations" json:"maxNumberOfAnnotations,omitempty"`
-				MaxNumberOfAttributes    *int64 `tfsdk:"max_number_of_attributes" json:"maxNumberOfAttributes,omitempty"`
-				MaxNumberOfMessageEvents *int64 `tfsdk:"max_number_of_message_events" json:"maxNumberOfMessageEvents,omitempty"`
-			} `tfsdk:"stackdriver" json:"stackdriver,omitempty"`
-			TlsSettings *struct {
-				CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
-				ClientCertificate  *string   `tfsdk:"client_certificate" json:"clientCertificate,omitempty"`
-				CredentialName     *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
-				InsecureSkipVerify *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
-				Mode               *string   `tfsdk:"mode" json:"mode,omitempty"`
-				PrivateKey         *string   `tfsdk:"private_key" json:"privateKey,omitempty"`
-				Sni                *string   `tfsdk:"sni" json:"sni,omitempty"`
-				SubjectAltNames    *[]string `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
-			} `tfsdk:"tls_settings" json:"tlsSettings,omitempty"`
-			Zipkin *struct {
-				Address *string `tfsdk:"address" json:"address,omitempty"`
-			} `tfsdk:"zipkin" json:"zipkin,omitempty"`
-		} `tfsdk:"tracer" json:"tracer,omitempty"`
 		Version           *string `tfsdk:"version" json:"version,omitempty"`
 		WatchOneNamespace *bool   `tfsdk:"watch_one_namespace" json:"watchOneNamespace,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -9207,28 +9156,19 @@ func (r *ServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"parent_shutdown_duration": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"private_key_provider": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"cryptomb": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"poll_delay": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"qat": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
@@ -10649,39 +10589,6 @@ func (r *ServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest) Schema(_ context.
 											Computed: false,
 										},
 
-										"opentelemetry": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"max_tag_length": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"port": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"service": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"prometheus": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -11123,6 +11030,31 @@ func (r *ServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest) Schema(_ context.
 									},
 
 									"time": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"thrift_config": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"rate_limit_timeout": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"rate_limit_url": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -16493,14 +16425,6 @@ func (r *ServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest) Schema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
-							},
-
-							"tracer": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
 							},
 						},
 						Required: false,
@@ -26507,310 +26431,6 @@ func (r *ServicemeshCiscoComIstioControlPlaneV1Alpha1Manifest) Schema(_ context.
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"tracer": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"custom_tags": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"environment": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"default_value": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"header": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"default_value": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"literal": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Attributes: map[string]schema.Attribute{
-											"value": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"datadog": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"address": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"lightstep": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"access_token": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"address": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"max_path_tag_length": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"open_census_agent": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"address": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"context": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"sampling": schema.Float64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"stackdriver": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"debug": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"max_number_of_annotations": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"max_number_of_attributes": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"max_number_of_message_events": schema.Int64Attribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"tls_settings": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"ca_certificates": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"client_certificate": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"credential_name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"insecure_skip_verify": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"mode": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.OneOf("DISABLE", "SIMPLE", "MUTUAL", "ISTIO_MUTUAL"),
-										},
-									},
-
-									"private_key": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"sni": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"subject_alt_names": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"zipkin": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"address": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 						},
 						Required: false,

@@ -151,6 +151,13 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					EnabledFor *string `tfsdk:"enabled_for" json:"enabledFor,omitempty"`
 				} `tfsdk:"dlp" json:"dlp,omitempty"`
 				DynamicForwardProxy *struct {
+					CircuitBreakers *struct {
+						MaxConnections     *int64 `tfsdk:"max_connections" json:"maxConnections,omitempty"`
+						MaxPendingRequests *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
+						MaxRequests        *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
+						MaxRetries         *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+						TrackRemaining     *bool  `tfsdk:"track_remaining" json:"trackRemaining,omitempty"`
+					} `tfsdk:"circuit_breakers" json:"circuitBreakers,omitempty"`
 					DnsCacheConfig *struct {
 						AppleDns *map[string]string `tfsdk:"apple_dns" json:"appleDns,omitempty"`
 						CaresDns *struct {
@@ -405,13 +412,27 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 				HttpConnectionManagerSettings *struct {
-					AcceptHttp10                 *bool   `tfsdk:"accept_http10" json:"acceptHttp10,omitempty"`
-					AllowChunkedLength           *bool   `tfsdk:"allow_chunked_length" json:"allowChunkedLength,omitempty"`
-					AppendXForwardedPort         *bool   `tfsdk:"append_x_forwarded_port" json:"appendXForwardedPort,omitempty"`
-					CodecType                    *string `tfsdk:"codec_type" json:"codecType,omitempty"`
-					DefaultHostForHttp10         *string `tfsdk:"default_host_for_http10" json:"defaultHostForHttp10,omitempty"`
-					DelayedCloseTimeout          *string `tfsdk:"delayed_close_timeout" json:"delayedCloseTimeout,omitempty"`
-					DrainTimeout                 *string `tfsdk:"drain_timeout" json:"drainTimeout,omitempty"`
+					AcceptHttp10            *bool   `tfsdk:"accept_http10" json:"acceptHttp10,omitempty"`
+					AllowChunkedLength      *bool   `tfsdk:"allow_chunked_length" json:"allowChunkedLength,omitempty"`
+					AppendXForwardedPort    *bool   `tfsdk:"append_x_forwarded_port" json:"appendXForwardedPort,omitempty"`
+					CodecType               *string `tfsdk:"codec_type" json:"codecType,omitempty"`
+					DefaultHostForHttp10    *string `tfsdk:"default_host_for_http10" json:"defaultHostForHttp10,omitempty"`
+					DelayedCloseTimeout     *string `tfsdk:"delayed_close_timeout" json:"delayedCloseTimeout,omitempty"`
+					DrainTimeout            *string `tfsdk:"drain_timeout" json:"drainTimeout,omitempty"`
+					EarlyHeaderManipulation *struct {
+						HeadersToAdd *[]struct {
+							Append *bool `tfsdk:"append" json:"append,omitempty"`
+							Header *struct {
+								Key   *string `tfsdk:"key" json:"key,omitempty"`
+								Value *string `tfsdk:"value" json:"value,omitempty"`
+							} `tfsdk:"header" json:"header,omitempty"`
+							HeaderSecretRef *struct {
+								Name      *string `tfsdk:"name" json:"name,omitempty"`
+								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+							} `tfsdk:"header_secret_ref" json:"headerSecretRef,omitempty"`
+						} `tfsdk:"headers_to_add" json:"headersToAdd,omitempty"`
+						HeadersToRemove *[]string `tfsdk:"headers_to_remove" json:"headersToRemove,omitempty"`
+					} `tfsdk:"early_header_manipulation" json:"earlyHeaderManipulation,omitempty"`
 					EnableTrailers               *bool   `tfsdk:"enable_trailers" json:"enableTrailers,omitempty"`
 					ForwardClientCertDetails     *string `tfsdk:"forward_client_cert_details" json:"forwardClientCertDetails,omitempty"`
 					GenerateRequestId            *bool   `tfsdk:"generate_request_id" json:"generateRequestId,omitempty"`
@@ -479,6 +500,16 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 							Tag   *string `tfsdk:"tag" json:"tag,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"literals_for_tags" json:"literalsForTags,omitempty"`
+						MetadataForTags *[]struct {
+							DefaultValue *string `tfsdk:"default_value" json:"defaultValue,omitempty"`
+							Kind         *string `tfsdk:"kind" json:"kind,omitempty"`
+							Tag          *string `tfsdk:"tag" json:"tag,omitempty"`
+							Value        *struct {
+								Key                  *string `tfsdk:"key" json:"key,omitempty"`
+								Namespace            *string `tfsdk:"namespace" json:"namespace,omitempty"`
+								NestedFieldDelimiter *string `tfsdk:"nested_field_delimiter" json:"nestedFieldDelimiter,omitempty"`
+							} `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"metadata_for_tags" json:"metadataForTags,omitempty"`
 						OpenCensusConfig *struct {
 							GrpcAddress *struct {
 								StatPrefix *string `tfsdk:"stat_prefix" json:"statPrefix,omitempty"`
@@ -510,8 +541,13 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 								Name      *string `tfsdk:"name" json:"name,omitempty"`
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"collector_upstream_ref" json:"collectorUpstreamRef,omitempty"`
+							GrpcService *struct {
+								Authority *string `tfsdk:"authority" json:"authority,omitempty"`
+							} `tfsdk:"grpc_service" json:"grpcService,omitempty"`
+							ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 						} `tfsdk:"open_telemetry_config" json:"openTelemetryConfig,omitempty"`
 						RequestHeadersForTags *[]string `tfsdk:"request_headers_for_tags" json:"requestHeadersForTags,omitempty"`
+						SpawnUpstreamSpan     *bool     `tfsdk:"spawn_upstream_span" json:"spawnUpstreamSpan,omitempty"`
 						TracePercentages      *struct {
 							ClientSamplePercentage  *float64 `tfsdk:"client_sample_percentage" json:"clientSamplePercentage,omitempty"`
 							OverallSamplePercentage *float64 `tfsdk:"overall_sample_percentage" json:"overallSamplePercentage,omitempty"`
@@ -1514,6 +1550,71 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"circuit_breakers": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"max_connections": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
+													},
+
+													"max_pending_requests": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
+													},
+
+													"max_requests": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
+													},
+
+													"max_retries": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(4.294967295e+09),
+														},
+													},
+
+													"track_remaining": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"dns_cache_config": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -3311,6 +3412,93 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 												Computed:            false,
 											},
 
+											"early_header_manipulation": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"headers_to_add": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"append": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"header": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"value": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"header_secret_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"headers_to_remove": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"enable_trailers": schema.BoolAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -3814,6 +4002,74 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 														Computed: false,
 													},
 
+													"metadata_for_tags": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"default_value": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"kind": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"tag": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"nested_field_delimiter": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"open_census_config": schema.SingleNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -4010,6 +4266,31 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 																Optional: true,
 																Computed: false,
 															},
+
+															"grpc_service": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"authority": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"service_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -4020,6 +4301,14 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 														Description:         "",
 														MarkdownDescription: "",
 														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"spawn_upstream_span": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

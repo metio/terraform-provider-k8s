@@ -126,55 +126,69 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ExtensionConfigSpec is the desired state of the ExtensionConfig",
-				MarkdownDescription: "ExtensionConfigSpec is the desired state of the ExtensionConfig",
+				Description:         "spec is the desired state of the ExtensionConfig.",
+				MarkdownDescription: "spec is the desired state of the ExtensionConfig.",
 				Attributes: map[string]schema.Attribute{
 					"client_config": schema.SingleNestedAttribute{
-						Description:         "ClientConfig defines how to communicate with the Extension server.",
-						MarkdownDescription: "ClientConfig defines how to communicate with the Extension server.",
+						Description:         "clientConfig defines how to communicate with the Extension server.",
+						MarkdownDescription: "clientConfig defines how to communicate with the Extension server.",
 						Attributes: map[string]schema.Attribute{
 							"ca_bundle": schema.StringAttribute{
-								Description:         "CABundle is a PEM encoded CA bundle which will be used to validate the Extension server's server certificate.",
-								MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validate the Extension server's server certificate.",
+								Description:         "caBundle is a PEM encoded CA bundle which will be used to validate the Extension server's server certificate.",
+								MarkdownDescription: "caBundle is a PEM encoded CA bundle which will be used to validate the Extension server's server certificate.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
 									validators.Base64Validator(),
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(51200),
 								},
 							},
 
 							"service": schema.SingleNestedAttribute{
-								Description:         "Service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
-								MarkdownDescription: "Service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
+								Description:         "service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
+								MarkdownDescription: "service is a reference to the Kubernetes service for the Extension server. Note: Exactly one of 'url' or 'service' must be specified. If the Extension server is running within a cluster, then you should use 'service'.",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
-										Description:         "Name is the name of the service.",
-										MarkdownDescription: "Name is the name of the service.",
+										Description:         "name is the name of the service.",
+										MarkdownDescription: "name is the name of the service.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"namespace": schema.StringAttribute{
-										Description:         "Namespace is the namespace of the service.",
-										MarkdownDescription: "Namespace is the namespace of the service.",
+										Description:         "namespace is the namespace of the service.",
+										MarkdownDescription: "namespace is the namespace of the service.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(63),
+										},
 									},
 
 									"path": schema.StringAttribute{
-										Description:         "Path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
-										MarkdownDescription: "Path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
+										Description:         "path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
+										MarkdownDescription: "path is an optional URL path and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(512),
+										},
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
-										MarkdownDescription: "Port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
+										Description:         "port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
+										MarkdownDescription: "port is the port on the service that's hosting the Extension server. Defaults to 443. Port should be a valid port number (1-65535, inclusive).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -186,11 +200,15 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"url": schema.StringAttribute{
-								Description:         "URL gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
-								MarkdownDescription: "URL gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
+								Description:         "url gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
+								MarkdownDescription: "url gives the location of the Extension server, in standard URL form ('scheme://host:port/path'). Note: Exactly one of 'url' or 'service' must be specified. The scheme must be 'https'. The 'host' should not refer to a service running in the cluster; use the 'service' field instead. A path is optional, and if present may be any string permissible in a URL. If a path is set it will be used as prefix to the hook-specific path. Attempting to use a user or basic auth e.g. 'user:password@' is not allowed. Fragments ('#...') and query parameters ('?...') are not allowed either.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(512),
+								},
 							},
 						},
 						Required: true,
@@ -199,8 +217,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"namespace_selector": schema.SingleNestedAttribute{
-						Description:         "NamespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
-						MarkdownDescription: "NamespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
+						Description:         "namespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
+						MarkdownDescription: "namespaceSelector decides whether to call the hook for an object based on whether the namespace for that object matches the selector. Defaults to the empty LabelSelector, which matches all objects.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -253,8 +271,8 @@ func (r *RuntimeClusterXK8SIoExtensionConfigV1Alpha1Manifest) Schema(_ context.C
 					},
 
 					"settings": schema.MapAttribute{
-						Description:         "Settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
-						MarkdownDescription: "Settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
+						Description:         "settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
+						MarkdownDescription: "settings defines key value pairs to be passed to all calls to all supported RuntimeExtensions. Note: Settings can be overridden on the ClusterClass.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

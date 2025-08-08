@@ -45,11 +45,6 @@ type KarpenterShNodePoolV1Beta1ManifestData struct {
 
 	Spec *struct {
 		Disruption *struct {
-			Budgets *[]struct {
-				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
-				Nodes    *string `tfsdk:"nodes" json:"nodes,omitempty"`
-				Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
-			} `tfsdk:"budgets" json:"budgets,omitempty"`
 			ConsolidateAfter    *string `tfsdk:"consolidate_after" json:"consolidateAfter,omitempty"`
 			ConsolidationPolicy *string `tfsdk:"consolidation_policy" json:"consolidationPolicy,omitempty"`
 			ExpireAfter         *string `tfsdk:"expire_after" json:"expireAfter,omitempty"`
@@ -81,10 +76,9 @@ type KarpenterShNodePoolV1Beta1ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"node_class_ref" json:"nodeClassRef,omitempty"`
 				Requirements *[]struct {
-					Key       *string   `tfsdk:"key" json:"key,omitempty"`
-					MinValues *int64    `tfsdk:"min_values" json:"minValues,omitempty"`
-					Operator  *string   `tfsdk:"operator" json:"operator,omitempty"`
-					Values    *[]string `tfsdk:"values" json:"values,omitempty"`
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 				} `tfsdk:"requirements" json:"requirements,omitempty"`
 				Resources *struct {
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -169,57 +163,13 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "NodePoolSpec is the top level nodepool specification. Nodepools launch nodes in response to pods that are unschedulable. A single nodepool is capable of managing a diverse set of nodes. Node properties are determined from a combination of nodepool and pod scheduling constraints.",
-				MarkdownDescription: "NodePoolSpec is the top level nodepool specification. Nodepools launch nodes in response to pods that are unschedulable. A single nodepool is capable of managing a diverse set of nodes. Node properties are determined from a combination of nodepool and pod scheduling constraints.",
+				Description:         "NodePoolSpec is the top level provisioner specification. Provisioners launch nodes in response to pods that are unschedulable. A single provisioner is capable of managing a diverse set of nodes. Node properties are determined from a combination of provisioner and pod scheduling constraints.",
+				MarkdownDescription: "NodePoolSpec is the top level provisioner specification. Provisioners launch nodes in response to pods that are unschedulable. A single provisioner is capable of managing a diverse set of nodes. Node properties are determined from a combination of provisioner and pod scheduling constraints.",
 				Attributes: map[string]schema.Attribute{
 					"disruption": schema.SingleNestedAttribute{
 						Description:         "Disruption contains the parameters that relate to Karpenter's disruption logic",
 						MarkdownDescription: "Disruption contains the parameters that relate to Karpenter's disruption logic",
 						Attributes: map[string]schema.Attribute{
-							"budgets": schema.ListNestedAttribute{
-								Description:         "Budgets is a list of Budgets. If there are multiple active budgets, Karpenter uses the most restrictive value. If left undefined, this will default to one budget with a value to 10%.",
-								MarkdownDescription: "Budgets is a list of Budgets. If there are multiple active budgets, Karpenter uses the most restrictive value. If left undefined, this will default to one budget with a value to 10%.",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"duration": schema.StringAttribute{
-											Description:         "Duration determines how long a Budget is active since each Schedule hit. Only minutes and hours are accepted, as cron does not work in seconds. If omitted, the budget is always active. This is required if Schedule is set. This regex has an optional 0s at the end since the duration.String() always adds a 0s at the end.",
-											MarkdownDescription: "Duration determines how long a Budget is active since each Schedule hit. Only minutes and hours are accepted, as cron does not work in seconds. If omitted, the budget is always active. This is required if Schedule is set. This regex has an optional 0s at the end since the duration.String() always adds a 0s at the end.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^((([0-9]+(h|m))|([0-9]+h[0-9]+m))(0s)?)$`), ""),
-											},
-										},
-
-										"nodes": schema.StringAttribute{
-											Description:         "Nodes dictates the maximum number of NodeClaims owned by this NodePool that can be terminating at once. This is calculated by counting nodes that have a deletion timestamp set, or are actively being deleted by Karpenter. This field is required when specifying a budget. This cannot be of type intstr.IntOrString since kubebuilder doesn't support pattern checking for int nodes for IntOrString nodes. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
-											MarkdownDescription: "Nodes dictates the maximum number of NodeClaims owned by this NodePool that can be terminating at once. This is calculated by counting nodes that have a deletion timestamp set, or are actively being deleted by Karpenter. This field is required when specifying a budget. This cannot be of type intstr.IntOrString since kubebuilder doesn't support pattern checking for int nodes for IntOrString nodes. Ref: https://github.com/kubernetes-sigs/controller-tools/blob/55efe4be40394a288216dab63156b0a64fb82929/pkg/crd/markers/validation.go#L379-L388",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^((100|[0-9]{1,2})%|[0-9]+)$`), ""),
-											},
-										},
-
-										"schedule": schema.StringAttribute{
-											Description:         "Schedule specifies when a budget begins being active, following the upstream cronjob syntax. If omitted, the budget is always active. Timezones are not supported. This field is required if Duration is set.",
-											MarkdownDescription: "Schedule specifies when a budget begins being active, following the upstream cronjob syntax. If omitted, the budget is always active. Timezones are not supported. This field is required if Duration is set.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(@(annually|yearly|monthly|weekly|daily|midnight|hourly))|((.+)\s(.+)\s(.+)\s(.+)\s(.+))$`), ""),
-											},
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"consolidate_after": schema.StringAttribute{
 								Description:         "ConsolidateAfter is the duration the controller will wait before attempting to terminate nodes that are underutilized. Refer to ConsolidationPolicy for how underutilization is considered.",
 								MarkdownDescription: "ConsolidateAfter is the duration the controller will wait before attempting to terminate nodes that are underutilized. Refer to ConsolidationPolicy for how underutilization is considered.",
@@ -477,18 +427,6 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 													},
 												},
 
-												"min_values": schema.Int64Attribute{
-													Description:         "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-													MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.Int64{
-														int64validator.AtLeast(1),
-														int64validator.AtMost(50),
-													},
-												},
-
 												"operator": schema.StringAttribute{
 													Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 													MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -656,8 +594,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"weight": schema.Int64Attribute{
-						Description:         "Weight is the priority given to the nodepool during scheduling. A higher numerical weight indicates that this nodepool will be ordered ahead of other nodepools with lower weights. A nodepool with no weight will be treated as if it is a nodepool with a weight of 0.",
-						MarkdownDescription: "Weight is the priority given to the nodepool during scheduling. A higher numerical weight indicates that this nodepool will be ordered ahead of other nodepools with lower weights. A nodepool with no weight will be treated as if it is a nodepool with a weight of 0.",
+						Description:         "Weight is the priority given to the provisioner during scheduling. A higher numerical weight indicates that this provisioner will be ordered ahead of other provisioners with lower weights. A provisioner with no weight will be treated as if it is a provisioner with a weight of 0.",
+						MarkdownDescription: "Weight is the priority given to the provisioner during scheduling. A higher numerical weight indicates that this provisioner will be ordered ahead of other provisioners with lower weights. A provisioner with no weight will be treated as if it is a provisioner with a weight of 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -667,8 +605,8 @@ func (r *KarpenterShNodePoolV1Beta1Manifest) Schema(_ context.Context, _ datasou
 						},
 					},
 				},
-				Required: true,
-				Optional: false,
+				Required: false,
+				Optional: true,
 				Computed: false,
 			},
 		},

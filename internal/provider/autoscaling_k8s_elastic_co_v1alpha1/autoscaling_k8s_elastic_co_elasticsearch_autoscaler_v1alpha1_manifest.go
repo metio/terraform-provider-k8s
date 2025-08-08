@@ -168,8 +168,8 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest) Schema(
 								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

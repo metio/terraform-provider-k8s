@@ -47,6 +47,7 @@ type VeleroIoDataDownloadV2Alpha1ManifestData struct {
 		Cancel                *bool              `tfsdk:"cancel" json:"cancel,omitempty"`
 		DataMoverConfig       *map[string]string `tfsdk:"data_mover_config" json:"dataMoverConfig,omitempty"`
 		Datamover             *string            `tfsdk:"datamover" json:"datamover,omitempty"`
+		NodeOS                *string            `tfsdk:"node_os" json:"nodeOS,omitempty"`
 		OperationTimeout      *string            `tfsdk:"operation_timeout" json:"operationTimeout,omitempty"`
 		SnapshotID            *string            `tfsdk:"snapshot_id" json:"snapshotID,omitempty"`
 		SourceNamespace       *string            `tfsdk:"source_namespace" json:"sourceNamespace,omitempty"`
@@ -166,6 +167,17 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"node_os": schema.StringAttribute{
+						Description:         "NodeOS is OS of the node where the DataDownload is processed.",
+						MarkdownDescription: "NodeOS is OS of the node where the DataDownload is processed.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("auto", "linux", "windows"),
+						},
 					},
 
 					"operation_timeout": schema.StringAttribute{

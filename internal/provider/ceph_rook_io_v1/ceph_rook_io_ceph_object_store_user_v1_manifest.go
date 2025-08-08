@@ -63,7 +63,19 @@ type CephRookIoCephObjectStoreUserV1ManifestData struct {
 		} `tfsdk:"capabilities" json:"capabilities,omitempty"`
 		ClusterNamespace *string `tfsdk:"cluster_namespace" json:"clusterNamespace,omitempty"`
 		DisplayName      *string `tfsdk:"display_name" json:"displayName,omitempty"`
-		Quotas           *struct {
+		Keys             *[]struct {
+			AccessKeyRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"access_key_ref" json:"accessKeyRef,omitempty"`
+			SecretKeyRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+		} `tfsdk:"keys" json:"keys,omitempty"`
+		Quotas *struct {
 			MaxBuckets *int64  `tfsdk:"max_buckets" json:"maxBuckets,omitempty"`
 			MaxObjects *int64  `tfsdk:"max_objects" json:"maxObjects,omitempty"`
 			MaxSize    *string `tfsdk:"max_size" json:"maxSize,omitempty"`
@@ -348,6 +360,83 @@ func (r *CephRookIoCephObjectStoreUserV1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"keys": schema.ListNestedAttribute{
+						Description:         "Allows specifying credentials for the user. If not provided, the operator will generate them.",
+						MarkdownDescription: "Allows specifying credentials for the user. If not provided, the operator will generate them.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"access_key_ref": schema.SingleNestedAttribute{
+									Description:         "Secret key selector for the access_key (commonly referred to as AWS_ACCESS_KEY_ID).",
+									MarkdownDescription: "Secret key selector for the access_key (commonly referred to as AWS_ACCESS_KEY_ID).",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from. Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"secret_key_ref": schema.SingleNestedAttribute{
+									Description:         "Secret key selector for the secret_key (commonly referred to as AWS_SECRET_ACCESS_KEY).",
+									MarkdownDescription: "Secret key selector for the secret_key (commonly referred to as AWS_SECRET_ACCESS_KEY).",
+									Attributes: map[string]schema.Attribute{
+										"key": schema.StringAttribute{
+											Description:         "The key of the secret to select from. Must be a valid secret key.",
+											MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret or its key must be defined",
+											MarkdownDescription: "Specify whether the Secret or its key must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"quotas": schema.SingleNestedAttribute{

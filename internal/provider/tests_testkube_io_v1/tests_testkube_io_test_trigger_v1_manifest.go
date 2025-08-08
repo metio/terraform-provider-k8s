@@ -43,7 +43,16 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Action            *string `tfsdk:"action" json:"action,omitempty"`
+		Action           *string `tfsdk:"action" json:"action,omitempty"`
+		ActionParameters *struct {
+			Config *map[string]string `tfsdk:"config" json:"config,omitempty"`
+			Tags   *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Target *struct {
+				Match     *map[string][]string `tfsdk:"match" json:"match,omitempty"`
+				Not       *map[string][]string `tfsdk:"not" json:"not,omitempty"`
+				Replicate *[]string            `tfsdk:"replicate" json:"replicate,omitempty"`
+			} `tfsdk:"target" json:"target,omitempty"`
+		} `tfsdk:"action_parameters" json:"actionParameters,omitempty"`
 		ConcurrencyPolicy *string `tfsdk:"concurrency_policy" json:"concurrencyPolicy,omitempty"`
 		ConditionSpec     *struct {
 			Conditions *[]struct {
@@ -80,9 +89,10 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			NameRegex *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
+			NameRegex      *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
+			Namespace      *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			NamespaceRegex *string `tfsdk:"namespace_regex" json:"namespaceRegex,omitempty"`
 		} `tfsdk:"resource_selector" json:"resourceSelector,omitempty"`
 		TestSelector *struct {
 			LabelSelector *struct {
@@ -93,9 +103,10 @@ type TestsTestkubeIoTestTriggerV1ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			NameRegex *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
+			NameRegex      *string `tfsdk:"name_regex" json:"nameRegex,omitempty"`
+			Namespace      *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			NamespaceRegex *string `tfsdk:"namespace_regex" json:"namespaceRegex,omitempty"`
 		} `tfsdk:"test_selector" json:"testSelector,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -186,6 +197,69 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 						Validators: []validator.String{
 							stringvalidator.OneOf("run"),
 						},
+					},
+
+					"action_parameters": schema.SingleNestedAttribute{
+						Description:         "supported action parameters for test triggers",
+						MarkdownDescription: "supported action parameters for test triggers",
+						Attributes: map[string]schema.Attribute{
+							"config": schema.MapAttribute{
+								Description:         "configuration to pass for the workflow",
+								MarkdownDescription: "configuration to pass for the workflow",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tags": schema.MapAttribute{
+								Description:         "test workflow execution tags",
+								MarkdownDescription: "test workflow execution tags",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"target": schema.SingleNestedAttribute{
+								Description:         "Target helps decide on which runner the execution is scheduled.",
+								MarkdownDescription: "Target helps decide on which runner the execution is scheduled.",
+								Attributes: map[string]schema.Attribute{
+									"match": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.ListType{ElemType: types.StringType},
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"not": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.ListType{ElemType: types.StringType},
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"replicate": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"concurrency_policy": schema.StringAttribute{
@@ -293,7 +367,7 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("created", "modified", "deleted", "deployment-scale-update", "deployment-image-update", "deployment-env-update", "deployment-containers-modified", "event-start-test", "event-end-test-success", "event-end-test-failed", "event-end-test-aborted", "event-end-test-timeout", "event-start-testsuite", "event-end-testsuite-success", "event-end-testsuite-failed", "event-end-testsuite-aborted", "event-end-testsuite-timeout", "event-queue-testworkflow", "event-start-testworkflow", "event-end-testworkflow-success", "event-end-testworkflow-failed", "event-end-testworkflow-aborted", "event-created", "event-updated", "event-deleted"),
+							stringvalidator.OneOf("created", "modified", "deleted", "deployment-scale-update", "deployment-image-update", "deployment-env-update", "deployment-containers-modified", "deployment-generation-modified", "deployment-resource-modified", "event-start-test", "event-end-test-success", "event-end-test-failed", "event-end-test-aborted", "event-end-test-timeout", "event-start-testsuite", "event-end-testsuite-success", "event-end-testsuite-failed", "event-end-testsuite-aborted", "event-end-testsuite-timeout", "event-queue-testworkflow", "event-start-testworkflow", "event-end-testworkflow-success", "event-end-testworkflow-failed", "event-end-testworkflow-aborted", "event-created", "event-updated", "event-deleted"),
 						},
 					},
 
@@ -477,6 +551,14 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"namespace_regex": schema.StringAttribute{
+								Description:         "kubernetes resource namespace regex",
+								MarkdownDescription: "kubernetes resource namespace regex",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: true,
 						Optional: false,
@@ -560,6 +642,14 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datas
 							"namespace": schema.StringAttribute{
 								Description:         "Namespace of the Kubernetes object",
 								MarkdownDescription: "Namespace of the Kubernetes object",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace_regex": schema.StringAttribute{
+								Description:         "kubernetes resource namespace regex",
+								MarkdownDescription: "kubernetes resource namespace regex",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

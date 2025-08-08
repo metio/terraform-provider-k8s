@@ -17,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -425,6 +426,9 @@ func (r *ChaosMeshOrgPodNetworkChaosV1Alpha1Manifest) Schema(_ context.Context, 
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+											},
 										},
 
 										"latency": schema.StringAttribute{
@@ -433,6 +437,9 @@ func (r *ChaosMeshOrgPodNetworkChaosV1Alpha1Manifest) Schema(_ context.Context, 
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[0-9]+(\.[0-9]+)?(ns|us|ms|s|m|h)$`), ""),
+											},
 										},
 
 										"reorder": schema.SingleNestedAttribute{

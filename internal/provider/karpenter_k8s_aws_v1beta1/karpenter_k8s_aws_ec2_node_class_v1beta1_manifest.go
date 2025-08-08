@@ -51,8 +51,7 @@ type KarpenterK8SAwsEc2NodeClassV1Beta1ManifestData struct {
 			Owner *string            `tfsdk:"owner" json:"owner,omitempty"`
 			Tags  *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 		} `tfsdk:"ami_selector_terms" json:"amiSelectorTerms,omitempty"`
-		AssociatePublicIPAddress *bool `tfsdk:"associate_public_ip_address" json:"associatePublicIPAddress,omitempty"`
-		BlockDeviceMappings      *[]struct {
+		BlockDeviceMappings *[]struct {
 			DeviceName *string `tfsdk:"device_name" json:"deviceName,omitempty"`
 			Ebs        *struct {
 				DeleteOnTermination *bool   `tfsdk:"delete_on_termination" json:"deleteOnTermination,omitempty"`
@@ -66,11 +65,10 @@ type KarpenterK8SAwsEc2NodeClassV1Beta1ManifestData struct {
 			} `tfsdk:"ebs" json:"ebs,omitempty"`
 			RootVolume *bool `tfsdk:"root_volume" json:"rootVolume,omitempty"`
 		} `tfsdk:"block_device_mappings" json:"blockDeviceMappings,omitempty"`
-		Context             *string `tfsdk:"context" json:"context,omitempty"`
-		DetailedMonitoring  *bool   `tfsdk:"detailed_monitoring" json:"detailedMonitoring,omitempty"`
-		InstanceProfile     *string `tfsdk:"instance_profile" json:"instanceProfile,omitempty"`
-		InstanceStorePolicy *string `tfsdk:"instance_store_policy" json:"instanceStorePolicy,omitempty"`
-		MetadataOptions     *struct {
+		Context            *string `tfsdk:"context" json:"context,omitempty"`
+		DetailedMonitoring *bool   `tfsdk:"detailed_monitoring" json:"detailedMonitoring,omitempty"`
+		InstanceProfile    *string `tfsdk:"instance_profile" json:"instanceProfile,omitempty"`
+		MetadataOptions    *struct {
 			HttpEndpoint            *string `tfsdk:"http_endpoint" json:"httpEndpoint,omitempty"`
 			HttpProtocolIPv6        *string `tfsdk:"http_protocol_i_pv6" json:"httpProtocolIPv6,omitempty"`
 			HttpPutResponseHopLimit *int64  `tfsdk:"http_put_response_hop_limit" json:"httpPutResponseHopLimit,omitempty"`
@@ -163,7 +161,7 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Beta1Manifest) Schema(_ context.Context, _
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("AL2", "AL2023", "Bottlerocket", "Ubuntu", "Custom", "Windows2019", "Windows2022"),
+							stringvalidator.OneOf("AL2", "Bottlerocket", "Ubuntu", "Custom", "Windows2019", "Windows2022"),
 						},
 					},
 
@@ -212,14 +210,6 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Beta1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"associate_public_ip_address": schema.BoolAttribute{
-						Description:         "AssociatePublicIPAddress controls if public IP addresses are assigned to instances that are launched with the nodeclass.",
-						MarkdownDescription: "AssociatePublicIPAddress controls if public IP addresses are assigned to instances that are launched with the nodeclass.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"block_device_mappings": schema.ListNestedAttribute{
@@ -293,9 +283,6 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Beta1Manifest) Schema(_ context.Context, _
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^((?:[1-9][0-9]{0,3}|[1-4][0-9]{4}|[5][0-8][0-9]{3}|59000)Gi|(?:[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-3][0-9]{3}|64000)G|([1-9]||[1-5][0-7]|58)Ti|([1-9]||[1-5][0-9]|6[0-3]|64)T)$`), ""),
-											},
 										},
 
 										"volume_type": schema.StringAttribute{
@@ -352,20 +339,9 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Beta1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
-					"instance_store_policy": schema.StringAttribute{
-						Description:         "InstanceStorePolicy specifies how to handle instance-store disks.",
-						MarkdownDescription: "InstanceStorePolicy specifies how to handle instance-store disks.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.OneOf("RAID0"),
-						},
-					},
-
 					"metadata_options": schema.SingleNestedAttribute{
-						Description:         "MetadataOptions for the generated launch template of provisioned nodes. This specifies the exposure of the Instance Metadata Service to provisioned EC2 nodes. For more information, see Instance Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the Amazon Elastic Compute Cloud User Guide. Refer to recommended, security best practices (https://aws.github.io/aws-eks-best-practices/security/docs/iam/#restrict-access-to-the-instance-profile-assigned-to-the-worker-node) for limiting exposure of Instance Metadata and User Data to pods. If omitted, defaults to httpEndpoint enabled, with httpProtocolIPv6 disabled, with httpPutResponseLimit of 1, and with httpTokens required.",
-						MarkdownDescription: "MetadataOptions for the generated launch template of provisioned nodes. This specifies the exposure of the Instance Metadata Service to provisioned EC2 nodes. For more information, see Instance Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the Amazon Elastic Compute Cloud User Guide. Refer to recommended, security best practices (https://aws.github.io/aws-eks-best-practices/security/docs/iam/#restrict-access-to-the-instance-profile-assigned-to-the-worker-node) for limiting exposure of Instance Metadata and User Data to pods. If omitted, defaults to httpEndpoint enabled, with httpProtocolIPv6 disabled, with httpPutResponseLimit of 1, and with httpTokens required.",
+						Description:         "MetadataOptions for the generated launch template of provisioned nodes. This specifies the exposure of the Instance Metadata Service to provisioned EC2 nodes. For more information, see Instance Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the Amazon Elastic Compute Cloud User Guide. Refer to recommended, security best practices (https://aws.github.io/aws-eks-best-practices/security/docs/iam/#restrict-access-to-the-instance-profile-assigned-to-the-worker-node) for limiting exposure of Instance Metadata and User Data to pods. If omitted, defaults to httpEndpoint enabled, with httpProtocolIPv6 disabled, with httpPutResponseLimit of 2, and with httpTokens required.",
+						MarkdownDescription: "MetadataOptions for the generated launch template of provisioned nodes. This specifies the exposure of the Instance Metadata Service to provisioned EC2 nodes. For more information, see Instance Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the Amazon Elastic Compute Cloud User Guide. Refer to recommended, security best practices (https://aws.github.io/aws-eks-best-practices/security/docs/iam/#restrict-access-to-the-instance-profile-assigned-to-the-worker-node) for limiting exposure of Instance Metadata and User Data to pods. If omitted, defaults to httpEndpoint enabled, with httpProtocolIPv6 disabled, with httpPutResponseLimit of 2, and with httpTokens required.",
 						Attributes: map[string]schema.Attribute{
 							"http_endpoint": schema.StringAttribute{
 								Description:         "HTTPEndpoint enables or disables the HTTP metadata endpoint on provisioned nodes. If metadata options is non-nil, but this parameter is not specified, the default state is 'enabled'. If you specify a value of 'disabled', instance metadata will not be accessible on the node.",

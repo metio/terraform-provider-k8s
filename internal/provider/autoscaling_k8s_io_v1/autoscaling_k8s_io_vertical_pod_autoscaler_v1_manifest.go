@@ -64,7 +64,7 @@ type AutoscalingK8SIoVerticalPodAutoscalerV1ManifestData struct {
 		UpdatePolicy *struct {
 			EvictionRequirements *[]struct {
 				ChangeRequirement *string   `tfsdk:"change_requirement" json:"changeRequirement,omitempty"`
-				Resources         *[]string `tfsdk:"resources" json:"resources,omitempty"`
+				Resource          *[]string `tfsdk:"resource" json:"resource,omitempty"`
 			} `tfsdk:"eviction_requirements" json:"evictionRequirements,omitempty"`
 			MinReplicas *int64  `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 			UpdateMode  *string `tfsdk:"update_mode" json:"updateMode,omitempty"`
@@ -169,8 +169,8 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Manifest) Schema(_ context.Conte
 					},
 
 					"resource_policy": schema.SingleNestedAttribute{
-						Description:         "Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If any individual containers need to be excluded from getting the VPA recommendations, then it must be disabled explicitly by setting mode to 'Off' under containerPolicies. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints.",
-						MarkdownDescription: "Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If any individual containers need to be excluded from getting the VPA recommendations, then it must be disabled explicitly by setting mode to 'Off' under containerPolicies. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints.",
+						Description:         "Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints.",
+						MarkdownDescription: "Controls how the autoscaler computes recommended resources. The resource policy may be used to set constraints on the recommendations for individual containers. If not specified, the autoscaler computes recommended resources for all containers in the pod, without additional constraints.",
 						Attributes: map[string]schema.Attribute{
 							"container_policies": schema.ListNestedAttribute{
 								Description:         "Per-container resource policies.",
@@ -298,7 +298,7 @@ func (r *AutoscalingK8SIoVerticalPodAutoscalerV1Manifest) Schema(_ context.Conte
 											},
 										},
 
-										"resources": schema.ListAttribute{
+										"resource": schema.ListAttribute{
 											Description:         "Resources is a list of one or more resources that the condition applies to. If more than one resource is given, the EvictionRequirement is fulfilled if at least one resource meets 'changeRequirement'.",
 											MarkdownDescription: "Resources is a list of one or more resources that the condition applies to. If more than one resource is given, the EvictionRequirement is fulfilled if at least one resource meets 'changeRequirement'.",
 											ElementType:         types.StringType,

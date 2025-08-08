@@ -111,8 +111,8 @@ func (r *CrdProjectcalicoOrgIpamconfigV1Manifest) Schema(_ context.Context, _ da
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPAMConfigSpec contains the specification for an IPAMConfig resource.",
-				MarkdownDescription: "IPAMConfigSpec contains the specification for an IPAMConfig resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"auto_allocate_blocks": schema.BoolAttribute{
 						Description:         "",
@@ -123,8 +123,8 @@ func (r *CrdProjectcalicoOrgIpamconfigV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"max_blocks_per_host": schema.Int64Attribute{
-						Description:         "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
-						MarkdownDescription: "MaxBlocksPerHost, if non-zero, is the max number of blocks that can be affine to each host.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

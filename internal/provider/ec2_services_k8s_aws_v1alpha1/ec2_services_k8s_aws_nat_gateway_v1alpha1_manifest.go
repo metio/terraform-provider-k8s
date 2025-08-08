@@ -193,8 +193,8 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"subnet_id": schema.StringAttribute{
-						Description:         "The subnet in which to create the NAT gateway.",
-						MarkdownDescription: "The subnet in which to create the NAT gateway.",
+						Description:         "The ID of the subnet in which to create the NAT gateway.",
+						MarkdownDescription: "The ID of the subnet in which to create the NAT gateway.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

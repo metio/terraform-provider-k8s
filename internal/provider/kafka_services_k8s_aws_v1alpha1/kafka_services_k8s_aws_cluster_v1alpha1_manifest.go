@@ -210,8 +210,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "ClusterSpec defines the desired state of Cluster. Returns information about a cluster of either the provisioned or the serverless type.",
-				MarkdownDescription: "ClusterSpec defines the desired state of Cluster. Returns information about a cluster of either the provisioned or the serverless type.",
+				Description:         "ClusterSpec defines the desired state of Cluster. Returns information about a cluster.",
+				MarkdownDescription: "ClusterSpec defines the desired state of Cluster. Returns information about a cluster.",
 				Attributes: map[string]schema.Attribute{
 					"associated_scram_secret_refs": schema.ListNestedAttribute{
 						Description:         "",
@@ -259,12 +259,12 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"broker_node_group_info": schema.SingleNestedAttribute{
-						Description:         "Information about the brokers.",
-						MarkdownDescription: "Information about the brokers.",
+						Description:         "Information about the broker nodes in the cluster.",
+						MarkdownDescription: "Information about the broker nodes in the cluster.",
 						Attributes: map[string]schema.Attribute{
 							"broker_az_distribution": schema.StringAttribute{
-								Description:         "The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.",
-								MarkdownDescription: "The distribution of broker nodes across Availability Zones. By default, broker nodes are distributed among the Availability Zones of your Region. Currently, the only supported value is DEFAULT. You can either specify this value explicitly or leave it out.",
+								Description:         "The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed. Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.",
+								MarkdownDescription: "The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don't specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed. Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -284,8 +284,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Information about the broker access configuration.",
 								Attributes: map[string]schema.Attribute{
 									"public_access": schema.SingleNestedAttribute{
-										Description:         "Broker public access control.",
-										MarkdownDescription: "Broker public access control.",
+										Description:         "Public access control for brokers.",
+										MarkdownDescription: "Public access control for brokers.",
 										Attributes: map[string]schema.Attribute{
 											"type": schema.StringAttribute{
 												Description:         "",
@@ -383,12 +383,12 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "Includes all client authentication related information.",
 						Attributes: map[string]schema.Attribute{
 							"sasl": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Details for client authentication using SASL.",
+								MarkdownDescription: "Details for client authentication using SASL.",
 								Attributes: map[string]schema.Attribute{
 									"iam": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Details for IAM access control.",
+										MarkdownDescription: "Details for IAM access control.",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
 												Description:         "",
@@ -404,8 +404,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"scram": schema.SingleNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Details for SASL/SCRAM client authentication.",
+										MarkdownDescription: "Details for SASL/SCRAM client authentication.",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
 												Description:         "",
@@ -452,8 +452,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"unauthenticated": schema.SingleNestedAttribute{
-								Description:         "Contains information about unauthenticated traffic to the cluster.",
-								MarkdownDescription: "Contains information about unauthenticated traffic to the cluster.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"enabled": schema.BoolAttribute{
 										Description:         "",
@@ -474,8 +474,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"configuration_info": schema.SingleNestedAttribute{
-						Description:         "Represents the configuration that you want MSK to use for the cluster.",
-						MarkdownDescription: "Represents the configuration that you want MSK to use for the cluster.",
+						Description:         "Represents the configuration that you want MSK to use for the brokers in a cluster.",
+						MarkdownDescription: "Represents the configuration that you want MSK to use for the brokers in a cluster.",
 						Attributes: map[string]schema.Attribute{
 							"arn": schema.StringAttribute{
 								Description:         "",
@@ -566,16 +566,16 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"logging_info": schema.SingleNestedAttribute{
-						Description:         "LoggingInfo details.",
-						MarkdownDescription: "LoggingInfo details.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"broker_logs": schema.SingleNestedAttribute{
-								Description:         "The broker logs configuration for this MSK cluster.",
-								MarkdownDescription: "The broker logs configuration for this MSK cluster.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"cloud_watch_logs": schema.SingleNestedAttribute{
-										Description:         "Details of the CloudWatch Logs destination for broker logs.",
-										MarkdownDescription: "Details of the CloudWatch Logs destination for broker logs.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
 												Description:         "",
@@ -599,8 +599,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"firehose": schema.SingleNestedAttribute{
-										Description:         "Firehose details for BrokerLogs.",
-										MarkdownDescription: "Firehose details for BrokerLogs.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"delivery_stream": schema.StringAttribute{
 												Description:         "",
@@ -624,8 +624,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"s3": schema.SingleNestedAttribute{
-										Description:         "The details of the Amazon S3 destination for broker logs.",
-										MarkdownDescription: "The details of the Amazon S3 destination for broker logs.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"bucket": schema.StringAttribute{
 												Description:         "",
@@ -675,8 +675,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"number_of_broker_nodes": schema.Int64Attribute{
-						Description:         "The number of Apache Kafka broker nodes in the Amazon MSK cluster.",
-						MarkdownDescription: "The number of Apache Kafka broker nodes in the Amazon MSK cluster.",
+						Description:         "The number of broker nodes in the cluster.",
+						MarkdownDescription: "The number of broker nodes in the cluster.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -691,8 +691,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Prometheus settings.",
 								Attributes: map[string]schema.Attribute{
 									"jmx_exporter": schema.SingleNestedAttribute{
-										Description:         "Indicates whether you want to enable or disable the JMX Exporter.",
-										MarkdownDescription: "Indicates whether you want to enable or disable the JMX Exporter.",
+										Description:         "Indicates whether you want to turn on or turn off the JMX Exporter.",
+										MarkdownDescription: "Indicates whether you want to turn on or turn off the JMX Exporter.",
 										Attributes: map[string]schema.Attribute{
 											"enabled_in_broker": schema.BoolAttribute{
 												Description:         "",
@@ -708,8 +708,8 @@ func (r *KafkaServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _
 									},
 
 									"node_exporter": schema.SingleNestedAttribute{
-										Description:         "Indicates whether you want to enable or disable the Node Exporter.",
-										MarkdownDescription: "Indicates whether you want to enable or disable the Node Exporter.",
+										Description:         "Indicates whether you want to turn on or turn off the Node Exporter.",
+										MarkdownDescription: "Indicates whether you want to turn on or turn off the Node Exporter.",
 										Attributes: map[string]schema.Attribute{
 											"enabled_in_broker": schema.BoolAttribute{
 												Description:         "",

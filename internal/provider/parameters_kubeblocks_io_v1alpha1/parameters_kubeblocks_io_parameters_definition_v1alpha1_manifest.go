@@ -1,0 +1,774 @@
+/*
+* SPDX-FileCopyrightText: The terraform-provider-k8s Authors
+* SPDX-License-Identifier: 0BSD
+ */
+
+package parameters_kubeblocks_io_v1alpha1
+
+import (
+	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/utilities"
+	"github.com/metio/terraform-provider-k8s/internal/validators"
+	"k8s.io/utils/pointer"
+	"regexp"
+	"sigs.k8s.io/yaml"
+)
+
+var (
+	_ datasource.DataSource = &ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest{}
+)
+
+func NewParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest() datasource.DataSource {
+	return &ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest{}
+}
+
+type ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest struct{}
+
+type ParametersKubeblocksIoParametersDefinitionV1Alpha1ManifestData struct {
+	YAML types.String `tfsdk:"yaml" json:"-"`
+
+	ApiVersion *string `tfsdk:"-" json:"apiVersion"`
+	Kind       *string `tfsdk:"-" json:"kind"`
+
+	Metadata struct {
+		Name        string            `tfsdk:"name" json:"name"`
+		Labels      map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		Annotations map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+	} `tfsdk:"metadata" json:"metadata"`
+
+	Spec *struct {
+		DeletedPolicy *struct {
+			DefaultValue  *string `tfsdk:"default_value" json:"defaultValue,omitempty"`
+			DeletedMethod *string `tfsdk:"deleted_method" json:"deletedMethod,omitempty"`
+		} `tfsdk:"deleted_policy" json:"deletedPolicy,omitempty"`
+		DownwardAPIChangeTriggeredActions *[]struct {
+			Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			Items   *[]struct {
+				FieldRef *struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+				} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+				Mode             *int64  `tfsdk:"mode" json:"mode,omitempty"`
+				Path             *string `tfsdk:"path" json:"path,omitempty"`
+				ResourceFieldRef *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+					Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+				} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+			} `tfsdk:"items" json:"items,omitempty"`
+			MountPoint   *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
+			Name         *string `tfsdk:"name" json:"name,omitempty"`
+			ScriptConfig *struct {
+				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
+			} `tfsdk:"script_config" json:"scriptConfig,omitempty"`
+		} `tfsdk:"downward_api_change_triggered_actions" json:"downwardAPIChangeTriggeredActions,omitempty"`
+		DynamicParameters     *[]string `tfsdk:"dynamic_parameters" json:"dynamicParameters,omitempty"`
+		FileName              *string   `tfsdk:"file_name" json:"fileName,omitempty"`
+		ImmutableParameters   *[]string `tfsdk:"immutable_parameters" json:"immutableParameters,omitempty"`
+		MergeReloadAndRestart *bool     `tfsdk:"merge_reload_and_restart" json:"mergeReloadAndRestart,omitempty"`
+		ParametersSchema      *struct {
+			Cue          *string            `tfsdk:"cue" json:"cue,omitempty"`
+			SchemaInJSON *map[string]string `tfsdk:"schema_in_json" json:"schemaInJSON,omitempty"`
+			TopLevelKey  *string            `tfsdk:"top_level_key" json:"topLevelKey,omitempty"`
+		} `tfsdk:"parameters_schema" json:"parametersSchema,omitempty"`
+		ReloadAction *struct {
+			AutoTrigger *struct {
+				ProcessName *string `tfsdk:"process_name" json:"processName,omitempty"`
+			} `tfsdk:"auto_trigger" json:"autoTrigger,omitempty"`
+			ShellTrigger *struct {
+				BatchParamsFormatterTemplate *string   `tfsdk:"batch_params_formatter_template" json:"batchParamsFormatterTemplate,omitempty"`
+				BatchReload                  *bool     `tfsdk:"batch_reload" json:"batchReload,omitempty"`
+				Command                      *[]string `tfsdk:"command" json:"command,omitempty"`
+				ScriptConfig                 *struct {
+					Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
+				} `tfsdk:"script_config" json:"scriptConfig,omitempty"`
+				Sync       *bool `tfsdk:"sync" json:"sync,omitempty"`
+				ToolsSetup *struct {
+					MountPoint  *string `tfsdk:"mount_point" json:"mountPoint,omitempty"`
+					ToolConfigs *[]struct {
+						AsContainerImage *bool     `tfsdk:"as_container_image" json:"asContainerImage,omitempty"`
+						Command          *[]string `tfsdk:"command" json:"command,omitempty"`
+						Image            *string   `tfsdk:"image" json:"image,omitempty"`
+						Name             *string   `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"tool_configs" json:"toolConfigs,omitempty"`
+				} `tfsdk:"tools_setup" json:"toolsSetup,omitempty"`
+			} `tfsdk:"shell_trigger" json:"shellTrigger,omitempty"`
+			TargetPodSelector *struct {
+				MatchExpressions *[]struct {
+					Key      *string   `tfsdk:"key" json:"key,omitempty"`
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+			} `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+			TplScriptTrigger *struct {
+				Namespace          *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				ScriptConfigMapRef *string `tfsdk:"script_config_map_ref" json:"scriptConfigMapRef,omitempty"`
+				Sync               *bool   `tfsdk:"sync" json:"sync,omitempty"`
+			} `tfsdk:"tpl_script_trigger" json:"tplScriptTrigger,omitempty"`
+			UnixSignalTrigger *struct {
+				ProcessName *string `tfsdk:"process_name" json:"processName,omitempty"`
+				Signal      *string `tfsdk:"signal" json:"signal,omitempty"`
+			} `tfsdk:"unix_signal_trigger" json:"unixSignalTrigger,omitempty"`
+		} `tfsdk:"reload_action" json:"reloadAction,omitempty"`
+		ReloadStaticParamsBeforeRestart *bool     `tfsdk:"reload_static_params_before_restart" json:"reloadStaticParamsBeforeRestart,omitempty"`
+		StaticParameters                *[]string `tfsdk:"static_parameters" json:"staticParameters,omitempty"`
+	} `tfsdk:"spec" json:"spec,omitempty"`
+}
+
+func (r *ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
+	response.TypeName = request.ProviderTypeName + "_parameters_kubeblocks_io_parameters_definition_v1alpha1_manifest"
+}
+
+func (r *ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
+	response.Schema = schema.Schema{
+		Description:         "ParametersDefinition is the Schema for the parametersdefinitions API",
+		MarkdownDescription: "ParametersDefinition is the Schema for the parametersdefinitions API",
+		Attributes: map[string]schema.Attribute{
+			"yaml": schema.StringAttribute{
+				Description:         "The generated manifest in YAML format.",
+				MarkdownDescription: "The generated manifest in YAML format.",
+				Required:            false,
+				Optional:            false,
+				Computed:            true,
+			},
+
+			"metadata": schema.SingleNestedAttribute{
+				Description:         "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				MarkdownDescription: "Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details.",
+				Required:            true,
+				Optional:            false,
+				Computed:            false,
+				Attributes: map[string]schema.Attribute{
+					"name": schema.StringAttribute{
+						Description:         "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						MarkdownDescription: "Unique identifier for this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names for more details.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+						Validators: []validator.String{
+							validators.NameValidator(),
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
+					"labels": schema.MapAttribute{
+						Description:         "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						MarkdownDescription: "Keys and values that can be used to organize and categorize objects. See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ for more details.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Map{
+							validators.LabelValidator(),
+						},
+					},
+					"annotations": schema.MapAttribute{
+						Description:         "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						MarkdownDescription: "Keys and values that can be used by external tooling to store and retrieve arbitrary metadata about this object. See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ for more details.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Map{
+							validators.AnnotationValidator(),
+						},
+					},
+				},
+			},
+
+			"spec": schema.SingleNestedAttribute{
+				Description:         "ParametersDefinitionSpec defines the desired state of ParametersDefinition",
+				MarkdownDescription: "ParametersDefinitionSpec defines the desired state of ParametersDefinition",
+				Attributes: map[string]schema.Attribute{
+					"deleted_policy": schema.SingleNestedAttribute{
+						Description:         "Specifies the policy when parameter be removed.",
+						MarkdownDescription: "Specifies the policy when parameter be removed.",
+						Attributes: map[string]schema.Attribute{
+							"default_value": schema.StringAttribute{
+								Description:         "Specifies the value to use if DeletedMethod is RestoreToDefault. Example: pg SET configuration_parameter TO DEFAULT;",
+								MarkdownDescription: "Specifies the value to use if DeletedMethod is RestoreToDefault. Example: pg SET configuration_parameter TO DEFAULT;",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"deleted_method": schema.StringAttribute{
+								Description:         "Specifies the method to handle the deletion of a parameter. If set to 'RestoreToDefault', the parameter will be restored to its default value, which requires engine support, such as pg. If set to 'Reset', the parameter will be re-rendered through the configuration template.",
+								MarkdownDescription: "Specifies the method to handle the deletion of a parameter. If set to 'RestoreToDefault', the parameter will be restored to its default value, which requires engine support, such as pg. If set to 'Reset', the parameter will be re-rendered through the configuration template.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("RestoreToDefault", "Reset"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"downward_api_change_triggered_actions": schema.ListNestedAttribute{
+						Description:         "TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels. It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected. It is designed for scenarios where: - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
+						MarkdownDescription: "TODO: migrate DownwardAPITriggeredActions to ComponentDefinition.spec.lifecycleActions Specifies a list of actions to execute specified commands based on Pod labels. It utilizes the K8s Downward API to mount label information as a volume into the pod. The 'config-manager' sidecar container watches for changes in the role label and dynamically invoke registered commands (usually execute some SQL statements) when a change is detected. It is designed for scenarios where: - Replicas with different roles have different configurations, such as Redis primary & secondary replicas. - After a role switch (e.g., from secondary to primary), some changes in configuration are needed to reflect the new role.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"command": schema.ListAttribute{
+									Description:         "Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.",
+									MarkdownDescription: "Specifies the command to be triggered when changes are detected in Downward API volume files. It relies on the inotify mechanism in the config-manager sidecar to monitor file changes.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"items": schema.ListNestedAttribute{
+									Description:         "Represents a list of files under the Downward API volume.",
+									MarkdownDescription: "Represents a list of files under the Downward API volume.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"field_ref": schema.SingleNestedAttribute{
+												Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+												MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+														MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"field_path": schema.StringAttribute{
+														Description:         "Path of the field to select in the specified API version.",
+														MarkdownDescription: "Path of the field to select in the specified API version.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"mode": schema.Int64Attribute{
+												Description:         "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												MarkdownDescription: "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+												MarkdownDescription: "Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"resource_field_ref": schema.SingleNestedAttribute{
+												Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+												MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.",
+												Attributes: map[string]schema.Attribute{
+													"container_name": schema.StringAttribute{
+														Description:         "Container name: required for volumes, optional for env vars",
+														MarkdownDescription: "Container name: required for volumes, optional for env vars",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"divisor": schema.StringAttribute{
+														Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+														MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"resource": schema.StringAttribute{
+														Description:         "Required: resource to select",
+														MarkdownDescription: "Required: resource to select",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+
+								"mount_point": schema.StringAttribute{
+									Description:         "Specifies the mount point of the Downward API volume.",
+									MarkdownDescription: "Specifies the mount point of the Downward API volume.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(128),
+									},
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Specifies the name of the field. It must be a string of maximum length 63. The name should match the regex pattern '^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$'.",
+									MarkdownDescription: "Specifies the name of the field. It must be a string of maximum length 63. The name should match the regex pattern '^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$'.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(63),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
+									},
+								},
+
+								"script_config": schema.SingleNestedAttribute{
+									Description:         "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations.",
+									MarkdownDescription: "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the DownwardAction to perform specific tasks or configurations.",
+									Attributes: map[string]schema.Attribute{
+										"namespace": schema.StringAttribute{
+											Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+											MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
+											},
+										},
+
+										"script_config_map_ref": schema.StringAttribute{
+											Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+											MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"dynamic_parameters": schema.ListAttribute{
+						Description:         "List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.",
+						MarkdownDescription: "List dynamic parameters. Modifications to these parameters trigger a configuration reload without requiring a process restart.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"file_name": schema.StringAttribute{
+						Description:         "Specifies the config file name in the config template.",
+						MarkdownDescription: "Specifies the config file name in the config template.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"immutable_parameters": schema.ListAttribute{
+						Description:         "Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.",
+						MarkdownDescription: "Lists the parameters that cannot be modified once set. Attempting to change any of these parameters will be ignored.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"merge_reload_and_restart": schema.BoolAttribute{
+						Description:         "Indicates whether to consolidate dynamic reload and restart actions into a single restart. - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart. This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.",
+						MarkdownDescription: "Indicates whether to consolidate dynamic reload and restart actions into a single restart. - If true, updates requiring both actions will result in only a restart, merging the actions. - If false, updates will trigger both actions executed sequentially: first dynamic reload, then restart. This flag allows for more efficient handling of configuration changes by potentially eliminating an unnecessary reload step.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"parameters_schema": schema.SingleNestedAttribute{
+						Description:         "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
+						MarkdownDescription: "Defines a list of parameters including their names, default values, descriptions, types, and constraints (permissible values or the range of valid values).",
+						Attributes: map[string]schema.Attribute{
+							"cue": schema.StringAttribute{
+								Description:         "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values). CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common. This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
+								MarkdownDescription: "Hold a string that contains a script written in CUE language that defines a list of configuration items. Each item is detailed with its name, default value, description, type (e.g. string, integer, float), and constraints (permissible values or the valid range of values). CUE (Configure, Unify, Execute) is a declarative language designed for defining and validating complex data configurations. It is particularly useful in environments like K8s where complex configurations and validation rules are common. This script functions as a validator for user-provided configurations, ensuring compliance with the established specifications and constraints.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"schema_in_json": schema.MapAttribute{
+								Description:         "Generated from the 'cue' field and transformed into a JSON format.",
+								MarkdownDescription: "Generated from the 'cue' field and transformed into a JSON format.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"top_level_key": schema.StringAttribute{
+								Description:         "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
+								MarkdownDescription: "Specifies the top-level key in the 'configSchema.cue' that organizes the validation rules for parameters. This key must exist within the CUE script defined in 'configSchema.cue'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"reload_action": schema.SingleNestedAttribute{
+						Description:         "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates. Dynamic reloading is triggered only if both of the following conditions are met: 1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadAction' is set. If 'reloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered. Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
+						MarkdownDescription: "Specifies the dynamic reload (dynamic reconfiguration) actions supported by the engine. When set, the controller executes the scripts defined in these actions to handle dynamic parameter updates. Dynamic reloading is triggered only if both of the following conditions are met: 1. The modified parameters are listed in the 'dynamicParameters' field. If 'dynamicParameterSelectedPolicy' is set to 'all', modifications to 'staticParameters' can also trigger a reload. 2. 'reloadAction' is set. If 'reloadAction' is not set or the modified parameters are not listed in 'dynamicParameters', dynamic reloading will not be triggered. Example: '''yaml dynamicReloadAction: tplScriptTrigger: namespace: kb-system scriptConfigMapRef: mysql-reload-script sync: true '''",
+						Attributes: map[string]schema.Attribute{
+							"auto_trigger": schema.SingleNestedAttribute{
+								Description:         "Automatically perform the reload when specified conditions are met.",
+								MarkdownDescription: "Automatically perform the reload when specified conditions are met.",
+								Attributes: map[string]schema.Attribute{
+									"process_name": schema.StringAttribute{
+										Description:         "The name of the process.",
+										MarkdownDescription: "The name of the process.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"shell_trigger": schema.SingleNestedAttribute{
+								Description:         "Allows to execute a custom shell script to reload the process.",
+								MarkdownDescription: "Allows to execute a custom shell script to reload the process.",
+								Attributes: map[string]schema.Attribute{
+									"batch_params_formatter_template": schema.StringAttribute{
+										Description:         "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data. Example template: '''yaml batchParamsFormatterTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} ''' This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 ''' If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										MarkdownDescription: "Specifies a Go template string for formatting batch input data. It's used when 'batchReload' is 'True' to format data passed into STDIN of the script. The template accesses key-value pairs of updated parameters via the '$' variable. This allows for custom formatting of the input data. Example template: '''yaml batchParamsFormatterTemplate: |- {{- range $pKey, $pValue := $ }} {{ printf '%s:%s' $pKey $pValue }} {{- end }} ''' This example generates batch input data in a key:value format, sorted by keys. ''' key1:value1 key2:value2 key3:value3 ''' If not specified, the default format is key=value, sorted by keys, for each updated parameter. ''' key1=value1 key2=value2 key3=value3 '''",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"batch_reload": schema.BoolAttribute{
+										Description:         "Controls whether parameter updates are processed individually or collectively in a batch: - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually. Defaults to 'False' if unspecified.",
+										MarkdownDescription: "Controls whether parameter updates are processed individually or collectively in a batch: - 'True': Processes all changes in one batch reload. - 'False': Processes each change individually. Defaults to 'False' if unspecified.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"command": schema.ListAttribute{
+										Description:         "Specifies the command to execute in order to reload the process. It should be a valid shell command.",
+										MarkdownDescription: "Specifies the command to execute in order to reload the process. It should be a valid shell command.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"script_config": schema.SingleNestedAttribute{
+										Description:         "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload.",
+										MarkdownDescription: "ScriptConfig object specifies a ConfigMap that contains script files that should be mounted inside the pod. The scripts are mounted as volumes and can be referenced and executed by the dynamic reload.",
+										Attributes: map[string]schema.Attribute{
+											"namespace": schema.StringAttribute{
+												Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+												MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(63),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
+												},
+											},
+
+											"script_config_map_ref": schema.StringAttribute{
+												Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+												MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"sync": schema.BoolAttribute{
+										Description:         "Determines the synchronization mode of parameter updates with 'config-manager'. - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
+										MarkdownDescription: "Determines the synchronization mode of parameter updates with 'config-manager'. - 'True': Executes reload actions synchronously, pausing until completion. - 'False': Executes reload actions asynchronously, without waiting for completion.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tools_setup": schema.SingleNestedAttribute{
+										Description:         "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts. Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
+										MarkdownDescription: "Specifies the tools container image used by ShellTrigger for dynamic reload. If the dynamic reload action is triggered by a ShellTrigger, this field is required. This image must contain all necessary tools for executing the ShellTrigger scripts. Usually the specified image is referenced by the init container, which is then responsible for copy the tools from the image to a bin volume. This ensures that the tools are available to the 'config-manager' sidecar.",
+										Attributes: map[string]schema.Attribute{
+											"mount_point": schema.StringAttribute{
+												Description:         "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
+												MarkdownDescription: "Specifies the directory path in the container where the tools-related files are to be copied. This field is typically used with an emptyDir volume to ensure a temporary, empty directory is provided at pod creation.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(128),
+												},
+											},
+
+											"tool_configs": schema.ListNestedAttribute{
+												Description:         "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
+												MarkdownDescription: "Specifies a list of settings of init containers that prepare tools for dynamic reload.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"as_container_image": schema.BoolAttribute{
+															Description:         "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files). If enabled, the tool image is deployed as a sidecar container image. Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image: apecloud/oceanbase:4.2.0.0-100010032023083021 ''' generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+															MarkdownDescription: "Indicates whether the tool image should be used as the container image for a sidecar. This is useful for large tool images, such as those for C++ tools, which may depend on numerous libraries (e.g., *.so files). If enabled, the tool image is deployed as a sidecar container image. Examples: '''yaml toolsSetup:: mountPoint: /kb_tools toolConfigs: - name: kb-tools asContainerImage: true image: apecloud/oceanbase:4.2.0.0-100010032023083021 ''' generated containers: '''yaml initContainers: - name: install-config-manager-tool image: apecloud/kubeblocks-tools:${version} command: - cp - /bin/config_render - /opt/tools volumemounts: - name: kb-tools mountpath: /opt/tools containers: - name: config-manager image: apecloud/oceanbase:4.2.0.0-100010032023083021 imagePullPolicy: IfNotPresent command: - /opt/tools/reloader - --log-level - info - --operator-update-enable - --tcp - '9901' - --config - /opt/config-manager/config-manager.yaml volumemounts: - name: kb-tools mountpath: /opt/tools '''",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"command": schema.ListAttribute{
+															Description:         "Specifies the command to be executed by the init container.",
+															MarkdownDescription: "Specifies the command to be executed by the init container.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"image": schema.StringAttribute{
+															Description:         "Specifies the tool container image.",
+															MarkdownDescription: "Specifies the tool container image.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Specifies the name of the init container.",
+															MarkdownDescription: "Specifies the name of the init container.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtMost(63),
+																stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z]([a-z0-9\-]*[a-z0-9])?$`), ""),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"target_pod_selector": schema.SingleNestedAttribute{
+								Description:         "Used to match labels on the pod to determine whether a dynamic reload should be performed. In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process. If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
+								MarkdownDescription: "Used to match labels on the pod to determine whether a dynamic reload should be performed. In some scenarios, only specific pods (e.g., primary replicas) need to undergo a dynamic reload. The 'reloadedPodSelector' allows you to specify label selectors to target the desired pods for the reload process. If the 'reloadedPodSelector' is not specified or is nil, all pods managed by the workload will be considered for the dynamic reload.",
+								Attributes: map[string]schema.Attribute{
+									"match_expressions": schema.ListNestedAttribute{
+										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the label key that the selector applies to.",
+													MarkdownDescription: "key is the label key that the selector applies to.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"operator": schema.StringAttribute{
+													Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"values": schema.ListAttribute{
+													Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"match_labels": schema.MapAttribute{
+										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tpl_script_trigger": schema.SingleNestedAttribute{
+								Description:         "Enables reloading process using a Go template script.",
+								MarkdownDescription: "Enables reloading process using a Go template script.",
+								Attributes: map[string]schema.Attribute{
+									"namespace": schema.StringAttribute{
+										Description:         "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+										MarkdownDescription: "Specifies the namespace for the ConfigMap. If not specified, it defaults to the 'default' namespace.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtMost(63),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
+										},
+									},
+
+									"script_config_map_ref": schema.StringAttribute{
+										Description:         "Specifies the reference to the ConfigMap containing the scripts.",
+										MarkdownDescription: "Specifies the reference to the ConfigMap containing the scripts.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"sync": schema.BoolAttribute{
+										Description:         "Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy: - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										MarkdownDescription: "Determines whether parameter updates should be synchronized with the 'config-manager'. Specifies the controller's reload strategy: - If set to 'True', the controller executes the reload action in synchronous mode, pausing execution until the reload completes. - If set to 'False', the controller executes the reload action in asynchronous mode, updating the ConfigMap without waiting for the reload process to finish.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"unix_signal_trigger": schema.SingleNestedAttribute{
+								Description:         "Used to trigger a reload by sending a specific Unix signal to the process.",
+								MarkdownDescription: "Used to trigger a reload by sending a specific Unix signal to the process.",
+								Attributes: map[string]schema.Attribute{
+									"process_name": schema.StringAttribute{
+										Description:         "Identifies the name of the process to which the Unix signal will be sent.",
+										MarkdownDescription: "Identifies the name of the process to which the Unix signal will be sent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"signal": schema.StringAttribute{
+										Description:         "Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
+										MarkdownDescription: "Specifies a valid Unix signal to be sent. For a comprehensive list of all Unix signals, see: ../../pkg/configuration/configmap/handler.go:allUnixSignals",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("SIGHUP", "SIGINT", "SIGQUIT", "SIGILL", "SIGTRAP", "SIGABRT", "SIGBUS", "SIGFPE", "SIGKILL", "SIGUSR1", "SIGSEGV", "SIGUSR2", "SIGPIPE", "SIGALRM", "SIGTERM", "SIGSTKFLT", "SIGCHLD", "SIGCONT", "SIGSTOP", "SIGTSTP", "SIGTTIN", "SIGTTOU", "SIGURG", "SIGXCPU", "SIGXFSZ", "SIGVTALRM", "SIGPROF", "SIGWINCH", "SIGIO", "SIGPWR", "SIGSYS"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"reload_static_params_before_restart": schema.BoolAttribute{
+						Description:         "Configures whether the dynamic reload specified in 'reloadAction' applies only to dynamic parameters or to all parameters (including static parameters). - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
+						MarkdownDescription: "Configures whether the dynamic reload specified in 'reloadAction' applies only to dynamic parameters or to all parameters (including static parameters). - false (default): Only modifications to the dynamic parameters listed in 'dynamicParameters' will trigger a dynamic reload. - true: Modifications to both dynamic parameters listed in 'dynamicParameters' and static parameters listed in 'staticParameters' will trigger a dynamic reload. The 'all' option is for certain engines that require static parameters to be set via SQL statements before they can take effect on restart.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"static_parameters": schema.ListAttribute{
+						Description:         "List static parameters. Modifications to any of these parameters require a restart of the process to take effect.",
+						MarkdownDescription: "List static parameters. Modifications to any of these parameters require a restart of the process to take effect.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+				},
+				Required: false,
+				Optional: true,
+				Computed: false,
+			},
+		},
+	}
+}
+
+func (r *ParametersKubeblocksIoParametersDefinitionV1Alpha1Manifest) Read(ctx context.Context, request datasource.ReadRequest, response *datasource.ReadResponse) {
+	tflog.Debug(ctx, "Read resource k8s_parameters_kubeblocks_io_parameters_definition_v1alpha1_manifest")
+
+	var model ParametersKubeblocksIoParametersDefinitionV1Alpha1ManifestData
+	response.Diagnostics.Append(request.Config.Get(ctx, &model)...)
+	if response.Diagnostics.HasError() {
+		return
+	}
+
+	model.ApiVersion = pointer.String("parameters.kubeblocks.io/v1alpha1")
+	model.Kind = pointer.String("ParametersDefinition")
+
+	y, err := yaml.Marshal(model)
+	if err != nil {
+		response.Diagnostics.Append(utilities.MarshalYamlError(err))
+		return
+	}
+	model.YAML = types.StringValue(string(y))
+
+	response.Diagnostics.Append(response.State.Set(ctx, &model)...)
+}

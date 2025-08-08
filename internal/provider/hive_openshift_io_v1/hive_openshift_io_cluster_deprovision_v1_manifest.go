@@ -60,8 +60,9 @@ type HiveOpenshiftIoClusterDeprovisionV1ManifestData struct {
 				Region         *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"aws" json:"aws,omitempty"`
 			Azure *struct {
-				CloudName            *string `tfsdk:"cloud_name" json:"cloudName,omitempty"`
-				CredentialsSecretRef *struct {
+				BaseDomainResourceGroupName *string `tfsdk:"base_domain_resource_group_name" json:"baseDomainResourceGroupName,omitempty"`
+				CloudName                   *string `tfsdk:"cloud_name" json:"cloudName,omitempty"`
+				CredentialsSecretRef        *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
 				ResourceGroupName *string `tfsdk:"resource_group_name" json:"resourceGroupName,omitempty"`
@@ -80,6 +81,18 @@ type HiveOpenshiftIoClusterDeprovisionV1ManifestData struct {
 				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
 				Region *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"ibmcloud" json:"ibmcloud,omitempty"`
+			Nutanix *struct {
+				CertificatesSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"certificates_secret_ref" json:"certificatesSecretRef,omitempty"`
+				CredentialsSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"credentials_secret_ref" json:"credentialsSecretRef,omitempty"`
+				PrismCentral *struct {
+					Address *string `tfsdk:"address" json:"address,omitempty"`
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"prism_central" json:"prismCentral,omitempty"`
+			} `tfsdk:"nutanix" json:"nutanix,omitempty"`
 			Openstack *struct {
 				CertificatesSecretRef *struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -295,6 +308,14 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 								Description:         "Azure contains Azure-specific deprovision settings",
 								MarkdownDescription: "Azure contains Azure-specific deprovision settings",
 								Attributes: map[string]schema.Attribute{
+									"base_domain_resource_group_name": schema.StringAttribute{
+										Description:         "BaseDomainResourceGroupName is the name of the resource group where the cluster's DNS records were created, if different from the default or the custom ResourceGroupName.",
+										MarkdownDescription: "BaseDomainResourceGroupName is the name of the resource group where the cluster's DNS records were created, if different from the default or the custom ResourceGroupName.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"cloud_name": schema.StringAttribute{
 										Description:         "cloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to 'AzurePublicCloud'.",
 										MarkdownDescription: "cloudName is the name of the Azure cloud environment which can be used to configure the Azure SDK with the appropriate Azure API endpoints. If empty, the value is equal to 'AzurePublicCloud'.",
@@ -413,6 +434,74 @@ func (r *HiveOpenshiftIoClusterDeprovisionV1Manifest) Schema(_ context.Context, 
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"nutanix": schema.SingleNestedAttribute{
+								Description:         "Nutanix contains Nutanix-specific deprovision settings",
+								MarkdownDescription: "Nutanix contains Nutanix-specific deprovision settings",
+								Attributes: map[string]schema.Attribute{
+									"certificates_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CertificatesSecretRef refers to a secret that contains the Nutanix CA certificates necessary for communicating with the Prism Central.",
+										MarkdownDescription: "CertificatesSecretRef refers to a secret that contains the Nutanix CA certificates necessary for communicating with the Prism Central.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"credentials_secret_ref": schema.SingleNestedAttribute{
+										Description:         "CredentialsSecretRef refers to a secret that contains the Nutanix account access credentials.",
+										MarkdownDescription: "CredentialsSecretRef refers to a secret that contains the Nutanix account access credentials.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+
+									"prism_central": schema.SingleNestedAttribute{
+										Description:         "PrismCentral is the endpoint (address and port) to connect to the Prism Central. This serves as the default Prism-Central.",
+										MarkdownDescription: "PrismCentral is the endpoint (address and port) to connect to the Prism Central. This serves as the default Prism-Central.",
+										Attributes: map[string]schema.Attribute{
+											"address": schema.StringAttribute{
+												Description:         "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+												MarkdownDescription: "address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster)",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.Int64Attribute{
+												Description:         "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+												MarkdownDescription: "port is the port number to access the Nutanix Prism Central or Element (cluster)",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
 									},
 								},
 								Required: false,

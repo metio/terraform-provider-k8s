@@ -81,12 +81,7 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 		Image                     *string   `tfsdk:"image" json:"image,omitempty"`
 		K8sNodeBlockList          *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
 		MaxUnavailable            *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
-		Operations                *[]struct {
-			Id      *string   `tfsdk:"id" json:"id,omitempty"`
-			Kind    *string   `tfsdk:"kind" json:"kind,omitempty"`
-			PodList *[]string `tfsdk:"pod_list" json:"podList,omitempty"`
-		} `tfsdk:"operations" json:"operations,omitempty"`
-		OperatorClientCert *struct {
+		OperatorClientCert        *struct {
 			CertPathInOperator *struct {
 				CaCertsPath    *string `tfsdk:"ca_certs_path" json:"caCertsPath,omitempty"`
 				ClientCertPath *string `tfsdk:"client_cert_path" json:"clientCertPath,omitempty"`
@@ -105,7 +100,6 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			} `tfsdk:"secret_cert_source" json:"secretCertSource,omitempty"`
 			TlsClientName *string `tfsdk:"tls_client_name" json:"tlsClientName,omitempty"`
 		} `tfsdk:"operator_client_cert" json:"operatorClientCert,omitempty"`
-		Paused  *bool `tfsdk:"paused" json:"paused,omitempty"`
 		PodSpec *struct {
 			AerospikeContainer *struct {
 				Resources *struct {
@@ -146,10 +140,8 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
 			} `tfsdk:"aerospike_container" json:"aerospikeContainer,omitempty"`
 			AerospikeInitContainer *struct {
-				ImageNameAndTag        *string `tfsdk:"image_name_and_tag" json:"imageNameAndTag,omitempty"`
-				ImageRegistry          *string `tfsdk:"image_registry" json:"imageRegistry,omitempty"`
-				ImageRegistryNamespace *string `tfsdk:"image_registry_namespace" json:"imageRegistryNamespace,omitempty"`
-				Resources              *struct {
+				ImageRegistry *string `tfsdk:"image_registry" json:"imageRegistry,omitempty"`
+				Resources     *struct {
 					Claims *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
@@ -1850,49 +1842,6 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
-					"operations": schema.ListNestedAttribute{
-						Description:         "Operations is a list of on-demand operations to be performed on the Aerospike cluster.",
-						MarkdownDescription: "Operations is a list of on-demand operations to be performed on the Aerospike cluster.",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"id": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(20),
-									},
-								},
-
-								"kind": schema.StringAttribute{
-									Description:         "Kind is the type of operation to be performed on the Aerospike cluster.",
-									MarkdownDescription: "Kind is the type of operation to be performed on the Aerospike cluster.",
-									Required:            true,
-									Optional:            false,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.OneOf("WarmRestart", "PodRestart"),
-									},
-								},
-
-								"pod_list": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"operator_client_cert": schema.SingleNestedAttribute{
 						Description:         "Certificates to connect to Aerospike.",
 						MarkdownDescription: "Certificates to connect to Aerospike.",
@@ -2015,14 +1964,6 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"paused": schema.BoolAttribute{
-						Description:         "Paused flag is used to pause the reconciliation for the AerospikeCluster.",
-						MarkdownDescription: "Paused flag is used to pause the reconciliation for the AerospikeCluster.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"pod_spec": schema.SingleNestedAttribute{
@@ -2287,25 +2228,9 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 								Description:         "AerospikeInitContainerSpec configures the aerospike-init container created by the operator.",
 								MarkdownDescription: "AerospikeInitContainerSpec configures the aerospike-init container created by the operator.",
 								Attributes: map[string]schema.Attribute{
-									"image_name_and_tag": schema.StringAttribute{
-										Description:         "ImageNameAndTag is the name:tag of aerospike-init container image",
-										MarkdownDescription: "ImageNameAndTag is the name:tag of aerospike-init container image",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"image_registry": schema.StringAttribute{
 										Description:         "ImageRegistry is the name of image registry for aerospike-init container image ImageRegistry, e.g. docker.io, redhat.access.com",
 										MarkdownDescription: "ImageRegistry is the name of image registry for aerospike-init container image ImageRegistry, e.g. docker.io, redhat.access.com",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"image_registry_namespace": schema.StringAttribute{
-										Description:         "ImageRegistryNamespace is the name of namespace in registry for aerospike-init container image",
-										MarkdownDescription: "ImageRegistryNamespace is the name of namespace in registry for aerospike-init container image",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

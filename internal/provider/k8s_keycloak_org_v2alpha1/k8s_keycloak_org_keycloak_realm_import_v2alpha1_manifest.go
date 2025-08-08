@@ -44,7 +44,14 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 
 	Spec *struct {
 		KeycloakCRName *string `tfsdk:"keycloak_cr_name" json:"keycloakCRName,omitempty"`
-		Realm          *struct {
+		Placeholders   *struct {
+			Secret *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret" json:"secret,omitempty"`
+		} `tfsdk:"placeholders" json:"placeholders,omitempty"`
+		Realm *struct {
 			AccessCodeLifespan                  *int64             `tfsdk:"access_code_lifespan" json:"accessCodeLifespan,omitempty"`
 			AccessCodeLifespanLogin             *int64             `tfsdk:"access_code_lifespan_login" json:"accessCodeLifespanLogin,omitempty"`
 			AccessCodeLifespanUserAction        *int64             `tfsdk:"access_code_lifespan_user_action" json:"accessCodeLifespanUserAction,omitempty"`
@@ -151,28 +158,27 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					Username *bool `tfsdk:"username" json:"username,omitempty"`
 					Website  *bool `tfsdk:"website" json:"website,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
-				ClientAuthenticatorType               *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
-				ClientId                              *string   `tfsdk:"client_id" json:"clientId,omitempty"`
-				ClientTemplate                        *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
-				ConsentRequired                       *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
-				DefaultClientScopes                   *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
-				DefaultRoles                          *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
-				Description                           *string   `tfsdk:"description" json:"description,omitempty"`
-				DirectAccessGrantsEnabled             *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
-				DirectGrantsOnly                      *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
-				Enabled                               *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
-				FrontchannelLogout                    *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
-				FullScopeAllowed                      *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
-				Id                                    *string   `tfsdk:"id" json:"id,omitempty"`
-				ImplicitFlowEnabled                   *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
-				Name                                  *string   `tfsdk:"name" json:"name,omitempty"`
-				NodeReRegistrationTimeout             *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
-				NotBefore                             *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
-				Oauth2DeviceAuthorizationGrantEnabled *bool     `tfsdk:"oauth2_device_authorization_grant_enabled" json:"oauth2DeviceAuthorizationGrantEnabled,omitempty"`
-				OptionalClientScopes                  *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
-				Origin                                *string   `tfsdk:"origin" json:"origin,omitempty"`
-				Protocol                              *string   `tfsdk:"protocol" json:"protocol,omitempty"`
-				ProtocolMappers                       *[]struct {
+				ClientAuthenticatorType   *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
+				ClientId                  *string   `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientTemplate            *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
+				ConsentRequired           *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
+				DefaultClientScopes       *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
+				DefaultRoles              *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
+				Description               *string   `tfsdk:"description" json:"description,omitempty"`
+				DirectAccessGrantsEnabled *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
+				DirectGrantsOnly          *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
+				Enabled                   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+				FrontchannelLogout        *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
+				FullScopeAllowed          *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
+				Id                        *string   `tfsdk:"id" json:"id,omitempty"`
+				ImplicitFlowEnabled       *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
+				Name                      *string   `tfsdk:"name" json:"name,omitempty"`
+				NodeReRegistrationTimeout *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
+				NotBefore                 *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
+				OptionalClientScopes      *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
+				Origin                    *string   `tfsdk:"origin" json:"origin,omitempty"`
+				Protocol                  *string   `tfsdk:"protocol" json:"protocol,omitempty"`
+				ProtocolMappers           *[]struct {
 					Config          *map[string]string `tfsdk:"config" json:"config,omitempty"`
 					ConsentRequired *bool              `tfsdk:"consent_required" json:"consentRequired,omitempty"`
 					ConsentText     *string            `tfsdk:"consent_text" json:"consentText,omitempty"`
@@ -190,6 +196,7 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 				ServiceAccountsEnabled  *bool              `tfsdk:"service_accounts_enabled" json:"serviceAccountsEnabled,omitempty"`
 				StandardFlowEnabled     *bool              `tfsdk:"standard_flow_enabled" json:"standardFlowEnabled,omitempty"`
 				SurrogateAuthRequired   *bool              `tfsdk:"surrogate_auth_required" json:"surrogateAuthRequired,omitempty"`
+				Type                    *string            `tfsdk:"type" json:"type,omitempty"`
 				UseTemplateConfig       *bool              `tfsdk:"use_template_config" json:"useTemplateConfig,omitempty"`
 				UseTemplateMappers      *bool              `tfsdk:"use_template_mappers" json:"useTemplateMappers,omitempty"`
 				UseTemplateScope        *bool              `tfsdk:"use_template_scope" json:"useTemplateScope,omitempty"`
@@ -352,30 +359,29 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 						Name        *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"scopes" json:"scopes,omitempty"`
 				} `tfsdk:"authorization_settings" json:"authorizationSettings,omitempty"`
-				BaseUrl                               *string   `tfsdk:"base_url" json:"baseUrl,omitempty"`
-				BearerOnly                            *bool     `tfsdk:"bearer_only" json:"bearerOnly,omitempty"`
-				ClientAuthenticatorType               *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
-				ClientId                              *string   `tfsdk:"client_id" json:"clientId,omitempty"`
-				ClientTemplate                        *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
-				ConsentRequired                       *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
-				DefaultClientScopes                   *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
-				DefaultRoles                          *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
-				Description                           *string   `tfsdk:"description" json:"description,omitempty"`
-				DirectAccessGrantsEnabled             *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
-				DirectGrantsOnly                      *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
-				Enabled                               *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
-				FrontchannelLogout                    *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
-				FullScopeAllowed                      *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
-				Id                                    *string   `tfsdk:"id" json:"id,omitempty"`
-				ImplicitFlowEnabled                   *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
-				Name                                  *string   `tfsdk:"name" json:"name,omitempty"`
-				NodeReRegistrationTimeout             *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
-				NotBefore                             *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
-				Oauth2DeviceAuthorizationGrantEnabled *bool     `tfsdk:"oauth2_device_authorization_grant_enabled" json:"oauth2DeviceAuthorizationGrantEnabled,omitempty"`
-				OptionalClientScopes                  *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
-				Origin                                *string   `tfsdk:"origin" json:"origin,omitempty"`
-				Protocol                              *string   `tfsdk:"protocol" json:"protocol,omitempty"`
-				ProtocolMappers                       *[]struct {
+				BaseUrl                   *string   `tfsdk:"base_url" json:"baseUrl,omitempty"`
+				BearerOnly                *bool     `tfsdk:"bearer_only" json:"bearerOnly,omitempty"`
+				ClientAuthenticatorType   *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
+				ClientId                  *string   `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientTemplate            *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
+				ConsentRequired           *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
+				DefaultClientScopes       *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
+				DefaultRoles              *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
+				Description               *string   `tfsdk:"description" json:"description,omitempty"`
+				DirectAccessGrantsEnabled *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
+				DirectGrantsOnly          *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
+				Enabled                   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+				FrontchannelLogout        *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
+				FullScopeAllowed          *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
+				Id                        *string   `tfsdk:"id" json:"id,omitempty"`
+				ImplicitFlowEnabled       *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
+				Name                      *string   `tfsdk:"name" json:"name,omitempty"`
+				NodeReRegistrationTimeout *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
+				NotBefore                 *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
+				OptionalClientScopes      *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
+				Origin                    *string   `tfsdk:"origin" json:"origin,omitempty"`
+				Protocol                  *string   `tfsdk:"protocol" json:"protocol,omitempty"`
+				ProtocolMappers           *[]struct {
 					Config          *map[string]string `tfsdk:"config" json:"config,omitempty"`
 					ConsentRequired *bool              `tfsdk:"consent_required" json:"consentRequired,omitempty"`
 					ConsentText     *string            `tfsdk:"consent_text" json:"consentText,omitempty"`
@@ -393,6 +399,7 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 				ServiceAccountsEnabled  *bool              `tfsdk:"service_accounts_enabled" json:"serviceAccountsEnabled,omitempty"`
 				StandardFlowEnabled     *bool              `tfsdk:"standard_flow_enabled" json:"standardFlowEnabled,omitempty"`
 				SurrogateAuthRequired   *bool              `tfsdk:"surrogate_auth_required" json:"surrogateAuthRequired,omitempty"`
+				Type                    *string            `tfsdk:"type" json:"type,omitempty"`
 				UseTemplateConfig       *bool              `tfsdk:"use_template_config" json:"useTemplateConfig,omitempty"`
 				UseTemplateMappers      *bool              `tfsdk:"use_template_mappers" json:"useTemplateMappers,omitempty"`
 				UseTemplateScope        *bool              `tfsdk:"use_template_scope" json:"useTemplateScope,omitempty"`
@@ -492,25 +499,150 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					SocialUserId   *string `tfsdk:"social_user_id" json:"socialUserId,omitempty"`
 					SocialUsername *string `tfsdk:"social_username" json:"socialUsername,omitempty"`
 				} `tfsdk:"social_links" json:"socialLinks,omitempty"`
-				Totp     *bool   `tfsdk:"totp" json:"totp,omitempty"`
+				Totp                *bool `tfsdk:"totp" json:"totp,omitempty"`
+				UserProfileMetadata *struct {
+					Attributes *[]struct {
+						Annotations *struct {
+						} `tfsdk:"annotations" json:"annotations,omitempty"`
+						DisplayName *string `tfsdk:"display_name" json:"displayName,omitempty"`
+						Group       *string `tfsdk:"group" json:"group,omitempty"`
+						Multivalued *bool   `tfsdk:"multivalued" json:"multivalued,omitempty"`
+						Name        *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly    *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						Required    *bool   `tfsdk:"required" json:"required,omitempty"`
+						Validators  *struct {
+						} `tfsdk:"validators" json:"validators,omitempty"`
+					} `tfsdk:"attributes" json:"attributes,omitempty"`
+					Groups *[]struct {
+						Annotations *struct {
+						} `tfsdk:"annotations" json:"annotations,omitempty"`
+						DisplayDescription *string `tfsdk:"display_description" json:"displayDescription,omitempty"`
+						DisplayHeader      *string `tfsdk:"display_header" json:"displayHeader,omitempty"`
+						Name               *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"groups" json:"groups,omitempty"`
+				} `tfsdk:"user_profile_metadata" json:"userProfileMetadata,omitempty"`
 				Username *string `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"federated_users" json:"federatedUsers,omitempty"`
-			Groups *[]struct {
-				Access      *map[string]string   `tfsdk:"access" json:"access,omitempty"`
-				Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-				ClientRoles *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
-				Id          *string              `tfsdk:"id" json:"id,omitempty"`
-				Name        *string              `tfsdk:"name" json:"name,omitempty"`
-				Path        *string              `tfsdk:"path" json:"path,omitempty"`
-				RealmRoles  *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
-				SubGroups   *[]struct {
-					Access      *map[string]string   `tfsdk:"access" json:"access,omitempty"`
-					Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-					ClientRoles *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
-					Id          *string              `tfsdk:"id" json:"id,omitempty"`
-					Name        *string              `tfsdk:"name" json:"name,omitempty"`
-					Path        *string              `tfsdk:"path" json:"path,omitempty"`
-					RealmRoles  *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+			FirstBrokerLoginFlow *string `tfsdk:"first_broker_login_flow" json:"firstBrokerLoginFlow,omitempty"`
+			Groups               *[]struct {
+				Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+				Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+				ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+				Id            *string              `tfsdk:"id" json:"id,omitempty"`
+				Name          *string              `tfsdk:"name" json:"name,omitempty"`
+				ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+				Path          *string              `tfsdk:"path" json:"path,omitempty"`
+				RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+				SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+				SubGroups     *[]struct {
+					Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+					Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+					ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+					Id            *string              `tfsdk:"id" json:"id,omitempty"`
+					Name          *string              `tfsdk:"name" json:"name,omitempty"`
+					ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+					Path          *string              `tfsdk:"path" json:"path,omitempty"`
+					RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+					SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+					SubGroups     *[]struct {
+						Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+						Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+						ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+						Id            *string              `tfsdk:"id" json:"id,omitempty"`
+						Name          *string              `tfsdk:"name" json:"name,omitempty"`
+						ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+						Path          *string              `tfsdk:"path" json:"path,omitempty"`
+						RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+						SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+						SubGroups     *[]struct {
+							Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+							Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+							ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+							Id            *string              `tfsdk:"id" json:"id,omitempty"`
+							Name          *string              `tfsdk:"name" json:"name,omitempty"`
+							ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+							Path          *string              `tfsdk:"path" json:"path,omitempty"`
+							RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+							SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+							SubGroups     *[]struct {
+								Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+								Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+								ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+								Id            *string              `tfsdk:"id" json:"id,omitempty"`
+								Name          *string              `tfsdk:"name" json:"name,omitempty"`
+								ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+								Path          *string              `tfsdk:"path" json:"path,omitempty"`
+								RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+								SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+								SubGroups     *[]struct {
+									Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+									Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+									ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+									Id            *string              `tfsdk:"id" json:"id,omitempty"`
+									Name          *string              `tfsdk:"name" json:"name,omitempty"`
+									ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+									Path          *string              `tfsdk:"path" json:"path,omitempty"`
+									RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+									SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+									SubGroups     *[]struct {
+										Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+										Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+										ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+										Id            *string              `tfsdk:"id" json:"id,omitempty"`
+										Name          *string              `tfsdk:"name" json:"name,omitempty"`
+										ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+										Path          *string              `tfsdk:"path" json:"path,omitempty"`
+										RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+										SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+										SubGroups     *[]struct {
+											Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+											Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+											ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+											Id            *string              `tfsdk:"id" json:"id,omitempty"`
+											Name          *string              `tfsdk:"name" json:"name,omitempty"`
+											ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+											Path          *string              `tfsdk:"path" json:"path,omitempty"`
+											RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+											SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+											SubGroups     *[]struct {
+												Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+												Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+												ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+												Id            *string              `tfsdk:"id" json:"id,omitempty"`
+												Name          *string              `tfsdk:"name" json:"name,omitempty"`
+												ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+												Path          *string              `tfsdk:"path" json:"path,omitempty"`
+												RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+												SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+												SubGroups     *[]struct {
+													Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+													Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+													ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+													Id            *string              `tfsdk:"id" json:"id,omitempty"`
+													Name          *string              `tfsdk:"name" json:"name,omitempty"`
+													ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+													Path          *string              `tfsdk:"path" json:"path,omitempty"`
+													RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+													SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+													SubGroups     *[]struct {
+														Access        *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+														Attributes    *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+														ClientRoles   *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+														Id            *string              `tfsdk:"id" json:"id,omitempty"`
+														Name          *string              `tfsdk:"name" json:"name,omitempty"`
+														ParentId      *string              `tfsdk:"parent_id" json:"parentId,omitempty"`
+														Path          *string              `tfsdk:"path" json:"path,omitempty"`
+														RealmRoles    *[]string            `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+														SubGroupCount *int64               `tfsdk:"sub_group_count" json:"subGroupCount,omitempty"`
+													} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+												} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+											} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+										} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+									} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+								} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+							} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+						} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
+					} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
 				} `tfsdk:"sub_groups" json:"subGroups,omitempty"`
 			} `tfsdk:"groups" json:"groups,omitempty"`
 			Id                      *string `tfsdk:"id" json:"id,omitempty"`
@@ -529,24 +661,28 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 				DisplayName                 *string            `tfsdk:"display_name" json:"displayName,omitempty"`
 				Enabled                     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				FirstBrokerLoginFlowAlias   *string            `tfsdk:"first_broker_login_flow_alias" json:"firstBrokerLoginFlowAlias,omitempty"`
+				HideOnLogin                 *bool              `tfsdk:"hide_on_login" json:"hideOnLogin,omitempty"`
 				InternalId                  *string            `tfsdk:"internal_id" json:"internalId,omitempty"`
 				LinkOnly                    *bool              `tfsdk:"link_only" json:"linkOnly,omitempty"`
+				OrganizationId              *string            `tfsdk:"organization_id" json:"organizationId,omitempty"`
 				PostBrokerLoginFlowAlias    *string            `tfsdk:"post_broker_login_flow_alias" json:"postBrokerLoginFlowAlias,omitempty"`
 				ProviderId                  *string            `tfsdk:"provider_id" json:"providerId,omitempty"`
 				StoreToken                  *bool              `tfsdk:"store_token" json:"storeToken,omitempty"`
 				TrustEmail                  *bool              `tfsdk:"trust_email" json:"trustEmail,omitempty"`
 				UpdateProfileFirstLoginMode *string            `tfsdk:"update_profile_first_login_mode" json:"updateProfileFirstLoginMode,omitempty"`
 			} `tfsdk:"identity_providers" json:"identityProviders,omitempty"`
-			InternationalizationEnabled  *bool   `tfsdk:"internationalization_enabled" json:"internationalizationEnabled,omitempty"`
-			KeycloakVersion              *string `tfsdk:"keycloak_version" json:"keycloakVersion,omitempty"`
-			LoginTheme                   *string `tfsdk:"login_theme" json:"loginTheme,omitempty"`
-			LoginWithEmailAllowed        *bool   `tfsdk:"login_with_email_allowed" json:"loginWithEmailAllowed,omitempty"`
-			MaxDeltaTimeSeconds          *int64  `tfsdk:"max_delta_time_seconds" json:"maxDeltaTimeSeconds,omitempty"`
-			MaxFailureWaitSeconds        *int64  `tfsdk:"max_failure_wait_seconds" json:"maxFailureWaitSeconds,omitempty"`
-			MinimumQuickLoginWaitSeconds *int64  `tfsdk:"minimum_quick_login_wait_seconds" json:"minimumQuickLoginWaitSeconds,omitempty"`
-			NotBefore                    *int64  `tfsdk:"not_before" json:"notBefore,omitempty"`
-			Oauth2DeviceCodeLifespan     *int64  `tfsdk:"oauth2_device_code_lifespan" json:"oauth2DeviceCodeLifespan,omitempty"`
-			Oauth2DevicePollingInterval  *int64  `tfsdk:"oauth2_device_polling_interval" json:"oauth2DevicePollingInterval,omitempty"`
+			InternationalizationEnabled  *bool                         `tfsdk:"internationalization_enabled" json:"internationalizationEnabled,omitempty"`
+			KeycloakVersion              *string                       `tfsdk:"keycloak_version" json:"keycloakVersion,omitempty"`
+			LocalizationTexts            *map[string]map[string]string `tfsdk:"localization_texts" json:"localizationTexts,omitempty"`
+			LoginTheme                   *string                       `tfsdk:"login_theme" json:"loginTheme,omitempty"`
+			LoginWithEmailAllowed        *bool                         `tfsdk:"login_with_email_allowed" json:"loginWithEmailAllowed,omitempty"`
+			MaxDeltaTimeSeconds          *int64                        `tfsdk:"max_delta_time_seconds" json:"maxDeltaTimeSeconds,omitempty"`
+			MaxFailureWaitSeconds        *int64                        `tfsdk:"max_failure_wait_seconds" json:"maxFailureWaitSeconds,omitempty"`
+			MaxTemporaryLockouts         *int64                        `tfsdk:"max_temporary_lockouts" json:"maxTemporaryLockouts,omitempty"`
+			MinimumQuickLoginWaitSeconds *int64                        `tfsdk:"minimum_quick_login_wait_seconds" json:"minimumQuickLoginWaitSeconds,omitempty"`
+			NotBefore                    *int64                        `tfsdk:"not_before" json:"notBefore,omitempty"`
+			Oauth2DeviceCodeLifespan     *int64                        `tfsdk:"oauth2_device_code_lifespan" json:"oauth2DeviceCodeLifespan,omitempty"`
+			Oauth2DevicePollingInterval  *int64                        `tfsdk:"oauth2_device_polling_interval" json:"oauth2DevicePollingInterval,omitempty"`
 			OauthClients                 *[]struct {
 				Access                             *map[string]string `tfsdk:"access" json:"access,omitempty"`
 				AdminUrl                           *string            `tfsdk:"admin_url" json:"adminUrl,omitempty"`
@@ -641,28 +777,27 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					Username *bool `tfsdk:"username" json:"username,omitempty"`
 					Website  *bool `tfsdk:"website" json:"website,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
-				ClientAuthenticatorType               *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
-				ClientId                              *string   `tfsdk:"client_id" json:"clientId,omitempty"`
-				ClientTemplate                        *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
-				ConsentRequired                       *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
-				DefaultClientScopes                   *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
-				DefaultRoles                          *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
-				Description                           *string   `tfsdk:"description" json:"description,omitempty"`
-				DirectAccessGrantsEnabled             *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
-				DirectGrantsOnly                      *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
-				Enabled                               *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
-				FrontchannelLogout                    *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
-				FullScopeAllowed                      *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
-				Id                                    *string   `tfsdk:"id" json:"id,omitempty"`
-				ImplicitFlowEnabled                   *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
-				Name                                  *string   `tfsdk:"name" json:"name,omitempty"`
-				NodeReRegistrationTimeout             *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
-				NotBefore                             *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
-				Oauth2DeviceAuthorizationGrantEnabled *bool     `tfsdk:"oauth2_device_authorization_grant_enabled" json:"oauth2DeviceAuthorizationGrantEnabled,omitempty"`
-				OptionalClientScopes                  *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
-				Origin                                *string   `tfsdk:"origin" json:"origin,omitempty"`
-				Protocol                              *string   `tfsdk:"protocol" json:"protocol,omitempty"`
-				ProtocolMappers                       *[]struct {
+				ClientAuthenticatorType   *string   `tfsdk:"client_authenticator_type" json:"clientAuthenticatorType,omitempty"`
+				ClientId                  *string   `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientTemplate            *string   `tfsdk:"client_template" json:"clientTemplate,omitempty"`
+				ConsentRequired           *bool     `tfsdk:"consent_required" json:"consentRequired,omitempty"`
+				DefaultClientScopes       *[]string `tfsdk:"default_client_scopes" json:"defaultClientScopes,omitempty"`
+				DefaultRoles              *[]string `tfsdk:"default_roles" json:"defaultRoles,omitempty"`
+				Description               *string   `tfsdk:"description" json:"description,omitempty"`
+				DirectAccessGrantsEnabled *bool     `tfsdk:"direct_access_grants_enabled" json:"directAccessGrantsEnabled,omitempty"`
+				DirectGrantsOnly          *bool     `tfsdk:"direct_grants_only" json:"directGrantsOnly,omitempty"`
+				Enabled                   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+				FrontchannelLogout        *bool     `tfsdk:"frontchannel_logout" json:"frontchannelLogout,omitempty"`
+				FullScopeAllowed          *bool     `tfsdk:"full_scope_allowed" json:"fullScopeAllowed,omitempty"`
+				Id                        *string   `tfsdk:"id" json:"id,omitempty"`
+				ImplicitFlowEnabled       *bool     `tfsdk:"implicit_flow_enabled" json:"implicitFlowEnabled,omitempty"`
+				Name                      *string   `tfsdk:"name" json:"name,omitempty"`
+				NodeReRegistrationTimeout *int64    `tfsdk:"node_re_registration_timeout" json:"nodeReRegistrationTimeout,omitempty"`
+				NotBefore                 *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
+				OptionalClientScopes      *[]string `tfsdk:"optional_client_scopes" json:"optionalClientScopes,omitempty"`
+				Origin                    *string   `tfsdk:"origin" json:"origin,omitempty"`
+				Protocol                  *string   `tfsdk:"protocol" json:"protocol,omitempty"`
+				ProtocolMappers           *[]struct {
 					Config          *map[string]string `tfsdk:"config" json:"config,omitempty"`
 					ConsentRequired *bool              `tfsdk:"consent_required" json:"consentRequired,omitempty"`
 					ConsentText     *string            `tfsdk:"consent_text" json:"consentText,omitempty"`
@@ -680,26 +815,143 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 				ServiceAccountsEnabled  *bool              `tfsdk:"service_accounts_enabled" json:"serviceAccountsEnabled,omitempty"`
 				StandardFlowEnabled     *bool              `tfsdk:"standard_flow_enabled" json:"standardFlowEnabled,omitempty"`
 				SurrogateAuthRequired   *bool              `tfsdk:"surrogate_auth_required" json:"surrogateAuthRequired,omitempty"`
+				Type                    *string            `tfsdk:"type" json:"type,omitempty"`
 				UseTemplateConfig       *bool              `tfsdk:"use_template_config" json:"useTemplateConfig,omitempty"`
 				UseTemplateMappers      *bool              `tfsdk:"use_template_mappers" json:"useTemplateMappers,omitempty"`
 				UseTemplateScope        *bool              `tfsdk:"use_template_scope" json:"useTemplateScope,omitempty"`
 				WebOrigins              *[]string          `tfsdk:"web_origins" json:"webOrigins,omitempty"`
 			} `tfsdk:"oauth_clients" json:"oauthClients,omitempty"`
-			OfflineSessionIdleTimeout        *int64    `tfsdk:"offline_session_idle_timeout" json:"offlineSessionIdleTimeout,omitempty"`
-			OfflineSessionMaxLifespan        *int64    `tfsdk:"offline_session_max_lifespan" json:"offlineSessionMaxLifespan,omitempty"`
-			OfflineSessionMaxLifespanEnabled *bool     `tfsdk:"offline_session_max_lifespan_enabled" json:"offlineSessionMaxLifespanEnabled,omitempty"`
-			OtpPolicyAlgorithm               *string   `tfsdk:"otp_policy_algorithm" json:"otpPolicyAlgorithm,omitempty"`
-			OtpPolicyDigits                  *int64    `tfsdk:"otp_policy_digits" json:"otpPolicyDigits,omitempty"`
-			OtpPolicyInitialCounter          *int64    `tfsdk:"otp_policy_initial_counter" json:"otpPolicyInitialCounter,omitempty"`
-			OtpPolicyLookAheadWindow         *int64    `tfsdk:"otp_policy_look_ahead_window" json:"otpPolicyLookAheadWindow,omitempty"`
-			OtpPolicyPeriod                  *int64    `tfsdk:"otp_policy_period" json:"otpPolicyPeriod,omitempty"`
-			OtpPolicyType                    *string   `tfsdk:"otp_policy_type" json:"otpPolicyType,omitempty"`
-			OtpSupportedApplications         *[]string `tfsdk:"otp_supported_applications" json:"otpSupportedApplications,omitempty"`
-			PasswordCredentialGrantAllowed   *bool     `tfsdk:"password_credential_grant_allowed" json:"passwordCredentialGrantAllowed,omitempty"`
-			PasswordPolicy                   *string   `tfsdk:"password_policy" json:"passwordPolicy,omitempty"`
-			PermanentLockout                 *bool     `tfsdk:"permanent_lockout" json:"permanentLockout,omitempty"`
-			PrivateKey                       *string   `tfsdk:"private_key" json:"privateKey,omitempty"`
-			ProtocolMappers                  *[]struct {
+			OfflineSessionIdleTimeout        *int64 `tfsdk:"offline_session_idle_timeout" json:"offlineSessionIdleTimeout,omitempty"`
+			OfflineSessionMaxLifespan        *int64 `tfsdk:"offline_session_max_lifespan" json:"offlineSessionMaxLifespan,omitempty"`
+			OfflineSessionMaxLifespanEnabled *bool  `tfsdk:"offline_session_max_lifespan_enabled" json:"offlineSessionMaxLifespanEnabled,omitempty"`
+			Organizations                    *[]struct {
+				Alias       *string              `tfsdk:"alias" json:"alias,omitempty"`
+				Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+				Description *string              `tfsdk:"description" json:"description,omitempty"`
+				Domains     *[]struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Verified *bool   `tfsdk:"verified" json:"verified,omitempty"`
+				} `tfsdk:"domains" json:"domains,omitempty"`
+				Enabled           *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				Id                *string `tfsdk:"id" json:"id,omitempty"`
+				IdentityProviders *[]struct {
+					AddReadTokenRoleOnCreate    *bool              `tfsdk:"add_read_token_role_on_create" json:"addReadTokenRoleOnCreate,omitempty"`
+					Alias                       *string            `tfsdk:"alias" json:"alias,omitempty"`
+					AuthenticateByDefault       *bool              `tfsdk:"authenticate_by_default" json:"authenticateByDefault,omitempty"`
+					Config                      *map[string]string `tfsdk:"config" json:"config,omitempty"`
+					DisplayName                 *string            `tfsdk:"display_name" json:"displayName,omitempty"`
+					Enabled                     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					FirstBrokerLoginFlowAlias   *string            `tfsdk:"first_broker_login_flow_alias" json:"firstBrokerLoginFlowAlias,omitempty"`
+					HideOnLogin                 *bool              `tfsdk:"hide_on_login" json:"hideOnLogin,omitempty"`
+					InternalId                  *string            `tfsdk:"internal_id" json:"internalId,omitempty"`
+					LinkOnly                    *bool              `tfsdk:"link_only" json:"linkOnly,omitempty"`
+					OrganizationId              *string            `tfsdk:"organization_id" json:"organizationId,omitempty"`
+					PostBrokerLoginFlowAlias    *string            `tfsdk:"post_broker_login_flow_alias" json:"postBrokerLoginFlowAlias,omitempty"`
+					ProviderId                  *string            `tfsdk:"provider_id" json:"providerId,omitempty"`
+					StoreToken                  *bool              `tfsdk:"store_token" json:"storeToken,omitempty"`
+					TrustEmail                  *bool              `tfsdk:"trust_email" json:"trustEmail,omitempty"`
+					UpdateProfileFirstLoginMode *string            `tfsdk:"update_profile_first_login_mode" json:"updateProfileFirstLoginMode,omitempty"`
+				} `tfsdk:"identity_providers" json:"identityProviders,omitempty"`
+				Members *[]struct {
+					Access           *map[string]string   `tfsdk:"access" json:"access,omitempty"`
+					ApplicationRoles *map[string][]string `tfsdk:"application_roles" json:"applicationRoles,omitempty"`
+					Attributes       *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+					ClientConsents   *[]struct {
+						ClientId            *string   `tfsdk:"client_id" json:"clientId,omitempty"`
+						CreatedDate         *int64    `tfsdk:"created_date" json:"createdDate,omitempty"`
+						GrantedClientScopes *[]string `tfsdk:"granted_client_scopes" json:"grantedClientScopes,omitempty"`
+						GrantedRealmRoles   *[]string `tfsdk:"granted_realm_roles" json:"grantedRealmRoles,omitempty"`
+						LastUpdatedDate     *int64    `tfsdk:"last_updated_date" json:"lastUpdatedDate,omitempty"`
+					} `tfsdk:"client_consents" json:"clientConsents,omitempty"`
+					ClientRoles      *map[string][]string `tfsdk:"client_roles" json:"clientRoles,omitempty"`
+					CreatedTimestamp *int64               `tfsdk:"created_timestamp" json:"createdTimestamp,omitempty"`
+					Credentials      *[]struct {
+						Algorithm         *string              `tfsdk:"algorithm" json:"algorithm,omitempty"`
+						Config            *map[string][]string `tfsdk:"config" json:"config,omitempty"`
+						Counter           *int64               `tfsdk:"counter" json:"counter,omitempty"`
+						CreatedDate       *int64               `tfsdk:"created_date" json:"createdDate,omitempty"`
+						CredentialData    *string              `tfsdk:"credential_data" json:"credentialData,omitempty"`
+						Device            *string              `tfsdk:"device" json:"device,omitempty"`
+						Digits            *int64               `tfsdk:"digits" json:"digits,omitempty"`
+						HashIterations    *int64               `tfsdk:"hash_iterations" json:"hashIterations,omitempty"`
+						HashedSaltedValue *string              `tfsdk:"hashed_salted_value" json:"hashedSaltedValue,omitempty"`
+						Id                *string              `tfsdk:"id" json:"id,omitempty"`
+						Period            *int64               `tfsdk:"period" json:"period,omitempty"`
+						Priority          *int64               `tfsdk:"priority" json:"priority,omitempty"`
+						Salt              *string              `tfsdk:"salt" json:"salt,omitempty"`
+						SecretData        *string              `tfsdk:"secret_data" json:"secretData,omitempty"`
+						Temporary         *bool                `tfsdk:"temporary" json:"temporary,omitempty"`
+						Type              *string              `tfsdk:"type" json:"type,omitempty"`
+						UserLabel         *string              `tfsdk:"user_label" json:"userLabel,omitempty"`
+						Value             *string              `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"credentials" json:"credentials,omitempty"`
+					DisableableCredentialTypes *[]string `tfsdk:"disableable_credential_types" json:"disableableCredentialTypes,omitempty"`
+					Email                      *string   `tfsdk:"email" json:"email,omitempty"`
+					EmailVerified              *bool     `tfsdk:"email_verified" json:"emailVerified,omitempty"`
+					Enabled                    *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
+					FederatedIdentities        *[]struct {
+						IdentityProvider *string `tfsdk:"identity_provider" json:"identityProvider,omitempty"`
+						UserId           *string `tfsdk:"user_id" json:"userId,omitempty"`
+						UserName         *string `tfsdk:"user_name" json:"userName,omitempty"`
+					} `tfsdk:"federated_identities" json:"federatedIdentities,omitempty"`
+					FederationLink         *string   `tfsdk:"federation_link" json:"federationLink,omitempty"`
+					FirstName              *string   `tfsdk:"first_name" json:"firstName,omitempty"`
+					Groups                 *[]string `tfsdk:"groups" json:"groups,omitempty"`
+					Id                     *string   `tfsdk:"id" json:"id,omitempty"`
+					LastName               *string   `tfsdk:"last_name" json:"lastName,omitempty"`
+					MembershipType         *string   `tfsdk:"membership_type" json:"membershipType,omitempty"`
+					NotBefore              *int64    `tfsdk:"not_before" json:"notBefore,omitempty"`
+					Origin                 *string   `tfsdk:"origin" json:"origin,omitempty"`
+					RealmRoles             *[]string `tfsdk:"realm_roles" json:"realmRoles,omitempty"`
+					RequiredActions        *[]string `tfsdk:"required_actions" json:"requiredActions,omitempty"`
+					Self                   *string   `tfsdk:"self" json:"self,omitempty"`
+					ServiceAccountClientId *string   `tfsdk:"service_account_client_id" json:"serviceAccountClientId,omitempty"`
+					SocialLinks            *[]struct {
+						SocialProvider *string `tfsdk:"social_provider" json:"socialProvider,omitempty"`
+						SocialUserId   *string `tfsdk:"social_user_id" json:"socialUserId,omitempty"`
+						SocialUsername *string `tfsdk:"social_username" json:"socialUsername,omitempty"`
+					} `tfsdk:"social_links" json:"socialLinks,omitempty"`
+					Totp                *bool `tfsdk:"totp" json:"totp,omitempty"`
+					UserProfileMetadata *struct {
+						Attributes *[]struct {
+							Annotations *struct {
+							} `tfsdk:"annotations" json:"annotations,omitempty"`
+							DisplayName *string `tfsdk:"display_name" json:"displayName,omitempty"`
+							Group       *string `tfsdk:"group" json:"group,omitempty"`
+							Multivalued *bool   `tfsdk:"multivalued" json:"multivalued,omitempty"`
+							Name        *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly    *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							Required    *bool   `tfsdk:"required" json:"required,omitempty"`
+							Validators  *struct {
+							} `tfsdk:"validators" json:"validators,omitempty"`
+						} `tfsdk:"attributes" json:"attributes,omitempty"`
+						Groups *[]struct {
+							Annotations *struct {
+							} `tfsdk:"annotations" json:"annotations,omitempty"`
+							DisplayDescription *string `tfsdk:"display_description" json:"displayDescription,omitempty"`
+							DisplayHeader      *string `tfsdk:"display_header" json:"displayHeader,omitempty"`
+							Name               *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"groups" json:"groups,omitempty"`
+					} `tfsdk:"user_profile_metadata" json:"userProfileMetadata,omitempty"`
+					Username *string `tfsdk:"username" json:"username,omitempty"`
+				} `tfsdk:"members" json:"members,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+				RedirectUrl *string `tfsdk:"redirect_url" json:"redirectUrl,omitempty"`
+			} `tfsdk:"organizations" json:"organizations,omitempty"`
+			OrganizationsEnabled           *bool     `tfsdk:"organizations_enabled" json:"organizationsEnabled,omitempty"`
+			OtpPolicyAlgorithm             *string   `tfsdk:"otp_policy_algorithm" json:"otpPolicyAlgorithm,omitempty"`
+			OtpPolicyCodeReusable          *bool     `tfsdk:"otp_policy_code_reusable" json:"otpPolicyCodeReusable,omitempty"`
+			OtpPolicyDigits                *int64    `tfsdk:"otp_policy_digits" json:"otpPolicyDigits,omitempty"`
+			OtpPolicyInitialCounter        *int64    `tfsdk:"otp_policy_initial_counter" json:"otpPolicyInitialCounter,omitempty"`
+			OtpPolicyLookAheadWindow       *int64    `tfsdk:"otp_policy_look_ahead_window" json:"otpPolicyLookAheadWindow,omitempty"`
+			OtpPolicyPeriod                *int64    `tfsdk:"otp_policy_period" json:"otpPolicyPeriod,omitempty"`
+			OtpPolicyType                  *string   `tfsdk:"otp_policy_type" json:"otpPolicyType,omitempty"`
+			OtpSupportedApplications       *[]string `tfsdk:"otp_supported_applications" json:"otpSupportedApplications,omitempty"`
+			PasswordCredentialGrantAllowed *bool     `tfsdk:"password_credential_grant_allowed" json:"passwordCredentialGrantAllowed,omitempty"`
+			PasswordPolicy                 *string   `tfsdk:"password_policy" json:"passwordPolicy,omitempty"`
+			PermanentLockout               *bool     `tfsdk:"permanent_lockout" json:"permanentLockout,omitempty"`
+			PrivateKey                     *string   `tfsdk:"private_key" json:"privateKey,omitempty"`
+			ProtocolMappers                *[]struct {
 				Config          *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				ConsentRequired *bool              `tfsdk:"consent_required" json:"consentRequired,omitempty"`
 				ConsentText     *string            `tfsdk:"consent_text" json:"consentText,omitempty"`
@@ -711,7 +963,6 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 			PublicKey                   *string `tfsdk:"public_key" json:"publicKey,omitempty"`
 			QuickLoginCheckMilliSeconds *int64  `tfsdk:"quick_login_check_milli_seconds" json:"quickLoginCheckMilliSeconds,omitempty"`
 			Realm                       *string `tfsdk:"realm" json:"realm,omitempty"`
-			RealmCacheEnabled           *bool   `tfsdk:"realm_cache_enabled" json:"realmCacheEnabled,omitempty"`
 			RefreshTokenMaxReuse        *int64  `tfsdk:"refresh_token_max_reuse" json:"refreshTokenMaxReuse,omitempty"`
 			RegistrationAllowed         *bool   `tfsdk:"registration_allowed" json:"registrationAllowed,omitempty"`
 			RegistrationEmailAsUsername *bool   `tfsdk:"registration_email_as_username" json:"registrationEmailAsUsername,omitempty"`
@@ -766,7 +1017,6 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 			SsoSessionMaxLifespanRememberMe   *int64             `tfsdk:"sso_session_max_lifespan_remember_me" json:"ssoSessionMaxLifespanRememberMe,omitempty"`
 			SupportedLocales                  *[]string          `tfsdk:"supported_locales" json:"supportedLocales,omitempty"`
 			UpdateProfileOnInitialSocialLogin *bool              `tfsdk:"update_profile_on_initial_social_login" json:"updateProfileOnInitialSocialLogin,omitempty"`
-			UserCacheEnabled                  *bool              `tfsdk:"user_cache_enabled" json:"userCacheEnabled,omitempty"`
 			UserFederationMappers             *[]struct {
 				Config                        *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				FederationMapperType          *string            `tfsdk:"federation_mapper_type" json:"federationMapperType,omitempty"`
@@ -843,7 +1093,28 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					SocialUserId   *string `tfsdk:"social_user_id" json:"socialUserId,omitempty"`
 					SocialUsername *string `tfsdk:"social_username" json:"socialUsername,omitempty"`
 				} `tfsdk:"social_links" json:"socialLinks,omitempty"`
-				Totp     *bool   `tfsdk:"totp" json:"totp,omitempty"`
+				Totp                *bool `tfsdk:"totp" json:"totp,omitempty"`
+				UserProfileMetadata *struct {
+					Attributes *[]struct {
+						Annotations *struct {
+						} `tfsdk:"annotations" json:"annotations,omitempty"`
+						DisplayName *string `tfsdk:"display_name" json:"displayName,omitempty"`
+						Group       *string `tfsdk:"group" json:"group,omitempty"`
+						Multivalued *bool   `tfsdk:"multivalued" json:"multivalued,omitempty"`
+						Name        *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly    *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						Required    *bool   `tfsdk:"required" json:"required,omitempty"`
+						Validators  *struct {
+						} `tfsdk:"validators" json:"validators,omitempty"`
+					} `tfsdk:"attributes" json:"attributes,omitempty"`
+					Groups *[]struct {
+						Annotations *struct {
+						} `tfsdk:"annotations" json:"annotations,omitempty"`
+						DisplayDescription *string `tfsdk:"display_description" json:"displayDescription,omitempty"`
+						DisplayHeader      *string `tfsdk:"display_header" json:"displayHeader,omitempty"`
+						Name               *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"groups" json:"groups,omitempty"`
+				} `tfsdk:"user_profile_metadata" json:"userProfileMetadata,omitempty"`
 				Username *string `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"users" json:"users,omitempty"`
 			VerifyEmail                                               *bool     `tfsdk:"verify_email" json:"verifyEmail,omitempty"`
@@ -853,11 +1124,13 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 			WebAuthnPolicyAuthenticatorAttachment                     *string   `tfsdk:"web_authn_policy_authenticator_attachment" json:"webAuthnPolicyAuthenticatorAttachment,omitempty"`
 			WebAuthnPolicyAvoidSameAuthenticatorRegister              *bool     `tfsdk:"web_authn_policy_avoid_same_authenticator_register" json:"webAuthnPolicyAvoidSameAuthenticatorRegister,omitempty"`
 			WebAuthnPolicyCreateTimeout                               *int64    `tfsdk:"web_authn_policy_create_timeout" json:"webAuthnPolicyCreateTimeout,omitempty"`
+			WebAuthnPolicyExtraOrigins                                *[]string `tfsdk:"web_authn_policy_extra_origins" json:"webAuthnPolicyExtraOrigins,omitempty"`
 			WebAuthnPolicyPasswordlessAcceptableAaguids               *[]string `tfsdk:"web_authn_policy_passwordless_acceptable_aaguids" json:"webAuthnPolicyPasswordlessAcceptableAaguids,omitempty"`
 			WebAuthnPolicyPasswordlessAttestationConveyancePreference *string   `tfsdk:"web_authn_policy_passwordless_attestation_conveyance_preference" json:"webAuthnPolicyPasswordlessAttestationConveyancePreference,omitempty"`
 			WebAuthnPolicyPasswordlessAuthenticatorAttachment         *string   `tfsdk:"web_authn_policy_passwordless_authenticator_attachment" json:"webAuthnPolicyPasswordlessAuthenticatorAttachment,omitempty"`
 			WebAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister  *bool     `tfsdk:"web_authn_policy_passwordless_avoid_same_authenticator_register" json:"webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister,omitempty"`
 			WebAuthnPolicyPasswordlessCreateTimeout                   *int64    `tfsdk:"web_authn_policy_passwordless_create_timeout" json:"webAuthnPolicyPasswordlessCreateTimeout,omitempty"`
+			WebAuthnPolicyPasswordlessExtraOrigins                    *[]string `tfsdk:"web_authn_policy_passwordless_extra_origins" json:"webAuthnPolicyPasswordlessExtraOrigins,omitempty"`
 			WebAuthnPolicyPasswordlessRequireResidentKey              *string   `tfsdk:"web_authn_policy_passwordless_require_resident_key" json:"webAuthnPolicyPasswordlessRequireResidentKey,omitempty"`
 			WebAuthnPolicyPasswordlessRpEntityName                    *string   `tfsdk:"web_authn_policy_passwordless_rp_entity_name" json:"webAuthnPolicyPasswordlessRpEntityName,omitempty"`
 			WebAuthnPolicyPasswordlessRpId                            *string   `tfsdk:"web_authn_policy_passwordless_rp_id" json:"webAuthnPolicyPasswordlessRpId,omitempty"`
@@ -869,6 +1142,13 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 			WebAuthnPolicySignatureAlgorithms                         *[]string `tfsdk:"web_authn_policy_signature_algorithms" json:"webAuthnPolicySignatureAlgorithms,omitempty"`
 			WebAuthnPolicyUserVerificationRequirement                 *string   `tfsdk:"web_authn_policy_user_verification_requirement" json:"webAuthnPolicyUserVerificationRequirement,omitempty"`
 		} `tfsdk:"realm" json:"realm,omitempty"`
+		Resources *struct {
+			Claims *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"claims" json:"claims,omitempty"`
+			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+		} `tfsdk:"resources" json:"resources,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -955,6 +1235,48 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"placeholders": schema.SingleNestedAttribute{
+						Description:         "Optionally set to replace ENV variable placeholders in the realm import.",
+						MarkdownDescription: "Optionally set to replace ENV variable placeholders in the realm import.",
+						Attributes: map[string]schema.Attribute{
+							"secret": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"realm": schema.SingleNestedAttribute{
@@ -1209,7 +1531,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("POSITIVE", "NEGATIVE"),
+																	stringvalidator.OneOf("NEGATIVE", "POSITIVE"),
 																},
 															},
 
@@ -1465,7 +1787,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("PERMISSIVE", "ENFORCING", "DISABLED"),
+														stringvalidator.OneOf("DISABLED", "ENFORCING", "PERMISSIVE"),
 													},
 												},
 
@@ -1905,14 +2227,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
-										"oauth2_device_authorization_grant_enabled": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"optional_client_scopes": schema.ListAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -2073,6 +2387,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"surrogate_auth_required": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -2861,7 +3183,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("POSITIVE", "NEGATIVE"),
+																	stringvalidator.OneOf("NEGATIVE", "POSITIVE"),
 																},
 															},
 
@@ -3117,7 +3439,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("PERMISSIVE", "ENFORCING", "DISABLED"),
+														stringvalidator.OneOf("DISABLED", "ENFORCING", "PERMISSIVE"),
 													},
 												},
 
@@ -3468,14 +3790,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
-										"oauth2_device_authorization_grant_enabled": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"optional_client_scopes": schema.ListAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -3636,6 +3950,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"surrogate_auth_required": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -4427,6 +4749,136 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
+										"user_profile_metadata": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"attributes": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"annotations": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"group": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"multivalued": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"required": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"validators": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"groups": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"annotations": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_description": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_header": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"username": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -4439,6 +4891,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"first_broker_login_flow": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"groups": schema.ListNestedAttribute{
@@ -4489,6 +4949,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
+										"parent_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"path": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -4501,6 +4969,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Description:         "",
 											MarkdownDescription: "",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sub_group_count": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4554,6 +5030,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 														Computed:            false,
 													},
 
+													"parent_id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"path": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -4569,6 +5053,797 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+													},
+
+													"sub_group_count": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"sub_groups": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"access": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"attributes": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.ListType{ElemType: types.StringType},
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"client_roles": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.ListType{ElemType: types.StringType},
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"parent_id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"path": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"realm_roles": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"sub_group_count": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"sub_groups": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"access": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"attributes": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.ListType{ElemType: types.StringType},
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"client_roles": schema.MapAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.ListType{ElemType: types.StringType},
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"id": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"parent_id": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"realm_roles": schema.ListAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"sub_group_count": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"sub_groups": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"access": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"attributes": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.ListType{ElemType: types.StringType},
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"client_roles": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.ListType{ElemType: types.StringType},
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"id": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"name": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"parent_id": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"path": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"realm_roles": schema.ListAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"sub_group_count": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"sub_groups": schema.ListNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							NestedObject: schema.NestedAttributeObject{
+																								Attributes: map[string]schema.Attribute{
+																									"access": schema.MapAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"attributes": schema.MapAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.ListType{ElemType: types.StringType},
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"client_roles": schema.MapAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.ListType{ElemType: types.StringType},
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"id": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"name": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"parent_id": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"path": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"realm_roles": schema.ListAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										ElementType:         types.StringType,
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"sub_group_count": schema.Int64Attribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+
+																									"sub_groups": schema.ListNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										NestedObject: schema.NestedAttributeObject{
+																											Attributes: map[string]schema.Attribute{
+																												"access": schema.MapAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.StringType,
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"attributes": schema.MapAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.ListType{ElemType: types.StringType},
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"client_roles": schema.MapAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.ListType{ElemType: types.StringType},
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"id": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"name": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"parent_id": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"path": schema.StringAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"realm_roles": schema.ListAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													ElementType:         types.StringType,
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"sub_group_count": schema.Int64Attribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Required:            false,
+																													Optional:            true,
+																													Computed:            false,
+																												},
+
+																												"sub_groups": schema.ListNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													NestedObject: schema.NestedAttributeObject{
+																														Attributes: map[string]schema.Attribute{
+																															"access": schema.MapAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																ElementType:         types.StringType,
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"attributes": schema.MapAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																ElementType:         types.ListType{ElemType: types.StringType},
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"client_roles": schema.MapAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																ElementType:         types.ListType{ElemType: types.StringType},
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"id": schema.StringAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"name": schema.StringAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"parent_id": schema.StringAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"path": schema.StringAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"realm_roles": schema.ListAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																ElementType:         types.StringType,
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"sub_group_count": schema.Int64Attribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																Required:            false,
+																																Optional:            true,
+																																Computed:            false,
+																															},
+
+																															"sub_groups": schema.ListNestedAttribute{
+																																Description:         "",
+																																MarkdownDescription: "",
+																																NestedObject: schema.NestedAttributeObject{
+																																	Attributes: map[string]schema.Attribute{
+																																		"access": schema.MapAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			ElementType:         types.StringType,
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"attributes": schema.MapAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			ElementType:         types.ListType{ElemType: types.StringType},
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"client_roles": schema.MapAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			ElementType:         types.ListType{ElemType: types.StringType},
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"id": schema.StringAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"name": schema.StringAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"parent_id": schema.StringAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"path": schema.StringAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"realm_roles": schema.ListAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			ElementType:         types.StringType,
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"sub_group_count": schema.Int64Attribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			Required:            false,
+																																			Optional:            true,
+																																			Computed:            false,
+																																		},
+
+																																		"sub_groups": schema.ListNestedAttribute{
+																																			Description:         "",
+																																			MarkdownDescription: "",
+																																			NestedObject: schema.NestedAttributeObject{
+																																				Attributes: map[string]schema.Attribute{
+																																					"access": schema.MapAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						ElementType:         types.StringType,
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"attributes": schema.MapAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						ElementType:         types.ListType{ElemType: types.StringType},
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"client_roles": schema.MapAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						ElementType:         types.ListType{ElemType: types.StringType},
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"id": schema.StringAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"name": schema.StringAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"parent_id": schema.StringAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"path": schema.StringAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"realm_roles": schema.ListAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						ElementType:         types.StringType,
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"sub_group_count": schema.Int64Attribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						Required:            false,
+																																						Optional:            true,
+																																						Computed:            false,
+																																					},
+
+																																					"sub_groups": schema.ListNestedAttribute{
+																																						Description:         "",
+																																						MarkdownDescription: "",
+																																						NestedObject: schema.NestedAttributeObject{
+																																							Attributes: map[string]schema.Attribute{
+																																								"access": schema.MapAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									ElementType:         types.StringType,
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"attributes": schema.MapAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									ElementType:         types.ListType{ElemType: types.StringType},
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"client_roles": schema.MapAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									ElementType:         types.ListType{ElemType: types.StringType},
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"id": schema.StringAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"name": schema.StringAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"parent_id": schema.StringAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"path": schema.StringAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"realm_roles": schema.ListAttribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									ElementType:         types.StringType,
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+
+																																								"sub_group_count": schema.Int64Attribute{
+																																									Description:         "",
+																																									MarkdownDescription: "",
+																																									Required:            false,
+																																									Optional:            true,
+																																									Computed:            false,
+																																								},
+																																							},
+																																						},
+																																						Required: false,
+																																						Optional: true,
+																																						Computed: false,
+																																					},
+																																				},
+																																			},
+																																			Required: false,
+																																			Optional: true,
+																																			Computed: false,
+																																		},
+																																	},
+																																},
+																																Required: false,
+																																Optional: true,
+																																Computed: false,
+																															},
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
+																												},
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 											},
@@ -4705,6 +5980,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
+										"hide_on_login": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"internal_id": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -4714,6 +5997,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 										},
 
 										"link_only": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"organization_id": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -4783,6 +6074,15 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"localization_texts": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"login_theme": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -4808,6 +6108,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"max_failure_wait_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"max_temporary_lockouts": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -4998,7 +6306,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("POSITIVE", "NEGATIVE"),
+																	stringvalidator.OneOf("NEGATIVE", "POSITIVE"),
 																},
 															},
 
@@ -5254,7 +6562,7 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 													Optional:            true,
 													Computed:            false,
 													Validators: []validator.String{
-														stringvalidator.OneOf("PERMISSIVE", "ENFORCING", "DISABLED"),
+														stringvalidator.OneOf("DISABLED", "ENFORCING", "PERMISSIVE"),
 													},
 												},
 
@@ -5694,14 +7002,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
-										"oauth2_device_authorization_grant_enabled": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"optional_client_scopes": schema.ListAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -5869,6 +7169,14 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
+										"type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"use_template_config": schema.BoolAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -5932,7 +7240,873 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"organizations": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"alias": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"attributes": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.ListType{ElemType: types.StringType},
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"description": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"domains": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"verified": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"enabled": schema.BoolAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"identity_providers": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"add_read_token_role_on_create": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"alias": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"authenticate_by_default": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"config": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"display_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"enabled": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"first_broker_login_flow_alias": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"hide_on_login": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"internal_id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"link_only": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"organization_id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"post_broker_login_flow_alias": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"provider_id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"store_token": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"trust_email": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"update_profile_first_login_mode": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"members": schema.ListNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"access": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"application_roles": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.ListType{ElemType: types.StringType},
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"attributes": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.ListType{ElemType: types.StringType},
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"client_consents": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"client_id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"created_date": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"granted_client_scopes": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"granted_realm_roles": schema.ListAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"last_updated_date": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"client_roles": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.ListType{ElemType: types.StringType},
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"created_timestamp": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"credentials": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"algorithm": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"config": schema.MapAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	ElementType:         types.ListType{ElemType: types.StringType},
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"counter": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"created_date": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"credential_data": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"device": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"digits": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"hash_iterations": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"hashed_salted_value": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"period": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"priority": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"salt": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_data": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"temporary": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"user_label": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"disableable_credential_types": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"email": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"email_verified": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"enabled": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"federated_identities": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"identity_provider": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"user_id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"user_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"federation_link": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"first_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"groups": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"last_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"membership_type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("MANAGED", "UNMANAGED"),
+														},
+													},
+
+													"not_before": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"origin": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"realm_roles": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"required_actions": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"self": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"service_account_client_id": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"social_links": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"social_provider": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"social_user_id": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"social_username": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"totp": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user_profile_metadata": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"attributes": schema.ListNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"annotations": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes:          map[string]schema.Attribute{},
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"display_name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"group": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"multivalued": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"read_only": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"required": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"validators": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes:          map[string]schema.Attribute{},
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"groups": schema.ListNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"annotations": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes:          map[string]schema.Attribute{},
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"display_description": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"display_header": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"username": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"redirect_url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"organizations_enabled": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"otp_policy_algorithm": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"otp_policy_code_reusable": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -6106,14 +8280,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"realm": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"realm_cache_enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -6529,14 +8695,6 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 							},
 
 							"update_profile_on_initial_social_login": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"user_cache_enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -7140,6 +9298,136 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 											Computed:            false,
 										},
 
+										"user_profile_metadata": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"attributes": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"annotations": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"group": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"multivalued": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"required": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"validators": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"groups": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"annotations": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes:          map[string]schema.Attribute{},
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_description": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"display_header": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"username": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -7211,6 +9499,15 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"web_authn_policy_extra_origins": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"web_authn_policy_passwordless_acceptable_aaguids": schema.ListAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -7247,6 +9544,15 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 							"web_authn_policy_passwordless_create_timeout": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"web_authn_policy_passwordless_extra_origins": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -7336,6 +9642,52 @@ func (r *K8SKeycloakOrgKeycloakRealmImportV2Alpha1Manifest) Schema(_ context.Con
 						},
 						Required: true,
 						Optional: false,
+						Computed: false,
+					},
+
+					"resources": schema.SingleNestedAttribute{
+						Description:         "Compute Resources required by Keycloak container. If not specified, the value is inherited from the Keycloak CR.",
+						MarkdownDescription: "Compute Resources required by Keycloak container. If not specified, the value is inherited from the Keycloak CR.",
+						Attributes: map[string]schema.Attribute{
+							"claims": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"limits": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"requests": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 				},

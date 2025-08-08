@@ -86,11 +86,45 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 						} `tfsdk:"env" json:"env,omitempty"`
 						Resources *struct {
 							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
 							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
+						SecurityContext *struct {
+							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
+								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+							Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+							ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+							ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+							RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+							RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+							RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+							SeLinuxOptions         *struct {
+								Level *string `tfsdk:"level" json:"level,omitempty"`
+								Role  *string `tfsdk:"role" json:"role,omitempty"`
+								Type  *string `tfsdk:"type" json:"type,omitempty"`
+								User  *string `tfsdk:"user" json:"user,omitempty"`
+							} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+							SeccompProfile *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+							WindowsOptions *struct {
+								GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+								GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+								HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+								RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+							} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+						} `tfsdk:"security_context" json:"securityContext,omitempty"`
 					} `tfsdk:"profiles" json:"profiles,omitempty"`
 					Provider  *string `tfsdk:"provider" json:"provider,omitempty"`
 					Registry  *string `tfsdk:"registry" json:"registry,omitempty"`
@@ -117,15 +151,27 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 					Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 				} `tfsdk:"cws_instrumentation" json:"cwsInstrumentation,omitempty"`
-				Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-				FailurePolicy    *string `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
-				MutateUnlabelled *bool   `tfsdk:"mutate_unlabelled" json:"mutateUnlabelled,omitempty"`
-				Registry         *string `tfsdk:"registry" json:"registry,omitempty"`
-				ServiceName      *string `tfsdk:"service_name" json:"serviceName,omitempty"`
-				WebhookName      *string `tfsdk:"webhook_name" json:"webhookName,omitempty"`
+				Enabled                   *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				FailurePolicy             *string `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
+				KubernetesAdmissionEvents *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"kubernetes_admission_events" json:"kubernetesAdmissionEvents,omitempty"`
+				MutateUnlabelled *bool `tfsdk:"mutate_unlabelled" json:"mutateUnlabelled,omitempty"`
+				Mutation         *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"mutation" json:"mutation,omitempty"`
+				Registry    *string `tfsdk:"registry" json:"registry,omitempty"`
+				ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
+				Validation  *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"validation" json:"validation,omitempty"`
+				WebhookName *string `tfsdk:"webhook_name" json:"webhookName,omitempty"`
 			} `tfsdk:"admission_controller" json:"admissionController,omitempty"`
 			Apm *struct {
-				Enabled        *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				Enabled                 *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				ErrorTrackingStandalone *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"error_tracking_standalone" json:"errorTrackingStandalone,omitempty"`
 				HostPortConfig *struct {
 					Enabled  *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					HostPort *int64 `tfsdk:"host_port" json:"hostPort,omitempty"`
@@ -134,10 +180,59 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					DisabledNamespaces *[]string `tfsdk:"disabled_namespaces" json:"disabledNamespaces,omitempty"`
 					Enabled            *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 					EnabledNamespaces  *[]string `tfsdk:"enabled_namespaces" json:"enabledNamespaces,omitempty"`
-					LanguageDetection  *struct {
+					Injector           *struct {
+						ImageTag *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
+					} `tfsdk:"injector" json:"injector,omitempty"`
+					LanguageDetection *struct {
 						Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 					} `tfsdk:"language_detection" json:"languageDetection,omitempty"`
 					LibVersions *map[string]string `tfsdk:"lib_versions" json:"libVersions,omitempty"`
+					Targets     *[]struct {
+						DdTraceConfigs *[]struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Value     *string `tfsdk:"value" json:"value,omitempty"`
+							ValueFrom *struct {
+								ConfigMapKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+								FieldRef *struct {
+									ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+									FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+								} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+								ResourceFieldRef *struct {
+									ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+									Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+									Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+								} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								SecretKeyRef *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+							} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+						} `tfsdk:"dd_trace_configs" json:"ddTraceConfigs,omitempty"`
+						DdTraceVersions   *map[string]string `tfsdk:"dd_trace_versions" json:"ddTraceVersions,omitempty"`
+						Name              *string            `tfsdk:"name" json:"name,omitempty"`
+						NamespaceSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							MatchNames  *[]string          `tfsdk:"match_names" json:"matchNames,omitempty"`
+						} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+						PodSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"pod_selector" json:"podSelector,omitempty"`
+					} `tfsdk:"targets" json:"targets,omitempty"`
 				} `tfsdk:"instrumentation" json:"instrumentation,omitempty"`
 				UnixDomainSocketConfig *struct {
 					Enabled *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -222,6 +317,7 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
 				} `tfsdk:"mapper_profiles" json:"mapperProfiles,omitempty"`
+				NonLocalTraffic        *bool   `tfsdk:"non_local_traffic" json:"nonLocalTraffic,omitempty"`
 				OriginDetectionEnabled *bool   `tfsdk:"origin_detection_enabled" json:"originDetectionEnabled,omitempty"`
 				TagCardinality         *string `tfsdk:"tag_cardinality" json:"tagCardinality,omitempty"`
 				UnixDomainSocketConfig *struct {
@@ -262,6 +358,10 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				UseDatadogMetrics  *bool  `tfsdk:"use_datadog_metrics" json:"useDatadogMetrics,omitempty"`
 				WpaController      *bool  `tfsdk:"wpa_controller" json:"wpaController,omitempty"`
 			} `tfsdk:"external_metrics_server" json:"externalMetricsServer,omitempty"`
+			Gpu *struct {
+				Enabled                  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+				RequiredRuntimeClassName *string `tfsdk:"required_runtime_class_name" json:"requiredRuntimeClassName,omitempty"`
+			} `tfsdk:"gpu" json:"gpu,omitempty"`
 			HelmCheck *struct {
 				CollectEvents *bool              `tfsdk:"collect_events" json:"collectEvents,omitempty"`
 				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -325,16 +425,50 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				ExtraTags       *[]string `tfsdk:"extra_tags" json:"extraTags,omitempty"`
 				ScrubContainers *bool     `tfsdk:"scrub_containers" json:"scrubContainers,omitempty"`
 			} `tfsdk:"orchestrator_explorer" json:"orchestratorExplorer,omitempty"`
+			OtelCollector *struct {
+				Conf *struct {
+					ConfigData *string `tfsdk:"config_data" json:"configData,omitempty"`
+					ConfigMap  *struct {
+						Items *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+				} `tfsdk:"conf" json:"conf,omitempty"`
+				CoreConfig *struct {
+					Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+					ExtensionTimeout *int64  `tfsdk:"extension_timeout" json:"extensionTimeout,omitempty"`
+					ExtensionURL     *string `tfsdk:"extension_url" json:"extensionURL,omitempty"`
+				} `tfsdk:"core_config" json:"coreConfig,omitempty"`
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				Ports   *[]struct {
+					ContainerPort *int64  `tfsdk:"container_port" json:"containerPort,omitempty"`
+					HostIP        *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostPort      *int64  `tfsdk:"host_port" json:"hostPort,omitempty"`
+					Name          *string `tfsdk:"name" json:"name,omitempty"`
+					Protocol      *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				} `tfsdk:"ports" json:"ports,omitempty"`
+			} `tfsdk:"otel_collector" json:"otelCollector,omitempty"`
 			Otlp *struct {
 				Receiver *struct {
 					Protocols *struct {
 						Grpc *struct {
-							Enabled  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-							Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+							Enabled        *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+							Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+							HostPortConfig *struct {
+								Enabled  *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+								HostPort *int64 `tfsdk:"host_port" json:"hostPort,omitempty"`
+							} `tfsdk:"host_port_config" json:"hostPortConfig,omitempty"`
 						} `tfsdk:"grpc" json:"grpc,omitempty"`
 						Http *struct {
-							Enabled  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-							Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+							Enabled        *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+							Endpoint       *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+							HostPortConfig *struct {
+								Enabled  *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+								HostPort *int64 `tfsdk:"host_port" json:"hostPort,omitempty"`
+							} `tfsdk:"host_port_config" json:"hostPortConfig,omitempty"`
 						} `tfsdk:"http" json:"http,omitempty"`
 					} `tfsdk:"protocols" json:"protocols,omitempty"`
 				} `tfsdk:"receiver" json:"receiver,omitempty"`
@@ -364,6 +498,12 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					Enabled   *bool     `tfsdk:"enabled" json:"enabled,omitempty"`
 				} `tfsdk:"host" json:"host,omitempty"`
 			} `tfsdk:"sbom" json:"sbom,omitempty"`
+			ServiceDiscovery *struct {
+				Enabled      *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				NetworkStats *struct {
+					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				} `tfsdk:"network_stats" json:"networkStats,omitempty"`
+			} `tfsdk:"service_discovery" json:"serviceDiscovery,omitempty"`
 			TcpQueueLength *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"tcp_queue_length" json:"tcpQueueLength,omitempty"`
@@ -372,6 +512,7 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 			} `tfsdk:"usm" json:"usm,omitempty"`
 		} `tfsdk:"features" json:"features,omitempty"`
 		Global *struct {
+			ChecksTagCardinality    *string `tfsdk:"checks_tag_cardinality" json:"checksTagCardinality,omitempty"`
 			ClusterAgentToken       *string `tfsdk:"cluster_agent_token" json:"clusterAgentToken,omitempty"`
 			ClusterAgentTokenSecret *struct {
 				KeyName    *string `tfsdk:"key_name" json:"keyName,omitempty"`
@@ -409,6 +550,31 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				} `tfsdk:"credentials" json:"credentials,omitempty"`
 				Url *string `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Env *[]struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					FieldRef *struct {
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+					ResourceFieldRef *struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+						Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+					} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"env" json:"env,omitempty"`
 			Fips *struct {
 				CustomFIPSConfig *struct {
 					ConfigData *string `tfsdk:"config_data" json:"configData,omitempty"`
@@ -436,7 +602,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				PortRange    *int64  `tfsdk:"port_range" json:"portRange,omitempty"`
 				Resources    *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -466,10 +633,13 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"host" json:"host,omitempty"`
-				HostCAPath *string `tfsdk:"host_ca_path" json:"hostCAPath,omitempty"`
-				TlsVerify  *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
+				HostCAPath             *string `tfsdk:"host_ca_path" json:"hostCAPath,omitempty"`
+				PodResourcesSocketPath *string `tfsdk:"pod_resources_socket_path" json:"podResourcesSocketPath,omitempty"`
+				TlsVerify              *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
 			} `tfsdk:"kubelet" json:"kubelet,omitempty"`
-			LocalService *struct {
+			KubernetesResourcesAnnotationsAsTags *map[string]map[string]string `tfsdk:"kubernetes_resources_annotations_as_tags" json:"kubernetesResourcesAnnotationsAsTags,omitempty"`
+			KubernetesResourcesLabelsAsTags      *map[string]map[string]string `tfsdk:"kubernetes_resources_labels_as_tags" json:"kubernetesResourcesLabelsAsTags,omitempty"`
+			LocalService                         *struct {
 				ForceEnableLocalService *bool   `tfsdk:"force_enable_local_service" json:"forceEnableLocalService,omitempty"`
 				NameOverride            *string `tfsdk:"name_override" json:"nameOverride,omitempty"`
 			} `tfsdk:"local_service" json:"localService,omitempty"`
@@ -492,11 +662,24 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 			OriginDetectionUnified *struct {
 				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"origin_detection_unified" json:"originDetectionUnified,omitempty"`
-			PodAnnotationsAsTags *map[string]string `tfsdk:"pod_annotations_as_tags" json:"podAnnotationsAsTags,omitempty"`
-			PodLabelsAsTags      *map[string]string `tfsdk:"pod_labels_as_tags" json:"podLabelsAsTags,omitempty"`
-			Registry             *string            `tfsdk:"registry" json:"registry,omitempty"`
-			Site                 *string            `tfsdk:"site" json:"site,omitempty"`
-			Tags                 *[]string          `tfsdk:"tags" json:"tags,omitempty"`
+			PodAnnotationsAsTags        *map[string]string `tfsdk:"pod_annotations_as_tags" json:"podAnnotationsAsTags,omitempty"`
+			PodLabelsAsTags             *map[string]string `tfsdk:"pod_labels_as_tags" json:"podLabelsAsTags,omitempty"`
+			Registry                    *string            `tfsdk:"registry" json:"registry,omitempty"`
+			RunProcessChecksInCoreAgent *bool              `tfsdk:"run_process_checks_in_core_agent" json:"runProcessChecksInCoreAgent,omitempty"`
+			SecretBackend               *struct {
+				Args                    *string `tfsdk:"args" json:"args,omitempty"`
+				Command                 *string `tfsdk:"command" json:"command,omitempty"`
+				EnableGlobalPermissions *bool   `tfsdk:"enable_global_permissions" json:"enableGlobalPermissions,omitempty"`
+				RefreshInterval         *int64  `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+				Roles                   *[]struct {
+					Namespace *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+					Secrets   *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
+				} `tfsdk:"roles" json:"roles,omitempty"`
+				Timeout *int64 `tfsdk:"timeout" json:"timeout,omitempty"`
+			} `tfsdk:"secret_backend" json:"secretBackend,omitempty"`
+			Site         *string   `tfsdk:"site" json:"site,omitempty"`
+			Tags         *[]string `tfsdk:"tags" json:"tags,omitempty"`
+			UseFIPSAgent *bool     `tfsdk:"use_fips_agent" json:"useFIPSAgent,omitempty"`
 		} `tfsdk:"global" json:"global,omitempty"`
 		Override *struct {
 			Affinity *struct {
@@ -542,6 +725,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -564,6 +749,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -587,6 +774,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+							MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 							NamespaceSelector *struct {
 								MatchExpressions *[]struct {
 									Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -609,6 +798,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -682,8 +873,15 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-				LogLevel       *string `tfsdk:"log_level" json:"logLevel,omitempty"`
-				Name           *string `tfsdk:"name" json:"name,omitempty"`
+				LogLevel *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Ports    *[]struct {
+					ContainerPort *int64  `tfsdk:"container_port" json:"containerPort,omitempty"`
+					HostIP        *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
+					HostPort      *int64  `tfsdk:"host_port" json:"hostPort,omitempty"`
+					Name          *string `tfsdk:"name" json:"name,omitempty"`
+					Protocol      *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				} `tfsdk:"ports" json:"ports,omitempty"`
 				ReadinessProbe *struct {
 					Exec *struct {
 						Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -715,7 +913,8 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -736,7 +935,11 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				} `tfsdk:"seccomp_config" json:"seccompConfig,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -763,17 +966,48 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				StartupProbe *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					Grpc             *struct {
+						Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+						Service *string `tfsdk:"service" json:"service,omitempty"`
+					} `tfsdk:"grpc" json:"grpc,omitempty"`
+					HttpGet *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"containers" json:"containers,omitempty"`
-			CreateRbac           *bool `tfsdk:"create_rbac" json:"createRbac,omitempty"`
-			CustomConfigurations *struct {
+			CreatePodDisruptionBudget *bool `tfsdk:"create_pod_disruption_budget" json:"createPodDisruptionBudget,omitempty"`
+			CreateRbac                *bool `tfsdk:"create_rbac" json:"createRbac,omitempty"`
+			CustomConfigurations      *struct {
 				ConfigData *string `tfsdk:"config_data" json:"configData,omitempty"`
 				ConfigMap  *struct {
 					Items *[]struct {
@@ -819,6 +1053,17 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
+			EnvFrom *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"env_from" json:"envFrom,omitempty"`
 			ExtraChecksd *struct {
 				ConfigDataMap *map[string]string `tfsdk:"config_data_map" json:"configDataMap,omitempty"`
 				ConfigMap     *struct {
@@ -857,12 +1102,18 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 			NodeSelector      *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 			Replicas          *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+			RuntimeClassName  *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 			SecurityContext   *struct {
+				AppArmorProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -873,8 +1124,9 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -885,8 +1137,9 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"security_context" json:"securityContext,omitempty"`
-			ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
-			Tolerations        *[]struct {
+			ServiceAccountAnnotations *map[string]string `tfsdk:"service_account_annotations" json:"serviceAccountAnnotations,omitempty"`
+			ServiceAccountName        *string            `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			Tolerations               *[]struct {
 				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 				Key               *string `tfsdk:"key" json:"key,omitempty"`
 				Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -994,9 +1247,6 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 								Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 							Resources *struct {
-								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
-								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 							} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1008,9 +1258,10 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 							} `tfsdk:"selector" json:"selector,omitempty"`
-							StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-							VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-							VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+							VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+							VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+							VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 						} `tfsdk:"spec" json:"spec,omitempty"`
 					} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 				} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1054,6 +1305,10 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Image *struct {
+					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+					Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+				} `tfsdk:"image" json:"image,omitempty"`
 				Iscsi *struct {
 					ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 					ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1091,6 +1346,20 @@ type DatadoghqComDatadogAgentV2Alpha1ManifestData struct {
 				Projected *struct {
 					DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 					Sources     *[]struct {
+						ClusterTrustBundle *struct {
+							LabelSelector *struct {
+								MatchExpressions *[]struct {
+									Key      *string   `tfsdk:"key" json:"key,omitempty"`
+									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+							} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+							Name       *string `tfsdk:"name" json:"name,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							Path       *string `tfsdk:"path" json:"path,omitempty"`
+							SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+						} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 						ConfigMap *struct {
 							Items *[]struct {
 								Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1313,24 +1582,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												MarkdownDescription: "Image overrides the default Agent image name and tag for the Agent sidecar.",
 												Attributes: map[string]schema.Attribute{
 													"jmx_enabled": schema.BoolAttribute{
-														Description:         "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
-														MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
+														Description:         "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
+														MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
-														MarkdownDescription: "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
+														Description:         "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
+														MarkdownDescription: "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"pull_policy": schema.StringAttribute{
-														Description:         "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
-														MarkdownDescription: "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
+														Description:         "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
+														MarkdownDescription: "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1342,8 +1611,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1356,8 +1625,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"tag": schema.StringAttribute{
-														Description:         "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
-														MarkdownDescription: "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
+														Description:         "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
+														MarkdownDescription: "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1411,8 +1680,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1502,8 +1771,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1549,6 +1818,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																				Optional:            false,
 																				Computed:            false,
 																			},
+
+																			"request": schema.StringAttribute{
+																				Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																				MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
 																		},
 																	},
 																	Required: false,
@@ -1572,6 +1849,230 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"security_context": schema.SingleNestedAttribute{
+															Description:         "SecurityContext specifies the security context for the profile.",
+															MarkdownDescription: "SecurityContext specifies the security context for the profile.",
+															Attributes: map[string]schema.Attribute{
+																"allow_privilege_escalation": schema.BoolAttribute{
+																	Description:         "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"capabilities": schema.SingleNestedAttribute{
+																	Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"add": schema.ListAttribute{
+																			Description:         "Added capabilities",
+																			MarkdownDescription: "Added capabilities",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"drop": schema.ListAttribute{
+																			Description:         "Removed capabilities",
+																			MarkdownDescription: "Removed capabilities",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"privileged": schema.BoolAttribute{
+																	Description:         "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"proc_mount": schema.StringAttribute{
+																	Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only_root_filesystem": schema.BoolAttribute{
+																	Description:         "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"run_as_group": schema.Int64Attribute{
+																	Description:         "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"run_as_non_root": schema.BoolAttribute{
+																	Description:         "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	MarkdownDescription: "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"run_as_user": schema.Int64Attribute{
+																	Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"se_linux_options": schema.SingleNestedAttribute{
+																	Description:         "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"level": schema.StringAttribute{
+																			Description:         "Level is SELinux level label that applies to the container.",
+																			MarkdownDescription: "Level is SELinux level label that applies to the container.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"role": schema.StringAttribute{
+																			Description:         "Role is a SELinux role label that applies to the container.",
+																			MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "Type is a SELinux type label that applies to the container.",
+																			MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"user": schema.StringAttribute{
+																			Description:         "User is a SELinux user label that applies to the container.",
+																			MarkdownDescription: "User is a SELinux user label that applies to the container.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"seccomp_profile": schema.SingleNestedAttribute{
+																	Description:         "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+																	MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																			MarkdownDescription: "type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"windows_options": schema.SingleNestedAttribute{
+																	Description:         "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+																	MarkdownDescription: "The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux.",
+																	Attributes: map[string]schema.Attribute{
+																		"gmsa_credential_spec": schema.StringAttribute{
+																			Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																			MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"gmsa_credential_spec_name": schema.StringAttribute{
+																			Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																			MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"host_process": schema.BoolAttribute{
+																			Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"run_as_user_name": schema.StringAttribute{
+																			Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -1766,12 +2267,46 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"kubernetes_admission_events": schema.SingleNestedAttribute{
+										Description:         "KubernetesAdmissionEvents holds the Kubernetes Admission Events configuration.",
+										MarkdownDescription: "KubernetesAdmissionEvents holds the Kubernetes Admission Events configuration.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enable the Kubernetes Admission Events feature. Default: false",
+												MarkdownDescription: "Enable the Kubernetes Admission Events feature. Default: false",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"mutate_unlabelled": schema.BoolAttribute{
 										Description:         "MutateUnlabelled enables config injection without the need of pod label 'admission.datadoghq.com/enabled='true''. Default: false",
 										MarkdownDescription: "MutateUnlabelled enables config injection without the need of pod label 'admission.datadoghq.com/enabled='true''. Default: false",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"mutation": schema.SingleNestedAttribute{
+										Description:         "Mutation contains Admission Controller mutation configurations.",
+										MarkdownDescription: "Mutation contains Admission Controller mutation configurations.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled enables the Admission Controller mutation webhook. Default: true",
+												MarkdownDescription: "Enabled enables the Admission Controller mutation webhook. Default: true",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"registry": schema.StringAttribute{
@@ -1788,6 +2323,23 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"validation": schema.SingleNestedAttribute{
+										Description:         "Validation contains Admission Controller validation configurations.",
+										MarkdownDescription: "Validation contains Admission Controller validation configurations.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled enables the Admission Controller validation webhook. Default: true",
+												MarkdownDescription: "Enabled enables the Admission Controller validation webhook. Default: true",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"webhook_name": schema.StringAttribute{
@@ -1815,13 +2367,30 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"error_tracking_standalone": schema.SingleNestedAttribute{
+										Description:         "ErrorTrackingStandalone contains the configuration for the Error Tracking standalone feature. Feature is in preview.",
+										MarkdownDescription: "ErrorTrackingStandalone contains the configuration for the Error Tracking standalone feature. Feature is in preview.",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enables Error Tracking for backend services. Default: false",
+												MarkdownDescription: "Enables Error Tracking for backend services. Default: false",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"host_port_config": schema.SingleNestedAttribute{
 										Description:         "HostPortConfig contains host port configuration. Enabled Default: false Port Default: 8126",
 										MarkdownDescription: "HostPortConfig contains host port configuration. Enabled Default: false Port Default: 8126",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
-												Description:         "Enabled enables host port configuration Default: false",
-												MarkdownDescription: "Enabled enables host port configuration Default: false",
+												Description:         "Enabled enables host port configuration",
+												MarkdownDescription: "Enabled enables host port configuration",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1870,6 +2439,23 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"injector": schema.SingleNestedAttribute{
+												Description:         "Injector configures the APM Injector.",
+												MarkdownDescription: "Injector configures the APM Injector.",
+												Attributes: map[string]schema.Attribute{
+													"image_tag": schema.StringAttribute{
+														Description:         "Set the image tag to use for the APM Injector. (Requires Cluster Agent 7.57.0+)",
+														MarkdownDescription: "Set the image tag to use for the APM Injector. (Requires Cluster Agent 7.57.0+)",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"language_detection": schema.SingleNestedAttribute{
 												Description:         "LanguageDetection detects languages and adds them as annotations on Deployments, but does not use these languages for injecting libraries to workload pods. (Requires Agent 7.52.0+ and Cluster Agent 7.52.0+)",
 												MarkdownDescription: "LanguageDetection detects languages and adds them as annotations on Deployments, but does not use these languages for injecting libraries to workload pods. (Requires Agent 7.52.0+ and Cluster Agent 7.52.0+)",
@@ -1894,6 +2480,311 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"targets": schema.ListNestedAttribute{
+												Description:         "Targets is a list of targets to apply the auto instrumentation to. The first target that matches the pod will be used. If no target matches, the auto instrumentation will not be applied. (Requires Cluster Agent 7.64.0+)",
+												MarkdownDescription: "Targets is a list of targets to apply the auto instrumentation to. The first target that matches the pod will be used. If no target matches, the auto instrumentation will not be applied. (Requires Cluster Agent 7.64.0+)",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"dd_trace_configs": schema.ListNestedAttribute{
+															Description:         "TracerConfigs is a list of configuration options to use for the installed tracers. These options will be added as environment variables in addition to the injected tracer.",
+															MarkdownDescription: "TracerConfigs is a list of configuration options to use for the installed tracers. These options will be added as environment variables in addition to the injected tracer.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																		MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"value": schema.StringAttribute{
+																		Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																		MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"value_from": schema.SingleNestedAttribute{
+																		Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																		MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map_key_ref": schema.SingleNestedAttribute{
+																				Description:         "Selects a key of a ConfigMap.",
+																				MarkdownDescription: "Selects a key of a ConfigMap.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"field_ref": schema.SingleNestedAttribute{
+																				Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																				MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																				Attributes: map[string]schema.Attribute{
+																					"api_version": schema.StringAttribute{
+																						Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																						MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"field_path": schema.StringAttribute{
+																						Description:         "Path of the field to select in the specified API version.",
+																						MarkdownDescription: "Path of the field to select in the specified API version.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"resource_field_ref": schema.SingleNestedAttribute{
+																				Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																				MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																				Attributes: map[string]schema.Attribute{
+																					"container_name": schema.StringAttribute{
+																						Description:         "Container name: required for volumes, optional for env vars",
+																						MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"divisor": schema.StringAttribute{
+																						Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																						MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"resource": schema.StringAttribute{
+																						Description:         "Required: resource to select",
+																						MarkdownDescription: "Required: resource to select",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret_key_ref": schema.SingleNestedAttribute{
+																				Description:         "Selects a key of a secret in the pod's namespace",
+																				MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key of the secret to select from. Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"dd_trace_versions": schema.MapAttribute{
+															Description:         "TracerVersions is a map of tracer versions to inject for workloads that match the target. The key is the tracer name and the value is the version to inject.",
+															MarkdownDescription: "TracerVersions is a map of tracer versions to inject for workloads that match the target. The key is the tracer name and the value is the version to inject.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name is the name of the target. It will be appended to the pod annotations to identify the target that was used.",
+															MarkdownDescription: "Name is the name of the target. It will be appended to the pod annotations to identify the target that was used.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace_selector": schema.SingleNestedAttribute{
+															Description:         "NamespaceSelector is the namespace selector to match the namespaces to apply the auto instrumentation to. It will be used in conjunction with the Selector to match the pods.",
+															MarkdownDescription: "NamespaceSelector is the namespace selector to match the namespaces to apply the auto instrumentation to. It will be used in conjunction with the Selector to match the pods.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "MatchExpressions is a list of label selector requirements to match the labels of the namespace. The labels and expressions are ANDed. This cannot be used with MatchNames.",
+																	MarkdownDescription: "MatchExpressions is a list of label selector requirements to match the labels of the namespace. The labels and expressions are ANDed. This cannot be used with MatchNames.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "MatchLabels is a map of key-value pairs to match the labels of the namespace. The labels and expressions are ANDed. This cannot be used with MatchNames.",
+																	MarkdownDescription: "MatchLabels is a map of key-value pairs to match the labels of the namespace. The labels and expressions are ANDed. This cannot be used with MatchNames.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"match_names": schema.ListAttribute{
+																	Description:         "MatchNames is a list of namespace names to match. If empty, all namespaces are matched.",
+																	MarkdownDescription: "MatchNames is a list of namespace names to match. If empty, all namespaces are matched.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"pod_selector": schema.SingleNestedAttribute{
+															Description:         "PodSelector is the pod selector to match the pods to apply the auto instrumentation to. It will be used in conjunction with the NamespaceSelector to match the pods.",
+															MarkdownDescription: "PodSelector is the pod selector to match the pods to apply the auto instrumentation to. It will be used in conjunction with the NamespaceSelector to match the pods.",
+															Attributes: map[string]schema.Attribute{
+																"match_expressions": schema.ListNestedAttribute{
+																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "key is the label key that the selector applies to.",
+																				MarkdownDescription: "key is the label key that the selector applies to.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"operator": schema.StringAttribute{
+																				Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"values": schema.ListAttribute{
+																				Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"match_labels": schema.MapAttribute{
+																	Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -2307,8 +3198,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "HostPortConfig contains host port configuration. Enabled Default: false Port Default: 8125",
 										Attributes: map[string]schema.Attribute{
 											"enabled": schema.BoolAttribute{
-												Description:         "Enabled enables host port configuration Default: false",
-												MarkdownDescription: "Enabled enables host port configuration Default: false",
+												Description:         "Enabled enables host port configuration",
+												MarkdownDescription: "Enabled enables host port configuration",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2394,6 +3285,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"non_local_traffic": schema.BoolAttribute{
+										Description:         "NonLocalTraffic enables non-local traffic for Dogstatsd. Default: true",
+										MarkdownDescription: "NonLocalTraffic enables non-local traffic for Dogstatsd. Default: true",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"origin_detection_enabled": schema.BoolAttribute{
@@ -2643,6 +3542,31 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									"wpa_controller": schema.BoolAttribute{
 										Description:         "WPAController enables the informer and controller of the Watermark Pod Autoscaler. NOTE: The Watermark Pod Autoscaler controller needs to be installed. See also: https://github.com/DataDog/watermarkpodautoscaler. Default: false",
 										MarkdownDescription: "WPAController enables the informer and controller of the Watermark Pod Autoscaler. NOTE: The Watermark Pod Autoscaler controller needs to be installed. See also: https://github.com/DataDog/watermarkpodautoscaler. Default: false",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"gpu": schema.SingleNestedAttribute{
+								Description:         "GPU monitoring",
+								MarkdownDescription: "GPU monitoring",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Enabled enables GPU monitoring. Default: false",
+										MarkdownDescription: "Enabled enables GPU monitoring. Default: false",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"required_runtime_class_name": schema.StringAttribute{
+										Description:         "PodRuntimeClassName specifies the runtime class name required for the GPU monitoring feature. If the value is an empty string, the runtime class is not set. Default: nvidia",
+										MarkdownDescription: "PodRuntimeClassName specifies the runtime class name required for the GPU monitoring feature. If the value is an empty string, the runtime class is not set. Default: nvidia",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3066,6 +3990,176 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed: false,
 							},
 
+							"otel_collector": schema.SingleNestedAttribute{
+								Description:         "OtelCollector configuration.",
+								MarkdownDescription: "OtelCollector configuration.",
+								Attributes: map[string]schema.Attribute{
+									"conf": schema.SingleNestedAttribute{
+										Description:         "Conf overrides the configuration for the default Kubernetes State Metrics Core check. This must point to a ConfigMap containing a valid cluster check configuration. When passing a configmap, file name *must* be otel-config.yaml.",
+										MarkdownDescription: "Conf overrides the configuration for the default Kubernetes State Metrics Core check. This must point to a ConfigMap containing a valid cluster check configuration. When passing a configmap, file name *must* be otel-config.yaml.",
+										Attributes: map[string]schema.Attribute{
+											"config_data": schema.StringAttribute{
+												Description:         "ConfigData corresponds to the configuration file content.",
+												MarkdownDescription: "ConfigData corresponds to the configuration file content.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap references an existing ConfigMap with the configuration file content.",
+												MarkdownDescription: "ConfigMap references an existing ConfigMap with the configuration file content.",
+												Attributes: map[string]schema.Attribute{
+													"items": schema.ListNestedAttribute{
+														Description:         "Items maps a ConfigMap data 'key' to a file 'path' mount.",
+														MarkdownDescription: "Items maps a ConfigMap data 'key' to a file 'path' mount.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the key to project.",
+																	MarkdownDescription: "key is the key to project.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"mode": schema.Int64Attribute{
+																	Description:         "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																	MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"path": schema.StringAttribute{
+																	Description:         "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																	MarkdownDescription: "path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name is the name of the ConfigMap.",
+														MarkdownDescription: "Name is the name of the ConfigMap.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"core_config": schema.SingleNestedAttribute{
+										Description:         "OTelCollector Config Relevant to the Core agent",
+										MarkdownDescription: "OTelCollector Config Relevant to the Core agent",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled marks otelcollector as enabled in core agent.",
+												MarkdownDescription: "Enabled marks otelcollector as enabled in core agent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"extension_timeout": schema.Int64Attribute{
+												Description:         "Extension URL provides the timout of the ddflareextension to the core agent.",
+												MarkdownDescription: "Extension URL provides the timout of the ddflareextension to the core agent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"extension_url": schema.StringAttribute{
+												Description:         "Extension URL provides the URL of the ddflareextension to the core agent.",
+												MarkdownDescription: "Extension URL provides the URL of the ddflareextension to the core agent.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Enabled enables the OTel Agent. Default: false",
+										MarkdownDescription: "Enabled enables the OTel Agent. Default: false",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ports": schema.ListNestedAttribute{
+										Description:         "Ports contains the ports for the otel-agent. Defaults: otel-grpc:4317 / otel-http:4318. Note: setting 4317 or 4318 manually is *only* supported if name match default names (otel-grpc, otel-http). If not, this will lead to a port conflict. This limitation will be lifted once annotations support is removed.",
+										MarkdownDescription: "Ports contains the ports for the otel-agent. Defaults: otel-grpc:4317 / otel-http:4318. Note: setting 4317 or 4318 manually is *only* supported if name match default names (otel-grpc, otel-http). If not, this will lead to a port conflict. This limitation will be lifted once annotations support is removed.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"container_port": schema.Int64Attribute{
+													Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+													MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"host_ip": schema.StringAttribute{
+													Description:         "What host IP to bind the external port to.",
+													MarkdownDescription: "What host IP to bind the external port to.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"host_port": schema.Int64Attribute{
+													Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+													MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+													MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"protocol": schema.StringAttribute{
+													Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+													MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"otlp": schema.SingleNestedAttribute{
 								Description:         "OTLP ingest configuration",
 								MarkdownDescription: "OTLP ingest configuration",
@@ -3083,8 +4177,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "GRPC contains configuration for the OTLP ingest OTLP/gRPC receiver.",
 														Attributes: map[string]schema.Attribute{
 															"enabled": schema.BoolAttribute{
-																Description:         "Enable the OTLP/gRPC endpoint.",
-																MarkdownDescription: "Enable the OTLP/gRPC endpoint.",
+																Description:         "Enable the OTLP/gRPC endpoint. Host port is enabled by default and can be disabled.",
+																MarkdownDescription: "Enable the OTLP/gRPC endpoint. Host port is enabled by default and can be disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3097,6 +4191,31 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																Optional:            true,
 																Computed:            false,
 															},
+
+															"host_port_config": schema.SingleNestedAttribute{
+																Description:         "Enable hostPort for OTLP/gRPC Default: true",
+																MarkdownDescription: "Enable hostPort for OTLP/gRPC Default: true",
+																Attributes: map[string]schema.Attribute{
+																	"enabled": schema.BoolAttribute{
+																		Description:         "Enabled enables host port configuration",
+																		MarkdownDescription: "Enabled enables host port configuration",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"host_port": schema.Int64Attribute{
+																		Description:         "Port takes a port number (0 < x < 65536) to expose on the host. (Most containers do not need this.) If HostNetwork is enabled, this value must match the ContainerPort.",
+																		MarkdownDescription: "Port takes a port number (0 < x < 65536) to expose on the host. (Most containers do not need this.) If HostNetwork is enabled, this value must match the ContainerPort.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -3108,8 +4227,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														MarkdownDescription: "HTTP contains configuration for the OTLP ingest OTLP/HTTP receiver.",
 														Attributes: map[string]schema.Attribute{
 															"enabled": schema.BoolAttribute{
-																Description:         "Enable the OTLP/HTTP endpoint.",
-																MarkdownDescription: "Enable the OTLP/HTTP endpoint.",
+																Description:         "Enable the OTLP/HTTP endpoint. Host port is enabled by default and can be disabled.",
+																MarkdownDescription: "Enable the OTLP/HTTP endpoint. Host port is enabled by default and can be disabled.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3121,6 +4240,31 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+															},
+
+															"host_port_config": schema.SingleNestedAttribute{
+																Description:         "Enable hostPorts for OTLP/HTTP Default: true",
+																MarkdownDescription: "Enable hostPorts for OTLP/HTTP Default: true",
+																Attributes: map[string]schema.Attribute{
+																	"enabled": schema.BoolAttribute{
+																		Description:         "Enabled enables host port configuration",
+																		MarkdownDescription: "Enabled enables host port configuration",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"host_port": schema.Int64Attribute{
+																		Description:         "Port takes a port number (0 < x < 65536) to expose on the host. (Most containers do not need this.) If HostNetwork is enabled, this value must match the ContainerPort.",
+																		MarkdownDescription: "Port takes a port number (0 < x < 65536) to expose on the host. (Most containers do not need this.) If HostNetwork is enabled, this value must match the ContainerPort.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
 															},
 														},
 														Required: false,
@@ -3303,6 +4447,40 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed: false,
 							},
 
+							"service_discovery": schema.SingleNestedAttribute{
+								Description:         "ServiceDiscovery",
+								MarkdownDescription: "ServiceDiscovery",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Enables the service discovery check. Default: false",
+										MarkdownDescription: "Enables the service discovery check. Default: false",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"network_stats": schema.SingleNestedAttribute{
+										Description:         "Enables the service discovery network stats collection. Default: true",
+										MarkdownDescription: "Enables the service discovery network stats collection. Default: true",
+										Attributes: map[string]schema.Attribute{
+											"enabled": schema.BoolAttribute{
+												Description:         "Enables the Service Discovery Network Stats feature. Default: true",
+												MarkdownDescription: "Enables the Service Discovery Network Stats feature. Default: true",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"tcp_queue_length": schema.SingleNestedAttribute{
 								Description:         "TCPQueueLength configuration.",
 								MarkdownDescription: "TCPQueueLength configuration.",
@@ -3346,6 +4524,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 						Description:         "Global settings to configure the agents",
 						MarkdownDescription: "Global settings to configure the agents",
 						Attributes: map[string]schema.Attribute{
+							"checks_tag_cardinality": schema.StringAttribute{
+								Description:         "ChecksTagCardinality configures tag cardinality for the metrics collected by integrations ('low', 'orchestrator' or 'high'). See also: https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=containerizedenvironments#tags-cardinality. Not set by default to avoid overriding existing DD_CHECKS_TAG_CARDINALITY configurations, the default value in the Agent is low. Ref: https://github.com/DataDog/datadog-agent/blob/856cf4a66142ce91fd4f8a278149436eb971184a/pkg/config/setup/config.go#L625.",
+								MarkdownDescription: "ChecksTagCardinality configures tag cardinality for the metrics collected by integrations ('low', 'orchestrator' or 'high'). See also: https://docs.datadoghq.com/getting_started/tagging/assigning_tags/?tab=containerizedenvironments#tags-cardinality. Not set by default to avoid overriding existing DD_CHECKS_TAG_CARDINALITY configurations, the default value in the Agent is low. Ref: https://github.com/DataDog/datadog-agent/blob/856cf4a66142ce91fd4f8a278149436eb971184a/pkg/config/setup/config.go#L625.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"cluster_agent_token": schema.StringAttribute{
 								Description:         "ClusterAgentToken is the token for communication between the NodeAgent and ClusterAgent.",
 								MarkdownDescription: "ClusterAgentToken is the token for communication between the NodeAgent and ClusterAgent.",
@@ -3586,6 +4772,166 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed: false,
 							},
 
+							"env": schema.ListNestedAttribute{
+								Description:         "Env contains a list of environment variables that are set for all Agents.",
+								MarkdownDescription: "Env contains a list of environment variables that are set for all Agents.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a ConfigMap.",
+													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Attributes: map[string]schema.Attribute{
+														"api_version": schema.StringAttribute{
+															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"field_path": schema.StringAttribute{
+															Description:         "Path of the field to select in the specified API version.",
+															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"resource_field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Attributes: map[string]schema.Attribute{
+														"container_name": schema.StringAttribute{
+															Description:         "Container name: required for volumes, optional for env vars",
+															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"divisor": schema.StringAttribute{
+															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"resource": schema.StringAttribute{
+															Description:         "Required: resource to select",
+															MarkdownDescription: "Required: resource to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a secret in the pod's namespace",
+													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"fips": schema.SingleNestedAttribute{
 								Description:         "FIPS contains configuration used to customize the FIPS proxy sidecar.",
 								MarkdownDescription: "FIPS contains configuration used to customize the FIPS proxy sidecar.",
@@ -3672,24 +5018,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "The container image of the FIPS sidecar.",
 										Attributes: map[string]schema.Attribute{
 											"jmx_enabled": schema.BoolAttribute{
-												Description:         "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
-												MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
+												Description:         "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
+												MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
-												MarkdownDescription: "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
+												Description:         "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
+												MarkdownDescription: "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"pull_policy": schema.StringAttribute{
-												Description:         "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
-												MarkdownDescription: "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
+												Description:         "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
+												MarkdownDescription: "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3701,8 +5047,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3715,8 +5061,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"tag": schema.StringAttribute{
-												Description:         "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
-												MarkdownDescription: "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
+												Description:         "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
+												MarkdownDescription: "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3765,6 +5111,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -3839,8 +5193,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3930,8 +5284,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3963,6 +5317,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"pod_resources_socket_path": schema.StringAttribute{
+										Description:         "PodResourcesSocketPath is the host path where the pod resources socket is stored. Default: '/var/lib/kubelet/pod-resources/'",
+										MarkdownDescription: "PodResourcesSocketPath is the host path where the pod resources socket is stored. Default: '/var/lib/kubelet/pod-resources/'",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"tls_verify": schema.BoolAttribute{
 										Description:         "TLSVerify toggles kubelet TLS verification. Default: true",
 										MarkdownDescription: "TLSVerify toggles kubelet TLS verification. Default: true",
@@ -3974,6 +5336,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"kubernetes_resources_annotations_as_tags": schema.MapAttribute{
+								Description:         "Provide a mapping of Kubernetes Resource Groups to annotations mapping to Datadog Tags. <KUBERNETES_RESOURCE_GROUP>: <KUBERNETES_ANNOTATION>: <DATADOG_TAG_KEY> KUBERNETES_RESOURCE_GROUP should be in the form '{resource}.{group}' or '{resource}' (example: deployments.apps, pods)",
+								MarkdownDescription: "Provide a mapping of Kubernetes Resource Groups to annotations mapping to Datadog Tags. <KUBERNETES_RESOURCE_GROUP>: <KUBERNETES_ANNOTATION>: <DATADOG_TAG_KEY> KUBERNETES_RESOURCE_GROUP should be in the form '{resource}.{group}' or '{resource}' (example: deployments.apps, pods)",
+								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"kubernetes_resources_labels_as_tags": schema.MapAttribute{
+								Description:         "Provide a mapping of Kubernetes Resource Groups to labels mapping to Datadog Tags. <KUBERNETES_RESOURCE_GROUP>: <KUBERNETES_LABEL>: <DATADOG_TAG_KEY> KUBERNETES_RESOURCE_GROUP should be in the form '{resource}.{group}' or '{resource}' (example: deployments.apps, pods)",
+								MarkdownDescription: "Provide a mapping of Kubernetes Resource Groups to labels mapping to Datadog Tags. <KUBERNETES_RESOURCE_GROUP>: <KUBERNETES_LABEL>: <DATADOG_TAG_KEY> KUBERNETES_RESOURCE_GROUP should be in the form '{resource}.{group}' or '{resource}' (example: deployments.apps, pods)",
+								ElementType:         types.MapType{ElemType: types.StringType},
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"local_service": schema.SingleNestedAttribute{
@@ -4153,11 +5533,96 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"registry": schema.StringAttribute{
-								Description:         "Registry is the image registry to use for all Agent images. Use 'public.ecr.aws/datadog' for AWS ECR. Use 'docker.io/datadog' for DockerHub. Default: 'gcr.io/datadoghq'",
-								MarkdownDescription: "Registry is the image registry to use for all Agent images. Use 'public.ecr.aws/datadog' for AWS ECR. Use 'docker.io/datadog' for DockerHub. Default: 'gcr.io/datadoghq'",
+								Description:         "Registry is the image registry to use for all Agent images. Use 'public.ecr.aws/datadog' for AWS ECR. Use 'datadoghq.azurecr.io' for Azure Container Registry. Use 'gcr.io/datadoghq' for Google Container Registry. Use 'eu.gcr.io/datadoghq' for Google Container Registry in the EU region. Use 'asia.gcr.io/datadoghq' for Google Container Registry in the Asia region. Use 'docker.io/datadog' for DockerHub. Default: 'gcr.io/datadoghq'",
+								MarkdownDescription: "Registry is the image registry to use for all Agent images. Use 'public.ecr.aws/datadog' for AWS ECR. Use 'datadoghq.azurecr.io' for Azure Container Registry. Use 'gcr.io/datadoghq' for Google Container Registry. Use 'eu.gcr.io/datadoghq' for Google Container Registry in the EU region. Use 'asia.gcr.io/datadoghq' for Google Container Registry in the Asia region. Use 'docker.io/datadog' for DockerHub. Default: 'gcr.io/datadoghq'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"run_process_checks_in_core_agent": schema.BoolAttribute{
+								Description:         "Configure whether the Process Agent or core Agent collects process and/or container information (Linux only). If no other checks are running, the Process Agent container will not initialize. (Requires Agent 7.60.0+) Default: 'true'",
+								MarkdownDescription: "Configure whether the Process Agent or core Agent collects process and/or container information (Linux only). If no other checks are running, the Process Agent container will not initialize. (Requires Agent 7.60.0+) Default: 'true'",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"secret_backend": schema.SingleNestedAttribute{
+								Description:         "Configure the secret backend feature https://docs.datadoghq.com/agent/guide/secrets-management See also: https://github.com/DataDog/datadog-operator/blob/main/docs/secret_management.md",
+								MarkdownDescription: "Configure the secret backend feature https://docs.datadoghq.com/agent/guide/secrets-management See also: https://github.com/DataDog/datadog-operator/blob/main/docs/secret_management.md",
+								Attributes: map[string]schema.Attribute{
+									"args": schema.StringAttribute{
+										Description:         "List of arguments to pass to the command (space-separated strings).",
+										MarkdownDescription: "List of arguments to pass to the command (space-separated strings).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"command": schema.StringAttribute{
+										Description:         "The secret backend command to use. Datadog provides a pre-defined binary '/readsecret_multiple_providers.sh'. Read more about '/readsecret_multiple_providers.sh' at https://docs.datadoghq.com/agent/configuration/secrets-management/?tab=linux#script-for-reading-from-multiple-secret-providers.",
+										MarkdownDescription: "The secret backend command to use. Datadog provides a pre-defined binary '/readsecret_multiple_providers.sh'. Read more about '/readsecret_multiple_providers.sh' at https://docs.datadoghq.com/agent/configuration/secrets-management/?tab=linux#script-for-reading-from-multiple-secret-providers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enable_global_permissions": schema.BoolAttribute{
+										Description:         "Whether to create a global permission allowing Datadog agents to read all Kubernetes secrets. Default: 'false'.",
+										MarkdownDescription: "Whether to create a global permission allowing Datadog agents to read all Kubernetes secrets. Default: 'false'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"refresh_interval": schema.Int64Attribute{
+										Description:         "The refresh interval for secrets (0 disables refreshing). Default: '0'.",
+										MarkdownDescription: "The refresh interval for secrets (0 disables refreshing). Default: '0'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"roles": schema.ListNestedAttribute{
+										Description:         "Roles for Datadog to read the specified secrets, replacing 'enableGlobalPermissions'. They are defined as a list of namespace/secrets. Each defined namespace needs to be present in the DatadogAgent controller using 'WATCH_NAMESPACE' or 'DD_AGENT_WATCH_NAMESPACE'. See also: https://github.com/DataDog/datadog-operator/blob/main/docs/secret_management.md#how-to-deploy-the-agent-components-using-the-secret-backend-feature-with-datadogagent.",
+										MarkdownDescription: "Roles for Datadog to read the specified secrets, replacing 'enableGlobalPermissions'. They are defined as a list of namespace/secrets. Each defined namespace needs to be present in the DatadogAgent controller using 'WATCH_NAMESPACE' or 'DD_AGENT_WATCH_NAMESPACE'. See also: https://github.com/DataDog/datadog-operator/blob/main/docs/secret_management.md#how-to-deploy-the-agent-components-using-the-secret-backend-feature-with-datadogagent.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace defines the namespace in which the secrets reside.",
+													MarkdownDescription: "Namespace defines the namespace in which the secrets reside.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"secrets": schema.ListAttribute{
+													Description:         "Secrets defines the list of secrets for which a role should be created.",
+													MarkdownDescription: "Secrets defines the list of secrets for which a role should be created.",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"timeout": schema.Int64Attribute{
+										Description:         "The command timeout in seconds. Default: '30'.",
+										MarkdownDescription: "The command timeout in seconds. Default: '30'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"site": schema.StringAttribute{
@@ -4172,6 +5637,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Description:         "Tags contains a list of tags to attach to every metric, event and service check collected. Learn more about tagging: https://docs.datadoghq.com/tagging/",
 								MarkdownDescription: "Tags contains a list of tags to attach to every metric, event and service check collected. Learn more about tagging: https://docs.datadoghq.com/tagging/",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"use_fips_agent": schema.BoolAttribute{
+								Description:         "UseFIPSAgent enables the FIPS flavor of the Agent. If 'true', the FIPS proxy will always be disabled. Default: 'false'",
+								MarkdownDescription: "UseFIPSAgent enables the FIPS flavor of the Agent. If 'true', the FIPS proxy will always be disabled. Default: 'false'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4405,8 +5878,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over a set of resources, in this case pods.",
-																	MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																	Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																	MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4456,6 +5929,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -4554,8 +6045,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4605,6 +6096,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -4703,8 +6212,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "A label query over a set of resources, in this case pods.",
-																	MarkdownDescription: "A label query over a set of resources, in this case pods.",
+																	Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+																	MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4754,6 +6263,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+
+																"match_label_keys": schema.ListAttribute{
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"mismatch_label_keys": schema.ListAttribute{
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
 																},
 
 																"namespace_selector": schema.SingleNestedAttribute{
@@ -4852,8 +6379,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -4903,6 +6430,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -5002,8 +6547,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"containers": schema.SingleNestedAttribute{
-								Description:         "Configure the basic configurations for each Agent container. Valid Agent container names are: 'agent', 'cluster-agent', 'init-config', 'init-volume', 'process-agent', 'seccomp-setup', 'security-agent', 'system-probe', 'trace-agent', and 'all'. Configuration under 'all' applies to all configured containers.",
-								MarkdownDescription: "Configure the basic configurations for each Agent container. Valid Agent container names are: 'agent', 'cluster-agent', 'init-config', 'init-volume', 'process-agent', 'seccomp-setup', 'security-agent', 'system-probe', 'trace-agent', and 'all'. Configuration under 'all' applies to all configured containers.",
+								Description:         "Configure the basic configurations for each Agent container. Valid Agent container names are: 'agent', 'cluster-agent', 'init-config', 'init-volume', 'process-agent', 'seccomp-setup', 'security-agent', 'system-probe', and 'trace-agent'.",
+								MarkdownDescription: "Configure the basic configurations for each Agent container. Valid Agent container names are: 'agent', 'cluster-agent', 'init-config', 'init-volume', 'process-agent', 'seccomp-setup', 'security-agent', 'system-probe', and 'trace-agent'.",
 								Attributes: map[string]schema.Attribute{
 									"app_armor_profile_name": schema.StringAttribute{
 										Description:         "AppArmorProfileName specifies an apparmor profile.",
@@ -5069,8 +6614,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5160,8 +6705,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5204,8 +6749,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "Configure the Liveness Probe of the container",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5230,8 +6775,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5255,8 +6800,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5347,8 +6892,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5408,13 +6953,64 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed:            false,
 									},
 
+									"ports": schema.ListNestedAttribute{
+										Description:         "Specify additional ports to be exposed by the container. Not specifying a port here DOES NOT prevent that port from being exposed. See https://pkg.go.dev/k8s.io/api/core/v1#Container documentation for more details.",
+										MarkdownDescription: "Specify additional ports to be exposed by the container. Not specifying a port here DOES NOT prevent that port from being exposed. See https://pkg.go.dev/k8s.io/api/core/v1#Container documentation for more details.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"container_port": schema.Int64Attribute{
+													Description:         "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+													MarkdownDescription: "Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"host_ip": schema.StringAttribute{
+													Description:         "What host IP to bind the external port to.",
+													MarkdownDescription: "What host IP to bind the external port to.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"host_port": schema.Int64Attribute{
+													Description:         "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+													MarkdownDescription: "Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+													MarkdownDescription: "If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"protocol": schema.StringAttribute{
+													Description:         "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+													MarkdownDescription: "Protocol for port. Must be UDP, TCP, or SCTP. Defaults to 'TCP'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"readiness_probe": schema.SingleNestedAttribute{
 										Description:         "Configure the Readiness Probe of the container",
 										MarkdownDescription: "Configure the Readiness Probe of the container",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5439,8 +7035,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"grpc": schema.SingleNestedAttribute{
-												Description:         "GRPC specifies an action involving a GRPC port.",
-												MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
 														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5464,8 +7060,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5556,8 +7152,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "TCPSocket specifies an action involving a TCP port.",
-												MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5615,6 +7211,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -5745,6 +7349,31 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												Computed:            false,
 											},
 
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capabilities": schema.SingleNestedAttribute{
 												Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -5781,8 +7410,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"proc_mount": schema.StringAttribute{
-												Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5932,6 +7561,199 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										Computed: false,
 									},
 
+									"startup_probe": schema.SingleNestedAttribute{
+										Description:         "Configure the Startup Probe of the container",
+										MarkdownDescription: "Configure the Startup Probe of the container",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"grpc": schema.SingleNestedAttribute{
+												Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+												MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
+												Attributes: map[string]schema.Attribute{
+													"port": schema.Int64Attribute{
+														Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+														MarkdownDescription: "Port number of the gRPC service. Number must be in the range 1 to 65535.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"service": schema.StringAttribute{
+														Description:         "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+														MarkdownDescription: "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+														MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Path to access on the HTTP server.",
+														MarkdownDescription: "Path to access on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												MarkdownDescription: "How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "TCPSocket specifies a connection to a TCP port.",
+												MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+														MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"termination_grace_period_seconds": schema.Int64Attribute{
+												Description:         "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+												MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												MarkdownDescription: "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"volume_mounts": schema.ListNestedAttribute{
 										Description:         "Specify additional volume mounts in the container.",
 										MarkdownDescription: "Specify additional volume mounts in the container.",
@@ -5946,8 +7768,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"mount_propagation": schema.StringAttribute{
-													Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-													MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+													Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+													MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5964,6 +7786,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												"read_only": schema.BoolAttribute{
 													Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 													MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+													MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -5994,6 +7824,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"create_pod_disruption_budget": schema.BoolAttribute{
+								Description:         "Set CreatePodDisruptionBudget to true to create a PodDisruptionBudget for this component. Not applicable for the Node Agent. A Cluster Agent PDB is set with 1 minimum available pod, and a Cluster Checks Runner PDB is set with 1 maximum unavailable pod.",
+								MarkdownDescription: "Set CreatePodDisruptionBudget to true to create a PodDisruptionBudget for this component. Not applicable for the Node Agent. A Cluster Agent PDB is set with 1 minimum available pod, and a Cluster Checks Runner PDB is set with 1 maximum unavailable pod.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"create_rbac": schema.BoolAttribute{
@@ -6100,16 +7938,16 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6181,8 +8019,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -6272,8 +8110,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -6290,6 +8128,75 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"env_from": schema.ListNestedAttribute{
+								Description:         "EnvFrom specifies the ConfigMaps and Secrets to expose as environment variables. Priority is env > envFrom.",
+								MarkdownDescription: "EnvFrom specifies the ConfigMaps and Secrets to expose as environment variables. Priority is env > envFrom.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "The ConfigMap to select from",
+											MarkdownDescription: "The ConfigMap to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the ConfigMap must be defined",
+													MarkdownDescription: "Specify whether the ConfigMap must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"prefix": schema.StringAttribute{
+											Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "The Secret to select from",
+											MarkdownDescription: "The Secret to select from",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret must be defined",
+													MarkdownDescription: "Specify whether the Secret must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,
@@ -6464,24 +8371,24 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								MarkdownDescription: "The container image of the different components (Datadog Agent, Cluster Agent, Cluster Check Runner).",
 								Attributes: map[string]schema.Attribute{
 									"jmx_enabled": schema.BoolAttribute{
-										Description:         "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
-										MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the Name field does not correspond to a full image string.",
+										Description:         "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
+										MarkdownDescription: "Define whether the Agent image should support JMX. To be used if the 'Name' field does not correspond to a full image string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"name": schema.StringAttribute{
-										Description:         "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
-										MarkdownDescription: "Define the image to use: Use 'gcr.io/datadoghq/agent:latest' for Datadog Agent 7. Use 'datadog/dogstatsd:latest' for standalone Datadog Agent DogStatsD 7. Use 'gcr.io/datadoghq/cluster-agent:latest' for Datadog Cluster Agent. Use 'agent' with the registry and tag configurations for <registry>/agent:<tag>. Use 'cluster-agent' with the registry and tag configurations for <registry>/cluster-agent:<tag>. If the name is the full image string—'<name>:<tag>' or '<registry>/<name>:<tag>', then 'tag', 'jmxEnabled', and 'global.registry' values are ignored. Otherwise, image string is created by overriding default settings with supplied 'name', 'tag', and 'jmxEnabled' values; image string is created using default registry unless 'global.registry' is configured.",
+										Description:         "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
+										MarkdownDescription: "Defines the Agent image name for the pod. You can provide this as: * '<NAME>' - Use 'agent' for the Datadog Agent, 'cluster-agent' for the Datadog Cluster Agent, or 'dogstatsd' for DogStatsD. The full image string is derived from 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled'. * '<NAME>:<TAG>' - For example, 'agent:latest'. The registry is derived from 'global.registry'. '[key].image.tag' and '[key].image.jmxEnabled' are ignored. * '<REGISTRY>/<NAME>:<TAG>' - For example, 'gcr.io/datadoghq/agent:latest'. If the full image string is specified like this, then 'global.registry', '[key].image.tag', and '[key].image.jmxEnabled' are ignored.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"pull_policy": schema.StringAttribute{
-										Description:         "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
-										MarkdownDescription: "The Kubernetes pull policy: Use Always, Never, or IfNotPresent.",
+										Description:         "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
+										MarkdownDescription: "The Kubernetes pull policy: Use 'Always', 'Never', or 'IfNotPresent'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6493,8 +8400,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6507,8 +8414,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"tag": schema.StringAttribute{
-										Description:         "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
-										MarkdownDescription: "Define the image tag to use. To be used if the Name field does not correspond to a full image string.",
+										Description:         "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
+										MarkdownDescription: "Define the image tag to use. To be used if the 'Name' field does not correspond to a full image string.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6537,8 +8444,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"node_selector": schema.MapAttribute{
-								Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
-								MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								Description:         "A map of key-value pairs. For this pod to run on a specific node, the node must have these key-value pairs as labels. See https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
+								MarkdownDescription: "A map of key-value pairs. For this pod to run on a specific node, the node must have these key-value pairs as labels. See https://kubernetes.io/docs/concepts/configuration/assign-pod-node/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -6561,10 +8468,43 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 
+							"runtime_class_name": schema.StringAttribute{
+								Description:         "If specified, indicates the pod's RuntimeClass kubelet should use to run the pod. If the named RuntimeClass does not exist, or the CRI cannot run the corresponding handler, the pod enters the Failed terminal phase. If no runtimeClassName is specified, the default RuntimeHandler is used, which is equivalent to the behavior when the RuntimeClass feature is disabled.",
+								MarkdownDescription: "If specified, indicates the pod's RuntimeClass kubelet should use to run the pod. If the named RuntimeClass does not exist, or the CRI cannot run the corresponding handler, the pod enters the Failed terminal phase. If no runtimeClassName is specified, the default RuntimeHandler is used, which is equivalent to the behavior when the RuntimeClass feature is disabled.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"security_context": schema.SingleNestedAttribute{
 								Description:         "Pod-level SecurityContext.",
 								MarkdownDescription: "Pod-level SecurityContext.",
 								Attributes: map[string]schema.Attribute{
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"fs_group": schema.Int64Attribute{
 										Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -6600,6 +8540,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									"run_as_user": schema.Int64Attribute{
 										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6672,9 +8620,17 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6751,6 +8707,15 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"service_account_annotations": schema.MapAttribute{
+								Description:         "Sets the ServiceAccountAnnotations used by this component.",
+								MarkdownDescription: "Sets the ServiceAccountAnnotations used by this component.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"service_account_name": schema.StringAttribute{
@@ -6860,12 +8825,12 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"aws_elastic_block_store": schema.SingleNestedAttribute{
-											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6901,8 +8866,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"azure_disk": schema.SingleNestedAttribute{
-											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+											Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"caching_mode": schema.StringAttribute{
 													Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -6958,8 +8923,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"azure_file": schema.SingleNestedAttribute{
-											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+											Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+											MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"read_only": schema.BoolAttribute{
 													Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -6991,8 +8956,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"cephfs": schema.SingleNestedAttribute{
-											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+											Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+											MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"monitors": schema.ListAttribute{
 													Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -7032,8 +8997,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7058,8 +9023,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"cinder": schema.SingleNestedAttribute{
-											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+											MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -7082,8 +9047,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7155,8 +9120,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7176,8 +9141,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"csi": schema.SingleNestedAttribute{
-											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+											Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+											MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -7200,8 +9165,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7252,8 +9217,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"field_ref": schema.SingleNestedAttribute{
-																Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																Attributes: map[string]schema.Attribute{
 																	"api_version": schema.StringAttribute{
 																		Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -7469,25 +9434,6 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 																	Attributes: map[string]schema.Attribute{
-																		"claims": schema.ListNestedAttribute{
-																			Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"name": schema.StringAttribute{
-																						Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																						Required:            true,
-																						Optional:            false,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
-																		},
-
 																		"limits": schema.MapAttribute{
 																			Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																			MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7573,6 +9519,14 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	Computed:            false,
 																},
 
+																"volume_attributes_class_name": schema.StringAttribute{
+																	Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																	MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"volume_mode": schema.StringAttribute{
 																	Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 																	MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -7609,8 +9563,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+													MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7656,8 +9610,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"flex_volume": schema.SingleNestedAttribute{
-											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+											Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+											MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 											Attributes: map[string]schema.Attribute{
 												"driver": schema.StringAttribute{
 													Description:         "driver is the name of the driver to use for this volume.",
@@ -7697,8 +9651,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -7715,8 +9669,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"flocker": schema.SingleNestedAttribute{
-											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+											Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+											MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"dataset_name": schema.StringAttribute{
 													Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -7740,12 +9694,12 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"gce_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+													MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7781,8 +9735,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"git_repo": schema.SingleNestedAttribute{
-											Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-											MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+											MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 											Attributes: map[string]schema.Attribute{
 												"directory": schema.StringAttribute{
 													Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -7814,8 +9768,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"glusterfs": schema.SingleNestedAttribute{
-											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+											MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 											Attributes: map[string]schema.Attribute{
 												"endpoints": schema.StringAttribute{
 													Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -7847,8 +9801,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"host_path": schema.SingleNestedAttribute{
-											Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
-											MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+											Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 											Attributes: map[string]schema.Attribute{
 												"path": schema.StringAttribute{
 													Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
@@ -7861,6 +9815,31 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												"type": schema.StringAttribute{
 													Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 													MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"image": schema.SingleNestedAttribute{
+											Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+											Attributes: map[string]schema.Attribute{
+												"pull_policy": schema.StringAttribute{
+													Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"reference": schema.StringAttribute{
+													Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+													MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7892,8 +9871,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7953,8 +9932,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8045,8 +10024,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"photon_persistent_disk": schema.SingleNestedAttribute{
-											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+											Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+											MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -8070,8 +10049,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"portworx_volume": schema.SingleNestedAttribute{
-											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+											Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+											MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -8115,10 +10094,105 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sources": schema.ListNestedAttribute{
-													Description:         "sources is the list of volume projections",
-													MarkdownDescription: "sources is the list of volume projections",
+													Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+													MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"cluster_trust_bundle": schema.SingleNestedAttribute{
+																Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+																Attributes: map[string]schema.Attribute{
+																	"label_selector": schema.SingleNestedAttribute{
+																		Description:         "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																		MarkdownDescription: "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																		Attributes: map[string]schema.Attribute{
+																			"match_expressions": schema.ListNestedAttribute{
+																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "key is the label key that the selector applies to.",
+																							MarkdownDescription: "key is the label key that the selector applies to.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"operator": schema.StringAttribute{
+																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"values": schema.ListAttribute{
+																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"match_labels": schema.MapAttribute{
+																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																				ElementType:         types.StringType,
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																		MarkdownDescription: "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																		MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "Relative path from the volume root to write the bundle.",
+																		MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"signer_name": schema.StringAttribute{
+																		Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																		MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"config_map": schema.SingleNestedAttribute{
 																Description:         "configMap information about the configMap data to project",
 																MarkdownDescription: "configMap information about the configMap data to project",
@@ -8159,8 +10233,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8189,8 +10263,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																		NestedObject: schema.NestedAttributeObject{
 																			Attributes: map[string]schema.Attribute{
 																				"field_ref": schema.SingleNestedAttribute{
-																					Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																					MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																					Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																					MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																					Attributes: map[string]schema.Attribute{
 																						"api_version": schema.StringAttribute{
 																							Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -8313,8 +10387,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8378,8 +10452,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"quobyte": schema.SingleNestedAttribute{
-											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+											Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+											MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"group": schema.StringAttribute{
 													Description:         "group to map volume access to Default is no group",
@@ -8435,12 +10509,12 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"rbd": schema.SingleNestedAttribute{
-											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+											MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
-													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+													Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
+													MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8492,8 +10566,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8518,8 +10592,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"scale_io": schema.SingleNestedAttribute{
-											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+											Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+											MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -8558,8 +10632,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8684,8 +10758,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"storageos": schema.SingleNestedAttribute{
-											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+											Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+											MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -8708,8 +10782,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -8742,8 +10816,8 @@ func (r *DatadoghqComDatadogAgentV2Alpha1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"vsphere_volume": schema.SingleNestedAttribute{
-											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+											Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+											MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 											Attributes: map[string]schema.Attribute{
 												"fs_type": schema.StringAttribute{
 													Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",

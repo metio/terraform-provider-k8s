@@ -91,21 +91,23 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 			MirrorWeight          *float64 `tfsdk:"mirror_weight" json:"mirrorWeight,omitempty"`
 			PrimaryReadyThreshold *float64 `tfsdk:"primary_ready_threshold" json:"primaryReadyThreshold,omitempty"`
 			SessionAffinity       *struct {
-				CookieName *string  `tfsdk:"cookie_name" json:"cookieName,omitempty"`
-				MaxAge     *float64 `tfsdk:"max_age" json:"maxAge,omitempty"`
+				CookieName        *string  `tfsdk:"cookie_name" json:"cookieName,omitempty"`
+				MaxAge            *float64 `tfsdk:"max_age" json:"maxAge,omitempty"`
+				PrimaryCookieName *string  `tfsdk:"primary_cookie_name" json:"primaryCookieName,omitempty"`
 			} `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
 			StepWeight          *float64  `tfsdk:"step_weight" json:"stepWeight,omitempty"`
 			StepWeightPromotion *float64  `tfsdk:"step_weight_promotion" json:"stepWeightPromotion,omitempty"`
 			StepWeights         *[]string `tfsdk:"step_weights" json:"stepWeights,omitempty"`
 			Threshold           *float64  `tfsdk:"threshold" json:"threshold,omitempty"`
 			Webhooks            *[]struct {
-				Metadata  *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
-				MuteAlert *bool              `tfsdk:"mute_alert" json:"muteAlert,omitempty"`
-				Name      *string            `tfsdk:"name" json:"name,omitempty"`
-				Retries   *float64           `tfsdk:"retries" json:"retries,omitempty"`
-				Timeout   *string            `tfsdk:"timeout" json:"timeout,omitempty"`
-				Type      *string            `tfsdk:"type" json:"type,omitempty"`
-				Url       *string            `tfsdk:"url" json:"url,omitempty"`
+				DisableTLS *bool              `tfsdk:"disable_tls" json:"disableTLS,omitempty"`
+				Metadata   *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
+				MuteAlert  *bool              `tfsdk:"mute_alert" json:"muteAlert,omitempty"`
+				Name       *string            `tfsdk:"name" json:"name,omitempty"`
+				Retries    *float64           `tfsdk:"retries" json:"retries,omitempty"`
+				Timeout    *string            `tfsdk:"timeout" json:"timeout,omitempty"`
+				Type       *string            `tfsdk:"type" json:"type,omitempty"`
+				Url        *string            `tfsdk:"url" json:"url,omitempty"`
 			} `tfsdk:"webhooks" json:"webhooks,omitempty"`
 		} `tfsdk:"analysis" json:"analysis,omitempty"`
 		AutoscalerRef *struct {
@@ -114,8 +116,8 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 			Name                  *string            `tfsdk:"name" json:"name,omitempty"`
 			PrimaryScalerQueries  *map[string]string `tfsdk:"primary_scaler_queries" json:"primaryScalerQueries,omitempty"`
 			PrimaryScalerReplicas *struct {
-				MaxReplicas *float64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
-				MinReplicas *float64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
+				MaxReplicas *int64 `tfsdk:"max_replicas" json:"maxReplicas,omitempty"`
+				MinReplicas *int64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 			} `tfsdk:"primary_scaler_replicas" json:"primaryScalerReplicas,omitempty"`
 		} `tfsdk:"autoscaler_ref" json:"autoscalerRef,omitempty"`
 		IngressRef *struct {
@@ -178,8 +180,9 @@ type FlaggerAppCanaryV1Beta1ManifestData struct {
 					Set    *map[string]string `tfsdk:"set" json:"set,omitempty"`
 				} `tfsdk:"response" json:"response,omitempty"`
 			} `tfsdk:"headers" json:"headers,omitempty"`
-			Hosts *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
-			Match *[]struct {
+			Headless *bool     `tfsdk:"headless" json:"headless,omitempty"`
+			Hosts    *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
+			Match    *[]struct {
 				Authority *struct {
 					Exact  *string `tfsdk:"exact" json:"exact,omitempty"`
 					Prefix *string `tfsdk:"prefix" json:"prefix,omitempty"`
@@ -737,6 +740,14 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"primary_cookie_name": schema.StringAttribute{
+										Description:         "CookieName is the key that will be used for the session affinity cookie.",
+										MarkdownDescription: "CookieName is the key that will be used for the session affinity cookie.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -781,6 +792,14 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								MarkdownDescription: "Webhook list for this canary",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"disable_tls": schema.BoolAttribute{
+											Description:         "Disable TLS verification for this webhook",
+											MarkdownDescription: "Disable TLS verification for this webhook",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"metadata": schema.MapAttribute{
 											Description:         "Metadata (key-value pairs) for this webhook",
 											MarkdownDescription: "Metadata (key-value pairs) for this webhook",
@@ -899,20 +918,26 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
-									"max_replicas": schema.Float64Attribute{
+									"max_replicas": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(1),
+										},
 									},
 
-									"min_replicas": schema.Float64Attribute{
+									"min_replicas": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(1),
+										},
 									},
 								},
 								Required: false,
@@ -1382,6 +1407,14 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"headless": schema.BoolAttribute{
+								Description:         "Headless if set to true, generates headless Kubernetes services.",
+								MarkdownDescription: "Headless if set to true, generates headless Kubernetes services.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"hosts": schema.ListAttribute{
@@ -2294,8 +2327,8 @@ func (r *FlaggerAppCanaryV1Beta1Manifest) Schema(_ context.Context, _ datasource
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

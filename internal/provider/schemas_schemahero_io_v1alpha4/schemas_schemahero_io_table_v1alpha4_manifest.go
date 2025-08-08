@@ -105,16 +105,45 @@ type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
 				} `tfsdk:"indexes" json:"indexes,omitempty"`
 				IsDeleted     *bool `tfsdk:"is_deleted" json:"isDeleted,omitempty"`
 				Json_triggers *[]struct {
-					Arguments         *[]string `tfsdk:"arguments" json:"arguments,omitempty"`
 					Condition         *string   `tfsdk:"condition" json:"condition,omitempty"`
 					ConstraintTrigger *bool     `tfsdk:"constraint_trigger" json:"constraintTrigger,omitempty"`
 					Events            *[]string `tfsdk:"events" json:"events,omitempty"`
-					ExecuteProcedure  *string   `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
-					ForEachRun        *bool     `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
-					ForEachStatement  *bool     `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
-					Name              *string   `tfsdk:"name" json:"name,omitempty"`
+					Execute           *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Params *[]struct {
+							Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"params" json:"params,omitempty"`
+						Schema *string `tfsdk:"schema" json:"schema,omitempty"`
+						Type   *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"execute" json:"execute,omitempty"`
+					ExecuteProcedure *string `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
+					ForEachRun       *bool   `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
+					ForEachStatement *bool   `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"json_triggers" json:"json:triggers,omitempty"`
 				PrimaryKey *[]string `tfsdk:"primary_key" json:"primaryKey,omitempty"`
+				Schema     *string   `tfsdk:"schema" json:"schema,omitempty"`
+				Triggers   *[]struct {
+					Condition         *string   `tfsdk:"condition" json:"condition,omitempty"`
+					ConstraintTrigger *bool     `tfsdk:"constraint_trigger" json:"constraintTrigger,omitempty"`
+					Events            *[]string `tfsdk:"events" json:"events,omitempty"`
+					Execute           *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Params *[]struct {
+							Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"params" json:"params,omitempty"`
+						Schema *string `tfsdk:"schema" json:"schema,omitempty"`
+						Type   *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"execute" json:"execute,omitempty"`
+					ExecuteProcedure *string `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
+					ForEachRun       *bool   `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
+					ForEachStatement *bool   `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"triggers" json:"triggers,omitempty"`
 			} `tfsdk:"cockroachdb" json:"cockroachdb,omitempty"`
 			Mysql *struct {
 				Collation *string `tfsdk:"collation" json:"collation,omitempty"`
@@ -179,16 +208,45 @@ type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
 				} `tfsdk:"indexes" json:"indexes,omitempty"`
 				IsDeleted     *bool `tfsdk:"is_deleted" json:"isDeleted,omitempty"`
 				Json_triggers *[]struct {
-					Arguments         *[]string `tfsdk:"arguments" json:"arguments,omitempty"`
 					Condition         *string   `tfsdk:"condition" json:"condition,omitempty"`
 					ConstraintTrigger *bool     `tfsdk:"constraint_trigger" json:"constraintTrigger,omitempty"`
 					Events            *[]string `tfsdk:"events" json:"events,omitempty"`
-					ExecuteProcedure  *string   `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
-					ForEachRun        *bool     `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
-					ForEachStatement  *bool     `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
-					Name              *string   `tfsdk:"name" json:"name,omitempty"`
+					Execute           *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Params *[]struct {
+							Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"params" json:"params,omitempty"`
+						Schema *string `tfsdk:"schema" json:"schema,omitempty"`
+						Type   *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"execute" json:"execute,omitempty"`
+					ExecuteProcedure *string `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
+					ForEachRun       *bool   `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
+					ForEachStatement *bool   `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"json_triggers" json:"json:triggers,omitempty"`
 				PrimaryKey *[]string `tfsdk:"primary_key" json:"primaryKey,omitempty"`
+				Schema     *string   `tfsdk:"schema" json:"schema,omitempty"`
+				Triggers   *[]struct {
+					Condition         *string   `tfsdk:"condition" json:"condition,omitempty"`
+					ConstraintTrigger *bool     `tfsdk:"constraint_trigger" json:"constraintTrigger,omitempty"`
+					Events            *[]string `tfsdk:"events" json:"events,omitempty"`
+					Execute           *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Params *[]struct {
+							Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"params" json:"params,omitempty"`
+						Schema *string `tfsdk:"schema" json:"schema,omitempty"`
+						Type   *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"execute" json:"execute,omitempty"`
+					ExecuteProcedure *string `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
+					ForEachRun       *bool   `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
+					ForEachStatement *bool   `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"triggers" json:"triggers,omitempty"`
 			} `tfsdk:"postgres" json:"postgres,omitempty"`
 			Rqlite *struct {
 				Columns *[]struct {
@@ -304,14 +362,23 @@ type SchemasSchemaheroIoTableV1Alpha4ManifestData struct {
 				IsDeleted  *bool     `tfsdk:"is_deleted" json:"isDeleted,omitempty"`
 				PrimaryKey *[]string `tfsdk:"primary_key" json:"primaryKey,omitempty"`
 				Triggers   *[]struct {
-					Arguments         *[]string `tfsdk:"arguments" json:"arguments,omitempty"`
 					Condition         *string   `tfsdk:"condition" json:"condition,omitempty"`
 					ConstraintTrigger *bool     `tfsdk:"constraint_trigger" json:"constraintTrigger,omitempty"`
 					Events            *[]string `tfsdk:"events" json:"events,omitempty"`
-					ExecuteProcedure  *string   `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
-					ForEachRun        *bool     `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
-					ForEachStatement  *bool     `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
-					Name              *string   `tfsdk:"name" json:"name,omitempty"`
+					Execute           *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Params *[]struct {
+							Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"params" json:"params,omitempty"`
+						Schema *string `tfsdk:"schema" json:"schema,omitempty"`
+						Type   *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"execute" json:"execute,omitempty"`
+					ExecuteProcedure *string `tfsdk:"execute_procedure" json:"executeProcedure,omitempty"`
+					ForEachRun       *bool   `tfsdk:"for_each_run" json:"forEachRun,omitempty"`
+					ForEachStatement *bool   `tfsdk:"for_each_statement" json:"forEachStatement,omitempty"`
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"triggers" json:"triggers,omitempty"`
 			} `tfsdk:"timescaledb" json:"timescaledb,omitempty"`
 		} `tfsdk:"schema" json:"schema,omitempty"`
@@ -833,19 +900,10 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 									},
 
 									"json_triggers": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Deprecated: this field should be avoided and one should use Triggers without json prefix instead",
+										MarkdownDescription: "Deprecated: this field should be avoided and one should use Triggers without json prefix instead",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"arguments": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
 												"condition": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -871,11 +929,85 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
-												"execute_procedure": schema.StringAttribute{
+												"execute": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            true,
-													Optional:            false,
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"params": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mode": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("IN", "OUT", "INOUT", "VARIADIC"),
+																		},
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"schema": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Procedure", "Function"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"execute_procedure": schema.StringAttribute{
+													Description:         "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													MarkdownDescription: "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -916,6 +1048,156 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"schema": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"triggers": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"condition": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"constraint_trigger": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"events": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"execute": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"params": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mode": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("IN", "OUT", "INOUT", "VARIADIC"),
+																		},
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"schema": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Procedure", "Function"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"execute_procedure": schema.StringAttribute{
+													Description:         "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													MarkdownDescription: "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for_each_run": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for_each_statement": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -1344,19 +1626,10 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 									},
 
 									"json_triggers": schema.ListNestedAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Deprecated: this field should be avoided and one should use Triggers without json prefix instead",
+										MarkdownDescription: "Deprecated: this field should be avoided and one should use Triggers without json prefix instead",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"arguments": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
 												"condition": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -1382,11 +1655,85 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
-												"execute_procedure": schema.StringAttribute{
+												"execute": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            true,
-													Optional:            false,
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"params": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mode": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("IN", "OUT", "INOUT", "VARIADIC"),
+																		},
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"schema": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Procedure", "Function"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"execute_procedure": schema.StringAttribute{
+													Description:         "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													MarkdownDescription: "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 
@@ -1427,6 +1774,156 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"schema": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"triggers": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"condition": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"constraint_trigger": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"events": schema.ListAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"execute": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"params": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mode": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("IN", "OUT", "INOUT", "VARIADIC"),
+																		},
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"schema": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Procedure", "Function"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"execute_procedure": schema.StringAttribute{
+													Description:         "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													MarkdownDescription: "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for_each_run": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for_each_statement": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -2209,15 +2706,6 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 										MarkdownDescription: "",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
-												"arguments": schema.ListAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
 												"condition": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -2243,11 +2731,85 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ d
 													Computed:            false,
 												},
 
-												"execute_procedure": schema.StringAttribute{
+												"execute": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													Required:            true,
-													Optional:            false,
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"params": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mode": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("IN", "OUT", "INOUT", "VARIADIC"),
+																		},
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"schema": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Procedure", "Function"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"execute_procedure": schema.StringAttribute{
+													Description:         "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													MarkdownDescription: "Deprecated: we support multiple execute types from now on. You are encouraged to use Execute instead.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 

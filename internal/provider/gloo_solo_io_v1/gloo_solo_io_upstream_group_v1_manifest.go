@@ -123,6 +123,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							SpanTransformer   *struct {
+								Name *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 						} `tfsdk:"response_transformation" json:"responseTransformation,omitempty"`
 					} `tfsdk:"rest" json:"rest,omitempty"`
 				} `tfsdk:"destination_spec" json:"destinationSpec,omitempty"`
@@ -284,6 +289,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -340,6 +350,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -405,6 +420,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -488,6 +508,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -544,6 +569,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -609,6 +639,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -689,6 +724,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -745,6 +785,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -810,6 +855,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -871,6 +921,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							SpanTransformer   *struct {
+								Name *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -927,6 +982,11 @@ type GlooSoloIoUpstreamGroupV1ManifestData struct {
 							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							SpanTransformer   *struct {
+								Name *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1536,6 +1596,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"span_transformer": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"text": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -2573,6 +2659,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -2934,6 +3046,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -3358,6 +3496,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -3910,6 +4074,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -4271,6 +4461,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -4695,6 +4911,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -5223,6 +5465,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -5584,6 +5852,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -6009,6 +6303,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -6399,6 +6719,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Optional:            true,
 																	Computed:            false,
 																},
+
+																"span_transformer": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"text": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
 															},
 															Required: false,
 															Optional: true,
@@ -6760,6 +7106,32 @@ func (r *GlooSoloIoUpstreamGroupV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"span_transformer": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"text": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 															Required: false,

@@ -44,9 +44,10 @@ type NotificationToolkitFluxcdIoReceiverV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Events    *[]string `tfsdk:"events" json:"events,omitempty"`
-		Interval  *string   `tfsdk:"interval" json:"interval,omitempty"`
-		Resources *[]struct {
+		Events         *[]string `tfsdk:"events" json:"events,omitempty"`
+		Interval       *string   `tfsdk:"interval" json:"interval,omitempty"`
+		ResourceFilter *string   `tfsdk:"resource_filter" json:"resourceFilter,omitempty"`
+		Resources      *[]struct {
 			ApiVersion  *string            `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
@@ -158,6 +159,14 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 						},
 					},
 
+					"resource_filter": schema.StringAttribute{
+						Description:         "ResourceFilter is a CEL expression expected to return a boolean that is evaluated for each resource referenced in the Resources field when a webhook is received. If the expression returns false then the controller will not request a reconciliation for the resource. When the expression is specified the controller will parse it and mark the object as terminally failed if the expression is invalid or does not return a boolean.",
+						MarkdownDescription: "ResourceFilter is a CEL expression expected to return a boolean that is evaluated for each resource referenced in the Resources field when a webhook is received. If the expression returns false then the controller will not request a reconciliation for the resource. When the expression is specified the controller will parse it and mark the object as terminally failed if the expression is invalid or does not return a boolean.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"resources": schema.ListNestedAttribute{
 						Description:         "A list of resources to be notified about changes.",
 						MarkdownDescription: "A list of resources to be notified about changes.",
@@ -199,7 +208,7 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 
@@ -211,7 +220,7 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Manifest) Schema(_ context.Context
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(53),
+										stringvalidator.LengthAtMost(253),
 									},
 								},
 							},

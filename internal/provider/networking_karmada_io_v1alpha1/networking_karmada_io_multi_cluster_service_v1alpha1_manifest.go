@@ -147,8 +147,8 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ contex
 								"name": schema.StringAttribute{
 									Description:         "Name is the name of the cluster to be selected.",
 									MarkdownDescription: "Name is the name of the cluster to be selected.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},
@@ -193,8 +193,8 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ contex
 								"name": schema.StringAttribute{
 									Description:         "Name is the name of the cluster to be selected.",
 									MarkdownDescription: "Name is the name of the cluster to be selected.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 							},

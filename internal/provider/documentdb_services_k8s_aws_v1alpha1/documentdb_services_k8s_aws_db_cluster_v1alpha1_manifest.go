@@ -289,8 +289,8 @@ func (r *DocumentdbServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"global_cluster_identifier": schema.StringAttribute{
-						Description:         "The cluster identifier of the new global cluster.",
-						MarkdownDescription: "The cluster identifier of the new global cluster.",
+						Description:         "The cluster identifier of the new global cluster. Regex Pattern: '^[A-Za-z][0-9A-Za-z-:._]*$'",
+						MarkdownDescription: "The cluster identifier of the new global cluster. Regex Pattern: '^[A-Za-z][0-9A-Za-z-:._]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

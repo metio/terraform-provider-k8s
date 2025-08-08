@@ -184,8 +184,8 @@ func (r *CiliumIoCiliumEndpointSliceV2Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"protocol": schema.StringAttribute{
-										Description:         "Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
-										MarkdownDescription: "Layer 4 protocol Enum: [TCP UDP SCTP ICMP ICMPV6 ANY]",
+										Description:         "Layer 4 protocol Enum: ['TCP','UDP','SCTP','ICMP','ICMPV6','ANY']",
+										MarkdownDescription: "Layer 4 protocol Enum: ['TCP','UDP','SCTP','ICMP','ICMPV6','ANY']",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

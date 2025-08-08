@@ -95,10 +95,11 @@ type CamelApacheOrgIntegrationKitV1ManifestData struct {
 				Verbose               *bool              `tfsdk:"verbose" json:"verbose,omitempty"`
 			} `tfsdk:"builder" json:"builder,omitempty"`
 			Camel *struct {
-				Configuration  *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-				Enabled        *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				Properties     *[]string          `tfsdk:"properties" json:"properties,omitempty"`
-				RuntimeVersion *string            `tfsdk:"runtime_version" json:"runtimeVersion,omitempty"`
+				Configuration   *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled         *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Properties      *[]string          `tfsdk:"properties" json:"properties,omitempty"`
+				RuntimeProvider *string            `tfsdk:"runtime_provider" json:"runtimeProvider,omitempty"`
+				RuntimeVersion  *string            `tfsdk:"runtime_version" json:"runtimeVersion,omitempty"`
 			} `tfsdk:"camel" json:"camel,omitempty"`
 			Quarkus *struct {
 				BuildMode          *[]string          `tfsdk:"build_mode" json:"buildMode,omitempty"`
@@ -230,8 +231,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"dependencies": schema.ListAttribute{
-						Description:         "a list of Camel dependecies used by this kit",
-						MarkdownDescription: "a list of Camel dependecies used by this kit",
+						Description:         "a list of Camel dependencies used by this kit",
+						MarkdownDescription: "a list of Camel dependencies used by this kit",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -636,9 +637,20 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ dat
 										Computed:            false,
 									},
 
+									"runtime_provider": schema.StringAttribute{
+										Description:         "The runtime provider to use for the integration. (Default, Camel K Runtime).",
+										MarkdownDescription: "The runtime provider to use for the integration. (Default, Camel K Runtime).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("quarkus", "plain-quarkus"),
+										},
+									},
+
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										Description:         "The runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster (Default, the one provided by the operator version).",
+										MarkdownDescription: "The runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster (Default, the one provided by the operator version).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

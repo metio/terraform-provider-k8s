@@ -70,7 +70,8 @@ type TinkerbellOrgHardwareV1Alpha1ManifestData struct {
 				Uefi         *bool     `tfsdk:"uefi" json:"uefi,omitempty"`
 				Vlan_id      *string   `tfsdk:"vlan_id" json:"vlan_id,omitempty"`
 			} `tfsdk:"dhcp" json:"dhcp,omitempty"`
-			Netboot *struct {
+			DisableDhcp *bool `tfsdk:"disable_dhcp" json:"disableDhcp,omitempty"`
+			Netboot     *struct {
 				AllowPXE      *bool `tfsdk:"allow_pxe" json:"allowPXE,omitempty"`
 				AllowWorkflow *bool `tfsdk:"allow_workflow" json:"allowWorkflow,omitempty"`
 				Ipxe          *struct {
@@ -442,6 +443,14 @@ func (r *TinkerbellOrgHardwareV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"disable_dhcp": schema.BoolAttribute{
+									Description:         "DisableDHCP disables DHCP for this interface.",
+									MarkdownDescription: "DisableDHCP disables DHCP for this interface.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"netboot": schema.SingleNestedAttribute{

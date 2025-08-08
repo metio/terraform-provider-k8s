@@ -58,6 +58,7 @@ type ResourcesTeleportDevTeleportGithubConnectorV3ManifestData struct {
 			Roles        *[]string `tfsdk:"roles" json:"roles,omitempty"`
 			Team         *string   `tfsdk:"team" json:"team,omitempty"`
 		} `tfsdk:"teams_to_roles" json:"teams_to_roles,omitempty"`
+		User_matchers *[]string `tfsdk:"user_matchers" json:"user_matchers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -247,6 +248,15 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Schema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"user_matchers": schema.ListAttribute{
+						Description:         "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
+						MarkdownDescription: "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

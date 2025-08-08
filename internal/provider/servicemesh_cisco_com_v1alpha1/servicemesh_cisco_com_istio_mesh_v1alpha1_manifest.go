@@ -144,15 +144,13 @@ type ServicemeshCiscoComIstioMeshV1Alpha1ManifestData struct {
 				Image                           *struct {
 					ImageType *string `tfsdk:"image_type" json:"imageType,omitempty"`
 				} `tfsdk:"image" json:"image,omitempty"`
-				InterceptionMode   *string `tfsdk:"interception_mode" json:"interceptionMode,omitempty"`
-				MeshId             *string `tfsdk:"mesh_id" json:"meshId,omitempty"`
-				PrivateKeyProvider *struct {
+				InterceptionMode       *string `tfsdk:"interception_mode" json:"interceptionMode,omitempty"`
+				MeshId                 *string `tfsdk:"mesh_id" json:"meshId,omitempty"`
+				ParentShutdownDuration *string `tfsdk:"parent_shutdown_duration" json:"parentShutdownDuration,omitempty"`
+				PrivateKeyProvider     *struct {
 					Cryptomb *struct {
 						PollDelay *string `tfsdk:"poll_delay" json:"pollDelay,omitempty"`
 					} `tfsdk:"cryptomb" json:"cryptomb,omitempty"`
-					Qat *struct {
-						PollDelay *string `tfsdk:"poll_delay" json:"pollDelay,omitempty"`
-					} `tfsdk:"qat" json:"qat,omitempty"`
 				} `tfsdk:"private_key_provider" json:"privateKeyProvider,omitempty"`
 				ProxyAdminPort             *int64             `tfsdk:"proxy_admin_port" json:"proxyAdminPort,omitempty"`
 				ProxyBootstrapTemplatePath *string            `tfsdk:"proxy_bootstrap_template_path" json:"proxyBootstrapTemplatePath,omitempty"`
@@ -355,11 +353,6 @@ type ServicemeshCiscoComIstioMeshV1Alpha1ManifestData struct {
 					Port         *int64    `tfsdk:"port" json:"port,omitempty"`
 					Service      *string   `tfsdk:"service" json:"service,omitempty"`
 				} `tfsdk:"opencensus" json:"opencensus,omitempty"`
-				Opentelemetry *struct {
-					MaxTagLength *int64  `tfsdk:"max_tag_length" json:"maxTagLength,omitempty"`
-					Port         *int64  `tfsdk:"port" json:"port,omitempty"`
-					Service      *string `tfsdk:"service" json:"service,omitempty"`
-				} `tfsdk:"opentelemetry" json:"opentelemetry,omitempty"`
 				Prometheus *map[string]string `tfsdk:"prometheus" json:"prometheus,omitempty"`
 				Skywalking *struct {
 					AccessToken *string `tfsdk:"access_token" json:"accessToken,omitempty"`
@@ -425,6 +418,10 @@ type ServicemeshCiscoComIstioMeshV1Alpha1ManifestData struct {
 				Probes   *int64  `tfsdk:"probes" json:"probes,omitempty"`
 				Time     *string `tfsdk:"time" json:"time,omitempty"`
 			} `tfsdk:"tcp_keepalive" json:"tcpKeepalive,omitempty"`
+			ThriftConfig *struct {
+				RateLimitTimeout *string `tfsdk:"rate_limit_timeout" json:"rateLimitTimeout,omitempty"`
+				RateLimitUrl     *string `tfsdk:"rate_limit_url" json:"rateLimitUrl,omitempty"`
+			} `tfsdk:"thrift_config" json:"thriftConfig,omitempty"`
 			TrustDomain               *string   `tfsdk:"trust_domain" json:"trustDomain,omitempty"`
 			TrustDomainAliases        *[]string `tfsdk:"trust_domain_aliases" json:"trustDomainAliases,omitempty"`
 			VerifyCertificateAtClient *bool     `tfsdk:"verify_certificate_at_client" json:"verifyCertificateAtClient,omitempty"`
@@ -1267,28 +1264,19 @@ func (r *ServicemeshCiscoComIstioMeshV1Alpha1Manifest) Schema(_ context.Context,
 										Computed:            false,
 									},
 
+									"parent_shutdown_duration": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"private_key_provider": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"cryptomb": schema.SingleNestedAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"poll_delay": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"qat": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
@@ -2709,39 +2697,6 @@ func (r *ServicemeshCiscoComIstioMeshV1Alpha1Manifest) Schema(_ context.Context,
 											Computed: false,
 										},
 
-										"opentelemetry": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Attributes: map[string]schema.Attribute{
-												"max_tag_length": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"port": schema.Int64Attribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"service": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
 										"prometheus": schema.MapAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -3183,6 +3138,31 @@ func (r *ServicemeshCiscoComIstioMeshV1Alpha1Manifest) Schema(_ context.Context,
 									},
 
 									"time": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"thrift_config": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"rate_limit_timeout": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"rate_limit_url": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

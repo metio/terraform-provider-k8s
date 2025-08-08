@@ -61,7 +61,11 @@ type DigitalisIoValsSecretV1ManifestData struct {
 			UserHost    *string `tfsdk:"user_host" json:"userHost,omitempty"`
 			UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 		} `tfsdk:"databases" json:"databases,omitempty"`
-		Name     *string            `tfsdk:"name" json:"name,omitempty"`
+		Name    *string `tfsdk:"name" json:"name,omitempty"`
+		Rollout *[]struct {
+			Kind *string `tfsdk:"kind" json:"kind,omitempty"`
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"rollout" json:"rollout,omitempty"`
 		Template *map[string]string `tfsdk:"template" json:"template,omitempty"`
 		Ttl      *int64             `tfsdk:"ttl" json:"ttl,omitempty"`
 		Type     *string            `tfsdk:"type" json:"type,omitempty"`
@@ -277,6 +281,33 @@ func (r *DigitalisIoValsSecretV1Manifest) Schema(_ context.Context, _ datasource
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"rollout": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"kind": schema.StringAttribute{
+									Description:         "Kind is either Deployment, Pod or StatefulSet",
+									MarkdownDescription: "Kind is either Deployment, Pod or StatefulSet",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is the object name",
+									MarkdownDescription: "Name is the object name",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"template": schema.MapAttribute{

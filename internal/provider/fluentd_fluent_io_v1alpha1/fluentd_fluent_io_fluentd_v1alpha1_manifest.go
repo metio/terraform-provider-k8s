@@ -308,7 +308,18 @@ type FluentdFluentIoFluentdV1Alpha1ManifestData struct {
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"default_output_selector" json:"defaultOutputSelector,omitempty"`
 		DisableService *bool `tfsdk:"disable_service" json:"disableService,omitempty"`
-		EnvVars        *[]struct {
+		EnvFrom        *[]struct {
+			ConfigMapRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+			Prefix    *string `tfsdk:"prefix" json:"prefix,omitempty"`
+			SecretRef *struct {
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+		} `tfsdk:"env_from" json:"envFrom,omitempty"`
+		EnvVars *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -566,6 +577,10 @@ type FluentdFluentIoFluentdV1Alpha1ManifestData struct {
 				Tag                       *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"tail" json:"tail,omitempty"`
 		} `tfsdk:"global_inputs" json:"globalInputs,omitempty"`
+		HostAliases *[]struct {
+			Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
+			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
+		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
 		Image            *string `tfsdk:"image" json:"image,omitempty"`
 		ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 		ImagePullSecrets *[]struct {
@@ -3253,6 +3268,75 @@ func (r *FluentdFluentIoFluentdV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Computed:            false,
 					},
 
+					"env_from": schema.ListNestedAttribute{
+						Description:         "EnvFrom represent environment variables that can be passed to fluentd pods directly from secret or configmap",
+						MarkdownDescription: "EnvFrom represent environment variables that can be passed to fluentd pods directly from secret or configmap",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"config_map_ref": schema.SingleNestedAttribute{
+									Description:         "The ConfigMap to select from",
+									MarkdownDescription: "The ConfigMap to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the ConfigMap must be defined",
+											MarkdownDescription: "Specify whether the ConfigMap must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"prefix": schema.StringAttribute{
+									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"secret_ref": schema.SingleNestedAttribute{
+									Description:         "The Secret to select from",
+									MarkdownDescription: "The Secret to select from",
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"optional": schema.BoolAttribute{
+											Description:         "Specify whether the Secret must be defined",
+											MarkdownDescription: "Specify whether the Secret must be defined",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env_vars": schema.ListNestedAttribute{
 						Description:         "EnvVars represent environment variables that can be passed to fluentd pods.",
 						MarkdownDescription: "EnvVars represent environment variables that can be passed to fluentd pods.",
@@ -5088,6 +5172,34 @@ func (r *FluentdFluentIoFluentdV1Alpha1Manifest) Schema(_ context.Context, _ dat
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"host_aliases": schema.ListNestedAttribute{
+						Description:         "HostAliases is an optional list of IPs and hostnames that will be injected into the pod's hosts file if specified.",
+						MarkdownDescription: "HostAliases is an optional list of IPs and hostnames that will be injected into the pod's hosts file if specified.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"hostnames": schema.ListAttribute{
+									Description:         "Hostnames for the above IP address.",
+									MarkdownDescription: "Hostnames for the above IP address.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ip": schema.StringAttribute{
+									Description:         "IP address of the host file entry.",
+									MarkdownDescription: "IP address of the host file entry.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
 								},
 							},
 						},

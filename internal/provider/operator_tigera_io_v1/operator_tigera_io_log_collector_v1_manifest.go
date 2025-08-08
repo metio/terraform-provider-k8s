@@ -54,14 +54,17 @@ type OperatorTigeraIoLogCollectorV1ManifestData struct {
 			S3 *struct {
 				BucketName *string `tfsdk:"bucket_name" json:"bucketName,omitempty"`
 				BucketPath *string `tfsdk:"bucket_path" json:"bucketPath,omitempty"`
+				HostScope  *string `tfsdk:"host_scope" json:"hostScope,omitempty"`
 				Region     *string `tfsdk:"region" json:"region,omitempty"`
 			} `tfsdk:"s3" json:"s3,omitempty"`
 			Splunk *struct {
-				Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				Endpoint  *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				HostScope *string `tfsdk:"host_scope" json:"hostScope,omitempty"`
 			} `tfsdk:"splunk" json:"splunk,omitempty"`
 			Syslog *struct {
 				Encryption *string   `tfsdk:"encryption" json:"encryption,omitempty"`
 				Endpoint   *string   `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				HostScope  *string   `tfsdk:"host_scope" json:"hostScope,omitempty"`
 				LogTypes   *[]string `tfsdk:"log_types" json:"logTypes,omitempty"`
 				PacketSize *int64    `tfsdk:"packet_size" json:"packetSize,omitempty"`
 			} `tfsdk:"syslog" json:"syslog,omitempty"`
@@ -75,7 +78,8 @@ type OperatorTigeraIoLogCollectorV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -85,7 +89,8 @@ type OperatorTigeraIoLogCollectorV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -103,7 +108,8 @@ type OperatorTigeraIoLogCollectorV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -113,7 +119,8 @@ type OperatorTigeraIoLogCollectorV1ManifestData struct {
 							Name      *string `tfsdk:"name" json:"name,omitempty"`
 							Resources *struct {
 								Claims *[]struct {
-									Name *string `tfsdk:"name" json:"name,omitempty"`
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Request *string `tfsdk:"request" json:"request,omitempty"`
 								} `tfsdk:"claims" json:"claims,omitempty"`
 								Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 								Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -266,6 +273,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 										Computed:            false,
 									},
 
+									"host_scope": schema.StringAttribute{
+										Description:         "The set of hosts that will forward their logs to this store.",
+										MarkdownDescription: "The set of hosts that will forward their logs to this store.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("All", "NonClusterOnly"),
+										},
+									},
+
 									"region": schema.StringAttribute{
 										Description:         "AWS Region of the S3 bucket",
 										MarkdownDescription: "AWS Region of the S3 bucket",
@@ -289,6 +307,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+
+									"host_scope": schema.StringAttribute{
+										Description:         "The set of hosts that will forward their logs to this store",
+										MarkdownDescription: "The set of hosts that will forward their logs to this store",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("All", "NonClusterOnly"),
+										},
 									},
 								},
 								Required: false,
@@ -317,6 +346,17 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+
+									"host_scope": schema.StringAttribute{
+										Description:         "The set of hosts that will forward their logs to this store.",
+										MarkdownDescription: "The set of hosts that will forward their logs to this store.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("All", "NonClusterOnly"),
+										},
 									},
 
 									"log_types": schema.ListAttribute{
@@ -405,6 +445,14 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -471,6 +519,14 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},
@@ -577,6 +633,14 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																						Optional:            false,
 																						Computed:            false,
 																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
 																				},
 																			},
 																			Required: false,
@@ -643,6 +707,14 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ dat
 																						MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 																						Required:            true,
 																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"request": schema.StringAttribute{
+																						Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																						Required:            false,
+																						Optional:            true,
 																						Computed:            false,
 																					},
 																				},

@@ -51,7 +51,71 @@ type NfdKubernetesIoNodeFeatureDiscoveryV1ManifestData struct {
 		Operand        *struct {
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ServicePort     *int64  `tfsdk:"service_port" json:"servicePort,omitempty"`
+			MasterEnvs      *[]struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					FieldRef *struct {
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+					ResourceFieldRef *struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+						Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+					} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"master_envs" json:"masterEnvs,omitempty"`
+			MasterTolerations *[]struct {
+				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key               *string `tfsdk:"key" json:"key,omitempty"`
+				Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+				TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+				Value             *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"master_tolerations" json:"masterTolerations,omitempty"`
+			ServicePort *int64 `tfsdk:"service_port" json:"servicePort,omitempty"`
+			WorkerEnvs  *[]struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Value     *string `tfsdk:"value" json:"value,omitempty"`
+				ValueFrom *struct {
+					ConfigMapKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+					FieldRef *struct {
+						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+					} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+					ResourceFieldRef *struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+						Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+					} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"worker_envs" json:"workerEnvs,omitempty"`
+			WorkerTolerations *[]struct {
+				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key               *string `tfsdk:"key" json:"key,omitempty"`
+				Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+				TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+				Value             *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"worker_tolerations" json:"workerTolerations,omitempty"`
 		} `tfsdk:"operand" json:"operand,omitempty"`
 		PrunerOnDelete  *bool     `tfsdk:"pruner_on_delete" json:"prunerOnDelete,omitempty"`
 		ResourceLabels  *[]string `tfsdk:"resource_labels" json:"resourceLabels,omitempty"`
@@ -195,12 +259,434 @@ func (r *NfdKubernetesIoNodeFeatureDiscoveryV1Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"master_envs": schema.ListNestedAttribute{
+								Description:         "MasterEnv defines environment variables to be added to the master deployment",
+								MarkdownDescription: "MasterEnv defines environment variables to be added to the master deployment",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a ConfigMap.",
+													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Attributes: map[string]schema.Attribute{
+														"api_version": schema.StringAttribute{
+															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"field_path": schema.StringAttribute{
+															Description:         "Path of the field to select in the specified API version.",
+															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"resource_field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Attributes: map[string]schema.Attribute{
+														"container_name": schema.StringAttribute{
+															Description:         "Container name: required for volumes, optional for env vars",
+															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"divisor": schema.StringAttribute{
+															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"resource": schema.StringAttribute{
+															Description:         "Required: resource to select",
+															MarkdownDescription: "Required: resource to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a secret in the pod's namespace",
+													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"master_tolerations": schema.ListNestedAttribute{
+								Description:         "MasterTolerations defines tolerations to be applied to the master deployment",
+								MarkdownDescription: "MasterTolerations defines tolerations to be applied to the master deployment",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"effect": schema.StringAttribute{
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"toleration_seconds": schema.Int64Attribute{
+											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"service_port": schema.Int64Attribute{
 								Description:         "ServicePort specifies the TCP port that nfd-master listens for incoming requests.",
 								MarkdownDescription: "ServicePort specifies the TCP port that nfd-master listens for incoming requests.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"worker_envs": schema.ListNestedAttribute{
+								Description:         "WorkerEnv defines environment variables to be added to the worker Daemonset",
+								MarkdownDescription: "WorkerEnv defines environment variables to be added to the worker Daemonset",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+											MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_from": schema.SingleNestedAttribute{
+											Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+											MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+											Attributes: map[string]schema.Attribute{
+												"config_map_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a ConfigMap.",
+													MarkdownDescription: "Selects a key of a ConfigMap.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key to select.",
+															MarkdownDescription: "The key to select.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the ConfigMap or its key must be defined",
+															MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+													Attributes: map[string]schema.Attribute{
+														"api_version": schema.StringAttribute{
+															Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"field_path": schema.StringAttribute{
+															Description:         "Path of the field to select in the specified API version.",
+															MarkdownDescription: "Path of the field to select in the specified API version.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"resource_field_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+													Attributes: map[string]schema.Attribute{
+														"container_name": schema.StringAttribute{
+															Description:         "Container name: required for volumes, optional for env vars",
+															MarkdownDescription: "Container name: required for volumes, optional for env vars",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"divisor": schema.StringAttribute{
+															Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+															MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"resource": schema.StringAttribute{
+															Description:         "Required: resource to select",
+															MarkdownDescription: "Required: resource to select",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret_key_ref": schema.SingleNestedAttribute{
+													Description:         "Selects a key of a secret in the pod's namespace",
+													MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from. Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"worker_tolerations": schema.ListNestedAttribute{
+								Description:         "WorkerTolerations defines tolerations to be applied to the worker Daemonset",
+								MarkdownDescription: "WorkerTolerations defines tolerations to be applied to the worker Daemonset",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"effect": schema.StringAttribute{
+											Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"toleration_seconds": schema.Int64Attribute{
+											Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
