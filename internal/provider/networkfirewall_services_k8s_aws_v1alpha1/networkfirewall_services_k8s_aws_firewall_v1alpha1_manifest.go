@@ -52,8 +52,15 @@ type NetworkfirewallServicesK8SAwsFirewallV1Alpha1ManifestData struct {
 		FirewallName                   *string `tfsdk:"firewall_name" json:"firewallName,omitempty"`
 		FirewallPolicyARN              *string `tfsdk:"firewall_policy_arn" json:"firewallPolicyARN,omitempty"`
 		FirewallPolicyChangeProtection *bool   `tfsdk:"firewall_policy_change_protection" json:"firewallPolicyChangeProtection,omitempty"`
-		SubnetChangeProtection         *bool   `tfsdk:"subnet_change_protection" json:"subnetChangeProtection,omitempty"`
-		SubnetMappings                 *[]struct {
+		LoggingConfiguration           *struct {
+			LogDestinationConfigs *[]struct {
+				LogDestination     *map[string]string `tfsdk:"log_destination" json:"logDestination,omitempty"`
+				LogDestinationType *string            `tfsdk:"log_destination_type" json:"logDestinationType,omitempty"`
+				LogType            *string            `tfsdk:"log_type" json:"logType,omitempty"`
+			} `tfsdk:"log_destination_configs" json:"logDestinationConfigs,omitempty"`
+		} `tfsdk:"logging_configuration" json:"loggingConfiguration,omitempty"`
+		SubnetChangeProtection *bool `tfsdk:"subnet_change_protection" json:"subnetChangeProtection,omitempty"`
+		SubnetMappings         *[]struct {
 			IpAddressType *string `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
 			SubnetID      *string `tfsdk:"subnet_id" json:"subnetID,omitempty"`
 		} `tfsdk:"subnet_mappings" json:"subnetMappings,omitempty"`
@@ -151,8 +158,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "A description of the firewall.",
-						MarkdownDescription: "A description of the firewall.",
+						Description:         "A description of the firewall. Regex Pattern: '^.*$'",
+						MarkdownDescription: "A description of the firewall. Regex Pattern: '^.*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -184,16 +191,16 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 					},
 
 					"firewall_name": schema.StringAttribute{
-						Description:         "The descriptive name of the firewall. You can't change the name of a firewall after you create it.",
-						MarkdownDescription: "The descriptive name of the firewall. You can't change the name of a firewall after you create it.",
+						Description:         "The descriptive name of the firewall. You can't change the name of a firewall after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
+						MarkdownDescription: "The descriptive name of the firewall. You can't change the name of a firewall after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"firewall_policy_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall.",
+						Description:         "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall. Regex Pattern: '^arn:aws'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the FirewallPolicy that you want to use for the firewall. Regex Pattern: '^arn:aws'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -205,6 +212,51 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"logging_configuration": schema.SingleNestedAttribute{
+						Description:         "Defines how Network Firewall performs logging for a firewall. If you omit this setting, Network Firewall disables logging for the firewall.",
+						MarkdownDescription: "Defines how Network Firewall performs logging for a firewall. If you omit this setting, Network Firewall disables logging for the firewall.",
+						Attributes: map[string]schema.Attribute{
+							"log_destination_configs": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"log_destination": schema.MapAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_destination_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"log_type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"subnet_change_protection": schema.BoolAttribute{
@@ -270,8 +322,8 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 					},
 
 					"vpc_id": schema.StringAttribute{
-						Description:         "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall.",
-						MarkdownDescription: "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall.",
+						Description:         "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall. Regex Pattern: '^vpc-[0-9a-f]+$'",
+						MarkdownDescription: "The unique identifier of the VPC where Network Firewall should create the firewall. You can't change this setting after you create the firewall. Regex Pattern: '^vpc-[0-9a-f]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

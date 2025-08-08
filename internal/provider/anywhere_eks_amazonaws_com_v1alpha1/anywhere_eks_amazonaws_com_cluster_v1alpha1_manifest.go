@@ -52,6 +52,7 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 			Cni       *string `tfsdk:"cni" json:"cni,omitempty"`
 			CniConfig *struct {
 				Cilium *struct {
+					CniExclusive               *bool   `tfsdk:"cni_exclusive" json:"cniExclusive,omitempty"`
 					EgressMasqueradeInterfaces *string `tfsdk:"egress_masquerade_interfaces" json:"egressMasqueradeInterfaces,omitempty"`
 					Ipv4NativeRoutingCIDR      *string `tfsdk:"ipv4_native_routing_cidr" json:"ipv4NativeRoutingCIDR,omitempty"`
 					Ipv6NativeRoutingCIDR      *string `tfsdk:"ipv6_native_routing_cidr" json:"ipv6NativeRoutingCIDR,omitempty"`
@@ -140,6 +141,7 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"identity_provider_refs" json:"identityProviderRefs,omitempty"`
 		KubernetesVersion  *string `tfsdk:"kubernetes_version" json:"kubernetesVersion,omitempty"`
+		LicenseToken       *string `tfsdk:"license_token" json:"licenseToken,omitempty"`
 		MachineHealthCheck *struct {
 			MaxUnhealthy            *string `tfsdk:"max_unhealthy" json:"maxUnhealthy,omitempty"`
 			NodeStartupTimeout      *string `tfsdk:"node_startup_timeout" json:"nodeStartupTimeout,omitempty"`
@@ -199,6 +201,7 @@ type AnywhereEksAmazonawsComClusterV1Alpha1ManifestData struct {
 				MinCount *int64 `tfsdk:"min_count" json:"minCount,omitempty"`
 			} `tfsdk:"autoscaling_configuration" json:"autoscalingConfiguration,omitempty"`
 			Count                *int64             `tfsdk:"count" json:"count,omitempty"`
+			FailureDomains       *[]string          `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
 			KubeletConfiguration *map[string]string `tfsdk:"kubelet_configuration" json:"kubeletConfiguration,omitempty"`
 			KubernetesVersion    *string            `tfsdk:"kubernetes_version" json:"kubernetesVersion,omitempty"`
 			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -359,6 +362,14 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Description:         "CiliumConfig contains configuration specific to the Cilium CNI.",
 										MarkdownDescription: "CiliumConfig contains configuration specific to the Cilium CNI.",
 										Attributes: map[string]schema.Attribute{
+											"cni_exclusive": schema.BoolAttribute{
+												Description:         "CNIExclusive controls whether Cilium should remove other CNI configuration files. When true (default), Cilium removes other CNI configs; when false, it leaves them alone.",
+												MarkdownDescription: "CNIExclusive controls whether Cilium should remove other CNI configuration files. When true (default), Cilium removes other CNI configs; when false, it leaves them alone.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"egress_masquerade_interfaces": schema.StringAttribute{
 												Description:         "EgressMasquaradeInterfaces determines which network interfaces are used for masquerading. Accepted values are a valid interface name or interface prefix.",
 												MarkdownDescription: "EgressMasquaradeInterfaces determines which network interfaces are used for masquerading. Accepted values are a valid interface name or interface prefix.",
@@ -933,6 +944,14 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 						Computed:            false,
 					},
 
+					"license_token": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"machine_health_check": schema.SingleNestedAttribute{
 						Description:         "MachineHealthCheck allows to configure timeouts for machine health checks. Machine Health Checks are responsible for remediating unhealthy Machines. Configuring these values will decide how long to wait to remediate unhealthy machine or determine health of nodes' machines.",
 						MarkdownDescription: "MachineHealthCheck allows to configure timeouts for machine health checks. Machine Health Checks are responsible for remediating unhealthy Machines. Configuring these values will decide how long to wait to remediate unhealthy machine or determine health of nodes' machines.",
@@ -1310,6 +1329,15 @@ func (r *AnywhereEksAmazonawsComClusterV1Alpha1Manifest) Schema(_ context.Contex
 								"count": schema.Int64Attribute{
 									Description:         "Count defines the number of desired worker nodes. Defaults to 1.",
 									MarkdownDescription: "Count defines the number of desired worker nodes. Defaults to 1.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"failure_domains": schema.ListAttribute{
+									Description:         "FailureDomains is the optional list of failure domains to distribute worker nodes across the infrastructure.",
+									MarkdownDescription: "FailureDomains is the optional list of failure domains to distribute worker nodes across the infrastructure.",
+									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

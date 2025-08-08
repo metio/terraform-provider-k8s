@@ -64,10 +64,9 @@ type KarpenterShNodeClaimV1Beta1ManifestData struct {
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"node_class_ref" json:"nodeClassRef,omitempty"`
 		Requirements *[]struct {
-			Key       *string   `tfsdk:"key" json:"key,omitempty"`
-			MinValues *int64    `tfsdk:"min_values" json:"minValues,omitempty"`
-			Operator  *string   `tfsdk:"operator" json:"operator,omitempty"`
-			Values    *[]string `tfsdk:"values" json:"values,omitempty"`
+			Key      *string   `tfsdk:"key" json:"key,omitempty"`
+			Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+			Values   *[]string `tfsdk:"values" json:"values,omitempty"`
 		} `tfsdk:"requirements" json:"requirements,omitempty"`
 		Resources *struct {
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -327,18 +326,6 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 									},
 								},
 
-								"min_values": schema.Int64Attribute{
-									Description:         "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-									MarkdownDescription: "This field is ALPHA and can be dropped or replaced at any time MinValues is the minimum number of unique values required to define the flexibility of the specific requirement.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.Int64{
-										int64validator.AtLeast(1),
-										int64validator.AtMost(50),
-									},
-								},
-
 								"operator": schema.StringAttribute{
 									Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
 									MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
@@ -495,8 +482,8 @@ func (r *KarpenterShNodeClaimV1Beta1Manifest) Schema(_ context.Context, _ dataso
 						Computed: false,
 					},
 				},
-				Required: true,
-				Optional: false,
+				Required: false,
+				Optional: true,
 				Computed: false,
 			},
 		},

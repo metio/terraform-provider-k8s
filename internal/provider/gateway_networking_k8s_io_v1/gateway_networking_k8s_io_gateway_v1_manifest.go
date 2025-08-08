@@ -50,16 +50,7 @@ type GatewayNetworkingK8SIoGatewayV1ManifestData struct {
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"addresses" json:"addresses,omitempty"`
 		GatewayClassName *string `tfsdk:"gateway_class_name" json:"gatewayClassName,omitempty"`
-		Infrastructure   *struct {
-			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			ParametersRef *struct {
-				Group *string `tfsdk:"group" json:"group,omitempty"`
-				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
-				Name  *string `tfsdk:"name" json:"name,omitempty"`
-			} `tfsdk:"parameters_ref" json:"parametersRef,omitempty"`
-		} `tfsdk:"infrastructure" json:"infrastructure,omitempty"`
-		Listeners *[]struct {
+		Listeners        *[]struct {
 			AllowedRoutes *struct {
 				Kinds *[]struct {
 					Group *string `tfsdk:"group" json:"group,omitempty"`
@@ -218,79 +209,6 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Schema(_ context.Context, _ da
 							stringvalidator.LengthAtLeast(1),
 							stringvalidator.LengthAtMost(253),
 						},
-					},
-
-					"infrastructure": schema.SingleNestedAttribute{
-						Description:         "Infrastructure defines infrastructure level attributes about this Gateway instance. Support: Extended",
-						MarkdownDescription: "Infrastructure defines infrastructure level attributes about this Gateway instance. Support: Extended",
-						Attributes: map[string]schema.Attribute{
-							"annotations": schema.MapAttribute{
-								Description:         "Annotations that SHOULD be applied to any resources created in response to this Gateway. For implementations creating other Kubernetes objects, this should be the 'metadata.annotations' field on resources. For other implementations, this refers to any relevant (implementation specific) 'annotations' concepts. An implementation may chose to add additional implementation-specific annotations as they see fit. Support: Extended",
-								MarkdownDescription: "Annotations that SHOULD be applied to any resources created in response to this Gateway. For implementations creating other Kubernetes objects, this should be the 'metadata.annotations' field on resources. For other implementations, this refers to any relevant (implementation specific) 'annotations' concepts. An implementation may chose to add additional implementation-specific annotations as they see fit. Support: Extended",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"labels": schema.MapAttribute{
-								Description:         "Labels that SHOULD be applied to any resources created in response to this Gateway. For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources. For other implementations, this refers to any relevant (implementation specific) 'labels' concepts. An implementation may chose to add additional implementation-specific labels as they see fit. If an implementation maps these labels to Pods, or any other resource that would need to be recreated when labels change, it SHOULD clearly warn about this behavior in documentation. Support: Extended",
-								MarkdownDescription: "Labels that SHOULD be applied to any resources created in response to this Gateway. For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources. For other implementations, this refers to any relevant (implementation specific) 'labels' concepts. An implementation may chose to add additional implementation-specific labels as they see fit. If an implementation maps these labels to Pods, or any other resource that would need to be recreated when labels change, it SHOULD clearly warn about this behavior in documentation. Support: Extended",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"parameters_ref": schema.SingleNestedAttribute{
-								Description:         "ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the Gateway. This is optional if the controller does not require any additional configuration. This follows the same semantics as GatewayClass's 'parametersRef', but on a per-Gateway basis The Gateway's GatewayClass may provide its own 'parametersRef'. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway. Support: Implementation-specific",
-								MarkdownDescription: "ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the Gateway. This is optional if the controller does not require any additional configuration. This follows the same semantics as GatewayClass's 'parametersRef', but on a per-Gateway basis The Gateway's GatewayClass may provide its own 'parametersRef'. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway. Support: Implementation-specific",
-								Attributes: map[string]schema.Attribute{
-									"group": schema.StringAttribute{
-										Description:         "Group is the group of the referent.",
-										MarkdownDescription: "Group is the group of the referent.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtMost(253),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-										},
-									},
-
-									"kind": schema.StringAttribute{
-										Description:         "Kind is kind of the referent.",
-										MarkdownDescription: "Kind is kind of the referent.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-											stringvalidator.LengthAtMost(63),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
-										},
-									},
-
-									"name": schema.StringAttribute{
-										Description:         "Name is the name of the referent.",
-										MarkdownDescription: "Name is the name of the referent.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtLeast(1),
-											stringvalidator.LengthAtMost(253),
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
 					},
 
 					"listeners": schema.ListNestedAttribute{
@@ -464,7 +382,7 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Schema(_ context.Context, _ da
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),
 										stringvalidator.LengthAtMost(255),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?$|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9]+$`), ""),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9]([-a-zSA-Z0-9]*[a-zA-Z0-9])?$|[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*\/[A-Za-z0-9]+$`), ""),
 									},
 								},
 

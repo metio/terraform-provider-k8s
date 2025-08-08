@@ -706,8 +706,8 @@ func (r *PersistentVolumeV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"csi": schema.SingleNestedAttribute{
-						Description:         "Represents storage that is managed by an external CSI volume driver (Beta feature)",
-						MarkdownDescription: "Represents storage that is managed by an external CSI volume driver (Beta feature)",
+						Description:         "Represents storage that is managed by an external CSI volume driver",
+						MarkdownDescription: "Represents storage that is managed by an external CSI volume driver",
 						Attributes: map[string]schema.Attribute{
 							"controller_expand_secret_ref": schema.SingleNestedAttribute{
 								Description:         "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace",
@@ -1246,8 +1246,8 @@ func (r *PersistentVolumeV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"local": schema.SingleNestedAttribute{
-						Description:         "Local represents directly-attached storage with node affinity (Beta feature)",
-						MarkdownDescription: "Local represents directly-attached storage with node affinity (Beta feature)",
+						Description:         "Local represents directly-attached storage with node affinity",
+						MarkdownDescription: "Local represents directly-attached storage with node affinity",
 						Attributes: map[string]schema.Attribute{
 							"fs_type": schema.StringAttribute{
 								Description:         "fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. The default value is to auto-select a filesystem if unspecified.",
@@ -1848,8 +1848,8 @@ func (r *PersistentVolumeV1Manifest) Schema(_ context.Context, _ datasource.Sche
 					},
 
 					"volume_attributes_class_name": schema.StringAttribute{
-						Description:         "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
-						MarkdownDescription: "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+						Description:         "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process.",
+						MarkdownDescription: "Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

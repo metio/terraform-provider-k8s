@@ -247,6 +247,12 @@ type AppsStatefulSetV1ManifestData struct {
 								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							FileKeyRef *struct {
+								Key        *string `tfsdk:"key" json:"key,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -317,6 +323,7 @@ type AppsStatefulSetV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -396,7 +403,14 @@ type AppsStatefulSetV1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
-					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicy      *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicyRules *[]struct {
+						Action    *string `tfsdk:"action" json:"action,omitempty"`
+						ExitCodes *struct {
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"exit_codes" json:"exitCodes,omitempty"`
+					} `tfsdk:"restart_policy_rules" json:"restartPolicyRules,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						AppArmorProfile          *struct {
@@ -505,6 +519,12 @@ type AppsStatefulSetV1ManifestData struct {
 								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							FileKeyRef *struct {
+								Key        *string `tfsdk:"key" json:"key,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -575,6 +595,7 @@ type AppsStatefulSetV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -654,7 +675,14 @@ type AppsStatefulSetV1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
-					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicy      *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicyRules *[]struct {
+						Action    *string `tfsdk:"action" json:"action,omitempty"`
+						ExitCodes *struct {
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"exit_codes" json:"exitCodes,omitempty"`
+					} `tfsdk:"restart_policy_rules" json:"restartPolicyRules,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						AppArmorProfile          *struct {
@@ -747,6 +775,7 @@ type AppsStatefulSetV1ManifestData struct {
 				HostPID          *bool   `tfsdk:"host_pid" json:"hostPID,omitempty"`
 				HostUsers        *bool   `tfsdk:"host_users" json:"hostUsers,omitempty"`
 				Hostname         *string `tfsdk:"hostname" json:"hostname,omitempty"`
+				HostnameOverride *string `tfsdk:"hostname_override" json:"hostnameOverride,omitempty"`
 				ImagePullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
@@ -766,6 +795,12 @@ type AppsStatefulSetV1ManifestData struct {
 								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							FileKeyRef *struct {
+								Key        *string `tfsdk:"key" json:"key,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+							} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 							ResourceFieldRef *struct {
 								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -836,6 +871,7 @@ type AppsStatefulSetV1ManifestData struct {
 								Port *string `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 						} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+						StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 					} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 					LivenessProbe *struct {
 						Exec *struct {
@@ -915,7 +951,14 @@ type AppsStatefulSetV1ManifestData struct {
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
-					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicy      *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+					RestartPolicyRules *[]struct {
+						Action    *string `tfsdk:"action" json:"action,omitempty"`
+						ExitCodes *struct {
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"exit_codes" json:"exitCodes,omitempty"`
+					} `tfsdk:"restart_policy_rules" json:"restartPolicyRules,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 						AppArmorProfile          *struct {
@@ -1015,6 +1058,14 @@ type AppsStatefulSetV1ManifestData struct {
 					ResourceClaimName         *string `tfsdk:"resource_claim_name" json:"resourceClaimName,omitempty"`
 					ResourceClaimTemplateName *string `tfsdk:"resource_claim_template_name" json:"resourceClaimTemplateName,omitempty"`
 				} `tfsdk:"resource_claims" json:"resourceClaims,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
 				RestartPolicy    *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 				SchedulerName    *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
@@ -1031,6 +1082,7 @@ type AppsStatefulSetV1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1346,6 +1398,14 @@ type AppsStatefulSetV1ManifestData struct {
 									} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
 								} `tfsdk:"items" json:"items,omitempty"`
 							} `tfsdk:"downward_api" json:"downwardAPI,omitempty"`
+							PodCertificate *struct {
+								CertificateChainPath *string `tfsdk:"certificate_chain_path" json:"certificateChainPath,omitempty"`
+								CredentialBundlePath *string `tfsdk:"credential_bundle_path" json:"credentialBundlePath,omitempty"`
+								KeyPath              *string `tfsdk:"key_path" json:"keyPath,omitempty"`
+								KeyType              *string `tfsdk:"key_type" json:"keyType,omitempty"`
+								MaxExpirationSeconds *int64  `tfsdk:"max_expiration_seconds" json:"maxExpirationSeconds,omitempty"`
+								SignerName           *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"pod_certificate" json:"podCertificate,omitempty"`
 							Secret *struct {
 								Items *[]struct {
 									Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1740,8 +1800,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 					"service_name": schema.StringAttribute{
 						Description:         "serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where 'pod-specific-string' is managed by the StatefulSet controller.",
 						MarkdownDescription: "serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where 'pod-specific-string' is managed by the StatefulSet controller.",
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -2295,8 +2355,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"match_label_keys": schema.ListAttribute{
-																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2304,8 +2364,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"mismatch_label_keys": schema.ListAttribute{
-																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2462,8 +2522,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2471,8 +2531,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2566,8 +2626,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												MarkdownDescription: "Pod anti affinity is a group of inter pod anti affinity scheduling rules.",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+														MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2629,8 +2689,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"match_label_keys": schema.ListAttribute{
-																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																			Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																			MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2638,8 +2698,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"mismatch_label_keys": schema.ListAttribute{
-																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																			Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																			MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																			ElementType:         types.StringType,
 																			Required:            false,
 																			Optional:            true,
@@ -2796,8 +2856,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2805,8 +2865,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2937,8 +2997,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -3004,6 +3064,47 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			"field_path": schema.StringAttribute{
 																				Description:         "Path of the field to select in the specified API version.",
 																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"file_key_ref": schema.SingleNestedAttribute{
+																		Description:         "FileKeySelector selects a key of the env file.",
+																		MarkdownDescription: "FileKeySelector selects a key of the env file.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"volume_name": schema.StringAttribute{
+																				Description:         "The name of the volume mount containing the env file.",
+																				MarkdownDescription: "The name of the volume mount containing the env file.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -3092,8 +3193,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"env_from": schema.ListNestedAttribute{
-													Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"config_map_ref": schema.SingleNestedAttribute{
@@ -3122,8 +3223,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"prefix": schema.StringAttribute{
-																Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3456,6 +3557,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -3493,8 +3602,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3754,8 +3863,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3948,8 +4057,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 													Attributes: map[string]schema.Attribute{
 														"claims": schema.ListNestedAttribute{
-															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -3998,11 +4107,56 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"restart_policy": schema.StringAttribute{
-													Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
-													MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+													Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+													MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"restart_policy_rules": schema.ListNestedAttribute{
+													Description:         "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+													MarkdownDescription: "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"action": schema.StringAttribute{
+																Description:         "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																MarkdownDescription: "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"exit_codes": schema.SingleNestedAttribute{
+																Description:         "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																MarkdownDescription: "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																Attributes: map[string]schema.Attribute{
+																	"operator": schema.StringAttribute{
+																		Description:         "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		MarkdownDescription: "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		MarkdownDescription: "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -4260,8 +4414,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4589,16 +4743,16 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "Required.",
-															MarkdownDescription: "Required.",
+															Description:         "Name is this DNS resolver option's name. Required.",
+															MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"value": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Value is this DNS resolver option's value.",
+															MarkdownDescription: "Value is this DNS resolver option's value.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4672,8 +4826,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4739,6 +4893,47 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			"field_path": schema.StringAttribute{
 																				Description:         "Path of the field to select in the specified API version.",
 																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"file_key_ref": schema.SingleNestedAttribute{
+																		Description:         "FileKeySelector selects a key of the env file.",
+																		MarkdownDescription: "FileKeySelector selects a key of the env file.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"volume_name": schema.StringAttribute{
+																				Description:         "The name of the volume mount containing the env file.",
+																				MarkdownDescription: "The name of the volume mount containing the env file.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -4827,8 +5022,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"env_from": schema.ListNestedAttribute{
-													Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"config_map_ref": schema.SingleNestedAttribute{
@@ -4857,8 +5052,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"prefix": schema.StringAttribute{
-																Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5191,6 +5386,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -5228,8 +5431,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5489,8 +5692,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5683,8 +5886,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 													Attributes: map[string]schema.Attribute{
 														"claims": schema.ListNestedAttribute{
-															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -5733,11 +5936,56 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"restart_policy": schema.StringAttribute{
-													Description:         "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
-													MarkdownDescription: "Restart policy for the container to manage the restart behavior of each container within a pod. This may only be set for init containers. You cannot set this field on ephemeral containers.",
+													Description:         "Restart policy for the container to manage the restart behavior of each container within a pod. You cannot set this field on ephemeral containers.",
+													MarkdownDescription: "Restart policy for the container to manage the restart behavior of each container within a pod. You cannot set this field on ephemeral containers.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"restart_policy_rules": schema.ListNestedAttribute{
+													Description:         "Represents a list of rules to be checked to determine if the container should be restarted on exit. You cannot set this field on ephemeral containers.",
+													MarkdownDescription: "Represents a list of rules to be checked to determine if the container should be restarted on exit. You cannot set this field on ephemeral containers.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"action": schema.StringAttribute{
+																Description:         "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																MarkdownDescription: "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"exit_codes": schema.SingleNestedAttribute{
+																Description:         "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																MarkdownDescription: "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																Attributes: map[string]schema.Attribute{
+																	"operator": schema.StringAttribute{
+																		Description:         "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		MarkdownDescription: "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		MarkdownDescription: "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -5995,8 +6243,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6350,8 +6598,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"host_network": schema.BoolAttribute{
-										Description:         "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
-										MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.",
+										Description:         "Host networking requested for this pod. Use the host's network namespace. When using HostNetwork you should specify ports so the scheduler is aware. When 'hostNetwork' is true, specified 'hostPort' fields in port definitions must match 'containerPort', and unspecified 'hostPort' fields in port definitions are defaulted to match 'containerPort'. Default to false.",
+										MarkdownDescription: "Host networking requested for this pod. Use the host's network namespace. When using HostNetwork you should specify ports so the scheduler is aware. When 'hostNetwork' is true, specified 'hostPort' fields in port definitions must match 'containerPort', and unspecified 'hostPort' fields in port definitions are defaulted to match 'containerPort'. Default to false.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6381,6 +6629,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										Computed:            false,
 									},
 
+									"hostname_override": schema.StringAttribute{
+										Description:         "HostnameOverride specifies an explicit override for the pod's hostname as perceived by the pod. This field only specifies the pod's hostname and does not affect its DNS records. When this field is set to a non-empty string: - It takes precedence over the values set in 'hostname' and 'subdomain'. - The Pod's hostname will be set to this value. - 'setHostnameAsFQDN' must be nil or set to false. - 'hostNetwork' must be set to false. This field must be a valid DNS subdomain as defined in RFC 1123 and contain at most 64 characters. Requires the HostnameOverride feature gate to be enabled.",
+										MarkdownDescription: "HostnameOverride specifies an explicit override for the pod's hostname as perceived by the pod. This field only specifies the pod's hostname and does not affect its DNS records. When this field is set to a non-empty string: - It takes precedence over the values set in 'hostname' and 'subdomain'. - The Pod's hostname will be set to this value. - 'setHostnameAsFQDN' must be nil or set to false. - 'hostNetwork' must be set to false. This field must be a valid DNS subdomain as defined in RFC 1123 and contain at most 64 characters. Requires the HostnameOverride feature gate to be enabled.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"image_pull_secrets": schema.ListNestedAttribute{
 										Description:         "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
 										MarkdownDescription: "ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod",
@@ -6401,8 +6657,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 									},
 
 									"init_containers": schema.ListNestedAttribute{
-										Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
-										MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+										Description:         "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
+										MarkdownDescription: "List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"args": schema.ListAttribute{
@@ -6429,8 +6685,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6496,6 +6752,47 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			"field_path": schema.StringAttribute{
 																				Description:         "Path of the field to select in the specified API version.",
 																				MarkdownDescription: "Path of the field to select in the specified API version.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"file_key_ref": schema.SingleNestedAttribute{
+																		Description:         "FileKeySelector selects a key of the env file.",
+																		MarkdownDescription: "FileKeySelector selects a key of the env file.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"volume_name": schema.StringAttribute{
+																				Description:         "The name of the volume mount containing the env file.",
+																				MarkdownDescription: "The name of the volume mount containing the env file.",
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
@@ -6584,8 +6881,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"env_from": schema.ListNestedAttribute{
-													Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+													MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"config_map_ref": schema.SingleNestedAttribute{
@@ -6614,8 +6911,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															},
 
 															"prefix": schema.StringAttribute{
-																Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-																MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+																Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+																MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6948,6 +7245,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 															Optional: true,
 															Computed: false,
 														},
+
+														"stop_signal": schema.StringAttribute{
+															Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 													Required: false,
 													Optional: true,
@@ -6985,8 +7290,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7246,8 +7551,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7440,8 +7745,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
 													Attributes: map[string]schema.Attribute{
 														"claims": schema.ListNestedAttribute{
-															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+															MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 															NestedObject: schema.NestedAttributeObject{
 																Attributes: map[string]schema.Attribute{
 																	"name": schema.StringAttribute{
@@ -7490,11 +7795,56 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"restart_policy": schema.StringAttribute{
-													Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
-													MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+													Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+													MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"restart_policy_rules": schema.ListNestedAttribute{
+													Description:         "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+													MarkdownDescription: "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"action": schema.StringAttribute{
+																Description:         "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																MarkdownDescription: "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"exit_codes": schema.SingleNestedAttribute{
+																Description:         "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																MarkdownDescription: "ContainerRestartRuleOnExitCodes describes the condition for handling an exited container based on its exit codes.",
+																Attributes: map[string]schema.Attribute{
+																	"operator": schema.StringAttribute{
+																		Description:         "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		MarkdownDescription: "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		MarkdownDescription: "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"security_context": schema.SingleNestedAttribute{
@@ -7752,8 +8102,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 														},
 
 														"grpc": schema.SingleNestedAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "GRPCAction specifies an action involving a GRPC service.",
+															MarkdownDescription: "GRPCAction specifies an action involving a GRPC service.",
 															Attributes: map[string]schema.Attribute{
 																"port": schema.Int64Attribute{
 																	Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -8186,6 +8536,60 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										Computed: false,
 									},
 
+									"resources": schema.SingleNestedAttribute{
+										Description:         "ResourceRequirements describes the compute resource requirements.",
+										MarkdownDescription: "ResourceRequirements describes the compute resource requirements.",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"restart_policy": schema.StringAttribute{
 										Description:         "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
 										MarkdownDescription: "Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy",
@@ -8296,6 +8700,14 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 											"run_as_user": schema.Int64Attribute{
 												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -8644,16 +9056,16 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 												},
 
 												"node_affinity_policy": schema.StringAttribute{
-													Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-													MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+													Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+													MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"node_taints_policy": schema.StringAttribute{
-													Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-													MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+													Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+													MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9495,8 +9907,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"data_source_ref": schema.SingleNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
+																			Description:         "TypedObjectReference contains enough information to let you locate the typed referenced object",
+																			MarkdownDescription: "TypedObjectReference contains enough information to let you locate the typed referenced object",
 																			Attributes: map[string]schema.Attribute{
 																				"api_group": schema.StringAttribute{
 																					Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -9625,8 +10037,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																		},
 
 																		"volume_attributes_class_name": schema.StringAttribute{
-																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
-																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+																			Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+																			MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -9877,8 +10289,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													MarkdownDescription: "Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling.",
 													Attributes: map[string]schema.Attribute{
 														"endpoints": schema.StringAttribute{
-															Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-															MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+															Description:         "endpoints is the endpoint name that details Glusterfs topology.",
+															MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -10445,6 +10857,63 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Required: false,
 																				Optional: true,
 																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"pod_certificate": schema.SingleNestedAttribute{
+																		Description:         "PodCertificateProjection provides a private key and X.509 certificate in the pod filesystem.",
+																		MarkdownDescription: "PodCertificateProjection provides a private key and X.509 certificate in the pod filesystem.",
+																		Attributes: map[string]schema.Attribute{
+																			"certificate_chain_path": schema.StringAttribute{
+																				Description:         "Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																				MarkdownDescription: "Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"credential_bundle_path": schema.StringAttribute{
+																				Description:         "Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod's application code make a single atomic read that retrieves a consistent key and certificate chain. If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key.",
+																				MarkdownDescription: "Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod's application code make a single atomic read that retrieves a consistent key and certificate chain. If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"key_path": schema.StringAttribute{
+																				Description:         "Write the key at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																				MarkdownDescription: "Write the key at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"key_type": schema.StringAttribute{
+																				Description:         "The type of keypair Kubelet will generate for the pod. Valid values are 'RSA3072', 'RSA4096', 'ECDSAP256', 'ECDSAP384', 'ECDSAP521', and 'ED25519'.",
+																				MarkdownDescription: "The type of keypair Kubelet will generate for the pod. Valid values are 'RSA3072', 'RSA4096', 'ECDSAP256', 'ECDSAP384', 'ECDSAP521', and 'ED25519'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"max_expiration_seconds": schema.Int64Attribute{
+																				Description:         "maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour). The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour). This constraint is enforced by kube-apiserver. 'kubernetes.io' signers will never issue certificates with a lifetime longer than 24 hours.",
+																				MarkdownDescription: "maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour). The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour). This constraint is enforced by kube-apiserver. 'kubernetes.io' signers will never issue certificates with a lifetime longer than 24 hours.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"signer_name": schema.StringAttribute{
+																				Description:         "Kubelet's generated CSRs will be addressed to this signer.",
+																				MarkdownDescription: "Kubelet's generated CSRs will be addressed to this signer.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
 																			},
 																		},
 																		Required: false,
@@ -11342,8 +11811,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"data_source_ref": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "TypedObjectReference contains enough information to let you locate the typed referenced object",
+											MarkdownDescription: "TypedObjectReference contains enough information to let you locate the typed referenced object",
 											Attributes: map[string]schema.Attribute{
 												"api_group": schema.StringAttribute{
 													Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -11472,8 +11941,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"volume_attributes_class_name": schema.StringAttribute{
-											Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
-											MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+											Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+											MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11584,16 +12053,16 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 													},
 
 													"status": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
+														MarkdownDescription: "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
 													},
 
 													"type": schema.StringAttribute{
-														Description:         "",
-														MarkdownDescription: "",
+														Description:         "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
+														MarkdownDescription: "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -11606,8 +12075,8 @@ func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.Schem
 										},
 
 										"current_volume_attributes_class_name": schema.StringAttribute{
-											Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
-											MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+											Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim",
+											MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

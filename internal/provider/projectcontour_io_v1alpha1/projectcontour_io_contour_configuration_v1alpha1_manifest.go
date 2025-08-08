@@ -88,6 +88,9 @@ type ProjectcontourIoContourConfigurationV1Alpha1ManifestData struct {
 				Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 			} `tfsdk:"https" json:"https,omitempty"`
 			Listener *struct {
+				Compression *struct {
+					Algorithm *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
+				} `tfsdk:"compression" json:"compression,omitempty"`
 				ConnectionBalancer                *string `tfsdk:"connection_balancer" json:"connectionBalancer,omitempty"`
 				DisableAllowChunkedLength         *bool   `tfsdk:"disable_allow_chunked_length" json:"disableAllowChunkedLength,omitempty"`
 				DisableMergeSlashes               *bool   `tfsdk:"disable_merge_slashes" json:"disableMergeSlashes,omitempty"`
@@ -124,9 +127,14 @@ type ProjectcontourIoContourConfigurationV1Alpha1ManifestData struct {
 				} `tfsdk:"tls" json:"tls,omitempty"`
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Network *struct {
-				AdminPort      *int64 `tfsdk:"admin_port" json:"adminPort,omitempty"`
-				NumTrustedHops *int64 `tfsdk:"num_trusted_hops" json:"numTrustedHops,omitempty"`
+				AdminPort            *int64 `tfsdk:"admin_port" json:"adminPort,omitempty"`
+				NumTrustedHops       *int64 `tfsdk:"num_trusted_hops" json:"numTrustedHops,omitempty"`
+				StripTrailingHostDot *bool  `tfsdk:"strip_trailing_host_dot" json:"stripTrailingHostDot,omitempty"`
 			} `tfsdk:"network" json:"network,omitempty"`
+			OmEnforcedHealth *struct {
+				Address *string `tfsdk:"address" json:"address,omitempty"`
+				Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"om_enforced_health" json:"omEnforcedHealth,omitempty"`
 			Service *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -268,7 +276,6 @@ type ProjectcontourIoContourConfigurationV1Alpha1ManifestData struct {
 				Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
 				KeyFile  *string `tfsdk:"key_file" json:"keyFile,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
-			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"xds_server" json:"xdsServer,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -647,6 +654,26 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								Description:         "Listener hold various configurable Envoy listener values.",
 								MarkdownDescription: "Listener hold various configurable Envoy listener values.",
 								Attributes: map[string]schema.Attribute{
+									"compression": schema.SingleNestedAttribute{
+										Description:         "Compression defines configuration related to compression in the default HTTP Listener filters.",
+										MarkdownDescription: "Compression defines configuration related to compression in the default HTTP Listener filters.",
+										Attributes: map[string]schema.Attribute{
+											"algorithm": schema.StringAttribute{
+												Description:         "Algorithm selects the response compression type applied in the compression HTTP filter of the default Listener filters. Values: 'gzip' (default), 'brotli', 'zstd', 'disabled'. Setting this to 'disabled' will make Envoy skip 'Accept-Encoding: gzip,deflate' request header and always return uncompressed response.",
+												MarkdownDescription: "Algorithm selects the response compression type applied in the compression HTTP filter of the default Listener filters. Values: 'gzip' (default), 'brotli', 'zstd', 'disabled'. Setting this to 'disabled' will make Envoy skip 'Accept-Encoding: gzip,deflate' request header and always return uncompressed response.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("gzip", "brotli", "zstd", "disabled"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"connection_balancer": schema.StringAttribute{
 										Description:         "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
 										MarkdownDescription: "ConnectionBalancer. If the value is exact, the listener will use the exact connection balancer See https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener.proto#envoy-api-msg-listener-connectionbalanceconfig for more information. Values: (empty string): use the default ConnectionBalancer, 'exact': use the Exact ConnectionBalancer. Other values will produce an error.",
@@ -937,6 +964,42 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"strip_trailing_host_dot": schema.BoolAttribute{
+										Description:         "EnvoyStripTrailingHostDot defines if trailing dot of the host should be removed from host/authority header before any processing of request by HTTP filters or routing. This affects the upstream host header. Without setting this option to true, incoming requests with host example.com. will not match against route with domains match set to example.com. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=strip_trailing_host_dot for more information. Contour's default is false.",
+										MarkdownDescription: "EnvoyStripTrailingHostDot defines if trailing dot of the host should be removed from host/authority header before any processing of request by HTTP filters or routing. This affects the upstream host header. Without setting this option to true, incoming requests with host example.com. will not match against route with domains match set to example.com. See https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto?highlight=strip_trailing_host_dot for more information. Contour's default is false.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"om_enforced_health": schema.SingleNestedAttribute{
+								Description:         "OMEnforcedHealth defines the endpoint Envoy uses to serve health checks with the envoy overload manager actions, such as global connection limits, enforced. The configured values must be different from the endpoints configured by [EnvoyConfig.Metrics] and [EnvoyConfig.Health] This is disabled by default",
+								MarkdownDescription: "OMEnforcedHealth defines the endpoint Envoy uses to serve health checks with the envoy overload manager actions, such as global connection limits, enforced. The configured values must be different from the endpoints configured by [EnvoyConfig.Metrics] and [EnvoyConfig.Health] This is disabled by default",
+								Attributes: map[string]schema.Attribute{
+									"address": schema.StringAttribute{
+										Description:         "Defines the health address interface.",
+										MarkdownDescription: "Defines the health address interface.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+										},
+									},
+
+									"port": schema.Int64Attribute{
+										Description:         "Defines the health port.",
+										MarkdownDescription: "Defines the health port.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1039,8 +1102,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 					},
 
 					"feature_flags": schema.ListAttribute{
-						Description:         "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
-						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features. Available toggles are: useEndpointSlices - Configures contour to fetch endpoint data from k8s endpoint slices. defaults to true, If false then reads endpoint data from the k8s endpoints.",
+						Description:         "FeatureFlags defines toggle to enable new contour features.",
+						MarkdownDescription: "FeatureFlags defines toggle to enable new contour features.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1484,8 +1547,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																	"value": schema.StringAttribute{
 																		Description:         "Value defines the value of the descriptor entry.",
 																		MarkdownDescription: "Value defines the value of the descriptor entry.",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtLeast(1),
@@ -1513,8 +1576,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																	"descriptor_key": schema.StringAttribute{
 																		Description:         "DescriptorKey defines the key to use on the descriptor entry.",
 																		MarkdownDescription: "DescriptorKey defines the key to use on the descriptor entry.",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtLeast(1),
@@ -1524,8 +1587,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																	"header_name": schema.StringAttribute{
 																		Description:         "HeaderName defines the name of the header to look for on the request.",
 																		MarkdownDescription: "HeaderName defines the name of the header to look for on the request.",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtLeast(1),
@@ -1643,8 +1706,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 																	"value": schema.StringAttribute{
 																		Description:         "Value defines the value of the descriptor entry.",
 																		MarkdownDescription: "Value defines the value of the descriptor entry.",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtLeast(1),
@@ -1657,8 +1720,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 															},
 														},
 													},
-													Required: false,
-													Optional: true,
+													Required: true,
+													Optional: false,
 													Computed: false,
 												},
 											},
@@ -1906,14 +1969,6 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.
 								Required: false,
 								Optional: true,
 								Computed: false,
-							},
-
-							"type": schema.StringAttribute{
-								Description:         "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
-								MarkdownDescription: "Defines the XDSServer to use for 'contour serve'. Values: 'envoy' (default), 'contour (deprecated)'. Other values will produce an error. Deprecated: this field will be removed in a future release when the 'contour' xDS server implementation is removed.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
 							},
 						},
 						Required: false,

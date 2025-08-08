@@ -533,6 +533,8 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			TimestampKey     *string            `tfsdk:"timestamp_key" json:"timestampKey,omitempty"`
 			TopicKey         *string            `tfsdk:"topic_key" json:"topicKey,omitempty"`
 			Topics           *string            `tfsdk:"topics" json:"topics,omitempty"`
+			TotalLimitSize   *string            `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
+			Workers          *int64             `tfsdk:"workers" json:"workers,omitempty"`
 		} `tfsdk:"kafka" json:"kafka,omitempty"`
 		Kinesis *struct {
 			AutoRetryRequests *bool   `tfsdk:"auto_retry_requests" json:"autoRetryRequests,omitempty"`
@@ -624,13 +626,14 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				Verify *bool   `tfsdk:"verify" json:"verify,omitempty"`
 				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
-			Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+			TotalLimitSize *string `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
+			Uri            *string `tfsdk:"uri" json:"uri,omitempty"`
+			Workers        *int64  `tfsdk:"workers" json:"workers,omitempty"`
 		} `tfsdk:"loki" json:"loki,omitempty"`
 		Match      *string            `tfsdk:"match" json:"match,omitempty"`
 		MatchRegex *string            `tfsdk:"match_regex" json:"matchRegex,omitempty"`
 		Null       *map[string]string `tfsdk:"null" json:"null,omitempty"`
 		Opensearch *struct {
-			Workers          *int64  `tfsdk:"workers" json:"Workers,omitempty"`
 			AwsAuth          *string `tfsdk:"aws_auth" json:"awsAuth,omitempty"`
 			AwsExternalID    *string `tfsdk:"aws_external_id" json:"awsExternalID,omitempty"`
 			AwsRegion        *string `tfsdk:"aws_region" json:"awsRegion,omitempty"`
@@ -709,6 +712,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			TraceError     *bool   `tfsdk:"trace_error" json:"traceError,omitempty"`
 			TraceOutput    *bool   `tfsdk:"trace_output" json:"traceOutput,omitempty"`
 			Type           *string `tfsdk:"type" json:"type,omitempty"`
+			Workers        *int64  `tfsdk:"workers" json:"workers,omitempty"`
 			WriteOperation *string `tfsdk:"write_operation" json:"writeOperation,omitempty"`
 		} `tfsdk:"opensearch" json:"opensearch,omitempty"`
 		Opentelemetry *struct {
@@ -734,6 +738,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
 			LogResponsePayload    *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
+			LogsBodyKey           *string `tfsdk:"logs_body_key" json:"logsBodyKey,omitempty"`
 			LogsBodyKeyAttributes *bool   `tfsdk:"logs_body_key_attributes" json:"logsBodyKeyAttributes,omitempty"`
 			LogsUri               *string `tfsdk:"logs_uri" json:"logsUri,omitempty"`
 			MetricsUri            *string `tfsdk:"metrics_uri" json:"metricsUri,omitempty"`
@@ -4579,6 +4584,22 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -5206,9 +5227,25 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed: false,
 							},
 
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"uri": schema.StringAttribute{
 								Description:         "Specify a custom HTTP URI. It must start with forward slash.",
 								MarkdownDescription: "Specify a custom HTTP URI. It must start with forward slash.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5248,14 +5285,6 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 						Description:         "OpenSearch defines OpenSearch Output configuration.",
 						MarkdownDescription: "OpenSearch defines OpenSearch Output configuration.",
 						Attributes: map[string]schema.Attribute{
-							"workers": schema.Int64Attribute{
-								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
-								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"aws_auth": schema.StringAttribute{
 								Description:         "Enable AWS Sigv4 Authentication for Amazon OpenSearch Service.",
 								MarkdownDescription: "Enable AWS Sigv4 Authentication for Amazon OpenSearch Service.",
@@ -5825,6 +5854,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"write_operation": schema.StringAttribute{
 								Description:         "Operation to use to write in bulk requests.",
 								MarkdownDescription: "Operation to use to write in bulk requests.",
@@ -5973,6 +6010,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"log_response_payload": schema.BoolAttribute{
 								Description:         "Log the response payload within the Fluent Bit log.",
 								MarkdownDescription: "Log the response payload within the Fluent Bit log.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"logs_body_key": schema.StringAttribute{
+								Description:         "The log body key to look up in the log events body/message. Sets the Body field of the opentelemtry logs data model.",
+								MarkdownDescription: "The log body key to look up in the log events body/message. Sets the Body field of the opentelemtry logs data model.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -80,7 +80,53 @@ type DataFluidIoThinRuntimeV1Alpha1ManifestData struct {
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-			ImageTag      *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			ImageTag  *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			Lifecycle *struct {
+				PostStart *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					HttpGet *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				} `tfsdk:"post_start" json:"postStart,omitempty"`
+				PreStop *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					HttpGet *struct {
+						Host        *string `tfsdk:"host" json:"host,omitempty"`
+						HttpHeaders *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"http_headers" json:"httpHeaders,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
+					TcpSocket *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
 					Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -1237,6 +1283,289 @@ func (r *DataFluidIoThinRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"lifecycle": schema.SingleNestedAttribute{
+								Description:         "Lifecycle describes actions that the management system should take in response to container lifecycle events.",
+								MarkdownDescription: "Lifecycle describes actions that the management system should take in response to container lifecycle events.",
+								Attributes: map[string]schema.Attribute{
+									"post_start": schema.SingleNestedAttribute{
+										Description:         "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+										MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Exec specifies the action to take.",
+												MarkdownDescription: "Exec specifies the action to take.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "HTTPGet specifies the http request to perform.",
+												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+														MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Path to access on the HTTP server.",
+														MarkdownDescription: "Path to access on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sleep": schema.SingleNestedAttribute{
+												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Attributes: map[string]schema.Attribute{
+													"seconds": schema.Int64Attribute{
+														Description:         "Seconds is the number of seconds to sleep.",
+														MarkdownDescription: "Seconds is the number of seconds to sleep.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+														MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"pre_stop": schema.SingleNestedAttribute{
+										Description:         "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+										MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Exec specifies the action to take.",
+												MarkdownDescription: "Exec specifies the action to take.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														MarkdownDescription: "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "HTTPGet specifies the http request to perform.",
+												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														MarkdownDescription: "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"http_headers": schema.ListNestedAttribute{
+														Description:         "Custom headers to set in the request. HTTP allows repeated headers.",
+														MarkdownDescription: "Custom headers to set in the request. HTTP allows repeated headers.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	MarkdownDescription: "The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "The header field value",
+																	MarkdownDescription: "The header field value",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "Path to access on the HTTP server.",
+														MarkdownDescription: "Path to access on the HTTP server.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "Scheme to use for connecting to the host. Defaults to HTTP.",
+														MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"sleep": schema.SingleNestedAttribute{
+												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Attributes: map[string]schema.Attribute{
+													"seconds": schema.Int64Attribute{
+														Description:         "Seconds is the number of seconds to sleep.",
+														MarkdownDescription: "Seconds is the number of seconds to sleep.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
+														MarkdownDescription: "Optional: Host name to connect to, defaults to the pod IP.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														MarkdownDescription: "Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"liveness_probe": schema.SingleNestedAttribute{

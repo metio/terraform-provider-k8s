@@ -216,6 +216,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Multiline              *bool     `tfsdk:"multiline" json:"multiline,omitempty"`
 			MultilineFlushSeconds  *int64    `tfsdk:"multiline_flush_seconds" json:"multilineFlushSeconds,omitempty"`
 			MultilineParser        *string   `tfsdk:"multiline_parser" json:"multilineParser,omitempty"`
+			OffsetKey              *string   `tfsdk:"offset_key" json:"offsetKey,omitempty"`
 			Parser                 *string   `tfsdk:"parser" json:"parser,omitempty"`
 			ParserFirstline        *string   `tfsdk:"parser_firstline" json:"parserFirstline,omitempty"`
 			ParserN                *[]string `tfsdk:"parser_n" json:"parserN,omitempty"`
@@ -230,6 +231,7 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			StorageType            *string   `tfsdk:"storage_type" json:"storageType,omitempty"`
 			Tag                    *string   `tfsdk:"tag" json:"tag,omitempty"`
 			TagRegex               *string   `tfsdk:"tag_regex" json:"tagRegex,omitempty"`
+			Threaded               *string   `tfsdk:"threaded" json:"threaded,omitempty"`
 		} `tfsdk:"tail" json:"tail,omitempty"`
 		Tcp *struct {
 			BufferSize *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
@@ -1657,6 +1659,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 								Computed:            false,
 							},
 
+							"offset_key": schema.StringAttribute{
+								Description:         "If enabled, Fluent Bit appends the offset of the current monitored file as part of the record. The value assigned becomes the key in the map",
+								MarkdownDescription: "If enabled, Fluent Bit appends the offset of the current monitored file as part of the record. The value assigned becomes the key in the map",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"parser": schema.StringAttribute{
 								Description:         "Specify the name of a parser to interpret the entry as a structured message.",
 								MarkdownDescription: "Specify the name of a parser to interpret the entry as a structured message.",
@@ -1771,6 +1781,14 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 							"tag_regex": schema.StringAttribute{
 								Description:         "Set a regex to exctract fields from the file",
 								MarkdownDescription: "Set a regex to exctract fields from the file",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"threaded": schema.StringAttribute{
+								Description:         "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
+								MarkdownDescription: "Threaded mechanism allows input plugin to run in a separate thread which helps to desaturate the main pipeline.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -7,6 +7,7 @@ package flow_volcano_sh_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -206,6 +207,10 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
 															},
 
 															"task_name": schema.StringAttribute{
@@ -260,6 +265,10 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																	int64validator.AtMost(65535),
+																},
 															},
 
 															"task_name": schema.StringAttribute{
@@ -301,6 +310,9 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 							},
 						},
@@ -315,6 +327,9 @@ func (r *FlowVolcanoShJobFlowV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("retain", "delete"),
+						},
 					},
 				},
 				Required: false,

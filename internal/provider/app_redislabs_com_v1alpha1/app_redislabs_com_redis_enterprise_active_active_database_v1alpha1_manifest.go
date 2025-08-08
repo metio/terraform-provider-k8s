@@ -152,7 +152,6 @@ type AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1ManifestData stru
 			ModulesList                      *[]struct {
 				Config  *string `tfsdk:"config" json:"config,omitempty"`
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
-				Uid     *string `tfsdk:"uid" json:"uid,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"modules_list" json:"modulesList,omitempty"`
 			OssCluster             *bool   `tfsdk:"oss_cluster" json:"ossCluster,omitempty"`
@@ -189,7 +188,9 @@ type AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1ManifestData stru
 			} `tfsdk:"upgrade_spec" json:"upgradeSpec,omitempty"`
 		} `tfsdk:"global_configurations" json:"globalConfigurations,omitempty"`
 		ParticipatingClusters *[]struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
+			ExternalReplicationPort *int64  `tfsdk:"external_replication_port" json:"externalReplicationPort,omitempty"`
+			Name                    *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"participating_clusters" json:"participatingClusters,omitempty"`
 		RedisEnterpriseCluster *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -304,8 +305,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"alert_settings": schema.SingleNestedAttribute{
-								Description:         "Settings for database alerts",
-								MarkdownDescription: "Settings for database alerts",
+								Description:         "Settings for database alerts. Note - Alert settings are not supported for Active-Active database.",
+								MarkdownDescription: "Settings for database alerts. Note - Alert settings are not supported for Active-Active database.",
 								Attributes: map[string]schema.Attribute{
 									"bdb_backup_delayed": schema.SingleNestedAttribute{
 										Description:         "Periodic backup has been delayed for longer than specified threshold value [minutes]",
@@ -952,37 +953,29 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"modules_list": schema.ListNestedAttribute{
-								Description:         "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
-								MarkdownDescription: "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
+								Description:         "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
+								MarkdownDescription: "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"config": schema.StringAttribute{
-											Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
-											MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
+											Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
+											MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "The module's name e.g 'ft' for redissearch",
-											MarkdownDescription: "The module's name e.g 'ft' for redissearch",
+											Description:         "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
+											MarkdownDescription: "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
 										},
 
-										"uid": schema.StringAttribute{
-											Description:         "Module's uid - do not set, for system use only nolint:staticcheck // custom json tag unknown to the linter",
-											MarkdownDescription: "Module's uid - do not set, for system use only nolint:staticcheck // custom json tag unknown to the linter",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"version": schema.StringAttribute{
-											Description:         "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
-											MarkdownDescription: "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
+											Description:         "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
+											MarkdownDescription: "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1047,8 +1040,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 							},
 
 							"redis_version": schema.StringAttribute{
-								Description:         "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
-								MarkdownDescription: "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'",
+								Description:         "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'. Note - Specifying Redis version is currently not supported for Active-Active database.",
+								MarkdownDescription: "Redis OSS version. Version can be specified via <major.minor> prefix, or via channels - for existing databases - Upgrade Redis OSS version. For new databases - the version which the database will be created with. If set to 'major' - will always upgrade to the most recent major Redis version. If set to 'latest' - will always upgrade to the most recent Redis version. Depends on 'redisUpgradePolicy' - if you want to set the value to 'latest' for some databases, you must set redisUpgradePolicy on the cluster before. Possible values are 'major' or 'latest' When using upgrade - make sure to backup the database before. This value is used only for database type 'redis'. Note - Specifying Redis version is currently not supported for Active-Active database.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1223,8 +1216,8 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 								MarkdownDescription: "Specifications for DB upgrade.",
 								Attributes: map[string]schema.Attribute{
 									"upgrade_modules_to_latest": schema.BoolAttribute{
-										Description:         "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
-										MarkdownDescription: "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
+										Description:         "Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
+										MarkdownDescription: "Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Note - This field is currently not supported for Active-Active databases.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -1245,11 +1238,27 @@ func (r *AppRedislabsComRedisEnterpriseActiveActiveDatabaseV1Alpha1Manifest) Sch
 						MarkdownDescription: "The list of instances/ clusters specifications and configurations.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"external_replication_port": schema.Int64Attribute{
+									Description:         "The desired replication endpoint's port number for users who utilize LoadBalancers for sync between AA replicas and need to provide the specific port number that the LoadBalancer listens to.",
+									MarkdownDescription: "The desired replication endpoint's port number for users who utilize LoadBalancers for sync between AA replicas and need to provide the specific port number that the LoadBalancer listens to.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "The name of the remote cluster CR to link.",
 									MarkdownDescription: "The name of the remote cluster CR to link.",
 									Required:            true,
 									Optional:            false,
+									Computed:            false,
+								},
+
+								"namespace": schema.StringAttribute{
+									Description:         "Namespace in which the REAADB object will be deployed to within the corresponding participating cluster. The user must ensure that the Redis Enterprise operator is configured to watch this namespace in the corresponding cluster, and the required RBAC configuration is properly set up. See https://redis.io/docs/latest/operate/kubernetes/re-clusters/multi-namespace/ for more information how to set up multiple namespaces. If no namespace is specified, then the REAADB is deployed to the REC's namespace in the corresponding cluster.",
+									MarkdownDescription: "Namespace in which the REAADB object will be deployed to within the corresponding participating cluster. The user must ensure that the Redis Enterprise operator is configured to watch this namespace in the corresponding cluster, and the required RBAC configuration is properly set up. See https://redis.io/docs/latest/operate/kubernetes/re-clusters/multi-namespace/ for more information how to set up multiple namespaces. If no namespace is specified, then the REAADB is deployed to the REC's namespace in the corresponding cluster.",
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},

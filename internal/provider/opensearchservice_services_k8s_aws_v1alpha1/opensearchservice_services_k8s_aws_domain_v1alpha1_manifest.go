@@ -247,8 +247,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 				MarkdownDescription: "DomainSpec defines the desired state of Domain.",
 				Attributes: map[string]schema.Attribute{
 					"access_policies": schema.StringAttribute{
-						Description:         "Identity and Access Management (IAM) policy document specifying the access policies for the new domain.",
-						MarkdownDescription: "Identity and Access Management (IAM) policy document specifying the access policies for the new domain.",
+						Description:         "Identity and Access Management (IAM) policy document specifying the access policies for the new domain. Regex Pattern: '.*'",
+						MarkdownDescription: "Identity and Access Management (IAM) policy document specifying the access policies for the new domain. Regex Pattern: '.*'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -871,8 +871,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9. For more information, see Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
-						MarkdownDescription: "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9. For more information, see Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).",
+						Description:         "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9. For more information, see Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains). Regex Pattern: '^Elasticsearch_[0-9]{1}.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}.[0-9]{1,2}$'",
+						MarkdownDescription: "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9. For more information, see Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains). Regex Pattern: '^Elasticsearch_[0-9]{1}.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}.[0-9]{1,2}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -912,8 +912,8 @@ func (r *OpensearchserviceServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region.",
-						MarkdownDescription: "Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region.",
+						Description:         "Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region. Regex Pattern: '^[a-z][a-z0-9-]+$'",
+						MarkdownDescription: "Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region. Regex Pattern: '^[a-z][a-z0-9-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

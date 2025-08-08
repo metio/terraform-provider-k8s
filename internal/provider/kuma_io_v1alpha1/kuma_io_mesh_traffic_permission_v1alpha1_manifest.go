@@ -58,6 +58,28 @@ type KumaIoMeshTrafficPermissionV1Alpha1ManifestData struct {
 				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
+		Rules *[]struct {
+			Default *struct {
+				Allow *[]struct {
+					SpiffeId *struct {
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"spiffe_id" json:"spiffeId,omitempty"`
+				} `tfsdk:"allow" json:"allow,omitempty"`
+				AllowWithShadowDeny *[]struct {
+					SpiffeId *struct {
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"spiffe_id" json:"spiffeId,omitempty"`
+				} `tfsdk:"allow_with_shadow_deny" json:"allowWithShadowDeny,omitempty"`
+				Deny *[]struct {
+					SpiffeId *struct {
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"spiffe_id" json:"spiffeId,omitempty"`
+				} `tfsdk:"deny" json:"deny,omitempty"`
+			} `tfsdk:"default" json:"default,omitempty"`
+		} `tfsdk:"rules" json:"rules,omitempty"`
 		TargetRef *struct {
 			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -180,11 +202,11 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 
@@ -258,6 +280,143 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 						Computed: false,
 					},
 
+					"rules": schema.ListNestedAttribute{
+						Description:         "Rules defines inbound permissions configuration",
+						MarkdownDescription: "Rules defines inbound permissions configuration",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"allow": schema.ListNestedAttribute{
+											Description:         "Allow definees a list of matches for which access will be allowed",
+											MarkdownDescription: "Allow definees a list of matches for which access will be allowed",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"spiffe_id": schema.SingleNestedAttribute{
+														Description:         "SpiffeId defines a matcher configuration for SpiffeId matching",
+														MarkdownDescription: "SpiffeId defines a matcher configuration for SpiffeId matching",
+														Attributes: map[string]schema.Attribute{
+															"type": schema.StringAttribute{
+																Description:         "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																MarkdownDescription: "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("Exact", "Prefix"),
+																},
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																MarkdownDescription: "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"allow_with_shadow_deny": schema.ListNestedAttribute{
+											Description:         "AllowWithShadowDeny defines a list of matches for which access will be allowed but emits logs as if requests are denied",
+											MarkdownDescription: "AllowWithShadowDeny defines a list of matches for which access will be allowed but emits logs as if requests are denied",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"spiffe_id": schema.SingleNestedAttribute{
+														Description:         "SpiffeId defines a matcher configuration for SpiffeId matching",
+														MarkdownDescription: "SpiffeId defines a matcher configuration for SpiffeId matching",
+														Attributes: map[string]schema.Attribute{
+															"type": schema.StringAttribute{
+																Description:         "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																MarkdownDescription: "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("Exact", "Prefix"),
+																},
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																MarkdownDescription: "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"deny": schema.ListNestedAttribute{
+											Description:         "Deny defines a list of matches for which access will be denied",
+											MarkdownDescription: "Deny defines a list of matches for which access will be denied",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"spiffe_id": schema.SingleNestedAttribute{
+														Description:         "SpiffeId defines a matcher configuration for SpiffeId matching",
+														MarkdownDescription: "SpiffeId defines a matcher configuration for SpiffeId matching",
+														Attributes: map[string]schema.Attribute{
+															"type": schema.StringAttribute{
+																Description:         "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																MarkdownDescription: "Type defines how to match incoming traffic by SpiffeId. 'Exact' or 'Prefix' are allowed.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("Exact", "Prefix"),
+																},
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																MarkdownDescription: "Value is SpiffeId of a client that needs to match for the configuration to be applied",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"target_ref": schema.SingleNestedAttribute{
 						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
@@ -265,11 +424,11 @@ func (r *KumaIoMeshTrafficPermissionV1Alpha1Manifest) Schema(_ context.Context, 
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 

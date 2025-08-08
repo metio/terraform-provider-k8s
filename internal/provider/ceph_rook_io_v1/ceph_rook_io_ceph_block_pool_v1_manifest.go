@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -230,11 +231,14 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "The erasure code settings",
 						Attributes: map[string]schema.Attribute{
 							"algorithm": schema.StringAttribute{
-								Description:         "The algorithm for erasure coding",
-								MarkdownDescription: "The algorithm for erasure coding",
+								Description:         "The algorithm for erasure coding. If absent, defaults to the plugin specified in osd_pool_default_erasure_code_profile.",
+								MarkdownDescription: "The algorithm for erasure coding. If absent, defaults to the plugin specified in osd_pool_default_erasure_code_profile.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("isa", "jerasure"),
+								},
 							},
 
 							"coding_chunks": schema.Int64Attribute{
@@ -285,11 +289,14 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "Mode is the mirroring mode: either pool or image",
-								MarkdownDescription: "Mode is the mirroring mode: either pool or image",
+								Description:         "Mode is the mirroring mode: pool, image or init-only.",
+								MarkdownDescription: "Mode is the mirroring mode: pool, image or init-only.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("pool", "image", "init-only"),
+								},
 							},
 
 							"peers": schema.SingleNestedAttribute{
@@ -485,6 +492,9 @@ func (r *CephRookIoCephBlockPoolV1Manifest) Schema(_ context.Context, _ datasour
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Float64{
+									float64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,

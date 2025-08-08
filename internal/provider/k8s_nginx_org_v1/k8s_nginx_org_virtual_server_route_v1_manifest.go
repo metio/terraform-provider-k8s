@@ -74,12 +74,8 @@ type K8SNginxOrgVirtualServerRouteV1ManifestData struct {
 					Url  *string `tfsdk:"url" json:"url,omitempty"`
 				} `tfsdk:"redirect" json:"redirect,omitempty"`
 				Return *struct {
-					Body    *string `tfsdk:"body" json:"body,omitempty"`
-					Code    *int64  `tfsdk:"code" json:"code,omitempty"`
-					Headers *[]struct {
-						Name  *string `tfsdk:"name" json:"name,omitempty"`
-						Value *string `tfsdk:"value" json:"value,omitempty"`
-					} `tfsdk:"headers" json:"headers,omitempty"`
+					Body *string `tfsdk:"body" json:"body,omitempty"`
+					Code *int64  `tfsdk:"code" json:"code,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"return" json:"return,omitempty"`
 			} `tfsdk:"action" json:"action,omitempty"`
@@ -130,12 +126,8 @@ type K8SNginxOrgVirtualServerRouteV1ManifestData struct {
 						Url  *string `tfsdk:"url" json:"url,omitempty"`
 					} `tfsdk:"redirect" json:"redirect,omitempty"`
 					Return *struct {
-						Body    *string `tfsdk:"body" json:"body,omitempty"`
-						Code    *int64  `tfsdk:"code" json:"code,omitempty"`
-						Headers *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"headers" json:"headers,omitempty"`
+						Body *string `tfsdk:"body" json:"body,omitempty"`
+						Code *int64  `tfsdk:"code" json:"code,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"return" json:"return,omitempty"`
 				} `tfsdk:"action" json:"action,omitempty"`
@@ -175,12 +167,8 @@ type K8SNginxOrgVirtualServerRouteV1ManifestData struct {
 							Url  *string `tfsdk:"url" json:"url,omitempty"`
 						} `tfsdk:"redirect" json:"redirect,omitempty"`
 						Return *struct {
-							Body    *string `tfsdk:"body" json:"body,omitempty"`
-							Code    *int64  `tfsdk:"code" json:"code,omitempty"`
-							Headers *[]struct {
-								Name  *string `tfsdk:"name" json:"name,omitempty"`
-								Value *string `tfsdk:"value" json:"value,omitempty"`
-							} `tfsdk:"headers" json:"headers,omitempty"`
+							Body *string `tfsdk:"body" json:"body,omitempty"`
+							Code *int64  `tfsdk:"code" json:"code,omitempty"`
 							Type *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"return" json:"return,omitempty"`
 					} `tfsdk:"action" json:"action,omitempty"`
@@ -222,12 +210,8 @@ type K8SNginxOrgVirtualServerRouteV1ManifestData struct {
 						Url  *string `tfsdk:"url" json:"url,omitempty"`
 					} `tfsdk:"redirect" json:"redirect,omitempty"`
 					Return *struct {
-						Body    *string `tfsdk:"body" json:"body,omitempty"`
-						Code    *int64  `tfsdk:"code" json:"code,omitempty"`
-						Headers *[]struct {
-							Name  *string `tfsdk:"name" json:"name,omitempty"`
-							Value *string `tfsdk:"value" json:"value,omitempty"`
-						} `tfsdk:"headers" json:"headers,omitempty"`
+						Body *string `tfsdk:"body" json:"body,omitempty"`
+						Code *int64  `tfsdk:"code" json:"code,omitempty"`
 						Type *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"return" json:"return,omitempty"`
 				} `tfsdk:"action" json:"action,omitempty"`
@@ -604,33 +588,6 @@ func (r *K8SNginxOrgVirtualServerRouteV1Manifest) Schema(_ context.Context, _ da
 													Computed:            false,
 												},
 
-												"headers": schema.ListNestedAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													NestedObject: schema.NestedAttributeObject{
-														Attributes: map[string]schema.Attribute{
-															"name": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"value": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-													},
-													Required: false,
-													Optional: true,
-													Computed: false,
-												},
-
 												"type": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -972,33 +929,6 @@ func (r *K8SNginxOrgVirtualServerRouteV1Manifest) Schema(_ context.Context, _ da
 																Computed:            false,
 															},
 
-															"headers": schema.ListNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																NestedObject: schema.NestedAttributeObject{
-																	Attributes: map[string]schema.Attribute{
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"value": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"type": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -1268,33 +1198,6 @@ func (r *K8SNginxOrgVirtualServerRouteV1Manifest) Schema(_ context.Context, _ da
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
-																		},
-
-																		"headers": schema.ListNestedAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			NestedObject: schema.NestedAttributeObject{
-																				Attributes: map[string]schema.Attribute{
-																					"name": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
-																						Required:            false,
-																						Optional:            true,
-																						Computed:            false,
-																					},
-
-																					"value": schema.StringAttribute{
-																						Description:         "",
-																						MarkdownDescription: "",
-																						Required:            false,
-																						Optional:            true,
-																						Computed:            false,
-																					},
-																				},
-																			},
-																			Required: false,
-																			Optional: true,
-																			Computed: false,
 																		},
 
 																		"type": schema.StringAttribute{
@@ -1578,33 +1481,6 @@ func (r *K8SNginxOrgVirtualServerRouteV1Manifest) Schema(_ context.Context, _ da
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
-															},
-
-															"headers": schema.ListNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																NestedObject: schema.NestedAttributeObject{
-																	Attributes: map[string]schema.Attribute{
-																		"name": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-
-																		"value": schema.StringAttribute{
-																			Description:         "",
-																			MarkdownDescription: "",
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
 															},
 
 															"type": schema.StringAttribute{

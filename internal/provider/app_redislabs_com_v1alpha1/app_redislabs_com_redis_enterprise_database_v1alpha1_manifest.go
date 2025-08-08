@@ -823,29 +823,29 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"modules_list": schema.ListNestedAttribute{
-						Description:         "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
-						MarkdownDescription: "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
+						Description:         "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
+						MarkdownDescription: "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config": schema.StringAttribute{
-									Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
-									MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
+									Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
+									MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "The module's name e.g 'ft' for redissearch",
-									MarkdownDescription: "The module's name e.g 'ft' for redissearch",
+									Description:         "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
+									MarkdownDescription: "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"version": schema.StringAttribute{
-									Description:         "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
-									MarkdownDescription: "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
+									Description:         "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
+									MarkdownDescription: "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1089,8 +1089,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 						MarkdownDescription: "Specifications for DB upgrade.",
 						Attributes: map[string]schema.Attribute{
 							"upgrade_modules_to_latest": schema.BoolAttribute{
-								Description:         "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifing the version. in addition, This field is currently not supported for Active-Active databases.",
-								MarkdownDescription: "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifing the version. in addition, This field is currently not supported for Active-Active databases.",
+								Description:         "DEPRECATED Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifying the version. in addition, This field is currently not supported for Active-Active databases. The default is true",
+								MarkdownDescription: "DEPRECATED Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifying the version. in addition, This field is currently not supported for Active-Active databases. The default is true",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

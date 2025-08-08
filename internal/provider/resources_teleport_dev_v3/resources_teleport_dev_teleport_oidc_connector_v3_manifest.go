@@ -70,10 +70,12 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Max_age       *string `tfsdk:"max_age" json:"max_age,omitempty"`
 			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
+		Pkce_mode      *string   `tfsdk:"pkce_mode" json:"pkce_mode,omitempty"`
 		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
 		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
 		Redirect_url   *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
 		Scope          *[]string `tfsdk:"scope" json:"scope,omitempty"`
+		User_matchers  *[]string `tfsdk:"user_matchers" json:"user_matchers,omitempty"`
 		Username_claim *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -355,6 +357,14 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Computed: false,
 					},
 
+					"pkce_mode": schema.StringAttribute{
+						Description:         "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						MarkdownDescription: "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"prompt": schema.StringAttribute{
 						Description:         "Prompt is an optional OIDC prompt. An empty string omits prompt. If not specified, it defaults to select_account for backwards compatibility.",
 						MarkdownDescription: "Prompt is an optional OIDC prompt. An empty string omits prompt. If not specified, it defaults to select_account for backwards compatibility.",
@@ -383,6 +393,15 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 					"scope": schema.ListAttribute{
 						Description:         "Scope specifies additional scopes set by provider.",
 						MarkdownDescription: "Scope specifies additional scopes set by provider.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"user_matchers": schema.ListAttribute{
+						Description:         "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
+						MarkdownDescription: "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

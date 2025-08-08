@@ -987,8 +987,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf. During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf. During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf. During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that SageMaker can assume to perform tasks on your behalf. During model training, SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -1080,8 +1080,8 @@ func (r *SagemakerServicesK8SAwsTrainingJobV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"training_job_name": schema.StringAttribute{
-						Description:         "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
-						MarkdownDescription: "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.",
+						Description:         "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the training job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

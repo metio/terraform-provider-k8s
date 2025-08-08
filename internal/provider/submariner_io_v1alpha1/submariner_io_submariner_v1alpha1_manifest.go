@@ -77,6 +77,7 @@ type SubmarinerIoSubmarinerV1Alpha1ManifestData struct {
 		Debug                   *bool              `tfsdk:"debug" json:"debug,omitempty"`
 		GlobalCIDR              *string            `tfsdk:"global_cidr" json:"globalCIDR,omitempty"`
 		HaltOnCertificateError  *bool              `tfsdk:"halt_on_certificate_error" json:"haltOnCertificateError,omitempty"`
+		HostedCluster           *bool              `tfsdk:"hosted_cluster" json:"hostedCluster,omitempty"`
 		ImageOverrides          *map[string]string `tfsdk:"image_overrides" json:"imageOverrides,omitempty"`
 		LoadBalancerEnabled     *bool              `tfsdk:"load_balancer_enabled" json:"loadBalancerEnabled,omitempty"`
 		Namespace               *string            `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -427,6 +428,14 @@ func (r *SubmarinerIoSubmarinerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					"halt_on_certificate_error": schema.BoolAttribute{
 						Description:         "Halt on certificate error (so the pod gets restarted).",
 						MarkdownDescription: "Halt on certificate error (so the pod gets restarted).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"hosted_cluster": schema.BoolAttribute{
+						Description:         "Is the cluster a hosted cluster.",
+						MarkdownDescription: "Is the cluster a hosted cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

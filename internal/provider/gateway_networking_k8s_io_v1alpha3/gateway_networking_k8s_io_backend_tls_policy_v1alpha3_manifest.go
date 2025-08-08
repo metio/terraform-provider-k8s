@@ -44,7 +44,6 @@ type GatewayNetworkingK8SIoBackendTlspolicyV1Alpha3ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Options    *map[string]string `tfsdk:"options" json:"options,omitempty"`
 		TargetRefs *[]struct {
 			Group       *string `tfsdk:"group" json:"group,omitempty"`
 			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -57,12 +56,7 @@ type GatewayNetworkingK8SIoBackendTlspolicyV1Alpha3ManifestData struct {
 				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"ca_certificate_refs" json:"caCertificateRefs,omitempty"`
-			Hostname        *string `tfsdk:"hostname" json:"hostname,omitempty"`
-			SubjectAltNames *[]struct {
-				Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
-				Type     *string `tfsdk:"type" json:"type,omitempty"`
-				Uri      *string `tfsdk:"uri" json:"uri,omitempty"`
-			} `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
+			Hostname                *string `tfsdk:"hostname" json:"hostname,omitempty"`
 			WellKnownCACertificates *string `tfsdk:"well_known_ca_certificates" json:"wellKnownCACertificates,omitempty"`
 		} `tfsdk:"validation" json:"validation,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -145,15 +139,6 @@ func (r *GatewayNetworkingK8SIoBackendTlspolicyV1Alpha3Manifest) Schema(_ contex
 				Description:         "Spec defines the desired state of BackendTLSPolicy.",
 				MarkdownDescription: "Spec defines the desired state of BackendTLSPolicy.",
 				Attributes: map[string]schema.Attribute{
-					"options": schema.MapAttribute{
-						Description:         "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites. A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API. Support: Implementation-specific",
-						MarkdownDescription: "Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites. A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as 'example.com/my-custom-option'. Un-prefixed names are reserved for key names defined by Gateway API. Support: Implementation-specific",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"target_refs": schema.ListNestedAttribute{
 						Description:         "TargetRefs identifies an API object to apply the policy to. Only Services have Extended support. Implementations MAY support additional objects, with Implementation Specific support. Note that this config applies to the entire referenced resource by default, but this default may change in the future to provide a more granular application of the policy. Support: Extended for Kubernetes Service Support: Implementation-specific for any other resource",
 						MarkdownDescription: "TargetRefs identifies an API object to apply the policy to. Only Services have Extended support. Implementations MAY support additional objects, with Implementation Specific support. Note that this config applies to the entire referenced resource by default, but this default may change in the future to provide a more granular application of the policy. Support: Extended for Kubernetes Service Support: Implementation-specific for any other resource",
@@ -268,8 +253,8 @@ func (r *GatewayNetworkingK8SIoBackendTlspolicyV1Alpha3Manifest) Schema(_ contex
 							},
 
 							"hostname": schema.StringAttribute{
-								Description:         "Hostname is used for two purposes in the connection between Gateways and backends: 1. Hostname MUST be used as the SNI to connect to the backend (RFC 6066). 2. If SubjectAltNames is not specified, Hostname MUST be used for authentication and MUST match the certificate served by the matching backend. Support: Core",
-								MarkdownDescription: "Hostname is used for two purposes in the connection between Gateways and backends: 1. Hostname MUST be used as the SNI to connect to the backend (RFC 6066). 2. If SubjectAltNames is not specified, Hostname MUST be used for authentication and MUST match the certificate served by the matching backend. Support: Core",
+								Description:         "Hostname is used for two purposes in the connection between Gateways and backends: 1. Hostname MUST be used as the SNI to connect to the backend (RFC 6066). 2. Hostname MUST be used for authentication and MUST match the certificate served by the matching backend. Support: Core",
+								MarkdownDescription: "Hostname is used for two purposes in the connection between Gateways and backends: 1. Hostname MUST be used as the SNI to connect to the backend (RFC 6066). 2. Hostname MUST be used for authentication and MUST match the certificate served by the matching backend. Support: Core",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -278,54 +263,6 @@ func (r *GatewayNetworkingK8SIoBackendTlspolicyV1Alpha3Manifest) Schema(_ contex
 									stringvalidator.LengthAtMost(253),
 									stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 								},
-							},
-
-							"subject_alt_names": schema.ListNestedAttribute{
-								Description:         "SubjectAltNames contains one or more Subject Alternative Names. When specified, the certificate served from the backend MUST have at least one Subject Alternate Name matching one of the specified SubjectAltNames. Support: Core",
-								MarkdownDescription: "SubjectAltNames contains one or more Subject Alternative Names. When specified, the certificate served from the backend MUST have at least one Subject Alternate Name matching one of the specified SubjectAltNames. Support: Core",
-								NestedObject: schema.NestedAttributeObject{
-									Attributes: map[string]schema.Attribute{
-										"hostname": schema.StringAttribute{
-											Description:         "Hostname contains Subject Alternative Name specified in DNS name format. Required when Type is set to Hostname, ignored otherwise. Support: Core",
-											MarkdownDescription: "Hostname contains Subject Alternative Name specified in DNS name format. Required when Type is set to Hostname, ignored otherwise. Support: Core",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtLeast(1),
-												stringvalidator.LengthAtMost(253),
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-											},
-										},
-
-										"type": schema.StringAttribute{
-											Description:         "Type determines the format of the Subject Alternative Name. Always required. Support: Core",
-											MarkdownDescription: "Type determines the format of the Subject Alternative Name. Always required. Support: Core",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("Hostname", "URI"),
-											},
-										},
-
-										"uri": schema.StringAttribute{
-											Description:         "URI contains Subject Alternative Name specified in a full URI format. It MUST include both a scheme (e.g., 'http' or 'ftp') and a scheme-specific-part. Common values include SPIFFE IDs like 'spiffe://mycluster.example.com/ns/myns/sa/svc1sa'. Required when Type is set to URI, ignored otherwise. Support: Core",
-											MarkdownDescription: "URI contains Subject Alternative Name specified in a full URI format. It MUST include both a scheme (e.g., 'http' or 'ftp') and a scheme-specific-part. Common values include SPIFFE IDs like 'spiffe://mycluster.example.com/ns/myns/sa/svc1sa'. Required when Type is set to URI, ignored otherwise. Support: Core",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.LengthAtLeast(1),
-												stringvalidator.LengthAtMost(253),
-												stringvalidator.RegexMatches(regexp.MustCompile(`^(([^:/?#]+):)(//([^/?#]*))([^?#]*)(\?([^#]*))?(#(.*))?`), ""),
-											},
-										},
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"well_known_ca_certificates": schema.StringAttribute{

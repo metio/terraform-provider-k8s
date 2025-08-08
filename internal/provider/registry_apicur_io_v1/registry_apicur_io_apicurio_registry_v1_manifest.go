@@ -247,6 +247,10 @@ type RegistryApicurIoApicurioRegistryV1ManifestData struct {
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			Ingress *struct {
+				Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
+			} `tfsdk:"ingress" json:"ingress,omitempty"`
 			ManagedResources *struct {
 				DisableIngress             *bool `tfsdk:"disable_ingress" json:"disableIngress,omitempty"`
 				DisableNetworkPolicy       *bool `tfsdk:"disable_network_policy" json:"disableNetworkPolicy,omitempty"`
@@ -1681,8 +1685,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -1772,8 +1776,8 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2962,12 +2966,38 @@ func (r *RegistryApicurIoApicurioRegistryV1Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"ingress": schema.SingleNestedAttribute{
+								Description:         "Additional configuration for the operator-managed Ingress.",
+								MarkdownDescription: "Additional configuration for the operator-managed Ingress.",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Additional annotations for the operator-managed Ingress.",
+										MarkdownDescription: "Additional annotations for the operator-managed Ingress.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ingress_class_name": schema.StringAttribute{
+										Description:         "Name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). See https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class",
+										MarkdownDescription: "Name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). See https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

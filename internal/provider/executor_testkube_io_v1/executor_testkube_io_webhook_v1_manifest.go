@@ -43,15 +43,34 @@ type ExecutorTestkubeIoWebhookV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Disabled                 *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
-		Events                   *[]string          `tfsdk:"events" json:"events,omitempty"`
-		Headers                  *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
-		OnStateChange            *bool              `tfsdk:"on_state_change" json:"onStateChange,omitempty"`
-		PayloadObjectField       *string            `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
-		PayloadTemplate          *string            `tfsdk:"payload_template" json:"payloadTemplate,omitempty"`
-		PayloadTemplateReference *string            `tfsdk:"payload_template_reference" json:"payloadTemplateReference,omitempty"`
-		Selector                 *string            `tfsdk:"selector" json:"selector,omitempty"`
-		Uri                      *string            `tfsdk:"uri" json:"uri,omitempty"`
+		Config *struct {
+			Secret *struct {
+				Key       *string `tfsdk:"key" json:"key,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"secret" json:"secret,omitempty"`
+			Value *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"config" json:"config,omitempty"`
+		Disabled      *bool              `tfsdk:"disabled" json:"disabled,omitempty"`
+		Events        *[]string          `tfsdk:"events" json:"events,omitempty"`
+		Headers       *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+		OnStateChange *bool              `tfsdk:"on_state_change" json:"onStateChange,omitempty"`
+		Parameters    *[]struct {
+			Default     *string `tfsdk:"default" json:"default,omitempty"`
+			Description *string `tfsdk:"description" json:"description,omitempty"`
+			Example     *string `tfsdk:"example" json:"example,omitempty"`
+			Name        *string `tfsdk:"name" json:"name,omitempty"`
+			Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
+			Required    *bool   `tfsdk:"required" json:"required,omitempty"`
+		} `tfsdk:"parameters" json:"parameters,omitempty"`
+		PayloadObjectField       *string `tfsdk:"payload_object_field" json:"payloadObjectField,omitempty"`
+		PayloadTemplate          *string `tfsdk:"payload_template" json:"payloadTemplate,omitempty"`
+		PayloadTemplateReference *string `tfsdk:"payload_template_reference" json:"payloadTemplateReference,omitempty"`
+		Selector                 *string `tfsdk:"selector" json:"selector,omitempty"`
+		Uri                      *string `tfsdk:"uri" json:"uri,omitempty"`
+		WebhookTemplateRef       *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"webhook_template_ref" json:"webhookTemplateRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -132,6 +151,56 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "WebhookSpec defines the desired state of Webhook",
 				MarkdownDescription: "WebhookSpec defines the desired state of Webhook",
 				Attributes: map[string]schema.Attribute{
+					"config": schema.SingleNestedAttribute{
+						Description:         "webhook configuration",
+						MarkdownDescription: "webhook configuration",
+						Attributes: map[string]schema.Attribute{
+							"secret": schema.SingleNestedAttribute{
+								Description:         "private value stored in secret to use in webhook template",
+								MarkdownDescription: "private value stored in secret to use in webhook template",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "object key",
+										MarkdownDescription: "object key",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "object name",
+										MarkdownDescription: "object name",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "object kubernetes namespace",
+										MarkdownDescription: "object kubernetes namespace",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"value": schema.StringAttribute{
+								Description:         "public value to use in webhook template",
+								MarkdownDescription: "public value to use in webhook template",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"disabled": schema.BoolAttribute{
 						Description:         "Disabled will disable the webhook",
 						MarkdownDescription: "Disabled will disable the webhook",
@@ -164,6 +233,65 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"parameters": schema.ListNestedAttribute{
+						Description:         "webhook parameters",
+						MarkdownDescription: "webhook parameters",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.StringAttribute{
+									Description:         "default parameter value",
+									MarkdownDescription: "default parameter value",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"description": schema.StringAttribute{
+									Description:         "description for the parameter",
+									MarkdownDescription: "description for the parameter",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"example": schema.StringAttribute{
+									Description:         "example value for the parameter",
+									MarkdownDescription: "example value for the parameter",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "unique parameter name",
+									MarkdownDescription: "unique parameter name",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"pattern": schema.StringAttribute{
+									Description:         "regular expression to match",
+									MarkdownDescription: "regular expression to match",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"required": schema.BoolAttribute{
+									Description:         "whether parameter is required",
+									MarkdownDescription: "whether parameter is required",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"payload_object_field": schema.StringAttribute{
@@ -204,6 +332,23 @@ func (r *ExecutorTestkubeIoWebhookV1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"webhook_template_ref": schema.SingleNestedAttribute{
+						Description:         "webhook template reference",
+						MarkdownDescription: "webhook template reference",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "webhook template name to include",
+								MarkdownDescription: "webhook template name to include",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

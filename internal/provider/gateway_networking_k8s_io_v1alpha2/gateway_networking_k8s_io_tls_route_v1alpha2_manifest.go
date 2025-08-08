@@ -63,7 +63,6 @@ type GatewayNetworkingK8SIoTlsrouteV1Alpha2ManifestData struct {
 				Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 				Weight    *int64  `tfsdk:"weight" json:"weight,omitempty"`
 			} `tfsdk:"backend_refs" json:"backendRefs,omitempty"`
-			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -241,8 +240,8 @@ func (r *GatewayNetworkingK8SIoTlsrouteV1Alpha2Manifest) Schema(_ context.Contex
 					},
 
 					"rules": schema.ListNestedAttribute{
-						Description:         "Rules are a list of TLS matchers and actions. ",
-						MarkdownDescription: "Rules are a list of TLS matchers and actions. ",
+						Description:         "Rules are a list of TLS matchers and actions.",
+						MarkdownDescription: "Rules are a list of TLS matchers and actions.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"backend_refs": schema.ListNestedAttribute{
@@ -328,19 +327,6 @@ func (r *GatewayNetworkingK8SIoTlsrouteV1Alpha2Manifest) Schema(_ context.Contex
 									Required: false,
 									Optional: true,
 									Computed: false,
-								},
-
-								"name": schema.StringAttribute{
-									Description:         "Name is the name of the route rule. This name MUST be unique within a Route if it is set. Support: Extended",
-									MarkdownDescription: "Name is the name of the route rule. This name MUST be unique within a Route if it is set. Support: Extended",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtLeast(1),
-										stringvalidator.LengthAtMost(253),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
-									},
 								},
 							},
 						},

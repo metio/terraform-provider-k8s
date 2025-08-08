@@ -238,6 +238,7 @@ type FluentbitFluentIoFilterV1Alpha2ManifestData struct {
 		LogLevel   *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 		Match      *string `tfsdk:"match" json:"match,omitempty"`
 		MatchRegex *string `tfsdk:"match_regex" json:"matchRegex,omitempty"`
+		Ordinal    *int64  `tfsdk:"ordinal" json:"ordinal,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -1840,6 +1841,14 @@ func (r *FluentbitFluentIoFilterV1Alpha2Manifest) Schema(_ context.Context, _ da
 					"match_regex": schema.StringAttribute{
 						Description:         "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
 						MarkdownDescription: "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ordinal": schema.Int64Attribute{
+						Description:         "An ordinal to influence filter ordering",
+						MarkdownDescription: "An ordinal to influence filter ordering",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

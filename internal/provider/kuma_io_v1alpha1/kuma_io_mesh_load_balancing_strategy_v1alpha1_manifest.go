@@ -56,6 +56,27 @@ type KumaIoMeshLoadBalancingStrategyV1Alpha1ManifestData struct {
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		To *[]struct {
 			Default *struct {
+				HashPolicies *[]struct {
+					Connection *struct {
+						SourceIP *bool `tfsdk:"source_ip" json:"sourceIP,omitempty"`
+					} `tfsdk:"connection" json:"connection,omitempty"`
+					Cookie *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+						Ttl  *string `tfsdk:"ttl" json:"ttl,omitempty"`
+					} `tfsdk:"cookie" json:"cookie,omitempty"`
+					FilterState *struct {
+						Key *string `tfsdk:"key" json:"key,omitempty"`
+					} `tfsdk:"filter_state" json:"filterState,omitempty"`
+					Header *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"header" json:"header,omitempty"`
+					QueryParameter *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"query_parameter" json:"queryParameter,omitempty"`
+					Terminal *bool   `tfsdk:"terminal" json:"terminal,omitempty"`
+					Type     *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"hash_policies" json:"hashPolicies,omitempty"`
 				LoadBalancer *struct {
 					LeastRequest *struct {
 						ActiveRequestBias *string `tfsdk:"active_request_bias" json:"activeRequestBias,omitempty"`
@@ -237,11 +258,11 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -318,6 +339,149 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 									Description:         "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									MarkdownDescription: "Default is a configuration specific to the group of destinations referenced in 'targetRef'",
 									Attributes: map[string]schema.Attribute{
+										"hash_policies": schema.ListNestedAttribute{
+											Description:         "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
+											MarkdownDescription: "HashPolicies specify a list of request/connection properties that are used to calculate a hash. These hash policies are executed in the specified order. If a hash policy has the “terminal” attribute set to true, and there is already a hash generated, the hash is returned immediately, ignoring the rest of the hash policy list.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"connection": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"source_ip": schema.BoolAttribute{
+																Description:         "Hash on source IP address.",
+																MarkdownDescription: "Hash on source IP address.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"cookie": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "The name of the cookie that will be used to obtain the hash key.",
+																MarkdownDescription: "The name of the cookie that will be used to obtain the hash key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "The name of the path for the cookie.",
+																MarkdownDescription: "The name of the path for the cookie.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"ttl": schema.StringAttribute{
+																Description:         "If specified, a cookie with the TTL will be generated if the cookie is not present.",
+																MarkdownDescription: "If specified, a cookie with the TTL will be generated if the cookie is not present.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"filter_state": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
+																MarkdownDescription: "The name of the Object in the per-request filterState, which is an Envoy::Hashable object. If there is no data associated with the key, or the stored object is not Envoy::Hashable, no hash will be produced.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"header": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "The name of the request header that will be used to obtain the hash key.",
+																MarkdownDescription: "The name of the request header that will be used to obtain the hash key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"query_parameter": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
+																MarkdownDescription: "The name of the URL query parameter that will be used to obtain the hash key. If the parameter is not present, no hash will be produced. Query parameter names are case-sensitive.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"terminal": schema.BoolAttribute{
+														Description:         "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+														MarkdownDescription: "Terminal is a flag that short-circuits the hash computing. This field provides a ‘fallback’ style of configuration: “if a terminal policy doesn’t work, fallback to rest of the policy list”, it saves time when the terminal policy works. If true, and there is already a hash computed, ignore rest of the list of hash polices.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("Header", "Cookie", "Connection", "SourceIP", "QueryParameter", "FilterState"),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"load_balancer": schema.SingleNestedAttribute{
 											Description:         "LoadBalancer allows to specify load balancing algorithm.",
 											MarkdownDescription: "LoadBalancer allows to specify load balancing algorithm.",
@@ -487,7 +651,7 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
-																			stringvalidator.OneOf("Header", "Cookie", "SourceIP", "QueryParameter", "FilterState"),
+																			stringvalidator.OneOf("Header", "Cookie", "Connection", "SourceIP", "QueryParameter", "FilterState"),
 																		},
 																	},
 																},
@@ -671,7 +835,7 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
-																			stringvalidator.OneOf("Header", "Cookie", "SourceIP", "QueryParameter", "FilterState"),
+																			stringvalidator.OneOf("Header", "Cookie", "Connection", "SourceIP", "QueryParameter", "FilterState"),
 																		},
 																	},
 																},
@@ -884,11 +1048,11 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

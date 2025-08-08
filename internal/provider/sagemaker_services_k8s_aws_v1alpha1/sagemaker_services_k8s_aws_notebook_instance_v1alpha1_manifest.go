@@ -142,8 +142,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceV1Alpha1Manifest) Schema(_ conte
 				MarkdownDescription: "NotebookInstanceSpec defines the desired state of NotebookInstance.",
 				Attributes: map[string]schema.Attribute{
 					"accelerator_types": schema.ListAttribute{
-						Description:         "A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).",
-						MarkdownDescription: "A list of Elastic Inference (EI) instance types to associate with this notebook instance. Currently, only one instance type can be associated with a notebook instance. For more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).",
+						Description:         "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of EI instance types to associate with this notebook instance.",
+						MarkdownDescription: "This parameter is no longer supported. Elastic Inference (EI) is no longer available. This parameter was used to specify a list of EI instance types to associate with this notebook instance.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -160,8 +160,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"default_code_repository": schema.StringAttribute{
-						Description:         "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).",
-						MarkdownDescription: "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).",
+						Description:         "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html). Regex Pattern: '^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
+						MarkdownDescription: "A Git repository to associate with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see Associating Git Repositories with SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html). Regex Pattern: '^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -184,40 +184,40 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the Amazon Web Services Key Management Service Developer Guide.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the Amazon Web Services Key Management Service Developer Guide.",
+						Description:         "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the Amazon Web Services Key Management Service Developer Guide. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the Amazon Web Services Key Management Service Developer Guide. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"lifecycle_config_name": schema.StringAttribute{
-						Description:         "The name of a lifecycle configuration to associate with the notebook instance. For information about lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance (https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html).",
-						MarkdownDescription: "The name of a lifecycle configuration to associate with the notebook instance. For information about lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance (https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html).",
+						Description:         "The name of a lifecycle configuration to associate with the notebook instance. For information about lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance (https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html). Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
+						MarkdownDescription: "The name of a lifecycle configuration to associate with the notebook instance. For information about lifestyle configurations, see Step 2.1: (Optional) Customize a Notebook Instance (https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html). Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"notebook_instance_name": schema.StringAttribute{
-						Description:         "The name of the new notebook instance.",
-						MarkdownDescription: "The name of the new notebook instance.",
+						Description:         "The name of the new notebook instance. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
+						MarkdownDescription: "The name of the new notebook instance. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"platform_identifier": schema.StringAttribute{
-						Description:         "The platform identifier of the notebook instance runtime environment.",
-						MarkdownDescription: "The platform identifier of the notebook instance runtime environment.",
+						Description:         "The platform identifier of the notebook instance runtime environment. Regex Pattern: '^(notebook-al1-v1|notebook-al2-v1|notebook-al2-v2|notebook-al2-v3)$'",
+						MarkdownDescription: "The platform identifier of the notebook instance runtime environment. Regex Pattern: '^(notebook-al1-v1|notebook-al2-v1|notebook-al2-v2|notebook-al2-v3)$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "When you send any requests to Amazon Web Services resources from the notebook instance, SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so SageMaker can perform these tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
-						MarkdownDescription: "When you send any requests to Amazon Web Services resources from the notebook instance, SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so SageMaker can perform these tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission.",
+						Description:         "When you send any requests to Amazon Web Services resources from the notebook instance, SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so SageMaker can perform these tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "When you send any requests to Amazon Web Services resources from the notebook instance, SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so SageMaker can perform these tasks. The policy must allow the SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html). To be able to pass this role to SageMaker, the caller of this API must have the iam:PassRole permission. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -241,8 +241,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceV1Alpha1Manifest) Schema(_ conte
 					},
 
 					"subnet_id": schema.StringAttribute{
-						Description:         "The ID of the subnet in a VPC to which you would like to have a connectivity from your ML compute instance.",
-						MarkdownDescription: "The ID of the subnet in a VPC to which you would like to have a connectivity from your ML compute instance.",
+						Description:         "The ID of the subnet in a VPC to which you would like to have a connectivity from your ML compute instance. Regex Pattern: '^[-0-9a-zA-Z]+$'",
+						MarkdownDescription: "The ID of the subnet in a VPC to which you would like to have a connectivity from your ML compute instance. Regex Pattern: '^[-0-9a-zA-Z]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

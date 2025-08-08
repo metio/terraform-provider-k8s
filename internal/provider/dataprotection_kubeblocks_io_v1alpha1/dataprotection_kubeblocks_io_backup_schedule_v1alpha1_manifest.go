@@ -47,9 +47,14 @@ type DataprotectionKubeblocksIoBackupScheduleV1Alpha1ManifestData struct {
 	Spec *struct {
 		BackupPolicyName *string `tfsdk:"backup_policy_name" json:"backupPolicyName,omitempty"`
 		Schedules        *[]struct {
-			BackupMethod    *string `tfsdk:"backup_method" json:"backupMethod,omitempty"`
-			CronExpression  *string `tfsdk:"cron_expression" json:"cronExpression,omitempty"`
-			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			BackupMethod   *string `tfsdk:"backup_method" json:"backupMethod,omitempty"`
+			CronExpression *string `tfsdk:"cron_expression" json:"cronExpression,omitempty"`
+			Enabled        *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
+			Parameters     *[]struct {
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"parameters" json:"parameters,omitempty"`
 			RetentionPeriod *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
 		} `tfsdk:"schedules" json:"schedules,omitempty"`
 		StartingDeadlineMinutes *int64 `tfsdk:"starting_deadline_minutes" json:"startingDeadlineMinutes,omitempty"`
@@ -171,6 +176,41 @@ func (r *DataprotectionKubeblocksIoBackupScheduleV1Alpha1Manifest) Schema(_ cont
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Specifies the name of the schedule. Names cannot be duplicated. If the name is empty, it will be considered the same as the value of the backupMethod below.",
+									MarkdownDescription: "Specifies the name of the schedule. Names cannot be duplicated. If the name is empty, it will be considered the same as the value of the backupMethod below.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"parameters": schema.ListNestedAttribute{
+									Description:         "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+									MarkdownDescription: "Specifies a list of name-value pairs representing parameters and their corresponding values. Parameters match the schema specified in the 'actionset.spec.parametersSchema'",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "Represents the name of the parameter.",
+												MarkdownDescription: "Represents the name of the parameter.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"value": schema.StringAttribute{
+												Description:         "Represents the parameter values.",
+												MarkdownDescription: "Represents the parameter values.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"retention_period": schema.StringAttribute{

@@ -47,13 +47,6 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			Allow *[]string `tfsdk:"allow" json:"allow,omitempty"`
 			Deny  *[]string `tfsdk:"deny" json:"deny,omitempty"`
 		} `tfsdk:"access_control" json:"accessControl,omitempty"`
-		ApiKey *struct {
-			ClientSecret *string `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-			SuppliedIn   *struct {
-				Header *[]string `tfsdk:"header" json:"header,omitempty"`
-				Query  *[]string `tfsdk:"query" json:"query,omitempty"`
-			} `tfsdk:"supplied_in" json:"suppliedIn,omitempty"`
-		} `tfsdk:"api_key" json:"apiKey,omitempty"`
 		BasicAuth *struct {
 			Realm  *string `tfsdk:"realm" json:"realm,omitempty"`
 			Secret *string `tfsdk:"secret" json:"secret,omitempty"`
@@ -84,18 +77,16 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			Token    *string `tfsdk:"token" json:"token,omitempty"`
 		} `tfsdk:"jwt" json:"jwt,omitempty"`
 		Oidc *struct {
-			AccessTokenEnable     *bool     `tfsdk:"access_token_enable" json:"accessTokenEnable,omitempty"`
-			AuthEndpoint          *string   `tfsdk:"auth_endpoint" json:"authEndpoint,omitempty"`
-			AuthExtraArgs         *[]string `tfsdk:"auth_extra_args" json:"authExtraArgs,omitempty"`
-			ClientID              *string   `tfsdk:"client_id" json:"clientID,omitempty"`
-			ClientSecret          *string   `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-			EndSessionEndpoint    *string   `tfsdk:"end_session_endpoint" json:"endSessionEndpoint,omitempty"`
-			JwksURI               *string   `tfsdk:"jwks_uri" json:"jwksURI,omitempty"`
-			PostLogoutRedirectURI *string   `tfsdk:"post_logout_redirect_uri" json:"postLogoutRedirectURI,omitempty"`
-			RedirectURI           *string   `tfsdk:"redirect_uri" json:"redirectURI,omitempty"`
-			Scope                 *string   `tfsdk:"scope" json:"scope,omitempty"`
-			TokenEndpoint         *string   `tfsdk:"token_endpoint" json:"tokenEndpoint,omitempty"`
-			ZoneSyncLeeway        *int64    `tfsdk:"zone_sync_leeway" json:"zoneSyncLeeway,omitempty"`
+			AccessTokenEnable *bool     `tfsdk:"access_token_enable" json:"accessTokenEnable,omitempty"`
+			AuthEndpoint      *string   `tfsdk:"auth_endpoint" json:"authEndpoint,omitempty"`
+			AuthExtraArgs     *[]string `tfsdk:"auth_extra_args" json:"authExtraArgs,omitempty"`
+			ClientID          *string   `tfsdk:"client_id" json:"clientID,omitempty"`
+			ClientSecret      *string   `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+			JwksURI           *string   `tfsdk:"jwks_uri" json:"jwksURI,omitempty"`
+			RedirectURI       *string   `tfsdk:"redirect_uri" json:"redirectURI,omitempty"`
+			Scope             *string   `tfsdk:"scope" json:"scope,omitempty"`
+			TokenEndpoint     *string   `tfsdk:"token_endpoint" json:"tokenEndpoint,omitempty"`
+			ZoneSyncLeeway    *int64    `tfsdk:"zone_sync_leeway" json:"zoneSyncLeeway,omitempty"`
 		} `tfsdk:"oidc" json:"oidc,omitempty"`
 		RateLimit *struct {
 			Burst      *int64  `tfsdk:"burst" json:"burst,omitempty"`
@@ -106,7 +97,6 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			NoDelay    *bool   `tfsdk:"no_delay" json:"noDelay,omitempty"`
 			Rate       *string `tfsdk:"rate" json:"rate,omitempty"`
 			RejectCode *int64  `tfsdk:"reject_code" json:"rejectCode,omitempty"`
-			Scale      *bool   `tfsdk:"scale" json:"scale,omitempty"`
 			ZoneSize   *string `tfsdk:"zone_size" json:"zoneSize,omitempty"`
 		} `tfsdk:"rate_limit" json:"rateLimit,omitempty"`
 		Waf *struct {
@@ -114,16 +104,14 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			ApPolicy    *string `tfsdk:"ap_policy" json:"apPolicy,omitempty"`
 			Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
 			SecurityLog *struct {
-				ApLogBundle *string `tfsdk:"ap_log_bundle" json:"apLogBundle,omitempty"`
-				ApLogConf   *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
-				Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
-				LogDest     *string `tfsdk:"log_dest" json:"logDest,omitempty"`
+				ApLogConf *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
+				Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
+				LogDest   *string `tfsdk:"log_dest" json:"logDest,omitempty"`
 			} `tfsdk:"security_log" json:"securityLog,omitempty"`
 			SecurityLogs *[]struct {
-				ApLogBundle *string `tfsdk:"ap_log_bundle" json:"apLogBundle,omitempty"`
-				ApLogConf   *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
-				Enable      *bool   `tfsdk:"enable" json:"enable,omitempty"`
-				LogDest     *string `tfsdk:"log_dest" json:"logDest,omitempty"`
+				ApLogConf *string `tfsdk:"ap_log_conf" json:"apLogConf,omitempty"`
+				Enable    *bool   `tfsdk:"enable" json:"enable,omitempty"`
+				LogDest   *string `tfsdk:"log_dest" json:"logDest,omitempty"`
 			} `tfsdk:"security_logs" json:"securityLogs,omitempty"`
 		} `tfsdk:"waf" json:"waf,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -233,53 +221,9 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 						Computed: false,
 					},
 
-					"api_key": schema.SingleNestedAttribute{
-						Description:         "APIKey defines an API Key policy.",
-						MarkdownDescription: "APIKey defines an API Key policy.",
-						Attributes: map[string]schema.Attribute{
-							"client_secret": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"supplied_in": schema.SingleNestedAttribute{
-								Description:         "SuppliedIn defines the locations API Key should be supplied in.",
-								MarkdownDescription: "SuppliedIn defines the locations API Key should be supplied in.",
-								Attributes: map[string]schema.Attribute{
-									"header": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"query": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"basic_auth": schema.SingleNestedAttribute{
-						Description:         "BasicAuth holds HTTP Basic authentication configuration",
-						MarkdownDescription: "BasicAuth holds HTTP Basic authentication configuration",
+						Description:         "BasicAuth holds HTTP Basic authentication configuration policy status: preview",
+						MarkdownDescription: "BasicAuth holds HTTP Basic authentication configuration policy status: preview",
 						Attributes: map[string]schema.Attribute{
 							"realm": schema.StringAttribute{
 								Description:         "",
@@ -526,23 +470,7 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Computed:            false,
 							},
 
-							"end_session_endpoint": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"jwks_uri": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"post_logout_redirect_uri": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -655,14 +583,6 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Computed:            false,
 							},
 
-							"scale": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"zone_size": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -708,14 +628,6 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Description:         "SecurityLog defines the security log of a WAF policy.",
 								MarkdownDescription: "SecurityLog defines the security log of a WAF policy.",
 								Attributes: map[string]schema.Attribute{
-									"ap_log_bundle": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"ap_log_conf": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -750,14 +662,6 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								MarkdownDescription: "",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
-										"ap_log_bundle": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
 										"ap_log_conf": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",

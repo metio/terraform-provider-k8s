@@ -43,6 +43,7 @@ type CrdProjectcalicoOrgIppoolV1ManifestData struct {
 
 	Spec *struct {
 		AllowedUses      *[]string `tfsdk:"allowed_uses" json:"allowedUses,omitempty"`
+		AssignmentMode   *string   `tfsdk:"assignment_mode" json:"assignmentMode,omitempty"`
 		BlockSize        *int64    `tfsdk:"block_size" json:"blockSize,omitempty"`
 		Cidr             *string   `tfsdk:"cidr" json:"cidr,omitempty"`
 		DisableBGPExport *bool     `tfsdk:"disable_bgp_export" json:"disableBGPExport,omitempty"`
@@ -120,65 +121,76 @@ func (r *CrdProjectcalicoOrgIppoolV1Manifest) Schema(_ context.Context, _ dataso
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPPoolSpec contains the specification for an IPPool resource.",
-				MarkdownDescription: "IPPoolSpec contains the specification for an IPPool resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"allowed_uses": schema.ListAttribute{
-						Description:         "AllowedUse controls what the IP pool will be used for. If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
-						MarkdownDescription: "AllowedUse controls what the IP pool will be used for. If not specified or empty, defaults to ['Tunnel', 'Workload'] for back-compatibility",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"assignment_mode": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Automatic", "Manual"),
+						},
+					},
+
 					"block_size": schema.Int64Attribute{
-						Description:         "The block size to use for IP address assignments from this pool. Defaults to 26 for IPv4 and 122 for IPv6.",
-						MarkdownDescription: "The block size to use for IP address assignments from this pool. Defaults to 26 for IPv4 and 122 for IPv6.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cidr": schema.StringAttribute{
-						Description:         "The pool CIDR.",
-						MarkdownDescription: "The pool CIDR.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"disable_bgp_export": schema.BoolAttribute{
-						Description:         "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
-						MarkdownDescription: "Disable exporting routes from this IP Pool's CIDR over BGP. [Default: false]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"disabled": schema.BoolAttribute{
-						Description:         "When disabled is true, Calico IPAM will not assign addresses from this pool.",
-						MarkdownDescription: "When disabled is true, Calico IPAM will not assign addresses from this pool.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipip": schema.SingleNestedAttribute{
-						Description:         "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
-						MarkdownDescription: "Deprecated: this field is only used for APIv1 backwards compatibility. Setting this field is not allowed, this field is for internal use only.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
-								Description:         "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
-								MarkdownDescription: "When enabled is true, ipip tunneling will be used to deliver packets to destinations within this pool.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"mode": schema.StringAttribute{
-								Description:         "The IPIP mode. This can be one of 'always' or 'cross-subnet'. A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool. A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node. The default value (if not specified) is 'always'.",
-								MarkdownDescription: "The IPIP mode. This can be one of 'always' or 'cross-subnet'. A mode of 'always' will also use IPIP tunneling for routing to destination IP addresses within this pool. A mode of 'cross-subnet' will only use IPIP tunneling when the destination node is on a different subnet to the originating node. The default value (if not specified) is 'always'.",
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -190,32 +202,32 @@ func (r *CrdProjectcalicoOrgIppoolV1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"ipip_mode": schema.StringAttribute{
-						Description:         "Contains configuration for IPIP tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. IPIP tunneling is disabled).",
-						MarkdownDescription: "Contains configuration for IPIP tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. IPIP tunneling is disabled).",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"nat_outgoing": schema.BoolAttribute{
-						Description:         "When natOutgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
-						MarkdownDescription: "When natOutgoing is true, packets sent from Calico networked containers in this pool to destinations outside of this pool will be masqueraded.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_selector": schema.StringAttribute{
-						Description:         "Allows IPPool to allocate for a specific node by label selector.",
-						MarkdownDescription: "Allows IPPool to allocate for a specific node by label selector.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"vxlan_mode": schema.StringAttribute{
-						Description:         "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
-						MarkdownDescription: "Contains configuration for VXLAN tunneling for this pool. If not specified, then this is defaulted to 'Never' (i.e. VXLAN tunneling is disabled).",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

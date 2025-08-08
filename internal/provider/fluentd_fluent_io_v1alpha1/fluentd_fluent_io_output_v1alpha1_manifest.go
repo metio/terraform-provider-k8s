@@ -241,10 +241,12 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 				Path              *string `tfsdk:"path" json:"path,omitempty"`
 				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadAfter       *int64  `tfsdk:"reload_after" json:"reloadAfter,omitempty"`
 				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
 				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
 				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
 				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SnifferClassName  *string `tfsdk:"sniffer_class_name" json:"snifferClassName,omitempty"`
 				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
 				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
 				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
@@ -316,10 +318,12 @@ type FluentdFluentIoOutputV1Alpha1ManifestData struct {
 				Path              *string `tfsdk:"path" json:"path,omitempty"`
 				Port              *int64  `tfsdk:"port" json:"port,omitempty"`
 				ReconnectOnError  *bool   `tfsdk:"reconnect_on_error" json:"reconnectOnError,omitempty"`
+				ReloadAfter       *int64  `tfsdk:"reload_after" json:"reloadAfter,omitempty"`
 				ReloadConnections *bool   `tfsdk:"reload_connections" json:"reloadConnections,omitempty"`
 				ReloadOnFailure   *bool   `tfsdk:"reload_on_failure" json:"reloadOnFailure,omitempty"`
 				RequestTimeout    *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
 				Scheme            *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				SnifferClassName  *string `tfsdk:"sniffer_class_name" json:"snifferClassName,omitempty"`
 				SslVerify         *bool   `tfsdk:"ssl_verify" json:"sslVerify,omitempty"`
 				SuppressTypeName  *bool   `tfsdk:"suppress_type_name" json:"suppressTypeName,omitempty"`
 				TemplateOverwrite *bool   `tfsdk:"template_overwrite" json:"templateOverwrite,omitempty"`
@@ -2162,6 +2166,14 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"reload_after": schema.Int64Attribute{
+											Description:         "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											MarkdownDescription: "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"reload_connections": schema.BoolAttribute{
 											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
 											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
@@ -2192,6 +2204,14 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sniffer_class_name": schema.StringAttribute{
+											Description:         "Optional, Provide a different sniffer class name",
+											MarkdownDescription: "Optional, Provide a different sniffer class name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2657,6 +2677,14 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"reload_after": schema.Int64Attribute{
+											Description:         "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											MarkdownDescription: "Optional, When ReloadConnections true, this is the integer number of operations after which the plugin will reload the connections. The default value is 10000.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"reload_connections": schema.BoolAttribute{
 											Description:         "Optional, Automatically reload connection after 10000 documents (default: true)",
 											MarkdownDescription: "Optional, Automatically reload connection after 10000 documents (default: true)",
@@ -2687,6 +2715,14 @@ func (r *FluentdFluentIoOutputV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"scheme": schema.StringAttribute{
 											Description:         "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
 											MarkdownDescription: "Specify https if your Elasticsearch endpoint supports SSL (default: http).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"sniffer_class_name": schema.StringAttribute{
+											Description:         "Optional, Provide a different sniffer class name",
+											MarkdownDescription: "Optional, Provide a different sniffer class name",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
