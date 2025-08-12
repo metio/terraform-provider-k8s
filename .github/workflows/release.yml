@@ -17,7 +17,7 @@ jobs:
     steps:
       - id: checkout
         name: Clone Git Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - id: last_release
@@ -55,7 +55,7 @@ jobs:
       - id: checkout
         name: Clone Git Repository
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - id: setup_go
         name: Set up Go
         uses: actions/setup-go@v5
@@ -103,7 +103,7 @@ jobs:
       - id: checkout
         name: Clone Git Repository
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - id: download
