@@ -251,8 +251,8 @@ github.com/onsi/ginkgo/v2 v2.21.0 h1:7rg/4f3rB88pb5obDgNZrNHrQ4e6WpjonchcpuBRnZM
 github.com/onsi/ginkgo/v2 v2.21.0/go.mod h1:7Du3c42kxCUegi0IImZ1wUQzMBVecgIHjR1C+NkhLQo=
 github.com/onsi/gomega v1.35.1 h1:Cwbd75ZBPxFSuZ6T+rN/WCb/gOc6YgFBXLlZLhC7Ds4=
 github.com/onsi/gomega v1.35.1/go.mod h1:PvZbdDc8J6XJEpDK4HCuRBm8a6Fzp9/DmhC9C7yFlog=
-github.com/pb33f/libopenapi v0.25.6 h1:w9NWO3ML9ZGC0NtHqiML/jmvFnguRs1uGDNu6OuVimc=
-github.com/pb33f/libopenapi v0.25.6/go.mod h1:IefJDi7uJpflLs2wEnkiier/Y21w+dEbOrMCP5LB2aw=
+github.com/pb33f/libopenapi v0.25.7 h1:Ap4cE1Yx39Z5PgT4wE12n6k1C6dcZ8u9jzNGMq2G59s=
+github.com/pb33f/libopenapi v0.25.7/go.mod h1:IefJDi7uJpflLs2wEnkiier/Y21w+dEbOrMCP5LB2aw=
 github.com/pb33f/ordered-map/v2 v2.2.0 h1:+6D6e0nkcEjVPh6kF48ynz2Cb+D/ECH/Q3AOunHtj7E=
 github.com/pb33f/ordered-map/v2 v2.2.0/go.mod h1:rAwLzJPAha8J3pY5otLGRbGH2L077wij3W/ftbgPwNs=
 github.com/peterbourgon/diskv v2.0.1+incompatible h1:UBdAOUP5p4RWqPBg048CAvpKN+vxiaj6gdUUzhl4XmI=
