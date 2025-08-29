@@ -52,14 +52,44 @@ type OperatorOpenClusterManagementIoClusterManagerV1ManifestData struct {
 		} `tfsdk:"add_on_manager_configuration" json:"addOnManagerConfiguration,omitempty"`
 		AddOnManagerImagePullSpec *string `tfsdk:"add_on_manager_image_pull_spec" json:"addOnManagerImagePullSpec,omitempty"`
 		DeployOption              *struct {
-			Hosted *struct {
+			Default *struct {
 				RegistrationWebhookConfiguration *struct {
-					Address *string `tfsdk:"address" json:"address,omitempty"`
-					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					BindConfiguration *struct {
+						HealthProbePort *int64 `tfsdk:"health_probe_port" json:"healthProbePort,omitempty"`
+						HostNetwork     *bool  `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+						MetricsPort     *int64 `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
+						Port            *int64 `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"bind_configuration" json:"bindConfiguration,omitempty"`
 				} `tfsdk:"registration_webhook_configuration" json:"registrationWebhookConfiguration,omitempty"`
 				WorkWebhookConfiguration *struct {
-					Address *string `tfsdk:"address" json:"address,omitempty"`
-					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					BindConfiguration *struct {
+						HealthProbePort *int64 `tfsdk:"health_probe_port" json:"healthProbePort,omitempty"`
+						HostNetwork     *bool  `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+						MetricsPort     *int64 `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
+						Port            *int64 `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"bind_configuration" json:"bindConfiguration,omitempty"`
+				} `tfsdk:"work_webhook_configuration" json:"workWebhookConfiguration,omitempty"`
+			} `tfsdk:"default" json:"default,omitempty"`
+			Hosted *struct {
+				RegistrationWebhookConfiguration *struct {
+					Address           *string `tfsdk:"address" json:"address,omitempty"`
+					BindConfiguration *struct {
+						HealthProbePort *int64 `tfsdk:"health_probe_port" json:"healthProbePort,omitempty"`
+						HostNetwork     *bool  `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+						MetricsPort     *int64 `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
+						Port            *int64 `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"bind_configuration" json:"bindConfiguration,omitempty"`
+					Port *int64 `tfsdk:"port" json:"port,omitempty"`
+				} `tfsdk:"registration_webhook_configuration" json:"registrationWebhookConfiguration,omitempty"`
+				WorkWebhookConfiguration *struct {
+					Address           *string `tfsdk:"address" json:"address,omitempty"`
+					BindConfiguration *struct {
+						HealthProbePort *int64 `tfsdk:"health_probe_port" json:"healthProbePort,omitempty"`
+						HostNetwork     *bool  `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+						MetricsPort     *int64 `tfsdk:"metrics_port" json:"metricsPort,omitempty"`
+						Port            *int64 `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"bind_configuration" json:"bindConfiguration,omitempty"`
+					Port *int64 `tfsdk:"port" json:"port,omitempty"`
 				} `tfsdk:"work_webhook_configuration" json:"workWebhookConfiguration,omitempty"`
 			} `tfsdk:"hosted" json:"hosted,omitempty"`
 			Mode *string `tfsdk:"mode" json:"mode,omitempty"`
@@ -81,12 +111,34 @@ type OperatorOpenClusterManagementIoClusterManagerV1ManifestData struct {
 				Feature *string `tfsdk:"feature" json:"feature,omitempty"`
 				Mode    *string `tfsdk:"mode" json:"mode,omitempty"`
 			} `tfsdk:"feature_gates" json:"featureGates,omitempty"`
+			RegistrationDrivers *[]struct {
+				AuthType *string `tfsdk:"auth_type" json:"authType,omitempty"`
+				Awsirsa  *struct {
+					AutoApprovedIdentities *[]string `tfsdk:"auto_approved_identities" json:"autoApprovedIdentities,omitempty"`
+					HubClusterArn          *string   `tfsdk:"hub_cluster_arn" json:"hubClusterArn,omitempty"`
+					Tags                   *[]string `tfsdk:"tags" json:"tags,omitempty"`
+				} `tfsdk:"awsirsa" json:"awsirsa,omitempty"`
+				Csr *struct {
+					AutoApprovedIdentities *[]string `tfsdk:"auto_approved_identities" json:"autoApprovedIdentities,omitempty"`
+				} `tfsdk:"csr" json:"csr,omitempty"`
+				Grpc *struct {
+					AutoApprovedIdentities *[]string `tfsdk:"auto_approved_identities" json:"autoApprovedIdentities,omitempty"`
+					EndpointExposure       *struct {
+						Hostname *struct {
+							Value *string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"hostname" json:"hostname,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"endpoint_exposure" json:"endpointExposure,omitempty"`
+					ImagePullSpec *string `tfsdk:"image_pull_spec" json:"imagePullSpec,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+			} `tfsdk:"registration_drivers" json:"registrationDrivers,omitempty"`
 		} `tfsdk:"registration_configuration" json:"registrationConfiguration,omitempty"`
 		RegistrationImagePullSpec *string `tfsdk:"registration_image_pull_spec" json:"registrationImagePullSpec,omitempty"`
 		ResourceRequirement       *struct {
 			ResourceRequirements *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -220,6 +272,133 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 						Description:         "DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set.",
 						MarkdownDescription: "DeployOption contains the options of deploying a cluster-manager Default mode is used if DeployOption is not set.",
 						Attributes: map[string]schema.Attribute{
+							"default": schema.SingleNestedAttribute{
+								Description:         "Default includes optional configurations for clustermanager in the Default mode.",
+								MarkdownDescription: "Default includes optional configurations for clustermanager in the Default mode.",
+								Attributes: map[string]schema.Attribute{
+									"registration_webhook_configuration": schema.SingleNestedAttribute{
+										Description:         "RegistrationWebhookConfiguration represents the customized webhook-server configuration of registration.",
+										MarkdownDescription: "RegistrationWebhookConfiguration represents the customized webhook-server configuration of registration.",
+										Attributes: map[string]schema.Attribute{
+											"bind_configuration": schema.SingleNestedAttribute{
+												Description:         "BindConfiguration represents server bind configuration for the webhook server",
+												MarkdownDescription: "BindConfiguration represents server bind configuration for the webhook server",
+												Attributes: map[string]schema.Attribute{
+													"health_probe_port": schema.Int64Attribute{
+														Description:         "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"host_network": schema.BoolAttribute{
+														Description:         "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														MarkdownDescription: "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"metrics_port": schema.Int64Attribute{
+														Description:         "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port represents the primary bind port of a server. The default value is 9443.",
+														MarkdownDescription: "Port represents the primary bind port of a server. The default value is 9443.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"work_webhook_configuration": schema.SingleNestedAttribute{
+										Description:         "WorkWebhookConfiguration represents the customized webhook-server configuration of work.",
+										MarkdownDescription: "WorkWebhookConfiguration represents the customized webhook-server configuration of work.",
+										Attributes: map[string]schema.Attribute{
+											"bind_configuration": schema.SingleNestedAttribute{
+												Description:         "BindConfiguration represents server bind configuration for the webhook server",
+												MarkdownDescription: "BindConfiguration represents server bind configuration for the webhook server",
+												Attributes: map[string]schema.Attribute{
+													"health_probe_port": schema.Int64Attribute{
+														Description:         "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"host_network": schema.BoolAttribute{
+														Description:         "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														MarkdownDescription: "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"metrics_port": schema.Int64Attribute{
+														Description:         "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port represents the primary bind port of a server. The default value is 9443.",
+														MarkdownDescription: "Port represents the primary bind port of a server. The default value is 9443.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"hosted": schema.SingleNestedAttribute{
 								Description:         "Hosted includes configurations we need for clustermanager in the Hosted mode.",
 								MarkdownDescription: "Hosted includes configurations we need for clustermanager in the Hosted mode.",
@@ -239,9 +418,59 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 												},
 											},
 
+											"bind_configuration": schema.SingleNestedAttribute{
+												Description:         "BindConfiguration represents server bind configuration for the webhook server",
+												MarkdownDescription: "BindConfiguration represents server bind configuration for the webhook server",
+												Attributes: map[string]schema.Attribute{
+													"health_probe_port": schema.Int64Attribute{
+														Description:         "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"host_network": schema.BoolAttribute{
+														Description:         "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														MarkdownDescription: "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"metrics_port": schema.Int64Attribute{
+														Description:         "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port represents the primary bind port of a server. The default value is 9443.",
+														MarkdownDescription: "Port represents the primary bind port of a server. The default value is 9443.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"port": schema.Int64Attribute{
-												Description:         "Port represents the port of a webhook-server. The default value of Port is 443.",
-												MarkdownDescription: "Port represents the port of a webhook-server. The default value of Port is 443.",
+												Description:         "Port represents the external port of a webhook-server. The default value of Port is 443.",
+												MarkdownDescription: "Port represents the external port of a webhook-server. The default value of Port is 443.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -270,9 +499,59 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 												},
 											},
 
+											"bind_configuration": schema.SingleNestedAttribute{
+												Description:         "BindConfiguration represents server bind configuration for the webhook server",
+												MarkdownDescription: "BindConfiguration represents server bind configuration for the webhook server",
+												Attributes: map[string]schema.Attribute{
+													"health_probe_port": schema.Int64Attribute{
+														Description:         "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "HealthProbePort represents the bind port of a webhook-server's healthcheck endpoint. The default value is 8000. Healthchecks may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"host_network": schema.BoolAttribute{
+														Description:         "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														MarkdownDescription: "HostNetwork enables running webhook pods in host networking mode. This may be required in some installations, such as EKS with Calico CNI, to allow the API Server to communicate with the webhook pods.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"metrics_port": schema.Int64Attribute{
+														Description:         "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														MarkdownDescription: "MetricsPort represents the bind port for a webhook-server's metric endpoint. The default value is 8080. Metrics may be disabled by setting a value less than or equal to 0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port represents the primary bind port of a server. The default value is 9443.",
+														MarkdownDescription: "Port represents the primary bind port of a server. The default value is 9443.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtMost(65535),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"port": schema.Int64Attribute{
-												Description:         "Port represents the port of a webhook-server. The default value of Port is 443.",
-												MarkdownDescription: "Port represents the port of a webhook-server. The default value of Port is 443.",
+												Description:         "Port represents the external port of a webhook-server. The default value of Port is 443.",
+												MarkdownDescription: "Port represents the external port of a webhook-server. The default value of Port is 443.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -426,6 +705,147 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 								Optional: true,
 								Computed: false,
 							},
+
+							"registration_drivers": schema.ListNestedAttribute{
+								Description:         "RegistrationDrivers represent the list of hub registration drivers that contain information used by hub to initialize the hub cluster A RegistrationDriverHub contains details of authentication type and the hub cluster ARN",
+								MarkdownDescription: "RegistrationDrivers represent the list of hub registration drivers that contain information used by hub to initialize the hub cluster A RegistrationDriverHub contains details of authentication type and the hub cluster ARN",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"auth_type": schema.StringAttribute{
+											Description:         "Type of the authentication used by hub to initialize the Hub cluster. Possible values are csr and awsirsa.",
+											MarkdownDescription: "Type of the authentication used by hub to initialize the Hub cluster. Possible values are csr and awsirsa.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("csr", "awsirsa", "grpc"),
+											},
+										},
+
+										"awsirsa": schema.SingleNestedAttribute{
+											Description:         "AwsIrsa represents the configuration for awsirsa driver.",
+											MarkdownDescription: "AwsIrsa represents the configuration for awsirsa driver.",
+											Attributes: map[string]schema.Attribute{
+												"auto_approved_identities": schema.ListAttribute{
+													Description:         "AutoApprovedIdentities represent a list of approved arn patterns",
+													MarkdownDescription: "AutoApprovedIdentities represent a list of approved arn patterns",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"hub_cluster_arn": schema.StringAttribute{
+													Description:         "This represents the hub cluster ARN Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1",
+													MarkdownDescription: "This represents the hub cluster ARN Example - arn:eks:us-west-2:12345678910:cluster/hub-cluster1",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^arn:aws:eks:([a-zA-Z0-9-]+):(\d{12}):cluster/([a-zA-Z0-9-]+)$`), ""),
+													},
+												},
+
+												"tags": schema.ListAttribute{
+													Description:         "List of tags to be added to AWS resources created by hub while processing awsirsa registration request Example - 'product:v1:tenant:app-name=My-App'",
+													MarkdownDescription: "List of tags to be added to AWS resources created by hub while processing awsirsa registration request Example - 'product:v1:tenant:app-name=My-App'",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"csr": schema.SingleNestedAttribute{
+											Description:         "CSR represents the configuration for csr driver.",
+											MarkdownDescription: "CSR represents the configuration for csr driver.",
+											Attributes: map[string]schema.Attribute{
+												"auto_approved_identities": schema.ListAttribute{
+													Description:         "AutoApprovedIdentities represent a list of approved users",
+													MarkdownDescription: "AutoApprovedIdentities represent a list of approved users",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"grpc": schema.SingleNestedAttribute{
+											Description:         "GRPC represents the configuration for gRPC driver.",
+											MarkdownDescription: "GRPC represents the configuration for gRPC driver.",
+											Attributes: map[string]schema.Attribute{
+												"auto_approved_identities": schema.ListAttribute{
+													Description:         "AutoApprovedIdentities represent a list of approved users",
+													MarkdownDescription: "AutoApprovedIdentities represent a list of approved users",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"endpoint_exposure": schema.SingleNestedAttribute{
+													Description:         "EndpointExposure represents the configuration for endpoint exposure.",
+													MarkdownDescription: "EndpointExposure represents the configuration for endpoint exposure.",
+													Attributes: map[string]schema.Attribute{
+														"hostname": schema.SingleNestedAttribute{
+															Description:         "Hostname points to a fixed hostname for serving agents' handshakes.",
+															MarkdownDescription: "Hostname points to a fixed hostname for serving agents' handshakes.",
+															Attributes: map[string]schema.Attribute{
+																"value": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "Type specifies how the gRPC endpoint is exposed. You may need to apply an object to expose the gRPC endpoint, for example: a route.",
+															MarkdownDescription: "Type specifies how the gRPC endpoint is exposed. You may need to apply an object to expose the gRPC endpoint, for example: a route.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("hostname"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"image_pull_spec": schema.StringAttribute{
+													Description:         "ImagePullSpec represents the desired image of the gRPC broker installed on hub.",
+													MarkdownDescription: "ImagePullSpec represents the desired image of the gRPC broker installed on hub.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -458,6 +878,14 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ conte
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

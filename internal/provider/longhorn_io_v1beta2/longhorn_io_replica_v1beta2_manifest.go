@@ -44,14 +44,12 @@ type LonghornIoReplicaV1Beta2ManifestData struct {
 
 	Spec *struct {
 		Active                           *bool   `tfsdk:"active" json:"active,omitempty"`
-		BackendStoreDriver               *string `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
 		BackingImage                     *string `tfsdk:"backing_image" json:"backingImage,omitempty"`
 		DataDirectoryName                *string `tfsdk:"data_directory_name" json:"dataDirectoryName,omitempty"`
 		DataEngine                       *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
 		DesireState                      *string `tfsdk:"desire_state" json:"desireState,omitempty"`
 		DiskID                           *string `tfsdk:"disk_id" json:"diskID,omitempty"`
 		DiskPath                         *string `tfsdk:"disk_path" json:"diskPath,omitempty"`
-		EngineImage                      *string `tfsdk:"engine_image" json:"engineImage,omitempty"`
 		EngineName                       *string `tfsdk:"engine_name" json:"engineName,omitempty"`
 		EvictionRequested                *bool   `tfsdk:"eviction_requested" json:"evictionRequested,omitempty"`
 		FailedAt                         *string `tfsdk:"failed_at" json:"failedAt,omitempty"`
@@ -61,6 +59,7 @@ type LonghornIoReplicaV1Beta2ManifestData struct {
 		LastFailedAt                     *string `tfsdk:"last_failed_at" json:"lastFailedAt,omitempty"`
 		LastHealthyAt                    *string `tfsdk:"last_healthy_at" json:"lastHealthyAt,omitempty"`
 		LogRequested                     *bool   `tfsdk:"log_requested" json:"logRequested,omitempty"`
+		MigrationEngineName              *string `tfsdk:"migration_engine_name" json:"migrationEngineName,omitempty"`
 		NodeID                           *string `tfsdk:"node_id" json:"nodeID,omitempty"`
 		RebuildRetryCount                *int64  `tfsdk:"rebuild_retry_count" json:"rebuildRetryCount,omitempty"`
 		RevisionCounterDisabled          *bool   `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
@@ -158,14 +157,6 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 						Computed:            false,
 					},
 
-					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated:Replaced by field 'dataEngine'.",
-						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"backing_image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -212,14 +203,6 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					"disk_path": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"engine_image": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'image'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -292,6 +275,14 @@ func (r *LonghornIoReplicaV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 					"log_requested": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"migration_engine_name": schema.StringAttribute{
+						Description:         "MigrationEngineName is indicating the migrating engine which current connected to this replica. This is only used for live migration of v2 data engine",
+						MarkdownDescription: "MigrationEngineName is indicating the migrating engine which current connected to this replica. This is only used for live migration of v2 data engine",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

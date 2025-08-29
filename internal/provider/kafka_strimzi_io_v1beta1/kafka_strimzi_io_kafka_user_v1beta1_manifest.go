@@ -313,8 +313,8 @@ func (r *KafkaStrimziIoKafkaUserV1Beta1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"type": schema.StringAttribute{
-											Description:         "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
-											MarkdownDescription: "The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.",
+											Description:         "The type of the rule. ACL rules with type 'allow' are used to allow user to execute the specified operations. ACL rules with type 'deny' are used to deny user to execute the specified operations. Default value is 'allow'.",
+											MarkdownDescription: "The type of the rule. ACL rules with type 'allow' are used to allow user to execute the specified operations. ACL rules with type 'deny' are used to deny user to execute the specified operations. Default value is 'allow'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

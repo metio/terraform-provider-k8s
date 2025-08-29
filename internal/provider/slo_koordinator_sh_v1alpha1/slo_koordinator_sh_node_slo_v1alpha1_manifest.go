@@ -364,6 +364,7 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 			CpuEvictBEUsageThresholdPercent    *int64  `tfsdk:"cpu_evict_be_usage_threshold_percent" json:"cpuEvictBEUsageThresholdPercent,omitempty"`
 			CpuEvictPolicy                     *string `tfsdk:"cpu_evict_policy" json:"cpuEvictPolicy,omitempty"`
 			CpuEvictTimeWindowSeconds          *int64  `tfsdk:"cpu_evict_time_window_seconds" json:"cpuEvictTimeWindowSeconds,omitempty"`
+			CpuSuppressMinPercent              *int64  `tfsdk:"cpu_suppress_min_percent" json:"cpuSuppressMinPercent,omitempty"`
 			CpuSuppressPolicy                  *string `tfsdk:"cpu_suppress_policy" json:"cpuSuppressPolicy,omitempty"`
 			CpuSuppressThresholdPercent        *int64  `tfsdk:"cpu_suppress_threshold_percent" json:"cpuSuppressThresholdPercent,omitempty"`
 			Enable                             *bool   `tfsdk:"enable" json:"enable,omitempty"`
@@ -371,10 +372,13 @@ type SloKoordinatorShNodeSloV1Alpha1ManifestData struct {
 			MemoryEvictThresholdPercent        *int64  `tfsdk:"memory_evict_threshold_percent" json:"memoryEvictThresholdPercent,omitempty"`
 		} `tfsdk:"resource_used_threshold_with_be" json:"resourceUsedThresholdWithBE,omitempty"`
 		SystemStrategy *struct {
-			MemcgReapBackGround   *int64  `tfsdk:"memcg_reap_back_ground" json:"memcgReapBackGround,omitempty"`
-			MinFreeKbytesFactor   *int64  `tfsdk:"min_free_kbytes_factor" json:"minFreeKbytesFactor,omitempty"`
-			TotalNetworkBandwidth *string `tfsdk:"total_network_bandwidth" json:"totalNetworkBandwidth,omitempty"`
-			WatermarkScaleFactor  *int64  `tfsdk:"watermark_scale_factor" json:"watermarkScaleFactor,omitempty"`
+			MemcgReapBackGround       *int64             `tfsdk:"memcg_reap_back_ground" json:"memcgReapBackGround,omitempty"`
+			MinFreeKbytesFactor       *int64             `tfsdk:"min_free_kbytes_factor" json:"minFreeKbytesFactor,omitempty"`
+			SchedFeatures             *map[string]string `tfsdk:"sched_features" json:"schedFeatures,omitempty"`
+			SchedGroupIdentityEnabled *int64             `tfsdk:"sched_group_identity_enabled" json:"schedGroupIdentityEnabled,omitempty"`
+			SchedIdleSaverWmark       *int64             `tfsdk:"sched_idle_saver_wmark" json:"schedIdleSaverWmark,omitempty"`
+			TotalNetworkBandwidth     *string            `tfsdk:"total_network_bandwidth" json:"totalNetworkBandwidth,omitempty"`
+			WatermarkScaleFactor      *int64             `tfsdk:"watermark_scale_factor" json:"watermarkScaleFactor,omitempty"`
 		} `tfsdk:"system_strategy" json:"systemStrategy,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -465,8 +469,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"cpu_burst_percent": schema.Int64Attribute{
-								Description:         "cpu burst percentage for setting cpu.cfs_burst_us, legal range: [0, 10000], default as 1000 (1000%)",
-								MarkdownDescription: "cpu burst percentage for setting cpu.cfs_burst_us, legal range: [0, 10000], default as 1000 (1000%)",
+								Description:         "cpu burst percentage for setting cpu.cfs_burst_us in Cgroupv1 or setting cpu.max.burst in Cgroupv2, legal range: [0, 10000], default as 1000 (1000%)",
+								MarkdownDescription: "cpu burst percentage for setting cpu.cfs_burst_us in Cgroupv1 or setting cpu.max.burst in Cgroupv2, legal range: [0, 10000], default as 1000 (1000%)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3086,6 +3090,18 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"cpu_suppress_min_percent": schema.Int64Attribute{
+								Description:         "cpu suppress min percentage (0,100)",
+								MarkdownDescription: "cpu suppress min percentage (0,100)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+									int64validator.AtMost(100),
+								},
+							},
+
 							"cpu_suppress_policy": schema.StringAttribute{
 								Description:         "CPUSuppressPolicy",
 								MarkdownDescription: "CPUSuppressPolicy",
@@ -3148,16 +3164,41 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "node global system config",
 						Attributes: map[string]schema.Attribute{
 							"memcg_reap_back_ground": schema.Int64Attribute{
-								Description:         "/sys/kernel/mm/memcg_reaper/reap_background",
-								MarkdownDescription: "/sys/kernel/mm/memcg_reaper/reap_background",
+								Description:         "/sys/kernel/mm/memcg_reaper/reap_background Unset by default.",
+								MarkdownDescription: "/sys/kernel/mm/memcg_reaper/reap_background Unset by default.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"min_free_kbytes_factor": schema.Int64Attribute{
-								Description:         "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000",
-								MarkdownDescription: "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000",
+								Description:         "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000 Unset by default. 1 means 1/10000. Recommended = 100.",
+								MarkdownDescription: "for /proc/sys/vm/min_free_kbytes, min_free_kbytes = minFreeKbytesFactor * nodeTotalMemory /10000 Unset by default. 1 means 1/10000. Recommended = 100.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sched_features": schema.MapAttribute{
+								Description:         "/sys/kernel/sched_features Extra scheduling features supported by the kernel.",
+								MarkdownDescription: "/sys/kernel/sched_features Extra scheduling features supported by the kernel.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sched_group_identity_enabled": schema.Int64Attribute{
+								Description:         "/sys/kernel/sched_group_identity_enabled https://github.com/koordinator-sh/koordinator/pull/1172 0 to disable, 1 to enable. Disable (0) when CPUQoS (Group Identity) is manually disabled.",
+								MarkdownDescription: "/sys/kernel/sched_group_identity_enabled https://github.com/koordinator-sh/koordinator/pull/1172 0 to disable, 1 to enable. Disable (0) when CPUQoS (Group Identity) is manually disabled.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"sched_idle_saver_wmark": schema.Int64Attribute{
+								Description:         "/proc/sys/kernel/sched_idle_saver_wmark https://www.alibabacloud.com/help/en/alinux/user-guide/group-identity-feature 1 means 1ns.",
+								MarkdownDescription: "/proc/sys/kernel/sched_idle_saver_wmark https://www.alibabacloud.com/help/en/alinux/user-guide/group-identity-feature 1 means 1ns.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -3172,8 +3213,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"watermark_scale_factor": schema.Int64Attribute{
-								Description:         "/proc/sys/vm/watermark_scale_factor",
-								MarkdownDescription: "/proc/sys/vm/watermark_scale_factor",
+								Description:         "/proc/sys/vm/watermark_scale_factor Unset by default. 1 means 1/10000. Recommended = 150.",
+								MarkdownDescription: "/proc/sys/vm/watermark_scale_factor Unset by default. 1 means 1/10000. Recommended = 150.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

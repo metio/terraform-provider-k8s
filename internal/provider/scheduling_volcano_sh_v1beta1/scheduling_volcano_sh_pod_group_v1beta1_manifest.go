@@ -43,11 +43,15 @@ type SchedulingVolcanoShPodGroupV1Beta1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		MinMember         *int64             `tfsdk:"min_member" json:"minMember,omitempty"`
-		MinResources      *map[string]string `tfsdk:"min_resources" json:"minResources,omitempty"`
-		MinTaskMember     *map[string]string `tfsdk:"min_task_member" json:"minTaskMember,omitempty"`
-		PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-		Queue             *string            `tfsdk:"queue" json:"queue,omitempty"`
+		MinMember       *int64             `tfsdk:"min_member" json:"minMember,omitempty"`
+		MinResources    *map[string]string `tfsdk:"min_resources" json:"minResources,omitempty"`
+		MinTaskMember   *map[string]string `tfsdk:"min_task_member" json:"minTaskMember,omitempty"`
+		NetworkTopology *struct {
+			HighestTierAllowed *int64  `tfsdk:"highest_tier_allowed" json:"highestTierAllowed,omitempty"`
+			Mode               *string `tfsdk:"mode" json:"mode,omitempty"`
+		} `tfsdk:"network_topology" json:"networkTopology,omitempty"`
+		PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+		Queue             *string `tfsdk:"queue" json:"queue,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -152,6 +156,34 @@ func (r *SchedulingVolcanoShPodGroupV1Beta1Manifest) Schema(_ context.Context, _
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"network_topology": schema.SingleNestedAttribute{
+						Description:         "NetworkTopology defines the NetworkTopology config, this field works in conjunction with network topology feature and hyperNode CRD.",
+						MarkdownDescription: "NetworkTopology defines the NetworkTopology config, this field works in conjunction with network topology feature and hyperNode CRD.",
+						Attributes: map[string]schema.Attribute{
+							"highest_tier_allowed": schema.Int64Attribute{
+								Description:         "HighestTierAllowed specifies the highest tier that a job allowed to cross when scheduling.",
+								MarkdownDescription: "HighestTierAllowed specifies the highest tier that a job allowed to cross when scheduling.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"mode": schema.StringAttribute{
+								Description:         "Mode specifies the mode of the network topology constrain.",
+								MarkdownDescription: "Mode specifies the mode of the network topology constrain.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("hard", "soft"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"priority_class_name": schema.StringAttribute{

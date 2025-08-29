@@ -157,8 +157,8 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 					},
 
 					"ip_addresses": schema.ListNestedAttribute{
-						Description:         "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.",
-						MarkdownDescription: "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC.",
+						Description:         "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC. Even though the minimum is 1, Route 53 requires that you create at least two.",
+						MarkdownDescription: "The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC. Even though the minimum is 1, Route 53 requires that you create at least two.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ip": schema.StringAttribute{
@@ -226,24 +226,24 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.",
-						MarkdownDescription: "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.",
+						Description:         "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console. Regex Pattern: '^(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)$'",
+						MarkdownDescription: "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console. Regex Pattern: '^(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"resolver_endpoint_type": schema.StringAttribute{
-						Description:         "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
-						MarkdownDescription: "For the endpoint type you can choose either IPv4, IPv6. or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
+						Description:         "For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
+						MarkdownDescription: "For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This endpoint type is applied to all IP addresses.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"security_group_i_ds": schema.ListAttribute{
-						Description:         "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.",
-						MarkdownDescription: "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network.",
+						Description:         "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network. Some security group rules will cause your connection to be tracked. For outbound resolver endpoint, it can potentially impact the maximum queries per second from outbound endpoint to your target name server. For inbound resolver endpoint, it can bring down the overall maximum queries per second per IP address to as low as 1500. To avoid connection tracking caused by security group, see Untracked connections (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#untracked-connectionsl).",
+						MarkdownDescription: "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound Resolver endpoints) or outbound rules (for outbound Resolver endpoints). Inbound and outbound rules must allow TCP and UDP access. For inbound access, open port 53. For outbound access, open the port that you're using for DNS queries on your network. Some security group rules will cause your connection to be tracked. For outbound resolver endpoint, it can potentially impact the maximum queries per second from outbound endpoint to your target name server. For inbound resolver endpoint, it can bring down the overall maximum queries per second per IP address to as low as 1500. To avoid connection tracking caused by security group, see Untracked connections (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#untracked-connectionsl).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

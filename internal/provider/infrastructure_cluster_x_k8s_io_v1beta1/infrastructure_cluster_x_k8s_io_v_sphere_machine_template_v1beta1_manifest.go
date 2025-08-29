@@ -49,18 +49,26 @@ type InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1ManifestData struct
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"metadata" json:"metadata,omitempty"`
 			Spec *struct {
-				AdditionalDisksGiB       *[]string          `tfsdk:"additional_disks_gi_b" json:"additionalDisksGiB,omitempty"`
-				CloneMode                *string            `tfsdk:"clone_mode" json:"cloneMode,omitempty"`
-				CustomVMXKeys            *map[string]string `tfsdk:"custom_vmx_keys" json:"customVMXKeys,omitempty"`
-				Datacenter               *string            `tfsdk:"datacenter" json:"datacenter,omitempty"`
-				Datastore                *string            `tfsdk:"datastore" json:"datastore,omitempty"`
-				DiskGiB                  *int64             `tfsdk:"disk_gi_b" json:"diskGiB,omitempty"`
-				FailureDomain            *string            `tfsdk:"failure_domain" json:"failureDomain,omitempty"`
-				Folder                   *string            `tfsdk:"folder" json:"folder,omitempty"`
-				GuestSoftPowerOffTimeout *string            `tfsdk:"guest_soft_power_off_timeout" json:"guestSoftPowerOffTimeout,omitempty"`
-				HardwareVersion          *string            `tfsdk:"hardware_version" json:"hardwareVersion,omitempty"`
-				MemoryMiB                *int64             `tfsdk:"memory_mi_b" json:"memoryMiB,omitempty"`
-				Network                  *struct {
+				AdditionalDisksGiB *[]string          `tfsdk:"additional_disks_gi_b" json:"additionalDisksGiB,omitempty"`
+				CloneMode          *string            `tfsdk:"clone_mode" json:"cloneMode,omitempty"`
+				CustomVMXKeys      *map[string]string `tfsdk:"custom_vmx_keys" json:"customVMXKeys,omitempty"`
+				DataDisks          *[]struct {
+					Name             *string `tfsdk:"name" json:"name,omitempty"`
+					ProvisioningMode *string `tfsdk:"provisioning_mode" json:"provisioningMode,omitempty"`
+					SizeGiB          *int64  `tfsdk:"size_gi_b" json:"sizeGiB,omitempty"`
+				} `tfsdk:"data_disks" json:"dataDisks,omitempty"`
+				Datacenter               *string `tfsdk:"datacenter" json:"datacenter,omitempty"`
+				Datastore                *string `tfsdk:"datastore" json:"datastore,omitempty"`
+				DiskGiB                  *int64  `tfsdk:"disk_gi_b" json:"diskGiB,omitempty"`
+				FailureDomain            *string `tfsdk:"failure_domain" json:"failureDomain,omitempty"`
+				Folder                   *string `tfsdk:"folder" json:"folder,omitempty"`
+				GuestSoftPowerOffTimeout *string `tfsdk:"guest_soft_power_off_timeout" json:"guestSoftPowerOffTimeout,omitempty"`
+				HardwareVersion          *string `tfsdk:"hardware_version" json:"hardwareVersion,omitempty"`
+				MemoryMiB                *int64  `tfsdk:"memory_mi_b" json:"memoryMiB,omitempty"`
+				NamingStrategy           *struct {
+					Template *string `tfsdk:"template" json:"template,omitempty"`
+				} `tfsdk:"naming_strategy" json:"namingStrategy,omitempty"`
+				Network *struct {
 					Devices *[]struct {
 						AddressesFromPools *[]struct {
 							ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
@@ -223,8 +231,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -232,8 +240,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -275,17 +283,55 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 										Computed:            false,
 									},
 
+									"data_disks": schema.ListNestedAttribute{
+										Description:         "DataDisks are additional disks to add to the VM that are not part of the VM's OVA template.",
+										MarkdownDescription: "DataDisks are additional disks to add to the VM that are not part of the VM's OVA template.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Name is used to identify the disk definition. Name is required and needs to be unique so that it can be used to clearly identify purpose of the disk.",
+													MarkdownDescription: "Name is used to identify the disk definition. Name is required and needs to be unique so that it can be used to clearly identify purpose of the disk.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"provisioning_mode": schema.StringAttribute{
+													Description:         "ProvisioningMode specifies the provisioning type to be used by this vSphere data disk. If not set, the setting will be provided by the default storage policy.",
+													MarkdownDescription: "ProvisioningMode specifies the provisioning type to be used by this vSphere data disk. If not set, the setting will be provided by the default storage policy.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Thin", "Thick", "EagerlyZeroed"),
+													},
+												},
+
+												"size_gi_b": schema.Int64Attribute{
+													Description:         "SizeGiB is the size of the disk in GiB.",
+													MarkdownDescription: "SizeGiB is the size of the disk in GiB.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"datacenter": schema.StringAttribute{
-										Description:         "Datacenter is the name or inventory path of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
-										MarkdownDescription: "Datacenter is the name or inventory path of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
+										Description:         "Datacenter is the name, inventory path, managed object reference or the managed object ID of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
+										MarkdownDescription: "Datacenter is the name, inventory path, managed object reference or the managed object ID of the datacenter in which the virtual machine is created/located. Defaults to * which selects the default datacenter.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"datastore": schema.StringAttribute{
-										Description:         "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
-										MarkdownDescription: "Datastore is the name or inventory path of the datastore in which the virtual machine is created/located.",
+										Description:         "Datastore is the name, inventory path, managed object reference or the managed object ID of the datastore in which the virtual machine is created/located.",
+										MarkdownDescription: "Datastore is the name, inventory path, managed object reference or the managed object ID of the datastore in which the virtual machine is created/located.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -308,8 +354,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 									},
 
 									"folder": schema.StringAttribute{
-										Description:         "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
-										MarkdownDescription: "Folder is the name or inventory path of the folder in which the virtual machine is created/located.",
+										Description:         "Folder is the name, inventory path, managed object reference or the managed object ID of the folder in which the virtual machine is created/located.",
+										MarkdownDescription: "Folder is the name, inventory path, managed object reference or the managed object ID of the folder in which the virtual machine is created/located.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -337,6 +383,23 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"naming_strategy": schema.SingleNestedAttribute{
+										Description:         "NamingStrategy allows configuring the naming strategy used when calculating the name of the VSphereVM.",
+										MarkdownDescription: "NamingStrategy allows configuring the naming strategy used when calculating the name of the VSphereVM.",
+										Attributes: map[string]schema.Attribute{
+											"template": schema.StringAttribute{
+												Description:         "Template defines the template to use for generating the name of the VSphereVM object. If not defined, it will fall back to '{{ .machine.name }}'. The templating has the following data available: * '.machine.name': The name of the Machine object. The templating also has the following funcs available: * 'trimSuffix': same as strings.TrimSuffix * 'trunc': truncates a string, e.g. 'trunc 2 'hello'' or 'trunc -2 'hello'' Notes: * While the template offers some flexibility, we would like the name to link to the Machine name to ensure better user experience when troubleshooting * Generated names must be valid Kubernetes names as they are used to create a VSphereVM object and usually also as the name of the Node object. * Names are automatically truncated at 63 characters. Please note that this can lead to name conflicts, so we highly recommend to use a template which leads to a name shorter than 63 characters.",
+												MarkdownDescription: "Template defines the template to use for generating the name of the VSphereVM object. If not defined, it will fall back to '{{ .machine.name }}'. The templating has the following data available: * '.machine.name': The name of the Machine object. The templating also has the following funcs available: * 'trimSuffix': same as strings.TrimSuffix * 'trunc': truncates a string, e.g. 'trunc 2 'hello'' or 'trunc -2 'hello'' Notes: * While the template offers some flexibility, we would like the name to link to the Machine name to ensure better user experience when troubleshooting * Generated names must be valid Kubernetes names as they are used to create a VSphereVM object and usually also as the name of the Node object. * Names are automatically truncated at 63 characters. Please note that this can lead to name conflicts, so we highly recommend to use a template which leads to a name shorter than 63 characters.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"network": schema.SingleNestedAttribute{
@@ -620,8 +683,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 														},
 
 														"network_name": schema.StringAttribute{
-															Description:         "NetworkName is the name of the vSphere network to which the device will be connected.",
-															MarkdownDescription: "NetworkName is the name of the vSphere network to which the device will be connected.",
+															Description:         "NetworkName is the name, managed object reference or the managed object ID of the vSphere network to which the device will be connected.",
+															MarkdownDescription: "NetworkName is the name, managed object reference or the managed object ID of the vSphere network to which the device will be connected.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -742,8 +805,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 									},
 
 									"num_cores_per_socket": schema.Int64Attribute{
-										Description:         "NumCPUs is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
-										MarkdownDescription: "NumCPUs is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+										Description:         "NumCoresPerSocket is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
+										MarkdownDescription: "NumCoresPerSocket is the number of cores among which to distribute CPUs in this virtual machine. Defaults to the eponymous property value in the template from which the virtual machine is cloned.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -820,8 +883,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 									},
 
 									"resource_pool": schema.StringAttribute{
-										Description:         "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
-										MarkdownDescription: "ResourcePool is the name or inventory path of the resource pool in which the virtual machine is created/located.",
+										Description:         "ResourcePool is the name, inventory path, managed object reference or the managed object ID in which the virtual machine is created/located.",
+										MarkdownDescription: "ResourcePool is the name, inventory path, managed object reference or the managed object ID in which the virtual machine is created/located.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -861,8 +924,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Beta1Manifest) Schem
 									},
 
 									"template": schema.StringAttribute{
-										Description:         "Template is the name or inventory path of the template used to clone the virtual machine.",
-										MarkdownDescription: "Template is the name or inventory path of the template used to clone the virtual machine.",
+										Description:         "Template is the name, inventory path, managed object reference or the managed object ID of the template used to clone the virtual machine.",
+										MarkdownDescription: "Template is the name, inventory path, managed object reference or the managed object ID of the template used to clone the virtual machine.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,

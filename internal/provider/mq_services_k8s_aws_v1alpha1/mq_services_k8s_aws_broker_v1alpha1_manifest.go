@@ -189,24 +189,24 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 				MarkdownDescription: "BrokerSpec defines the desired state of Broker.",
 				Attributes: map[string]schema.Attribute{
 					"authentication_strategy": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Optional. The authentication strategy used to secure the broker. The default is SIMPLE.",
+						MarkdownDescription: "Optional. The authentication strategy used to secure the broker. The default is SIMPLE.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"auto_minor_version_upgrade": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Required:            true,
-						Optional:            false,
+						Description:         "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Set to true by default, if no value is specified. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above.",
+						MarkdownDescription: "Enables automatic upgrades to new patch versions for brokers as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window or after a manual broker reboot. Set to true by default, if no value is specified. Must be set to true for ActiveMQ brokers version 5.18 and above and for RabbitMQ brokers version 3.13 and above.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"configuration": schema.SingleNestedAttribute{
-						Description:         "A list of information about the configuration. Does not apply to RabbitMQ brokers.",
-						MarkdownDescription: "A list of information about the configuration. Does not apply to RabbitMQ brokers.",
+						Description:         "A list of information about the configuration.",
+						MarkdownDescription: "A list of information about the configuration.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "",
@@ -230,24 +230,24 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"creator_request_id": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The unique ID that the requester receives for the created broker. Amazon MQ passes your ID with the API action. We recommend using a Universally Unique Identifier (UUID) for the creatorRequestId. You may omit the creatorRequestId if your application doesn't require idempotency.",
+						MarkdownDescription: "The unique ID that the requester receives for the created broker. Amazon MQ passes your ID with the API action. We recommend using a Universally Unique Identifier (UUID) for the creatorRequestId. You may omit the creatorRequestId if your application doesn't require idempotency.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"deployment_mode": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Required. The broker's deployment mode.",
+						MarkdownDescription: "Required. The broker's deployment mode.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"encryption_options": schema.SingleNestedAttribute{
-						Description:         "Does not apply to RabbitMQ brokers. Encryption options for the broker.",
-						MarkdownDescription: "Does not apply to RabbitMQ brokers. Encryption options for the broker.",
+						Description:         "Encryption options for the broker.",
+						MarkdownDescription: "Encryption options for the broker.",
 						Attributes: map[string]schema.Attribute{
 							"kms_key_id": schema.StringAttribute{
 								Description:         "",
@@ -271,24 +271,24 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"engine_type": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
+						MarkdownDescription: "Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"engine_version": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Required:            true,
-						Optional:            false,
+						Description:         "The broker engine version. Defaults to the latest available version for the specified broker engine type. For more information, see the ActiveMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html) and the RabbitMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html) sections in the Amazon MQ Developer Guide.",
+						MarkdownDescription: "The broker engine version. Defaults to the latest available version for the specified broker engine type. For more information, see the ActiveMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html) and the RabbitMQ version management (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html) sections in the Amazon MQ Developer Guide.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"host_instance_type": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Required. The broker's instance type.",
+						MarkdownDescription: "Required. The broker's instance type.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -393,8 +393,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"logs": schema.SingleNestedAttribute{
-						Description:         "The list of information about logs to be enabled for the specified broker.",
-						MarkdownDescription: "The list of information about logs to be enabled for the specified broker.",
+						Description:         "Enables Amazon CloudWatch logging for brokers.",
+						MarkdownDescription: "Enables Amazon CloudWatch logging for brokers.",
 						Attributes: map[string]schema.Attribute{
 							"audit": schema.BoolAttribute{
 								Description:         "",
@@ -418,8 +418,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"maintenance_window_start_time": schema.SingleNestedAttribute{
-						Description:         "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
-						MarkdownDescription: "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
+						Description:         "The parameters that determine the WeeklyStartTime.",
+						MarkdownDescription: "The parameters that determine the WeeklyStartTime.",
 						Attributes: map[string]schema.Attribute{
 							"day_of_week": schema.StringAttribute{
 								Description:         "",
@@ -451,16 +451,16 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Required. The broker's name. This value must be unique in your Amazon Web Services account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain white spaces, brackets, wildcard characters, or special characters. Do not add personally identifiable information (PII) or other confidential or sensitive information in broker names. Broker names are accessible to other Amazon Web Services services, including CloudWatch Logs. Broker names are not intended to be used for private or sensitive data.",
+						MarkdownDescription: "Required. The broker's name. This value must be unique in your Amazon Web Services account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain white spaces, brackets, wildcard characters, or special characters. Do not add personally identifiable information (PII) or other confidential or sensitive information in broker names. Broker names are accessible to other Amazon Web Services services, including CloudWatch Logs. Broker names are not intended to be used for private or sensitive data.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"publicly_accessible": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Enables connections from applications outside of the VPC that hosts the broker's subnets. Set to false by default, if no value is provided.",
+						MarkdownDescription: "Enables connections from applications outside of the VPC that hosts the broker's subnets. Set to false by default, if no value is provided.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -503,8 +503,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"security_groups": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.",
+						MarkdownDescription: "The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -512,16 +512,16 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"storage_type": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The broker's storage type.",
+						MarkdownDescription: "The broker's storage type.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"subnet_i_ds": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. If you specify more than one subnet, the subnets must be in different Availability Zones. Amazon MQ will not be able to create VPC endpoints for your broker with multiple subnets in the same Availability Zone. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no subnet requirements when deployed with public accessibility. Deployment without public accessibility requires at least one subnet. If you specify subnets in a shared VPC (https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) for a RabbitMQ broker, the associated VPC to which the specified subnets belong must be owned by your Amazon Web Services account. Amazon MQ will not be able to create VPC endpoints in VPCs that are not owned by your Amazon Web Services account.",
+						MarkdownDescription: "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. If you specify more than one subnet, the subnets must be in different Availability Zones. Amazon MQ will not be able to create VPC endpoints for your broker with multiple subnets in the same Availability Zone. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no subnet requirements when deployed with public accessibility. Deployment without public accessibility requires at least one subnet. If you specify subnets in a shared VPC (https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) for a RabbitMQ broker, the associated VPC to which the specified subnets belong must be owned by your Amazon Web Services account. Amazon MQ will not be able to create VPC endpoints in VPCs that are not owned by your Amazon Web Services account.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -565,8 +565,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Create tags when creating the broker.",
+						MarkdownDescription: "Create tags when creating the broker.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -574,8 +574,8 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"users": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The list of broker users (persons or applications) who can access queues and topics. For Amazon MQ for RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ web console.",
+						MarkdownDescription: "The list of broker users (persons or applications) who can access queues and topics. For Amazon MQ for RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ web console.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"console_access": schema.BoolAttribute{

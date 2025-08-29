@@ -43,6 +43,7 @@ type LonghornIoBackupV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		BackupBlockSize *string            `tfsdk:"backup_block_size" json:"backupBlockSize,omitempty"`
 		BackupMode      *string            `tfsdk:"backup_mode" json:"backupMode,omitempty"`
 		Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		SnapshotName    *string            `tfsdk:"snapshot_name" json:"snapshotName,omitempty"`
@@ -127,6 +128,17 @@ func (r *LonghornIoBackupV1Beta2Manifest) Schema(_ context.Context, _ datasource
 				Description:         "BackupSpec defines the desired state of the Longhorn backup",
 				MarkdownDescription: "BackupSpec defines the desired state of the Longhorn backup",
 				Attributes: map[string]schema.Attribute{
+					"backup_block_size": schema.StringAttribute{
+						Description:         "The backup block size. 0 means the legacy default size 2MiB, and -1 indicate the block size is invalid.",
+						MarkdownDescription: "The backup block size. 0 means the legacy default size 2MiB, and -1 indicate the block size is invalid.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("-1", "2097152", "16777216"),
+						},
+					},
+
 					"backup_mode": schema.StringAttribute{
 						Description:         "The backup mode of this backup. Can be 'full' or 'incremental'",
 						MarkdownDescription: "The backup mode of this backup. Can be 'full' or 'incremental'",

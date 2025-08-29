@@ -83,6 +83,8 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"api_url" json:"apiURL,omitempty"`
+				AvatarURL  *string `tfsdk:"avatar_url" json:"avatarURL,omitempty"`
+				Content    *string `tfsdk:"content" json:"content,omitempty"`
 				HttpConfig *struct {
 					Authorization *struct {
 						Credentials *struct {
@@ -174,6 +176,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -214,6 +217,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 				Message      *string `tfsdk:"message" json:"message,omitempty"`
 				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
 				Title        *string `tfsdk:"title" json:"title,omitempty"`
+				Username     *string `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"discord_configs" json:"discordConfigs,omitempty"`
 			EmailConfigs *[]struct {
 				AuthIdentity *string `tfsdk:"auth_identity" json:"authIdentity,omitempty"`
@@ -368,6 +372,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -415,6 +420,145 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"webhook_url" json:"webhookUrl,omitempty"`
 			} `tfsdk:"msteams_configs" json:"msteamsConfigs,omitempty"`
+			Msteamsv2Configs *[]struct {
+				HttpConfig *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
+					BasicAuth *struct {
+						Password *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"password" json:"password,omitempty"`
+						Username *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"username" json:"username,omitempty"`
+					} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+					BearerTokenSecret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
+					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					Oauth2          *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"clientId,omitempty"`
+						ClientSecret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+						EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+						NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+						ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+						ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+						ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+						Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						TlsConfig            *struct {
+							Ca *struct {
+								ConfigMap *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map" json:"configMap,omitempty"`
+								Secret *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret" json:"secret,omitempty"`
+							} `tfsdk:"ca" json:"ca,omitempty"`
+							Cert *struct {
+								ConfigMap *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map" json:"configMap,omitempty"`
+								Secret *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret" json:"secret,omitempty"`
+							} `tfsdk:"cert" json:"cert,omitempty"`
+							InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+							KeySecret          *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+							MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+							MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+							ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+					TlsConfig            *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"ca" json:"ca,omitempty"`
+						Cert *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"cert" json:"cert,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						KeySecret          *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+						MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
+				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				Text         *string `tfsdk:"text" json:"text,omitempty"`
+				Title        *string `tfsdk:"title" json:"title,omitempty"`
+				WebhookURL   *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"webhook_url" json:"webhookURL,omitempty"`
+			} `tfsdk:"msteamsv2_configs" json:"msteamsv2Configs,omitempty"`
 			Name            *string `tfsdk:"name" json:"name,omitempty"`
 			OpsgenieConfigs *[]struct {
 				Actions *string `tfsdk:"actions" json:"actions,omitempty"`
@@ -521,6 +665,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -674,6 +819,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -830,6 +976,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -889,6 +1036,170 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 				} `tfsdk:"user_key" json:"userKey,omitempty"`
 				UserKeyFile *string `tfsdk:"user_key_file" json:"userKeyFile,omitempty"`
 			} `tfsdk:"pushover_configs" json:"pushoverConfigs,omitempty"`
+			RocketchatConfigs *[]struct {
+				Actions *[]struct {
+					Msg  *string `tfsdk:"msg" json:"msg,omitempty"`
+					Text *string `tfsdk:"text" json:"text,omitempty"`
+					Url  *string `tfsdk:"url" json:"url,omitempty"`
+				} `tfsdk:"actions" json:"actions,omitempty"`
+				ApiURL  *string `tfsdk:"api_url" json:"apiURL,omitempty"`
+				Channel *string `tfsdk:"channel" json:"channel,omitempty"`
+				Color   *string `tfsdk:"color" json:"color,omitempty"`
+				Emoji   *string `tfsdk:"emoji" json:"emoji,omitempty"`
+				Fields  *[]struct {
+					Short *bool   `tfsdk:"short" json:"short,omitempty"`
+					Title *string `tfsdk:"title" json:"title,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"fields" json:"fields,omitempty"`
+				HttpConfig *struct {
+					Authorization *struct {
+						Credentials *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"credentials" json:"credentials,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"authorization" json:"authorization,omitempty"`
+					BasicAuth *struct {
+						Password *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"password" json:"password,omitempty"`
+						Username *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"username" json:"username,omitempty"`
+					} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+					BearerTokenSecret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"bearer_token_secret" json:"bearerTokenSecret,omitempty"`
+					FollowRedirects *bool   `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
+					NoProxy         *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					Oauth2          *struct {
+						ClientId *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"client_id" json:"clientId,omitempty"`
+						ClientSecret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+						EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+						NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+						ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+						ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+						ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+						Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+						TlsConfig            *struct {
+							Ca *struct {
+								ConfigMap *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map" json:"configMap,omitempty"`
+								Secret *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret" json:"secret,omitempty"`
+							} `tfsdk:"ca" json:"ca,omitempty"`
+							Cert *struct {
+								ConfigMap *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"config_map" json:"configMap,omitempty"`
+								Secret *struct {
+									Key      *string `tfsdk:"key" json:"key,omitempty"`
+									Name     *string `tfsdk:"name" json:"name,omitempty"`
+									Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								} `tfsdk:"secret" json:"secret,omitempty"`
+							} `tfsdk:"cert" json:"cert,omitempty"`
+							InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+							KeySecret          *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+							MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+							MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+							ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+						} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+						TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
+					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
+					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+					TlsConfig            *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"ca" json:"ca,omitempty"`
+						Cert *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"cert" json:"cert,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						KeySecret          *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+						MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
+				IconURL      *string `tfsdk:"icon_url" json:"iconURL,omitempty"`
+				ImageURL     *string `tfsdk:"image_url" json:"imageURL,omitempty"`
+				LinkNames    *bool   `tfsdk:"link_names" json:"linkNames,omitempty"`
+				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				ShortFields  *bool   `tfsdk:"short_fields" json:"shortFields,omitempty"`
+				Text         *string `tfsdk:"text" json:"text,omitempty"`
+				ThumbURL     *string `tfsdk:"thumb_url" json:"thumbURL,omitempty"`
+				Title        *string `tfsdk:"title" json:"title,omitempty"`
+				TitleLink    *string `tfsdk:"title_link" json:"titleLink,omitempty"`
+				Token        *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"token" json:"token,omitempty"`
+				TokenID *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"token_id" json:"tokenID,omitempty"`
+			} `tfsdk:"rocketchat_configs" json:"rocketchatConfigs,omitempty"`
 			SlackConfigs *[]struct {
 				Actions *[]struct {
 					Confirm *struct {
@@ -1010,6 +1321,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1155,6 +1467,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1315,6 +1628,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1352,9 +1666,10 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
-				Message      *string `tfsdk:"message" json:"message,omitempty"`
-				ParseMode    *string `tfsdk:"parse_mode" json:"parseMode,omitempty"`
-				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				Message         *string `tfsdk:"message" json:"message,omitempty"`
+				MessageThreadID *int64  `tfsdk:"message_thread_id" json:"messageThreadID,omitempty"`
+				ParseMode       *string `tfsdk:"parse_mode" json:"parseMode,omitempty"`
+				SendResolved    *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
 			} `tfsdk:"telegram_configs" json:"telegramConfigs,omitempty"`
 			VictoropsConfigs *[]struct {
 				ApiKey *struct {
@@ -1459,6 +1774,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1595,6 +1911,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1728,6 +2045,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -1767,6 +2085,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 				} `tfsdk:"http_config" json:"httpConfig,omitempty"`
 				MaxAlerts    *int64  `tfsdk:"max_alerts" json:"maxAlerts,omitempty"`
 				SendResolved *bool   `tfsdk:"send_resolved" json:"sendResolved,omitempty"`
+				Timeout      *string `tfsdk:"timeout" json:"timeout,omitempty"`
 				Url          *string `tfsdk:"url" json:"url,omitempty"`
 				UrlSecret    *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -1874,6 +2193,7 @@ type MonitoringCoreosComAlertmanagerConfigV1Alpha1ManifestData struct {
 					} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyURL             *string            `tfsdk:"proxy_url" json:"proxyURL,omitempty"`
 					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
 					TlsConfig            *struct {
 						Ca *struct {
@@ -2302,6 +2622,28 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												Computed: false,
 											},
 
+											"avatar_url": schema.StringAttribute{
+												Description:         "The avatar url of the message sender.",
+												MarkdownDescription: "The avatar url of the message sender.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+												},
+											},
+
+											"content": schema.StringAttribute{
+												Description:         "The template of the content's body.",
+												MarkdownDescription: "The template of the content's body.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
 											"http_config": schema.SingleNestedAttribute{
 												Description:         "HTTP client configuration.",
 												MarkdownDescription: "HTTP client configuration.",
@@ -2473,8 +2815,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2602,16 +2944,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -2619,8 +2961,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2633,7 +2975,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -2842,8 +3184,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2853,8 +3195,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -2893,8 +3235,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -2902,8 +3244,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2916,7 +3266,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -3116,8 +3466,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3127,8 +3477,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3177,6 +3527,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"username": schema.StringAttribute{
+												Description:         "The username of the message sender.",
+												MarkdownDescription: "The username of the message sender.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 										},
 									},
@@ -3554,8 +3915,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"max_version": schema.StringAttribute{
-														Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-														MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+														Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+														MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3565,8 +3926,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"min_version": schema.StringAttribute{
-														Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-														MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+														Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+														MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3778,8 +4139,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3907,16 +4268,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -3924,8 +4285,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3938,7 +4299,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -4147,8 +4508,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4158,8 +4519,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -4198,8 +4559,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -4207,8 +4568,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4221,7 +4590,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -4421,8 +4790,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4432,8 +4801,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4522,6 +4891,941 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												},
 												Required: true,
 												Optional: false,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"msteamsv2_configs": schema.ListNestedAttribute{
+									Description:         "List of MSTeamsV2 configurations. It requires Alertmanager >= 0.28.0.",
+									MarkdownDescription: "List of MSTeamsV2 configurations. It requires Alertmanager >= 0.28.0.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"http_config": schema.SingleNestedAttribute{
+												Description:         "HTTP client configuration.",
+												MarkdownDescription: "HTTP client configuration.",
+												Attributes: map[string]schema.Attribute{
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Attributes: map[string]schema.Attribute{
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"username": schema.SingleNestedAttribute{
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"bearer_token_secret": schema.SingleNestedAttribute{
+														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"follow_redirects": schema.BoolAttribute{
+														Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"no_proxy": schema.StringAttribute{
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"no_proxy": schema.StringAttribute{
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_connect_header": schema.MapAttribute{
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_from_environment": schema.BoolAttribute{
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_url": schema.StringAttribute{
+																Description:         "'proxyURL' defines the HTTP proxy server to use.",
+																MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+																},
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"tls_config": schema.SingleNestedAttribute{
+																Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																Attributes: map[string]schema.Attribute{
+																	"ca": schema.SingleNestedAttribute{
+																		Description:         "Certificate authority used when verifying server certificates.",
+																		MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map": schema.SingleNestedAttribute{
+																				Description:         "ConfigMap containing data to use for the targets.",
+																				MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret": schema.SingleNestedAttribute{
+																				Description:         "Secret containing data to use for the targets.",
+																				MarkdownDescription: "Secret containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key of the secret to select from. Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"cert": schema.SingleNestedAttribute{
+																		Description:         "Client certificate to present when doing client-authentication.",
+																		MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map": schema.SingleNestedAttribute{
+																				Description:         "ConfigMap containing data to use for the targets.",
+																				MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret": schema.SingleNestedAttribute{
+																				Description:         "Secret containing data to use for the targets.",
+																				MarkdownDescription: "Secret containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key of the secret to select from. Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure_skip_verify": schema.BoolAttribute{
+																		Description:         "Disable target certificate validation.",
+																		MarkdownDescription: "Disable target certificate validation.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"key_secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing the client key file for the targets.",
+																		MarkdownDescription: "Secret containing the client key file for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"max_version": schema.StringAttribute{
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																		},
+																	},
+
+																	"min_version": schema.StringAttribute{
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																		},
+																	},
+
+																	"server_name": schema.StringAttribute{
+																		Description:         "Used to verify the hostname for the targets.",
+																		MarkdownDescription: "Used to verify the hostname for the targets.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"proxy_connect_header": schema.MapAttribute{
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_from_environment": schema.BoolAttribute{
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "'proxyURL' defines the HTTP proxy server to use.",
+														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+														},
+													},
+
+													"tls_config": schema.SingleNestedAttribute{
+														Description:         "TLS configuration for the client.",
+														MarkdownDescription: "TLS configuration for the client.",
+														Attributes: map[string]schema.Attribute{
+															"ca": schema.SingleNestedAttribute{
+																Description:         "Certificate authority used when verifying server certificates.",
+																MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"cert": schema.SingleNestedAttribute{
+																Description:         "Client certificate to present when doing client-authentication.",
+																MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"insecure_skip_verify": schema.BoolAttribute{
+																Description:         "Disable target certificate validation.",
+																MarkdownDescription: "Disable target certificate validation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key_secret": schema.SingleNestedAttribute{
+																Description:         "Secret containing the client key file for the targets.",
+																MarkdownDescription: "Secret containing the client key file for the targets.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"max_version": schema.StringAttribute{
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																},
+															},
+
+															"min_version": schema.StringAttribute{
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																},
+															},
+
+															"server_name": schema.StringAttribute{
+																Description:         "Used to verify the hostname for the targets.",
+																MarkdownDescription: "Used to verify the hostname for the targets.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"send_resolved": schema.BoolAttribute{
+												Description:         "Whether to notify about resolved alerts.",
+												MarkdownDescription: "Whether to notify about resolved alerts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"text": schema.StringAttribute{
+												Description:         "Message body template.",
+												MarkdownDescription: "Message body template.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"title": schema.StringAttribute{
+												Description:         "Message title template.",
+												MarkdownDescription: "Message title template.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"webhook_url": schema.SingleNestedAttribute{
+												Description:         "MSTeams incoming webhook URL.",
+												MarkdownDescription: "MSTeams incoming webhook URL.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
 												Computed: false,
 											},
 										},
@@ -4813,8 +6117,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4942,16 +6246,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -4959,8 +6263,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -4973,7 +6277,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -5182,8 +6486,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5193,8 +6497,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5233,8 +6537,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -5242,8 +6546,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5256,7 +6568,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -5456,8 +6768,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5467,8 +6779,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5857,8 +7169,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5986,16 +7298,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -6003,8 +7315,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6017,7 +7329,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -6226,8 +7538,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6237,8 +7549,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6277,8 +7589,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -6286,8 +7598,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6300,7 +7620,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -6500,8 +7820,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6511,8 +7831,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6908,8 +8228,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7037,16 +8357,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -7054,8 +8374,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7068,7 +8388,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -7277,8 +8597,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7288,8 +8608,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -7328,8 +8648,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -7337,8 +8657,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7351,7 +8679,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -7551,8 +8879,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7562,8 +8890,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -7748,6 +9076,1163 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"rocketchat_configs": schema.ListNestedAttribute{
+									Description:         "List of RocketChat configurations. It requires Alertmanager >= 0.28.0.",
+									MarkdownDescription: "List of RocketChat configurations. It requires Alertmanager >= 0.28.0.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"actions": schema.ListNestedAttribute{
+												Description:         "Actions to include in the message.",
+												MarkdownDescription: "Actions to include in the message.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"msg": schema.StringAttribute{
+															Description:         "The message to send when the button is clicked.",
+															MarkdownDescription: "The message to send when the button is clicked.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+															},
+														},
+
+														"text": schema.StringAttribute{
+															Description:         "The button text.",
+															MarkdownDescription: "The button text.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+															},
+														},
+
+														"url": schema.StringAttribute{
+															Description:         "The URL the button links to.",
+															MarkdownDescription: "The URL the button links to.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"api_url": schema.StringAttribute{
+												Description:         "The API URL for RocketChat. Defaults to https://open.rocket.chat/ if not specified.",
+												MarkdownDescription: "The API URL for RocketChat. Defaults to https://open.rocket.chat/ if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+												},
+											},
+
+											"channel": schema.StringAttribute{
+												Description:         "The channel to send alerts to.",
+												MarkdownDescription: "The channel to send alerts to.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"color": schema.StringAttribute{
+												Description:         "The message color.",
+												MarkdownDescription: "The message color.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"emoji": schema.StringAttribute{
+												Description:         "If provided, the avatar will be displayed as an emoji.",
+												MarkdownDescription: "If provided, the avatar will be displayed as an emoji.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"fields": schema.ListNestedAttribute{
+												Description:         "Additional fields for the message.",
+												MarkdownDescription: "Additional fields for the message.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"short": schema.BoolAttribute{
+															Description:         "Whether this field should be a short field.",
+															MarkdownDescription: "Whether this field should be a short field.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"title": schema.StringAttribute{
+															Description:         "The title of this field.",
+															MarkdownDescription: "The title of this field.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+															},
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "The value of this field, displayed underneath the title value.",
+															MarkdownDescription: "The value of this field, displayed underneath the title value.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtLeast(1),
+															},
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"http_config": schema.SingleNestedAttribute{
+												Description:         "HTTP client configuration.",
+												MarkdownDescription: "HTTP client configuration.",
+												Attributes: map[string]schema.Attribute{
+													"authorization": schema.SingleNestedAttribute{
+														Description:         "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														MarkdownDescription: "Authorization header configuration for the client. This is mutually exclusive with BasicAuth and is only available starting from Alertmanager v0.22+.",
+														Attributes: map[string]schema.Attribute{
+															"credentials": schema.SingleNestedAttribute{
+																Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+																MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"basic_auth": schema.SingleNestedAttribute{
+														Description:         "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														MarkdownDescription: "BasicAuth for the client. This is mutually exclusive with Authorization. If both are defined, BasicAuth takes precedence.",
+														Attributes: map[string]schema.Attribute{
+															"password": schema.SingleNestedAttribute{
+																Description:         "'password' specifies a key of a Secret containing the password for authentication.",
+																MarkdownDescription: "'password' specifies a key of a Secret containing the password for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"username": schema.SingleNestedAttribute{
+																Description:         "'username' specifies a key of a Secret containing the username for authentication.",
+																MarkdownDescription: "'username' specifies a key of a Secret containing the username for authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"bearer_token_secret": schema.SingleNestedAttribute{
+														Description:         "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														MarkdownDescription: "The secret's key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator.",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key of the secret to select from. Must be a valid secret key.",
+																MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "Specify whether the Secret or its key must be defined",
+																MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"follow_redirects": schema.BoolAttribute{
+														Description:         "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														MarkdownDescription: "FollowRedirects specifies whether the client should follow HTTP 3xx redirects.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"no_proxy": schema.StringAttribute{
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"oauth2": schema.SingleNestedAttribute{
+														Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+														MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+														Attributes: map[string]schema.Attribute{
+															"client_id": schema.SingleNestedAttribute{
+																Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"client_secret": schema.SingleNestedAttribute{
+																Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2 client's secret.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"endpoint_params": schema.MapAttribute{
+																Description:         "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the token URL.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"no_proxy": schema.StringAttribute{
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_connect_header": schema.MapAttribute{
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_from_environment": schema.BoolAttribute{
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proxy_url": schema.StringAttribute{
+																Description:         "'proxyURL' defines the HTTP proxy server to use.",
+																MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+																},
+															},
+
+															"scopes": schema.ListAttribute{
+																Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+																MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"tls_config": schema.SingleNestedAttribute{
+																Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+																Attributes: map[string]schema.Attribute{
+																	"ca": schema.SingleNestedAttribute{
+																		Description:         "Certificate authority used when verifying server certificates.",
+																		MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map": schema.SingleNestedAttribute{
+																				Description:         "ConfigMap containing data to use for the targets.",
+																				MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret": schema.SingleNestedAttribute{
+																				Description:         "Secret containing data to use for the targets.",
+																				MarkdownDescription: "Secret containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key of the secret to select from. Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"cert": schema.SingleNestedAttribute{
+																		Description:         "Client certificate to present when doing client-authentication.",
+																		MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																		Attributes: map[string]schema.Attribute{
+																			"config_map": schema.SingleNestedAttribute{
+																				Description:         "ConfigMap containing data to use for the targets.",
+																				MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key to select.",
+																						MarkdownDescription: "The key to select.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the ConfigMap or its key must be defined",
+																						MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"secret": schema.SingleNestedAttribute{
+																				Description:         "Secret containing data to use for the targets.",
+																				MarkdownDescription: "Secret containing data to use for the targets.",
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "The key of the secret to select from. Must be a valid secret key.",
+																						MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"name": schema.StringAttribute{
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"optional": schema.BoolAttribute{
+																						Description:         "Specify whether the Secret or its key must be defined",
+																						MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"insecure_skip_verify": schema.BoolAttribute{
+																		Description:         "Disable target certificate validation.",
+																		MarkdownDescription: "Disable target certificate validation.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"key_secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing the client key file for the targets.",
+																		MarkdownDescription: "Secret containing the client key file for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"max_version": schema.StringAttribute{
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																		},
+																	},
+
+																	"min_version": schema.StringAttribute{
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																		},
+																	},
+
+																	"server_name": schema.StringAttribute{
+																		Description:         "Used to verify the hostname for the targets.",
+																		MarkdownDescription: "Used to verify the hostname for the targets.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"token_url": schema.StringAttribute{
+																Description:         "'tokenURL' configures the URL to fetch the token from.",
+																MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"proxy_connect_header": schema.MapAttribute{
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_from_environment": schema.BoolAttribute{
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "'proxyURL' defines the HTTP proxy server to use.",
+														MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+														},
+													},
+
+													"tls_config": schema.SingleNestedAttribute{
+														Description:         "TLS configuration for the client.",
+														MarkdownDescription: "TLS configuration for the client.",
+														Attributes: map[string]schema.Attribute{
+															"ca": schema.SingleNestedAttribute{
+																Description:         "Certificate authority used when verifying server certificates.",
+																MarkdownDescription: "Certificate authority used when verifying server certificates.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"cert": schema.SingleNestedAttribute{
+																Description:         "Client certificate to present when doing client-authentication.",
+																MarkdownDescription: "Client certificate to present when doing client-authentication.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "ConfigMap containing data to use for the targets.",
+																		MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key to select.",
+																				MarkdownDescription: "The key to select.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the ConfigMap or its key must be defined",
+																				MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "Secret containing data to use for the targets.",
+																		MarkdownDescription: "Secret containing data to use for the targets.",
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "The key of the secret to select from. Must be a valid secret key.",
+																				MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "Specify whether the Secret or its key must be defined",
+																				MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"insecure_skip_verify": schema.BoolAttribute{
+																Description:         "Disable target certificate validation.",
+																MarkdownDescription: "Disable target certificate validation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key_secret": schema.SingleNestedAttribute{
+																Description:         "Secret containing the client key file for the targets.",
+																MarkdownDescription: "Secret containing the client key file for the targets.",
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "The key of the secret to select from. Must be a valid secret key.",
+																		MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"optional": schema.BoolAttribute{
+																		Description:         "Specify whether the Secret or its key must be defined",
+																		MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"max_version": schema.StringAttribute{
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																},
+															},
+
+															"min_version": schema.StringAttribute{
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+																},
+															},
+
+															"server_name": schema.StringAttribute{
+																Description:         "Used to verify the hostname for the targets.",
+																MarkdownDescription: "Used to verify the hostname for the targets.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"icon_url": schema.StringAttribute{
+												Description:         "Icon URL for the message.",
+												MarkdownDescription: "Icon URL for the message.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+												},
+											},
+
+											"image_url": schema.StringAttribute{
+												Description:         "Image URL for the message.",
+												MarkdownDescription: "Image URL for the message.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+												},
+											},
+
+											"link_names": schema.BoolAttribute{
+												Description:         "Whether to enable link names.",
+												MarkdownDescription: "Whether to enable link names.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"send_resolved": schema.BoolAttribute{
+												Description:         "Whether to notify about resolved alerts.",
+												MarkdownDescription: "Whether to notify about resolved alerts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"short_fields": schema.BoolAttribute{
+												Description:         "Whether to use short fields.",
+												MarkdownDescription: "Whether to use short fields.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"text": schema.StringAttribute{
+												Description:         "The message text to send, it is optional because of attachments.",
+												MarkdownDescription: "The message text to send, it is optional because of attachments.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"thumb_url": schema.StringAttribute{
+												Description:         "Thumbnail URL for the message.",
+												MarkdownDescription: "Thumbnail URL for the message.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^https?://.+$`), ""),
+												},
+											},
+
+											"title": schema.StringAttribute{
+												Description:         "The message title.",
+												MarkdownDescription: "The message title.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"title_link": schema.StringAttribute{
+												Description:         "The title link for the message.",
+												MarkdownDescription: "The title link for the message.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
+											},
+
+											"token": schema.SingleNestedAttribute{
+												Description:         "The sender token.",
+												MarkdownDescription: "The sender token.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"token_id": schema.SingleNestedAttribute{
+												Description:         "The sender token ID.",
+												MarkdownDescription: "The sender token ID.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from. Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
 											},
 										},
 									},
@@ -8155,8 +10640,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8284,16 +10769,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8301,8 +10786,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8315,7 +10800,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -8524,8 +11009,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8535,8 +11020,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -8575,8 +11060,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -8584,8 +11069,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -8598,7 +11091,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -8798,8 +11291,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -8809,8 +11302,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9141,8 +11634,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9270,16 +11763,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -9287,8 +11780,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9301,7 +11794,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -9510,8 +12003,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9521,8 +12014,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9561,8 +12054,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -9570,8 +12063,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -9584,7 +12085,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -9784,8 +12285,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9795,8 +12296,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10217,8 +12718,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10346,16 +12847,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -10363,8 +12864,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10377,7 +12878,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -10586,8 +13087,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -10597,8 +13098,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -10637,8 +13138,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -10646,8 +13147,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10660,7 +13169,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -10860,8 +13369,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10871,8 +13380,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -10902,6 +13411,14 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 											"message": schema.StringAttribute{
 												Description:         "Message template",
 												MarkdownDescription: "Message template",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"message_thread_id": schema.Int64Attribute{
+												Description:         "The Telegram Group Topic ID. It requires Alertmanager >= 0.26.0.",
+												MarkdownDescription: "The Telegram Group Topic ID. It requires Alertmanager >= 0.26.0.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -11187,8 +13704,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -11316,16 +13833,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -11333,8 +13850,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11347,7 +13864,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -11556,8 +14073,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -11567,8 +14084,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -11607,8 +14124,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -11616,8 +14133,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -11630,7 +14155,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -11830,8 +14355,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11841,8 +14366,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12102,8 +14627,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12231,16 +14756,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -12248,8 +14773,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12262,7 +14787,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -12471,8 +14996,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -12482,8 +15007,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -12522,8 +15047,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -12531,8 +15056,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12545,7 +15078,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -12745,8 +15278,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12756,8 +15289,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12993,8 +15526,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -13122,16 +15655,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -13139,8 +15672,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -13153,7 +15686,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -13362,8 +15895,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -13373,8 +15906,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -13413,8 +15946,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -13422,8 +15955,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -13436,7 +15977,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -13636,8 +16177,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -13647,8 +16188,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -13692,6 +16233,17 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"timeout": schema.StringAttribute{
+												Description:         "The maximum time to wait for a webhook request to complete, before failing the request and allowing it to be retried. It requires Alertmanager >= v0.28.0.",
+												MarkdownDescription: "The maximum time to wait for a webhook request to complete, before failing the request and allowing it to be retried. It requires Alertmanager >= v0.28.0.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+												},
 											},
 
 											"url": schema.StringAttribute{
@@ -13974,8 +16526,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"no_proxy": schema.StringAttribute{
-														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -14103,16 +16655,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"no_proxy": schema.StringAttribute{
-																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
 															},
 
 															"proxy_connect_header": schema.MapAttribute{
-																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -14120,8 +16672,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"proxy_from_environment": schema.BoolAttribute{
-																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+																Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+																MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -14134,7 +16686,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 																},
 															},
 
@@ -14343,8 +16895,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"max_version": schema.StringAttribute{
-																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																		Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																		MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -14354,8 +16906,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 																	},
 
 																	"min_version": schema.StringAttribute{
-																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																		Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																		MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -14394,8 +16946,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_connect_header": schema.MapAttribute{
-														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -14403,8 +16955,16 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 													},
 
 													"proxy_from_environment": schema.BoolAttribute{
-														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+														Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proxy_url": schema.StringAttribute{
+														Description:         "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
+														MarkdownDescription: "Optional proxy URL. If defined, this field takes precedence over 'proxyUrl'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -14417,7 +16977,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 														Optional:            true,
 														Computed:            false,
 														Validators: []validator.String{
-															stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 														},
 													},
 
@@ -14617,8 +17177,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"max_version": schema.StringAttribute{
-																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+																Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+																MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -14628,8 +17188,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context
 															},
 
 															"min_version": schema.StringAttribute{
-																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+																Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+																MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,

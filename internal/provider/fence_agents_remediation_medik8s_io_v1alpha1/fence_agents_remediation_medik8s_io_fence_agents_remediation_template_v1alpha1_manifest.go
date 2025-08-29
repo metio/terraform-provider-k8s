@@ -47,10 +47,12 @@ type FenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Manife
 		Template *struct {
 			Spec *struct {
 				Agent               *string                       `tfsdk:"agent" json:"agent,omitempty"`
+				NodeSecrets         *map[string]string            `tfsdk:"node_secrets" json:"nodeSecrets,omitempty"`
 				Nodeparameters      *map[string]map[string]string `tfsdk:"nodeparameters" json:"nodeparameters,omitempty"`
 				RemediationStrategy *string                       `tfsdk:"remediation_strategy" json:"remediationStrategy,omitempty"`
 				Retrycount          *int64                        `tfsdk:"retrycount" json:"retrycount,omitempty"`
 				Retryinterval       *string                       `tfsdk:"retryinterval" json:"retryinterval,omitempty"`
+				SharedSecretName    *string                       `tfsdk:"shared_secret_name" json:"sharedSecretName,omitempty"`
 				Sharedparameters    *map[string]string            `tfsdk:"sharedparameters" json:"sharedparameters,omitempty"`
 				Timeout             *string                       `tfsdk:"timeout" json:"timeout,omitempty"`
 			} `tfsdk:"spec" json:"spec,omitempty"`
@@ -154,6 +156,15 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Ma
 										},
 									},
 
+									"node_secrets": schema.MapAttribute{
+										Description:         "NodeSecretNames maps the node name to the Secret name which contains params relevant for that node.",
+										MarkdownDescription: "NodeSecretNames maps the node name to the Secret name which contains params relevant for that node.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"nodeparameters": schema.MapAttribute{
 										Description:         "NodeParameters are passed to the fencing agent according to the node that is fenced, since they are node specific",
 										MarkdownDescription: "NodeParameters are passed to the fencing agent according to the node that is fenced, since they are node specific",
@@ -193,9 +204,17 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationTemplateV1Alpha1Ma
 										},
 									},
 
+									"shared_secret_name": schema.StringAttribute{
+										Description:         "SharedSecretName is the name of the Secret which will contain params needed for FAR in order to remediate any node. Using this Secret is optional.",
+										MarkdownDescription: "SharedSecretName is the name of the Secret which will contain params needed for FAR in order to remediate any node. Using this Secret is optional.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"sharedparameters": schema.MapAttribute{
-										Description:         "SharedParameters are passed to the fencing agent regardless of which node is about to be fenced (i.e., they are common for all the nodes)",
-										MarkdownDescription: "SharedParameters are passed to the fencing agent regardless of which node is about to be fenced (i.e., they are common for all the nodes)",
+										Description:         "SharedParameters are parameters common to all nodes",
+										MarkdownDescription: "SharedParameters are parameters common to all nodes",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

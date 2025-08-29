@@ -48,6 +48,8 @@ type PxcPerconaComPerconaXtraDbclusterRestoreV1ManifestData struct {
 		BackupName   *string `tfsdk:"backup_name" json:"backupName,omitempty"`
 		BackupSource *struct {
 			Azure *struct {
+				BlockSize         *int64  `tfsdk:"block_size" json:"blockSize,omitempty"`
+				Concurrency       *int64  `tfsdk:"concurrency" json:"concurrency,omitempty"`
 				Container         *string `tfsdk:"container" json:"container,omitempty"`
 				CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 				EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
@@ -63,6 +65,7 @@ type PxcPerconaComPerconaXtraDbclusterRestoreV1ManifestData struct {
 				Type               *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"conditions" json:"conditions,omitempty"`
 			Destination          *string `tfsdk:"destination" json:"destination,omitempty"`
+			Error                *string `tfsdk:"error" json:"error,omitempty"`
 			Image                *string `tfsdk:"image" json:"image,omitempty"`
 			Lastscheduled        *string `tfsdk:"lastscheduled" json:"lastscheduled,omitempty"`
 			LatestRestorableTime *string `tfsdk:"latest_restorable_time" json:"latestRestorableTime,omitempty"`
@@ -115,6 +118,8 @@ type PxcPerconaComPerconaXtraDbclusterRestoreV1ManifestData struct {
 		Pitr *struct {
 			BackupSource *struct {
 				Azure *struct {
+					BlockSize         *int64  `tfsdk:"block_size" json:"blockSize,omitempty"`
+					Concurrency       *int64  `tfsdk:"concurrency" json:"concurrency,omitempty"`
 					Container         *string `tfsdk:"container" json:"container,omitempty"`
 					CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
@@ -130,6 +135,7 @@ type PxcPerconaComPerconaXtraDbclusterRestoreV1ManifestData struct {
 					Type               *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"conditions" json:"conditions,omitempty"`
 				Destination          *string `tfsdk:"destination" json:"destination,omitempty"`
+				Error                *string `tfsdk:"error" json:"error,omitempty"`
 				Image                *string `tfsdk:"image" json:"image,omitempty"`
 				Lastscheduled        *string `tfsdk:"lastscheduled" json:"lastscheduled,omitempty"`
 				LatestRestorableTime *string `tfsdk:"latest_restorable_time" json:"latestRestorableTime,omitempty"`
@@ -256,6 +262,22 @@ func (r *PxcPerconaComPerconaXtraDbclusterRestoreV1Manifest) Schema(_ context.Co
 								Description:         "",
 								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
+									"block_size": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"concurrency": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"container": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -385,6 +407,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterRestoreV1Manifest) Schema(_ context.Co
 							},
 
 							"destination": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"error": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -741,6 +771,22 @@ func (r *PxcPerconaComPerconaXtraDbclusterRestoreV1Manifest) Schema(_ context.Co
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"block_size": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"concurrency": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"container": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -870,6 +916,14 @@ func (r *PxcPerconaComPerconaXtraDbclusterRestoreV1Manifest) Schema(_ context.Co
 									},
 
 									"destination": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"error": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

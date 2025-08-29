@@ -231,8 +231,8 @@ func (r *SecurityIstioIoRequestAuthenticationV1Beta1Manifest) Schema(_ context.C
 								"issuer": schema.StringAttribute{
 									Description:         "Identifies the issuer that issued the JWT.",
 									MarkdownDescription: "Identifies the issuer that issued the JWT.",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.LengthAtLeast(1),

@@ -119,8 +119,8 @@ func (r *LonghornIoSettingV1Beta2Manifest) Schema(_ context.Context, _ datasourc
 			},
 
 			"value": schema.StringAttribute{
-				Description:         "The value of the setting.",
-				MarkdownDescription: "The value of the setting.",
+				Description:         "The value of the setting. - It can be a non-JSON formatted string that is applied to all the applicable data engines listed in the setting definition. - It can be a JSON formatted string that contains values for applicable data engines listed in the setting definition's Default.",
+				MarkdownDescription: "The value of the setting. - It can be a non-JSON formatted string that is applied to all the applicable data engines listed in the setting definition. - It can be a JSON formatted string that contains values for applicable data engines listed in the setting definition's Default.",
 				Required:            true,
 				Optional:            false,
 				Computed:            false,

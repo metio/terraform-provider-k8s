@@ -51,8 +51,12 @@ type FluentbitFluentIoClusterParserV1Alpha2ManifestData struct {
 			TimeKeep   *bool   `tfsdk:"time_keep" json:"timeKeep,omitempty"`
 			TimeKey    *string `tfsdk:"time_key" json:"timeKey,omitempty"`
 		} `tfsdk:"json" json:"json,omitempty"`
-		Logfmt *map[string]string `tfsdk:"logfmt" json:"logfmt,omitempty"`
-		Ltsv   *struct {
+		Logfmt *struct {
+			TimeFormat *string `tfsdk:"time_format" json:"timeFormat,omitempty"`
+			TimeKeep   *bool   `tfsdk:"time_keep" json:"timeKeep,omitempty"`
+			TimeKey    *string `tfsdk:"time_key" json:"timeKey,omitempty"`
+		} `tfsdk:"logfmt" json:"logfmt,omitempty"`
+		Ltsv *struct {
 			TimeFormat *string `tfsdk:"time_format" json:"timeFormat,omitempty"`
 			TimeKeep   *bool   `tfsdk:"time_keep" json:"timeKeep,omitempty"`
 			TimeKey    *string `tfsdk:"time_key" json:"timeKey,omitempty"`
@@ -194,13 +198,37 @@ func (r *FluentbitFluentIoClusterParserV1Alpha2Manifest) Schema(_ context.Contex
 						Computed: false,
 					},
 
-					"logfmt": schema.MapAttribute{
+					"logfmt": schema.SingleNestedAttribute{
 						Description:         "Logfmt defines logfmt parser configuration.",
 						MarkdownDescription: "Logfmt defines logfmt parser configuration.",
-						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
+						Attributes: map[string]schema.Attribute{
+							"time_format": schema.StringAttribute{
+								Description:         "Time_Format, eg. %Y-%m-%dT%H:%M:%S %z",
+								MarkdownDescription: "Time_Format, eg. %Y-%m-%dT%H:%M:%S %z",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_keep": schema.BoolAttribute{
+								Description:         "Time_Keep",
+								MarkdownDescription: "Time_Keep",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"time_key": schema.StringAttribute{
+								Description:         "Time_Key",
+								MarkdownDescription: "Time_Key",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"ltsv": schema.SingleNestedAttribute{

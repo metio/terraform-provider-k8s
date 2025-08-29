@@ -64,11 +64,8 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			MaxPayloadSize *int64  `tfsdk:"max_payload_size" json:"maxPayloadSize,omitempty"`
 			Timeout        *string `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"caching_server" json:"cachingServer,omitempty"`
-		ConsoleOptions *struct {
-			ApiExplorerEnabled *bool `tfsdk:"api_explorer_enabled" json:"apiExplorerEnabled,omitempty"`
-			ReadOnly           *bool `tfsdk:"read_only" json:"readOnly,omitempty"`
-		} `tfsdk:"console_options" json:"consoleOptions,omitempty"`
-		Consul *struct {
+		ConsoleOptions *map[string]string `tfsdk:"console_options" json:"consoleOptions,omitempty"`
+		Consul         *struct {
 			Address            *string `tfsdk:"address" json:"address,omitempty"`
 			CaFile             *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 			CaPath             *string `tfsdk:"ca_path" json:"caPath,omitempty"`
@@ -119,10 +116,8 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			Directory *string `tfsdk:"directory" json:"directory,omitempty"`
 		} `tfsdk:"directory_secret_source" json:"directorySecretSource,omitempty"`
 		Discovery *struct {
-			FdsMode    *string `tfsdk:"fds_mode" json:"fdsMode,omitempty"`
-			FdsOptions *struct {
-				GraphqlEnabled *bool `tfsdk:"graphql_enabled" json:"graphqlEnabled,omitempty"`
-			} `tfsdk:"fds_options" json:"fdsOptions,omitempty"`
+			FdsMode    *string            `tfsdk:"fds_mode" json:"fdsMode,omitempty"`
+			FdsOptions *map[string]string `tfsdk:"fds_options" json:"fdsOptions,omitempty"`
 			UdsOptions *struct {
 				Enabled     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 				WatchLabels *map[string]string `tfsdk:"watch_labels" json:"watchLabels,omitempty"`
@@ -305,6 +300,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				MaxPendingRequests *int64 `tfsdk:"max_pending_requests" json:"maxPendingRequests,omitempty"`
 				MaxRequests        *int64 `tfsdk:"max_requests" json:"maxRequests,omitempty"`
 				MaxRetries         *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+				TrackRemaining     *bool  `tfsdk:"track_remaining" json:"trackRemaining,omitempty"`
 			} `tfsdk:"circuit_breakers" json:"circuitBreakers,omitempty"`
 			DisableGrpcWeb                     *bool   `tfsdk:"disable_grpc_web" json:"disableGrpcWeb,omitempty"`
 			DisableKubernetesDestinations      *bool   `tfsdk:"disable_kubernetes_destinations" json:"disableKubernetesDestinations,omitempty"`
@@ -331,12 +327,6 @@ type GlooSoloIoSettingsV1ManifestData struct {
 			ValidationBindAddr                   *string `tfsdk:"validation_bind_addr" json:"validationBindAddr,omitempty"`
 			XdsBindAddr                          *string `tfsdk:"xds_bind_addr" json:"xdsBindAddr,omitempty"`
 		} `tfsdk:"gloo" json:"gloo,omitempty"`
-		GraphqlOptions *struct {
-			SchemaChangeValidationOptions *struct {
-				ProcessingRules       *[]string `tfsdk:"processing_rules" json:"processingRules,omitempty"`
-				RejectBreakingChanges *bool     `tfsdk:"reject_breaking_changes" json:"rejectBreakingChanges,omitempty"`
-			} `tfsdk:"schema_change_validation_options" json:"schemaChangeValidationOptions,omitempty"`
-		} `tfsdk:"graphql_options" json:"graphqlOptions,omitempty"`
 		Knative *struct {
 			ClusterIngressProxyAddress  *string `tfsdk:"cluster_ingress_proxy_address" json:"clusterIngressProxyAddress,omitempty"`
 			KnativeExternalProxyAddress *string `tfsdk:"knative_external_proxy_address" json:"knativeExternalProxyAddress,omitempty"`
@@ -733,29 +723,13 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 						Computed: false,
 					},
 
-					"console_options": schema.SingleNestedAttribute{
+					"console_options": schema.MapAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"api_explorer_enabled": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"read_only": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"consul": schema.SingleNestedAttribute{
@@ -1102,21 +1076,13 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Computed:            false,
 							},
 
-							"fds_options": schema.SingleNestedAttribute{
+							"fds_options": schema.MapAttribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"graphql_enabled": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"uds_options": schema.SingleNestedAttribute{
@@ -2378,6 +2344,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											int64validator.AtMost(4.294967295e+09),
 										},
 									},
+
+									"track_remaining": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -2568,41 +2542,6 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
-					"graphql_options": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"schema_change_validation_options": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"processing_rules": schema.ListAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"reject_breaking_changes": schema.BoolAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 						},
 						Required: false,

@@ -46,6 +46,7 @@ type CouchbaseComCouchbaseUserV2ManifestData struct {
 		AuthDomain *string `tfsdk:"auth_domain" json:"authDomain,omitempty"`
 		AuthSecret *string `tfsdk:"auth_secret" json:"authSecret,omitempty"`
 		FullName   *string `tfsdk:"full_name" json:"fullName,omitempty"`
+		Name       *string `tfsdk:"name" json:"name,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -148,6 +149,14 @@ func (r *CouchbaseComCouchbaseUserV2Manifest) Schema(_ context.Context, _ dataso
 					"full_name": schema.StringAttribute{
 						Description:         "Full Name of Couchbase user.",
 						MarkdownDescription: "Full Name of Couchbase user.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"name": schema.StringAttribute{
+						Description:         "Username of the couchbase user.",
+						MarkdownDescription: "Username of the couchbase user.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

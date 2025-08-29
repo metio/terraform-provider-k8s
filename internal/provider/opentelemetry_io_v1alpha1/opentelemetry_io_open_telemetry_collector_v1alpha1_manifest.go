@@ -864,6 +864,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -940,6 +941,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		ServiceAccount        *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
+		ServiceName           *string `tfsdk:"service_name" json:"serviceName,omitempty"`
 		ShareProcessNamespace *bool   `tfsdk:"share_process_namespace" json:"shareProcessNamespace,omitempty"`
 		TargetAllocator       *struct {
 			Affinity *struct {
@@ -1123,6 +1125,7 @@ type OpentelemetryIoOpenTelemetryCollectorV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -7171,6 +7174,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 								Computed:            false,
 							},
 
+							"se_linux_change_policy": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"se_linux_options": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -7689,6 +7700,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 					},
 
 					"service_account": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"service_name": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -8911,6 +8930,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Alpha1Manifest) Schema(_ context
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

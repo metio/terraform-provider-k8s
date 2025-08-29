@@ -49,6 +49,38 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Replicas *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 		} `tfsdk:"clusters" json:"clusters,omitempty"`
+		Components *[]struct {
+			Name                *string `tfsdk:"name" json:"name,omitempty"`
+			ReplicaRequirements *struct {
+				NodeClaim *struct {
+					HardNodeAffinity *struct {
+						NodeSelectorTerms *[]struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchFields *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_fields" json:"matchFields,omitempty"`
+						} `tfsdk:"node_selector_terms" json:"nodeSelectorTerms,omitempty"`
+					} `tfsdk:"hard_node_affinity" json:"hardNodeAffinity,omitempty"`
+					NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					Tolerations  *[]struct {
+						Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+						Key               *string `tfsdk:"key" json:"key,omitempty"`
+						Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+						TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+						Value             *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"tolerations" json:"tolerations,omitempty"`
+				} `tfsdk:"node_claim" json:"nodeClaim,omitempty"`
+				PriorityClassName *string            `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
+				ResourceRequest   *map[string]string `tfsdk:"resource_request" json:"resourceRequest,omitempty"`
+			} `tfsdk:"replica_requirements" json:"replicaRequirements,omitempty"`
+			Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+		} `tfsdk:"components" json:"components,omitempty"`
 		ConflictResolution *string `tfsdk:"conflict_resolution" json:"conflictResolution,omitempty"`
 		Failover           *struct {
 			Application *struct {
@@ -57,17 +89,35 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 				} `tfsdk:"decision_conditions" json:"decisionConditions,omitempty"`
 				GracePeriodSeconds *int64  `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
 				PurgeMode          *string `tfsdk:"purge_mode" json:"purgeMode,omitempty"`
+				StatePreservation  *struct {
+					Rules *[]struct {
+						AliasLabelName *string `tfsdk:"alias_label_name" json:"aliasLabelName,omitempty"`
+						JsonPath       *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+				} `tfsdk:"state_preservation" json:"statePreservation,omitempty"`
 			} `tfsdk:"application" json:"application,omitempty"`
+			Cluster *struct {
+				PurgeMode         *string `tfsdk:"purge_mode" json:"purgeMode,omitempty"`
+				StatePreservation *struct {
+					Rules *[]struct {
+						AliasLabelName *string `tfsdk:"alias_label_name" json:"aliasLabelName,omitempty"`
+						JsonPath       *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
+					} `tfsdk:"rules" json:"rules,omitempty"`
+				} `tfsdk:"state_preservation" json:"statePreservation,omitempty"`
+			} `tfsdk:"cluster" json:"cluster,omitempty"`
 		} `tfsdk:"failover" json:"failover,omitempty"`
 		GracefulEvictionTasks *[]struct {
-			CreationTimestamp  *string `tfsdk:"creation_timestamp" json:"creationTimestamp,omitempty"`
-			FromCluster        *string `tfsdk:"from_cluster" json:"fromCluster,omitempty"`
-			GracePeriodSeconds *int64  `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
-			Message            *string `tfsdk:"message" json:"message,omitempty"`
-			Producer           *string `tfsdk:"producer" json:"producer,omitempty"`
-			Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
-			Replicas           *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
-			SuppressDeletion   *bool   `tfsdk:"suppress_deletion" json:"suppressDeletion,omitempty"`
+			ClustersBeforeFailover *[]string          `tfsdk:"clusters_before_failover" json:"clustersBeforeFailover,omitempty"`
+			CreationTimestamp      *string            `tfsdk:"creation_timestamp" json:"creationTimestamp,omitempty"`
+			FromCluster            *string            `tfsdk:"from_cluster" json:"fromCluster,omitempty"`
+			GracePeriodSeconds     *int64             `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
+			Message                *string            `tfsdk:"message" json:"message,omitempty"`
+			PreservedLabelState    *map[string]string `tfsdk:"preserved_label_state" json:"preservedLabelState,omitempty"`
+			Producer               *string            `tfsdk:"producer" json:"producer,omitempty"`
+			PurgeMode              *string            `tfsdk:"purge_mode" json:"purgeMode,omitempty"`
+			Reason                 *string            `tfsdk:"reason" json:"reason,omitempty"`
+			Replicas               *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+			SuppressDeletion       *bool              `tfsdk:"suppress_deletion" json:"suppressDeletion,omitempty"`
 		} `tfsdk:"graceful_eviction_tasks" json:"gracefulEvictionTasks,omitempty"`
 		Placement *struct {
 			ClusterAffinities *[]struct {
@@ -201,12 +251,16 @@ type WorkKarmadaIoResourceBindingV1Alpha2ManifestData struct {
 			ResourceVersion *string `tfsdk:"resource_version" json:"resourceVersion,omitempty"`
 			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 		} `tfsdk:"resource" json:"resource,omitempty"`
+		SchedulePriority *struct {
+			Priority *int64 `tfsdk:"priority" json:"priority,omitempty"`
+		} `tfsdk:"schedule_priority" json:"schedulePriority,omitempty"`
 		SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 		Suspension    *struct {
 			Dispatching           *bool `tfsdk:"dispatching" json:"dispatching,omitempty"`
 			DispatchingOnClusters *struct {
 				ClusterNames *[]string `tfsdk:"cluster_names" json:"clusterNames,omitempty"`
 			} `tfsdk:"dispatching_on_clusters" json:"dispatchingOnClusters,omitempty"`
+			Scheduling *bool `tfsdk:"scheduling" json:"scheduling,omitempty"`
 		} `tfsdk:"suspension" json:"suspension,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -315,6 +369,223 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"components": schema.ListNestedAttribute{
+						Description:         "Components represents the requirements of multiple pod templates of the referencing resource. It is designed to support workloads that consist of multiple pod templates, such as distributed training jobs (e.g., PyTorch, TensorFlow) and big data workloads (e.g., FlinkDeployment), where each workload is composed of more than one pod template. It is also capable of representing single-component workloads, such as Deployment. Note: This field is intended to replace the legacy ReplicaRequirements and Replicas fields above. It is only populated when the MultiplePodTemplatesScheduling feature gate is enabled.",
+						MarkdownDescription: "Components represents the requirements of multiple pod templates of the referencing resource. It is designed to support workloads that consist of multiple pod templates, such as distributed training jobs (e.g., PyTorch, TensorFlow) and big data workloads (e.g., FlinkDeployment), where each workload is composed of more than one pod template. It is also capable of representing single-component workloads, such as Deployment. Note: This field is intended to replace the legacy ReplicaRequirements and Replicas fields above. It is only populated when the MultiplePodTemplatesScheduling feature gate is enabled.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of this component. It is required when the resource contains multiple components to ensure proper identification, and must also be unique within the same resource.",
+									MarkdownDescription: "Name of this component. It is required when the resource contains multiple components to ensure proper identification, and must also be unique within the same resource.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtMost(32),
+									},
+								},
+
+								"replica_requirements": schema.SingleNestedAttribute{
+									Description:         "ReplicaRequirements represents the requirements required by each replica for this component.",
+									MarkdownDescription: "ReplicaRequirements represents the requirements required by each replica for this component.",
+									Attributes: map[string]schema.Attribute{
+										"node_claim": schema.SingleNestedAttribute{
+											Description:         "NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica.",
+											MarkdownDescription: "NodeClaim represents the node claim HardNodeAffinity, NodeSelector and Tolerations required by each replica.",
+											Attributes: map[string]schema.Attribute{
+												"hard_node_affinity": schema.SingleNestedAttribute{
+													Description:         "A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. Note that only PodSpec.Affinity.NodeAffinity.RequiredDuringSchedulingIgnoredDuringExecution is included here because it has a hard limit on pod scheduling.",
+													MarkdownDescription: "A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. Note that only PodSpec.Affinity.NodeAffinity.RequiredDuringSchedulingIgnoredDuringExecution is included here because it has a hard limit on pod scheduling.",
+													Attributes: map[string]schema.Attribute{
+														"node_selector_terms": schema.ListNestedAttribute{
+															Description:         "Required. A list of node selector terms. The terms are ORed.",
+															MarkdownDescription: "Required. A list of node selector terms. The terms are ORed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"match_expressions": schema.ListNestedAttribute{
+																		Description:         "A list of node selector requirements by node's labels.",
+																		MarkdownDescription: "A list of node selector requirements by node's labels.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The label key that the selector applies to.",
+																					MarkdownDescription: "The label key that the selector applies to.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																					MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_fields": schema.ListNestedAttribute{
+																		Description:         "A list of node selector requirements by node's fields.",
+																		MarkdownDescription: "A list of node selector requirements by node's fields.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The label key that the selector applies to.",
+																					MarkdownDescription: "The label key that the selector applies to.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																					MarkdownDescription: "Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"node_selector": schema.MapAttribute{
+													Description:         "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node.",
+													MarkdownDescription: "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"tolerations": schema.ListNestedAttribute{
+													Description:         "If specified, the pod's tolerations.",
+													MarkdownDescription: "If specified, the pod's tolerations.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"effect": schema.StringAttribute{
+																Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key": schema.StringAttribute{
+																Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"toleration_seconds": schema.Int64Attribute{
+																Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"value": schema.StringAttribute{
+																Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"priority_class_name": schema.StringAttribute{
+											Description:         "PriorityClassName represents the resources priorityClassName",
+											MarkdownDescription: "PriorityClassName represents the resources priorityClassName",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"resource_request": schema.MapAttribute{
+											Description:         "ResourceRequest represents the resources required by each replica.",
+											MarkdownDescription: "ResourceRequest represents the resources required by each replica.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"replicas": schema.Int64Attribute{
+									Description:         "Replicas represents the replica number of the resource's component.",
+									MarkdownDescription: "Replicas represents the replica number of the resource's component.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"conflict_resolution": schema.StringAttribute{
 						Description:         "ConflictResolution declares how potential conflict should be handled when a resource that is being propagated already exists in the target cluster. It defaults to 'Abort' which means stop propagating to avoid unexpected overwrites. The 'Overwrite' might be useful when migrating legacy cluster resources to Karmada, in which case conflict is predictable and can be instructed to Karmada take over the resource by overwriting.",
 						MarkdownDescription: "ConflictResolution declares how potential conflict should be handled when a resource that is being propagated already exists in the target cluster. It defaults to 'Abort' which means stop propagating to avoid unexpected overwrites. The 'Overwrite' might be useful when migrating legacy cluster resources to Karmada, in which case conflict is predictable and can be instructed to Karmada take over the resource by overwriting.",
@@ -360,14 +631,106 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 									},
 
 									"purge_mode": schema.StringAttribute{
-										Description:         "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Immediately', 'Graciously' and 'Never'. Defaults to 'Graciously'.",
-										MarkdownDescription: "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Immediately', 'Graciously' and 'Never'. Defaults to 'Graciously'.",
+										Description:         "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Directly', 'Gracefully', 'Never', 'Immediately'(deprecated), and 'Graciously'(deprecated). Defaults to 'Gracefully'.",
+										MarkdownDescription: "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Directly', 'Gracefully', 'Never', 'Immediately'(deprecated), and 'Graciously'(deprecated). Defaults to 'Gracefully'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("Immediately", "Graciously", "Never"),
+											stringvalidator.OneOf("Directly", "Gracefully", "Never", "Immediately", "Graciously"),
 										},
+									},
+
+									"state_preservation": schema.SingleNestedAttribute{
+										Description:         "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										MarkdownDescription: "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										Attributes: map[string]schema.Attribute{
+											"rules": schema.ListNestedAttribute{
+												Description:         "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												MarkdownDescription: "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"alias_label_name": schema.StringAttribute{
+															Description:         "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															MarkdownDescription: "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"json_path": schema.StringAttribute{
+															Description:         "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															MarkdownDescription: "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cluster": schema.SingleNestedAttribute{
+								Description:         "Cluster indicates failover behaviors in case of cluster failure. If this value is nil, the failover behavior in case of cluster failure will be controlled by the controller's no-execute-taint-eviction-purge-mode parameter. If set, the failover behavior in case of cluster failure will be defined by this value.",
+								MarkdownDescription: "Cluster indicates failover behaviors in case of cluster failure. If this value is nil, the failover behavior in case of cluster failure will be controlled by the controller's no-execute-taint-eviction-purge-mode parameter. If set, the failover behavior in case of cluster failure will be defined by this value.",
+								Attributes: map[string]schema.Attribute{
+									"purge_mode": schema.StringAttribute{
+										Description:         "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Directly', 'Gracefully'. Defaults to 'Gracefully'.",
+										MarkdownDescription: "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Directly', 'Gracefully'. Defaults to 'Gracefully'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Directly", "Gracefully"),
+										},
+									},
+
+									"state_preservation": schema.SingleNestedAttribute{
+										Description:         "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										MarkdownDescription: "StatePreservation defines the policy for preserving and restoring state data during failover events for stateful applications. When an application fails over from one cluster to another, this policy enables the extraction of critical data from the original resource configuration. Upon successful migration, the extracted data is then re-injected into the new resource, ensuring that the application can resume operation with its previous state intact. This is particularly useful for stateful applications where maintaining data consistency across failover events is crucial. If not specified, means no state data will be preserved. Note: This requires the StatefulFailoverInjection feature gate to be enabled, which is alpha.",
+										Attributes: map[string]schema.Attribute{
+											"rules": schema.ListNestedAttribute{
+												Description:         "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												MarkdownDescription: "Rules contains a list of StatePreservationRule configurations. Each rule specifies a JSONPath expression targeting specific pieces of state data to be preserved during failover events. An AliasLabelName is associated with each rule, serving as a label key when the preserved data is passed to the new cluster.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"alias_label_name": schema.StringAttribute{
+															Description:         "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															MarkdownDescription: "AliasLabelName is the name that will be used as a label key when the preserved data is passed to the new cluster. This facilitates the injection of the preserved state back into the application resources during recovery.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"json_path": schema.StringAttribute{
+															Description:         "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															MarkdownDescription: "JSONPath is the JSONPath template used to identify the state data to be preserved from the original resource configuration. The JSONPath syntax follows the Kubernetes specification: https://kubernetes.io/docs/reference/kubectl/jsonpath/ Note: The JSONPath expression will start searching from the 'status' field of the API resource object by default. For example, to extract the 'availableReplicas' from a Deployment, the JSONPath expression should be '{.availableReplicas}', not '{.status.availableReplicas}'.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -385,6 +748,15 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "GracefulEvictionTasks holds the eviction tasks that are expected to perform the eviction in a graceful way. The intended workflow is: 1. Once the controller(such as 'taint-manager') decided to evict the resource that is referenced by current ResourceBinding or ClusterResourceBinding from a target cluster, it removes(or scale down the replicas) the target from Clusters(.spec.Clusters) and builds a graceful eviction task. 2. The scheduler may perform a re-scheduler and probably select a substitute cluster to take over the evicting workload(resource). 3. The graceful eviction controller takes care of the graceful eviction tasks and performs the final removal after the workload(resource) is available on the substitute cluster or exceed the grace termination period(defaults to 10 minutes).",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"clusters_before_failover": schema.ListAttribute{
+									Description:         "ClustersBeforeFailover records the clusters where running the application before failover.",
+									MarkdownDescription: "ClustersBeforeFailover records the clusters where running the application before failover.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"creation_timestamp": schema.StringAttribute{
 									Description:         "CreationTimestamp is a timestamp representing the server time when this object was created. Clients should not set this value to avoid the time inconsistency issue. It is represented in RFC3339 form(like '2021-04-25T10:02:10Z') and is in UTC. Populated by the system. Read-only.",
 									MarkdownDescription: "CreationTimestamp is a timestamp representing the server time when this object was created. Clients should not set this value to avoid the time inconsistency issue. It is represented in RFC3339 form(like '2021-04-25T10:02:10Z') and is in UTC. Populated by the system. Read-only.",
@@ -423,12 +795,32 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 									},
 								},
 
+								"preserved_label_state": schema.MapAttribute{
+									Description:         "PreservedLabelState represents the application state information collected from the original cluster, and it will be injected into the new cluster in form of application labels.",
+									MarkdownDescription: "PreservedLabelState represents the application state information collected from the original cluster, and it will be injected into the new cluster in form of application labels.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"producer": schema.StringAttribute{
 									Description:         "Producer indicates the controller who triggered the eviction.",
 									MarkdownDescription: "Producer indicates the controller who triggered the eviction.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+								},
+
+								"purge_mode": schema.StringAttribute{
+									Description:         "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Immediately', 'Directly', 'Graciously', 'Gracefully' and 'Never'.",
+									MarkdownDescription: "PurgeMode represents how to deal with the legacy applications on the cluster from which the application is migrated. Valid options are 'Immediately', 'Directly', 'Graciously', 'Gracefully' and 'Never'.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("Immediately", "Directly", "Graciously", "Gracefully", "Never"),
+									},
 								},
 
 								"reason": schema.StringAttribute{
@@ -1378,6 +1770,23 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"schedule_priority": schema.SingleNestedAttribute{
+						Description:         "SchedulePriority represents the scheduling priority assigned to workloads.",
+						MarkdownDescription: "SchedulePriority represents the scheduling priority assigned to workloads.",
+						Attributes: map[string]schema.Attribute{
+							"priority": schema.Int64Attribute{
+								Description:         "Priority specifies the scheduling priority for the binding. Higher values indicate a higher priority. If not explicitly set, the default value is 0.",
+								MarkdownDescription: "Priority specifies the scheduling priority for the binding. Higher values indicate a higher priority. If not explicitly set, the default value is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"scheduler_name": schema.StringAttribute{
 						Description:         "SchedulerName represents which scheduler to proceed the scheduling. It inherits directly from the associated PropagationPolicy(or ClusterPropagationPolicy).",
 						MarkdownDescription: "SchedulerName represents which scheduler to proceed the scheduling. It inherits directly from the associated PropagationPolicy(or ClusterPropagationPolicy).",
@@ -1414,6 +1823,14 @@ func (r *WorkKarmadaIoResourceBindingV1Alpha2Manifest) Schema(_ context.Context,
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"scheduling": schema.BoolAttribute{
+								Description:         "Scheduling controls whether scheduling should be suspended, the scheduler will pause scheduling and not process resource binding when the value is true and resume scheduling when it's false or nil. This is designed for third-party systems to temporarily pause the scheduling of applications, which enabling manage resource allocation, prioritize critical workloads, etc. It is expected that third-party systems use an admission webhook to suspend scheduling at the time of ResourceBinding creation. Once a ResourceBinding has been scheduled, it cannot be paused afterward, as it may lead to ineffective suspension.",
+								MarkdownDescription: "Scheduling controls whether scheduling should be suspended, the scheduler will pause scheduling and not process resource binding when the value is true and resume scheduling when it's false or nil. This is designed for third-party systems to temporarily pause the scheduling of applications, which enabling manage resource allocation, prioritize critical workloads, etc. It is expected that third-party systems use an admission webhook to suspend scheduling at the time of ResourceBinding creation. Once a ResourceBinding has been scheduled, it cannot be paused afterward, as it may lead to ineffective suspension.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

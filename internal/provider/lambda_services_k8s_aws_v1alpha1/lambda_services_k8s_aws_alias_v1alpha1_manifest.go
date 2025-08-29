@@ -65,8 +65,19 @@ type LambdaServicesK8SAwsAliasV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"function_ref" json:"functionRef,omitempty"`
-		FunctionVersion              *string `tfsdk:"function_version" json:"functionVersion,omitempty"`
-		Name                         *string `tfsdk:"name" json:"name,omitempty"`
+		FunctionVersion *string `tfsdk:"function_version" json:"functionVersion,omitempty"`
+		Name            *string `tfsdk:"name" json:"name,omitempty"`
+		Permissions     *[]struct {
+			Action              *string `tfsdk:"action" json:"action,omitempty"`
+			EventSourceToken    *string `tfsdk:"event_source_token" json:"eventSourceToken,omitempty"`
+			FunctionURLAuthType *string `tfsdk:"function_url_auth_type" json:"functionURLAuthType,omitempty"`
+			Principal           *string `tfsdk:"principal" json:"principal,omitempty"`
+			PrincipalOrgID      *string `tfsdk:"principal_org_id" json:"principalOrgID,omitempty"`
+			RevisionID          *string `tfsdk:"revision_id" json:"revisionID,omitempty"`
+			SourceARN           *string `tfsdk:"source_arn" json:"sourceARN,omitempty"`
+			SourceAccount       *string `tfsdk:"source_account" json:"sourceAccount,omitempty"`
+			StatementID         *string `tfsdk:"statement_id" json:"statementID,omitempty"`
+		} `tfsdk:"permissions" json:"permissions,omitempty"`
 		ProvisionedConcurrencyConfig *struct {
 			FunctionName                    *string `tfsdk:"function_name" json:"functionName,omitempty"`
 			ProvisionedConcurrentExecutions *int64  `tfsdk:"provisioned_concurrent_executions" json:"provisionedConcurrentExecutions,omitempty"`
@@ -168,12 +179,12 @@ func (r *LambdaServicesK8SAwsAliasV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Configures options for asynchronous invocation on an alias. - DestinationConfig A destination for events after they have been sent to a function for processing. Types of Destinations: Function - The Amazon Resource Name (ARN) of a Lambda function. Queue - The ARN of a standard SQS queue. Topic - The ARN of a standard SNS topic. Event Bus - The ARN of an Amazon EventBridge event bus. - MaximumEventAgeInSeconds The maximum age of a request that Lambda sends to a function for processing. - MaximumRetryAttempts The maximum number of times to retry when the function returns an error.",
 						Attributes: map[string]schema.Attribute{
 							"destination_config": schema.SingleNestedAttribute{
-								Description:         "A configuration object that specifies the destination of an event after Lambda processes it.",
-								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it.",
+								Description:         "A configuration object that specifies the destination of an event after Lambda processes it. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
+								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
 								Attributes: map[string]schema.Attribute{
 									"on_failure": schema.SingleNestedAttribute{
-										Description:         "A destination for events that failed processing.",
-										MarkdownDescription: "A destination for events that failed processing.",
+										Description:         "A destination for events that failed processing. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
+										MarkdownDescription: "A destination for events that failed processing. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.StringAttribute{
 												Description:         "",
@@ -189,8 +200,8 @@ func (r *LambdaServicesK8SAwsAliasV1Alpha1Manifest) Schema(_ context.Context, _ 
 									},
 
 									"on_success": schema.SingleNestedAttribute{
-										Description:         "A destination for events that were processed successfully.",
-										MarkdownDescription: "A destination for events that were processed successfully.",
+										Description:         "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination. OnSuccess is not supported in CreateEventSourceMapping or UpdateEventSourceMapping requests.",
+										MarkdownDescription: "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination. OnSuccess is not supported in CreateEventSourceMapping or UpdateEventSourceMapping requests.",
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.StringAttribute{
 												Description:         "",
@@ -248,8 +259,8 @@ func (r *LambdaServicesK8SAwsAliasV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"function_name": schema.StringAttribute{
-						Description:         "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						Description:         "The name or ARN of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length. Regex Pattern: '^(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-d{1}:)?(d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:($LATEST|[a-zA-Z0-9-_]+))?$'",
+						MarkdownDescription: "The name or ARN of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length. Regex Pattern: '^(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-d{1}:)?(d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:($LATEST|[a-zA-Z0-9-_]+))?$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -290,19 +301,102 @@ func (r *LambdaServicesK8SAwsAliasV1Alpha1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"function_version": schema.StringAttribute{
-						Description:         "The function version that the alias invokes.",
-						MarkdownDescription: "The function version that the alias invokes.",
+						Description:         "The function version that the alias invokes. Regex Pattern: '^($LATEST|[0-9]+)$'",
+						MarkdownDescription: "The function version that the alias invokes. Regex Pattern: '^($LATEST|[0-9]+)$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the alias.",
-						MarkdownDescription: "The name of the alias.",
+						Description:         "The name of the alias. Regex Pattern: '^(?!^[0-9]+$)([a-zA-Z0-9-_]+)$'",
+						MarkdownDescription: "The name of the alias. Regex Pattern: '^(?!^[0-9]+$)([a-zA-Z0-9-_]+)$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+					},
+
+					"permissions": schema.ListNestedAttribute{
+						Description:         "Permissions configures a set of Lambda permissions to grant to an alias.",
+						MarkdownDescription: "Permissions configures a set of Lambda permissions to grant to an alias.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"action": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"event_source_token": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"function_url_auth_type": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"principal": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"principal_org_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"revision_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source_arn": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"source_account": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"statement_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"provisioned_concurrency_config": schema.SingleNestedAttribute{

@@ -156,8 +156,8 @@ func (r *ChiselOperatorIoExitNodeV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"external_host": schema.StringAttribute{
-						Description:         "Optional real external hostname/IP of exit node If not provided, the host field will be used",
-						MarkdownDescription: "Optional real external hostname/IP of exit node If not provided, the host field will be used",
+						Description:         "Optional real external hostname or IP of the exit node. This field is used to explicitly specify the public-facing endpoint for the exit node. If set to an IP address, it will be used as the 'ip' field in the Service's 'status.loadBalancer.ingress', which is what external-dns and other automation will use to create DNS records or inform users of the external endpoint. If set to a DNS name, it will be used as the 'hostname' field in the same struct. This is useful when the exit node is only reachable via a specific external IP or hostname, even if the internal service is routed to a private address. If not provided, the value of the 'host' field will be used instead.",
+						MarkdownDescription: "Optional real external hostname or IP of the exit node. This field is used to explicitly specify the public-facing endpoint for the exit node. If set to an IP address, it will be used as the 'ip' field in the Service's 'status.loadBalancer.ingress', which is what external-dns and other automation will use to create DNS records or inform users of the external endpoint. If set to a DNS name, it will be used as the 'hostname' field in the same struct. This is useful when the exit node is only reachable via a specific external IP or hostname, even if the internal service is routed to a private address. If not provided, the value of the 'host' field will be used instead.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

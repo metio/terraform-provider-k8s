@@ -50,6 +50,9 @@ type KueueXK8SIoClusterQueueV1Beta1ManifestData struct {
 				OnFlavors *[]string `tfsdk:"on_flavors" json:"onFlavors,omitempty"`
 			} `tfsdk:"admission_checks" json:"admissionChecks,omitempty"`
 		} `tfsdk:"admission_checks_strategy" json:"admissionChecksStrategy,omitempty"`
+		AdmissionScope *struct {
+			AdmissionMode *string `tfsdk:"admission_mode" json:"admissionMode,omitempty"`
+		} `tfsdk:"admission_scope" json:"admissionScope,omitempty"`
 		Cohort      *string `tfsdk:"cohort" json:"cohort,omitempty"`
 		FairSharing *struct {
 			Weight *string `tfsdk:"weight" json:"weight,omitempty"`
@@ -180,6 +183,9 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtMost(316),
+											},
 										},
 
 										"on_flavors": schema.ListAttribute{
@@ -202,9 +208,26 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 						Computed: false,
 					},
 
+					"admission_scope": schema.SingleNestedAttribute{
+						Description:         "admissionScope indicates whether ClusterQueue uses the Admission Fair Sharing",
+						MarkdownDescription: "admissionScope indicates whether ClusterQueue uses the Admission Fair Sharing",
+						Attributes: map[string]schema.Attribute{
+							"admission_mode": schema.StringAttribute{
+								Description:         "AdmissionMode indicates which mode for AdmissionFairSharing should be used in the AdmissionScope. Possible values are: - UsageBasedAdmissionFairSharing - NoAdmissionFairSharing",
+								MarkdownDescription: "AdmissionMode indicates which mode for AdmissionFairSharing should be used in the AdmissionScope. Possible values are: - UsageBasedAdmissionFairSharing - NoAdmissionFairSharing",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"cohort": schema.StringAttribute{
-						Description:         "cohort that this ClusterQueue belongs to. CQs that belong to the same cohort can borrow unused resources from each other. A CQ can be a member of a single borrowing cohort. A workload submitted to a queue referencing this CQ can borrow quota from any CQ in the cohort. Only quota for the [resource, flavor] pairs listed in the CQ can be borrowed. If empty, this ClusterQueue cannot borrow from any other ClusterQueue and vice versa. A cohort is a name that links CQs together, but it doesn't reference any object. Validation of a cohort name is equivalent to that of object names: subdomain in DNS (RFC 1123).",
-						MarkdownDescription: "cohort that this ClusterQueue belongs to. CQs that belong to the same cohort can borrow unused resources from each other. A CQ can be a member of a single borrowing cohort. A workload submitted to a queue referencing this CQ can borrow quota from any CQ in the cohort. Only quota for the [resource, flavor] pairs listed in the CQ can be borrowed. If empty, this ClusterQueue cannot borrow from any other ClusterQueue and vice versa. A cohort is a name that links CQs together, but it doesn't reference any object. Validation of a cohort name is equivalent to that of object names: subdomain in DNS (RFC 1123).",
+						Description:         "cohort that this ClusterQueue belongs to. CQs that belong to the same cohort can borrow unused resources from each other. A CQ can be a member of a single borrowing cohort. A workload submitted to a queue referencing this CQ can borrow quota from any CQ in the cohort. Only quota for the [resource, flavor] pairs listed in the CQ can be borrowed. If empty, this ClusterQueue cannot borrow from any other ClusterQueue and vice versa. A cohort is a name that links CQs together, but it doesn't reference any object.",
+						MarkdownDescription: "cohort that this ClusterQueue belongs to. CQs that belong to the same cohort can borrow unused resources from each other. A CQ can be a member of a single borrowing cohort. A workload submitted to a queue referencing this CQ can borrow quota from any CQ in the cohort. Only quota for the [resource, flavor] pairs listed in the CQ can be borrowed. If empty, this ClusterQueue cannot borrow from any other ClusterQueue and vice versa. A cohort is a name that links CQs together, but it doesn't reference any object.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -215,12 +238,12 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"fair_sharing": schema.SingleNestedAttribute{
-						Description:         "fairSharing defines the properties of the ClusterQueue when participating in fair sharing. The values are only relevant if fair sharing is enabled in the Kueue configuration.",
-						MarkdownDescription: "fairSharing defines the properties of the ClusterQueue when participating in fair sharing. The values are only relevant if fair sharing is enabled in the Kueue configuration.",
+						Description:         "fairSharing defines the properties of the ClusterQueue when participating in FairSharing. The values are only relevant if FairSharing is enabled in the Kueue configuration.",
+						MarkdownDescription: "fairSharing defines the properties of the ClusterQueue when participating in FairSharing. The values are only relevant if FairSharing is enabled in the Kueue configuration.",
 						Attributes: map[string]schema.Attribute{
 							"weight": schema.StringAttribute{
-								Description:         "weight gives a comparative advantage to this ClusterQueue when competing for unused resources in the cohort against other ClusterQueues. The share of a ClusterQueue is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues with the lowest share and preempting workloads from the ClusterQueues with the highest share. A zero weight implies infinite share value, meaning that this ClusterQueue will always be at disadvantage against other ClusterQueues.",
-								MarkdownDescription: "weight gives a comparative advantage to this ClusterQueue when competing for unused resources in the cohort against other ClusterQueues. The share of a ClusterQueue is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues with the lowest share and preempting workloads from the ClusterQueues with the highest share. A zero weight implies infinite share value, meaning that this ClusterQueue will always be at disadvantage against other ClusterQueues.",
+								Description:         "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
+								MarkdownDescription: "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -317,12 +340,12 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"preemption": schema.SingleNestedAttribute{
-						Description:         "preemption describes policies to preempt Workloads from this ClusterQueue or the ClusterQueue's cohort. Preemption can happen in two scenarios: - When a Workload fits within the nominal quota of the ClusterQueue, but the quota is currently borrowed by other ClusterQueues in the cohort. Preempting Workloads in other ClusterQueues allows this ClusterQueue to reclaim its nominal quota. - When a Workload doesn't fit within the nominal quota of the ClusterQueue and there are admitted Workloads in the ClusterQueue with lower priority. The preemption algorithm tries to find a minimal set of Workloads to preempt to accomomdate the pending Workload, preempting Workloads with lower priority first.",
-						MarkdownDescription: "preemption describes policies to preempt Workloads from this ClusterQueue or the ClusterQueue's cohort. Preemption can happen in two scenarios: - When a Workload fits within the nominal quota of the ClusterQueue, but the quota is currently borrowed by other ClusterQueues in the cohort. Preempting Workloads in other ClusterQueues allows this ClusterQueue to reclaim its nominal quota. - When a Workload doesn't fit within the nominal quota of the ClusterQueue and there are admitted Workloads in the ClusterQueue with lower priority. The preemption algorithm tries to find a minimal set of Workloads to preempt to accomomdate the pending Workload, preempting Workloads with lower priority first.",
+						Description:         "ClusterQueuePreemption contains policies to preempt Workloads from this ClusterQueue or the ClusterQueue's cohort. Preemption may be configured to work in the following scenarios: - When a Workload fits within the nominal quota of the ClusterQueue, but the quota is currently borrowed by other ClusterQueues in the cohort. We preempt workloads in other ClusterQueues to allow this ClusterQueue to reclaim its nominal quota. Configured using reclaimWithinCohort. - When a Workload doesn't fit within the nominal quota of the ClusterQueue and there are admitted Workloads in the ClusterQueue with lower priority. Configured using withinClusterQueue. - When a Workload may fit while both borrowing and preempting low priority workloads in the Cohort. Configured using borrowWithinCohort. - When FairSharing is enabled, to maintain fair distribution of unused resources. See FairSharing documentation. The preemption algorithm tries to find a minimal set of Workloads to preempt to accomomdate the pending Workload, preempting Workloads with lower priority first.",
+						MarkdownDescription: "ClusterQueuePreemption contains policies to preempt Workloads from this ClusterQueue or the ClusterQueue's cohort. Preemption may be configured to work in the following scenarios: - When a Workload fits within the nominal quota of the ClusterQueue, but the quota is currently borrowed by other ClusterQueues in the cohort. We preempt workloads in other ClusterQueues to allow this ClusterQueue to reclaim its nominal quota. Configured using reclaimWithinCohort. - When a Workload doesn't fit within the nominal quota of the ClusterQueue and there are admitted Workloads in the ClusterQueue with lower priority. Configured using withinClusterQueue. - When a Workload may fit while both borrowing and preempting low priority workloads in the Cohort. Configured using borrowWithinCohort. - When FairSharing is enabled, to maintain fair distribution of unused resources. See FairSharing documentation. The preemption algorithm tries to find a minimal set of Workloads to preempt to accomomdate the pending Workload, preempting Workloads with lower priority first.",
 						Attributes: map[string]schema.Attribute{
 							"borrow_within_cohort": schema.SingleNestedAttribute{
-								Description:         "borrowWithinCohort provides configuration to allow preemption within cohort while borrowing.",
-								MarkdownDescription: "borrowWithinCohort provides configuration to allow preemption within cohort while borrowing.",
+								Description:         "BorrowWithinCohort contains configuration which allows to preempt workloads within cohort while borrowing. It only works with Classical Preemption, __not__ with Fair Sharing.",
+								MarkdownDescription: "BorrowWithinCohort contains configuration which allows to preempt workloads within cohort while borrowing. It only works with Classical Preemption, __not__ with Fair Sharing.",
 								Attributes: map[string]schema.Attribute{
 									"max_priority_threshold": schema.Int64Attribute{
 										Description:         "maxPriorityThreshold allows to restrict the set of workloads which might be preempted by a borrowing workload, to only workloads with priority less than or equal to the specified threshold priority. When the threshold is not specified, then any workload satisfying the policy can be preempted by the borrowing workload.",
@@ -349,8 +372,8 @@ func (r *KueueXK8SIoClusterQueueV1Beta1Manifest) Schema(_ context.Context, _ dat
 							},
 
 							"reclaim_within_cohort": schema.StringAttribute{
-								Description:         "reclaimWithinCohort determines whether a pending Workload can preempt Workloads from other ClusterQueues in the cohort that are using more than their nominal quota. The possible values are: - 'Never' (default): do not preempt Workloads in the cohort. - 'LowerPriority': if the pending Workload fits within the nominal quota of its ClusterQueue, only preempt Workloads in the cohort that have lower priority than the pending Workload. - 'Any': if the pending Workload fits within the nominal quota of its ClusterQueue, preempt any Workload in the cohort, irrespective of priority.",
-								MarkdownDescription: "reclaimWithinCohort determines whether a pending Workload can preempt Workloads from other ClusterQueues in the cohort that are using more than their nominal quota. The possible values are: - 'Never' (default): do not preempt Workloads in the cohort. - 'LowerPriority': if the pending Workload fits within the nominal quota of its ClusterQueue, only preempt Workloads in the cohort that have lower priority than the pending Workload. - 'Any': if the pending Workload fits within the nominal quota of its ClusterQueue, preempt any Workload in the cohort, irrespective of priority.",
+								Description:         "reclaimWithinCohort determines whether a pending Workload can preempt Workloads from other ClusterQueues in the cohort that are using more than their nominal quota. The possible values are: - 'Never' (default): do not preempt Workloads in the cohort. - 'LowerPriority': **Classic Preemption** if the pending Workload fits within the nominal quota of its ClusterQueue, only preempt Workloads in the cohort that have lower priority than the pending Workload. **Fair Sharing** only preempt Workloads in the cohort that have lower priority than the pending Workload and that satisfy the Fair Sharing preemptionStategies. - 'Any': **Classic Preemption** if the pending Workload fits within the nominal quota of its ClusterQueue, preempt any Workload in the cohort, irrespective of priority. **Fair Sharing** preempt Workloads in the cohort that satisfy the Fair Sharing preemptionStrategies.",
+								MarkdownDescription: "reclaimWithinCohort determines whether a pending Workload can preempt Workloads from other ClusterQueues in the cohort that are using more than their nominal quota. The possible values are: - 'Never' (default): do not preempt Workloads in the cohort. - 'LowerPriority': **Classic Preemption** if the pending Workload fits within the nominal quota of its ClusterQueue, only preempt Workloads in the cohort that have lower priority than the pending Workload. **Fair Sharing** only preempt Workloads in the cohort that have lower priority than the pending Workload and that satisfy the Fair Sharing preemptionStategies. - 'Any': **Classic Preemption** if the pending Workload fits within the nominal quota of its ClusterQueue, preempt any Workload in the cohort, irrespective of priority. **Fair Sharing** preempt Workloads in the cohort that satisfy the Fair Sharing preemptionStrategies.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

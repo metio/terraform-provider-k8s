@@ -47,6 +47,8 @@ type SecretgeneratorMittwaldDeSshkeyPairV1Alpha1ManifestData struct {
 		ForceRegenerate *bool              `tfsdk:"force_regenerate" json:"forceRegenerate,omitempty"`
 		Length          *string            `tfsdk:"length" json:"length,omitempty"`
 		PrivateKey      *string            `tfsdk:"private_key" json:"privateKey,omitempty"`
+		PrivateKeyField *string            `tfsdk:"private_key_field" json:"privateKeyField,omitempty"`
+		PublicKeyField  *string            `tfsdk:"public_key_field" json:"publicKeyField,omitempty"`
 		Type            *string            `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -156,6 +158,22 @@ func (r *SecretgeneratorMittwaldDeSshkeyPairV1Alpha1Manifest) Schema(_ context.C
 					"private_key": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"private_key_field": schema.StringAttribute{
+						Description:         "Field in which to store SSH private key. ssh-privatekey is used if not specified.",
+						MarkdownDescription: "Field in which to store SSH private key. ssh-privatekey is used if not specified.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"public_key_field": schema.StringAttribute{
+						Description:         "Field in which to store SSH private key. ssh-publickey is used if not specified.",
+						MarkdownDescription: "Field in which to store SSH private key. ssh-publickey is used if not specified.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

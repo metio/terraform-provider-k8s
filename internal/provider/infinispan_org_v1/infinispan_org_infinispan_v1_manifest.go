@@ -414,8 +414,9 @@ type InfinispanOrgInfinispanV1ManifestData struct {
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
 					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
-				Storage          *string `tfsdk:"storage" json:"storage,omitempty"`
-				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				Storage                       *string `tfsdk:"storage" json:"storage,omitempty"`
+				StorageClassName              *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				TerminationGracePeriodSeconds *int64  `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
 			ReplicationFactor *int64 `tfsdk:"replication_factor" json:"replicationFactor,omitempty"`
 			Sites             *struct {
@@ -3040,6 +3041,14 @@ func (r *InfinispanOrgInfinispanV1Manifest) Schema(_ context.Context, _ datasour
 									"storage_class_name": schema.StringAttribute{
 										Description:         "The storage class object for persistent volume claims",
 										MarkdownDescription: "The storage class object for persistent volume claims",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"termination_grace_period_seconds": schema.Int64Attribute{
+										Description:         "TerminationGracePeriodSeconds specifies the duration the container is given to shut down gracefully before it is forcefully terminated.",
+										MarkdownDescription: "TerminationGracePeriodSeconds specifies the duration the container is given to shut down gracefully before it is forcefully terminated.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

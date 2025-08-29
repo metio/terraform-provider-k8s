@@ -42,14 +42,11 @@ type PkgCrossplaneIoProviderRevisionV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		CommonLabels        *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
-		ControllerConfigRef *struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
-		} `tfsdk:"controller_config_ref" json:"controllerConfigRef,omitempty"`
-		DesiredState                *string `tfsdk:"desired_state" json:"desiredState,omitempty"`
-		IgnoreCrossplaneConstraints *bool   `tfsdk:"ignore_crossplane_constraints" json:"ignoreCrossplaneConstraints,omitempty"`
-		Image                       *string `tfsdk:"image" json:"image,omitempty"`
-		PackagePullPolicy           *string `tfsdk:"package_pull_policy" json:"packagePullPolicy,omitempty"`
+		CommonLabels                *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+		DesiredState                *string            `tfsdk:"desired_state" json:"desiredState,omitempty"`
+		IgnoreCrossplaneConstraints *bool              `tfsdk:"ignore_crossplane_constraints" json:"ignoreCrossplaneConstraints,omitempty"`
+		Image                       *string            `tfsdk:"image" json:"image,omitempty"`
+		PackagePullPolicy           *string            `tfsdk:"package_pull_policy" json:"packagePullPolicy,omitempty"`
 		PackagePullSecrets          *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"package_pull_secrets" json:"packagePullSecrets,omitempty"`
@@ -139,23 +136,6 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 						Computed:            false,
 					},
 
-					"controller_config_ref": schema.SingleNestedAttribute{
-						Description:         "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
-						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
-						Attributes: map[string]schema.Attribute{
-							"name": schema.StringAttribute{
-								Description:         "Name of the ControllerConfig.",
-								MarkdownDescription: "Name of the ControllerConfig.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"desired_state": schema.StringAttribute{
 						Description:         "DesiredState of the PackageRevision. Can be either Active or Inactive.",
 						MarkdownDescription: "DesiredState of the PackageRevision. Can be either Active or Inactive.",
@@ -194,8 +174,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ 
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

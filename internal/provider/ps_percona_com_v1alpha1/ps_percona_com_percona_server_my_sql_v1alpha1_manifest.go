@@ -84,6 +84,50 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			InitContainer *struct {
+				ContainerSecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
+						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+					Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+					ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+					ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+					RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions         *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+				Image     *string `tfsdk:"image" json:"image,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			InitImage *string `tfsdk:"init_image" json:"initImage,omitempty"`
 			Pitr      *struct {
 				BinlogServer *struct {
@@ -300,6 +344,50 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					ImagePullSecrets *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+					InitContainer *struct {
+						ContainerSecurityContext *struct {
+							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
+								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+							Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+							ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+							ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+							RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+							RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+							RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+							SeLinuxOptions         *struct {
+								Level *string `tfsdk:"level" json:"level,omitempty"`
+								Role  *string `tfsdk:"role" json:"role,omitempty"`
+								Type  *string `tfsdk:"type" json:"type,omitempty"`
+								User  *string `tfsdk:"user" json:"user,omitempty"`
+							} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+							SeccompProfile *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+							WindowsOptions *struct {
+								GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+								GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+								HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+								RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+							} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+						} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+						Image     *string `tfsdk:"image" json:"image,omitempty"`
+						Resources *struct {
+							Claims *[]struct {
+								Name    *string `tfsdk:"name" json:"name,omitempty"`
+								Request *string `tfsdk:"request" json:"request,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
+					} `tfsdk:"init_container" json:"initContainer,omitempty"`
 					InitImage     *string            `tfsdk:"init_image" json:"initImage,omitempty"`
 					Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					LivenessProbe *struct {
@@ -331,7 +419,11 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 						TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 					} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-					NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					PodDisruptionBudget *struct {
+						MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+						MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+					} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 					PodSecurityContext *struct {
 						AppArmorProfile *struct {
 							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -342,6 +434,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 						RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 						RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 						SeLinuxOptions      *struct {
 							Level *string `tfsdk:"level" json:"level,omitempty"`
 							Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -665,12 +758,44 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Azure       *struct {
-					ContainerName     *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Container         *string `tfsdk:"container" json:"container,omitempty"`
 					CredentialsSecret *string `tfsdk:"credentials_secret" json:"credentialsSecret,omitempty"`
 					EndpointUrl       *string `tfsdk:"endpoint_url" json:"endpointUrl,omitempty"`
 					Prefix            *string `tfsdk:"prefix" json:"prefix,omitempty"`
 					StorageClass      *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
 				} `tfsdk:"azure" json:"azure,omitempty"`
+				ContainerOptions *struct {
+					Args *struct {
+						Xbcloud    *[]string `tfsdk:"xbcloud" json:"xbcloud,omitempty"`
+						Xbstream   *[]string `tfsdk:"xbstream" json:"xbstream,omitempty"`
+						Xtrabackup *[]string `tfsdk:"xtrabackup" json:"xtrabackup,omitempty"`
+					} `tfsdk:"args" json:"args,omitempty"`
+					Env *[]struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"env" json:"env,omitempty"`
+				} `tfsdk:"container_options" json:"containerOptions,omitempty"`
 				ContainerSecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 					AppArmorProfile          *struct {
@@ -723,6 +848,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -833,11 +959,60 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				} `tfsdk:"volume_spec" json:"volumeSpec,omitempty"`
 			} `tfsdk:"storages" json:"storages,omitempty"`
 		} `tfsdk:"backup" json:"backup,omitempty"`
-		CrVersion         *string   `tfsdk:"cr_version" json:"crVersion,omitempty"`
-		IgnoreAnnotations *[]string `tfsdk:"ignore_annotations" json:"ignoreAnnotations,omitempty"`
-		IgnoreLabels      *[]string `tfsdk:"ignore_labels" json:"ignoreLabels,omitempty"`
-		InitImage         *string   `tfsdk:"init_image" json:"initImage,omitempty"`
-		Mysql             *struct {
+		CrVersion             *string   `tfsdk:"cr_version" json:"crVersion,omitempty"`
+		EnableVolumeExpansion *bool     `tfsdk:"enable_volume_expansion" json:"enableVolumeExpansion,omitempty"`
+		IgnoreAnnotations     *[]string `tfsdk:"ignore_annotations" json:"ignoreAnnotations,omitempty"`
+		IgnoreLabels          *[]string `tfsdk:"ignore_labels" json:"ignoreLabels,omitempty"`
+		InitContainer         *struct {
+			ContainerSecurityContext *struct {
+				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
+					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+				Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+				ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+				ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+				RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+				RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+				RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxOptions         *struct {
+					Level *string `tfsdk:"level" json:"level,omitempty"`
+					Role  *string `tfsdk:"role" json:"role,omitempty"`
+					Type  *string `tfsdk:"type" json:"type,omitempty"`
+					User  *string `tfsdk:"user" json:"user,omitempty"`
+				} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+				SeccompProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+				WindowsOptions *struct {
+					GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+					GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+					HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+					RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+			Image     *string `tfsdk:"image" json:"image,omitempty"`
+			Resources *struct {
+				Claims *[]struct {
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
+				} `tfsdk:"claims" json:"claims,omitempty"`
+				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+			} `tfsdk:"resources" json:"resources,omitempty"`
+		} `tfsdk:"init_container" json:"initContainer,omitempty"`
+		InitImage *string `tfsdk:"init_image" json:"initImage,omitempty"`
+		Metadata  *struct {
+			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		} `tfsdk:"metadata" json:"metadata,omitempty"`
+		Mysql *struct {
 			Affinity *struct {
 				Advanced *struct {
 					NodeAffinity *struct {
@@ -1051,16 +1226,68 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
+			ExposePrimary *struct {
+				Annotations              *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Enabled                  *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
+				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
+				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
+				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"expose_primary" json:"exposePrimary,omitempty"`
 			GracePeriod      *int64  `tfsdk:"grace_period" json:"gracePeriod,omitempty"`
 			Image            *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			InitContainer *struct {
+				ContainerSecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
+						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+					Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+					ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+					ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+					RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions         *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+				Image     *string `tfsdk:"image" json:"image,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			InitImage     *string            `tfsdk:"init_image" json:"initImage,omitempty"`
 			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			LivenessProbe *struct {
@@ -1092,7 +1319,11 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-			NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PodDisruptionBudget *struct {
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+			} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 			PodSecurityContext *struct {
 				AppArmorProfile *struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -1103,6 +1334,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1593,6 +1825,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 							Port *string `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 					} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+					StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 				} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 				LivenessProbe *struct {
 					Exec *struct {
@@ -1809,7 +2042,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 				WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 			} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
-			VolumeSpec *struct {
+			VaultSecretName *string `tfsdk:"vault_secret_name" json:"vaultSecretName,omitempty"`
+			VolumeSpec      *struct {
 				EmptyDir *struct {
 					Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 					SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
@@ -2062,7 +2296,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 				InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 				Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-				LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 				LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 				Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2072,6 +2305,50 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			ImagePullSecrets *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			InitContainer *struct {
+				ContainerSecurityContext *struct {
+					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
+						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+					Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+					ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+					ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+					RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+					RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+					RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxOptions         *struct {
+						Level *string `tfsdk:"level" json:"level,omitempty"`
+						Role  *string `tfsdk:"role" json:"role,omitempty"`
+						Type  *string `tfsdk:"type" json:"type,omitempty"`
+						User  *string `tfsdk:"user" json:"user,omitempty"`
+					} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+					SeccompProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+					WindowsOptions *struct {
+						GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+						GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+						HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+				Image     *string `tfsdk:"image" json:"image,omitempty"`
+				Resources *struct {
+					Claims *[]struct {
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			InitImage     *string            `tfsdk:"init_image" json:"initImage,omitempty"`
 			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			LivenessProbe *struct {
@@ -2103,7 +2380,11 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-			NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PodDisruptionBudget *struct {
+				MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+				MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+			} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 			PodSecurityContext *struct {
 				AppArmorProfile *struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -2114,6 +2395,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2311,6 +2593,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			MysqlParams     *string `tfsdk:"mysql_params" json:"mysqlParams,omitempty"`
 			Resources       *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
@@ -2319,9 +2602,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			RuntimeClassName *string `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
-			ServerHost       *string `tfsdk:"server_host" json:"serverHost,omitempty"`
-			ServerUser       *string `tfsdk:"server_user" json:"serverUser,omitempty"`
+			ServerHost *string `tfsdk:"server_host" json:"serverHost,omitempty"`
 		} `tfsdk:"pmm" json:"pmm,omitempty"`
 		Proxy *struct {
 			Haproxy *struct {
@@ -2536,7 +2817,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2546,6 +2826,50 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ImagePullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+				InitContainer *struct {
+					ContainerSecurityContext *struct {
+						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
+							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+						Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+						ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+						ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+						RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions         *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+					Image     *string `tfsdk:"image" json:"image,omitempty"`
+					Resources *struct {
+						Claims *[]struct {
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
+				} `tfsdk:"init_container" json:"initContainer,omitempty"`
 				InitImage     *string            `tfsdk:"init_image" json:"initImage,omitempty"`
 				Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				LivenessProbe *struct {
@@ -2577,7 +2901,11 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodDisruptionBudget *struct {
+					MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+					MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+				} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 				PodSecurityContext *struct {
 					AppArmorProfile *struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -2588,6 +2916,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -2959,7 +3288,6 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					ExternalTrafficPolicy    *string            `tfsdk:"external_traffic_policy" json:"externalTrafficPolicy,omitempty"`
 					InternalTrafficPolicy    *string            `tfsdk:"internal_traffic_policy" json:"internalTrafficPolicy,omitempty"`
 					Labels                   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-					LoadBalancerIP           *string            `tfsdk:"load_balancer_ip" json:"loadBalancerIP,omitempty"`
 					LoadBalancerSourceRanges *[]string          `tfsdk:"load_balancer_source_ranges" json:"loadBalancerSourceRanges,omitempty"`
 					Type                     *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"expose" json:"expose,omitempty"`
@@ -2969,6 +3297,50 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				ImagePullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+				InitContainer *struct {
+					ContainerSecurityContext *struct {
+						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
+							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
+							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
+						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
+						Privileged             *bool   `tfsdk:"privileged" json:"privileged,omitempty"`
+						ProcMount              *string `tfsdk:"proc_mount" json:"procMount,omitempty"`
+						ReadOnlyRootFilesystem *bool   `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+						RunAsGroup             *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+						RunAsNonRoot           *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
+						RunAsUser              *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+						SeLinuxOptions         *struct {
+							Level *string `tfsdk:"level" json:"level,omitempty"`
+							Role  *string `tfsdk:"role" json:"role,omitempty"`
+							Type  *string `tfsdk:"type" json:"type,omitempty"`
+							User  *string `tfsdk:"user" json:"user,omitempty"`
+						} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+						SeccompProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
+						WindowsOptions *struct {
+							GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+							GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+							HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
+					} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
+					Image     *string `tfsdk:"image" json:"image,omitempty"`
+					Resources *struct {
+						Claims *[]struct {
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
+						} `tfsdk:"claims" json:"claims,omitempty"`
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
+				} `tfsdk:"init_container" json:"initContainer,omitempty"`
 				InitImage     *string            `tfsdk:"init_image" json:"initImage,omitempty"`
 				Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				LivenessProbe *struct {
@@ -3000,7 +3372,11 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 					TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
-				NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				NodeSelector        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				PodDisruptionBudget *struct {
+					MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+					MinAvailable   *string `tfsdk:"min_available" json:"minAvailable,omitempty"`
+				} `tfsdk:"pod_disruption_budget" json:"podDisruptionBudget,omitempty"`
 				PodSecurityContext *struct {
 					AppArmorProfile *struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -3011,6 +3387,7 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -3034,6 +3411,14 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"pod_security_context" json:"podSecurityContext,omitempty"`
+				Ports *[]struct {
+					AppProtocol *string `tfsdk:"app_protocol" json:"appProtocol,omitempty"`
+					Name        *string `tfsdk:"name" json:"name,omitempty"`
+					NodePort    *int64  `tfsdk:"node_port" json:"nodePort,omitempty"`
+					Port        *int64  `tfsdk:"port" json:"port,omitempty"`
+					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					TargetPort  *string `tfsdk:"target_port" json:"targetPort,omitempty"`
+				} `tfsdk:"ports" json:"ports,omitempty"`
 				PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 				ReadinessProbe    *struct {
 					Exec *struct {
@@ -3716,6 +4101,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_container": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"container_security_context": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"allow_privilege_escalation": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"add": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"drop": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"proc_mount": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"read_only_root_filesystem": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -4654,8 +5334,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"connect_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5123,8 +5803,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"idle_time": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5156,6 +5836,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 															Optional:            true,
 															Computed:            false,
 														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"init_container": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"container_security_context": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"allow_privilege_escalation": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"app_armor_profile": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"localhost_profile": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"capabilities": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"add": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"drop": schema.ListAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"privileged": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"proc_mount": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only_root_filesystem": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_group": schema.Int64Attribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_non_root": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user": schema.Int64Attribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"se_linux_options": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"level": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"role": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"user": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"seccomp_profile": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"localhost_profile": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"windows_options": schema.SingleNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Attributes: map[string]schema.Attribute{
+																	"gmsa_credential_spec": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"gmsa_credential_spec_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"host_process": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"run_as_user_name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"image": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"resources": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"request": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,
@@ -5382,6 +6357,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"pod_disruption_budget": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"max_unavailable": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"min_available": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"pod_security_context": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -5444,6 +6444,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													},
 
 													"run_as_user": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_change_policy": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,
@@ -5618,8 +6626,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"read_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5889,8 +6897,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"server_id": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -5905,8 +6913,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"size": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -6609,8 +7617,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											"write_timeout": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 										},
@@ -7632,7 +8640,7 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"container_name": schema.StringAttribute{
+											"container": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            true,
@@ -7670,6 +8678,211 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"container_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"args": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"xbcloud": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"xbstream": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"xtrabackup": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"env": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"field_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"api_version": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"field_path": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"resource_field_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"container_name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"divisor": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"resource": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -8030,6 +9243,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -8799,6 +10020,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 						Computed:            false,
 					},
 
+					"enable_volume_expansion": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"ignore_annotations": schema.ListAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -8817,12 +10046,334 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 						Computed:            false,
 					},
 
+					"init_container": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"container_security_context": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"allow_privilege_escalation": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"capabilities": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"drop": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"privileged": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"proc_mount": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"read_only_root_filesystem": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_group": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_non_root": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"level": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"role": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"user": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"seccomp_profile": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"windows_options": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"gmsa_credential_spec": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"gmsa_credential_spec_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"host_process": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"image": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"resources": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"claims": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"limits": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"requests": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"init_image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"metadata": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"annotations": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"labels": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"mysql": schema.SingleNestedAttribute{
@@ -10256,9 +11807,69 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"load_balancer_ip": schema.StringAttribute{
+									"load_balancer_source_ranges": schema.ListAttribute{
 										Description:         "",
 										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"expose_primary": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"external_traffic_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"internal_traffic_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10322,6 +11933,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_container": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"container_security_context": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"allow_privilege_escalation": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"add": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"drop": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"proc_mount": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"read_only_root_filesystem": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -10548,6 +12454,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"pod_disruption_budget": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_security_context": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -10610,6 +12541,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -13864,6 +15803,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													Optional: true,
 													Computed: false,
 												},
+
+												"stop_signal": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -14972,8 +16919,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 							"size": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -15341,6 +17288,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"vault_secret_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"volume_spec": schema.SingleNestedAttribute{
@@ -17027,14 +18982,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
-									"load_balancer_ip": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"load_balancer_source_ranges": schema.ListAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -17093,6 +19040,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_container": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"container_security_context": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"allow_privilege_escalation": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"capabilities": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"add": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"drop": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"privileged": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"proc_mount": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"read_only_root_filesystem": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_group": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_non_root": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"level": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"role": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"seccomp_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"windows_options": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"gmsa_credential_spec": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"gmsa_credential_spec_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"host_process": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"image": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -17319,6 +19561,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"pod_disruption_budget": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"max_unavailable": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"min_available": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_security_context": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -17381,6 +19648,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -17826,8 +20101,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 							"size": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 							},
 
@@ -18726,6 +21001,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"mysql_params": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"resources": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -18780,23 +21063,7 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"runtime_class_name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"server_host": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"server_user": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,
@@ -20228,14 +22495,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -20294,6 +22553,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													Optional:            true,
 													Computed:            false,
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"init_container": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"container_security_context": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"allow_privilege_escalation": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"capabilities": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"add": schema.ListAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"drop": schema.ListAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"privileged": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proc_mount": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"read_only_root_filesystem": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"image": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resources": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"claims": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"limits": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"requests": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -20520,6 +23074,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"pod_disruption_budget": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"max_unavailable": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"min_available": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"pod_security_context": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -20582,6 +23161,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -21027,8 +23614,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									"size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 
@@ -23082,14 +25669,6 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
-											"load_balancer_ip": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"load_balancer_source_ranges": schema.ListAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -23148,6 +25727,301 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													Optional:            true,
 													Computed:            false,
 												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"init_container": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"container_security_context": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"allow_privilege_escalation": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"capabilities": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"add": schema.ListAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"drop": schema.ListAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"privileged": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"proc_mount": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"read_only_root_filesystem": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_group": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_non_root": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"run_as_user": schema.Int64Attribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"se_linux_options": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"level": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"role": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"user": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"seccomp_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"windows_options": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"gmsa_credential_spec": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"gmsa_credential_spec_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"host_process": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"run_as_user_name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"image": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resources": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"claims": schema.ListNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"limits": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"requests": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -23374,6 +26248,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"pod_disruption_budget": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"max_unavailable": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"min_available": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"pod_security_context": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -23436,6 +26335,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -23592,6 +26499,65 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"ports": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"app_protocol": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"node_port": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"port": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"protocol": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"target_port": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -23881,8 +26847,8 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 									"size": schema.Int64Attribute{
 										Description:         "",
 										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 

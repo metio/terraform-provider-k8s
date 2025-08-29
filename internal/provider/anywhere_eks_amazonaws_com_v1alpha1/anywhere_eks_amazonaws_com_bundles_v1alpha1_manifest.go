@@ -472,7 +472,8 @@ type AnywhereEksAmazonawsComBundlesV1Alpha1ManifestData struct {
 				} `tfsdk:"diagnostic_collector" json:"diagnosticCollector,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"eksa" json:"eksa,omitempty"`
-			EtcdadmBootstrap *struct {
+			EndOfStandardSupport *string `tfsdk:"end_of_standard_support" json:"endOfStandardSupport,omitempty"`
+			EtcdadmBootstrap     *struct {
 				Components *struct {
 					Uri *string `tfsdk:"uri" json:"uri,omitempty"`
 				} `tfsdk:"components" json:"components,omitempty"`
@@ -850,6 +851,28 @@ type AnywhereEksAmazonawsComBundlesV1Alpha1ManifestData struct {
 								Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
 							} `tfsdk:"arm" json:"arm,omitempty"`
 						} `tfsdk:"initramfs" json:"initramfs,omitempty"`
+						Iso *struct {
+							Amd *struct {
+								Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
+								Description *string   `tfsdk:"description" json:"description,omitempty"`
+								Name        *string   `tfsdk:"name" json:"name,omitempty"`
+								Os          *string   `tfsdk:"os" json:"os,omitempty"`
+								OsName      *string   `tfsdk:"os_name" json:"osName,omitempty"`
+								Sha256      *string   `tfsdk:"sha256" json:"sha256,omitempty"`
+								Sha512      *string   `tfsdk:"sha512" json:"sha512,omitempty"`
+								Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
+							} `tfsdk:"amd" json:"amd,omitempty"`
+							Arm *struct {
+								Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
+								Description *string   `tfsdk:"description" json:"description,omitempty"`
+								Name        *string   `tfsdk:"name" json:"name,omitempty"`
+								Os          *string   `tfsdk:"os" json:"os,omitempty"`
+								OsName      *string   `tfsdk:"os_name" json:"osName,omitempty"`
+								Sha256      *string   `tfsdk:"sha256" json:"sha256,omitempty"`
+								Sha512      *string   `tfsdk:"sha512" json:"sha512,omitempty"`
+								Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
+							} `tfsdk:"arm" json:"arm,omitempty"`
+						} `tfsdk:"iso" json:"iso,omitempty"`
 						Kernel *struct {
 							Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
 							Description *string   `tfsdk:"description" json:"description,omitempty"`
@@ -2366,8 +2389,8 @@ func (r *AnywhereEksAmazonawsComBundlesV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"manifest": schema.SingleNestedAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "This field has been deprecated",
+											MarkdownDescription: "This field has been deprecated",
 											Attributes: map[string]schema.Attribute{
 												"uri": schema.StringAttribute{
 													Description:         "URI points to the manifest yaml file",
@@ -2377,8 +2400,8 @@ func (r *AnywhereEksAmazonawsComBundlesV1Alpha1Manifest) Schema(_ context.Contex
 													Computed:            false,
 												},
 											},
-											Required: true,
-											Optional: false,
+											Required: false,
+											Optional: true,
 											Computed: false,
 										},
 
@@ -4237,6 +4260,14 @@ func (r *AnywhereEksAmazonawsComBundlesV1Alpha1Manifest) Schema(_ context.Contex
 									Required: true,
 									Optional: false,
 									Computed: false,
+								},
+
+								"end_of_standard_support": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"etcdadm_bootstrap": schema.SingleNestedAttribute{
@@ -6909,6 +6940,169 @@ func (r *AnywhereEksAmazonawsComBundlesV1Alpha1Manifest) Schema(_ context.Contex
 																"arm": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"arch": schema.ListAttribute{
+																			Description:         "Architectures of the asset",
+																			MarkdownDescription: "Architectures of the asset",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"description": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "The asset name",
+																			MarkdownDescription: "The asset name",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"os": schema.StringAttribute{
+																			Description:         "Operating system of the asset",
+																			MarkdownDescription: "Operating system of the asset",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("linux", "darwin", "windows"),
+																			},
+																		},
+
+																		"os_name": schema.StringAttribute{
+																			Description:         "Name of the OS like ubuntu, bottlerocket",
+																			MarkdownDescription: "Name of the OS like ubuntu, bottlerocket",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"sha256": schema.StringAttribute{
+																			Description:         "The sha256 of the asset, only applies for 'file' store",
+																			MarkdownDescription: "The sha256 of the asset, only applies for 'file' store",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"sha512": schema.StringAttribute{
+																			Description:         "The sha512 of the asset, only applies for 'file' store",
+																			MarkdownDescription: "The sha512 of the asset, only applies for 'file' store",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"uri": schema.StringAttribute{
+																			Description:         "The URI where the asset is located",
+																			MarkdownDescription: "The URI where the asset is located",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"iso": schema.SingleNestedAttribute{
+															Description:         "HookArch defines the Tinkerbell hook architecture-specific artifacts.",
+															MarkdownDescription: "HookArch defines the Tinkerbell hook architecture-specific artifacts.",
+															Attributes: map[string]schema.Attribute{
+																"amd": schema.SingleNestedAttribute{
+																	Description:         "Archive represents an archive asset (e.g. tarball) along with its OS/architecture metadata, and checksums for file integrity.",
+																	MarkdownDescription: "Archive represents an archive asset (e.g. tarball) along with its OS/architecture metadata, and checksums for file integrity.",
+																	Attributes: map[string]schema.Attribute{
+																		"arch": schema.ListAttribute{
+																			Description:         "Architectures of the asset",
+																			MarkdownDescription: "Architectures of the asset",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"description": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "The asset name",
+																			MarkdownDescription: "The asset name",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"os": schema.StringAttribute{
+																			Description:         "Operating system of the asset",
+																			MarkdownDescription: "Operating system of the asset",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("linux", "darwin", "windows"),
+																			},
+																		},
+
+																		"os_name": schema.StringAttribute{
+																			Description:         "Name of the OS like ubuntu, bottlerocket",
+																			MarkdownDescription: "Name of the OS like ubuntu, bottlerocket",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"sha256": schema.StringAttribute{
+																			Description:         "The sha256 of the asset, only applies for 'file' store",
+																			MarkdownDescription: "The sha256 of the asset, only applies for 'file' store",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"sha512": schema.StringAttribute{
+																			Description:         "The sha512 of the asset, only applies for 'file' store",
+																			MarkdownDescription: "The sha512 of the asset, only applies for 'file' store",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"uri": schema.StringAttribute{
+																			Description:         "The URI where the asset is located",
+																			MarkdownDescription: "The URI where the asset is located",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: true,
+																	Optional: false,
+																	Computed: false,
+																},
+
+																"arm": schema.SingleNestedAttribute{
+																	Description:         "Archive represents an archive asset (e.g. tarball) along with its OS/architecture metadata, and checksums for file integrity.",
+																	MarkdownDescription: "Archive represents an archive asset (e.g. tarball) along with its OS/architecture metadata, and checksums for file integrity.",
 																	Attributes: map[string]schema.Attribute{
 																		"arch": schema.ListAttribute{
 																			Description:         "Architectures of the asset",

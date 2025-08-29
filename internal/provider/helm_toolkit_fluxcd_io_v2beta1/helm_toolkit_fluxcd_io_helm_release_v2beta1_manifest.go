@@ -113,6 +113,9 @@ type HelmToolkitFluxcdIoHelmReleaseV2Beta1ManifestData struct {
 		} `tfsdk:"install" json:"install,omitempty"`
 		Interval   *string `tfsdk:"interval" json:"interval,omitempty"`
 		KubeConfig *struct {
+			ConfigMapRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
 			SecretRef *struct {
 				Key  *string `tfsdk:"key" json:"key,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -800,9 +803,26 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Manifest) Schema(_ context.Context
 						Description:         "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
 						MarkdownDescription: "KubeConfig for reconciling the HelmRelease on a remote cluster. When used in combination with HelmReleaseSpec.ServiceAccountName, forces the controller to act on behalf of that Service Account at the target cluster. If the --default-service-account flag is set, its value will be used as a controller level fallback for when HelmReleaseSpec.ServiceAccountName is empty.",
 						Attributes: map[string]schema.Attribute{
+							"config_map_ref": schema.SingleNestedAttribute{
+								Description:         "ConfigMapRef holds an optional name of a ConfigMap that contains the following keys: - 'provider': the provider to use. One of 'aws', 'azure', 'gcp', or 'generic'. Required. - 'cluster': the fully qualified resource name of the Kubernetes cluster in the cloud provider API. Not used by the 'generic' provider. Required when one of 'address' or 'ca.crt' is not set. - 'address': the address of the Kubernetes API server. Required for 'generic'. For the other providers, if not specified, the first address in the cluster resource will be used, and if specified, it must match one of the addresses in the cluster resource. If audiences is not set, will be used as the audience for the 'generic' provider. - 'ca.crt': the optional PEM-encoded CA certificate for the Kubernetes API server. If not set, the controller will use the CA certificate from the cluster resource. - 'audiences': the optional audiences as a list of line-break-separated strings for the Kubernetes ServiceAccount token. Defaults to the 'address' for the 'generic' provider, or to specific values for the other providers depending on the provider. - 'serviceAccountName': the optional name of the Kubernetes ServiceAccount in the same namespace that should be used for authentication. If not specified, the controller ServiceAccount will be used. Mutually exclusive with SecretRef.",
+								MarkdownDescription: "ConfigMapRef holds an optional name of a ConfigMap that contains the following keys: - 'provider': the provider to use. One of 'aws', 'azure', 'gcp', or 'generic'. Required. - 'cluster': the fully qualified resource name of the Kubernetes cluster in the cloud provider API. Not used by the 'generic' provider. Required when one of 'address' or 'ca.crt' is not set. - 'address': the address of the Kubernetes API server. Required for 'generic'. For the other providers, if not specified, the first address in the cluster resource will be used, and if specified, it must match one of the addresses in the cluster resource. If audiences is not set, will be used as the audience for the 'generic' provider. - 'ca.crt': the optional PEM-encoded CA certificate for the Kubernetes API server. If not set, the controller will use the CA certificate from the cluster resource. - 'audiences': the optional audiences as a list of line-break-separated strings for the Kubernetes ServiceAccount token. Defaults to the 'address' for the 'generic' provider, or to specific values for the other providers depending on the provider. - 'serviceAccountName': the optional name of the Kubernetes ServiceAccount in the same namespace that should be used for authentication. If not specified, the controller ServiceAccount will be used. Mutually exclusive with SecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"secret_ref": schema.SingleNestedAttribute{
-								Description:         "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
-								MarkdownDescription: "SecretRef holds the name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources.",
+								Description:         "SecretRef holds an optional name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. Mutually exclusive with ConfigMapRef. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources. Supported only for the generic provider.",
+								MarkdownDescription: "SecretRef holds an optional name of a secret that contains a key with the kubeconfig file as the value. If no key is set, the key will default to 'value'. Mutually exclusive with ConfigMapRef. It is recommended that the kubeconfig is self-contained, and the secret is regularly updated if credentials such as a cloud-access-token expire. Cloud specific 'cmd-path' auth helpers will not function without adding binaries and credentials to the Pod that is responsible for reconciling Kubernetes resources. Supported only for the generic provider.",
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Description:         "Key in the Secret, when not specified an implementation-specific default key is used.",
@@ -820,8 +840,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta1Manifest) Schema(_ context.Context
 										Computed:            false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},

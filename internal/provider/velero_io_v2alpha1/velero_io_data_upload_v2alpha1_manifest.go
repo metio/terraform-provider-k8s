@@ -46,6 +46,7 @@ type VeleroIoDataUploadV2Alpha1ManifestData struct {
 		BackupStorageLocation *string `tfsdk:"backup_storage_location" json:"backupStorageLocation,omitempty"`
 		Cancel                *bool   `tfsdk:"cancel" json:"cancel,omitempty"`
 		CsiSnapshot           *struct {
+			Driver         *string `tfsdk:"driver" json:"driver,omitempty"`
 			SnapshotClass  *string `tfsdk:"snapshot_class" json:"snapshotClass,omitempty"`
 			StorageClass   *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
 			VolumeSnapshot *string `tfsdk:"volume_snapshot" json:"volumeSnapshot,omitempty"`
@@ -156,6 +157,14 @@ func (r *VeleroIoDataUploadV2Alpha1Manifest) Schema(_ context.Context, _ datasou
 						Description:         "If SnapshotType is CSI, CSISnapshot provides the information of the CSI snapshot.",
 						MarkdownDescription: "If SnapshotType is CSI, CSISnapshot provides the information of the CSI snapshot.",
 						Attributes: map[string]schema.Attribute{
+							"driver": schema.StringAttribute{
+								Description:         "Driver is the driver used by the VolumeSnapshotContent",
+								MarkdownDescription: "Driver is the driver used by the VolumeSnapshotContent",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"snapshot_class": schema.StringAttribute{
 								Description:         "SnapshotClass is the name of the snapshot class that the volume snapshot is created with",
 								MarkdownDescription: "SnapshotClass is the name of the snapshot class that the volume snapshot is created with",

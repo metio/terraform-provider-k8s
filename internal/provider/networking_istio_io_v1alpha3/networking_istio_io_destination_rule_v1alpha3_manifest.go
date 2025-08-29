@@ -7,6 +7,7 @@ package networking_istio_io_v1alpha3
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -103,7 +104,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 						} `tfsdk:"failover" json:"failover,omitempty"`
 						FailoverPriority *[]string `tfsdk:"failover_priority" json:"failoverPriority,omitempty"`
 					} `tfsdk:"locality_lb_setting" json:"localityLbSetting,omitempty"`
-					Simple             *string `tfsdk:"simple" json:"simple,omitempty"`
+					Simple *string `tfsdk:"simple" json:"simple,omitempty"`
+					Warmup *struct {
+						Aggression     *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+						Duration       *string  `tfsdk:"duration" json:"duration,omitempty"`
+						MinimumPercent *float64 `tfsdk:"minimum_percent" json:"minimumPercent,omitempty"`
+					} `tfsdk:"warmup" json:"warmup,omitempty"`
 					WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" json:"warmupDurationSecs,omitempty"`
 				} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 				OutlierDetection *struct {
@@ -171,7 +177,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 							} `tfsdk:"failover" json:"failover,omitempty"`
 							FailoverPriority *[]string `tfsdk:"failover_priority" json:"failoverPriority,omitempty"`
 						} `tfsdk:"locality_lb_setting" json:"localityLbSetting,omitempty"`
-						Simple             *string `tfsdk:"simple" json:"simple,omitempty"`
+						Simple *string `tfsdk:"simple" json:"simple,omitempty"`
+						Warmup *struct {
+							Aggression     *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+							Duration       *string  `tfsdk:"duration" json:"duration,omitempty"`
+							MinimumPercent *float64 `tfsdk:"minimum_percent" json:"minimumPercent,omitempty"`
+						} `tfsdk:"warmup" json:"warmup,omitempty"`
 						WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" json:"warmupDurationSecs,omitempty"`
 					} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 					OutlierDetection *struct {
@@ -203,6 +214,10 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 				ProxyProtocol *struct {
 					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"proxy_protocol" json:"proxyProtocol,omitempty"`
+				RetryBudget *struct {
+					MinRetryConcurrency *int64   `tfsdk:"min_retry_concurrency" json:"minRetryConcurrency,omitempty"`
+					Percent             *float64 `tfsdk:"percent" json:"percent,omitempty"`
+				} `tfsdk:"retry_budget" json:"retryBudget,omitempty"`
 				Tls *struct {
 					CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
 					CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
@@ -275,7 +290,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 					} `tfsdk:"failover" json:"failover,omitempty"`
 					FailoverPriority *[]string `tfsdk:"failover_priority" json:"failoverPriority,omitempty"`
 				} `tfsdk:"locality_lb_setting" json:"localityLbSetting,omitempty"`
-				Simple             *string `tfsdk:"simple" json:"simple,omitempty"`
+				Simple *string `tfsdk:"simple" json:"simple,omitempty"`
+				Warmup *struct {
+					Aggression     *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+					Duration       *string  `tfsdk:"duration" json:"duration,omitempty"`
+					MinimumPercent *float64 `tfsdk:"minimum_percent" json:"minimumPercent,omitempty"`
+				} `tfsdk:"warmup" json:"warmup,omitempty"`
 				WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" json:"warmupDurationSecs,omitempty"`
 			} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 			OutlierDetection *struct {
@@ -343,7 +363,12 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 						} `tfsdk:"failover" json:"failover,omitempty"`
 						FailoverPriority *[]string `tfsdk:"failover_priority" json:"failoverPriority,omitempty"`
 					} `tfsdk:"locality_lb_setting" json:"localityLbSetting,omitempty"`
-					Simple             *string `tfsdk:"simple" json:"simple,omitempty"`
+					Simple *string `tfsdk:"simple" json:"simple,omitempty"`
+					Warmup *struct {
+						Aggression     *float64 `tfsdk:"aggression" json:"aggression,omitempty"`
+						Duration       *string  `tfsdk:"duration" json:"duration,omitempty"`
+						MinimumPercent *float64 `tfsdk:"minimum_percent" json:"minimumPercent,omitempty"`
+					} `tfsdk:"warmup" json:"warmup,omitempty"`
 					WarmupDurationSecs *string `tfsdk:"warmup_duration_secs" json:"warmupDurationSecs,omitempty"`
 				} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 				OutlierDetection *struct {
@@ -375,6 +400,10 @@ type NetworkingIstioIoDestinationRuleV1Alpha3ManifestData struct {
 			ProxyProtocol *struct {
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"proxy_protocol" json:"proxyProtocol,omitempty"`
+			RetryBudget *struct {
+				MinRetryConcurrency *int64   `tfsdk:"min_retry_concurrency" json:"minRetryConcurrency,omitempty"`
+				Percent             *float64 `tfsdk:"percent" json:"percent,omitempty"`
+			} `tfsdk:"retry_budget" json:"retryBudget,omitempty"`
 			Tls *struct {
 				CaCertificates     *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
 				CaCrl              *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
@@ -835,8 +864,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 														},
 
 														"enabled": schema.BoolAttribute{
-															Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-															MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+															Description:         "Enable locality load balancing.",
+															MarkdownDescription: "Enable locality load balancing.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -894,9 +923,49 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													},
 												},
 
+												"warmup": schema.SingleNestedAttribute{
+													Description:         "Represents the warmup configuration of Service.",
+													MarkdownDescription: "Represents the warmup configuration of Service.",
+													Attributes: map[string]schema.Attribute{
+														"aggression": schema.Float64Attribute{
+															Description:         "This parameter controls the speed of traffic increase over the warmup duration.",
+															MarkdownDescription: "This parameter controls the speed of traffic increase over the warmup duration.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Float64{
+																float64validator.AtLeast(1),
+															},
+														},
+
+														"duration": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"minimum_percent": schema.Float64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Float64{
+																float64validator.AtLeast(0),
+																float64validator.AtMost(100),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"warmup_duration_secs": schema.StringAttribute{
-													Description:         "Represents the warmup duration of Service.",
-													MarkdownDescription: "Represents the warmup duration of Service.",
+													Description:         "Deprecated: use 'warmup' instead.",
+													MarkdownDescription: "Deprecated: use 'warmup' instead.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -980,8 +1049,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 												},
 
 												"min_health_percent": schema.Int64Attribute{
-													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
-													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
+													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1322,8 +1391,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																	},
 
 																	"enabled": schema.BoolAttribute{
-																		Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-																		MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+																		Description:         "Enable locality load balancing.",
+																		MarkdownDescription: "Enable locality load balancing.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -1381,9 +1450,49 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 																},
 															},
 
+															"warmup": schema.SingleNestedAttribute{
+																Description:         "Represents the warmup configuration of Service.",
+																MarkdownDescription: "Represents the warmup configuration of Service.",
+																Attributes: map[string]schema.Attribute{
+																	"aggression": schema.Float64Attribute{
+																		Description:         "This parameter controls the speed of traffic increase over the warmup duration.",
+																		MarkdownDescription: "This parameter controls the speed of traffic increase over the warmup duration.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Float64{
+																			float64validator.AtLeast(1),
+																		},
+																	},
+
+																	"duration": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"minimum_percent": schema.Float64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Float64{
+																			float64validator.AtLeast(0),
+																			float64validator.AtMost(100),
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
 															"warmup_duration_secs": schema.StringAttribute{
-																Description:         "Represents the warmup duration of Service.",
-																MarkdownDescription: "Represents the warmup duration of Service.",
+																Description:         "Deprecated: use 'warmup' instead.",
+																MarkdownDescription: "Deprecated: use 'warmup' instead.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1467,8 +1576,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 															},
 
 															"min_health_percent": schema.Int64Attribute{
-																Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
-																MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+																Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
+																MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -1611,6 +1720,39 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.OneOf("V1", "V2"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"retry_budget": schema.SingleNestedAttribute{
+											Description:         "Specifies a limit on concurrent retries in relation to the number of active requests.",
+											MarkdownDescription: "Specifies a limit on concurrent retries in relation to the number of active requests.",
+											Attributes: map[string]schema.Attribute{
+												"min_retry_concurrency": schema.Int64Attribute{
+													Description:         "Specifies the minimum retry concurrency allowed for the retry budget.",
+													MarkdownDescription: "Specifies the minimum retry concurrency allowed for the retry budget.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(0),
+														int64validator.AtMost(4.294967295e+09),
+													},
+												},
+
+												"percent": schema.Float64Attribute{
+													Description:         "Specifies the limit on concurrent retries as a percentage of the sum of active requests and active pending requests.",
+													MarkdownDescription: "Specifies the limit on concurrent retries as a percentage of the sum of active requests and active pending requests.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.Float64{
+														float64validator.AtLeast(0),
+														float64validator.AtMost(100),
 													},
 												},
 											},
@@ -2073,8 +2215,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 											},
 
 											"enabled": schema.BoolAttribute{
-												Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-												MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+												Description:         "Enable locality load balancing.",
+												MarkdownDescription: "Enable locality load balancing.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2132,9 +2274,49 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										},
 									},
 
+									"warmup": schema.SingleNestedAttribute{
+										Description:         "Represents the warmup configuration of Service.",
+										MarkdownDescription: "Represents the warmup configuration of Service.",
+										Attributes: map[string]schema.Attribute{
+											"aggression": schema.Float64Attribute{
+												Description:         "This parameter controls the speed of traffic increase over the warmup duration.",
+												MarkdownDescription: "This parameter controls the speed of traffic increase over the warmup duration.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Float64{
+													float64validator.AtLeast(1),
+												},
+											},
+
+											"duration": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"minimum_percent": schema.Float64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Float64{
+													float64validator.AtLeast(0),
+													float64validator.AtMost(100),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"warmup_duration_secs": schema.StringAttribute{
-										Description:         "Represents the warmup duration of Service.",
-										MarkdownDescription: "Represents the warmup duration of Service.",
+										Description:         "Deprecated: use 'warmup' instead.",
+										MarkdownDescription: "Deprecated: use 'warmup' instead.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2218,8 +2400,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 									},
 
 									"min_health_percent": schema.Int64Attribute{
-										Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
-										MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+										Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
+										MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2560,8 +2742,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 														},
 
 														"enabled": schema.BoolAttribute{
-															Description:         "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
-															MarkdownDescription: "enable locality load balancing, this is DestinationRule-level and will override mesh wide settings in entirety.",
+															Description:         "Enable locality load balancing.",
+															MarkdownDescription: "Enable locality load balancing.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -2619,9 +2801,49 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 													},
 												},
 
+												"warmup": schema.SingleNestedAttribute{
+													Description:         "Represents the warmup configuration of Service.",
+													MarkdownDescription: "Represents the warmup configuration of Service.",
+													Attributes: map[string]schema.Attribute{
+														"aggression": schema.Float64Attribute{
+															Description:         "This parameter controls the speed of traffic increase over the warmup duration.",
+															MarkdownDescription: "This parameter controls the speed of traffic increase over the warmup duration.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Float64{
+																float64validator.AtLeast(1),
+															},
+														},
+
+														"duration": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"minimum_percent": schema.Float64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.Float64{
+																float64validator.AtLeast(0),
+																float64validator.AtMost(100),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"warmup_duration_secs": schema.StringAttribute{
-													Description:         "Represents the warmup duration of Service.",
-													MarkdownDescription: "Represents the warmup duration of Service.",
+													Description:         "Deprecated: use 'warmup' instead.",
+													MarkdownDescription: "Deprecated: use 'warmup' instead.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2705,8 +2927,8 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 												},
 
 												"min_health_percent": schema.Int64Attribute{
-													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
-													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least min_health_percent hosts in healthy mode.",
+													Description:         "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
+													MarkdownDescription: "Outlier detection will be enabled as long as the associated load balancing pool has at least 'minHealthPercent' hosts in healthy mode.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2849,6 +3071,39 @@ func (r *NetworkingIstioIoDestinationRuleV1Alpha3Manifest) Schema(_ context.Cont
 										Computed:            false,
 										Validators: []validator.String{
 											stringvalidator.OneOf("V1", "V2"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"retry_budget": schema.SingleNestedAttribute{
+								Description:         "Specifies a limit on concurrent retries in relation to the number of active requests.",
+								MarkdownDescription: "Specifies a limit on concurrent retries in relation to the number of active requests.",
+								Attributes: map[string]schema.Attribute{
+									"min_retry_concurrency": schema.Int64Attribute{
+										Description:         "Specifies the minimum retry concurrency allowed for the retry budget.",
+										MarkdownDescription: "Specifies the minimum retry concurrency allowed for the retry budget.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
+									},
+
+									"percent": schema.Float64Attribute{
+										Description:         "Specifies the limit on concurrent retries as a percentage of the sum of active requests and active pending requests.",
+										MarkdownDescription: "Specifies the limit on concurrent retries as a percentage of the sum of active requests and active pending requests.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Float64{
+											float64validator.AtLeast(0),
+											float64validator.AtMost(100),
 										},
 									},
 								},

@@ -78,8 +78,11 @@ type K8SMariadbComConnectionV1Alpha1ManifestData struct {
 			PortKey     *string `tfsdk:"port_key" json:"portKey,omitempty"`
 			UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 		} `tfsdk:"secret_template" json:"secretTemplate,omitempty"`
-		ServiceName *string `tfsdk:"service_name" json:"serviceName,omitempty"`
-		Username    *string `tfsdk:"username" json:"username,omitempty"`
+		ServiceName            *string `tfsdk:"service_name" json:"serviceName,omitempty"`
+		TlsClientCertSecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"tls_client_cert_secret_ref" json:"tlsClientCertSecretRef,omitempty"`
+		Username *string `tfsdk:"username" json:"username,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -269,8 +272,8 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"password_secret_key_ref": schema.SingleNestedAttribute{
-						Description:         "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
-						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+						Description:         "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. Either passwordSecretKeyRef or tlsClientCertSecretRef must be provided as client credentials. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
+						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to use for configuring the Connection. Either passwordSecretKeyRef or tlsClientCertSecretRef must be provided as client credentials. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "",
@@ -288,8 +291,8 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
@@ -407,6 +410,23 @@ func (r *K8SMariadbComConnectionV1Alpha1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tls_client_cert_secret_ref": schema.SingleNestedAttribute{
+						Description:         "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when checking the connection health. Either passwordSecretKeyRef or tlsClientCertSecretRef must be provided as client credentials. If not provided, the client certificate provided by the referred MariaDB is used if TLS is enabled. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the client certificate.",
+						MarkdownDescription: "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when checking the connection health. Either passwordSecretKeyRef or tlsClientCertSecretRef must be provided as client credentials. If not provided, the client certificate provided by the referred MariaDB is used if TLS is enabled. If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the client certificate.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"username": schema.StringAttribute{

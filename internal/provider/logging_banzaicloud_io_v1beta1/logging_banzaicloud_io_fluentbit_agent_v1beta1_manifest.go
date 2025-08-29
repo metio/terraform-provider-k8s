@@ -396,12 +396,14 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 		} `tfsdk:"config_hot_reload" json:"configHotReload,omitempty"`
-		CoroStackSize           *int64             `tfsdk:"coro_stack_size" json:"coroStackSize,omitempty"`
-		CustomConfigSecret      *string            `tfsdk:"custom_config_secret" json:"customConfigSecret,omitempty"`
-		CustomParsers           *string            `tfsdk:"custom_parsers" json:"customParsers,omitempty"`
-		DaemonsetAnnotations    *map[string]string `tfsdk:"daemonset_annotations" json:"daemonsetAnnotations,omitempty"`
-		DisableKubernetesFilter *bool              `tfsdk:"disable_kubernetes_filter" json:"disableKubernetesFilter,omitempty"`
-		DnsConfig               *struct {
+		CoroStackSize                 *int64             `tfsdk:"coro_stack_size" json:"coroStackSize,omitempty"`
+		CustomConfigSecret            *string            `tfsdk:"custom_config_secret" json:"customConfigSecret,omitempty"`
+		CustomParsers                 *string            `tfsdk:"custom_parsers" json:"customParsers,omitempty"`
+		DaemonsetAnnotations          *map[string]string `tfsdk:"daemonset_annotations" json:"daemonsetAnnotations,omitempty"`
+		DisableKubernetesFilter       *bool              `tfsdk:"disable_kubernetes_filter" json:"disableKubernetesFilter,omitempty"`
+		DisableVarLibDockerContainers *bool              `tfsdk:"disable_var_lib_docker_containers" json:"disableVarLibDockerContainers,omitempty"`
+		DisableVarLog                 *bool              `tfsdk:"disable_var_log" json:"disableVarLog,omitempty"`
+		DnsConfig                     *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -411,6 +413,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 		} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
 		DnsPolicy      *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 		EnableUpstream *bool   `tfsdk:"enable_upstream" json:"enableUpstream,omitempty"`
+		EnabledIPv6    *bool   `tfsdk:"enabled_i_pv6" json:"enabledIPv6,omitempty"`
 		EnvVars        *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -453,6 +456,12 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Private_ip        *bool   `tfsdk:"private_ip" json:"private_ip,omitempty"`
 			Vpc_id            *bool   `tfsdk:"vpc_id" json:"vpc_id,omitempty"`
 		} `tfsdk:"filter_aws" json:"filterAws,omitempty"`
+		FilterGrep *struct {
+			Exclude   *[]string `tfsdk:"exclude" json:"Exclude,omitempty"`
+			LogicalOp *string   `tfsdk:"logical_op" json:"LogicalOp,omitempty"`
+			Match     *string   `tfsdk:"match" json:"Match,omitempty"`
+			Regex     *[]string `tfsdk:"regex" json:"Regex,omitempty"`
+		} `tfsdk:"filter_grep" json:"filterGrep,omitempty"`
 		FilterKubernetes *struct {
 			Annotations                   *string `tfsdk:"annotations" json:"Annotations,omitempty"`
 			Buffer_Size                   *string `tfsdk:"buffer__size" json:"Buffer_Size,omitempty"`
@@ -563,8 +572,9 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 				} `tfsdk:"set" json:"Set,omitempty"`
 			} `tfsdk:"rules" json:"rules,omitempty"`
 		} `tfsdk:"filter_modify" json:"filterModify,omitempty"`
-		Flush          *int64 `tfsdk:"flush" json:"flush,omitempty"`
-		ForwardOptions *struct {
+		Flush                    *int64 `tfsdk:"flush" json:"flush,omitempty"`
+		ForceHotReloadAfterGrace *bool  `tfsdk:"force_hot_reload_after_grace" json:"forceHotReloadAfterGrace,omitempty"`
+		ForwardOptions           *struct {
 			Require_ack_response     *bool   `tfsdk:"require_ack_response" json:"Require_ack_response,omitempty"`
 			Retry_Limit              *string `tfsdk:"retry__limit" json:"Retry_Limit,omitempty"`
 			Send_options             *bool   `tfsdk:"send_options" json:"Send_options,omitempty"`
@@ -588,34 +598,35 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 		} `tfsdk:"image" json:"image,omitempty"`
 		InputTail *struct {
-			Buffer_Chunk_Size  *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
-			Buffer_Max_Size    *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
-			DB                 *string   `tfsdk:"db" json:"DB,omitempty"`
-			DB_journal_mode    *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
-			DB_locking         *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
-			DB_Sync            *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
-			Docker_Mode        *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
-			Docker_Mode_Flush  *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
-			Docker_Mode_Parser *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
-			Exclude_Path       *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
-			Ignore_Older       *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
-			Key                *string   `tfsdk:"key" json:"Key,omitempty"`
-			Mem_Buf_Limit      *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
-			Multiline          *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
-			Multiline_Flush    *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
-			Parser             *string   `tfsdk:"parser" json:"Parser,omitempty"`
-			Parser_Firstline   *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
-			Parser_N           *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
-			Path               *string   `tfsdk:"path" json:"Path,omitempty"`
-			Path_Key           *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
-			Read_From_Head     *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
-			Refresh_Interval   *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
-			Rotate_Wait        *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
-			Skip_Long_Lines    *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
-			Tag                *string   `tfsdk:"tag" json:"Tag,omitempty"`
-			Tag_Regex          *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
-			Multiline_parser   *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
-			Storage_type       *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
+			Buffer_Chunk_Size                 *string   `tfsdk:"buffer__chunk__size" json:"Buffer_Chunk_Size,omitempty"`
+			Buffer_Max_Size                   *string   `tfsdk:"buffer__max__size" json:"Buffer_Max_Size,omitempty"`
+			DB                                *string   `tfsdk:"db" json:"DB,omitempty"`
+			DB_journal_mode                   *string   `tfsdk:"db_journal_mode" json:"DB.journal_mode,omitempty"`
+			DB_locking                        *bool     `tfsdk:"db_locking" json:"DB.locking,omitempty"`
+			DB_Sync                           *string   `tfsdk:"db__sync" json:"DB_Sync,omitempty"`
+			Docker_Mode                       *string   `tfsdk:"docker__mode" json:"Docker_Mode,omitempty"`
+			Docker_Mode_Flush                 *string   `tfsdk:"docker__mode__flush" json:"Docker_Mode_Flush,omitempty"`
+			Docker_Mode_Parser                *string   `tfsdk:"docker__mode__parser" json:"Docker_Mode_Parser,omitempty"`
+			Exclude_Path                      *string   `tfsdk:"exclude__path" json:"Exclude_Path,omitempty"`
+			Ignore_Older                      *string   `tfsdk:"ignore__older" json:"Ignore_Older,omitempty"`
+			Key                               *string   `tfsdk:"key" json:"Key,omitempty"`
+			Mem_Buf_Limit                     *string   `tfsdk:"mem__buf__limit" json:"Mem_Buf_Limit,omitempty"`
+			Multiline                         *string   `tfsdk:"multiline" json:"Multiline,omitempty"`
+			Multiline_Flush                   *string   `tfsdk:"multiline__flush" json:"Multiline_Flush,omitempty"`
+			Parser                            *string   `tfsdk:"parser" json:"Parser,omitempty"`
+			Parser_Firstline                  *string   `tfsdk:"parser__firstline" json:"Parser_Firstline,omitempty"`
+			Parser_N                          *[]string `tfsdk:"parser_n" json:"Parser_N,omitempty"`
+			Path                              *string   `tfsdk:"path" json:"Path,omitempty"`
+			Path_Key                          *string   `tfsdk:"path__key" json:"Path_Key,omitempty"`
+			Read_From_Head                    *bool     `tfsdk:"read__from__head" json:"Read_From_Head,omitempty"`
+			Refresh_Interval                  *string   `tfsdk:"refresh__interval" json:"Refresh_Interval,omitempty"`
+			Rotate_Wait                       *string   `tfsdk:"rotate__wait" json:"Rotate_Wait,omitempty"`
+			Skip_Long_Lines                   *string   `tfsdk:"skip__long__lines" json:"Skip_Long_Lines,omitempty"`
+			Tag                               *string   `tfsdk:"tag" json:"Tag,omitempty"`
+			Tag_Regex                         *string   `tfsdk:"tag__regex" json:"Tag_Regex,omitempty"`
+			Multiline_parser                  *[]string `tfsdk:"multiline_parser" json:"multiline.parser,omitempty"`
+			Storage_pause_on_chunks_overlimit *string   `tfsdk:"storage_pause_on_chunks_overlimit" json:"storage.pause_on_chunks_overlimit,omitempty"`
+			Storage_type                      *string   `tfsdk:"storage_type" json:"storage.type,omitempty"`
 		} `tfsdk:"input_tail" json:"inputTail,omitempty"`
 		Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		LivenessDefaultCheck *bool              `tfsdk:"liveness_default_check" json:"livenessDefaultCheck,omitempty"`
@@ -851,6 +862,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		Security *struct {
+			CreateOpenShiftSCC *bool `tfsdk:"create_open_shift_scc" json:"createOpenShiftSCC,omitempty"`
 			PodSecurityContext *struct {
 				AppArmorProfile *struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
@@ -861,6 +873,7 @@ type LoggingBanzaicloudIoFluentbitAgentV1Beta1ManifestData struct {
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -3482,6 +3495,22 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"disable_var_lib_docker_containers": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disable_var_log": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"dns_config": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -3545,6 +3574,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 					},
 
 					"enable_upstream": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enabled_i_pv6": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -3832,6 +3869,52 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 							"vpc_id": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"filter_grep": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"exclude": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"logical_op": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("legacy", "AND", "OR"),
+								},
+							},
+
+							"match": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"regex": schema.ListAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -4575,6 +4658,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Computed:            false,
 					},
 
+					"force_hot_reload_after_grace": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"forward_options": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -4950,6 +5041,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"storage_pause_on_chunks_overlimit": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6590,6 +6689,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"create_open_shift_scc": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"pod_security_context": schema.SingleNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -6652,6 +6759,14 @@ func (r *LoggingBanzaicloudIoFluentbitAgentV1Beta1Manifest) Schema(_ context.Con
 									},
 
 									"run_as_user": schema.Int64Attribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

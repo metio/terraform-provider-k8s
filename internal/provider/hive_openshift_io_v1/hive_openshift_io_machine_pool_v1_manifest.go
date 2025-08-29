@@ -92,6 +92,7 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 					Sku       *string `tfsdk:"sku" json:"sku,omitempty"`
 					Version   *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"os_image" json:"osImage,omitempty"`
+				OutboundType     *string   `tfsdk:"outbound_type" json:"outboundType,omitempty"`
 				Type             *string   `tfsdk:"type" json:"type,omitempty"`
 				VirtualNetwork   *string   `tfsdk:"virtual_network" json:"virtualNetwork,omitempty"`
 				VmNetworkingType *string   `tfsdk:"vm_networking_type" json:"vmNetworkingType,omitempty"`
@@ -134,9 +135,54 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				Type  *string   `tfsdk:"type" json:"type,omitempty"`
 				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"ibmcloud" json:"ibmcloud,omitempty"`
+			Nutanix *struct {
+				BootType   *string `tfsdk:"boot_type" json:"bootType,omitempty"`
+				Categories *[]struct {
+					Key   *string `tfsdk:"key" json:"key,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"categories" json:"categories,omitempty"`
+				CoresPerSocket *int64 `tfsdk:"cores_per_socket" json:"coresPerSocket,omitempty"`
+				Cpus           *int64 `tfsdk:"cpus" json:"cpus,omitempty"`
+				DataDisks      *[]struct {
+					DataSource *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+						Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+					} `tfsdk:"data_source" json:"dataSource,omitempty"`
+					DeviceProperties *struct {
+						AdapterType *string `tfsdk:"adapter_type" json:"adapterType,omitempty"`
+						DeviceIndex *int64  `tfsdk:"device_index" json:"deviceIndex,omitempty"`
+						DeviceType  *string `tfsdk:"device_type" json:"deviceType,omitempty"`
+					} `tfsdk:"device_properties" json:"deviceProperties,omitempty"`
+					DiskSize      *string `tfsdk:"disk_size" json:"diskSize,omitempty"`
+					StorageConfig *struct {
+						DiskMode         *string `tfsdk:"disk_mode" json:"diskMode,omitempty"`
+						StorageContainer *struct {
+							Type *string `tfsdk:"type" json:"type,omitempty"`
+							Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+						} `tfsdk:"storage_container" json:"storageContainer,omitempty"`
+					} `tfsdk:"storage_config" json:"storageConfig,omitempty"`
+				} `tfsdk:"data_disks" json:"dataDisks,omitempty"`
+				FailureDomains *[]string `tfsdk:"failure_domains" json:"failureDomains,omitempty"`
+				Gpus           *[]struct {
+					DeviceID *int64  `tfsdk:"device_id" json:"deviceID,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Type     *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"gpus" json:"gpus,omitempty"`
+				MemoryMiB *int64 `tfsdk:"memory_mi_b" json:"memoryMiB,omitempty"`
+				OsDisk    *struct {
+					DiskSizeGiB *int64 `tfsdk:"disk_size_gi_b" json:"diskSizeGiB,omitempty"`
+				} `tfsdk:"os_disk" json:"osDisk,omitempty"`
+				Project *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
+					Uuid *string `tfsdk:"uuid" json:"uuid,omitempty"`
+				} `tfsdk:"project" json:"project,omitempty"`
+			} `tfsdk:"nutanix" json:"nutanix,omitempty"`
 			Openstack *struct {
-				Flavor     *string `tfsdk:"flavor" json:"flavor,omitempty"`
-				RootVolume *struct {
+				AdditionalSecurityGroupIDs *[]string `tfsdk:"additional_security_group_i_ds" json:"additionalSecurityGroupIDs,omitempty"`
+				Flavor                     *string   `tfsdk:"flavor" json:"flavor,omitempty"`
+				RootVolume                 *struct {
 					Size *int64  `tfsdk:"size" json:"size,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"root_volume" json:"rootVolume,omitempty"`
@@ -159,7 +205,8 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				OsDisk         *struct {
 					DiskSizeGB *int64 `tfsdk:"disk_size_gb" json:"diskSizeGB,omitempty"`
 				} `tfsdk:"os_disk" json:"osDisk,omitempty"`
-				ResourcePool *string `tfsdk:"resource_pool" json:"resourcePool,omitempty"`
+				ResourcePool *string   `tfsdk:"resource_pool" json:"resourcePool,omitempty"`
+				TagIDs       *[]string `tfsdk:"tag_i_ds" json:"tagIDs,omitempty"`
 			} `tfsdk:"vsphere" json:"vsphere,omitempty"`
 		} `tfsdk:"platform" json:"platform,omitempty"`
 		Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
@@ -574,6 +621,14 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										Computed: false,
 									},
 
+									"outbound_type": schema.StringAttribute{
+										Description:         "OutboundType is a strategy for how egress from cluster is achieved. When not specified default is 'Loadbalancer'.",
+										MarkdownDescription: "OutboundType is a strategy for how egress from cluster is achieved. When not specified default is 'Loadbalancer'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"type": schema.StringAttribute{
 										Description:         "InstanceType defines the azure instance type. eg. Standard_DS_V2",
 										MarkdownDescription: "InstanceType defines the azure instance type. eg. Standard_DS_V2",
@@ -655,14 +710,11 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"disk_type": schema.StringAttribute{
-												Description:         "DiskType defines the type of disk. The valid values are pd-standard and pd-ssd. Defaulted internally to pd-ssd.",
-												MarkdownDescription: "DiskType defines the type of disk. The valid values are pd-standard and pd-ssd. Defaulted internally to pd-ssd.",
+												Description:         "DiskType defines the type of disk. The valid values at this time are: pd-standard, pd-ssd, local-ssd, pd-balanced, hyperdisk-balanced. Defaulted internally to pd-ssd.",
+												MarkdownDescription: "DiskType defines the type of disk. The valid values at this time are: pd-standard, pd-ssd, local-ssd, pd-balanced, hyperdisk-balanced. Defaulted internally to pd-ssd.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("pd-ssd", "pd-standard"),
-												},
 											},
 
 											"encryption_key": schema.SingleNestedAttribute{
@@ -874,10 +926,343 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 								Computed: false,
 							},
 
+							"nutanix": schema.SingleNestedAttribute{
+								Description:         "Nutanix is the configuration used when installing on Nutanix prism central.",
+								MarkdownDescription: "Nutanix is the configuration used when installing on Nutanix prism central.",
+								Attributes: map[string]schema.Attribute{
+									"boot_type": schema.StringAttribute{
+										Description:         "BootType indicates the boot type (Legacy, UEFI or SecureBoot) the Machine's VM uses to boot. If this field is empty or omitted, the VM will use the default boot type 'Legacy' to boot. 'SecureBoot' depends on 'UEFI' boot, i.e., enabling 'SecureBoot' means that 'UEFI' boot is also enabled.",
+										MarkdownDescription: "BootType indicates the boot type (Legacy, UEFI or SecureBoot) the Machine's VM uses to boot. If this field is empty or omitted, the VM will use the default boot type 'Legacy' to boot. 'SecureBoot' depends on 'UEFI' boot, i.e., enabling 'SecureBoot' means that 'UEFI' boot is also enabled.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("", "Legacy", "UEFI", "SecureBoot"),
+										},
+									},
+
+									"categories": schema.ListNestedAttribute{
+										Description:         "Categories optionally adds one or more prism categories (each with key and value) for the Machine's VM to associate with. All the category key and value pairs specified must already exist in the prism central.",
+										MarkdownDescription: "Categories optionally adds one or more prism categories (each with key and value) for the Machine's VM to associate with. All the category key and value pairs specified must already exist in the prism central.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "key is the prism category key name",
+													MarkdownDescription: "key is the prism category key name",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(64),
+													},
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "value is the prism category value associated with the key",
+													MarkdownDescription: "value is the prism category value associated with the key",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.LengthAtMost(64),
+													},
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cores_per_socket": schema.Int64Attribute{
+										Description:         "NumCoresPerSocket is the number of cores per socket in a vm. The number of vCPUs on the vm will be NumCPUs times NumCoresPerSocket. For example: 4 CPUs and 4 Cores per socket will result in 16 VPUs. The AHV scheduler treats socket and core allocation exactly the same so there is no benefit to configuring cores over CPUs.",
+										MarkdownDescription: "NumCoresPerSocket is the number of cores per socket in a vm. The number of vCPUs on the vm will be NumCPUs times NumCoresPerSocket. For example: 4 CPUs and 4 Cores per socket will result in 16 VPUs. The AHV scheduler treats socket and core allocation exactly the same so there is no benefit to configuring cores over CPUs.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"cpus": schema.Int64Attribute{
+										Description:         "NumCPUs is the total number of virtual processor cores to assign a vm.",
+										MarkdownDescription: "NumCPUs is the total number of virtual processor cores to assign a vm.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"data_disks": schema.ListNestedAttribute{
+										Description:         "DataDisks holds information of the data disks to attach to the Machine's VM",
+										MarkdownDescription: "DataDisks holds information of the data disks to attach to the Machine's VM",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"data_source": schema.SingleNestedAttribute{
+													Description:         "dataSource refers to a data source image for the VM disk.",
+													MarkdownDescription: "dataSource refers to a data source image for the VM disk.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "name is the resource name in the PC",
+															MarkdownDescription: "name is the resource name in the PC",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type is the identifier type to use for this resource.",
+															MarkdownDescription: "type is the identifier type to use for this resource.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("uuid", "name"),
+															},
+														},
+
+														"uuid": schema.StringAttribute{
+															Description:         "uuid is the UUID of the resource in the PC.",
+															MarkdownDescription: "uuid is the UUID of the resource in the PC.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"device_properties": schema.SingleNestedAttribute{
+													Description:         "deviceProperties are the properties of the disk device.",
+													MarkdownDescription: "deviceProperties are the properties of the disk device.",
+													Attributes: map[string]schema.Attribute{
+														"adapter_type": schema.StringAttribute{
+															Description:         "adapterType is the adapter type of the disk address. If the deviceType is 'Disk', the valid adapterType can be 'SCSI', 'IDE', 'PCI', 'SATA' or 'SPAPR'. If the deviceType is 'CDRom', the valid adapterType can be 'IDE' or 'SATA'.",
+															MarkdownDescription: "adapterType is the adapter type of the disk address. If the deviceType is 'Disk', the valid adapterType can be 'SCSI', 'IDE', 'PCI', 'SATA' or 'SPAPR'. If the deviceType is 'CDRom', the valid adapterType can be 'IDE' or 'SATA'.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("SCSI", "IDE", "PCI", "SATA", "SPAPR"),
+															},
+														},
+
+														"device_index": schema.Int64Attribute{
+															Description:         "deviceIndex is the index of the disk address. The valid values are non-negative integers, with the default value 0. For a Machine VM, the deviceIndex for the disks with the same deviceType.adapterType combination should start from 0 and increase consecutively afterwards. Note that for each Machine VM, the Disk.SCSI.0 and CDRom.IDE.0 are reserved to be used by the VM's system. So for dataDisks of Disk.SCSI and CDRom.IDE, the deviceIndex should start from 1.",
+															MarkdownDescription: "deviceIndex is the index of the disk address. The valid values are non-negative integers, with the default value 0. For a Machine VM, the deviceIndex for the disks with the same deviceType.adapterType combination should start from 0 and increase consecutively afterwards. Note that for each Machine VM, the Disk.SCSI.0 and CDRom.IDE.0 are reserved to be used by the VM's system. So for dataDisks of Disk.SCSI and CDRom.IDE, the deviceIndex should start from 1.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.Int64{
+																int64validator.AtLeast(0),
+															},
+														},
+
+														"device_type": schema.StringAttribute{
+															Description:         "deviceType specifies the disk device type. The valid values are 'Disk' and 'CDRom', and the default is 'Disk'.",
+															MarkdownDescription: "deviceType specifies the disk device type. The valid values are 'Disk' and 'CDRom', and the default is 'Disk'.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Disk", "CDRom"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"disk_size": schema.StringAttribute{
+													Description:         "diskSize is size (in Quantity format) of the disk attached to the VM. See https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Format for the Quantity format and example documentation. The minimum diskSize is 1GB.",
+													MarkdownDescription: "diskSize is size (in Quantity format) of the disk attached to the VM. See https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource#Format for the Quantity format and example documentation. The minimum diskSize is 1GB.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"storage_config": schema.SingleNestedAttribute{
+													Description:         "storageConfig are the storage configuration parameters of the VM disks.",
+													MarkdownDescription: "storageConfig are the storage configuration parameters of the VM disks.",
+													Attributes: map[string]schema.Attribute{
+														"disk_mode": schema.StringAttribute{
+															Description:         "diskMode specifies the disk mode. The valid values are Standard and Flash, and the default is Standard.",
+															MarkdownDescription: "diskMode specifies the disk mode. The valid values are Standard and Flash, and the default is Standard.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Standard", "Flash"),
+															},
+														},
+
+														"storage_container": schema.SingleNestedAttribute{
+															Description:         "storageContainer refers to the storage_container used by the VM disk.",
+															MarkdownDescription: "storageContainer refers to the storage_container used by the VM disk.",
+															Attributes: map[string]schema.Attribute{
+																"type": schema.StringAttribute{
+																	Description:         "type is the identifier type to use for this resource. The valid value is 'uuid'.",
+																	MarkdownDescription: "type is the identifier type to use for this resource. The valid value is 'uuid'.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("uuid"),
+																	},
+																},
+
+																"uuid": schema.StringAttribute{
+																	Description:         "uuid is the UUID of the storage resource in the PC.",
+																	MarkdownDescription: "uuid is the UUID of the storage resource in the PC.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_domains": schema.ListAttribute{
+										Description:         "FailureDomains optionally configures a list of failure domain names that will be applied to the MachinePool. These names must correspond to failure domains configured in 'CD.Spec.Platform.Nutanix'.",
+										MarkdownDescription: "FailureDomains optionally configures a list of failure domain names that will be applied to the MachinePool. These names must correspond to failure domains configured in 'CD.Spec.Platform.Nutanix'.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"gpus": schema.ListNestedAttribute{
+										Description:         "GPUs is a list of GPU devices to attach to the machine's VM.",
+										MarkdownDescription: "GPUs is a list of GPU devices to attach to the machine's VM.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"device_id": schema.Int64Attribute{
+													Description:         "deviceID is the GPU device ID with the integer value.",
+													MarkdownDescription: "deviceID is the GPU device ID with the integer value.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "name is the GPU device name",
+													MarkdownDescription: "name is the GPU device name",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type is the identifier type of the GPU device. Valid values are Name and DeviceID.",
+													MarkdownDescription: "type is the identifier type of the GPU device. Valid values are Name and DeviceID.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Name", "DeviceID"),
+													},
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"memory_mi_b": schema.Int64Attribute{
+										Description:         "Memory is the size of a VM's memory in MiB.",
+										MarkdownDescription: "Memory is the size of a VM's memory in MiB.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"os_disk": schema.SingleNestedAttribute{
+										Description:         "OSDisk defines the storage for instance.",
+										MarkdownDescription: "OSDisk defines the storage for instance.",
+										Attributes: map[string]schema.Attribute{
+											"disk_size_gi_b": schema.Int64Attribute{
+												Description:         "DiskSizeGiB defines the size of disk in GiB.",
+												MarkdownDescription: "DiskSizeGiB defines the size of disk in GiB.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"project": schema.SingleNestedAttribute{
+										Description:         "Project optionally identifies a Prism project for the Machine's VM to associate with.",
+										MarkdownDescription: "Project optionally identifies a Prism project for the Machine's VM to associate with.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "name is the resource name in the PC",
+												MarkdownDescription: "name is the resource name in the PC",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type is the identifier type to use for this resource.",
+												MarkdownDescription: "type is the identifier type to use for this resource.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("uuid", "name"),
+												},
+											},
+
+											"uuid": schema.StringAttribute{
+												Description:         "uuid is the UUID of the resource in the PC.",
+												MarkdownDescription: "uuid is the UUID of the resource in the PC.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"openstack": schema.SingleNestedAttribute{
 								Description:         "OpenStack is the configuration used when installing on OpenStack.",
 								MarkdownDescription: "OpenStack is the configuration used when installing on OpenStack.",
 								Attributes: map[string]schema.Attribute{
+									"additional_security_group_i_ds": schema.ListAttribute{
+										Description:         "AdditionalSecurityGroupIDs contains IDs of additional security groups for machines, where each ID is presented in the UUID format.",
+										MarkdownDescription: "AdditionalSecurityGroupIDs contains IDs of additional security groups for machines, where each ID is presented in the UUID format.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"flavor": schema.StringAttribute{
 										Description:         "Flavor defines the OpenStack Nova flavor. eg. m1.large The json key here differs from the installer which uses both 'computeFlavor' and type 'type' depending on which type you're looking at, and the resulting field on the MachineSet is 'flavor'. We are opting to stay consistent with the end result.",
 										MarkdownDescription: "Flavor defines the OpenStack Nova flavor. eg. m1.large The json key here differs from the installer which uses both 'computeFlavor' and type 'type' depending on which type you're looking at, and the resulting field on the MachineSet is 'flavor'. We are opting to stay consistent with the end result.",
@@ -1034,6 +1419,15 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 									"resource_pool": schema.StringAttribute{
 										Description:         "ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.",
 										MarkdownDescription: "ResourcePool is the name of the resource pool that will be used for virtual machines. If it is not present, a default value will be used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"tag_i_ds": schema.ListAttribute{
+										Description:         "TagIDs is a list of up to 10 tags to add to the VMs that this machine set provisions in vSphere.",
+										MarkdownDescription: "TagIDs is a list of up to 10 tags to add to the VMs that this machine set provisions in vSphere.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
