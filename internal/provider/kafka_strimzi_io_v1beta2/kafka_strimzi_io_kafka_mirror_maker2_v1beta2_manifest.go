@@ -193,41 +193,74 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			Values *struct {
+				AllowList *[]string `tfsdk:"allow_list" json:"allowList,omitempty"`
+			} `tfsdk:"values" json:"values,omitempty"`
 		} `tfsdk:"metrics_config" json:"metricsConfig,omitempty"`
 		Mirrors *[]struct {
 			CheckpointConnector *struct {
+				AlterOffsets *struct {
+					FromConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from_config_map" json:"fromConfigMap,omitempty"`
+				} `tfsdk:"alter_offsets" json:"alterOffsets,omitempty"`
 				AutoRestart *struct {
 					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
-				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
-				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
-				State    *string            `tfsdk:"state" json:"state,omitempty"`
-				TasksMax *int64             `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
+				Config      *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				ListOffsets *struct {
+					ToConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"to_config_map" json:"toConfigMap,omitempty"`
+				} `tfsdk:"list_offsets" json:"listOffsets,omitempty"`
+				Pause    *bool   `tfsdk:"pause" json:"pause,omitempty"`
+				State    *string `tfsdk:"state" json:"state,omitempty"`
+				TasksMax *int64  `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
 			} `tfsdk:"checkpoint_connector" json:"checkpointConnector,omitempty"`
 			GroupsBlacklistPattern *string `tfsdk:"groups_blacklist_pattern" json:"groupsBlacklistPattern,omitempty"`
 			GroupsExcludePattern   *string `tfsdk:"groups_exclude_pattern" json:"groupsExcludePattern,omitempty"`
 			GroupsPattern          *string `tfsdk:"groups_pattern" json:"groupsPattern,omitempty"`
 			HeartbeatConnector     *struct {
+				AlterOffsets *struct {
+					FromConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from_config_map" json:"fromConfigMap,omitempty"`
+				} `tfsdk:"alter_offsets" json:"alterOffsets,omitempty"`
 				AutoRestart *struct {
 					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
-				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
-				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
-				State    *string            `tfsdk:"state" json:"state,omitempty"`
-				TasksMax *int64             `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
+				Config      *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				ListOffsets *struct {
+					ToConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"to_config_map" json:"toConfigMap,omitempty"`
+				} `tfsdk:"list_offsets" json:"listOffsets,omitempty"`
+				Pause    *bool   `tfsdk:"pause" json:"pause,omitempty"`
+				State    *string `tfsdk:"state" json:"state,omitempty"`
+				TasksMax *int64  `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
 			} `tfsdk:"heartbeat_connector" json:"heartbeatConnector,omitempty"`
 			SourceCluster   *string `tfsdk:"source_cluster" json:"sourceCluster,omitempty"`
 			SourceConnector *struct {
+				AlterOffsets *struct {
+					FromConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"from_config_map" json:"fromConfigMap,omitempty"`
+				} `tfsdk:"alter_offsets" json:"alterOffsets,omitempty"`
 				AutoRestart *struct {
 					Enabled     *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxRestarts *int64 `tfsdk:"max_restarts" json:"maxRestarts,omitempty"`
 				} `tfsdk:"auto_restart" json:"autoRestart,omitempty"`
-				Config   *map[string]string `tfsdk:"config" json:"config,omitempty"`
-				Pause    *bool              `tfsdk:"pause" json:"pause,omitempty"`
-				State    *string            `tfsdk:"state" json:"state,omitempty"`
-				TasksMax *int64             `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
+				Config      *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				ListOffsets *struct {
+					ToConfigMap *struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"to_config_map" json:"toConfigMap,omitempty"`
+				} `tfsdk:"list_offsets" json:"listOffsets,omitempty"`
+				Pause    *bool   `tfsdk:"pause" json:"pause,omitempty"`
+				State    *string `tfsdk:"state" json:"state,omitempty"`
+				TasksMax *int64  `tfsdk:"tasks_max" json:"tasksMax,omitempty"`
 			} `tfsdk:"source_connector" json:"sourceConnector,omitempty"`
 			TargetCluster          *string `tfsdk:"target_cluster" json:"targetCluster,omitempty"`
 			TopicsBlacklistPattern *string `tfsdk:"topics_blacklist_pattern" json:"topicsBlacklistPattern,omitempty"`
@@ -247,7 +280,8 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -270,8 +304,20 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 			} `tfsdk:"build_config" json:"buildConfig,omitempty"`
 			BuildContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -448,7 +494,16 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
+				DnsConfig *struct {
+					Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+					Options     *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"options" json:"options,omitempty"`
+					Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+				} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+				DnsPolicy          *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+				EnableServiceLinks *bool   `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 				HostAliases        *[]struct {
 					Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 					Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -472,6 +527,7 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -482,8 +538,9 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -531,6 +588,15 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
 					EmptyDir *struct {
 						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 						SizeLimit *struct {
@@ -538,6 +604,10 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 							Format *string `tfsdk:"format" json:"format,omitempty"`
 						} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
 					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					Image *struct {
+						PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+						Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+					} `tfsdk:"image" json:"image,omitempty"`
 					Name                  *string `tfsdk:"name" json:"name,omitempty"`
 					PersistentVolumeClaim *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
@@ -569,8 +639,20 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 			} `tfsdk:"cluster_role_binding" json:"clusterRoleBinding,omitempty"`
 			ConnectContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -632,8 +714,20 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 			} `tfsdk:"headless_service" json:"headlessService,omitempty"`
 			InitContainer *struct {
 				Env *[]struct {
-					Name  *string `tfsdk:"name" json:"name,omitempty"`
-					Value *string `tfsdk:"value" json:"value,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Value     *string `tfsdk:"value" json:"value,omitempty"`
+					ValueFrom *struct {
+						ConfigMapKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+						SecretKeyRef *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"env" json:"env,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -816,7 +910,16 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
+				DnsConfig *struct {
+					Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+					Options     *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"options" json:"options,omitempty"`
+					Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+				} `tfsdk:"dns_config" json:"dnsConfig,omitempty"`
+				DnsPolicy          *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+				EnableServiceLinks *bool   `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 				HostAliases        *[]struct {
 					Hostnames *[]string `tfsdk:"hostnames" json:"hostnames,omitempty"`
 					Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
@@ -840,6 +943,7 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -850,8 +954,9 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -899,6 +1004,15 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
 					EmptyDir *struct {
 						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 						SizeLimit *struct {
@@ -906,6 +1020,10 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 							Format *string `tfsdk:"format" json:"format,omitempty"`
 						} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
 					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					Image *struct {
+						PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+						Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+					} `tfsdk:"image" json:"image,omitempty"`
 					Name                  *string `tfsdk:"name" json:"name,omitempty"`
 					PersistentVolumeClaim *struct {
 						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
@@ -1990,23 +2108,23 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 					},
 
 					"metrics_config": schema.SingleNestedAttribute{
-						Description:         "Metrics configuration.",
-						MarkdownDescription: "Metrics configuration.",
+						Description:         "Metrics configuration. Only 'jmxPrometheusExporter' can be configured, as this component does not yet support 'strimziMetricsReporter'.",
+						MarkdownDescription: "Metrics configuration. Only 'jmxPrometheusExporter' can be configured, as this component does not yet support 'strimziMetricsReporter'.",
 						Attributes: map[string]schema.Attribute{
 							"type": schema.StringAttribute{
-								Description:         "Metrics type. Only 'jmxPrometheusExporter' supported currently.",
-								MarkdownDescription: "Metrics type. Only 'jmxPrometheusExporter' supported currently.",
+								Description:         "Metrics type. The supported types are 'jmxPrometheusExporter' and 'strimziMetricsReporter'. Type 'jmxPrometheusExporter' uses the Prometheus JMX Exporter to expose Kafka JMX metrics in Prometheus format through an HTTP endpoint. Type 'strimziMetricsReporter' uses the Strimzi Metrics Reporter to directly expose Kafka metrics in Prometheus format through an HTTP endpoint.",
+								MarkdownDescription: "Metrics type. The supported types are 'jmxPrometheusExporter' and 'strimziMetricsReporter'. Type 'jmxPrometheusExporter' uses the Prometheus JMX Exporter to expose Kafka JMX metrics in Prometheus format through an HTTP endpoint. Type 'strimziMetricsReporter' uses the Strimzi Metrics Reporter to directly expose Kafka metrics in Prometheus format through an HTTP endpoint.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("jmxPrometheusExporter"),
+									stringvalidator.OneOf("jmxPrometheusExporter", "strimziMetricsReporter"),
 								},
 							},
 
 							"value_from": schema.SingleNestedAttribute{
-								Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
-								MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored. ",
+								Description:         "ConfigMap entry where the Prometheus JMX Exporter configuration is stored.",
+								MarkdownDescription: "ConfigMap entry where the Prometheus JMX Exporter configuration is stored.",
 								Attributes: map[string]schema.Attribute{
 									"config_map_key_ref": schema.SingleNestedAttribute{
 										Description:         "Reference to the key in the ConfigMap containing the configuration.",
@@ -2041,8 +2159,26 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"values": schema.SingleNestedAttribute{
+								Description:         "Configuration values for the Strimzi Metrics Reporter.",
+								MarkdownDescription: "Configuration values for the Strimzi Metrics Reporter.",
+								Attributes: map[string]schema.Attribute{
+									"allow_list": schema.ListAttribute{
+										Description:         "A list of regex patterns to filter the metrics to collect. Should contain at least one element.",
+										MarkdownDescription: "A list of regex patterns to filter the metrics to collect. Should contain at least one element.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},
@@ -2060,6 +2196,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 									Description:         "The specification of the Kafka MirrorMaker 2 checkpoint connector.",
 									MarkdownDescription: "The specification of the Kafka MirrorMaker 2 checkpoint connector.",
 									Attributes: map[string]schema.Attribute{
+										"alter_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for altering offsets.",
+											MarkdownDescription: "Configuration for altering offsets.",
+											Attributes: map[string]schema.Attribute{
+												"from_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the new offsets are stored.",
+													MarkdownDescription: "Reference to the ConfigMap where the new offsets are stored.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"auto_restart": schema.SingleNestedAttribute{
 											Description:         "Automatic restart of connector and tasks configuration.",
 											MarkdownDescription: "Automatic restart of connector and tasks configuration.",
@@ -2092,6 +2254,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"list_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for listing offsets.",
+											MarkdownDescription: "Configuration for listing offsets.",
+											Attributes: map[string]schema.Attribute{
+												"to_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the list of offsets will be written to.",
+													MarkdownDescription: "Reference to the ConfigMap where the list of offsets will be written to.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"pause": schema.BoolAttribute{
@@ -2157,6 +2345,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 									Description:         "The specification of the Kafka MirrorMaker 2 heartbeat connector.",
 									MarkdownDescription: "The specification of the Kafka MirrorMaker 2 heartbeat connector.",
 									Attributes: map[string]schema.Attribute{
+										"alter_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for altering offsets.",
+											MarkdownDescription: "Configuration for altering offsets.",
+											Attributes: map[string]schema.Attribute{
+												"from_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the new offsets are stored.",
+													MarkdownDescription: "Reference to the ConfigMap where the new offsets are stored.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"auto_restart": schema.SingleNestedAttribute{
 											Description:         "Automatic restart of connector and tasks configuration.",
 											MarkdownDescription: "Automatic restart of connector and tasks configuration.",
@@ -2189,6 +2403,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"list_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for listing offsets.",
+											MarkdownDescription: "Configuration for listing offsets.",
+											Attributes: map[string]schema.Attribute{
+												"to_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the list of offsets will be written to.",
+													MarkdownDescription: "Reference to the ConfigMap where the list of offsets will be written to.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"pause": schema.BoolAttribute{
@@ -2238,6 +2478,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 									Description:         "The specification of the Kafka MirrorMaker 2 source connector.",
 									MarkdownDescription: "The specification of the Kafka MirrorMaker 2 source connector.",
 									Attributes: map[string]schema.Attribute{
+										"alter_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for altering offsets.",
+											MarkdownDescription: "Configuration for altering offsets.",
+											Attributes: map[string]schema.Attribute{
+												"from_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the new offsets are stored.",
+													MarkdownDescription: "Reference to the ConfigMap where the new offsets are stored.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"auto_restart": schema.SingleNestedAttribute{
 											Description:         "Automatic restart of connector and tasks configuration.",
 											MarkdownDescription: "Automatic restart of connector and tasks configuration.",
@@ -2270,6 +2536,32 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"list_offsets": schema.SingleNestedAttribute{
+											Description:         "Configuration for listing offsets.",
+											MarkdownDescription: "Configuration for listing offsets.",
+											Attributes: map[string]schema.Attribute{
+												"to_config_map": schema.SingleNestedAttribute{
+													Description:         "Reference to the ConfigMap where the list of offsets will be written to.",
+													MarkdownDescription: "Reference to the ConfigMap where the list of offsets will be written to.",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: true,
+													Optional: false,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"pause": schema.BoolAttribute{
@@ -2450,6 +2742,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -2607,6 +2907,81 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -3793,6 +4168,71 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 
+									"dns_config": schema.SingleNestedAttribute{
+										Description:         "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										MarkdownDescription: "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										Attributes: map[string]schema.Attribute{
+											"nameservers": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"options": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"searches": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"dns_policy": schema.StringAttribute{
+										Description:         "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										MarkdownDescription: "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("ClusterFirst", "ClusterFirstWithHostNet", "Default", "None"),
+										},
+									},
+
 									"enable_service_links": schema.BoolAttribute{
 										Description:         "Indicates whether information about services should be injected into Pod's environment variables.",
 										MarkdownDescription: "Indicates whether information about services should be injected into Pod's environment variables.",
@@ -3960,6 +4400,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -4030,6 +4478,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4309,8 +4765,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
-													Description:         "ConfigMap to use to populate the volume.",
-													MarkdownDescription: "ConfigMap to use to populate the volume.",
+													Description:         "'ConfigMap' to use to populate the volume.",
+													MarkdownDescription: "'ConfigMap' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"default_mode": schema.Int64Attribute{
 															Description:         "",
@@ -4376,9 +4832,68 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
+												"csi": schema.SingleNestedAttribute{
+													Description:         "'CSIVolumeSource' object to use to populate the volume.",
+													MarkdownDescription: "'CSIVolumeSource' object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"driver": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"fs_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_publish_secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"empty_dir": schema.SingleNestedAttribute{
-													Description:         "EmptyDir to use to populate the volume.",
-													MarkdownDescription: "EmptyDir to use to populate the volume.",
+													Description:         "'EmptyDir' to use to populate the volume.",
+													MarkdownDescription: "'EmptyDir' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"medium": schema.StringAttribute{
 															Description:         "",
@@ -4418,6 +4933,31 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
+												"image": schema.SingleNestedAttribute{
+													Description:         "'ImageVolumeSource' object to use to populate the volume.",
+													MarkdownDescription: "'ImageVolumeSource' object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"pull_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"reference": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"name": schema.StringAttribute{
 													Description:         "Name to use for the volume. Required.",
 													MarkdownDescription: "Name to use for the volume. Required.",
@@ -4427,8 +4967,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												},
 
 												"persistent_volume_claim": schema.SingleNestedAttribute{
-													Description:         "PersistentVolumeClaim object to use to populate the volume.",
-													MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+													Description:         "'PersistentVolumeClaim' object to use to populate the volume.",
+													MarkdownDescription: "'PersistentVolumeClaim' object to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"claim_name": schema.StringAttribute{
 															Description:         "",
@@ -4452,8 +4992,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												},
 
 												"secret": schema.SingleNestedAttribute{
-													Description:         "Secret to use populate the volume.",
-													MarkdownDescription: "Secret to use populate the volume.",
+													Description:         "'Secret' to use to populate the volume.",
+													MarkdownDescription: "'Secret' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"default_mode": schema.Int64Attribute{
 															Description:         "",
@@ -4625,6 +5165,81 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -5055,6 +5670,81 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"value_from": schema.SingleNestedAttribute{
+													Description:         "Reference to the secret or config map property to which the environment variable is set.",
+													MarkdownDescription: "Reference to the secret or config map property to which the environment variable is set.",
+													Attributes: map[string]schema.Attribute{
+														"config_map_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a config map.",
+															MarkdownDescription: "Reference to a key in a config map.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret_key_ref": schema.SingleNestedAttribute{
+															Description:         "Reference to a key in a secret.",
+															MarkdownDescription: "Reference to a key in a secret.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -6277,6 +6967,71 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 										Computed: false,
 									},
 
+									"dns_config": schema.SingleNestedAttribute{
+										Description:         "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										MarkdownDescription: "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
+										Attributes: map[string]schema.Attribute{
+											"nameservers": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"options": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"searches": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"dns_policy": schema.StringAttribute{
+										Description:         "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										MarkdownDescription: "The pod's DNSPolicy. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("ClusterFirst", "ClusterFirstWithHostNet", "Default", "None"),
+										},
+									},
+
 									"enable_service_links": schema.BoolAttribute{
 										Description:         "Indicates whether information about services should be injected into Pod's environment variables.",
 										MarkdownDescription: "Indicates whether information about services should be injected into Pod's environment variables.",
@@ -6444,6 +7199,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"se_linux_options": schema.SingleNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -6514,6 +7277,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Description:         "",
 												MarkdownDescription: "",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6793,8 +7564,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"config_map": schema.SingleNestedAttribute{
-													Description:         "ConfigMap to use to populate the volume.",
-													MarkdownDescription: "ConfigMap to use to populate the volume.",
+													Description:         "'ConfigMap' to use to populate the volume.",
+													MarkdownDescription: "'ConfigMap' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"default_mode": schema.Int64Attribute{
 															Description:         "",
@@ -6860,9 +7631,68 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
+												"csi": schema.SingleNestedAttribute{
+													Description:         "'CSIVolumeSource' object to use to populate the volume.",
+													MarkdownDescription: "'CSIVolumeSource' object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"driver": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"fs_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_publish_secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"volume_attributes": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"empty_dir": schema.SingleNestedAttribute{
-													Description:         "EmptyDir to use to populate the volume.",
-													MarkdownDescription: "EmptyDir to use to populate the volume.",
+													Description:         "'EmptyDir' to use to populate the volume.",
+													MarkdownDescription: "'EmptyDir' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"medium": schema.StringAttribute{
 															Description:         "",
@@ -6902,6 +7732,31 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Computed: false,
 												},
 
+												"image": schema.SingleNestedAttribute{
+													Description:         "'ImageVolumeSource' object to use to populate the volume.",
+													MarkdownDescription: "'ImageVolumeSource' object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"pull_policy": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"reference": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"name": schema.StringAttribute{
 													Description:         "Name to use for the volume. Required.",
 													MarkdownDescription: "Name to use for the volume. Required.",
@@ -6911,8 +7766,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												},
 
 												"persistent_volume_claim": schema.SingleNestedAttribute{
-													Description:         "PersistentVolumeClaim object to use to populate the volume.",
-													MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+													Description:         "'PersistentVolumeClaim' object to use to populate the volume.",
+													MarkdownDescription: "'PersistentVolumeClaim' object to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"claim_name": schema.StringAttribute{
 															Description:         "",
@@ -6936,8 +7791,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												},
 
 												"secret": schema.SingleNestedAttribute{
-													Description:         "Secret to use populate the volume.",
-													MarkdownDescription: "Secret to use populate the volume.",
+													Description:         "'Secret' to use to populate the volume.",
+													MarkdownDescription: "'Secret' to use to populate the volume.",
 													Attributes: map[string]schema.Attribute{
 														"default_mode": schema.Int64Attribute{
 															Description:         "",

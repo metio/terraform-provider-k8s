@@ -63,18 +63,22 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 		Issuer_url                 *string `tfsdk:"issuer_url" json:"issuer_url,omitempty"`
 		Max_age                    *string `tfsdk:"max_age" json:"max_age,omitempty"`
 		Mfa                        *struct {
-			Acr_values    *string `tfsdk:"acr_values" json:"acr_values,omitempty"`
-			Client_id     *string `tfsdk:"client_id" json:"client_id,omitempty"`
-			Client_secret *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
-			Enabled       *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Max_age       *string `tfsdk:"max_age" json:"max_age,omitempty"`
-			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
+			Acr_values          *string `tfsdk:"acr_values" json:"acr_values,omitempty"`
+			Client_id           *string `tfsdk:"client_id" json:"client_id,omitempty"`
+			Client_secret       *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+			Enabled             *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Max_age             *string `tfsdk:"max_age" json:"max_age,omitempty"`
+			Prompt              *string `tfsdk:"prompt" json:"prompt,omitempty"`
+			Request_object_mode *string `tfsdk:"request_object_mode" json:"request_object_mode,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
-		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
-		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
-		Redirect_url   *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
-		Scope          *[]string `tfsdk:"scope" json:"scope,omitempty"`
-		Username_claim *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
+		Pkce_mode           *string   `tfsdk:"pkce_mode" json:"pkce_mode,omitempty"`
+		Prompt              *string   `tfsdk:"prompt" json:"prompt,omitempty"`
+		Provider            *string   `tfsdk:"provider" json:"provider,omitempty"`
+		Redirect_url        *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
+		Request_object_mode *string   `tfsdk:"request_object_mode" json:"request_object_mode,omitempty"`
+		Scope               *[]string `tfsdk:"scope" json:"scope,omitempty"`
+		User_matchers       *[]string `tfsdk:"user_matchers" json:"user_matchers,omitempty"`
+		Username_claim      *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -349,10 +353,26 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"request_object_mode": schema.StringAttribute{
+								Description:         "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters. If omitted, MFA flows will default to the 'RequestObjectMode' behavior specified in the base OIDC connector. Set this property to 'none' to explicitly disable request objects for the MFA client.",
+								MarkdownDescription: "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters. If omitted, MFA flows will default to the 'RequestObjectMode' behavior specified in the base OIDC connector. Set this property to 'none' to explicitly disable request objects for the MFA client.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"pkce_mode": schema.StringAttribute{
+						Description:         "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						MarkdownDescription: "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"prompt": schema.StringAttribute{
@@ -380,9 +400,26 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
+					"request_object_mode": schema.StringAttribute{
+						Description:         "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters.",
+						MarkdownDescription: "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"scope": schema.ListAttribute{
 						Description:         "Scope specifies additional scopes set by provider.",
 						MarkdownDescription: "Scope specifies additional scopes set by provider.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"user_matchers": schema.ListAttribute{
+						Description:         "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
+						MarkdownDescription: "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

@@ -165,7 +165,28 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 			} `tfsdk:"oauth" json:"oauth,omitempty"`
 			Oauth2 *struct {
 				AccessTokenValidation *struct {
-					CacheTimeout              *string            `tfsdk:"cache_timeout" json:"cacheTimeout,omitempty"`
+					Azure *struct {
+						ClaimsCachingOptions *struct {
+							Db               *int64  `tfsdk:"db" json:"db,omitempty"`
+							Host             *string `tfsdk:"host" json:"host,omitempty"`
+							PoolSize         *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+							SocketType       *string `tfsdk:"socket_type" json:"socketType,omitempty"`
+							TlsCertMountPath *string `tfsdk:"tls_cert_mount_path" json:"tlsCertMountPath,omitempty"`
+						} `tfsdk:"claims_caching_options" json:"claimsCachingOptions,omitempty"`
+						ClientId     *string `tfsdk:"client_id" json:"clientId,omitempty"`
+						ClientSecret *struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+						TenantId *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+					} `tfsdk:"azure" json:"azure,omitempty"`
+					CacheTimeout    *string `tfsdk:"cache_timeout" json:"cacheTimeout,omitempty"`
+					ClaimsToHeaders *[]struct {
+						Append *bool   `tfsdk:"append" json:"append,omitempty"`
+						Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
+						Header *string `tfsdk:"header" json:"header,omitempty"`
+					} `tfsdk:"claims_to_headers" json:"claimsToHeaders,omitempty"`
+					Default                   *map[string]string `tfsdk:"default" json:"default,omitempty"`
 					DynamicMetadataFromClaims *map[string]string `tfsdk:"dynamic_metadata_from_claims" json:"dynamicMetadataFromClaims,omitempty"`
 					Introspection             *struct {
 						ClientId        *string `tfsdk:"client_id" json:"clientId,omitempty"`
@@ -417,7 +438,16 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 							MaxInterval  *string `tfsdk:"max_interval" json:"maxInterval,omitempty"`
 						} `tfsdk:"retry_back_off" json:"retryBackOff,omitempty"`
 					} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-					TlsConfig *map[string]string `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+					TlsConfig *struct {
+						SecretRef *struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+						SslParams *struct {
+							MaximumProtocolVersion *string `tfsdk:"maximum_protocol_version" json:"maximumProtocolVersion,omitempty"`
+							MinimumProtocolVersion *string `tfsdk:"minimum_protocol_version" json:"minimumProtocolVersion,omitempty"`
+						} `tfsdk:"ssl_params" json:"sslParams,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				} `tfsdk:"grpc" json:"grpc,omitempty"`
 				Http *struct {
 					ConnectionTimeout *string `tfsdk:"connection_timeout" json:"connectionTimeout,omitempty"`
@@ -434,6 +464,16 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 						AllowedUpstreamHeadersToOverwrite *[]string `tfsdk:"allowed_upstream_headers_to_overwrite" json:"allowedUpstreamHeadersToOverwrite,omitempty"`
 						ReadStateFromResponse             *bool     `tfsdk:"read_state_from_response" json:"readStateFromResponse,omitempty"`
 					} `tfsdk:"response" json:"response,omitempty"`
+					TlsConfig *struct {
+						SecretRef *struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+						SslParams *struct {
+							MaximumProtocolVersion *string `tfsdk:"maximum_protocol_version" json:"maximumProtocolVersion,omitempty"`
+							MinimumProtocolVersion *string `tfsdk:"minimum_protocol_version" json:"minimumProtocolVersion,omitempty"`
+						} `tfsdk:"ssl_params" json:"sslParams,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 					Url *string `tfsdk:"url" json:"url,omitempty"`
 				} `tfsdk:"http" json:"http,omitempty"`
 			} `tfsdk:"pass_through_auth" json:"passThroughAuth,omitempty"`
@@ -443,6 +483,19 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 				Name               *string            `tfsdk:"name" json:"name,omitempty"`
 				PluginFileName     *string            `tfsdk:"plugin_file_name" json:"pluginFileName,omitempty"`
 			} `tfsdk:"plugin_auth" json:"pluginAuth,omitempty"`
+			PortalAuth *struct {
+				ApiKeyHeader  *string `tfsdk:"api_key_header" json:"apiKeyHeader,omitempty"`
+				CacheDuration *string `tfsdk:"cache_duration" json:"cacheDuration,omitempty"`
+				RedisOptions  *struct {
+					Db               *int64  `tfsdk:"db" json:"db,omitempty"`
+					Host             *string `tfsdk:"host" json:"host,omitempty"`
+					PoolSize         *int64  `tfsdk:"pool_size" json:"poolSize,omitempty"`
+					SocketType       *string `tfsdk:"socket_type" json:"socketType,omitempty"`
+					TlsCertMountPath *string `tfsdk:"tls_cert_mount_path" json:"tlsCertMountPath,omitempty"`
+				} `tfsdk:"redis_options" json:"redisOptions,omitempty"`
+				RequestTimeout *string `tfsdk:"request_timeout" json:"requestTimeout,omitempty"`
+				Url            *string `tfsdk:"url" json:"url,omitempty"`
+			} `tfsdk:"portal_auth" json:"portalAuth,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
 		FailOnRedirect     *bool `tfsdk:"fail_on_redirect" json:"failOnRedirect,omitempty"`
 		NamespacedStatuses *struct {
@@ -1384,9 +1437,152 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 											Description:         "",
 											MarkdownDescription: "",
 											Attributes: map[string]schema.Attribute{
+												"azure": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"claims_caching_options": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"db": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"host": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"pool_size": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"socket_type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"tls_cert_mount_path": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"client_id": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"client_secret": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"tenant_id": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"cache_timeout": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"claims_to_headers": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"append": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"claim": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"header": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"default": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3084,13 +3280,63 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 													Computed: false,
 												},
 
-												"tls_config": schema.MapAttribute{
+												"tls_config": schema.SingleNestedAttribute{
 													Description:         "",
 													MarkdownDescription: "",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
+													Attributes: map[string]schema.Attribute{
+														"secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"ssl_params": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"maximum_protocol_version": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"minimum_protocol_version": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 											Required: false,
@@ -3205,6 +3451,65 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 													Computed: false,
 												},
 
+												"tls_config": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"secret_ref": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"namespace": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"ssl_params": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"maximum_protocol_version": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"minimum_protocol_version": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"url": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -3253,6 +3558,96 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 										},
 
 										"plugin_file_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"portal_auth": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"api_key_header": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"cache_duration": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"redis_options": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"db": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"host": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"pool_size": schema.Int64Attribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"socket_type": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"tls_cert_mount_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"request_timeout": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"url": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

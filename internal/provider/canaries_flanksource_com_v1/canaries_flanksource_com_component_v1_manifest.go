@@ -53,6 +53,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Class          *string            `tfsdk:"class" json:"class,omitempty"`
 			External_id    *string            `tfsdk:"external_id" json:"external_id,omitempty"`
 			FieldSelector  *string            `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+			Health         *string            `tfsdk:"health" json:"health,omitempty"`
 			Id             *string            `tfsdk:"id" json:"id,omitempty"`
 			IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 			LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
@@ -106,6 +107,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Agent          *string   `tfsdk:"agent" json:"agent,omitempty"`
 			Cache          *string   `tfsdk:"cache" json:"cache,omitempty"`
 			FieldSelector  *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+			Health         *string   `tfsdk:"health" json:"health,omitempty"`
 			Id             *string   `tfsdk:"id" json:"id,omitempty"`
 			IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
 			LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
@@ -285,6 +287,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"health": schema.StringAttribute{
+									Description:         "Health filters resources by the health. Multiple healths can be provided separated by comma.",
+									MarkdownDescription: "Health filters resources by the health. Multiple healths can be provided separated by comma.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"id": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -350,8 +360,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"statuses": schema.ListAttribute{
-									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
-									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									Description:         "Statuses filter resources by the status",
+									MarkdownDescription: "Statuses filter resources by the status",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -384,8 +394,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"types": schema.ListAttribute{
-									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
-									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									Description:         "Types filter resources by the type",
+									MarkdownDescription: "Types filter resources by the type",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -688,6 +698,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"health": schema.StringAttribute{
+									Description:         "Health filters resources by the health. Multiple healths can be provided separated by comma.",
+									MarkdownDescription: "Health filters resources by the health. Multiple healths can be provided separated by comma.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"id": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -753,8 +771,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"statuses": schema.ListAttribute{
-									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
-									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									Description:         "Statuses filter resources by the status",
+									MarkdownDescription: "Statuses filter resources by the status",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -770,8 +788,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"types": schema.ListAttribute{
-									Description:         "StringArray represents a one-dimensional array of the PostgreSQL character types.",
-									MarkdownDescription: "StringArray represents a one-dimensional array of the PostgreSQL character types.",
+									Description:         "Types filter resources by the type",
+									MarkdownDescription: "Types filter resources by the type",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

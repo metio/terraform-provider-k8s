@@ -44,6 +44,7 @@ type KuadrantIoDnsrecordV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Delegate  *bool `tfsdk:"delegate" json:"delegate,omitempty"`
 		Endpoints *[]struct {
 			DnsName          *string            `tfsdk:"dns_name" json:"dnsName,omitempty"`
 			Labels           *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -60,12 +61,11 @@ type KuadrantIoDnsrecordV1Alpha1ManifestData struct {
 			AdditionalHeadersRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"additional_headers_ref" json:"additionalHeadersRef,omitempty"`
-			AllowInsecureCertificate *bool   `tfsdk:"allow_insecure_certificate" json:"allowInsecureCertificate,omitempty"`
-			FailureThreshold         *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
-			Interval                 *string `tfsdk:"interval" json:"interval,omitempty"`
-			Path                     *string `tfsdk:"path" json:"path,omitempty"`
-			Port                     *int64  `tfsdk:"port" json:"port,omitempty"`
-			Protocol                 *string `tfsdk:"protocol" json:"protocol,omitempty"`
+			FailureThreshold *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			Interval         *string `tfsdk:"interval" json:"interval,omitempty"`
+			Path             *string `tfsdk:"path" json:"path,omitempty"`
+			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
+			Protocol         *string `tfsdk:"protocol" json:"protocol,omitempty"`
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 		OwnerID     *string `tfsdk:"owner_id" json:"ownerID,omitempty"`
 		ProviderRef *struct {
@@ -152,6 +152,14 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "DNSRecordSpec defines the desired state of DNSRecord",
 				MarkdownDescription: "DNSRecordSpec defines the desired state of DNSRecord",
 				Attributes: map[string]schema.Attribute{
+					"delegate": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"endpoints": schema.ListNestedAttribute{
 						Description:         "endpoints is a list of endpoints that will be published into the dns provider.",
 						MarkdownDescription: "endpoints is a list of endpoints that will be published into the dns provider.",
@@ -261,25 +269,17 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Computed: false,
 							},
 
-							"allow_insecure_certificate": schema.BoolAttribute{
-								Description:         "AllowInsecureCertificate will instruct the health check probe to not fail on a self-signed or otherwise invalid SSL certificate this is primarily used in development or testing environments",
-								MarkdownDescription: "AllowInsecureCertificate will instruct the health check probe to not fail on a self-signed or otherwise invalid SSL certificate this is primarily used in development or testing environments",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"failure_threshold": schema.Int64Attribute{
-								Description:         "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy",
-								MarkdownDescription: "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy",
+								Description:         "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy Defaults to 5",
+								MarkdownDescription: "FailureThreshold is a limit of consecutive failures that must occur for a host to be considered unhealthy Defaults to 5",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"interval": schema.StringAttribute{
-								Description:         "Interval defines how frequently this probe should execute",
-								MarkdownDescription: "Interval defines how frequently this probe should execute",
+								Description:         "Interval defines how frequently this probe should execute Defaults to 5 minutes",
+								MarkdownDescription: "Interval defines how frequently this probe should execute Defaults to 5 minutes",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -297,16 +297,16 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"port": schema.Int64Attribute{
-								Description:         "Port to connect to the host on. Must be either 80, 443 or 1024-49151",
-								MarkdownDescription: "Port to connect to the host on. Must be either 80, 443 or 1024-49151",
+								Description:         "Port to connect to the host on. Must be either 80, 443 or 1024-49151 Defaults to port 443",
+								MarkdownDescription: "Port to connect to the host on. Must be either 80, 443 or 1024-49151 Defaults to port 443",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"protocol": schema.StringAttribute{
-								Description:         "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'",
-								MarkdownDescription: "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS'",
+								Description:         "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS' Defaults to HTTPS",
+								MarkdownDescription: "Protocol to use when connecting to the host, valid values are 'HTTP' or 'HTTPS' Defaults to HTTPS",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -330,8 +330,8 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"provider_ref": schema.SingleNestedAttribute{
-						Description:         "providerRef is a reference to a provider secret.",
-						MarkdownDescription: "providerRef is a reference to a provider secret.",
+						Description:         "ProviderRef is a reference to a provider secret.",
+						MarkdownDescription: "ProviderRef is a reference to a provider secret.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "",
@@ -339,13 +339,10 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.LengthAtLeast(1),
-								},
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

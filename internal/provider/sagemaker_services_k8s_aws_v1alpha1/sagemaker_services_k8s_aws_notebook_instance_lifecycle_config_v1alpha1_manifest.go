@@ -131,8 +131,8 @@ func (r *SagemakerServicesK8SAwsNotebookInstanceLifecycleConfigV1Alpha1Manifest)
 				MarkdownDescription: "NotebookInstanceLifecycleConfigSpec defines the desired state of NotebookInstanceLifecycleConfig.",
 				Attributes: map[string]schema.Attribute{
 					"notebook_instance_lifecycle_config_name": schema.StringAttribute{
-						Description:         "The name of the lifecycle configuration.",
-						MarkdownDescription: "The name of the lifecycle configuration.",
+						Description:         "The name of the lifecycle configuration. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
+						MarkdownDescription: "The name of the lifecycle configuration. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9])*$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

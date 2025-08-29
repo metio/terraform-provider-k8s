@@ -597,7 +597,11 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			} `tfsdk:"default_plugins" json:"defaultPlugins,omitempty"`
 			DeploymentStrategy                *string `tfsdk:"deployment_strategy" json:"deploymentStrategy,omitempty"`
 			DisableContainerBuildCapabilities *bool   `tfsdk:"disable_container_build_capabilities" json:"disableContainerBuildCapabilities,omitempty"`
-			GatewayContainer                  *struct {
+			EditorsDownloadUrls               *[]struct {
+				Editor *string `tfsdk:"editor" json:"editor,omitempty"`
+				Url    *string `tfsdk:"url" json:"url,omitempty"`
+			} `tfsdk:"editors_download_urls" json:"editorsDownloadUrls,omitempty"`
+			GatewayContainer *struct {
 				Env *[]struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -637,13 +641,20 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					} `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"gateway_container" json:"gatewayContainer,omitempty"`
-			IgnoredUnrecoverableEvents             *[]string          `tfsdk:"ignored_unrecoverable_events" json:"ignoredUnrecoverableEvents,omitempty"`
-			ImagePullPolicy                        *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			MaxNumberOfRunningWorkspacesPerCluster *int64             `tfsdk:"max_number_of_running_workspaces_per_cluster" json:"maxNumberOfRunningWorkspacesPerCluster,omitempty"`
-			MaxNumberOfRunningWorkspacesPerUser    *int64             `tfsdk:"max_number_of_running_workspaces_per_user" json:"maxNumberOfRunningWorkspacesPerUser,omitempty"`
-			MaxNumberOfWorkspacesPerUser           *int64             `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
-			NodeSelector                           *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			PersistUserHome                        *struct {
+			IgnoredUnrecoverableEvents             *[]string `tfsdk:"ignored_unrecoverable_events" json:"ignoredUnrecoverableEvents,omitempty"`
+			ImagePullPolicy                        *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			MaxNumberOfRunningWorkspacesPerCluster *int64    `tfsdk:"max_number_of_running_workspaces_per_cluster" json:"maxNumberOfRunningWorkspacesPerCluster,omitempty"`
+			MaxNumberOfRunningWorkspacesPerUser    *int64    `tfsdk:"max_number_of_running_workspaces_per_user" json:"maxNumberOfRunningWorkspacesPerUser,omitempty"`
+			MaxNumberOfWorkspacesPerUser           *int64    `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
+			Networking                             *struct {
+				ExternalTLSConfig *struct {
+					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Enabled     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+				} `tfsdk:"external_tls_config" json:"externalTLSConfig,omitempty"`
+			} `tfsdk:"networking" json:"networking,omitempty"`
+			NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PersistUserHome *struct {
 				DisableInitContainer *bool `tfsdk:"disable_init_container" json:"disableInitContainer,omitempty"`
 				Enabled              *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"persist_user_home" json:"persistUserHome,omitempty"`
@@ -694,7 +705,11 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			Security                        *struct {
 				ContainerSecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -722,11 +737,16 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 				PodSecurityContext *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 					RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+					SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 					SeLinuxOptions      *struct {
 						Level *string `tfsdk:"level" json:"level,omitempty"`
 						Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -737,8 +757,9 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -761,12 +782,14 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			StartTimeoutSeconds *int64 `tfsdk:"start_timeout_seconds" json:"startTimeoutSeconds,omitempty"`
 			Storage             *struct {
 				PerUserStrategyPvcConfig *struct {
-					ClaimSize    *string `tfsdk:"claim_size" json:"claimSize,omitempty"`
-					StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
+					ClaimSize         *string   `tfsdk:"claim_size" json:"claimSize,omitempty"`
+					StorageAccessMode *[]string `tfsdk:"storage_access_mode" json:"storageAccessMode,omitempty"`
+					StorageClass      *string   `tfsdk:"storage_class" json:"storageClass,omitempty"`
 				} `tfsdk:"per_user_strategy_pvc_config" json:"perUserStrategyPvcConfig,omitempty"`
 				PerWorkspaceStrategyPvcConfig *struct {
-					ClaimSize    *string `tfsdk:"claim_size" json:"claimSize,omitempty"`
-					StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
+					ClaimSize         *string   `tfsdk:"claim_size" json:"claimSize,omitempty"`
+					StorageAccessMode *[]string `tfsdk:"storage_access_mode" json:"storageAccessMode,omitempty"`
+					StorageClass      *string   `tfsdk:"storage_class" json:"storageClass,omitempty"`
 				} `tfsdk:"per_workspace_strategy_pvc_config" json:"perWorkspaceStrategyPvcConfig,omitempty"`
 				PvcStrategy *string `tfsdk:"pvc_strategy" json:"pvcStrategy,omitempty"`
 			} `tfsdk:"storage" json:"storage,omitempty"`
@@ -778,7 +801,8 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			TrustedCerts *struct {
-				GitTrustedCertsConfigMapName *string `tfsdk:"git_trusted_certs_config_map_name" json:"gitTrustedCertsConfigMapName,omitempty"`
+				DisableWorkspaceCaBundleMount *bool   `tfsdk:"disable_workspace_ca_bundle_mount" json:"disableWorkspaceCaBundleMount,omitempty"`
+				GitTrustedCertsConfigMapName  *string `tfsdk:"git_trusted_certs_config_map_name" json:"gitTrustedCertsConfigMapName,omitempty"`
 			} `tfsdk:"trusted_certs" json:"trustedCerts,omitempty"`
 			User *struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
@@ -1044,8 +1068,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1135,8 +1159,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1378,8 +1402,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"non_proxy_hosts": schema.ListAttribute{
-												Description:         "A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example: - localhost - my.host.com - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html.",
-												MarkdownDescription: "A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example: - localhost - my.host.com - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html.",
+												Description:         "A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example: - localhost - 127.0.0.1 - my.host.com - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html. In some proxy configurations, localhost may not translate to 127.0.0.1. Both localhost and 127.0.0.1 should be specified in this situation.",
+												MarkdownDescription: "A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form '.<DOMAIN>', for example: - localhost - 127.0.0.1 - my.host.com - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining 'nonProxyHosts' in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html. In some proxy configurations, localhost may not translate to 127.0.0.1. Both localhost and 127.0.0.1 should be specified in this situation.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -1497,8 +1521,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1588,8 +1612,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -1910,8 +1934,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2001,8 +2025,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2228,8 +2252,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"url": schema.StringAttribute{
-													Description:         "The public UR of the devfile registry that serves sample ready-to-use devfiles.",
-													MarkdownDescription: "The public UR of the devfile registry that serves sample ready-to-use devfiles.",
+													Description:         "The public URL of the devfile registry that serves sample ready-to-use devfiles.",
+													MarkdownDescription: "The public URL of the devfile registry that serves sample ready-to-use devfiles.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2444,8 +2468,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2535,8 +2559,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																					},
 
 																					"name": schema.StringAttribute{
-																						Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																						MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																						Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																						MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
@@ -2847,8 +2871,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 									"open_shift_security_context_constraint": schema.StringAttribute{
 										Description:         "OpenShift security context constraint to build containers.",
 										MarkdownDescription: "OpenShift security context constraint to build containers.",
-										Required:            false,
-										Optional:            true,
+										Required:            true,
+										Optional:            false,
 										Computed:            false,
 									},
 								},
@@ -4824,6 +4848,33 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Computed:            false,
 							},
 
+							"editors_download_urls": schema.ListNestedAttribute{
+								Description:         "EditorsDownloadUrls provides a list of custom download URLs for JetBrains editors in a local-to-remote flow. It is particularly useful in disconnected or air-gapped environments, where editors cannot be downloaded from the public internet. Each entry contains an editor identifier in the 'publisher/name/version' format and the corresponding download URL. Currently, this field is intended only for JetBrains editors and should not be used for other editor types.",
+								MarkdownDescription: "EditorsDownloadUrls provides a list of custom download URLs for JetBrains editors in a local-to-remote flow. It is particularly useful in disconnected or air-gapped environments, where editors cannot be downloaded from the public internet. Each entry contains an editor identifier in the 'publisher/name/version' format and the corresponding download URL. Currently, this field is intended only for JetBrains editors and should not be used for other editor types.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"editor": schema.StringAttribute{
+											Description:         "The editor ID must have 'publisher/name/version' format.",
+											MarkdownDescription: "The editor ID must have 'publisher/name/version' format.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"url": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"gateway_container": schema.SingleNestedAttribute{
 								Description:         "GatewayContainer configuration.",
 								MarkdownDescription: "GatewayContainer configuration.",
@@ -4866,8 +4917,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4957,8 +5008,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5132,6 +5183,50 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								},
 							},
 
+							"networking": schema.SingleNestedAttribute{
+								Description:         "Configuration settings related to the workspaces networking.",
+								MarkdownDescription: "Configuration settings related to the workspaces networking.",
+								Attributes: map[string]schema.Attribute{
+									"external_tls_config": schema.SingleNestedAttribute{
+										Description:         "External TLS configuration.",
+										MarkdownDescription: "External TLS configuration.",
+										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "Annotations to be applied to ingress/route objects when external TLS is enabled.",
+												MarkdownDescription: "Annotations to be applied to ingress/route objects when external TLS is enabled.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"enabled": schema.BoolAttribute{
+												Description:         "Enabled determines whether external TLS configuration is used. If set to true, the operator will not set TLS config for ingress/route objects. Instead, it ensures that any custom TLS configuration will not be reverted on synchronization.",
+												MarkdownDescription: "Enabled determines whether external TLS configuration is used. If set to true, the operator will not set TLS config for ingress/route objects. Instead, it ensures that any custom TLS configuration will not be reverted on synchronization.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "Labels to be applied to ingress/route objects when external TLS is enabled.",
+												MarkdownDescription: "Labels to be applied to ingress/route objects when external TLS is enabled.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"node_selector": schema.MapAttribute{
 								Description:         "The node selector limits the nodes that can run the workspace pods.",
 								MarkdownDescription: "The node selector limits the nodes that can run the workspace pods.",
@@ -5216,8 +5311,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5307,8 +5402,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -5469,6 +5564,31 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed:            false,
 											},
 
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capabilities": schema.SingleNestedAttribute{
 												Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -5505,8 +5625,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"proc_mount": schema.StringAttribute{
-												Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5590,8 +5710,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												MarkdownDescription: "The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows.",
 												Attributes: map[string]schema.Attribute{
 													"localhost_profile": schema.StringAttribute{
-														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5631,8 +5751,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 													},
 
 													"host_process": schema.BoolAttribute{
-														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5660,6 +5780,31 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 										Description:         "PodSecurityContext used by all workspace-related pods. If set, defined values are merged into the default PodSecurityContext configuration.",
 										MarkdownDescription: "PodSecurityContext used by all workspace-related pods. If set, defined values are merged into the default PodSecurityContext configuration.",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -5695,6 +5840,14 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 											"run_as_user": schema.Int64Attribute{
 												Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"se_linux_change_policy": schema.StringAttribute{
+												Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5746,8 +5899,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												MarkdownDescription: "The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
 												Attributes: map[string]schema.Attribute{
 													"localhost_profile": schema.StringAttribute{
-														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
-														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.",
+														Description:         "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+														MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5767,9 +5920,17 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"supplemental_groups": schema.ListAttribute{
-												Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-												MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+												Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5823,8 +5984,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 													},
 
 													"host_process": schema.BoolAttribute{
-														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
-														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+														MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5946,6 +6107,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 												Computed:            false,
 											},
 
+											"storage_access_mode": schema.ListAttribute{
+												Description:         "StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces. It defaults to ReadWriteOnce if not specified",
+												MarkdownDescription: "StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces. It defaults to ReadWriteOnce if not specified",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"storage_class": schema.StringAttribute{
 												Description:         "Storage class for the Persistent Volume Claim. When omitted or left blank, a default storage class is used.",
 												MarkdownDescription: "Storage class for the Persistent Volume Claim. When omitted or left blank, a default storage class is used.",
@@ -5966,6 +6136,15 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 											"claim_size": schema.StringAttribute{
 												Description:         "Persistent Volume Claim size. To update the claim size, the storage class that provisions it must support resizing.",
 												MarkdownDescription: "Persistent Volume Claim size. To update the claim size, the storage class that provisions it must support resizing.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"storage_access_mode": schema.ListAttribute{
+												Description:         "StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces. It defaults to ReadWriteOnce if not specified",
+												MarkdownDescription: "StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces. It defaults to ReadWriteOnce if not specified",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6055,6 +6234,14 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Description:         "Trusted certificate settings.",
 								MarkdownDescription: "Trusted certificate settings.",
 								Attributes: map[string]schema.Attribute{
+									"disable_workspace_ca_bundle_mount": schema.BoolAttribute{
+										Description:         "By default, the Operator creates and mounts the 'ca-certs-merged' ConfigMap containing the CA certificate bundle in users' workspaces at two locations: '/public-certs' and '/etc/pki/ca-trust/extracted/pem'. The '/etc/pki/ca-trust/extracted/pem' directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). This option disables mounting the CA bundle to the '/etc/pki/ca-trust/extracted/pem' directory while still mounting it to '/public-certs'.",
+										MarkdownDescription: "By default, the Operator creates and mounts the 'ca-certs-merged' ConfigMap containing the CA certificate bundle in users' workspaces at two locations: '/public-certs' and '/etc/pki/ca-trust/extracted/pem'. The '/etc/pki/ca-trust/extracted/pem' directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). This option disables mounting the CA bundle to the '/etc/pki/ca-trust/extracted/pem' directory while still mounting it to '/public-certs'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"git_trusted_certs_config_map_name": schema.StringAttribute{
 										Description:         "The ConfigMap contains certificates to propagate to the Che components and to provide a particular configuration for Git. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/deploying-che-with-support-for-git-repositories-with-self-signed-certificates/ The ConfigMap must have a 'app.kubernetes.io/part-of=che.eclipse.org' label.",
 										MarkdownDescription: "The ConfigMap contains certificates to propagate to the Che components and to provide a particular configuration for Git. See the following page: https://www.eclipse.org/che/docs/stable/administration-guide/deploying-che-with-support-for-git-repositories-with-self-signed-certificates/ The ConfigMap must have a 'app.kubernetes.io/part-of=che.eclipse.org' label.",
@@ -6339,8 +6526,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
@@ -6430,8 +6617,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 																							},
 
 																							"name": schema.StringAttribute{
-																								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																								MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,

@@ -156,16 +156,16 @@ func (r *EksServicesK8SAwsAddonV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"cluster_name": schema.StringAttribute{
-						Description:         "The name of your cluster.",
-						MarkdownDescription: "The name of your cluster.",
+						Description:         "The name of your cluster. Regex Pattern: '^[0-9A-Za-z][A-Za-z0-9-_]*$'",
+						MarkdownDescription: "The name of your cluster. Regex Pattern: '^[0-9A-Za-z][A-Za-z0-9-_]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -222,8 +222,8 @@ func (r *EksServicesK8SAwsAddonV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"pod_identity_associations": schema.ListNestedAttribute{
-						Description:         "An array of Pod Identity Assocations to be created. Each EKS Pod Identity association maps a Kubernetes service account to an IAM Role. For more information, see Attach an IAM Role to an Amazon EKS add-on using Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the EKS User Guide.",
-						MarkdownDescription: "An array of Pod Identity Assocations to be created. Each EKS Pod Identity association maps a Kubernetes service account to an IAM Role. For more information, see Attach an IAM Role to an Amazon EKS add-on using Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the EKS User Guide.",
+						Description:         "An array of EKS Pod Identity associations to be created. Each association maps a Kubernetes service account to an IAM role. For more information, see Attach an IAM Role to an Amazon EKS add-on using EKS Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "An array of EKS Pod Identity associations to be created. Each association maps a Kubernetes service account to an IAM role. For more information, see Attach an IAM Role to an Amazon EKS add-on using EKS Pod Identity (https://docs.aws.amazon.com/eks/latest/userguide/add-ons-iam.html) in the Amazon EKS User Guide.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"role_arn": schema.StringAttribute{

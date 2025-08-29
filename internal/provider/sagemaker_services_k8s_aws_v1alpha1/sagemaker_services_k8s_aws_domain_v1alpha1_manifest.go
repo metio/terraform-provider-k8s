@@ -755,12 +755,12 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 							},
 
 							"space_storage_settings": schema.SingleNestedAttribute{
-								Description:         "The default storage settings for a private space.",
-								MarkdownDescription: "The default storage settings for a private space.",
+								Description:         "The default storage settings for a space.",
+								MarkdownDescription: "The default storage settings for a space.",
 								Attributes: map[string]schema.Attribute{
 									"default_ebs_storage_settings": schema.SingleNestedAttribute{
-										Description:         "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
-										MarkdownDescription: "A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.",
+										Description:         "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
+										MarkdownDescription: "A collection of default EBS storage settings that apply to spaces created within a domain or user profile.",
 										Attributes: map[string]schema.Attribute{
 											"default_ebs_volume_size_in_gb": schema.Int64Attribute{
 												Description:         "",
@@ -860,8 +860,8 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"domain_name": schema.StringAttribute{
-						Description:         "A name for the domain.",
-						MarkdownDescription: "A name for the domain.",
+						Description:         "A name for the domain. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "A name for the domain. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -994,16 +994,16 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"home_efs_file_system_kms_key_id": schema.StringAttribute{
-						Description:         "Use KmsKeyId.",
-						MarkdownDescription: "Use KmsKeyId.",
+						Description:         "Use KmsKeyId. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
+						MarkdownDescription: "Use KmsKeyId. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
-						MarkdownDescription: "SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.",
+						Description:         "SageMaker uses Amazon Web Services KMS to encrypt EFS and EBS volumes attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
+						MarkdownDescription: "SageMaker uses Amazon Web Services KMS to encrypt EFS and EBS volumes attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key. Regex Pattern: '^[a-zA-Z0-9:/_-]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1046,8 +1046,8 @@ func (r *SagemakerServicesK8SAwsDomainV1Alpha1Manifest) Schema(_ context.Context
 					},
 
 					"vpc_id": schema.StringAttribute{
-						Description:         "The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication.",
-						MarkdownDescription: "The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication.",
+						Description:         "The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication. Regex Pattern: '^[-0-9a-zA-Z]+$'",
+						MarkdownDescription: "The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication. Regex Pattern: '^[-0-9a-zA-Z]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

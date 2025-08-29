@@ -54,6 +54,7 @@ type SriovnetworkOpenshiftIoSriovNetworkNodePolicyV1ManifestData struct {
 				Uplink *struct {
 					Interface *struct {
 						ExternalIDs *map[string]string `tfsdk:"external_i_ds" json:"externalIDs,omitempty"`
+						MtuRequest  *int64             `tfsdk:"mtu_request" json:"mtuRequest,omitempty"`
 						Options     *map[string]string `tfsdk:"options" json:"options,omitempty"`
 						OtherConfig *map[string]string `tfsdk:"other_config" json:"otherConfig,omitempty"`
 						Type        *string            `tfsdk:"type" json:"type,omitempty"`
@@ -216,6 +217,14 @@ func (r *SriovnetworkOpenshiftIoSriovNetworkNodePolicyV1Manifest) Schema(_ conte
 														Description:         "external_ids field in the Interface table in OVSDB",
 														MarkdownDescription: "external_ids field in the Interface table in OVSDB",
 														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"mtu_request": schema.Int64Attribute{
+														Description:         "mtu_request field in the Interface table in OVSDB",
+														MarkdownDescription: "mtu_request field in the Interface table in OVSDB",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

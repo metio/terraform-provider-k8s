@@ -676,8 +676,8 @@ func (r *SagemakerServicesK8SAwsMonitoringScheduleV1Alpha1Manifest) Schema(_ con
 					},
 
 					"monitoring_schedule_name": schema.StringAttribute{
-						Description:         "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account.",
-						MarkdownDescription: "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account.",
+						Description:         "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the monitoring schedule. The name must be unique within an Amazon Web Services Region within an Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

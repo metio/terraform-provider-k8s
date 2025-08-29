@@ -60,10 +60,11 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 			Limit *int64 `tfsdk:"limit" json:"limit,omitempty"`
 		} `tfsdk:"retry" json:"retry,omitempty"`
 		Sync *struct {
-			DryRun    *bool     `tfsdk:"dry_run" json:"dryRun,omitempty"`
-			Manifests *[]string `tfsdk:"manifests" json:"manifests,omitempty"`
-			Prune     *bool     `tfsdk:"prune" json:"prune,omitempty"`
-			Resources *[]struct {
+			AutoHealAttemptsCount *int64    `tfsdk:"auto_heal_attempts_count" json:"autoHealAttemptsCount,omitempty"`
+			DryRun                *bool     `tfsdk:"dry_run" json:"dryRun,omitempty"`
+			Manifests             *[]string `tfsdk:"manifests" json:"manifests,omitempty"`
+			Prune                 *bool     `tfsdk:"prune" json:"prune,omitempty"`
+			Resources             *[]struct {
 				Group     *string `tfsdk:"group" json:"group,omitempty"`
 				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -92,32 +93,41 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 				} `tfsdk:"directory" json:"directory,omitempty"`
 				Helm *struct {
+					ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 					FileParameters *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Path *string `tfsdk:"path" json:"path,omitempty"`
 					} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-					IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+					IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+					KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+					Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					Parameters              *[]struct {
 						ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 						Name        *string `tfsdk:"name" json:"name,omitempty"`
 						Value       *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"parameters" json:"parameters,omitempty"`
-					PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-					ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-					SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-					ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-					Values          *string            `tfsdk:"values" json:"values,omitempty"`
-					ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-					Version         *string            `tfsdk:"version" json:"version,omitempty"`
+					PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+					ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+					SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+					SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+					SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+					ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+					Values               *string            `tfsdk:"values" json:"values,omitempty"`
+					ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+					Version              *string            `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"helm" json:"helm,omitempty"`
 				Kustomize *struct {
+					ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 					CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 					CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 					CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
 					Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 					ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 					ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
+					IgnoreMissingComponents   *bool              `tfsdk:"ignore_missing_components" json:"ignoreMissingComponents,omitempty"`
 					Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+					KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+					LabelIncludeTemplates     *bool              `tfsdk:"label_include_templates" json:"labelIncludeTemplates,omitempty"`
 					LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 					NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 					NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -142,6 +152,7 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					} `tfsdk:"replicas" json:"replicas,omitempty"`
 					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+				Name   *string `tfsdk:"name" json:"name,omitempty"`
 				Path   *string `tfsdk:"path" json:"path,omitempty"`
 				Plugin *struct {
 					Env *[]struct {
@@ -181,32 +192,41 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 				} `tfsdk:"directory" json:"directory,omitempty"`
 				Helm *struct {
+					ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 					FileParameters *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 						Path *string `tfsdk:"path" json:"path,omitempty"`
 					} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-					IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+					IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+					KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+					Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					Parameters              *[]struct {
 						ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 						Name        *string `tfsdk:"name" json:"name,omitempty"`
 						Value       *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"parameters" json:"parameters,omitempty"`
-					PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-					ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-					SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-					ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-					Values          *string            `tfsdk:"values" json:"values,omitempty"`
-					ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-					Version         *string            `tfsdk:"version" json:"version,omitempty"`
+					PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+					ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+					SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+					SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+					SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+					ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+					Values               *string            `tfsdk:"values" json:"values,omitempty"`
+					ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+					Version              *string            `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"helm" json:"helm,omitempty"`
 				Kustomize *struct {
+					ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 					CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 					CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 					CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
 					Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 					ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 					ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
+					IgnoreMissingComponents   *bool              `tfsdk:"ignore_missing_components" json:"ignoreMissingComponents,omitempty"`
 					Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+					KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+					LabelIncludeTemplates     *bool              `tfsdk:"label_include_templates" json:"labelIncludeTemplates,omitempty"`
 					LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 					NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 					NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -231,6 +251,7 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 					} `tfsdk:"replicas" json:"replicas,omitempty"`
 					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+				Name   *string `tfsdk:"name" json:"name,omitempty"`
 				Path   *string `tfsdk:"path" json:"path,omitempty"`
 				Plugin *struct {
 					Env *[]struct {
@@ -302,32 +323,41 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 			} `tfsdk:"directory" json:"directory,omitempty"`
 			Helm *struct {
+				ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 				FileParameters *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-				IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+				IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+				KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+				Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				Parameters              *[]struct {
 					ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
 					Value       *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"parameters" json:"parameters,omitempty"`
-				PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-				ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-				SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-				ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-				Values          *string            `tfsdk:"values" json:"values,omitempty"`
-				ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-				Version         *string            `tfsdk:"version" json:"version,omitempty"`
+				PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+				ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+				SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+				SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+				SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+				ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+				Values               *string            `tfsdk:"values" json:"values,omitempty"`
+				ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+				Version              *string            `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"helm" json:"helm,omitempty"`
 			Kustomize *struct {
+				ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 				CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 				CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 				CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
 				Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 				ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 				ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
+				IgnoreMissingComponents   *bool              `tfsdk:"ignore_missing_components" json:"ignoreMissingComponents,omitempty"`
 				Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+				KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+				LabelIncludeTemplates     *bool              `tfsdk:"label_include_templates" json:"labelIncludeTemplates,omitempty"`
 				LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 				NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 				NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -352,6 +382,7 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				} `tfsdk:"replicas" json:"replicas,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+			Name   *string `tfsdk:"name" json:"name,omitempty"`
 			Path   *string `tfsdk:"path" json:"path,omitempty"`
 			Plugin *struct {
 				Env *[]struct {
@@ -370,6 +401,20 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 			RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
 			TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
 		} `tfsdk:"source" json:"source,omitempty"`
+		SourceHydrator *struct {
+			DrySource *struct {
+				Path           *string `tfsdk:"path" json:"path,omitempty"`
+				RepoURL        *string `tfsdk:"repo_url" json:"repoURL,omitempty"`
+				TargetRevision *string `tfsdk:"target_revision" json:"targetRevision,omitempty"`
+			} `tfsdk:"dry_source" json:"drySource,omitempty"`
+			HydrateTo *struct {
+				TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+			} `tfsdk:"hydrate_to" json:"hydrateTo,omitempty"`
+			SyncSource *struct {
+				Path         *string `tfsdk:"path" json:"path,omitempty"`
+				TargetBranch *string `tfsdk:"target_branch" json:"targetBranch,omitempty"`
+			} `tfsdk:"sync_source" json:"syncSource,omitempty"`
+		} `tfsdk:"source_hydrator" json:"sourceHydrator,omitempty"`
 		Sources *[]struct {
 			Chart     *string `tfsdk:"chart" json:"chart,omitempty"`
 			Directory *struct {
@@ -391,32 +436,41 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				Recurse *bool `tfsdk:"recurse" json:"recurse,omitempty"`
 			} `tfsdk:"directory" json:"directory,omitempty"`
 			Helm *struct {
+				ApiVersions    *[]string `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 				FileParameters *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 				} `tfsdk:"file_parameters" json:"fileParameters,omitempty"`
-				IgnoreMissingValueFiles *bool `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+				IgnoreMissingValueFiles *bool   `tfsdk:"ignore_missing_value_files" json:"ignoreMissingValueFiles,omitempty"`
+				KubeVersion             *string `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+				Namespace               *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				Parameters              *[]struct {
 					ForceString *bool   `tfsdk:"force_string" json:"forceString,omitempty"`
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
 					Value       *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"parameters" json:"parameters,omitempty"`
-				PassCredentials *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
-				ReleaseName     *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
-				SkipCrds        *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
-				ValueFiles      *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
-				Values          *string            `tfsdk:"values" json:"values,omitempty"`
-				ValuesObject    *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
-				Version         *string            `tfsdk:"version" json:"version,omitempty"`
+				PassCredentials      *bool              `tfsdk:"pass_credentials" json:"passCredentials,omitempty"`
+				ReleaseName          *string            `tfsdk:"release_name" json:"releaseName,omitempty"`
+				SkipCrds             *bool              `tfsdk:"skip_crds" json:"skipCrds,omitempty"`
+				SkipSchemaValidation *bool              `tfsdk:"skip_schema_validation" json:"skipSchemaValidation,omitempty"`
+				SkipTests            *bool              `tfsdk:"skip_tests" json:"skipTests,omitempty"`
+				ValueFiles           *[]string          `tfsdk:"value_files" json:"valueFiles,omitempty"`
+				Values               *string            `tfsdk:"values" json:"values,omitempty"`
+				ValuesObject         *map[string]string `tfsdk:"values_object" json:"valuesObject,omitempty"`
+				Version              *string            `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"helm" json:"helm,omitempty"`
 			Kustomize *struct {
+				ApiVersions               *[]string          `tfsdk:"api_versions" json:"apiVersions,omitempty"`
 				CommonAnnotations         *map[string]string `tfsdk:"common_annotations" json:"commonAnnotations,omitempty"`
 				CommonAnnotationsEnvsubst *bool              `tfsdk:"common_annotations_envsubst" json:"commonAnnotationsEnvsubst,omitempty"`
 				CommonLabels              *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
 				Components                *[]string          `tfsdk:"components" json:"components,omitempty"`
 				ForceCommonAnnotations    *bool              `tfsdk:"force_common_annotations" json:"forceCommonAnnotations,omitempty"`
 				ForceCommonLabels         *bool              `tfsdk:"force_common_labels" json:"forceCommonLabels,omitempty"`
+				IgnoreMissingComponents   *bool              `tfsdk:"ignore_missing_components" json:"ignoreMissingComponents,omitempty"`
 				Images                    *[]string          `tfsdk:"images" json:"images,omitempty"`
+				KubeVersion               *string            `tfsdk:"kube_version" json:"kubeVersion,omitempty"`
+				LabelIncludeTemplates     *bool              `tfsdk:"label_include_templates" json:"labelIncludeTemplates,omitempty"`
 				LabelWithoutSelector      *bool              `tfsdk:"label_without_selector" json:"labelWithoutSelector,omitempty"`
 				NamePrefix                *string            `tfsdk:"name_prefix" json:"namePrefix,omitempty"`
 				NameSuffix                *string            `tfsdk:"name_suffix" json:"nameSuffix,omitempty"`
@@ -441,6 +495,7 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 				} `tfsdk:"replicas" json:"replicas,omitempty"`
 				Version *string `tfsdk:"version" json:"version,omitempty"`
 			} `tfsdk:"kustomize" json:"kustomize,omitempty"`
+			Name   *string `tfsdk:"name" json:"name,omitempty"`
 			Path   *string `tfsdk:"path" json:"path,omitempty"`
 			Plugin *struct {
 				Env *[]struct {
@@ -462,6 +517,7 @@ type ArgoprojIoApplicationV1Alpha1ManifestData struct {
 		SyncPolicy *struct {
 			Automated *struct {
 				AllowEmpty *bool `tfsdk:"allow_empty" json:"allowEmpty,omitempty"`
+				Enabled    *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				Prune      *bool `tfsdk:"prune" json:"prune,omitempty"`
 				SelfHeal   *bool `tfsdk:"self_heal" json:"selfHeal,omitempty"`
 			} `tfsdk:"automated" json:"automated,omitempty"`
@@ -665,6 +721,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Description:         "Sync contains parameters for the operation",
 						MarkdownDescription: "Sync contains parameters for the operation",
 						Attributes: map[string]schema.Attribute{
+							"auto_heal_attempts_count": schema.Int64Attribute{
+								Description:         "SelfHealAttemptsCount contains the number of auto-heal attempts",
+								MarkdownDescription: "SelfHealAttemptsCount contains the number of auto-heal attempts",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"dry_run": schema.BoolAttribute{
 								Description:         "DryRun specifies to perform a 'kubectl apply --dry-run' without actually performing the sync",
 								MarkdownDescription: "DryRun specifies to perform a 'kubectl apply --dry-run' without actually performing the sync",
@@ -887,6 +951,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Description:         "Helm holds helm specific options",
 										MarkdownDescription: "Helm holds helm specific options",
 										Attributes: map[string]schema.Attribute{
+											"api_versions": schema.ListAttribute{
+												Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+												MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"file_parameters": schema.ListNestedAttribute{
 												Description:         "FileParameters are file parameters to the helm template",
 												MarkdownDescription: "FileParameters are file parameters to the helm template",
@@ -917,6 +990,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											"ignore_missing_value_files": schema.BoolAttribute{
 												Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
 												MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kube_version": schema.StringAttribute{
+												Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+												MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
+												MarkdownDescription: "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -981,6 +1070,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed:            false,
 											},
 
+											"skip_schema_validation": schema.BoolAttribute{
+												Description:         "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+												MarkdownDescription: "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"skip_tests": schema.BoolAttribute{
+												Description:         "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+												MarkdownDescription: "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"value_files": schema.ListAttribute{
 												Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
 												MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
@@ -1024,6 +1129,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Description:         "Kustomize holds kustomize specific options",
 										MarkdownDescription: "Kustomize holds kustomize specific options",
 										Attributes: map[string]schema.Attribute{
+											"api_versions": schema.ListAttribute{
+												Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+												MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"common_annotations": schema.MapAttribute{
 												Description:         "CommonAnnotations is a list of additional annotations to add to rendered manifests",
 												MarkdownDescription: "CommonAnnotations is a list of additional annotations to add to rendered manifests",
@@ -1075,10 +1189,34 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 												Computed:            false,
 											},
 
+											"ignore_missing_components": schema.BoolAttribute{
+												Description:         "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+												MarkdownDescription: "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"images": schema.ListAttribute{
 												Description:         "Images is a list of Kustomize image override specifications",
 												MarkdownDescription: "Images is a list of Kustomize image override specifications",
 												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kube_version": schema.StringAttribute{
+												Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+												MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"label_include_templates": schema.BoolAttribute{
+												Description:         "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
+												MarkdownDescription: "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1255,6 +1393,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+										MarkdownDescription: "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"path": schema.StringAttribute{
@@ -1521,6 +1667,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Description:         "Helm holds helm specific options",
 											MarkdownDescription: "Helm holds helm specific options",
 											Attributes: map[string]schema.Attribute{
+												"api_versions": schema.ListAttribute{
+													Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+													MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"file_parameters": schema.ListNestedAttribute{
 													Description:         "FileParameters are file parameters to the helm template",
 													MarkdownDescription: "FileParameters are file parameters to the helm template",
@@ -1551,6 +1706,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 												"ignore_missing_value_files": schema.BoolAttribute{
 													Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
 													MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kube_version": schema.StringAttribute{
+													Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+													MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
+													MarkdownDescription: "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1615,6 +1786,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 													Computed:            false,
 												},
 
+												"skip_schema_validation": schema.BoolAttribute{
+													Description:         "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+													MarkdownDescription: "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"skip_tests": schema.BoolAttribute{
+													Description:         "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+													MarkdownDescription: "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"value_files": schema.ListAttribute{
 													Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
 													MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
@@ -1658,6 +1845,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Description:         "Kustomize holds kustomize specific options",
 											MarkdownDescription: "Kustomize holds kustomize specific options",
 											Attributes: map[string]schema.Attribute{
+												"api_versions": schema.ListAttribute{
+													Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+													MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"common_annotations": schema.MapAttribute{
 													Description:         "CommonAnnotations is a list of additional annotations to add to rendered manifests",
 													MarkdownDescription: "CommonAnnotations is a list of additional annotations to add to rendered manifests",
@@ -1709,10 +1905,34 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 													Computed:            false,
 												},
 
+												"ignore_missing_components": schema.BoolAttribute{
+													Description:         "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+													MarkdownDescription: "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"images": schema.ListAttribute{
 													Description:         "Images is a list of Kustomize image override specifications",
 													MarkdownDescription: "Images is a list of Kustomize image override specifications",
 													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kube_version": schema.StringAttribute{
+													Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+													MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"label_include_templates": schema.BoolAttribute{
+													Description:         "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
+													MarkdownDescription: "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1889,6 +2109,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+											MarkdownDescription: "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"path": schema.StringAttribute{
@@ -2367,6 +2595,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "Helm holds helm specific options",
 								MarkdownDescription: "Helm holds helm specific options",
 								Attributes: map[string]schema.Attribute{
+									"api_versions": schema.ListAttribute{
+										Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+										MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"file_parameters": schema.ListNestedAttribute{
 										Description:         "FileParameters are file parameters to the helm template",
 										MarkdownDescription: "FileParameters are file parameters to the helm template",
@@ -2397,6 +2634,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									"ignore_missing_value_files": schema.BoolAttribute{
 										Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
 										MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kube_version": schema.StringAttribute{
+										Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+										MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
+										MarkdownDescription: "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2461,6 +2714,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Computed:            false,
 									},
 
+									"skip_schema_validation": schema.BoolAttribute{
+										Description:         "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+										MarkdownDescription: "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"skip_tests": schema.BoolAttribute{
+										Description:         "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+										MarkdownDescription: "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"value_files": schema.ListAttribute{
 										Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
 										MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
@@ -2504,6 +2773,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Description:         "Kustomize holds kustomize specific options",
 								MarkdownDescription: "Kustomize holds kustomize specific options",
 								Attributes: map[string]schema.Attribute{
+									"api_versions": schema.ListAttribute{
+										Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+										MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"common_annotations": schema.MapAttribute{
 										Description:         "CommonAnnotations is a list of additional annotations to add to rendered manifests",
 										MarkdownDescription: "CommonAnnotations is a list of additional annotations to add to rendered manifests",
@@ -2555,10 +2833,34 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										Computed:            false,
 									},
 
+									"ignore_missing_components": schema.BoolAttribute{
+										Description:         "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+										MarkdownDescription: "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"images": schema.ListAttribute{
 										Description:         "Images is a list of Kustomize image override specifications",
 										MarkdownDescription: "Images is a list of Kustomize image override specifications",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kube_version": schema.StringAttribute{
+										Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+										MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"label_include_templates": schema.BoolAttribute{
+										Description:         "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
+										MarkdownDescription: "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2737,6 +3039,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed: false,
 							},
 
+							"name": schema.StringAttribute{
+								Description:         "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+								MarkdownDescription: "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"path": schema.StringAttribute{
 								Description:         "Path is a directory path within the Git repository, and is only valid for applications sourced from Git.",
 								MarkdownDescription: "Path is a directory path within the Git repository, and is only valid for applications sourced from Git.",
@@ -2856,6 +3166,90 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"source_hydrator": schema.SingleNestedAttribute{
+						Description:         "SourceHydrator provides a way to push hydrated manifests back to git before syncing them to the cluster.",
+						MarkdownDescription: "SourceHydrator provides a way to push hydrated manifests back to git before syncing them to the cluster.",
+						Attributes: map[string]schema.Attribute{
+							"dry_source": schema.SingleNestedAttribute{
+								Description:         "DrySource specifies where the dry 'don't repeat yourself' manifest source lives.",
+								MarkdownDescription: "DrySource specifies where the dry 'don't repeat yourself' manifest source lives.",
+								Attributes: map[string]schema.Attribute{
+									"path": schema.StringAttribute{
+										Description:         "Path is a directory path within the Git repository where the manifests are located",
+										MarkdownDescription: "Path is a directory path within the Git repository where the manifests are located",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"repo_url": schema.StringAttribute{
+										Description:         "RepoURL is the URL to the git repository that contains the application manifests",
+										MarkdownDescription: "RepoURL is the URL to the git repository that contains the application manifests",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"target_revision": schema.StringAttribute{
+										Description:         "TargetRevision defines the revision of the source to hydrate",
+										MarkdownDescription: "TargetRevision defines the revision of the source to hydrate",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"hydrate_to": schema.SingleNestedAttribute{
+								Description:         "HydrateTo specifies an optional 'staging' location to push hydrated manifests to. An external system would then have to move manifests to the SyncSource, e.g. by pull request.",
+								MarkdownDescription: "HydrateTo specifies an optional 'staging' location to push hydrated manifests to. An external system would then have to move manifests to the SyncSource, e.g. by pull request.",
+								Attributes: map[string]schema.Attribute{
+									"target_branch": schema.StringAttribute{
+										Description:         "TargetBranch is the branch to which hydrated manifests should be committed",
+										MarkdownDescription: "TargetBranch is the branch to which hydrated manifests should be committed",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"sync_source": schema.SingleNestedAttribute{
+								Description:         "SyncSource specifies where to sync hydrated manifests from.",
+								MarkdownDescription: "SyncSource specifies where to sync hydrated manifests from.",
+								Attributes: map[string]schema.Attribute{
+									"path": schema.StringAttribute{
+										Description:         "Path is a directory path within the git repository where hydrated manifests should be committed to and synced from. If hydrateTo is set, this is just the path from which hydrated manifests will be synced.",
+										MarkdownDescription: "Path is a directory path within the git repository where hydrated manifests should be committed to and synced from. If hydrateTo is set, this is just the path from which hydrated manifests will be synced.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"target_branch": schema.StringAttribute{
+										Description:         "TargetBranch is the branch to which hydrated manifests should be committed",
+										MarkdownDescription: "TargetBranch is the branch to which hydrated manifests should be committed",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -3001,6 +3395,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Description:         "Helm holds helm specific options",
 									MarkdownDescription: "Helm holds helm specific options",
 									Attributes: map[string]schema.Attribute{
+										"api_versions": schema.ListAttribute{
+											Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+											MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"file_parameters": schema.ListNestedAttribute{
 											Description:         "FileParameters are file parameters to the helm template",
 											MarkdownDescription: "FileParameters are file parameters to the helm template",
@@ -3031,6 +3434,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"ignore_missing_value_files": schema.BoolAttribute{
 											Description:         "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
 											MarkdownDescription: "IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kube_version": schema.StringAttribute{
+											Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+											MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
+											MarkdownDescription: "Namespace is an optional namespace to template with. If left empty, defaults to the app's destination namespace.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3095,6 +3514,22 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"skip_schema_validation": schema.BoolAttribute{
+											Description:         "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+											MarkdownDescription: "SkipSchemaValidation skips JSON schema validation (Helm's --skip-schema-validation)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"skip_tests": schema.BoolAttribute{
+											Description:         "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+											MarkdownDescription: "SkipTests skips test manifest installation step (Helm's --skip-tests).",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"value_files": schema.ListAttribute{
 											Description:         "ValuesFiles is a list of Helm value files to use when generating a template",
 											MarkdownDescription: "ValuesFiles is a list of Helm value files to use when generating a template",
@@ -3138,6 +3573,15 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Description:         "Kustomize holds kustomize specific options",
 									MarkdownDescription: "Kustomize holds kustomize specific options",
 									Attributes: map[string]schema.Attribute{
+										"api_versions": schema.ListAttribute{
+											Description:         "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+											MarkdownDescription: "APIVersions specifies the Kubernetes resource API versions to pass to Helm when templating manifests. By default, Argo CD uses the API versions of the target cluster. The format is [group/]version/kind.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"common_annotations": schema.MapAttribute{
 											Description:         "CommonAnnotations is a list of additional annotations to add to rendered manifests",
 											MarkdownDescription: "CommonAnnotations is a list of additional annotations to add to rendered manifests",
@@ -3189,10 +3633,34 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Computed:            false,
 										},
 
+										"ignore_missing_components": schema.BoolAttribute{
+											Description:         "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+											MarkdownDescription: "IgnoreMissingComponents prevents kustomize from failing when components do not exist locally by not appending them to kustomization file",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"images": schema.ListAttribute{
 											Description:         "Images is a list of Kustomize image override specifications",
 											MarkdownDescription: "Images is a list of Kustomize image override specifications",
 											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kube_version": schema.StringAttribute{
+											Description:         "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+											MarkdownDescription: "KubeVersion specifies the Kubernetes API version to pass to Helm when templating manifests. By default, Argo CD uses the Kubernetes version of the target cluster.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"label_include_templates": schema.BoolAttribute{
+											Description:         "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
+											MarkdownDescription: "LabelIncludeTemplates specifies whether to apply common labels to resource templates or not",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3371,6 +3839,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"name": schema.StringAttribute{
+									Description:         "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+									MarkdownDescription: "Name is used to refer to a source and is displayed in the UI. It is used in multi-source Applications.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"path": schema.StringAttribute{
 									Description:         "Path is a directory path within the Git repository, and is only valid for applications sourced from Git.",
 									MarkdownDescription: "Path is a directory path within the Git repository, and is only valid for applications sourced from Git.",
@@ -3509,6 +3985,14 @@ func (r *ArgoprojIoApplicationV1Alpha1Manifest) Schema(_ context.Context, _ data
 									"allow_empty": schema.BoolAttribute{
 										Description:         "AllowEmpty allows apps have zero live resources (default: false)",
 										MarkdownDescription: "AllowEmpty allows apps have zero live resources (default: false)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Enable allows apps to explicitly control automated sync",
+										MarkdownDescription: "Enable allows apps to explicitly control automated sync",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

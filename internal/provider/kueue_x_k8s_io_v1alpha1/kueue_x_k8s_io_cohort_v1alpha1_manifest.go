@@ -43,6 +43,9 @@ type KueueXK8SIoCohortV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		FairSharing *struct {
+			Weight *string `tfsdk:"weight" json:"weight,omitempty"`
+		} `tfsdk:"fair_sharing" json:"fairSharing,omitempty"`
 		Parent         *string `tfsdk:"parent" json:"parent,omitempty"`
 		ResourceGroups *[]struct {
 			CoveredResources *[]string `tfsdk:"covered_resources" json:"coveredResources,omitempty"`
@@ -65,8 +68,8 @@ func (r *KueueXK8SIoCohortV1Alpha1Manifest) Metadata(_ context.Context, request 
 
 func (r *KueueXK8SIoCohortV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Cohort is the Schema for the cohorts API. Using Hierarchical Cohorts (any Cohort which has a parent) with Fair Sharing results in undefined behavior in 0.9",
-		MarkdownDescription: "Cohort is the Schema for the cohorts API. Using Hierarchical Cohorts (any Cohort which has a parent) with Fair Sharing results in undefined behavior in 0.9",
+		Description:         "Cohort defines the Cohorts API. Hierarchical Cohorts (any Cohort which has a parent) are compatible with Fair Sharing as of v0.11. Using these features together in V0.9 and V0.10 is unsupported, and results in undefined behavior.",
+		MarkdownDescription: "Cohort defines the Cohorts API. Hierarchical Cohorts (any Cohort which has a parent) are compatible with Fair Sharing as of v0.11. Using these features together in V0.9 and V0.10 is unsupported, and results in undefined behavior.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -124,6 +127,23 @@ func (r *KueueXK8SIoCohortV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 				Description:         "CohortSpec defines the desired state of Cohort",
 				MarkdownDescription: "CohortSpec defines the desired state of Cohort",
 				Attributes: map[string]schema.Attribute{
+					"fair_sharing": schema.SingleNestedAttribute{
+						Description:         "fairSharing defines the properties of the Cohort when participating in FairSharing. The values are only relevant if FairSharing is enabled in the Kueue configuration.",
+						MarkdownDescription: "fairSharing defines the properties of the Cohort when participating in FairSharing. The values are only relevant if FairSharing is enabled in the Kueue configuration.",
+						Attributes: map[string]schema.Attribute{
+							"weight": schema.StringAttribute{
+								Description:         "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
+								MarkdownDescription: "weight gives a comparative advantage to this ClusterQueue or Cohort when competing for unused resources in the Cohort. The share is based on the dominant resource usage above nominal quotas for each resource, divided by the weight. Admission prioritizes scheduling workloads from ClusterQueues and Cohorts with the lowest share and preempting workloads from the ClusterQueues and Cohorts with the highest share. A zero weight implies infinite share value, meaning that this Node will always be at disadvantage against other ClusterQueues and Cohorts.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"parent": schema.StringAttribute{
 						Description:         "Parent references the name of the Cohort's parent, if any. It satisfies one of three cases: 1) Unset. This Cohort is the root of its Cohort tree. 2) References a non-existent Cohort. We use default Cohort (no borrowing/lending limits). 3) References an existent Cohort. If a cycle is created, we disable all members of the Cohort, including ClusterQueues, until the cycle is removed. We prevent further admission while the cycle exists.",
 						MarkdownDescription: "Parent references the name of the Cohort's parent, if any. It satisfies one of three cases: 1) Unset. This Cohort is the root of its Cohort tree. 2) References a non-existent Cohort. We use default Cohort (no borrowing/lending limits). 3) References an existent Cohort. If a cycle is created, we disable all members of the Cohort, including ClusterQueues, until the cycle is removed. We prevent further admission while the cycle exists.",

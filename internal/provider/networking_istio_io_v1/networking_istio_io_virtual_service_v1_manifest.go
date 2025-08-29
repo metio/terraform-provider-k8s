@@ -180,10 +180,12 @@ type NetworkingIstioIoVirtualServiceV1ManifestData struct {
 				Uri          *string `tfsdk:"uri" json:"uri,omitempty"`
 			} `tfsdk:"redirect" json:"redirect,omitempty"`
 			Retries *struct {
-				Attempts              *int64  `tfsdk:"attempts" json:"attempts,omitempty"`
-				PerTryTimeout         *string `tfsdk:"per_try_timeout" json:"perTryTimeout,omitempty"`
-				RetryOn               *string `tfsdk:"retry_on" json:"retryOn,omitempty"`
-				RetryRemoteLocalities *bool   `tfsdk:"retry_remote_localities" json:"retryRemoteLocalities,omitempty"`
+				Attempts                 *int64  `tfsdk:"attempts" json:"attempts,omitempty"`
+				Backoff                  *string `tfsdk:"backoff" json:"backoff,omitempty"`
+				PerTryTimeout            *string `tfsdk:"per_try_timeout" json:"perTryTimeout,omitempty"`
+				RetryIgnorePreviousHosts *bool   `tfsdk:"retry_ignore_previous_hosts" json:"retryIgnorePreviousHosts,omitempty"`
+				RetryOn                  *string `tfsdk:"retry_on" json:"retryOn,omitempty"`
+				RetryRemoteLocalities    *bool   `tfsdk:"retry_remote_localities" json:"retryRemoteLocalities,omitempty"`
 			} `tfsdk:"retries" json:"retries,omitempty"`
 			Rewrite *struct {
 				Authority       *string `tfsdk:"authority" json:"authority,omitempty"`
@@ -1278,9 +1280,25 @@ func (r *NetworkingIstioIoVirtualServiceV1Manifest) Schema(_ context.Context, _ 
 											Computed:            false,
 										},
 
+										"backoff": schema.StringAttribute{
+											Description:         "Specifies the minimum duration between retry attempts.",
+											MarkdownDescription: "Specifies the minimum duration between retry attempts.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"per_try_timeout": schema.StringAttribute{
 											Description:         "Timeout per attempt for a given request, including the initial call and any retries.",
 											MarkdownDescription: "Timeout per attempt for a given request, including the initial call and any retries.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"retry_ignore_previous_hosts": schema.BoolAttribute{
+											Description:         "Flag to specify whether the retries should ignore previously tried hosts during retry.",
+											MarkdownDescription: "Flag to specify whether the retries should ignore previously tried hosts during retry.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

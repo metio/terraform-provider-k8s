@@ -76,12 +76,18 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			TlsAlternateAccess                   *string   `tfsdk:"tls_alternate_access" json:"tlsAlternateAccess,omitempty"`
 			TlsFabric                            *string   `tfsdk:"tls_fabric" json:"tlsFabric,omitempty"`
 		} `tfsdk:"aerospike_network_policy" json:"aerospikeNetworkPolicy,omitempty"`
-		DisablePDB                *bool     `tfsdk:"disable_pdb" json:"disablePDB,omitempty"`
-		EnableDynamicConfigUpdate *bool     `tfsdk:"enable_dynamic_config_update" json:"enableDynamicConfigUpdate,omitempty"`
-		Image                     *string   `tfsdk:"image" json:"image,omitempty"`
-		K8sNodeBlockList          *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
-		MaxUnavailable            *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
-		Operations                *[]struct {
+		DisablePDB                *bool `tfsdk:"disable_pdb" json:"disablePDB,omitempty"`
+		EnableDynamicConfigUpdate *bool `tfsdk:"enable_dynamic_config_update" json:"enableDynamicConfigUpdate,omitempty"`
+		HeadlessService           *struct {
+			Metadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
+		} `tfsdk:"headless_service" json:"headlessService,omitempty"`
+		Image            *string   `tfsdk:"image" json:"image,omitempty"`
+		K8sNodeBlockList *[]string `tfsdk:"k8s_node_block_list" json:"k8sNodeBlockList,omitempty"`
+		MaxUnavailable   *string   `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
+		Operations       *[]struct {
 			Id      *string   `tfsdk:"id" json:"id,omitempty"`
 			Kind    *string   `tfsdk:"kind" json:"kind,omitempty"`
 			PodList *[]string `tfsdk:"pod_list" json:"podList,omitempty"`
@@ -105,19 +111,30 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			} `tfsdk:"secret_cert_source" json:"secretCertSource,omitempty"`
 			TlsClientName *string `tfsdk:"tls_client_name" json:"tlsClientName,omitempty"`
 		} `tfsdk:"operator_client_cert" json:"operatorClientCert,omitempty"`
-		Paused  *bool `tfsdk:"paused" json:"paused,omitempty"`
+		Paused     *bool `tfsdk:"paused" json:"paused,omitempty"`
+		PodService *struct {
+			Metadata *struct {
+				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			} `tfsdk:"metadata" json:"metadata,omitempty"`
+		} `tfsdk:"pod_service" json:"podService,omitempty"`
 		PodSpec *struct {
 			AerospikeContainer *struct {
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -151,14 +168,19 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				ImageRegistryNamespace *string `tfsdk:"image_registry_namespace" json:"imageRegistryNamespace,omitempty"`
 				Resources              *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -490,7 +512,8 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -498,7 +521,11 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -564,12 +591,13 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -580,11 +608,16 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			MultiPodPerHost *bool              `tfsdk:"multi_pod_per_host" json:"multiPodPerHost,omitempty"`
 			NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			SecurityContext *struct {
+				AppArmorProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -595,8 +628,9 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -766,7 +800,8 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -774,7 +809,11 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -840,12 +879,13 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"sidecars" json:"sidecars,omitempty"`
@@ -1013,8 +1053,9 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 						InitMethod             *string `tfsdk:"init_method" json:"initMethod,omitempty"`
 						WipeMethod             *string `tfsdk:"wipe_method" json:"wipeMethod,omitempty"`
 					} `tfsdk:"block_volume_policy" json:"blockVolumePolicy,omitempty"`
-					CleanupThreads         *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
-					FilesystemVolumePolicy *struct {
+					CleanupThreads              *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
+					DeleteLocalStorageOnRestart *bool  `tfsdk:"delete_local_storage_on_restart" json:"deleteLocalStorageOnRestart,omitempty"`
+					FilesystemVolumePolicy      *struct {
 						CascadeDelete          *bool   `tfsdk:"cascade_delete" json:"cascadeDelete,omitempty"`
 						EffectiveCascadeDelete *bool   `tfsdk:"effective_cascade_delete" json:"effectiveCascadeDelete,omitempty"`
 						EffectiveInitMethod    *string `tfsdk:"effective_init_method" json:"effectiveInitMethod,omitempty"`
@@ -1260,8 +1301,9 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 						InitMethod             *string `tfsdk:"init_method" json:"initMethod,omitempty"`
 						WipeMethod             *string `tfsdk:"wipe_method" json:"wipeMethod,omitempty"`
 					} `tfsdk:"block_volume_policy" json:"blockVolumePolicy,omitempty"`
-					CleanupThreads         *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
-					FilesystemVolumePolicy *struct {
+					CleanupThreads              *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
+					DeleteLocalStorageOnRestart *bool  `tfsdk:"delete_local_storage_on_restart" json:"deleteLocalStorageOnRestart,omitempty"`
+					FilesystemVolumePolicy      *struct {
 						CascadeDelete          *bool   `tfsdk:"cascade_delete" json:"cascadeDelete,omitempty"`
 						EffectiveCascadeDelete *bool   `tfsdk:"effective_cascade_delete" json:"effectiveCascadeDelete,omitempty"`
 						EffectiveInitMethod    *string `tfsdk:"effective_init_method" json:"effectiveInitMethod,omitempty"`
@@ -1379,8 +1421,9 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 				InitMethod             *string `tfsdk:"init_method" json:"initMethod,omitempty"`
 				WipeMethod             *string `tfsdk:"wipe_method" json:"wipeMethod,omitempty"`
 			} `tfsdk:"block_volume_policy" json:"blockVolumePolicy,omitempty"`
-			CleanupThreads         *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
-			FilesystemVolumePolicy *struct {
+			CleanupThreads              *int64 `tfsdk:"cleanup_threads" json:"cleanupThreads,omitempty"`
+			DeleteLocalStorageOnRestart *bool  `tfsdk:"delete_local_storage_on_restart" json:"deleteLocalStorageOnRestart,omitempty"`
+			FilesystemVolumePolicy      *struct {
 				CascadeDelete          *bool   `tfsdk:"cascade_delete" json:"cascadeDelete,omitempty"`
 				EffectiveCascadeDelete *bool   `tfsdk:"effective_cascade_delete" json:"effectiveCascadeDelete,omitempty"`
 				EffectiveInitMethod    *string `tfsdk:"effective_init_method" json:"effectiveInitMethod,omitempty"`
@@ -1825,6 +1868,42 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"headless_service": schema.SingleNestedAttribute{
+						Description:         "HeadlessService defines additional configuration parameters for the headless service created to discover Aerospike Cluster nodes",
+						MarkdownDescription: "HeadlessService defines additional configuration parameters for the headless service created to discover Aerospike Cluster nodes",
+						Attributes: map[string]schema.Attribute{
+							"metadata": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Key - Value pair that may be set by external tools to store and retrieve arbitrary metadata",
+										MarkdownDescription: "Key - Value pair that may be set by external tools to store and retrieve arbitrary metadata",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "Key - Value pairs that can be used to organize and categorize scope and select objects",
+										MarkdownDescription: "Key - Value pairs that can be used to organize and categorize scope and select objects",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "Aerospike server image",
 						MarkdownDescription: "Aerospike server image",
@@ -1856,8 +1935,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "ID is the unique identifier for the operation. It is used by the operator to track the operation.",
+									MarkdownDescription: "ID is the unique identifier for the operation. It is used by the operator to track the operation.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -1879,8 +1958,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 								},
 
 								"pod_list": schema.ListAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "PodList is the list of pods on which the operation is to be performed.",
+									MarkdownDescription: "PodList is the list of pods on which the operation is to be performed.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -2025,6 +2104,42 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"pod_service": schema.SingleNestedAttribute{
+						Description:         "PodService defines additional configuration parameters for the pod service created to expose the Aerospike Cluster nodes outside the Kubernetes cluster. This service is created only created when 'multiPodPerHost' is set to 'true' and 'aerospikeNetworkPolicy' has one of the network types: 'hostInternal', 'hostExternal', 'configuredIP'",
+						MarkdownDescription: "PodService defines additional configuration parameters for the pod service created to expose the Aerospike Cluster nodes outside the Kubernetes cluster. This service is created only created when 'multiPodPerHost' is set to 'true' and 'aerospikeNetworkPolicy' has one of the network types: 'hostInternal', 'hostExternal', 'configuredIP'",
+						Attributes: map[string]schema.Attribute{
+							"metadata": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "Key - Value pair that may be set by external tools to store and retrieve arbitrary metadata",
+										MarkdownDescription: "Key - Value pair that may be set by external tools to store and retrieve arbitrary metadata",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"labels": schema.MapAttribute{
+										Description:         "Key - Value pairs that can be used to organize and categorize scope and select objects",
+										MarkdownDescription: "Key - Value pairs that can be used to organize and categorize scope and select objects",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"pod_spec": schema.SingleNestedAttribute{
 						Description:         "Specify additional configuration for the Aerospike pods",
 						MarkdownDescription: "Specify additional configuration for the Aerospike pods",
@@ -2047,6 +2162,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -2091,6 +2214,31 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												Computed:            false,
 											},
 
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capabilities": schema.SingleNestedAttribute{
 												Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -2127,8 +2275,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											},
 
 											"proc_mount": schema.StringAttribute{
-												Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2327,6 +2475,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            false,
 															Computed:            false,
 														},
+
+														"request": schema.StringAttribute{
+															Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -2369,6 +2525,31 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												Computed:            false,
 											},
 
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"capabilities": schema.SingleNestedAttribute{
 												Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 												MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -2405,8 +2586,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											},
 
 											"proc_mount": schema.StringAttribute{
-												Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+												MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2834,8 +3015,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2843,8 +3024,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3001,8 +3182,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3010,8 +3191,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3168,8 +3349,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3177,8 +3358,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3335,8 +3516,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3344,8 +3525,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3458,16 +3639,16 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3523,8 +3704,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -3597,8 +3778,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3688,8 +3869,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3729,8 +3910,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3762,8 +3943,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3813,8 +3994,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3831,8 +4012,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3899,8 +4080,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -3916,8 +4097,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3950,8 +4131,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3968,8 +4149,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4036,8 +4217,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -4053,8 +4234,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4092,8 +4273,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4118,8 +4299,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4143,8 +4324,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4235,8 +4416,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4344,8 +4525,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4370,8 +4551,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4395,8 +4576,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4487,8 +4668,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4575,6 +4756,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -4625,6 +4814,31 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -4661,8 +4875,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4817,8 +5031,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4843,8 +5057,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4868,8 +5082,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4960,8 +5174,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5086,8 +5300,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5104,6 +5318,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5193,6 +5415,31 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 								Description:         "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 								MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty. See type description for default values of each field.",
 								Attributes: map[string]schema.Attribute{
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"fs_group": schema.Int64Attribute{
 										Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -5228,6 +5475,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 									"run_as_user": schema.Int64Attribute{
 										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5300,9 +5555,17 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5442,8 +5705,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5533,8 +5796,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -5574,8 +5837,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5607,8 +5870,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -5658,8 +5921,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5676,8 +5939,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5744,8 +6007,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -5761,8 +6024,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5795,8 +6058,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5813,8 +6076,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5881,8 +6144,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -5898,8 +6161,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5937,8 +6200,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5963,8 +6226,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5988,8 +6251,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6080,8 +6343,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6189,8 +6452,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6215,8 +6478,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6240,8 +6503,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6332,8 +6595,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6420,6 +6683,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -6470,6 +6741,31 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -6506,8 +6802,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -6662,8 +6958,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6688,8 +6984,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6713,8 +7009,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6805,8 +7101,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6931,8 +7227,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6949,6 +7245,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7367,8 +7671,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"match_label_keys": schema.ListAttribute{
-																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -7376,8 +7680,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"mismatch_label_keys": schema.ListAttribute{
-																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -7534,8 +7838,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"match_label_keys": schema.ListAttribute{
-																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -7543,8 +7847,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"mismatch_label_keys": schema.ListAttribute{
-																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -7701,8 +8005,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"match_label_keys": schema.ListAttribute{
-																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -7710,8 +8014,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"mismatch_label_keys": schema.ListAttribute{
-																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -7868,8 +8172,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"match_label_keys": schema.ListAttribute{
-																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -7877,8 +8181,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"mismatch_label_keys": schema.ListAttribute{
-																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -8068,7 +8372,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -8079,7 +8383,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 
@@ -8090,7 +8394,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -8101,7 +8405,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 													},
@@ -8113,6 +8417,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												"cleanup_threads": schema.Int64Attribute{
 													Description:         "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
 													MarkdownDescription: "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"delete_local_storage_on_restart": schema.BoolAttribute{
+													Description:         "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
+													MarkdownDescription: "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8145,7 +8457,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -8156,7 +8468,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 
@@ -8167,7 +8479,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -8178,7 +8490,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 													},
@@ -8282,7 +8594,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 																},
 															},
 
@@ -8293,7 +8605,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 																},
 															},
 
@@ -8372,7 +8684,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 																},
 															},
 
@@ -8504,8 +8816,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -8554,8 +8866,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																		MarkdownDescription: "PersistentVolumeSpec describes a persistent volume to claim and attach to Aerospike pods.",
 																		Attributes: map[string]schema.Attribute{
 																			"access_modes": schema.ListAttribute{
-																				Description:         "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
-																				MarkdownDescription: "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
+																				Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
+																				MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -8665,6 +8977,9 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("Block", "Filesystem"),
+																				},
 																			},
 																		},
 																		Required: false,
@@ -8752,7 +9067,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 																},
 															},
 														},
@@ -9060,8 +9375,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"match_label_keys": schema.ListAttribute{
-																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -9069,8 +9384,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"mismatch_label_keys": schema.ListAttribute{
-																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -9227,8 +9542,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"match_label_keys": schema.ListAttribute{
-																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -9236,8 +9551,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"mismatch_label_keys": schema.ListAttribute{
-																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -9394,8 +9709,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"match_label_keys": schema.ListAttribute{
-																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -9403,8 +9718,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																					},
 
 																					"mismatch_label_keys": schema.ListAttribute{
-																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																						Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																						MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																						ElementType:         types.StringType,
 																						Required:            false,
 																						Optional:            true,
@@ -9561,8 +9876,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"match_label_keys": schema.ListAttribute{
-																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -9570,8 +9885,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"mismatch_label_keys": schema.ListAttribute{
-																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																				Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																				MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -9777,7 +10092,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -9788,7 +10103,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 
@@ -9799,7 +10114,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -9810,7 +10125,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 													},
@@ -9822,6 +10137,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 												"cleanup_threads": schema.Int64Attribute{
 													Description:         "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
 													MarkdownDescription: "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"delete_local_storage_on_restart": schema.BoolAttribute{
+													Description:         "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
+													MarkdownDescription: "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9854,7 +10177,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -9865,7 +10188,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 
@@ -9876,7 +10199,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 															},
 														},
 
@@ -9887,7 +10210,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Optional:            true,
 															Computed:            false,
 															Validators: []validator.String{
-																stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 															},
 														},
 													},
@@ -9991,7 +10314,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 																},
 															},
 
@@ -10002,7 +10325,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 																},
 															},
 
@@ -10081,7 +10404,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 																},
 															},
 
@@ -10213,8 +10536,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																			},
 
 																			"name": schema.StringAttribute{
-																				Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																				MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																				Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																				MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -10263,8 +10586,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																		MarkdownDescription: "PersistentVolumeSpec describes a persistent volume to claim and attach to Aerospike pods.",
 																		Attributes: map[string]schema.Attribute{
 																			"access_modes": schema.ListAttribute{
-																				Description:         "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
-																				MarkdownDescription: "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
+																				Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
+																				MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
 																				ElementType:         types.StringType,
 																				Required:            false,
 																				Optional:            true,
@@ -10374,6 +10697,9 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																				Required:            true,
 																				Optional:            false,
 																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("Block", "Filesystem"),
+																				},
 																			},
 																		},
 																		Required: false,
@@ -10461,7 +10787,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 																Optional:            true,
 																Computed:            false,
 																Validators: []validator.String{
-																	stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+																	stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 																},
 															},
 														},
@@ -10538,8 +10864,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 									},
 
 									"external_traffic_policy": schema.StringAttribute{
-										Description:         "ServiceExternalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs.",
-										MarkdownDescription: "ServiceExternalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs.",
+										Description:         "for backwards compat",
+										MarkdownDescription: "for backwards compat",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -10638,7 +10964,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 										},
 									},
 
@@ -10649,7 +10975,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 										},
 									},
 
@@ -10660,7 +10986,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 										},
 									},
 
@@ -10671,7 +10997,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 										},
 									},
 								},
@@ -10683,6 +11009,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 							"cleanup_threads": schema.Int64Attribute{
 								Description:         "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
 								MarkdownDescription: "CleanupThreads contains the maximum number of cleanup threads(dd or blkdiscard) per init container.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"delete_local_storage_on_restart": schema.BoolAttribute{
+								Description:         "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
+								MarkdownDescription: "DeleteLocalStorageOnRestart enables the deletion of local storage PVCs when a pod is restarted or rescheduled by AKO. It only considers local storage classes given in the localStorageClasses field.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -10715,7 +11049,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 										},
 									},
 
@@ -10726,7 +11060,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 										},
 									},
 
@@ -10737,7 +11071,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 										},
 									},
 
@@ -10748,7 +11082,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+											stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 										},
 									},
 								},
@@ -10852,7 +11186,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+												stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 											},
 										},
 
@@ -10863,7 +11197,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+												stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 											},
 										},
 
@@ -10942,7 +11276,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+												stringvalidator.OneOf("none", "dd", "headerCleanup", "blkdiscard", "blkdiscardWithHeaderCleanup", "deleteFiles"),
 											},
 										},
 
@@ -11074,8 +11408,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -11124,8 +11458,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "PersistentVolumeSpec describes a persistent volume to claim and attach to Aerospike pods.",
 													Attributes: map[string]schema.Attribute{
 														"access_modes": schema.ListAttribute{
-															Description:         "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
-															MarkdownDescription: "Name for creating PVC for this volume, Name or path should be given Name string 'json:'name''",
+															Description:         "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
+															MarkdownDescription: "AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -11235,6 +11569,9 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Block", "Filesystem"),
+															},
 														},
 													},
 													Required: false,
@@ -11322,7 +11659,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("none", "dd", "blkdiscard", "deleteFiles"),
+												stringvalidator.OneOf("dd", "blkdiscard", "deleteFiles"),
 											},
 										},
 									},
