@@ -65,6 +65,23 @@ type EverestPerconaComDatabaseClusterV1Alpha1ManifestData struct {
 				BackupStorageName *string `tfsdk:"backup_storage_name" json:"backupStorageName,omitempty"`
 				Path              *string `tfsdk:"path" json:"path,omitempty"`
 			} `tfsdk:"backup_source" json:"backupSource,omitempty"`
+			DataImport *struct {
+				Config           *map[string]string `tfsdk:"config" json:"config,omitempty"`
+				DataImporterName *string            `tfsdk:"data_importer_name" json:"dataImporterName,omitempty"`
+				Source           *struct {
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+					S3   *struct {
+						AccessKeyId           *string `tfsdk:"access_key_id" json:"accessKeyId,omitempty"`
+						Bucket                *string `tfsdk:"bucket" json:"bucket,omitempty"`
+						CredentialsSecretName *string `tfsdk:"credentials_secret_name" json:"credentialsSecretName,omitempty"`
+						EndpointURL           *string `tfsdk:"endpoint_url" json:"endpointURL,omitempty"`
+						ForcePathStyle        *bool   `tfsdk:"force_path_style" json:"forcePathStyle,omitempty"`
+						Region                *string `tfsdk:"region" json:"region,omitempty"`
+						SecretAccessKey       *string `tfsdk:"secret_access_key" json:"secretAccessKey,omitempty"`
+						VerifyTLS             *bool   `tfsdk:"verify_tls" json:"verifyTLS,omitempty"`
+					} `tfsdk:"s3" json:"s3,omitempty"`
+				} `tfsdk:"source" json:"source,omitempty"`
+			} `tfsdk:"data_import" json:"dataImport,omitempty"`
 			DbClusterBackupName *string `tfsdk:"db_cluster_backup_name" json:"dbClusterBackupName,omitempty"`
 			Pitr                *struct {
 				Date *string `tfsdk:"date" json:"date,omitempty"`
@@ -98,8 +115,9 @@ type EverestPerconaComDatabaseClusterV1Alpha1ManifestData struct {
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
-		Paused *bool `tfsdk:"paused" json:"paused,omitempty"`
-		Proxy  *struct {
+		Paused                  *bool   `tfsdk:"paused" json:"paused,omitempty"`
+		PodSchedulingPolicyName *string `tfsdk:"pod_scheduling_policy_name" json:"podSchedulingPolicyName,omitempty"`
+		Proxy                   *struct {
 			Config *string `tfsdk:"config" json:"config,omitempty"`
 			Expose *struct {
 				IpSourceRanges *[]string `tfsdk:"ip_source_ranges" json:"ipSourceRanges,omitempty"`
@@ -200,8 +218,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 				MarkdownDescription: "DatabaseClusterSpec defines the desired state of DatabaseCluster.",
 				Attributes: map[string]schema.Attribute{
 					"allow_unsafe_configuration": schema.BoolAttribute{
-						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
-						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use.",
+						Description:         "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
+						MarkdownDescription: "AllowUnsafeConfiguration field used to ensure that the user can create configurations unfit for production use. Deprecated: AllowUnsafeConfiguration will not be supported in the future releases.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -212,10 +230,10 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Backup is the backup specification",
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
-								Description:         "Enabled is a flag to enable backups",
-								MarkdownDescription: "Enabled is a flag to enable backups",
-								Required:            true,
-								Optional:            false,
+								Description:         "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								MarkdownDescription: "Enabled is a flag to enable backups Deprecated. Please use db.spec.backup.schedules[].enabled to control each schedule separately and db.spec.backup.pitr.enabled to control PITR.",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 
@@ -330,6 +348,122 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"data_import": schema.SingleNestedAttribute{
+								Description:         "DataImport allows importing data from an external backup source.",
+								MarkdownDescription: "DataImport allows importing data from an external backup source.",
+								Attributes: map[string]schema.Attribute{
+									"config": schema.MapAttribute{
+										Description:         "Config defines the configuration for the data import job. These options are specific to the DataImporter being used and must conform to the schema defined in the DataImporter's .spec.config.openAPIV3Schema.",
+										MarkdownDescription: "Config defines the configuration for the data import job. These options are specific to the DataImporter being used and must conform to the schema defined in the DataImporter's .spec.config.openAPIV3Schema.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"data_importer_name": schema.StringAttribute{
+										Description:         "DataImporterName is the data importer to use for the import.",
+										MarkdownDescription: "DataImporterName is the data importer to use for the import.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"source": schema.SingleNestedAttribute{
+										Description:         "Source is the source of the data to import.",
+										MarkdownDescription: "Source is the source of the data to import.",
+										Attributes: map[string]schema.Attribute{
+											"path": schema.StringAttribute{
+												Description:         "Path is the path to the directory to import the data from. This may be a path to a file or a directory, depending on the data importer. Only absolute file paths are allowed. Leading and trailing '/' are optional.",
+												MarkdownDescription: "Path is the path to the directory to import the data from. This may be a path to a file or a directory, depending on the data importer. Only absolute file paths are allowed. Leading and trailing '/' are optional.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"s3": schema.SingleNestedAttribute{
+												Description:         "S3 contains the S3 information for the data import.",
+												MarkdownDescription: "S3 contains the S3 information for the data import.",
+												Attributes: map[string]schema.Attribute{
+													"access_key_id": schema.StringAttribute{
+														Description:         "AccessKeyID allows specifying the S3 access key ID inline. It is provided as a write-only input field for convenience. When this field is set, a webhook writes this value in the Secret specified by 'credentialsSecretName' and empties this field. This field is not stored in the API.",
+														MarkdownDescription: "AccessKeyID allows specifying the S3 access key ID inline. It is provided as a write-only input field for convenience. When this field is set, a webhook writes this value in the Secret specified by 'credentialsSecretName' and empties this field. This field is not stored in the API.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"bucket": schema.StringAttribute{
+														Description:         "Bucket is the name of the S3 bucket.",
+														MarkdownDescription: "Bucket is the name of the S3 bucket.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"credentials_secret_name": schema.StringAttribute{
+														Description:         "CredentialsSecreName is the reference to the secret containing the S3 credentials. The Secret must contain the keys 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY'.",
+														MarkdownDescription: "CredentialsSecreName is the reference to the secret containing the S3 credentials. The Secret must contain the keys 'AWS_ACCESS_KEY_ID' and 'AWS_SECRET_ACCESS_KEY'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"endpoint_url": schema.StringAttribute{
+														Description:         "EndpointURL is an endpoint URL of backup storage.",
+														MarkdownDescription: "EndpointURL is an endpoint URL of backup storage.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"force_path_style": schema.BoolAttribute{
+														Description:         "ForcePathStyle is set to use path-style URLs. If unspecified, the default value is false.",
+														MarkdownDescription: "ForcePathStyle is set to use path-style URLs. If unspecified, the default value is false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"region": schema.StringAttribute{
+														Description:         "Region is the region of the S3 bucket.",
+														MarkdownDescription: "Region is the region of the S3 bucket.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"secret_access_key": schema.StringAttribute{
+														Description:         "SecretAccessKey allows specifying the S3 secret access key inline. It is provided as a write-only input field for convenience. When this field is set, a webhook writes this value in the Secret specified by 'credentialsSecretName' and empties this field. This field is not stored in the API.",
+														MarkdownDescription: "SecretAccessKey allows specifying the S3 secret access key inline. It is provided as a write-only input field for convenience. When this field is set, a webhook writes this value in the Secret specified by 'credentialsSecretName' and empties this field. This field is not stored in the API.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"verify_tls": schema.BoolAttribute{
+														Description:         "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
+														MarkdownDescription: "VerifyTLS is set to ensure TLS/SSL verification. If unspecified, the default value is true.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
 									},
 								},
 								Required: false,
@@ -565,6 +699,14 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 					"paused": schema.BoolAttribute{
 						Description:         "Paused is a flag to stop the cluster",
 						MarkdownDescription: "Paused is a flag to stop the cluster",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"pod_scheduling_policy_name": schema.StringAttribute{
+						Description:         "PodSchedulingPolicyName is the name of the PodSchedulingPolicy CR that defines rules for DB cluster pods allocation across the cluster.",
+						MarkdownDescription: "PodSchedulingPolicyName is the name of the PodSchedulingPolicy CR that defines rules for DB cluster pods allocation across the cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

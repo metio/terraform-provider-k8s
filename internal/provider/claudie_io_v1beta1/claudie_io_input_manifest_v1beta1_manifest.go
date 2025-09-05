@@ -7,6 +7,7 @@ package claudie_io_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -45,6 +46,11 @@ type ClaudieIoInputManifestV1Beta1ManifestData struct {
 	Spec *struct {
 		Kubernetes *struct {
 			Clusters *[]struct {
+				InstallationProxy *struct {
+					Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+					Mode     *string `tfsdk:"mode" json:"mode,omitempty"`
+					NoProxy  *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				} `tfsdk:"installation_proxy" json:"installationProxy,omitempty"`
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
 				Network *string `tfsdk:"network" json:"network,omitempty"`
 				Pools   *struct {
@@ -57,9 +63,10 @@ type ClaudieIoInputManifestV1Beta1ManifestData struct {
 		LoadBalancers *struct {
 			Clusters *[]struct {
 				Dns *struct {
-					DnsZone  *string `tfsdk:"dns_zone" json:"dnsZone,omitempty"`
-					Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
-					Provider *string `tfsdk:"provider" json:"provider,omitempty"`
+					AlternativeNames *[]string `tfsdk:"alternative_names" json:"alternativeNames,omitempty"`
+					DnsZone          *string   `tfsdk:"dns_zone" json:"dnsZone,omitempty"`
+					Hostname         *string   `tfsdk:"hostname" json:"hostname,omitempty"`
+					Provider         *string   `tfsdk:"provider" json:"provider,omitempty"`
 				} `tfsdk:"dns" json:"dns,omitempty"`
 				Name        *string   `tfsdk:"name" json:"name,omitempty"`
 				Pools       *[]string `tfsdk:"pools" json:"pools,omitempty"`
@@ -67,9 +74,13 @@ type ClaudieIoInputManifestV1Beta1ManifestData struct {
 				TargetedK8s *string   `tfsdk:"targeted_k8s" json:"targetedK8s,omitempty"`
 			} `tfsdk:"clusters" json:"clusters,omitempty"`
 			Roles *[]struct {
-				Name        *string   `tfsdk:"name" json:"name,omitempty"`
-				Port        *int64    `tfsdk:"port" json:"port,omitempty"`
-				Protocol    *string   `tfsdk:"protocol" json:"protocol,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Port     *int64  `tfsdk:"port" json:"port,omitempty"`
+				Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				Settings *struct {
+					ProxyProtocol  *bool `tfsdk:"proxy_protocol" json:"proxyProtocol,omitempty"`
+					StickySessions *bool `tfsdk:"sticky_sessions" json:"stickySessions,omitempty"`
+				} `tfsdk:"settings" json:"settings,omitempty"`
 				TargetPools *[]string `tfsdk:"target_pools" json:"targetPools,omitempty"`
 				TargetPort  *int64    `tfsdk:"target_port" json:"targetPort,omitempty"`
 			} `tfsdk:"roles" json:"roles,omitempty"`
@@ -225,6 +236,39 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 								MarkdownDescription: "List of Kubernetes clusters Claudie will create.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"installation_proxy": schema.SingleNestedAttribute{
+											Description:         "General information about a proxy used to build a K8s cluster.",
+											MarkdownDescription: "General information about a proxy used to build a K8s cluster.",
+											Attributes: map[string]schema.Attribute{
+												"endpoint": schema.StringAttribute{
+													Description:         "Endpoint defines the proxy endpoint. If undefined, the default value is http://proxy.claudie.io:8880.",
+													MarkdownDescription: "Endpoint defines the proxy endpoint. If undefined, the default value is http://proxy.claudie.io:8880.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mode": schema.StringAttribute{
+													Description:         "Mode defines if the proxy mode (on/off/default). If undefined, the default mode is used.",
+													MarkdownDescription: "Mode defines if the proxy mode (on/off/default). If undefined, the default mode is used.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"no_proxy": schema.StringAttribute{
+													Description:         "NoProxy is a comma-separated list of values that will be added to the default NoProxy list used by Claudie. The default no proxy list is: 127.0.0.1/8,localhost,cluster.local,10.244.0.0/16,10.96.0.0/12' Any values specified will be appended to the end of the default NoProxy list. This field only has an effect if the Proxy is turned on.",
+													MarkdownDescription: "NoProxy is a comma-separated list of values that will be added to the default NoProxy list used by Claudie. The default no proxy list is: 127.0.0.1/8,localhost,cluster.local,10.244.0.0/16,10.96.0.0/12' Any values specified will be appended to the end of the default NoProxy list. This field only has an effect if the Proxy is turned on.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"name": schema.StringAttribute{
 											Description:         "Name of the Kubernetes cluster. Each cluster will have a random hash appended to the name, so the whole name will be of format <name>-<hash>.",
 											MarkdownDescription: "Name of the Kubernetes cluster. Each cluster will have a random hash appended to the name, so the whole name will be of format <name>-<hash>.",
@@ -269,8 +313,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"version": schema.StringAttribute{
-											Description:         "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
-											MarkdownDescription: "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.5. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
+											Description:         "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.8.1. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
+											MarkdownDescription: "Version should be defined in format vX.Y. In terms of supported versions of Kubernetes, Claudie follows kubeone releases and their supported versions. The current kubeone version used in Claudie is 1.8.1. To see the list of supported versions, please refer to kubeone documentation. https://docs.kubermatic.com/kubeone/v1.8/architecture/compatibility/supported-versions/",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -288,8 +332,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"load_balancers": schema.SingleNestedAttribute{
-						Description:         "LoadBalancers list of loadbalancer clusters the Kubernetes clusters may use.",
-						MarkdownDescription: "LoadBalancers list of loadbalancer clusters the Kubernetes clusters may use.",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"clusters": schema.ListNestedAttribute{
 								Description:         "A list of load balancers clusters.",
@@ -300,6 +344,15 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											Description:         "Specification of the loadbalancer's DNS record.",
 											MarkdownDescription: "Specification of the loadbalancer's DNS record.",
 											Attributes: map[string]schema.Attribute{
+												"alternative_names": schema.ListAttribute{
+													Description:         "Alternative names that will be created in addition to the hostname. Giving the ability to have a loadbalancer for multiple hostnames. - api.example.com - apiv2.example.com",
+													MarkdownDescription: "Alternative names that will be created in addition to the hostname. Giving the ability to have a loadbalancer for multiple hostnames. - api.example.com - apiv2.example.com",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"dns_zone": schema.StringAttribute{
 													Description:         "DNS zone inside of which the records will be created. GCP/AWS/OCI/Azure/Cloudflare/Hetzner DNS zone is accepted",
 													MarkdownDescription: "DNS zone inside of which the records will be created. GCP/AWS/OCI/Azure/Cloudflare/Hetzner DNS zone is accepted",
@@ -380,6 +433,9 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
 										},
 
 										"port": schema.Int64Attribute{
@@ -388,6 +444,10 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(65535),
+											},
 										},
 
 										"protocol": schema.StringAttribute{
@@ -399,6 +459,31 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											Validators: []validator.String{
 												stringvalidator.OneOf("tcp", "udp"),
 											},
+										},
+
+										"settings": schema.SingleNestedAttribute{
+											Description:         "Additional settings for a role.",
+											MarkdownDescription: "Additional settings for a role.",
+											Attributes: map[string]schema.Attribute{
+												"proxy_protocol": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"sticky_sessions": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"target_pools": schema.ListAttribute{
@@ -416,6 +501,10 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(65535),
+											},
 										},
 									},
 								},
@@ -789,8 +878,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"provider_type": schema.StringAttribute{
-									Description:         "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
-									MarkdownDescription: "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
+									Description:         "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/latest/input-manifest/providers/aws/",
+									MarkdownDescription: "ProviderType type of a provider. A list of available providers can be found at https://docs.claudie.io/latest/input-manifest/providers/aws/",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,

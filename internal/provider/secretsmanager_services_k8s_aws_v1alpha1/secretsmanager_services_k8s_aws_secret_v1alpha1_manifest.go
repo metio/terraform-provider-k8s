@@ -46,8 +46,14 @@ type SecretsmanagerServicesK8SAwsSecretV1Alpha1ManifestData struct {
 		Description                 *string `tfsdk:"description" json:"description,omitempty"`
 		ForceOverwriteReplicaSecret *bool   `tfsdk:"force_overwrite_replica_secret" json:"forceOverwriteReplicaSecret,omitempty"`
 		KmsKeyID                    *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
-		Name                        *string `tfsdk:"name" json:"name,omitempty"`
-		ReplicaRegions              *[]struct {
+		KmsKeyRef                   *struct {
+			From *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
+		Name           *string `tfsdk:"name" json:"name,omitempty"`
+		ReplicaRegions *[]struct {
 			KmsKeyID *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 			Region   *string `tfsdk:"region" json:"region,omitempty"`
 		} `tfsdk:"replica_regions" json:"replicaRegions,omitempty"`
@@ -164,6 +170,40 @@ func (r *SecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest) Schema(_ context.Co
 						Computed:            false,
 					},
 
+					"kms_key_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"name": schema.StringAttribute{
 						Description:         "The name of the new secret. The secret name can contain ASCII letters, numbers, and the following characters: /_+=.@- Do not end your secret name with a hyphen followed by six characters. If you do so, you risk confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager automatically adds a hyphen and six random characters after the secret name at the end of the ARN.",
 						MarkdownDescription: "The name of the new secret. The secret name can contain ASCII letters, numbers, and the following characters: /_+=.@- Do not end your secret name with a hyphen followed by six characters. If you do so, you risk confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager automatically adds a hyphen and six random characters after the secret name at the end of the ARN.",
@@ -200,8 +240,8 @@ func (r *SecretsmanagerServicesK8SAwsSecretV1Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"secret_string": schema.SingleNestedAttribute{
-						Description:         "The text data to encrypt and store in this new version of the secret. We recommend you use a JSON structure of key/value pairs for your secret value. Either SecretString or SecretBinary must have a value, but not both. If you create a secret by using the Secrets Manager console then Secrets Manager puts the protected secret text in only the SecretString parameter. The Secrets Manager console stores the information as a JSON structure of key/value pairs that a Lambda rotation function can parse.",
-						MarkdownDescription: "The text data to encrypt and store in this new version of the secret. We recommend you use a JSON structure of key/value pairs for your secret value. Either SecretString or SecretBinary must have a value, but not both. If you create a secret by using the Secrets Manager console then Secrets Manager puts the protected secret text in only the SecretString parameter. The Secrets Manager console stores the information as a JSON structure of key/value pairs that a Lambda rotation function can parse.",
+						Description:         "The text data to encrypt and store in this new version of the secret. We recommend you use a JSON structure of key/value pairs for your secret value. Either SecretString or SecretBinary must have a value, but not both. If you create a secret by using the Secrets Manager console then Secrets Manager puts the protected secret text in only the SecretString parameter. The Secrets Manager console stores the information as a JSON structure of key/value pairs that a Lambda rotation function can parse. Sensitive: This field contains sensitive information, so the service does not include it in CloudTrail log entries. If you create your own log entries, you must also avoid logging the information in this field.",
+						MarkdownDescription: "The text data to encrypt and store in this new version of the secret. We recommend you use a JSON structure of key/value pairs for your secret value. Either SecretString or SecretBinary must have a value, but not both. If you create a secret by using the Secrets Manager console then Secrets Manager puts the protected secret text in only the SecretString parameter. The Secrets Manager console stores the information as a JSON structure of key/value pairs that a Lambda rotation function can parse. Sensitive: This field contains sensitive information, so the service does not include it in CloudTrail log entries. If you create your own log entries, you must also avoid logging the information in this field.",
 						Attributes: map[string]schema.Attribute{
 							"key": schema.StringAttribute{
 								Description:         "Key is the key within the secret",

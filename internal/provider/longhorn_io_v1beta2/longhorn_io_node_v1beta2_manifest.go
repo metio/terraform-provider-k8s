@@ -164,7 +164,7 @@ func (r *LonghornIoNodeV1Beta2Manifest) Schema(_ context.Context, _ datasource.S
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("", "auto", "aio"),
+									stringvalidator.OneOf("", "auto", "aio", "nvme"),
 								},
 							},
 

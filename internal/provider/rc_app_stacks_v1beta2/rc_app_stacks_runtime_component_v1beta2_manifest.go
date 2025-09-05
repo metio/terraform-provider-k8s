@@ -90,6 +90,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -112,6 +114,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -135,6 +139,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+						MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 						NamespaceSelector *struct {
 							MatchExpressions *[]struct {
 								Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -157,6 +163,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+					MatchLabelKeys    *[]string `tfsdk:"match_label_keys" json:"matchLabelKeys,omitempty"`
+					MismatchLabelKeys *[]string `tfsdk:"mismatch_label_keys" json:"mismatchLabelKeys,omitempty"`
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -282,6 +290,9 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -301,6 +312,9 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -379,7 +393,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -387,7 +402,11 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -453,12 +472,13 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -523,9 +543,48 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-					EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-					Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-					TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+					EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+					NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+					ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+					ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+					ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+					Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+					TlsConfig            *struct {
+						Ca *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"ca" json:"ca,omitempty"`
+						Cert *struct {
+							ConfigMap *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							Secret *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+						} `tfsdk:"cert" json:"cert,omitempty"`
+						InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+						KeySecret          *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+						MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+						MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+						ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+					} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+					TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 				} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 				Params      *map[string][]string `tfsdk:"params" json:"params,omitempty"`
 				Path        *string              `tfsdk:"path" json:"path,omitempty"`
@@ -577,6 +636,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Name     *string `tfsdk:"name" json:"name,omitempty"`
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
 					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
@@ -677,7 +738,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 		Replicas   *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources  *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -706,8 +768,9 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 				Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 				TargetPort  *string `tfsdk:"target_port" json:"targetPort,omitempty"`
 			} `tfsdk:"ports" json:"ports,omitempty"`
-			TargetPort *int64  `tfsdk:"target_port" json:"targetPort,omitempty"`
-			Type       *string `tfsdk:"type" json:"type,omitempty"`
+			SessionAffinity *map[string]string `tfsdk:"session_affinity" json:"sessionAffinity,omitempty"`
+			TargetPort      *int64             `tfsdk:"target_port" json:"targetPort,omitempty"`
+			Type            *string            `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"service" json:"service,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		SidecarContainers  *[]struct {
@@ -766,6 +829,9 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -785,6 +851,9 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 						Port   *string `tfsdk:"port" json:"port,omitempty"`
 						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
 					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					Sleep *struct {
+						Seconds *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+					} `tfsdk:"sleep" json:"sleep,omitempty"`
 					TcpSocket *struct {
 						Host *string `tfsdk:"host" json:"host,omitempty"`
 						Port *string `tfsdk:"port" json:"port,omitempty"`
@@ -863,7 +932,8 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -871,7 +941,11 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -937,12 +1011,13 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"sidecar_containers" json:"sidecarContainers,omitempty"`
@@ -975,9 +1050,6 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
-							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
-							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -989,9 +1061,10 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"selector" json:"selector,omitempty"`
-						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+						StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+						VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+						VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+						VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 					Status *struct {
 						AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
@@ -1006,6 +1079,11 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							Status             *string `tfsdk:"status" json:"status,omitempty"`
 							Type               *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"conditions" json:"conditions,omitempty"`
+						CurrentVolumeAttributesClassName *string `tfsdk:"current_volume_attributes_class_name" json:"currentVolumeAttributesClassName,omitempty"`
+						ModifyVolumeStatus               *struct {
+							Status                          *string `tfsdk:"status" json:"status,omitempty"`
+							TargetVolumeAttributesClassName *string `tfsdk:"target_volume_attributes_class_name" json:"targetVolumeAttributesClassName,omitempty"`
+						} `tfsdk:"modify_volume_status" json:"modifyVolumeStatus,omitempty"`
 						Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 					} `tfsdk:"status" json:"status,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
@@ -1019,12 +1097,13 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		} `tfsdk:"stateful_set" json:"statefulSet,omitempty"`
 		VolumeMounts *[]struct {
-			MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-			MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-			Name             *string `tfsdk:"name" json:"name,omitempty"`
-			ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-			SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-			SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+			MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+			Name              *string `tfsdk:"name" json:"name,omitempty"`
+			ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+			RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+			SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+			SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 		} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		Volumes *[]struct {
 			AwsElasticBlockStore *struct {
@@ -1126,9 +1205,6 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						} `tfsdk:"data_source_ref" json:"dataSourceRef,omitempty"`
 						Resources *struct {
-							Claims *[]struct {
-								Name *string `tfsdk:"name" json:"name,omitempty"`
-							} `tfsdk:"claims" json:"claims,omitempty"`
 							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 						} `tfsdk:"resources" json:"resources,omitempty"`
@@ -1140,9 +1216,10 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 						} `tfsdk:"selector" json:"selector,omitempty"`
-						StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
-						VolumeMode       *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
-						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+						StorageClassName          *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+						VolumeAttributesClassName *string `tfsdk:"volume_attributes_class_name" json:"volumeAttributesClassName,omitempty"`
+						VolumeMode                *string `tfsdk:"volume_mode" json:"volumeMode,omitempty"`
+						VolumeName                *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
@@ -1186,6 +1263,10 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 				Path *string `tfsdk:"path" json:"path,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
+			Image *struct {
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			Iscsi *struct {
 				ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 				ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1223,6 +1304,20 @@ type RcAppStacksRuntimeComponentV1Beta2ManifestData struct {
 			Projected *struct {
 				DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
 				Sources     *[]struct {
+					ClusterTrustBundle *struct {
+						LabelSelector *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+						Name       *string `tfsdk:"name" json:"name,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						Path       *string `tfsdk:"path" json:"path,omitempty"`
+						SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+					} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
 					ConfigMap *struct {
 						Items *[]struct {
 							Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -1640,8 +1735,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1691,6 +1786,24 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -1789,8 +1902,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+													MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1840,6 +1953,24 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -1938,8 +2069,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													MarkdownDescription: "Required. A pod affinity term, associated with the corresponding weight.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "A label query over a set of resources, in this case pods.",
-															MarkdownDescription: "A label query over a set of resources, in this case pods.",
+															Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+															MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1989,6 +2120,24 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"match_label_keys": schema.ListAttribute{
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mismatch_label_keys": schema.ListAttribute{
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"namespace_selector": schema.SingleNestedAttribute{
@@ -2087,8 +2236,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "A label query over a set of resources, in this case pods.",
-													MarkdownDescription: "A label query over a set of resources, in this case pods.",
+													Description:         "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
+													MarkdownDescription: "A label query over a set of resources, in this case pods. If it's null, this PodAffinityTerm matches with no Pods.",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -2138,6 +2287,24 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"match_label_keys": schema.ListAttribute{
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mismatch_label_keys": schema.ListAttribute{
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"namespace_selector": schema.SingleNestedAttribute{
@@ -2313,8 +2480,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Specifies the strategy to replace old deployment pods with new pods.",
 								Attributes: map[string]schema.Attribute{
 									"rolling_update": schema.SingleNestedAttribute{
-										Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
-										MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. --- TODO: Update this to follow our convention for oneOf, whatever we decide it to be.",
+										Description:         "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
+										MarkdownDescription: "Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.",
 										Attributes: map[string]schema.Attribute{
 											"max_surge": schema.StringAttribute{
 												Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.",
@@ -2393,8 +2560,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2484,8 +2651,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -2525,8 +2692,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "The ConfigMap to select from",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2558,8 +2725,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "The Secret to select from",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2653,8 +2820,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2744,8 +2911,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -2785,8 +2952,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "The ConfigMap to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2818,8 +2985,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "The Secret to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -2954,6 +3121,23 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -3066,6 +3250,23 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -3597,6 +3798,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"request": schema.StringAttribute{
+														Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -3647,6 +3856,31 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											Computed:            false,
 										},
 
+										"app_armor_profile": schema.SingleNestedAttribute{
+											Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+											Attributes: map[string]schema.Attribute{
+												"localhost_profile": schema.StringAttribute{
+													Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+													MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+													MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"capabilities": schema.SingleNestedAttribute{
 											Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 											MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -3683,8 +3917,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4108,8 +4342,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4126,6 +4360,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											"read_only": schema.BoolAttribute{
 												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"recursive_read_only": schema.StringAttribute{
+												Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+												MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4193,8 +4435,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4243,8 +4485,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4276,8 +4518,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4322,8 +4564,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4485,8 +4727,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4518,8 +4760,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4556,8 +4798,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4585,6 +4827,42 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"no_proxy": schema.StringAttribute{
+													Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"proxy_connect_header": schema.MapAttribute{
+													Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"proxy_from_environment": schema.BoolAttribute{
+													Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"proxy_url": schema.StringAttribute{
+													Description:         "'proxyURL' defines the HTTP proxy server to use.",
+													MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+													},
+												},
+
 												"scopes": schema.ListAttribute{
 													Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 													MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -4592,6 +4870,236 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"tls_config": schema.SingleNestedAttribute{
+													Description:         "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+													MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.",
+													Attributes: map[string]schema.Attribute{
+														"ca": schema.SingleNestedAttribute{
+															Description:         "Certificate authority used when verifying server certificates.",
+															MarkdownDescription: "Certificate authority used when verifying server certificates.",
+															Attributes: map[string]schema.Attribute{
+																"config_map": schema.SingleNestedAttribute{
+																	Description:         "ConfigMap containing data to use for the targets.",
+																	MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key to select.",
+																			MarkdownDescription: "The key to select.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the ConfigMap or its key must be defined",
+																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret": schema.SingleNestedAttribute{
+																	Description:         "Secret containing data to use for the targets.",
+																	MarkdownDescription: "Secret containing data to use for the targets.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the Secret or its key must be defined",
+																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"cert": schema.SingleNestedAttribute{
+															Description:         "Client certificate to present when doing client-authentication.",
+															MarkdownDescription: "Client certificate to present when doing client-authentication.",
+															Attributes: map[string]schema.Attribute{
+																"config_map": schema.SingleNestedAttribute{
+																	Description:         "ConfigMap containing data to use for the targets.",
+																	MarkdownDescription: "ConfigMap containing data to use for the targets.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key to select.",
+																			MarkdownDescription: "The key to select.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the ConfigMap or its key must be defined",
+																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret": schema.SingleNestedAttribute{
+																	Description:         "Secret containing data to use for the targets.",
+																	MarkdownDescription: "Secret containing data to use for the targets.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the Secret or its key must be defined",
+																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"insecure_skip_verify": schema.BoolAttribute{
+															Description:         "Disable target certificate validation.",
+															MarkdownDescription: "Disable target certificate validation.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"key_secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing the client key file for the targets.",
+															MarkdownDescription: "Secret containing the client key file for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from. Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"max_version": schema.StringAttribute{
+															Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+															MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+															},
+														},
+
+														"min_version": schema.StringAttribute{
+															Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+															MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+															},
+														},
+
+														"server_name": schema.StringAttribute{
+															Description:         "Used to verify the hostname for the targets.",
+															MarkdownDescription: "Used to verify the hostname for the targets.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"token_url": schema.StringAttribute{
@@ -4737,8 +5245,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"target_port": schema.StringAttribute{
-											Description:         "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' instead.",
-											MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' instead.",
+											Description:         "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
+											MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service. The port must be specified with the container's port property.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4765,8 +5273,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4798,8 +5306,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4848,8 +5356,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4881,8 +5389,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"name": schema.StringAttribute{
-																	Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																	MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																	Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																	MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4943,8 +5451,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -4961,6 +5469,28 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
 												},
 
 												"server_name": schema.StringAttribute{
@@ -5632,6 +6162,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											Optional:            false,
 											Computed:            false,
 										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -5795,8 +6333,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"app_protocol": schema.StringAttribute{
-											Description:         "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540 * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
-											MarkdownDescription: "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540 * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
+											Description:         "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
+											MarkdownDescription: "The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -5846,6 +6384,15 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"session_affinity": schema.MapAttribute{
+								Description:         "Configure service session affinity.",
+								MarkdownDescription: "Configure service session affinity.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"target_port": schema.Int64Attribute{
@@ -5942,8 +6489,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6033,8 +6580,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6074,8 +6621,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "The ConfigMap to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6107,8 +6654,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 												MarkdownDescription: "The Secret to select from",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6243,6 +6790,23 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													Computed: false,
 												},
 
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"tcp_socket": schema.SingleNestedAttribute{
 													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
 													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
@@ -6355,6 +6919,23 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															MarkdownDescription: "Scheme to use for connecting to the host. Defaults to HTTP.",
 															Required:            false,
 															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"sleep": schema.SingleNestedAttribute{
+													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
+													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Attributes: map[string]schema.Attribute{
+														"seconds": schema.Int64Attribute{
+															Description:         "Seconds is the number of seconds to sleep.",
+															MarkdownDescription: "Seconds is the number of seconds to sleep.",
+															Required:            true,
+															Optional:            false,
 															Computed:            false,
 														},
 													},
@@ -6886,6 +7467,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"request": schema.StringAttribute{
+														Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -6936,6 +7525,31 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											Computed:            false,
 										},
 
+										"app_armor_profile": schema.SingleNestedAttribute{
+											Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+											Attributes: map[string]schema.Attribute{
+												"localhost_profile": schema.StringAttribute{
+													Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+													MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+													MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"capabilities": schema.SingleNestedAttribute{
 											Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 											MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -6972,8 +7586,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"proc_mount": schema.StringAttribute{
-											Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+											MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7397,8 +8011,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											},
 
 											"mount_propagation": schema.StringAttribute{
-												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+												Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+												MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -7415,6 +8029,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											"read_only": schema.BoolAttribute{
 												Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 												MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"recursive_read_only": schema.StringAttribute{
+												Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+												MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -7655,25 +8277,6 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 														MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 														Attributes: map[string]schema.Attribute{
-															"claims": schema.ListNestedAttribute{
-																Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																NestedObject: schema.NestedAttributeObject{
-																	Attributes: map[string]schema.Attribute{
-																		"name": schema.StringAttribute{
-																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
 															"limits": schema.MapAttribute{
 																Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7759,6 +8362,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 														Computed:            false,
 													},
 
+													"volume_attributes_class_name": schema.StringAttribute{
+														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"volume_mode": schema.StringAttribute{
 														Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 														MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -7821,8 +8432,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 													},
 
 													"conditions": schema.ListNestedAttribute{
-														Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
-														MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.",
+														Description:         "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
+														MarkdownDescription: "conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"last_probe_time": schema.StringAttribute{
@@ -7856,8 +8467,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"reason": schema.StringAttribute{
-																	Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
-																	MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'ResizeStarted' that means the underlying persistent volume is being resized.",
+																	Description:         "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
+																	MarkdownDescription: "reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports 'Resizing' that means the underlying persistent volume is being resized.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -7872,12 +8483,45 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																},
 
 																"type": schema.StringAttribute{
-																	Description:         "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
-																	MarkdownDescription: "PersistentVolumeClaimConditionType is a valid value of PersistentVolumeClaimCondition.Type",
+																	Description:         "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
+																	MarkdownDescription: "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
 																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"current_volume_attributes_class_name": schema.StringAttribute{
+														Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"modify_volume_status": schema.SingleNestedAttribute{
+														Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+														Attributes: map[string]schema.Attribute{
+															"status": schema.StringAttribute{
+																Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+																MarkdownDescription: "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"target_volume_attributes_class_name": schema.StringAttribute{
+																Description:         "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+																MarkdownDescription: "targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
 															},
 														},
 														Required: false,
@@ -7969,8 +8613,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								},
 
 								"mount_propagation": schema.StringAttribute{
-									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+									Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+									MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -7987,6 +8631,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								"read_only": schema.BoolAttribute{
 									Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 									MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"recursive_read_only": schema.StringAttribute{
+									Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+									MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -8024,8 +8676,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8192,8 +8844,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8242,8 +8894,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8315,8 +8967,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8360,8 +9012,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8412,8 +9064,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+														Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -8672,25 +9324,6 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															Description:         "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 															MarkdownDescription: "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
 															Attributes: map[string]schema.Attribute{
-																"claims": schema.ListNestedAttribute{
-																	Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																	MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-																	NestedObject: schema.NestedAttributeObject{
-																		Attributes: map[string]schema.Attribute{
-																			"name": schema.StringAttribute{
-																				Description:         "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
-																				Required:            true,
-																				Optional:            false,
-																				Computed:            false,
-																			},
-																		},
-																	},
-																	Required: false,
-																	Optional: true,
-																	Computed: false,
-																},
-
 																"limits": schema.MapAttribute{
 																	Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -8776,6 +9409,14 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															Computed:            false,
 														},
 
+														"volume_attributes_class_name": schema.StringAttribute{
+															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"volume_mode": schema.StringAttribute{
 															Description:         "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
 															MarkdownDescription: "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.",
@@ -8812,8 +9453,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8900,8 +9541,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -8947,8 +9588,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9050,8 +9691,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 								},
 
 								"host_path": schema.SingleNestedAttribute{
-									Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
-									MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+									Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+									MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 									Attributes: map[string]schema.Attribute{
 										"path": schema.StringAttribute{
 											Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
@@ -9064,6 +9705,31 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										"type": schema.StringAttribute{
 											Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 											MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"image": schema.SingleNestedAttribute{
+									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									Attributes: map[string]schema.Attribute{
+										"pull_policy": schema.StringAttribute{
+											Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reference": schema.StringAttribute{
+											Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+											MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9095,8 +9761,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9156,8 +9822,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9318,10 +9984,105 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 										},
 
 										"sources": schema.ListNestedAttribute{
-											Description:         "sources is the list of volume projections",
-											MarkdownDescription: "sources is the list of volume projections",
+											Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+											MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
+													"cluster_trust_bundle": schema.SingleNestedAttribute{
+														Description:         "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+														MarkdownDescription: "ClusterTrustBundle allows a pod to access the '.spec.trustBundle' field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.",
+														Attributes: map[string]schema.Attribute{
+															"label_selector": schema.SingleNestedAttribute{
+																Description:         "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																MarkdownDescription: "Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as 'match nothing'. If set but empty, interpreted as 'match everything'.",
+																Attributes: map[string]schema.Attribute{
+																	"match_expressions": schema.ListNestedAttribute{
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "key is the label key that the selector applies to.",
+																					MarkdownDescription: "key is the label key that the selector applies to.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": schema.MapAttribute{
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																MarkdownDescription: "Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																MarkdownDescription: "If true, don't block pod startup if the referenced ClusterTrustBundle(s) aren't available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "Relative path from the volume root to write the bundle.",
+																MarkdownDescription: "Relative path from the volume root to write the bundle.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"signer_name": schema.StringAttribute{
+																Description:         "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																MarkdownDescription: "Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"config_map": schema.SingleNestedAttribute{
 														Description:         "configMap information about the configMap data to project",
 														MarkdownDescription: "configMap information about the configMap data to project",
@@ -9362,8 +10123,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9392,8 +10153,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"field_ref": schema.SingleNestedAttribute{
-																			Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																			Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																			Attributes: map[string]schema.Attribute{
 																				"api_version": schema.StringAttribute{
 																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -9516,8 +10277,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9642,8 +10403,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9695,8 +10456,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9761,8 +10522,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9911,8 +10672,8 @@ func (r *RcAppStacksRuntimeComponentV1Beta2Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

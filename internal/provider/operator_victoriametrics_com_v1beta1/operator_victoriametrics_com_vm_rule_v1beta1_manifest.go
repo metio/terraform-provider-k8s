@@ -188,8 +188,8 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"extra_filter_labels": schema.MapAttribute{
-									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
-									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/#prometheus-querying-api-enhancements) Deprecated, use params instead",
+									Description:         "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/victoriametrics/#prometheus-querying-api-enhancements) Deprecated: use params instead",
+									MarkdownDescription: "ExtraFilterLabels optional list of label filters applied to every rule's request within a group. Is compatible only with VM datasource. See more details [here](https://docs.victoriametrics.com/victoriametrics/#prometheus-querying-api-enhancements) Deprecated: use params instead",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -342,16 +342,16 @@ func (r *OperatorVictoriametricsComVmruleV1Beta1Manifest) Schema(_ context.Conte
 								},
 
 								"tenant": schema.StringAttribute{
-									Description:         "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).",
-									MarkdownDescription: "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/vmalert#multitenancy).",
+									Description:         "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/victoriametrics/vmalert#multitenancy).",
+									MarkdownDescription: "Tenant id for group, can be used only with enterprise version of vmalert. See more details [here](https://docs.victoriametrics.com/victoriametrics/vmalert#multitenancy).",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
-									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite",
+									Description:         "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
+									MarkdownDescription: "Type defines datasource type for enterprise version of vmalert possible values - prometheus,graphite,vlogs",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

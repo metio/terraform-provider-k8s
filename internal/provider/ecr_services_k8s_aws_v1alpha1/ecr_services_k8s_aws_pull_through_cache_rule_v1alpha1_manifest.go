@@ -43,9 +43,25 @@ type EcrServicesK8SAwsPullThroughCacheRuleV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		EcrRepositoryPrefix *string `tfsdk:"ecr_repository_prefix" json:"ecrRepositoryPrefix,omitempty"`
-		RegistryID          *string `tfsdk:"registry_id" json:"registryID,omitempty"`
-		UpstreamRegistryURL *string `tfsdk:"upstream_registry_url" json:"upstreamRegistryURL,omitempty"`
+		CredentialARN *string `tfsdk:"credential_arn" json:"credentialARN,omitempty"`
+		CredentialRef *struct {
+			From *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"credential_ref" json:"credentialRef,omitempty"`
+		CustomRoleARN *string `tfsdk:"custom_role_arn" json:"customRoleARN,omitempty"`
+		CustomRoleRef *struct {
+			From *struct {
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"from" json:"from,omitempty"`
+		} `tfsdk:"custom_role_ref" json:"customRoleRef,omitempty"`
+		EcrRepositoryPrefix      *string `tfsdk:"ecr_repository_prefix" json:"ecrRepositoryPrefix,omitempty"`
+		RegistryID               *string `tfsdk:"registry_id" json:"registryID,omitempty"`
+		UpstreamRegistry         *string `tfsdk:"upstream_registry" json:"upstreamRegistry,omitempty"`
+		UpstreamRegistryURL      *string `tfsdk:"upstream_registry_url" json:"upstreamRegistryURL,omitempty"`
+		UpstreamRepositoryPrefix *string `tfsdk:"upstream_repository_prefix" json:"upstreamRepositoryPrefix,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -126,27 +142,127 @@ func (r *EcrServicesK8SAwsPullThroughCacheRuleV1Alpha1Manifest) Schema(_ context
 				Description:         "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule. The details of a pull through cache rule.",
 				MarkdownDescription: "PullThroughCacheRuleSpec defines the desired state of PullThroughCacheRule. The details of a pull through cache rule.",
 				Attributes: map[string]schema.Attribute{
+					"credential_arn": schema.StringAttribute{
+						Description:         "The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that identifies the credentials to authenticate to the upstream registry. Regex Pattern: '^arn:aws:secretsmanager:[a-zA-Z0-9-:]+:secret:ecr-pullthroughcache/[a-zA-Z0-9/_+=.@-]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that identifies the credentials to authenticate to the upstream registry. Regex Pattern: '^arn:aws:secretsmanager:[a-zA-Z0-9-:]+:secret:ecr-pullthroughcache/[a-zA-Z0-9/_+=.@-]+$'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"credential_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"custom_role_arn": schema.StringAttribute{
+						Description:         "Amazon Resource Name (ARN) of the IAM role to be assumed by Amazon ECR to authenticate to the ECR upstream registry. This role must be in the same account as the registry that you are configuring.",
+						MarkdownDescription: "Amazon Resource Name (ARN) of the IAM role to be assumed by Amazon ECR to authenticate to the ECR upstream registry. This role must be in the same account as the registry that you are configuring.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"custom_role_ref": schema.SingleNestedAttribute{
+						Description:         "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						MarkdownDescription: "AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReference type to provide more user friendly syntax for references using 'from' field Ex: APIIDRef: from: name: my-api",
+						Attributes: map[string]schema.Attribute{
+							"from": schema.SingleNestedAttribute{
+								Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"ecr_repository_prefix": schema.StringAttribute{
-						Description:         "The repository name prefix to use when caching images from the source registry.",
-						MarkdownDescription: "The repository name prefix to use when caching images from the source registry.",
+						Description:         "The repository name prefix to use when caching images from the source registry. There is always an assumed / applied to the end of the prefix. If you specify ecr-public as the prefix, Amazon ECR treats that as ecr-public/. Regex Pattern: '^((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*/?|ROOT)$'",
+						MarkdownDescription: "The repository name prefix to use when caching images from the source registry. There is always an assumed / applied to the end of the prefix. If you specify ecr-public as the prefix, Amazon ECR treats that as ecr-public/. Regex Pattern: '^((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*/?|ROOT)$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"registry_id": schema.StringAttribute{
-						Description:         "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.",
-						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.",
+						Description:         "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed. Regex Pattern: '^[0-9]{12}$'",
+						MarkdownDescription: "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed. Regex Pattern: '^[0-9]{12}$'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"upstream_registry": schema.StringAttribute{
+						Description:         "The name of the upstream registry.",
+						MarkdownDescription: "The name of the upstream registry.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"upstream_registry_url": schema.StringAttribute{
-						Description:         "The registry URL of the upstream public registry to use as the source for the pull through cache rule.",
-						MarkdownDescription: "The registry URL of the upstream public registry to use as the source for the pull through cache rule.",
+						Description:         "The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry. * Amazon ECR (ecr) – .dkr.ecr..amazonaws.com * Amazon ECR Public (ecr-public) – public.ecr.aws * Docker Hub (docker-hub) – registry-1.docker.io * GitHub Container Registry (github-container-registry) – ghcr.io * GitLab Container Registry (gitlab-container-registry) – registry.gitlab.com * Kubernetes (k8s) – registry.k8s.io * Microsoft Azure Container Registry (azure-container-registry) – .azurecr.io * Quay (quay) – quay.io",
+						MarkdownDescription: "The registry URL of the upstream public registry to use as the source for the pull through cache rule. The following is the syntax to use for each supported upstream registry. * Amazon ECR (ecr) – .dkr.ecr..amazonaws.com * Amazon ECR Public (ecr-public) – public.ecr.aws * Docker Hub (docker-hub) – registry-1.docker.io * GitHub Container Registry (github-container-registry) – ghcr.io * GitLab Container Registry (gitlab-container-registry) – registry.gitlab.com * Kubernetes (k8s) – registry.k8s.io * Microsoft Azure Container Registry (azure-container-registry) – .azurecr.io * Quay (quay) – quay.io",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"upstream_repository_prefix": schema.StringAttribute{
+						Description:         "The repository name prefix of the upstream registry to match with the upstream repository name. When this field isn't specified, Amazon ECR will use the ROOT. Regex Pattern: '^((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*/?|ROOT)$'",
+						MarkdownDescription: "The repository name prefix of the upstream registry to match with the upstream repository name. When this field isn't specified, Amazon ECR will use the ROOT. Regex Pattern: '^((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*/?|ROOT)$'",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 				},

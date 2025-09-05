@@ -7,6 +7,7 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -47,17 +48,21 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 		AttachMetadata *struct {
 			Node *bool `tfsdk:"node" json:"node,omitempty"`
 		} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
-		BodySizeLimit         *string `tfsdk:"body_size_limit" json:"bodySizeLimit,omitempty"`
-		JobLabel              *string `tfsdk:"job_label" json:"jobLabel,omitempty"`
-		KeepDroppedTargets    *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
-		LabelLimit            *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
-		LabelNameLengthLimit  *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
-		LabelValueLengthLimit *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
-		NamespaceSelector     *struct {
+		BodySizeLimit                  *string `tfsdk:"body_size_limit" json:"bodySizeLimit,omitempty"`
+		ConvertClassicHistogramsToNHCB *bool   `tfsdk:"convert_classic_histograms_to_nhcb" json:"convertClassicHistogramsToNHCB,omitempty"`
+		FallbackScrapeProtocol         *string `tfsdk:"fallback_scrape_protocol" json:"fallbackScrapeProtocol,omitempty"`
+		JobLabel                       *string `tfsdk:"job_label" json:"jobLabel,omitempty"`
+		KeepDroppedTargets             *int64  `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
+		LabelLimit                     *int64  `tfsdk:"label_limit" json:"labelLimit,omitempty"`
+		LabelNameLengthLimit           *int64  `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
+		LabelValueLengthLimit          *int64  `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
+		NamespaceSelector              *struct {
 			Any        *bool     `tfsdk:"any" json:"any,omitempty"`
 			MatchNames *[]string `tfsdk:"match_names" json:"matchNames,omitempty"`
 		} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
-		PodMetricsEndpoints *[]struct {
+		NativeHistogramBucketLimit     *int64  `tfsdk:"native_histogram_bucket_limit" json:"nativeHistogramBucketLimit,omitempty"`
+		NativeHistogramMinBucketFactor *string `tfsdk:"native_histogram_min_bucket_factor" json:"nativeHistogramMinBucketFactor,omitempty"`
+		PodMetricsEndpoints            *[]struct {
 			Authorization *struct {
 				Credentials *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -98,7 +103,8 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 				SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 			} `tfsdk:"metric_relabelings" json:"metricRelabelings,omitempty"`
-			Oauth2 *struct {
+			NoProxy *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			Oauth2  *struct {
 				ClientId *struct {
 					ConfigMap *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -159,11 +165,14 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
-			Params      *map[string][]string `tfsdk:"params" json:"params,omitempty"`
-			Path        *string              `tfsdk:"path" json:"path,omitempty"`
-			Port        *string              `tfsdk:"port" json:"port,omitempty"`
-			ProxyUrl    *string              `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
-			Relabelings *[]struct {
+			Params               *map[string][]string `tfsdk:"params" json:"params,omitempty"`
+			Path                 *string              `tfsdk:"path" json:"path,omitempty"`
+			Port                 *string              `tfsdk:"port" json:"port,omitempty"`
+			PortNumber           *int64               `tfsdk:"port_number" json:"portNumber,omitempty"`
+			ProxyConnectHeader   *map[string]string   `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool                `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string              `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			Relabelings          *[]struct {
 				Action       *string   `tfsdk:"action" json:"action,omitempty"`
 				Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
 				Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
@@ -212,11 +221,12 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 			TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
 		} `tfsdk:"pod_metrics_endpoints" json:"podMetricsEndpoints,omitempty"`
-		PodTargetLabels *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
-		SampleLimit     *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
-		ScrapeClass     *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
-		ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
-		Selector        *struct {
+		PodTargetLabels         *[]string `tfsdk:"pod_target_labels" json:"podTargetLabels,omitempty"`
+		SampleLimit             *int64    `tfsdk:"sample_limit" json:"sampleLimit,omitempty"`
+		ScrapeClass             *string   `tfsdk:"scrape_class" json:"scrapeClass,omitempty"`
+		ScrapeClassicHistograms *bool     `tfsdk:"scrape_classic_histograms" json:"scrapeClassicHistograms,omitempty"`
+		ScrapeProtocols         *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
+		Selector                *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
 				Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -224,7 +234,8 @@ type MonitoringCoreosComPodMonitorV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"selector" json:"selector,omitempty"`
-		TargetLimit *int64 `tfsdk:"target_limit" json:"targetLimit,omitempty"`
+		SelectorMechanism *string `tfsdk:"selector_mechanism" json:"selectorMechanism,omitempty"`
+		TargetLimit       *int64  `tfsdk:"target_limit" json:"targetLimit,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -333,6 +344,25 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 						},
 					},
 
+					"convert_classic_histograms_to_nhcb": schema.BoolAttribute{
+						Description:         "Whether to convert all scraped classic histograms into a native histogram with custom buckets. It requires Prometheus >= v3.0.0.",
+						MarkdownDescription: "Whether to convert all scraped classic histograms into a native histogram with custom buckets. It requires Prometheus >= v3.0.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"fallback_scrape_protocol": schema.StringAttribute{
+						Description:         "The protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type. It requires Prometheus >= v3.0.0.",
+						MarkdownDescription: "The protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type. It requires Prometheus >= v3.0.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("PrometheusProto", "OpenMetricsText0.0.1", "OpenMetricsText1.0.0", "PrometheusText0.0.4", "PrometheusText1.0.0"),
+						},
+					},
+
 					"job_label": schema.StringAttribute{
 						Description:         "The label to use to retrieve the job name from. 'jobLabel' selects the label from the associated Kubernetes 'Pod' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Pod' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty, the 'job' label of the metrics defaults to the namespace and name of the PodMonitor object (e.g. '<namespace>/<name>').",
 						MarkdownDescription: "The label to use to retrieve the job name from. 'jobLabel' selects the label from the associated Kubernetes 'Pod' object which will be used as the 'job' label for all metrics. For example if 'jobLabel' is set to 'foo' and the Kubernetes 'Pod' object is labeled with 'foo: bar', then Prometheus adds the 'job='bar'' label to all ingested metrics. If the value of this field is empty, the 'job' label of the metrics defaults to the namespace and name of the PodMonitor object (e.g. '<namespace>/<name>').",
@@ -397,6 +427,22 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"native_histogram_bucket_limit": schema.Int64Attribute{
+						Description:         "If there are more than this many buckets in a native histogram, buckets will be merged to stay within the limit. It requires Prometheus >= v2.45.0.",
+						MarkdownDescription: "If there are more than this many buckets in a native histogram, buckets will be merged to stay within the limit. It requires Prometheus >= v2.45.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"native_histogram_min_bucket_factor": schema.StringAttribute{
+						Description:         "If the growth factor of one bucket to the next is smaller than this, buckets will be merged to increase the factor sufficiently. It requires Prometheus >= v2.50.0.",
+						MarkdownDescription: "If the growth factor of one bucket to the next is smaller than this, buckets will be merged to increase the factor sufficiently. It requires Prometheus >= v2.50.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"pod_metrics_endpoints": schema.ListNestedAttribute{
@@ -684,6 +730,14 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 									Computed: false,
 								},
 
+								"no_proxy": schema.StringAttribute{
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"oauth2": schema.SingleNestedAttribute{
 									Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 									MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target. It requires Prometheus >= 2.27.0. Cannot be set at the same time as 'authorization', or 'basicAuth'.",
@@ -806,16 +860,16 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"no_proxy": schema.StringAttribute{
-											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_connect_header": schema.MapAttribute{
-											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -823,8 +877,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_from_environment": schema.BoolAttribute{
-											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -837,7 +891,7 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 											},
 										},
 
@@ -1046,8 +1100,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"max_version": schema.StringAttribute{
-													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1057,8 +1111,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"min_version": schema.StringAttribute{
-													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1114,19 +1168,51 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"port": schema.StringAttribute{
-									Description:         "Name of the Pod port which this endpoint refers to. It takes precedence over 'targetPort'.",
-									MarkdownDescription: "Name of the Pod port which this endpoint refers to. It takes precedence over 'targetPort'.",
+									Description:         "The 'Pod' port name which exposes the endpoint. It takes precedence over the 'portNumber' and 'targetPort' fields.",
+									MarkdownDescription: "The 'Pod' port name which exposes the endpoint. It takes precedence over the 'portNumber' and 'targetPort' fields.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"port_number": schema.Int64Attribute{
+									Description:         "The 'Pod' port number which exposes the endpoint.",
+									MarkdownDescription: "The 'Pod' port number which exposes the endpoint.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(1),
+										int64validator.AtMost(65535),
+									},
+								},
+
+								"proxy_connect_header": schema.MapAttribute{
+									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"proxy_from_environment": schema.BoolAttribute{
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
-									MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g. 'http://proxyserver:2195') to go through when scraping the target.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+									},
 								},
 
 								"relabelings": schema.ListNestedAttribute{
@@ -1212,8 +1298,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"scrape_timeout": schema.StringAttribute{
-									Description:         "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
-									MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used.",
+									Description:         "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used. The value cannot be greater than the scrape interval otherwise the operator will reject the resource.",
+									MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used. The value cannot be greater than the scrape interval otherwise the operator will reject the resource.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1223,8 +1309,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"target_port": schema.StringAttribute{
-									Description:         "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' instead.",
-									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' instead.",
+									Description:         "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' or 'portNumber' instead.",
+									MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, the port must be specified with container port property. Deprecated: use 'port' or 'portNumber' instead.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1426,8 +1512,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"max_version": schema.StringAttribute{
-											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1437,8 +1523,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_version": schema.StringAttribute{
-											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1502,6 +1588,14 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 						},
 					},
 
+					"scrape_classic_histograms": schema.BoolAttribute{
+						Description:         "Whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0. Notice: 'scrapeClassicHistograms' corresponds to the 'always_scrape_classic_histograms' field in the Prometheus configuration.",
+						MarkdownDescription: "Whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0. Notice: 'scrapeClassicHistograms' corresponds to the 'always_scrape_classic_histograms' field in the Prometheus configuration.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"scrape_protocols": schema.ListAttribute{
 						Description:         "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
 						MarkdownDescription: "'scrapeProtocols' defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
@@ -1563,6 +1657,17 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"selector_mechanism": schema.StringAttribute{
+						Description:         "Mechanism used to select the endpoints to scrape. By default, the selection process relies on relabel configurations to filter the discovered targets. Alternatively, you can opt in for role selectors, which may offer better efficiency in large clusters. Which strategy is best for your use case needs to be carefully evaluated. It requires Prometheus >= v2.17.0.",
+						MarkdownDescription: "Mechanism used to select the endpoints to scrape. By default, the selection process relies on relabel configurations to filter the discovered targets. Alternatively, you can opt in for role selectors, which may offer better efficiency in large clusters. Which strategy is best for your use case needs to be carefully evaluated. It requires Prometheus >= v2.17.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("RelabelConfig", "RoleSelector"),
+						},
 					},
 
 					"target_limit": schema.Int64Attribute{

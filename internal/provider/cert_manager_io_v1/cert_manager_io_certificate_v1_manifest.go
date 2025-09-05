@@ -60,8 +60,7 @@ type CertManagerIoCertificateV1ManifestData struct {
 		} `tfsdk:"issuer_ref" json:"issuerRef,omitempty"`
 		Keystores *struct {
 			Jks *struct {
-				Alias             *string `tfsdk:"alias" json:"alias,omitempty"`
-				Create            *bool   `tfsdk:"create" json:"create,omitempty"`
+				Create            *bool `tfsdk:"create" json:"create,omitempty"`
 				PasswordSecretRef *struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -102,11 +101,10 @@ type CertManagerIoCertificateV1ManifestData struct {
 			RotationPolicy *string `tfsdk:"rotation_policy" json:"rotationPolicy,omitempty"`
 			Size           *int64  `tfsdk:"size" json:"size,omitempty"`
 		} `tfsdk:"private_key" json:"privateKey,omitempty"`
-		RenewBefore           *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
-		RenewBeforePercentage *int64  `tfsdk:"renew_before_percentage" json:"renewBeforePercentage,omitempty"`
-		RevisionHistoryLimit  *int64  `tfsdk:"revision_history_limit" json:"revisionHistoryLimit,omitempty"`
-		SecretName            *string `tfsdk:"secret_name" json:"secretName,omitempty"`
-		SecretTemplate        *struct {
+		RenewBefore          *string `tfsdk:"renew_before" json:"renewBefore,omitempty"`
+		RevisionHistoryLimit *int64  `tfsdk:"revision_history_limit" json:"revisionHistoryLimit,omitempty"`
+		SecretName           *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+		SecretTemplate       *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"secret_template" json:"secretTemplate,omitempty"`
@@ -203,8 +201,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "Specification of the desired state of the Certificate resource. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
 				Attributes: map[string]schema.Attribute{
 					"additional_output_formats": schema.ListNestedAttribute{
-						Description:         "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is a Beta Feature enabled by default. It can be disabled with the '--feature-gates=AdditionalCertificateOutputFormats=false' option set on both the controller and webhook components.",
-						MarkdownDescription: "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is a Beta Feature enabled by default. It can be disabled with the '--feature-gates=AdditionalCertificateOutputFormats=false' option set on both the controller and webhook components.",
+						Description:         "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option set on both the controller and webhook components.",
+						MarkdownDescription: "Defines extra output formats of the private key and signed certificate chain to be written to this Certificate's target Secret. This is an Alpha Feature and is only enabled with the '--feature-gates=AdditionalCertificateOutputFormats=true' option set on both the controller and webhook components.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"type": schema.StringAttribute{
@@ -324,14 +322,6 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 								Description:         "JKS configures options for storing a JKS keystore in the 'spec.secretName' Secret resource.",
 								MarkdownDescription: "JKS configures options for storing a JKS keystore in the 'spec.secretName' Secret resource.",
 								Attributes: map[string]schema.Attribute{
-									"alias": schema.StringAttribute{
-										Description:         "Alias specifies the alias of the key in the keystore, required by the JKS format. If not provided, the default alias 'certificate' will be used.",
-										MarkdownDescription: "Alias specifies the alias of the key in the keystore, required by the JKS format. If not provided, the default alias 'certificate' will be used.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
 									"create": schema.BoolAttribute{
 										Description:         "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
 										MarkdownDescription: "Create enables JKS keystore creation for the Certificate. If true, a file named 'keystore.jks' will be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef'. The keystore file will be updated immediately. If the issuer provided a CA certificate, a file named 'truststore.jks' will also be created in the target Secret resource, encrypted using the password stored in 'passwordSecretRef' containing the issuing Certificate Authority",
@@ -429,8 +419,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"literal_subject": schema.StringAttribute{
-						Description:         "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424 Cannot be set if the 'subject' or 'commonName' field is set.",
-						MarkdownDescription: "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424 Cannot be set if the 'subject' or 'commonName' field is set.",
+						Description:         "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424 Cannot be set if the 'subject' or 'commonName' field is set. This is an Alpha Feature and is only enabled with the '--feature-gates=LiteralCertificateSubject=true' option set on both the controller and webhook components.",
+						MarkdownDescription: "Requested X.509 certificate subject, represented using the LDAP 'String Representation of a Distinguished Name' [1]. Important: the LDAP string format also specifies the order of the attributes in the subject, this is important when issuing certs for LDAP authentication. Example: 'CN=foo,DC=corp,DC=example,DC=com' More info [1]: https://datatracker.ietf.org/doc/html/rfc4514 More info: https://github.com/cert-manager/cert-manager/issues/3203 More info: https://github.com/cert-manager/cert-manager/issues/4424 Cannot be set if the 'subject' or 'commonName' field is set. This is an Alpha Feature and is only enabled with the '--feature-gates=LiteralCertificateSubject=true' option set on both the controller and webhook components.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -597,8 +587,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"rotation_policy": schema.StringAttribute{
-								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
-								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exist but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								Description:         "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
+								MarkdownDescription: "RotationPolicy controls how private keys should be regenerated when a re-issuance is being processed. If set to 'Never', a private key will only be generated if one does not already exist in the target 'spec.secretName'. If one does exists but it does not have the correct algorithm or size, a warning will be raised to await user intervention. If set to 'Always', a private key matching the specified requirements will be generated whenever a re-issuance occurs. Default is 'Never' for backward compatibility.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -621,16 +611,8 @@ func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"renew_before": schema.StringAttribute{
-						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration. Cannot be set if the 'renewBeforePercentage' field is set.",
-						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration. Cannot be set if the 'renewBeforePercentage' field is set.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
-					"renew_before_percentage": schema.Int64Attribute{
-						Description:         "'renewBeforePercentage' is like 'renewBefore', except it is a relative percentage rather than an absolute duration. For example, if a certificate is valid for 60 minutes, and 'renewBeforePercentage=25', cert-manager will begin to attempt to renew the certificate 45 minutes after it was issued (i.e. when there are 15 minutes (25%) remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. Value must be an integer in the range (0,100). The minimum effective 'renewBefore' derived from the 'renewBeforePercentage' and 'duration' fields is 5 minutes. Cannot be set if the 'renewBefore' field is set.",
-						MarkdownDescription: "'renewBeforePercentage' is like 'renewBefore', except it is a relative percentage rather than an absolute duration. For example, if a certificate is valid for 60 minutes, and 'renewBeforePercentage=25', cert-manager will begin to attempt to renew the certificate 45 minutes after it was issued (i.e. when there are 15 minutes (25%) remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. Value must be an integer in the range (0,100). The minimum effective 'renewBefore' derived from the 'renewBeforePercentage' and 'duration' fields is 5 minutes. Cannot be set if the 'renewBefore' field is set.",
+						Description:         "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
+						MarkdownDescription: "How long before the currently issued certificate's expiry cert-manager should renew the certificate. For example, if a certificate is valid for 60 minutes, and 'renewBefore=10m', cert-manager will begin to attempt to renew the certificate 50 minutes after it was issued (i.e. when there are 10 minutes remaining until the certificate is no longer valid). NOTE: The actual lifetime of the issued certificate is used to determine the renewal time. If an issuer returns a certificate with a different lifetime than the one requested, cert-manager will use the lifetime of the issued certificate. If unset, this defaults to 1/3 of the issued certificate's lifetime. Minimum accepted value is 5 minutes. Value must be in units accepted by Go time.ParseDuration https://golang.org/pkg/time/#ParseDuration.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

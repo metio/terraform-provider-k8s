@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -43,8 +44,16 @@ type CephRookIoCephClientV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Caps *map[string]string `tfsdk:"caps" json:"caps,omitempty"`
-		Name *string            `tfsdk:"name" json:"name,omitempty"`
+		Caps         *map[string]string `tfsdk:"caps" json:"caps,omitempty"`
+		Name         *string            `tfsdk:"name" json:"name,omitempty"`
+		RemoveSecret *bool              `tfsdk:"remove_secret" json:"removeSecret,omitempty"`
+		SecretName   *string            `tfsdk:"secret_name" json:"secretName,omitempty"`
+		Security     *struct {
+			Cephx *struct {
+				KeyGeneration     *int64  `tfsdk:"key_generation" json:"keyGeneration,omitempty"`
+				KeyRotationPolicy *string `tfsdk:"key_rotation_policy" json:"keyRotationPolicy,omitempty"`
+			} `tfsdk:"cephx" json:"cephx,omitempty"`
+		} `tfsdk:"security" json:"security,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -140,6 +149,63 @@ func (r *CephRookIoCephClientV1Manifest) Schema(_ context.Context, _ datasource.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"remove_secret": schema.BoolAttribute{
+						Description:         "RemoveSecret indicates whether the current secret for this ceph client should be removed or not. If true, the K8s secret will be deleted, but the cephx keyring will remain until the CR is deleted.",
+						MarkdownDescription: "RemoveSecret indicates whether the current secret for this ceph client should be removed or not. If true, the K8s secret will be deleted, but the cephx keyring will remain until the CR is deleted.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"secret_name": schema.StringAttribute{
+						Description:         "SecretName is the name of the secret created for this ceph client. If not specified, the default name is 'rook-ceph-client-' as a prefix to the CR name.",
+						MarkdownDescription: "SecretName is the name of the secret created for this ceph client. If not specified, the default name is 'rook-ceph-client-' as a prefix to the CR name.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"security": schema.SingleNestedAttribute{
+						Description:         "Security represents security settings",
+						MarkdownDescription: "Security represents security settings",
+						Attributes: map[string]schema.Attribute{
+							"cephx": schema.SingleNestedAttribute{
+								Description:         "CephX configures CephX key settings. More: https://docs.ceph.com/en/latest/dev/cephx/",
+								MarkdownDescription: "CephX configures CephX key settings. More: https://docs.ceph.com/en/latest/dev/cephx/",
+								Attributes: map[string]schema.Attribute{
+									"key_generation": schema.Int64Attribute{
+										Description:         "KeyGeneration specifies the desired CephX key generation. This is used when KeyRotationPolicy is KeyGeneration and ignored for other policies. If this is set to greater than the current key generation, relevant keys will be rotated, and the generation value will be updated to this new value (generation values are not necessarily incremental, though that is the intended use case). If this is set to less than or equal to the current key generation, keys are not rotated.",
+										MarkdownDescription: "KeyGeneration specifies the desired CephX key generation. This is used when KeyRotationPolicy is KeyGeneration and ignored for other policies. If this is set to greater than the current key generation, relevant keys will be rotated, and the generation value will be updated to this new value (generation values are not necessarily incremental, though that is the intended use case). If this is set to less than or equal to the current key generation, keys are not rotated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(0),
+											int64validator.AtMost(4.294967295e+09),
+										},
+									},
+
+									"key_rotation_policy": schema.StringAttribute{
+										Description:         "KeyRotationPolicy controls if and when CephX keys are rotated after initial creation. One of Disabled, or KeyGeneration. Default Disabled.",
+										MarkdownDescription: "KeyRotationPolicy controls if and when CephX keys are rotated after initial creation. One of Disabled, or KeyGeneration. Default Disabled.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("", "Disabled", "KeyGeneration"),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: true,

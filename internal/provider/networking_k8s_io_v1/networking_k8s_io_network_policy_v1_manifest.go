@@ -621,8 +621,8 @@ func (r *NetworkingK8SIoNetworkPolicyV1Manifest) Schema(_ context.Context, _ dat
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

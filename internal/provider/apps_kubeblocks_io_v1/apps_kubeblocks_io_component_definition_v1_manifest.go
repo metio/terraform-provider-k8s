@@ -45,26 +45,754 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 
 	Spec *struct {
 		Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-		Configs     *[]struct {
-			AsEnvFrom                *[]string `tfsdk:"as_env_from" json:"asEnvFrom,omitempty"`
-			AsSecret                 *bool     `tfsdk:"as_secret" json:"asSecret,omitempty"`
-			ConstraintRef            *string   `tfsdk:"constraint_ref" json:"constraintRef,omitempty"`
-			DefaultMode              *int64    `tfsdk:"default_mode" json:"defaultMode,omitempty"`
-			InjectEnvTo              *[]string `tfsdk:"inject_env_to" json:"injectEnvTo,omitempty"`
-			Keys                     *[]string `tfsdk:"keys" json:"keys,omitempty"`
-			LegacyRenderedConfigSpec *struct {
-				Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Policy      *string `tfsdk:"policy" json:"policy,omitempty"`
-				TemplateRef *string `tfsdk:"template_ref" json:"templateRef,omitempty"`
-			} `tfsdk:"legacy_rendered_config_spec" json:"legacyRenderedConfigSpec,omitempty"`
-			Name                  *string   `tfsdk:"name" json:"name,omitempty"`
-			Namespace             *string   `tfsdk:"namespace" json:"namespace,omitempty"`
-			ReRenderResourceTypes *[]string `tfsdk:"re_render_resource_types" json:"reRenderResourceTypes,omitempty"`
-			TemplateRef           *string   `tfsdk:"template_ref" json:"templateRef,omitempty"`
-			VolumeName            *string   `tfsdk:"volume_name" json:"volumeName,omitempty"`
+		Available   *struct {
+			WithPhases *string `tfsdk:"with_phases" json:"withPhases,omitempty"`
+			WithProbe  *struct {
+				Condition *struct {
+					All *struct {
+						And *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"and" json:"and,omitempty"`
+						Not *struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"not" json:"not,omitempty"`
+						Or *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"or" json:"or,omitempty"`
+						Stderr *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stderr" json:"stderr,omitempty"`
+						Stdout *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stdout" json:"stdout,omitempty"`
+						Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+						Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+					} `tfsdk:"all" json:"all,omitempty"`
+					And *[]struct {
+						All *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"all" json:"all,omitempty"`
+						Any *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"any" json:"any,omitempty"`
+						Majority *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"majority" json:"majority,omitempty"`
+						None *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"none" json:"none,omitempty"`
+					} `tfsdk:"and" json:"and,omitempty"`
+					Any *struct {
+						And *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"and" json:"and,omitempty"`
+						Not *struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"not" json:"not,omitempty"`
+						Or *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"or" json:"or,omitempty"`
+						Stderr *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stderr" json:"stderr,omitempty"`
+						Stdout *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stdout" json:"stdout,omitempty"`
+						Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+						Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+					} `tfsdk:"any" json:"any,omitempty"`
+					Majority *struct {
+						And *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"and" json:"and,omitempty"`
+						Not *struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"not" json:"not,omitempty"`
+						Or *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"or" json:"or,omitempty"`
+						Stderr *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stderr" json:"stderr,omitempty"`
+						Stdout *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stdout" json:"stdout,omitempty"`
+						Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+						Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+					} `tfsdk:"majority" json:"majority,omitempty"`
+					None *struct {
+						And *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"and" json:"and,omitempty"`
+						Not *struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"not" json:"not,omitempty"`
+						Or *[]struct {
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"or" json:"or,omitempty"`
+						Stderr *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stderr" json:"stderr,omitempty"`
+						Stdout *struct {
+							Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+							EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+						} `tfsdk:"stdout" json:"stdout,omitempty"`
+						Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+						Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+					} `tfsdk:"none" json:"none,omitempty"`
+					Not *struct {
+						All *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"all" json:"all,omitempty"`
+						Any *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"any" json:"any,omitempty"`
+						Majority *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"majority" json:"majority,omitempty"`
+						None *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"none" json:"none,omitempty"`
+					} `tfsdk:"not" json:"not,omitempty"`
+					Or *[]struct {
+						All *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"all" json:"all,omitempty"`
+						Any *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"any" json:"any,omitempty"`
+						Majority *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"majority" json:"majority,omitempty"`
+						None *struct {
+							And *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"and" json:"and,omitempty"`
+							Not *struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"not" json:"not,omitempty"`
+							Or *[]struct {
+								Stderr *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stderr" json:"stderr,omitempty"`
+								Stdout *struct {
+									Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+									EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+								} `tfsdk:"stdout" json:"stdout,omitempty"`
+								Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+							} `tfsdk:"or" json:"or,omitempty"`
+							Stderr *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stderr" json:"stderr,omitempty"`
+							Stdout *struct {
+								Contains *string `tfsdk:"contains" json:"contains,omitempty"`
+								EqualTo  *string `tfsdk:"equal_to" json:"equalTo,omitempty"`
+							} `tfsdk:"stdout" json:"stdout,omitempty"`
+							Strict  *bool `tfsdk:"strict" json:"strict,omitempty"`
+							Succeed *bool `tfsdk:"succeed" json:"succeed,omitempty"`
+						} `tfsdk:"none" json:"none,omitempty"`
+					} `tfsdk:"or" json:"or,omitempty"`
+				} `tfsdk:"condition" json:"condition,omitempty"`
+				Description       *string `tfsdk:"description" json:"description,omitempty"`
+				TimeWindowSeconds *int64  `tfsdk:"time_window_seconds" json:"timeWindowSeconds,omitempty"`
+			} `tfsdk:"with_probe" json:"withProbe,omitempty"`
+			WithRole *string `tfsdk:"with_role" json:"withRole,omitempty"`
+		} `tfsdk:"available" json:"available,omitempty"`
+		Configs *[]struct {
+			DefaultMode         *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+			ExternalManaged     *bool   `tfsdk:"external_managed" json:"externalManaged,omitempty"`
+			Name                *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace           *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			RestartOnFileChange *bool   `tfsdk:"restart_on_file_change" json:"restartOnFileChange,omitempty"`
+			Template            *string `tfsdk:"template" json:"template,omitempty"`
+			VolumeName          *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
-		Description *string `tfsdk:"description" json:"description,omitempty"`
-		Exporter    *struct {
+		Description                   *string `tfsdk:"description" json:"description,omitempty"`
+		DisableDefaultHeadlessService *bool   `tfsdk:"disable_default_headless_service" json:"disableDefaultHeadlessService,omitempty"`
+		Exporter                      *struct {
 			ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 			ScrapePath    *string `tfsdk:"scrape_path" json:"scrapePath,omitempty"`
 			ScrapePort    *string `tfsdk:"scrape_port" json:"scrapePort,omitempty"`
@@ -112,13 +840,108 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"account_provision" json:"accountProvision,omitempty"`
+			AvailableProbe *struct {
+				Exec *struct {
+					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
+					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
+					Container *string   `tfsdk:"container" json:"container,omitempty"`
+					Env       *[]struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"env" json:"env,omitempty"`
+					Image             *string `tfsdk:"image" json:"image,omitempty"`
+					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				} `tfsdk:"exec" json:"exec,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				InitialDelaySeconds *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				MatchingKey         *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
+				PeriodSeconds       *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+				PreCondition        *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
+				RetryPolicy         *struct {
+					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
+					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
+				SuccessThreshold  *int64  `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			} `tfsdk:"available_probe" json:"availableProbe,omitempty"`
 			DataDump *struct {
 				Exec *struct {
 					Args      *[]string `tfsdk:"args" json:"args,omitempty"`
@@ -153,12 +976,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"data_dump" json:"dataDump,omitempty"`
 			DataLoad *struct {
 				Exec *struct {
@@ -194,12 +1042,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"data_load" json:"dataLoad,omitempty"`
 			MemberJoin *struct {
 				Exec *struct {
@@ -235,12 +1108,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"member_join" json:"memberJoin,omitempty"`
 			MemberLeave *struct {
 				Exec *struct {
@@ -276,12 +1174,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"member_leave" json:"memberLeave,omitempty"`
 			PostProvision *struct {
 				Exec *struct {
@@ -317,12 +1240,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"post_provision" json:"postProvision,omitempty"`
 			PreTerminate *struct {
 				Exec *struct {
@@ -358,12 +1306,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"pre_terminate" json:"preTerminate,omitempty"`
 			Readonly *struct {
 				Exec *struct {
@@ -399,12 +1372,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readonly" json:"readonly,omitempty"`
 			Readwrite *struct {
 				Exec *struct {
@@ -440,12 +1438,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readwrite" json:"readwrite,omitempty"`
 			Reconfigure *struct {
 				Exec *struct {
@@ -481,12 +1504,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"reconfigure" json:"reconfigure,omitempty"`
 			RoleProbe *struct {
 				Exec *struct {
@@ -522,16 +1570,41 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
-				FailureThreshold    *int64  `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+				Grpc             *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
 				InitialDelaySeconds *int64  `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+				MatchingKey         *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PeriodSeconds       *int64  `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 				PreCondition        *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy         *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				SuccessThreshold *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-				TimeoutSeconds   *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				SuccessThreshold  *int64  `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"role_probe" json:"roleProbe,omitempty"`
 			Switchover *struct {
 				Exec *struct {
@@ -567,12 +1640,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					MatchingKey       *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 					TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
 				} `tfsdk:"exec" json:"exec,omitempty"`
+				Grpc *struct {
+					Host     *string            `tfsdk:"host" json:"host,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
+					Port     *string            `tfsdk:"port" json:"port,omitempty"`
+					Request  *map[string]string `tfsdk:"request" json:"request,omitempty"`
+					Response *struct {
+						Message *string `tfsdk:"message" json:"message,omitempty"`
+						Status  *string `tfsdk:"status" json:"status,omitempty"`
+					} `tfsdk:"response" json:"response,omitempty"`
+					Service *string `tfsdk:"service" json:"service,omitempty"`
+				} `tfsdk:"grpc" json:"grpc,omitempty"`
+				Http *struct {
+					Body    *string `tfsdk:"body" json:"body,omitempty"`
+					Headers *[]struct {
+						Name  *string `tfsdk:"name" json:"name,omitempty"`
+						Value *string `tfsdk:"value" json:"value,omitempty"`
+					} `tfsdk:"headers" json:"headers,omitempty"`
+					Host   *string `tfsdk:"host" json:"host,omitempty"`
+					Method *string `tfsdk:"method" json:"method,omitempty"`
+					Path   *string `tfsdk:"path" json:"path,omitempty"`
+					Port   *string `tfsdk:"port" json:"port,omitempty"`
+					Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+				} `tfsdk:"http" json:"http,omitempty"`
+				MatchingKey  *string `tfsdk:"matching_key" json:"matchingKey,omitempty"`
 				PreCondition *string `tfsdk:"pre_condition" json:"preCondition,omitempty"`
 				RetryPolicy  *struct {
 					MaxRetries    *int64 `tfsdk:"max_retries" json:"maxRetries,omitempty"`
 					RetryInterval *int64 `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 				} `tfsdk:"retry_policy" json:"retryPolicy,omitempty"`
-				TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				TargetPodSelector *string `tfsdk:"target_pod_selector" json:"targetPodSelector,omitempty"`
+				TimeoutSeconds    *int64  `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"switchover" json:"switchover,omitempty"`
 		} `tfsdk:"lifecycle_actions" json:"lifecycleActions,omitempty"`
 		LogConfigs *[]struct {
@@ -581,6 +1679,8 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 		} `tfsdk:"log_configs" json:"logConfigs,omitempty"`
 		MinReadySeconds     *int64  `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
 		PodManagementPolicy *string `tfsdk:"pod_management_policy" json:"podManagementPolicy,omitempty"`
+		PodUpdatePolicy     *string `tfsdk:"pod_update_policy" json:"podUpdatePolicy,omitempty"`
+		PodUpgradePolicy    *string `tfsdk:"pod_upgrade_policy" json:"podUpgradePolicy,omitempty"`
 		PolicyRules         *[]struct {
 			ApiGroups       *[]string `tfsdk:"api_groups" json:"apiGroups,omitempty"`
 			NonResourceURLs *[]string `tfsdk:"non_resource_urls" json:"nonResourceURLs,omitempty"`
@@ -594,10 +1694,9 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 			MinReplicas *int64 `tfsdk:"min_replicas" json:"minReplicas,omitempty"`
 		} `tfsdk:"replicas_limit" json:"replicasLimit,omitempty"`
 		Roles *[]struct {
-			Name        *string `tfsdk:"name" json:"name,omitempty"`
-			Serviceable *bool   `tfsdk:"serviceable" json:"serviceable,omitempty"`
-			Votable     *bool   `tfsdk:"votable" json:"votable,omitempty"`
-			Writable    *bool   `tfsdk:"writable" json:"writable,omitempty"`
+			Name                 *string `tfsdk:"name" json:"name,omitempty"`
+			ParticipatesInQuorum *bool   `tfsdk:"participates_in_quorum" json:"participatesInQuorum,omitempty"`
+			UpdatePriority       *int64  `tfsdk:"update_priority" json:"updatePriority,omitempty"`
 		} `tfsdk:"roles" json:"roles,omitempty"`
 		Runtime *struct {
 			ActiveDeadlineSeconds *int64 `tfsdk:"active_deadline_seconds" json:"activeDeadlineSeconds,omitempty"`
@@ -1876,11 +2975,13 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 			} `tfsdk:"volumes" json:"volumes,omitempty"`
 		} `tfsdk:"runtime" json:"runtime,omitempty"`
 		Scripts *[]struct {
-			DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
-			Name        *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			TemplateRef *string `tfsdk:"template_ref" json:"templateRef,omitempty"`
-			VolumeName  *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+			DefaultMode         *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+			ExternalManaged     *bool   `tfsdk:"external_managed" json:"externalManaged,omitempty"`
+			Name                *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace           *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			RestartOnFileChange *bool   `tfsdk:"restart_on_file_change" json:"restartOnFileChange,omitempty"`
+			Template            *string `tfsdk:"template" json:"template,omitempty"`
+			VolumeName          *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 		} `tfsdk:"scripts" json:"scripts,omitempty"`
 		ServiceKind            *string `tfsdk:"service_kind" json:"serviceKind,omitempty"`
 		ServiceRefDeclarations *[]struct {
@@ -1936,18 +3037,27 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 			InitAccount              *bool   `tfsdk:"init_account" json:"initAccount,omitempty"`
 			Name                     *string `tfsdk:"name" json:"name,omitempty"`
 			PasswordGenerationPolicy *struct {
-				Length     *int64  `tfsdk:"length" json:"length,omitempty"`
-				LetterCase *string `tfsdk:"letter_case" json:"letterCase,omitempty"`
-				NumDigits  *int64  `tfsdk:"num_digits" json:"numDigits,omitempty"`
-				NumSymbols *int64  `tfsdk:"num_symbols" json:"numSymbols,omitempty"`
-				Seed       *string `tfsdk:"seed" json:"seed,omitempty"`
+				Length           *int64  `tfsdk:"length" json:"length,omitempty"`
+				LetterCase       *string `tfsdk:"letter_case" json:"letterCase,omitempty"`
+				NumDigits        *int64  `tfsdk:"num_digits" json:"numDigits,omitempty"`
+				NumSymbols       *int64  `tfsdk:"num_symbols" json:"numSymbols,omitempty"`
+				Seed             *string `tfsdk:"seed" json:"seed,omitempty"`
+				SymbolCharacters *string `tfsdk:"symbol_characters" json:"symbolCharacters,omitempty"`
 			} `tfsdk:"password_generation_policy" json:"passwordGenerationPolicy,omitempty"`
-			SecretRef *struct {
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-			Statement *string `tfsdk:"statement" json:"statement,omitempty"`
+			Statement *struct {
+				Create *string `tfsdk:"create" json:"create,omitempty"`
+				Delete *string `tfsdk:"delete" json:"delete,omitempty"`
+				Update *string `tfsdk:"update" json:"update,omitempty"`
+			} `tfsdk:"statement" json:"statement,omitempty"`
 		} `tfsdk:"system_accounts" json:"systemAccounts,omitempty"`
+		Tls *struct {
+			CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
+			CertFile    *string `tfsdk:"cert_file" json:"certFile,omitempty"`
+			DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+			KeyFile     *string `tfsdk:"key_file" json:"keyFile,omitempty"`
+			MountPath   *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+			VolumeName  *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+		} `tfsdk:"tls" json:"tls,omitempty"`
 		UpdateStrategy *string `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		Vars           *[]struct {
 			Expression *string `tfsdk:"expression" json:"expression,omitempty"`
@@ -1971,7 +3081,8 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
 							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
-						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name            *string `tfsdk:"name" json:"name,omitempty"`
 					Optional        *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -2004,7 +3115,8 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
 							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
-						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -2029,11 +3141,37 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
 							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
-						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"host_network_var_ref" json:"hostNetworkVarRef,omitempty"`
+				ResourceVarRef *struct {
+					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
+					Cpu                         *string `tfsdk:"cpu" json:"cpu,omitempty"`
+					CpuLimit                    *string `tfsdk:"cpu_limit" json:"cpuLimit,omitempty"`
+					Memory                      *string `tfsdk:"memory" json:"memory,omitempty"`
+					MemoryLimit                 *string `tfsdk:"memory_limit" json:"memoryLimit,omitempty"`
+					MultipleClusterObjectOption *struct {
+						CombinedOption *struct {
+							FlattenFormat *struct {
+								Delimiter         *string `tfsdk:"delimiter" json:"delimiter,omitempty"`
+								KeyValueDelimiter *string `tfsdk:"key_value_delimiter" json:"keyValueDelimiter,omitempty"`
+							} `tfsdk:"flatten_format" json:"flattenFormat,omitempty"`
+							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
+							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
+						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
+					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					Storage  *struct {
+						Name   *string `tfsdk:"name" json:"name,omitempty"`
+						Option *string `tfsdk:"option" json:"option,omitempty"`
+					} `tfsdk:"storage" json:"storage,omitempty"`
+				} `tfsdk:"resource_var_ref" json:"resourceVarRef,omitempty"`
 				SecretKeyRef *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -2052,7 +3190,8 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
 							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
-						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -2074,7 +3213,8 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
 							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
-						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
@@ -2084,6 +3224,24 @@ type AppsKubeblocksIoComponentDefinitionV1ManifestData struct {
 					} `tfsdk:"port" json:"port,omitempty"`
 					ServiceType *string `tfsdk:"service_type" json:"serviceType,omitempty"`
 				} `tfsdk:"service_var_ref" json:"serviceVarRef,omitempty"`
+				TlsVarRef *struct {
+					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
+					Enabled                     *string `tfsdk:"enabled" json:"enabled,omitempty"`
+					MultipleClusterObjectOption *struct {
+						CombinedOption *struct {
+							FlattenFormat *struct {
+								Delimiter         *string `tfsdk:"delimiter" json:"delimiter,omitempty"`
+								KeyValueDelimiter *string `tfsdk:"key_value_delimiter" json:"keyValueDelimiter,omitempty"`
+							} `tfsdk:"flatten_format" json:"flattenFormat,omitempty"`
+							NewVarSuffix *string `tfsdk:"new_var_suffix" json:"newVarSuffix,omitempty"`
+							ValueFormat  *string `tfsdk:"value_format" json:"valueFormat,omitempty"`
+						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
+						RequireAllComponentObjects *bool   `tfsdk:"require_all_component_objects" json:"requireAllComponentObjects,omitempty"`
+						Strategy                   *string `tfsdk:"strategy" json:"strategy,omitempty"`
+					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"tls_var_ref" json:"tlsVarRef,omitempty"`
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"vars" json:"vars,omitempty"`
 		Volumes *[]struct {
@@ -2168,111 +3326,4600 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 						Computed:            false,
 					},
 
+					"available": schema.SingleNestedAttribute{
+						Description:         "Specifies the strategies for determining the available status of the Component. This field is immutable.",
+						MarkdownDescription: "Specifies the strategies for determining the available status of the Component. This field is immutable.",
+						Attributes: map[string]schema.Attribute{
+							"with_phases": schema.StringAttribute{
+								Description:         "Specifies the phases that the component will go through to be considered available. This field is immutable once set.",
+								MarkdownDescription: "Specifies the phases that the component will go through to be considered available. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"with_probe": schema.SingleNestedAttribute{
+								Description:         "Specifies the strategies for determining whether the component is available based on the available probe. If specified, it will take precedence over the WithPhases and WithRole fields. This field is immutable once set.",
+								MarkdownDescription: "Specifies the strategies for determining whether the component is available based on the available probe. If specified, it will take precedence over the WithPhases and WithRole fields. This field is immutable once set.",
+								Attributes: map[string]schema.Attribute{
+									"condition": schema.SingleNestedAttribute{
+										Description:         "Specifies the conditions that the component will go through to be considered available. This field is immutable once set.",
+										MarkdownDescription: "Specifies the conditions that the component will go through to be considered available. This field is immutable once set.",
+										Attributes: map[string]schema.Attribute{
+											"all": schema.SingleNestedAttribute{
+												Description:         "All replicas must satisfy the assertion. This field is immutable once set.",
+												MarkdownDescription: "All replicas must satisfy the assertion. This field is immutable once set.",
+												Attributes: map[string]schema.Attribute{
+													"and": schema.ListNestedAttribute{
+														Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"not": schema.SingleNestedAttribute{
+														Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"or": schema.ListNestedAttribute{
+														Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stderr": schema.SingleNestedAttribute{
+														Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stdout": schema.SingleNestedAttribute{
+														Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"strict": schema.BoolAttribute{
+														Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"succeed": schema.BoolAttribute{
+														Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+														MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"and": schema.ListNestedAttribute{
+												Description:         "Logical And to combine multiple expressions. This field is immutable once set.",
+												MarkdownDescription: "Logical And to combine multiple expressions. This field is immutable once set.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"all": schema.SingleNestedAttribute{
+															Description:         "All replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "All replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"any": schema.SingleNestedAttribute{
+															Description:         "At least one replica must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "At least one replica must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"majority": schema.SingleNestedAttribute{
+															Description:         "Majority replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "Majority replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"none": schema.SingleNestedAttribute{
+															Description:         "None of the replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "None of the replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"any": schema.SingleNestedAttribute{
+												Description:         "At least one replica must satisfy the assertion. This field is immutable once set.",
+												MarkdownDescription: "At least one replica must satisfy the assertion. This field is immutable once set.",
+												Attributes: map[string]schema.Attribute{
+													"and": schema.ListNestedAttribute{
+														Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"not": schema.SingleNestedAttribute{
+														Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"or": schema.ListNestedAttribute{
+														Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stderr": schema.SingleNestedAttribute{
+														Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stdout": schema.SingleNestedAttribute{
+														Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"strict": schema.BoolAttribute{
+														Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"succeed": schema.BoolAttribute{
+														Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+														MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"majority": schema.SingleNestedAttribute{
+												Description:         "Majority replicas must satisfy the assertion. This field is immutable once set.",
+												MarkdownDescription: "Majority replicas must satisfy the assertion. This field is immutable once set.",
+												Attributes: map[string]schema.Attribute{
+													"and": schema.ListNestedAttribute{
+														Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"not": schema.SingleNestedAttribute{
+														Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"or": schema.ListNestedAttribute{
+														Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stderr": schema.SingleNestedAttribute{
+														Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stdout": schema.SingleNestedAttribute{
+														Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"strict": schema.BoolAttribute{
+														Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"succeed": schema.BoolAttribute{
+														Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+														MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"none": schema.SingleNestedAttribute{
+												Description:         "None of the replicas must satisfy the assertion. This field is immutable once set.",
+												MarkdownDescription: "None of the replicas must satisfy the assertion. This field is immutable once set.",
+												Attributes: map[string]schema.Attribute{
+													"and": schema.ListNestedAttribute{
+														Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"not": schema.SingleNestedAttribute{
+														Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"or": schema.ListNestedAttribute{
+														Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+														MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stderr": schema.SingleNestedAttribute{
+														Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"stdout": schema.SingleNestedAttribute{
+														Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+														MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"contains": schema.StringAttribute{
+																Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"equal_to": schema.StringAttribute{
+																Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"strict": schema.BoolAttribute{
+														Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"succeed": schema.BoolAttribute{
+														Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+														MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"not": schema.SingleNestedAttribute{
+												Description:         "Logical Not to negate the expression. This field is immutable once set.",
+												MarkdownDescription: "Logical Not to negate the expression. This field is immutable once set.",
+												Attributes: map[string]schema.Attribute{
+													"all": schema.SingleNestedAttribute{
+														Description:         "All replicas must satisfy the assertion. This field is immutable once set.",
+														MarkdownDescription: "All replicas must satisfy the assertion. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"and": schema.ListNestedAttribute{
+																Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"not": schema.SingleNestedAttribute{
+																Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"stderr": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"stdout": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"succeed": schema.BoolAttribute{
+																		Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																		MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"or": schema.ListNestedAttribute{
+																Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"strict": schema.BoolAttribute{
+																Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"any": schema.SingleNestedAttribute{
+														Description:         "At least one replica must satisfy the assertion. This field is immutable once set.",
+														MarkdownDescription: "At least one replica must satisfy the assertion. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"and": schema.ListNestedAttribute{
+																Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"not": schema.SingleNestedAttribute{
+																Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"stderr": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"stdout": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"succeed": schema.BoolAttribute{
+																		Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																		MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"or": schema.ListNestedAttribute{
+																Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"strict": schema.BoolAttribute{
+																Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"majority": schema.SingleNestedAttribute{
+														Description:         "Majority replicas must satisfy the assertion. This field is immutable once set.",
+														MarkdownDescription: "Majority replicas must satisfy the assertion. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"and": schema.ListNestedAttribute{
+																Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"not": schema.SingleNestedAttribute{
+																Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"stderr": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"stdout": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"succeed": schema.BoolAttribute{
+																		Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																		MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"or": schema.ListNestedAttribute{
+																Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"strict": schema.BoolAttribute{
+																Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"none": schema.SingleNestedAttribute{
+														Description:         "None of the replicas must satisfy the assertion. This field is immutable once set.",
+														MarkdownDescription: "None of the replicas must satisfy the assertion. This field is immutable once set.",
+														Attributes: map[string]schema.Attribute{
+															"and": schema.ListNestedAttribute{
+																Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"not": schema.SingleNestedAttribute{
+																Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"stderr": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"stdout": schema.SingleNestedAttribute{
+																		Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																		Attributes: map[string]schema.Attribute{
+																			"contains": schema.StringAttribute{
+																				Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"equal_to": schema.StringAttribute{
+																				Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"succeed": schema.BoolAttribute{
+																		Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																		MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"or": schema.ListNestedAttribute{
+																Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stderr": schema.SingleNestedAttribute{
+																Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"stdout": schema.SingleNestedAttribute{
+																Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																Attributes: map[string]schema.Attribute{
+																	"contains": schema.StringAttribute{
+																		Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"equal_to": schema.StringAttribute{
+																		Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"strict": schema.BoolAttribute{
+																Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"succeed": schema.BoolAttribute{
+																Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"or": schema.ListNestedAttribute{
+												Description:         "Logical Or to combine multiple expressions. This field is immutable once set.",
+												MarkdownDescription: "Logical Or to combine multiple expressions. This field is immutable once set.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"all": schema.SingleNestedAttribute{
+															Description:         "All replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "All replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"any": schema.SingleNestedAttribute{
+															Description:         "At least one replica must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "At least one replica must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"majority": schema.SingleNestedAttribute{
+															Description:         "Majority replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "Majority replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"none": schema.SingleNestedAttribute{
+															Description:         "None of the replicas must satisfy the assertion. This field is immutable once set.",
+															MarkdownDescription: "None of the replicas must satisfy the assertion. This field is immutable once set.",
+															Attributes: map[string]schema.Attribute{
+																"and": schema.ListNestedAttribute{
+																	Description:         "Logical And to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical And to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"not": schema.SingleNestedAttribute{
+																	Description:         "Logical Not to negate the assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Not to negate the assertions. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"stderr": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"stdout": schema.SingleNestedAttribute{
+																			Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																			Attributes: map[string]schema.Attribute{
+																				"contains": schema.StringAttribute{
+																					Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"equal_to": schema.StringAttribute{
+																					Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"succeed": schema.BoolAttribute{
+																			Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																			MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"or": schema.ListNestedAttribute{
+																	Description:         "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	MarkdownDescription: "Logical Or to combine multiple assertions. This field is immutable once set.",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"stderr": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"stdout": schema.SingleNestedAttribute{
+																				Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																				Attributes: map[string]schema.Attribute{
+																					"contains": schema.StringAttribute{
+																						Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"equal_to": schema.StringAttribute{
+																						Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"succeed": schema.BoolAttribute{
+																				Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																				MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stderr": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stderr matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"stdout": schema.SingleNestedAttribute{
+																	Description:         "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	MarkdownDescription: "Specifies the stdout matcher for the action. This field is immutable once set.",
+																	Attributes: map[string]schema.Attribute{
+																		"contains": schema.StringAttribute{
+																			Description:         "The output of the action should contain the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should contain the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"equal_to": schema.StringAttribute{
+																			Description:         "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			MarkdownDescription: "The output of the action should be equal to the specified value. This field is immutable once set.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"strict": schema.BoolAttribute{
+																	Description:         "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	MarkdownDescription: "Specifies whether apply the assertions strictly to all replicas. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"succeed": schema.BoolAttribute{
+																	Description:         "Whether the action should succeed or fail. This field is immutable once set.",
+																	MarkdownDescription: "Whether the action should succeed or fail. This field is immutable once set.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"description": schema.StringAttribute{
+										Description:         "A brief description for the condition when the component is available.",
+										MarkdownDescription: "A brief description for the condition when the component is available.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"time_window_seconds": schema.Int64Attribute{
+										Description:         "This field is immutable once set.",
+										MarkdownDescription: "This field is immutable once set.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"with_role": schema.StringAttribute{
+								Description:         "Specifies the role that the component will go through to be considered available. This field is immutable once set.",
+								MarkdownDescription: "Specifies the role that the component will go through to be considered available. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"configs": schema.ListNestedAttribute{
-						Description:         "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations. This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap. The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters. This field is immutable.",
-						MarkdownDescription: "Specifies the configuration file templates and volume mount parameters used by the Component. It also includes descriptions of the parameters in the ConfigMaps, such as value range limitations. This field specifies a list of templates that will be rendered into Component containers' configuration files. Each template is represented as a ConfigMap and may contain multiple configuration files, with each file being a key in the ConfigMap. The rendered configuration files will be mounted into the Component's containers according to the specified volume mount parameters. This field is immutable.",
+						Description:         "Specifies the config file templates and volume mount parameters used by the Component. This field specifies a list of templates that will be rendered into Component containers' config files. Each template is represented as a ConfigMap and may contain multiple config files, with each file being a key in the ConfigMap. This field is immutable.",
+						MarkdownDescription: "Specifies the config file templates and volume mount parameters used by the Component. This field specifies a list of templates that will be rendered into Component containers' config files. Each template is represented as a ConfigMap and may contain multiple config files, with each file being a key in the ConfigMap. This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"as_env_from": schema.ListAttribute{
-									Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image. Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
-									MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image. Deprecated: 'asEnvFrom' has been deprecated since 0.9.0 and will be removed in 0.10.0. Use 'injectEnvTo' instead.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"as_secret": schema.BoolAttribute{
-									Description:         "Whether to store the final rendered parameters as a secret.",
-									MarkdownDescription: "Whether to store the final rendered parameters as a secret.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"constraint_ref": schema.StringAttribute{
-									Description:         "Specifies the name of the referenced configuration constraints object.",
-									MarkdownDescription: "Specifies the name of the referenced configuration constraints object.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-									Validators: []validator.String{
-										stringvalidator.LengthAtMost(63),
-										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-									},
-								},
-
 								"default_mode": schema.Int64Attribute{
-									Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
-									MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+									Description:         "The operator attempts to set default file permissions (0444). Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+									MarkdownDescription: "The operator attempts to set default file permissions (0444). Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
-								"inject_env_to": schema.ListAttribute{
-									Description:         "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
-									MarkdownDescription: "Specifies the containers to inject the ConfigMap parameters as environment variables. This is useful when application images accept parameters through environment variables and generate the final configuration file in the startup script based on these variables. This field allows users to specify a list of container names, and KubeBlocks will inject the environment variables converted from the ConfigMap into these designated containers. This provides a flexible way to pass the configuration items from the ConfigMap to the container without modifying the image.",
-									ElementType:         types.StringType,
+								"external_managed": schema.BoolAttribute{
+									Description:         "ExternalManaged indicates whether the configuration is managed by an external system. When set to true, the controller will ignore the management of this configuration.",
+									MarkdownDescription: "ExternalManaged indicates whether the configuration is managed by an external system. When set to true, the controller will ignore the management of this configuration.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
-								},
-
-								"keys": schema.ListAttribute{
-									Description:         "Specifies the configuration files within the ConfigMap that support dynamic updates. A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart. If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
-									MarkdownDescription: "Specifies the configuration files within the ConfigMap that support dynamic updates. A configuration template (provided in the form of a ConfigMap) may contain templates for multiple configuration files. Each configuration file corresponds to a key in the ConfigMap. Some of these configuration files may support dynamic modification and reloading without requiring a pod restart. If empty or omitted, all configuration files in the ConfigMap are assumed to support dynamic updates, and ConfigConstraint applies to all keys.",
-									ElementType:         types.StringType,
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"legacy_rendered_config_spec": schema.SingleNestedAttribute{
-									Description:         "Specifies the secondary rendered config spec for pod-specific customization. The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file. This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration. Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
-									MarkdownDescription: "Specifies the secondary rendered config spec for pod-specific customization. The template is rendered inside the pod (by the 'config-manager' sidecar container) and merged with the main template's render result to generate the final configuration file. This field is intended to handle scenarios where different pods within the same Component have varying configurations. It allows for pod-specific customization of the configuration. Note: This field will be deprecated in future versions, and the functionality will be moved to 'cluster.spec.componentSpecs[*].instances[*]'.",
-									Attributes: map[string]schema.Attribute{
-										"namespace": schema.StringAttribute{
-											Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-											MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\-]*[a-z0-9])?$`), ""),
-											},
-										},
-
-										"policy": schema.StringAttribute{
-											Description:         "Defines the strategy for merging externally imported templates into component templates.",
-											MarkdownDescription: "Defines the strategy for merging externally imported templates into component templates.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("patch", "replace", "none"),
-											},
-										},
-
-										"template_ref": schema.StringAttribute{
-											Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
-											MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
-											Required:            true,
-											Optional:            false,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies the name of the configuration template.",
-									MarkdownDescription: "Specifies the name of the configuration template.",
+									Description:         "Specifies the name of the template.",
+									MarkdownDescription: "Specifies the name of the template.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -2283,8 +7930,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-									MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+									Description:         "Specifies the namespace of the referenced template ConfigMap object.",
+									MarkdownDescription: "Specifies the namespace of the referenced template ConfigMap object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2294,18 +7941,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 									},
 								},
 
-								"re_render_resource_types": schema.ListAttribute{
-									Description:         "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes. In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples: - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
-									MarkdownDescription: "Specifies whether the configuration needs to be re-rendered after v-scale or h-scale operations to reflect changes. In some scenarios, the configuration may need to be updated to reflect the changes in resource allocation or cluster topology. Examples: - Redis: adjust maxmemory after v-scale operation. - MySQL: increase max connections after v-scale operation. - Zookeeper: update zoo.cfg with new node addresses after h-scale operation.",
-									ElementType:         types.StringType,
+								"restart_on_file_change": schema.BoolAttribute{
+									Description:         "Specifies whether to restart the pod when the file changes.",
+									MarkdownDescription: "Specifies whether to restart the pod when the file changes.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
-								"template_ref": schema.StringAttribute{
-									Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
-									MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
+								"template": schema.StringAttribute{
+									Description:         "Specifies the name of the referenced template ConfigMap object.",
+									MarkdownDescription: "Specifies the name of the referenced template ConfigMap object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2316,8 +7962,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 								},
 
 								"volume_name": schema.StringAttribute{
-									Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
-									MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
+									Description:         "Refers to the volume name of PodTemplate. The file produced through the template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
+									MarkdownDescription: "Refers to the volume name of PodTemplate. The file produced through the template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -2342,6 +7988,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 						Validators: []validator.String{
 							stringvalidator.LengthAtMost(256),
 						},
+					},
+
+					"disable_default_headless_service": schema.BoolAttribute{
+						Description:         "Specifies whether to create the default headless service. This field is immutable.",
+						MarkdownDescription: "Specifies whether to create the default headless service. This field is immutable.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"exporter": schema.SingleNestedAttribute{
@@ -2435,12 +8089,12 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 					},
 
 					"lifecycle_actions": schema.SingleNestedAttribute{
-						Description:         "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle. Actions are triggered at specific lifecycle stages: - 'postProvision': Defines the hook to be executed after the creation of a Component, with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. - 'preTerminate': Defines the hook to be executed before terminating a Component. - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas. - 'switchover': Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, such as before planned maintenance or upgrades on the current leader node. - 'memberJoin': Defines the procedure to add a new replica to the replication group. - 'memberLeave': Defines the method to remove a replica from the replication group. - 'readOnly': Defines the procedure to switch a replica into the read-only state. - 'readWrite': transition a replica from the read-only state back to the read-write state. - 'dataDump': Defines the procedure to export the data from a replica. - 'dataLoad': Defines the procedure to import data into a replica. - 'reconfigure': Defines the procedure that update a replica with new configuration file. - 'accountProvision': Defines the procedure to generate a new database account. This field is immutable.",
-						MarkdownDescription: "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle. Actions are triggered at specific lifecycle stages: - 'postProvision': Defines the hook to be executed after the creation of a Component, with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. - 'preTerminate': Defines the hook to be executed before terminating a Component. - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas. - 'switchover': Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, such as before planned maintenance or upgrades on the current leader node. - 'memberJoin': Defines the procedure to add a new replica to the replication group. - 'memberLeave': Defines the method to remove a replica from the replication group. - 'readOnly': Defines the procedure to switch a replica into the read-only state. - 'readWrite': transition a replica from the read-only state back to the read-write state. - 'dataDump': Defines the procedure to export the data from a replica. - 'dataLoad': Defines the procedure to import data into a replica. - 'reconfigure': Defines the procedure that update a replica with new configuration file. - 'accountProvision': Defines the procedure to generate a new database account. This field is immutable.",
+						Description:         "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle. Actions are triggered at specific lifecycle stages: - 'postProvision': Defines the hook to be executed after the creation of a Component, with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. - 'preTerminate': Defines the hook to be executed before terminating a Component. - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas. - 'availableProbe': Defines the procedure which is invoked regularly to assess the availability of the component. - 'switchover': Defines the procedure for a controlled transition of a role to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, such as before planned maintenance or upgrades on the current leader node. - 'memberJoin': Defines the procedure to add a new replica to the replication group. - 'memberLeave': Defines the method to remove a replica from the replication group. - 'readOnly': Defines the procedure to switch a replica into the read-only state. - 'readWrite': transition a replica from the read-only state back to the read-write state. - 'dataDump': Defines the procedure to export the data from a replica. - 'dataLoad': Defines the procedure to import data into a replica. - 'reconfigure': Defines the procedure that update a replica with new configuration file. - 'accountProvision': Defines the procedure to generate a new database account. This field is immutable.",
+						MarkdownDescription: "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle. Actions are triggered at specific lifecycle stages: - 'postProvision': Defines the hook to be executed after the creation of a Component, with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'. - 'preTerminate': Defines the hook to be executed before terminating a Component. - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas. - 'availableProbe': Defines the procedure which is invoked regularly to assess the availability of the component. - 'switchover': Defines the procedure for a controlled transition of a role to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, such as before planned maintenance or upgrades on the current leader node. - 'memberJoin': Defines the procedure to add a new replica to the replication group. - 'memberLeave': Defines the method to remove a replica from the replication group. - 'readOnly': Defines the procedure to switch a replica into the read-only state. - 'readWrite': transition a replica from the read-only state back to the read-write state. - 'dataDump': Defines the procedure to export the data from a replica. - 'dataLoad': Defines the procedure to import data into a replica. - 'reconfigure': Defines the procedure that update a replica with new configuration file. - 'accountProvision': Defines the procedure to generate a new database account. This field is immutable.",
 						Attributes: map[string]schema.Attribute{
 							"account_provision": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be created. - KB_ACCOUNT_PASSWORD: The password for the system account. // TODO: how to pass the password securely? - KB_ACCOUNT_STATEMENT: The statement used to create the system account. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be created. - KB_ACCOUNT_PASSWORD: The password for the system account. // TODO: how to pass the password securely? - KB_ACCOUNT_STATEMENT: The statement used to create the system account. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be manipulated. - KB_ACCOUNT_PASSWORD: The password for the system account. - KB_ACCOUNT_STATEMENT: The statement used to manipulate the system account. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to generate a new database account. Use Case: This action is designed to create system accounts that are utilized for replication, monitoring, backup, and other administrative tasks. The container executing this action has access to following variables: - KB_ACCOUNT_NAME: The name of the system account to be manipulated. - KB_ACCOUNT_PASSWORD: The password for the system account. - KB_ACCOUNT_STATEMENT: The statement used to manipulate the system account. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -2664,6 +8318,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -2695,6 +8525,508 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
+									},
+
+									"timeout_seconds": schema.Int64Attribute{
+										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"available_probe": schema.SingleNestedAttribute{
+								Description:         "Defines the procedure which is invoked regularly to assess the availability of the component. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the availability of the component. Note: This field is immutable once it has been set.",
+								Attributes: map[string]schema.Attribute{
+									"exec": schema.SingleNestedAttribute{
+										Description:         "Defines the command to run. This field cannot be updated.",
+										MarkdownDescription: "Defines the command to run. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"args": schema.ListAttribute{
+												Description:         "Args represents the arguments that are passed to the 'command' for execution.",
+												MarkdownDescription: "Args represents the arguments that are passed to the 'command' for execution.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"command": schema.ListAttribute{
+												Description:         "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+												MarkdownDescription: "Specifies the command to be executed inside the container. The working directory for this command is the container's root directory('/'). Commands are executed directly without a shell environment, meaning shell-specific syntax ('|', etc.) is not supported. If the shell is required, it must be explicitly invoked in the command. A successful execution is indicated by an exit status of 0; any non-zero status signifies a failure.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"container": schema.StringAttribute{
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action. This allows the action to utilize the specified container's resources without executing within it. The name must match one of the containers defined in 'componentDefinition.spec.runtime'. The resources that can be shared are included: - volume mounts This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"env": schema.ListNestedAttribute{
+												Description:         "Represents a list of environment variables that will be injected into the container. These variables enable the container to adapt its behavior based on the environment it's running in. This field cannot be updated.",
+												MarkdownDescription: "Represents a list of environment variables that will be injected into the container. These variables enable the container to adapt its behavior based on the environment it's running in. This field cannot be updated.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+															MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+															MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"value_from": schema.SingleNestedAttribute{
+															Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+															MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+															Attributes: map[string]schema.Attribute{
+																"config_map_key_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a key of a ConfigMap.",
+																	MarkdownDescription: "Selects a key of a ConfigMap.",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key to select.",
+																			MarkdownDescription: "The key to select.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the ConfigMap or its key must be defined",
+																			MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"field_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																	Attributes: map[string]schema.Attribute{
+																		"api_version": schema.StringAttribute{
+																			Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																			MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"field_path": schema.StringAttribute{
+																			Description:         "Path of the field to select in the specified API version.",
+																			MarkdownDescription: "Path of the field to select in the specified API version.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"resource_field_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																	Attributes: map[string]schema.Attribute{
+																		"container_name": schema.StringAttribute{
+																			Description:         "Container name: required for volumes, optional for env vars",
+																			MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"divisor": schema.StringAttribute{
+																			Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																			MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"resource": schema.StringAttribute{
+																			Description:         "Required: resource to select",
+																			MarkdownDescription: "Required: resource to select",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"secret_key_ref": schema.SingleNestedAttribute{
+																	Description:         "Selects a key of a secret in the pod's namespace",
+																	MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "The key of the secret to select from. Must be a valid secret key.",
+																			MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"optional": schema.BoolAttribute{
+																			Description:         "Specify whether the Secret or its key must be defined",
+																			MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"image": schema.StringAttribute{
+												Description:         "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action. When specified, a dedicated container will be created using this image to execute the Action. All actions with same image will share the same container. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"matching_key": schema.StringAttribute{
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"target_pod_selector": schema.StringAttribute{
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"failure_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"initial_delay_seconds": schema.Int64Attribute{
+										Description:         "Specifies the number of seconds to wait after the container has started before the RoleProbe begins to detect the container's role.",
+										MarkdownDescription: "Specifies the number of seconds to wait after the container has started before the RoleProbe begins to detect the container's role.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"period_seconds": schema.Int64Attribute{
+										Description:         "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 60 seconds. Minimum value is 1.",
+										MarkdownDescription: "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 60 seconds. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"pre_condition": schema.StringAttribute{
+										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"retry_policy": schema.SingleNestedAttribute{
+										Description:         "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+										MarkdownDescription: "Defines the strategy to be taken when retrying the Action after a failure. It specifies the conditions under which the Action should be retried and the limits to apply, such as the maximum number of retries and backoff strategy. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"max_retries": schema.Int64Attribute{
+												Description:         "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+												MarkdownDescription: "Defines the maximum number of retry attempts that should be made for a given Action. This value is set to 0 by default, indicating that no retries will be made.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_interval": schema.Int64Attribute{
+												Description:         "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+												MarkdownDescription: "Indicates the duration of time to wait between each retry attempt. This value is set to 0 by default, indicating that there will be no delay between retry attempts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"success_threshold": schema.Int64Attribute{
+										Description:         "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Minimum value is 1.",
+										MarkdownDescription: "Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Minimum value is 1.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -2711,8 +9043,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"data_dump": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. The container executing this action has access to following environment variables: - KB_TARGET_POD_NAME: The name of the replica pod into which the data will be loaded. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure for exporting the data from a replica. Use Case: This action is intended for initializing a newly created replica with data. It involves exporting data from an existing replica and importing it into the new, empty replica. This is essential for synchronizing the state of replicas across the system. Applicability: Some database engines or associated sidecar applications (e.g., Patroni) may already provide this functionality. In such cases, this action may not be required. The output should be a valid data dump streamed to stdout. It must exclude any irrelevant information to ensure that only the necessary data is exported for import into the new replica. The container executing this action has access to following environment variables: - KB_TARGET_POD_NAME: The name of the replica pod into which the data will be loaded. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -2936,6 +9268,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -2967,6 +9475,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -3208,6 +9727,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -3239,6 +9934,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -3255,8 +9961,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"member_join": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to add a new replica to the replication group. This action is initiated after a replica pod becomes ready. The role of the replica (e.g., primary, secondary) will be determined and assigned as part of the action command implementation, or automatically by the database kernel or a sidecar utility like Patroni that implements a consensus algorithm. The container executing this action has access to following variables: - KB_JOIN_MEMBER_POD_FQDN: The pod FQDN of the replica being added to the group. - KB_JOIN_MEMBER_POD_NAME: The pod name of the replica being added to the group. Expected action output: - On Failure: An error message detailing the reason for any failure encountered during the addition of the new member. For example, to add a new OBServer to an OceanBase Cluster in 'zone1', the following command may be used: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM ADD SERVER '$POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -3480,6 +10186,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -3511,6 +10393,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -3527,8 +10420,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"member_leave": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$KB_POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to remove a replica from the replication group. This action is initiated before remove a replica from the group. The operator will wait for MemberLeave to complete successfully before releasing the replica and cleaning up related Kubernetes resources. The process typically includes updating configurations and informing other group members about the removal. Data migration is generally not part of this action and should be handled separately if needed. The container executing this action has access to following variables: - KB_LEAVE_MEMBER_POD_FQDN: The pod name of the replica being removed from the group. - KB_LEAVE_MEMBER_POD_NAME: The pod name of the replica being removed from the group. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. For example, to remove an OBServer from an OceanBase Cluster in 'zone1', the following command can be executed: '''yaml command: - bash - -c - | CLIENT='mysql -u $SERVICE_USER -p$SERVICE_PASSWORD -P $SERVICE_PORT -h $SERVICE_HOST -e' $CLIENT 'ALTER SYSTEM DELETE SERVER '$POD_FQDN:$SERVICE_PORT' ZONE 'zone1'' ''' Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -3752,6 +10645,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -3783,6 +10852,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -4024,6 +11104,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -4055,6 +11311,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -4296,6 +11563,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -4327,6 +11770,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -4343,8 +11797,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"readonly": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to switch a replica into the read-only state. Use Case: This action is invoked when the database's volume capacity nears its upper limit and space is about to be exhausted. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -4568,6 +12022,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -4599,6 +12229,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -4615,8 +12256,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"readwrite": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. The container executing this action has access to following environment variables: - KB_POD_FQDN: The FQDN of the replica pod whose role is being checked. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to transition a replica from the read-only state back to the read-write state. Use Case: This action is used to bring back a replica that was previously in a read-only state, which restricted write operations, to its normal operational state where it can handle both read and write operations. Expected action output: - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -4840,6 +12481,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -4871,6 +12688,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -5112,6 +12940,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -5145,6 +13149,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
+									},
+
 									"timeout_seconds": schema.Int64Attribute{
 										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
@@ -5159,8 +13174,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"role_probe": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. The container executing this action has access to following variables: - KB_POD_FQDN: The FQDN of the Pod whose role is being assessed. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure which is invoked regularly to assess the role of replicas. This action is periodically triggered at the specified interval to determine the role of each replica. Upon successful execution, the action's output designates the role of the replica, which should match one of the predefined role names within 'componentDefinition.spec.roles'. The output is then compared with the previous successful execution result. If a role change is detected, an event is generated to inform the controller, which initiates an update of the replica's role. Defining a RoleProbe Action for a Component is required if roles are defined for the Component. It ensures replicas are correctly labeled with their respective roles. Without this, services that rely on roleSelectors might improperly direct traffic to wrong replicas. Expected output of this action: - On Success: The determined role of the replica, which must align with one of the roles specified in the component definition. - On Failure: An error message, if applicable, indicating why the action failed. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -5392,6 +13407,174 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed:            false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"initial_delay_seconds": schema.Int64Attribute{
 										Description:         "Specifies the number of seconds to wait after the container has started before the RoleProbe begins to detect the container's role.",
 										MarkdownDescription: "Specifies the number of seconds to wait after the container has started before the RoleProbe begins to detect the container's role.",
@@ -5400,9 +13583,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed:            false,
 									},
 
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"period_seconds": schema.Int64Attribute{
-										Description:         "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 10 seconds. Minimum value is 1.",
-										MarkdownDescription: "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 10 seconds. Minimum value is 1.",
+										Description:         "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 60 seconds. Minimum value is 1.",
+										MarkdownDescription: "Specifies the frequency at which the probe is conducted. This value is expressed in seconds. Default to 60 seconds. Minimum value is 1.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5449,6 +13640,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed:            false,
 									},
 
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
+									},
+
 									"timeout_seconds": schema.Int64Attribute{
 										Description:         "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
 										MarkdownDescription: "Specifies the maximum duration in seconds that the Action is allowed to run. If the Action does not complete within this time frame, it will be terminated. This field cannot be updated.",
@@ -5463,8 +13665,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 							},
 
 							"switchover": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure for a controlled transition of leadership from the current leader to a new replica. This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology, during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations involving the current leader node. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty). Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure for a controlled transition of a role to a new replica. This approach aims to minimize downtime and maintain availability during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations. In a typical consensus system, this action is used to transfer leader role to another replica. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod of the new role's candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the pod of the new role's candidate, which may not be specified (empty). - KB_SWITCHOVER_CURRENT_NAME: The name of the pod of the current role. - KB_SWITCHOVER_CURRENT_FQDN: The FQDN of the pod of the current role. - KB_SWITCHOVER_ROLE: The role that will be transferred to another replica. This variable can be empty if, for example, role probe does not succeed. It depends on the addon implementation what to do under such cases. Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure for a controlled transition of a role to a new replica. This approach aims to minimize downtime and maintain availability during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operations. In a typical consensus system, this action is used to transfer leader role to another replica. The container executing this action has access to following variables: - KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod of the new role's candidate, which may not be specified (empty). - KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the pod of the new role's candidate, which may not be specified (empty). - KB_SWITCHOVER_CURRENT_NAME: The name of the pod of the current role. - KB_SWITCHOVER_CURRENT_FQDN: The FQDN of the pod of the current role. - KB_SWITCHOVER_ROLE: The role that will be transferred to another replica. This variable can be empty if, for example, role probe does not succeed. It depends on the addon implementation what to do under such cases. Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run. This field cannot be updated.",
@@ -5688,6 +13890,182 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Computed: false,
 									},
 
+									"grpc": schema.SingleNestedAttribute{
+										Description:         "Defines the gRPC call to issue. This field cannot be updated.",
+										MarkdownDescription: "Defines the gRPC call to issue. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "Name of the method to invoke on the gRPC service.",
+												MarkdownDescription: "Name of the method to invoke on the gRPC service.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '50051') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"request": schema.MapAttribute{
+												Description:         "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												MarkdownDescription: "Request payload for the gRPC method. Keys are proto field names (lowerCamelCase); values are strings that can include Go templates. Templates are rendered with predefined action variables before the request is sent.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"response": schema.SingleNestedAttribute{
+												Description:         "Required response schema for the gRPC method.",
+												MarkdownDescription: "Required response schema for the gRPC method.",
+												Attributes: map[string]schema.Attribute{
+													"message": schema.StringAttribute{
+														Description:         "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														MarkdownDescription: "Name of the field in the response whose value should be output. Printed to stdout on success, or stderr on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"status": schema.StringAttribute{
+														Description:         "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														MarkdownDescription: "Name of the string field in the response that carries status information. If non-empty, the action fails.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"service": schema.StringAttribute{
+												Description:         "Fully-qualified name of the gRPC service to call.",
+												MarkdownDescription: "Fully-qualified name of the gRPC service to call.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"http": schema.SingleNestedAttribute{
+										Description:         "Defines the HTTP request to perform. This field cannot be updated.",
+										MarkdownDescription: "Defines the HTTP request to perform. This field cannot be updated.",
+										Attributes: map[string]schema.Attribute{
+											"body": schema.StringAttribute{
+												Description:         "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												MarkdownDescription: "Optional HTTP request body. Supports Go text/template syntax; rendered with predefined variables before sending.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"headers": schema.ListNestedAttribute{
+												Description:         "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												MarkdownDescription: "Custom headers to set in the request. Header values may use Go text/template syntax, rendered with predefined variables.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "Name of the header field.",
+															MarkdownDescription: "Name of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"value": schema.StringAttribute{
+															Description:         "Value of the header field.",
+															MarkdownDescription: "Value of the header field.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host": schema.StringAttribute{
+												Description:         "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												MarkdownDescription: "The target host to connect to. Defaults to '127.0.0.1' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"method": schema.StringAttribute{
+												Description:         "The HTTP method to use. Defaults to 'GET'.",
+												MarkdownDescription: "The HTTP method to use. Defaults to 'GET'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"),
+												},
+											},
+
+											"path": schema.StringAttribute{
+												Description:         "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												MarkdownDescription: "The path to request on the HTTP server. Defaults to '/' if not specified.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^/.*`), ""),
+												},
+											},
+
+											"port": schema.StringAttribute{
+												Description:         "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												MarkdownDescription: "The port to access on the host. It may be a numeric string (e.g., '8080') or a named port defined in the container spec.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"scheme": schema.StringAttribute{
+												Description:         "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												MarkdownDescription: "The scheme to use for connecting to the host. Defaults to 'HTTP'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("HTTP", "HTTPS"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"matching_key": schema.StringAttribute{
+										Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution. The impact of this field depends on the 'targetPodSelector' value: - When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored. - When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey' will be selected for the Action. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pre_condition": schema.StringAttribute{
 										Description:         "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
 										MarkdownDescription: "Specifies the state that the cluster must reach before the Action is executed. Currently, this is only applicable to the 'postProvision' action. The conditions are as follows: - 'Immediately': Executed right after the Component object is created. The readiness of the Component and its resources is not guaranteed at this stage. - 'RuntimeReady': The Action is triggered after the Component object has been created and all associated runtime resources (e.g. Pods) are in a ready state. - 'ComponentReady': The Action is triggered after the Component itself is in a ready state. This process does not affect the readiness state of the Component or the Cluster. - 'ClusterReady': The Action is executed after the Cluster is in a ready state. This execution does not alter the Component or the Cluster's state of readiness. This field cannot be updated.",
@@ -5719,6 +14097,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"target_pod_selector": schema.StringAttribute{
+										Description:         "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action. This is useful when there is no default target replica identified. It allows for precise control over which Pod(s) the Action should run in. If not specified, the Action will be executed in the pod where the Action is triggered, such as the pod to be removed or added; or a random pod if the Action is triggered at the component level, such as post-provision or pre-terminate of the component. This field cannot be updated.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Any", "All", "Role", "Ordinal"),
+										},
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
@@ -5791,9 +14180,31 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 						Computed:            false,
 					},
 
+					"pod_update_policy": schema.StringAttribute{
+						Description:         "Specifies the default update policy for pods when the Component is updated.",
+						MarkdownDescription: "Specifies the default update policy for pods when the Component is updated.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("PreferInPlace", "ReCreate"),
+						},
+					},
+
+					"pod_upgrade_policy": schema.StringAttribute{
+						Description:         "Specifies the default update policy for pods when the Component is upgraded (the service version changes). If not specified, the default behavior is the same as 'podUpdatePolicy'.",
+						MarkdownDescription: "Specifies the default update policy for pods when the Component is upgraded (the service version changes). If not specified, the default behavior is the same as 'podUpdatePolicy'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("PreferInPlace", "ReCreate"),
+						},
+					},
+
 					"policy_rules": schema.ListNestedAttribute{
-						Description:         "Defines the namespaced policy rules required by the Component. The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace. The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function. Note: This field is currently non-functional and is reserved for future implementation. This field is immutable.",
-						MarkdownDescription: "Defines the namespaced policy rules required by the Component. The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace. The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function. Note: This field is currently non-functional and is reserved for future implementation. This field is immutable.",
+						Description:         "Defines the namespaced policy rules required by the Component. The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace. The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function. To prevent privilege escalation, only permissions already owned by KubeBlocks can be added here. This field is immutable.",
+						MarkdownDescription: "Defines the namespaced policy rules required by the Component. The 'policyRules' field is an array of 'rbacv1.PolicyRule' objects that define the policy rules needed by the Component to operate within a namespace. These policy rules determine the permissions and verbs the Component is allowed to perform on Kubernetes resources within the namespace. The purpose of this field is to automatically generate the necessary RBAC roles for the Component based on the specified policy rules. This ensures that the Pods in the Component has appropriate permissions to function. To prevent privilege escalation, only permissions already owned by KubeBlocks can be added here. This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_groups": schema.ListAttribute{
@@ -5884,13 +14295,13 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 					},
 
 					"roles": schema.ListNestedAttribute{
-						Description:         "Enumerate all possible roles assigned to each replica of the Component, influencing its behavior. A replica can have zero to multiple roles. KubeBlocks operator determines the roles of each replica by invoking the 'lifecycleActions.roleProbe' method. This action returns a list of roles for each replica, and the returned roles must be predefined in the 'roles' field. The roles assigned to a replica can influence various aspects of the Component's behavior, such as: - Service selection: The Component's exposed Services may target replicas based on their roles using 'roleSelector'. - Update order: The roles can determine the order in which replicas are updated during a Component update. For instance, replicas with a 'follower' role can be updated first, while the replica with the 'leader' role is updated last. This helps minimize the number of leader changes during the update process. This field is immutable.",
-						MarkdownDescription: "Enumerate all possible roles assigned to each replica of the Component, influencing its behavior. A replica can have zero to multiple roles. KubeBlocks operator determines the roles of each replica by invoking the 'lifecycleActions.roleProbe' method. This action returns a list of roles for each replica, and the returned roles must be predefined in the 'roles' field. The roles assigned to a replica can influence various aspects of the Component's behavior, such as: - Service selection: The Component's exposed Services may target replicas based on their roles using 'roleSelector'. - Update order: The roles can determine the order in which replicas are updated during a Component update. For instance, replicas with a 'follower' role can be updated first, while the replica with the 'leader' role is updated last. This helps minimize the number of leader changes during the update process. This field is immutable.",
+						Description:         "Enumerate all possible roles assigned to each replica of the Component, influencing its behavior. A replica can have zero or one role. KubeBlocks operator determines the role of each replica by invoking the 'lifecycleActions.roleProbe' method. This action returns the role for each replica, and the returned role must be predefined here. The roles assigned to a replica can influence various aspects of the Component's behavior, such as: - Service selection: The Component's exposed Services may target replicas based on their roles using 'roleSelector'. - Update order: The roles can determine the order in which replicas are updated during a Component update. For instance, replicas with a 'follower' role can be updated first, while the replica with the 'leader' role is updated last. This helps minimize the number of leader changes during the update process. This field is immutable.",
+						MarkdownDescription: "Enumerate all possible roles assigned to each replica of the Component, influencing its behavior. A replica can have zero or one role. KubeBlocks operator determines the role of each replica by invoking the 'lifecycleActions.roleProbe' method. This action returns the role for each replica, and the returned role must be predefined here. The roles assigned to a replica can influence various aspects of the Component's behavior, such as: - Service selection: The Component's exposed Services may target replicas based on their roles using 'roleSelector'. - Update order: The roles can determine the order in which replicas are updated during a Component update. For instance, replicas with a 'follower' role can be updated first, while the replica with the 'leader' role is updated last. This helps minimize the number of leader changes during the update process. This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Defines the role's identifier. It is used to set the 'apps.kubeblocks.io/role' label value on the corresponding object. This field is immutable once set.",
-									MarkdownDescription: "Defines the role's identifier. It is used to set the 'apps.kubeblocks.io/role' label value on the corresponding object. This field is immutable once set.",
+									Description:         "Name defines the role's unique identifier. This value is used to set the 'apps.kubeblocks.io/role' label on the corresponding object to identify its role. For example, common role names include: - 'leader': The primary/master instance that handles write operations - 'follower': Secondary/replica instances that replicate data from the leader - 'learner': Read-only instances that don't participate in elections This field is immutable once set.",
+									MarkdownDescription: "Name defines the role's unique identifier. This value is used to set the 'apps.kubeblocks.io/role' label on the corresponding object to identify its role. For example, common role names include: - 'leader': The primary/master instance that handles write operations - 'follower': Secondary/replica instances that replicate data from the leader - 'learner': Read-only instances that don't participate in elections This field is immutable once set.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -5900,25 +14311,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 									},
 								},
 
-								"serviceable": schema.BoolAttribute{
-									Description:         "Indicates whether a replica assigned this role is capable of providing services. This field is immutable once set.",
-									MarkdownDescription: "Indicates whether a replica assigned this role is capable of providing services. This field is immutable once set.",
+								"participates_in_quorum": schema.BoolAttribute{
+									Description:         "ParticipatesInQuorum indicates if pods with this role are counted when determining quorum. This affects update strategies that need to maintain quorum for availability. Roles participate in quorum should have higher update priority than roles do not participate in quorum. The default value is false. For example, in a 5-pod component where: - 2 learner pods (participatesInQuorum=false) - 2 follower pods (participatesInQuorum=true) - 1 leader pod (participatesInQuorum=true) The quorum size would be 3 (based on the 3 participating pods), allowing parallel updates of 2 learners and 1 follower while maintaining quorum. This field is immutable once set.",
+									MarkdownDescription: "ParticipatesInQuorum indicates if pods with this role are counted when determining quorum. This affects update strategies that need to maintain quorum for availability. Roles participate in quorum should have higher update priority than roles do not participate in quorum. The default value is false. For example, in a 5-pod component where: - 2 learner pods (participatesInQuorum=false) - 2 follower pods (participatesInQuorum=true) - 1 leader pod (participatesInQuorum=true) The quorum size would be 3 (based on the 3 participating pods), allowing parallel updates of 2 learners and 1 follower while maintaining quorum. This field is immutable once set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
-								"votable": schema.BoolAttribute{
-									Description:         "Specifies whether a replica with this role has voting rights. In distributed systems, this typically means the replica can participate in consensus decisions, configuration changes, or other processes that require a quorum. This field is immutable once set.",
-									MarkdownDescription: "Specifies whether a replica with this role has voting rights. In distributed systems, this typically means the replica can participate in consensus decisions, configuration changes, or other processes that require a quorum. This field is immutable once set.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
-								"writable": schema.BoolAttribute{
-									Description:         "Determines if a replica in this role has the authority to perform write operations. A writable replica can modify data, handle update operations. This field is immutable once set.",
-									MarkdownDescription: "Determines if a replica in this role has the authority to perform write operations. A writable replica can modify data, handle update operations. This field is immutable once set.",
+								"update_priority": schema.Int64Attribute{
+									Description:         "UpdatePriority determines the order in which pods with different roles are updated. Pods are sorted by this priority (higher numbers = higher priority) and updated accordingly. Roles with the highest priority will be updated last. The default priority is 0. For example: - Leader role may have priority 2 (updated last) - Follower role may have priority 1 (updated before leader) - Learner role may have priority 0 (updated first) This field is immutable once set.",
+									MarkdownDescription: "UpdatePriority determines the order in which pods with different roles are updated. Pods are sorted by this priority (higher numbers = higher priority) and updated accordingly. Roles with the highest priority will be updated last. The default priority is 0. For example: - Leader role may have priority 2 (updated last) - Follower role may have priority 1 (updated before leader) - Learner role may have priority 0 (updated first) This field is immutable once set.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -14473,21 +22876,29 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 					},
 
 					"scripts": schema.ListNestedAttribute{
-						Description:         "Specifies groups of scripts, each provided via a ConfigMap, to be mounted as volumes in the container. These scripts can be executed during container startup or via specific actions. Each script group is encapsulated in a ComponentTemplateSpec that includes: - The ConfigMap containing the scripts. - The mount point where the scripts will be mounted inside the container. This field is immutable.",
-						MarkdownDescription: "Specifies groups of scripts, each provided via a ConfigMap, to be mounted as volumes in the container. These scripts can be executed during container startup or via specific actions. Each script group is encapsulated in a ComponentTemplateSpec that includes: - The ConfigMap containing the scripts. - The mount point where the scripts will be mounted inside the container. This field is immutable.",
+						Description:         "Specifies groups of scripts, each provided via a ConfigMap, to be mounted as volumes in the container. These scripts can be executed during container startup or via specific actions. This field is immutable.",
+						MarkdownDescription: "Specifies groups of scripts, each provided via a ConfigMap, to be mounted as volumes in the container. These scripts can be executed during container startup or via specific actions. This field is immutable.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"default_mode": schema.Int64Attribute{
-									Description:         "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
-									MarkdownDescription: "The operator attempts to set default file permissions for scripts (0555) and configurations (0444). However, certain database engines may require different file permissions. You can specify the desired file permissions here. Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+									Description:         "The operator attempts to set default file permissions (0444). Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+									MarkdownDescription: "The operator attempts to set default file permissions (0444). Must be specified as an octal value between 0000 and 0777 (inclusive), or as a decimal value between 0 and 511 (inclusive). YAML supports both octal and decimal values for file permissions. Please note that this setting only affects the permissions of the files themselves. Directories within the specified path are not impacted by this setting. It's important to be aware that this setting might conflict with other options that influence the file mode, such as fsGroup. In such cases, the resulting file mode may have additional bits set. Refers to documents of k8s.ConfigMapVolumeSource.defaultMode for more information.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"external_managed": schema.BoolAttribute{
+									Description:         "ExternalManaged indicates whether the configuration is managed by an external system. When set to true, the controller will ignore the management of this configuration.",
+									MarkdownDescription: "ExternalManaged indicates whether the configuration is managed by an external system. When set to true, the controller will ignore the management of this configuration.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Specifies the name of the configuration template.",
-									MarkdownDescription: "Specifies the name of the configuration template.",
+									Description:         "Specifies the name of the template.",
+									MarkdownDescription: "Specifies the name of the template.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -14498,8 +22909,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
-									MarkdownDescription: "Specifies the namespace of the referenced configuration template ConfigMap object. An empty namespace is equivalent to the 'default' namespace.",
+									Description:         "Specifies the namespace of the referenced template ConfigMap object.",
+									MarkdownDescription: "Specifies the namespace of the referenced template ConfigMap object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -14509,9 +22920,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 									},
 								},
 
-								"template_ref": schema.StringAttribute{
-									Description:         "Specifies the name of the referenced configuration template ConfigMap object.",
-									MarkdownDescription: "Specifies the name of the referenced configuration template ConfigMap object.",
+								"restart_on_file_change": schema.BoolAttribute{
+									Description:         "Specifies whether to restart the pod when the file changes.",
+									MarkdownDescription: "Specifies whether to restart the pod when the file changes.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"template": schema.StringAttribute{
+									Description:         "Specifies the name of the referenced template ConfigMap object.",
+									MarkdownDescription: "Specifies the name of the referenced template ConfigMap object.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -14522,8 +22941,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 								},
 
 								"volume_name": schema.StringAttribute{
-									Description:         "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
-									MarkdownDescription: "Refers to the volume name of PodTemplate. The configuration file produced through the configuration template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
+									Description:         "Refers to the volume name of PodTemplate. The file produced through the template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
+									MarkdownDescription: "Refers to the volume name of PodTemplate. The file produced through the template will be mounted to the corresponding volume. Must be a DNS_LABEL name. The volume name must be defined in podSpec.containers[*].volumeMounts.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -14996,29 +23415,45 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"symbol_characters": schema.StringAttribute{
+											Description:         "The set of symbols allowed when generating password. If empty, kubeblocks will use a default symbol set, which is '!@#&*'.",
+											MarkdownDescription: "The set of symbols allowed when generating password. If empty, kubeblocks will use a default symbol set, which is '!@#&*'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
 									Computed: false,
 								},
 
-								"secret_ref": schema.SingleNestedAttribute{
-									Description:         "Refers to the secret from which data will be copied to create the new account. This field is immutable once set.",
-									MarkdownDescription: "Refers to the secret from which data will be copied to create the new account. This field is immutable once set.",
+								"statement": schema.SingleNestedAttribute{
+									Description:         "Defines the statements used to create, delete, and update the account. This field is immutable once set.",
+									MarkdownDescription: "Defines the statements used to create, delete, and update the account. This field is immutable once set.",
 									Attributes: map[string]schema.Attribute{
-										"name": schema.StringAttribute{
-											Description:         "The unique identifier of the secret.",
-											MarkdownDescription: "The unique identifier of the secret.",
-											Required:            true,
-											Optional:            false,
+										"create": schema.StringAttribute{
+											Description:         "The statement to create a new account with the necessary privileges. This field is immutable once set.",
+											MarkdownDescription: "The statement to create a new account with the necessary privileges. This field is immutable once set.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
-										"namespace": schema.StringAttribute{
-											Description:         "The namespace where the secret is located.",
-											MarkdownDescription: "The namespace where the secret is located.",
-											Required:            true,
-											Optional:            false,
+										"delete": schema.StringAttribute{
+											Description:         "The statement to delete a account. This field is immutable once set.",
+											MarkdownDescription: "The statement to delete a account. This field is immutable once set.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"update": schema.StringAttribute{
+											Description:         "The statement to update an existing account. This field is immutable once set.",
+											MarkdownDescription: "The statement to update an existing account. This field is immutable once set.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -15026,14 +23461,63 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 									Optional: true,
 									Computed: false,
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
 
-								"statement": schema.StringAttribute{
-									Description:         "Defines the statement used to create the account with the necessary privileges. This field is immutable once set.",
-									MarkdownDescription: "Defines the statement used to create the account with the necessary privileges. This field is immutable once set.",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
+					"tls": schema.SingleNestedAttribute{
+						Description:         "Specifies the TLS configuration for the Component. This field is immutable.",
+						MarkdownDescription: "Specifies the TLS configuration for the Component. This field is immutable.",
+						Attributes: map[string]schema.Attribute{
+							"ca_file": schema.StringAttribute{
+								Description:         "The CA file of the TLS. This field is immutable once set.",
+								MarkdownDescription: "The CA file of the TLS. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cert_file": schema.StringAttribute{
+								Description:         "The certificate file of the TLS. This field is immutable once set.",
+								MarkdownDescription: "The certificate file of the TLS. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"default_mode": schema.Int64Attribute{
+								Description:         "The permissions for the mounted path. Defaults to 0600. This field is immutable once set.",
+								MarkdownDescription: "The permissions for the mounted path. Defaults to 0600. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"key_file": schema.StringAttribute{
+								Description:         "The key file of the TLS. This field is immutable once set.",
+								MarkdownDescription: "The key file of the TLS. This field is immutable once set.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"mount_path": schema.StringAttribute{
+								Description:         "Specifies the mount path for the TLS secret to be mounted. Similar to the volume, the controller will mount the created volume to the specified path within containers when the TLS is enabled. This field is immutable once set.",
+								MarkdownDescription: "Specifies the mount path for the TLS secret to be mounted. Similar to the volume, the controller will mount the created volume to the specified path within containers when the TLS is enabled. This field is immutable once set.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"volume_name": schema.StringAttribute{
+								Description:         "Specifies the volume name for the TLS secret. The controller will create a volume object with the specified name and add it to the pod when the TLS is enabled. This field is immutable once set.",
+								MarkdownDescription: "Specifies the volume name for the TLS secret. The controller will create a volume object with the specified name and add it to the pod when the TLS is enabled. This field is immutable once set.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
 							},
 						},
 						Required: false,
@@ -15202,6 +23686,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"strategy": schema.StringAttribute{
@@ -15440,6 +23932,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 															Computed: false,
 														},
 
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"strategy": schema.StringAttribute{
 															Description:         "Define the strategy for handling multiple cluster objects.",
 															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
@@ -15610,6 +24110,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 															Computed: false,
 														},
 
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"strategy": schema.StringAttribute{
 															Description:         "Define the strategy for handling multiple cluster objects.",
 															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
@@ -15640,6 +24148,189 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"resource_var_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a defined var of a kind of resource.",
+											MarkdownDescription: "Selects a defined var of a kind of resource.",
+											Attributes: map[string]schema.Attribute{
+												"comp_def": schema.StringAttribute{
+													Description:         "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													MarkdownDescription: "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"cpu": schema.StringAttribute{
+													Description:         "VarOption defines whether a variable is required or optional.",
+													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"cpu_limit": schema.StringAttribute{
+													Description:         "VarOption defines whether a variable is required or optional.",
+													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"memory": schema.StringAttribute{
+													Description:         "VarOption defines whether a variable is required or optional.",
+													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"memory_limit": schema.StringAttribute{
+													Description:         "VarOption defines whether a variable is required or optional.",
+													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"multiple_cluster_object_option": schema.SingleNestedAttribute{
+													Description:         "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													MarkdownDescription: "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													Attributes: map[string]schema.Attribute{
+														"combined_option": schema.SingleNestedAttribute{
+															Description:         "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															MarkdownDescription: "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															Attributes: map[string]schema.Attribute{
+																"flatten_format": schema.SingleNestedAttribute{
+																	Description:         "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	MarkdownDescription: "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	Attributes: map[string]schema.Attribute{
+																		"delimiter": schema.StringAttribute{
+																			Description:         "Pair delimiter.",
+																			MarkdownDescription: "Pair delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"key_value_delimiter": schema.StringAttribute{
+																			Description:         "Key-value delimiter.",
+																			MarkdownDescription: "Key-value delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"new_var_suffix": schema.StringAttribute{
+																	Description:         "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	MarkdownDescription: "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value_format": schema.StringAttribute{
+																	Description:         "The format of the value that the operator will use to compose values from multiple components.",
+																	MarkdownDescription: "The format of the value that the operator will use to compose values from multiple components.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"strategy": schema.StringAttribute{
+															Description:         "Define the strategy for handling multiple cluster objects.",
+															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("individual", "combined"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent object.",
+													MarkdownDescription: "Name of the referent object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the object must be defined.",
+													MarkdownDescription: "Specify whether the object must be defined.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"storage": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"option": schema.StringAttribute{
+															Description:         "VarOption defines whether a variable is required or optional.",
+															MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Required", "Optional"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 											Required: false,
@@ -15766,6 +24457,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"strategy": schema.StringAttribute{
@@ -15937,6 +24636,14 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 															Computed: false,
 														},
 
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"strategy": schema.StringAttribute{
 															Description:         "Define the strategy for handling multiple cluster objects.",
 															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
@@ -16006,6 +24713,128 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context
 													Validators: []validator.String{
 														stringvalidator.OneOf("Required", "Optional"),
 													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"tls_var_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a defined var of the TLS.",
+											MarkdownDescription: "Selects a defined var of the TLS.",
+											Attributes: map[string]schema.Attribute{
+												"comp_def": schema.StringAttribute{
+													Description:         "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													MarkdownDescription: "Specifies the exact name, name prefix, or regular expression pattern for matching the name of the ComponentDefinition custom resource (CR) used by the component that the referent object resident in. If not specified, the component itself will be used.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"enabled": schema.StringAttribute{
+													Description:         "VarOption defines whether a variable is required or optional.",
+													MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"multiple_cluster_object_option": schema.SingleNestedAttribute{
+													Description:         "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													MarkdownDescription: "This option defines the behavior when multiple component objects match the specified @CompDef. If not provided, an error will be raised when handling multiple matches.",
+													Attributes: map[string]schema.Attribute{
+														"combined_option": schema.SingleNestedAttribute{
+															Description:         "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															MarkdownDescription: "Define the options for handling combined variables. Valid only when the strategy is set to 'combined'.",
+															Attributes: map[string]schema.Attribute{
+																"flatten_format": schema.SingleNestedAttribute{
+																	Description:         "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	MarkdownDescription: "The flatten format, default is: $(comp-name-1):value,$(comp-name-2):value.",
+																	Attributes: map[string]schema.Attribute{
+																		"delimiter": schema.StringAttribute{
+																			Description:         "Pair delimiter.",
+																			MarkdownDescription: "Pair delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"key_value_delimiter": schema.StringAttribute{
+																			Description:         "Key-value delimiter.",
+																			MarkdownDescription: "Key-value delimiter.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"new_var_suffix": schema.StringAttribute{
+																	Description:         "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	MarkdownDescription: "If set, the existing variable will be kept, and a new variable will be defined with the specified suffix in pattern: $(var.name)_$(suffix). The new variable will be auto-created and placed behind the existing one. If not set, the existing variable will be reused with the value format defined below.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value_format": schema.StringAttribute{
+																	Description:         "The format of the value that the operator will use to compose values from multiple components.",
+																	MarkdownDescription: "The format of the value that the operator will use to compose values from multiple components.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"require_all_component_objects": schema.BoolAttribute{
+															Description:         "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															MarkdownDescription: "RequireAllComponentObjects controls whether all component objects must exist before resolving. If set to true, resolving will only proceed if all component objects are present.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"strategy": schema.StringAttribute{
+															Description:         "Define the strategy for handling multiple cluster objects.",
+															MarkdownDescription: "Define the strategy for handling multiple cluster objects.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("individual", "combined"),
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent object.",
+													MarkdownDescription: "Name of the referent object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the object must be defined.",
+													MarkdownDescription: "Specify whether the object must be defined.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 											},
 											Required: false,

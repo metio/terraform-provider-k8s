@@ -266,8 +266,8 @@ func (r *ReportsKyvernoIoEphemeralReportV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"resource_selector": schema.SingleNestedAttribute{
-									Description:         "SubjectSelector is an optional label selector for checked Kubernetes resources. For example, a policy result may apply to all pods that match a label. Either a Subject or a SubjectSelector can be specified. If neither are provided, the result is assumed to be for the policy report scope.",
-									MarkdownDescription: "SubjectSelector is an optional label selector for checked Kubernetes resources. For example, a policy result may apply to all pods that match a label. Either a Subject or a SubjectSelector can be specified. If neither are provided, the result is assumed to be for the policy report scope.",
+									Description:         "ResourceSelector is an optional label selector for checked Kubernetes resources. For example, a policy result may apply to all pods that match a label. Either a Subject or a ResourceSelector can be specified. If neither are provided, the result is assumed to be for the policy report scope.",
+									MarkdownDescription: "ResourceSelector is an optional label selector for checked Kubernetes resources. For example, a policy result may apply to all pods that match a label. Either a Subject or a ResourceSelector can be specified. If neither are provided, the result is assumed to be for the policy report scope.",
 									Attributes: map[string]schema.Attribute{
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -425,8 +425,8 @@ func (r *ReportsKyvernoIoEphemeralReportV1Manifest) Schema(_ context.Context, _ 
 								},
 
 								"source": schema.StringAttribute{
-									Description:         "Source is an identifier for the policy engine that manages this report",
-									MarkdownDescription: "Source is an identifier for the policy engine that manages this report",
+									Description:         "Source is an identifier for the policy engine that manages this report If the Source is specified at this level, it will override the Source field set at the Report level",
+									MarkdownDescription: "Source is an identifier for the policy engine that manages this report If the Source is specified at this level, it will override the Source field set at the Report level",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

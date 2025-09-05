@@ -50,9 +50,13 @@ type TraefikIoServersTransportTcpV1Alpha1ManifestData struct {
 			CertificatesSecrets *[]string `tfsdk:"certificates_secrets" json:"certificatesSecrets,omitempty"`
 			InsecureSkipVerify  *bool     `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
 			PeerCertURI         *string   `tfsdk:"peer_cert_uri" json:"peerCertURI,omitempty"`
-			RootCAsSecrets      *[]string `tfsdk:"root_c_as_secrets" json:"rootCAsSecrets,omitempty"`
-			ServerName          *string   `tfsdk:"server_name" json:"serverName,omitempty"`
-			Spiffe              *struct {
+			RootCAs             *[]struct {
+				ConfigMap *string `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret    *string `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"root_c_as" json:"rootCAs,omitempty"`
+			RootCAsSecrets *[]string `tfsdk:"root_c_as_secrets" json:"rootCAsSecrets,omitempty"`
+			ServerName     *string   `tfsdk:"server_name" json:"serverName,omitempty"`
+			Spiffe         *struct {
 				Ids         *[]string `tfsdk:"ids" json:"ids,omitempty"`
 				TrustDomain *string   `tfsdk:"trust_domain" json:"trustDomain,omitempty"`
 			} `tfsdk:"spiffe" json:"spiffe,omitempty"`
@@ -66,8 +70,8 @@ func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Metadata(_ context.Contex
 
 func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#serverstransport_3",
-		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#serverstransport_3",
+		Description:         "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/services/#serverstransport_3",
+		MarkdownDescription: "ServersTransportTCP is the CRD implementation of a TCPServersTransport. If no tcpServersTransport is specified, a default one named default@internal will be used. The default@internal tcpServersTransport can be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/services/#serverstransport_3",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -190,9 +194,36 @@ func (r *TraefikIoServersTransportTcpV1Alpha1Manifest) Schema(_ context.Context,
 								Computed:            false,
 							},
 
+							"root_c_as": schema.ListNestedAttribute{
+								Description:         "RootCAs defines a list of CA certificate Secrets or ConfigMaps used to validate server certificates.",
+								MarkdownDescription: "RootCAs defines a list of CA certificate Secrets or ConfigMaps used to validate server certificates.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map": schema.StringAttribute{
+											Description:         "ConfigMap defines the name of a ConfigMap that holds a CA certificate. The referenced ConfigMap must contain a certificate under either a tls.ca or a ca.crt key.",
+											MarkdownDescription: "ConfigMap defines the name of a ConfigMap that holds a CA certificate. The referenced ConfigMap must contain a certificate under either a tls.ca or a ca.crt key.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"secret": schema.StringAttribute{
+											Description:         "Secret defines the name of a Secret that holds a CA certificate. The referenced Secret must contain a certificate under either a tls.ca or a ca.crt key.",
+											MarkdownDescription: "Secret defines the name of a Secret that holds a CA certificate. The referenced Secret must contain a certificate under either a tls.ca or a ca.crt key.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"root_c_as_secrets": schema.ListAttribute{
-								Description:         "RootCAsSecrets defines a list of CA secret used to validate self-signed certificates.",
-								MarkdownDescription: "RootCAsSecrets defines a list of CA secret used to validate self-signed certificates.",
+								Description:         "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate. Deprecated: RootCAsSecrets is deprecated, please use the RootCAs option instead.",
+								MarkdownDescription: "RootCAsSecrets defines a list of CA secret used to validate self-signed certificate. Deprecated: RootCAsSecrets is deprecated, please use the RootCAs option instead.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

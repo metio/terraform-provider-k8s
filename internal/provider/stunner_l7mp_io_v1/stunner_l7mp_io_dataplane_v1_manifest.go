@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -178,7 +179,11 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 		Command                  *[]string          `tfsdk:"command" json:"command,omitempty"`
 		ContainerSecurityContext *struct {
 			AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-			Capabilities             *struct {
+			AppArmorProfile          *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+			Capabilities *struct {
 				Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 				Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 			} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -205,8 +210,9 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
-		DisableHealthCheck    *bool `tfsdk:"disable_health_check" json:"disableHealthCheck,omitempty"`
-		EnableMetricsEndpoint *bool `tfsdk:"enable_metrics_endpoint" json:"enableMetricsEndpoint,omitempty"`
+		DataplaneResource     *string `tfsdk:"dataplane_resource" json:"dataplaneResource,omitempty"`
+		DisableHealthCheck    *bool   `tfsdk:"disable_health_check" json:"disableHealthCheck,omitempty"`
+		EnableMetricsEndpoint *bool   `tfsdk:"enable_metrics_endpoint" json:"enableMetricsEndpoint,omitempty"`
 		Env                   *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -220,6 +226,12 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 					FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 				} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+				FileKeyRef *struct {
+					Key        *string `tfsdk:"key" json:"key,omitempty"`
+					Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					Path       *string `tfsdk:"path" json:"path,omitempty"`
+					VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+				} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 				ResourceFieldRef *struct {
 					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 					Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -249,21 +261,29 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
-		Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		Replicas  *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
-		Resources *struct {
+		Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		OffloadEngine     *string            `tfsdk:"offload_engine" json:"offloadEngine,omitempty"`
+		OffloadInterfaces *[]string          `tfsdk:"offload_interfaces" json:"offloadInterfaces,omitempty"`
+		Replicas          *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
+		Resources         *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
 		SecurityContext *struct {
+			AppArmorProfile *struct {
+				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+				Type             *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 			FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 			FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -274,8 +294,9 @@ type StunnerL7MpIoDataplaneV1ManifestData struct {
 				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 				Type             *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-			SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-			Sysctls            *[]struct {
+			SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+			SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+			Sysctls                  *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -652,8 +673,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -661,8 +682,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -819,8 +840,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -828,8 +849,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -923,8 +944,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 								MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
@@ -986,8 +1007,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -995,8 +1016,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1153,8 +1174,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1162,8 +1183,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1258,8 +1279,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"annotations": schema.MapAttribute{
-						Description:         "Custom annotations to add to dataplane pods. Note that this does not affect the annotations added to the Deployment (this come from the correspnding Gateway), just the pods. Note also that mandatory pod annotations override whatever you set here on conflict, and the annotations set here override annotations manually added to the pods.",
-						MarkdownDescription: "Custom annotations to add to dataplane pods. Note that this does not affect the annotations added to the Deployment (this come from the correspnding Gateway), just the pods. Note also that mandatory pod annotations override whatever you set here on conflict, and the annotations set here override annotations manually added to the pods.",
+						Description:         "Custom annotations to add to dataplane pods. Note that this does not affect the annotations added to the dataplane resource (Deployment or DaemonSet) as those are copied from the correspnding Gateway, just the pods. Note also that mandatory pod annotations override whatever you set here on conflict, and the annotations set here override annotations manually added to the pods.",
+						MarkdownDescription: "Custom annotations to add to dataplane pods. Note that this does not affect the annotations added to the dataplane resource (Deployment or DaemonSet) as those are copied from the correspnding Gateway, just the pods. Note also that mandatory pod annotations override whatever you set here on conflict, and the annotations set here override annotations manually added to the pods.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1294,6 +1315,31 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"app_armor_profile": schema.SingleNestedAttribute{
+								Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+										MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+										MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"capabilities": schema.SingleNestedAttribute{
@@ -1332,8 +1378,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 							},
 
 							"proc_mount": schema.StringAttribute{
-								Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1483,6 +1529,17 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						Computed: false,
 					},
 
+					"dataplane_resource": schema.StringAttribute{
+						Description:         "DataplaneResource defines the Kubernetes resource kind to use to deploy the dataplane, can be either Deployment (default) or DaemonSet (supported only in the premium tier).",
+						MarkdownDescription: "DataplaneResource defines the Kubernetes resource kind to use to deploy the dataplane, can be either Deployment (default) or DaemonSet (supported only in the premium tier).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Deployment", "DaemonSet"),
+						},
+					},
+
 					"disable_health_check": schema.BoolAttribute{
 						Description:         "Disable health-checking. Default is to enable HTTP health-checks on port 8086: a liveness probe responder will be exposed on path '/live' and readiness probe on path '/ready'.",
 						MarkdownDescription: "Disable health-checking. Default is to enable HTTP health-checks on port 8086: a liveness probe responder will be exposed on path '/live' and readiness probe on path '/ready'.",
@@ -1505,8 +1562,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+									Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+									MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -1537,8 +1594,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1572,6 +1629,47 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												"field_path": schema.StringAttribute{
 													Description:         "Path of the field to select in the specified API version.",
 													MarkdownDescription: "Path of the field to select in the specified API version.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"file_key_ref": schema.SingleNestedAttribute{
+											Description:         "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+											MarkdownDescription: "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+													MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+													MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"path": schema.StringAttribute{
+													Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+													MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"volume_name": schema.StringAttribute{
+													Description:         "The name of the volume mount containing the env file.",
+													MarkdownDescription: "The name of the volume mount containing the env file.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -1628,8 +1726,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -1669,8 +1767,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 									MarkdownDescription: "The ConfigMap to select from",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1690,8 +1788,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 								},
 
 								"prefix": schema.StringAttribute{
-									Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-									MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+									Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+									MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1702,8 +1800,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 									MarkdownDescription: "The Secret to select from",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1758,8 +1856,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-									MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -1772,8 +1870,28 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"labels": schema.MapAttribute{
-						Description:         "Custom labels to add to dataplane pods. Note that this does not affect the labels added to the Deployment (those come from the Gateway), just the pods. Note also that mandatory pod labels override whatever you set here on conflict. The only way to set pod labels is here: whatever you set manually on the dataplane pod will be reset by the opetator.",
-						MarkdownDescription: "Custom labels to add to dataplane pods. Note that this does not affect the labels added to the Deployment (those come from the Gateway), just the pods. Note also that mandatory pod labels override whatever you set here on conflict. The only way to set pod labels is here: whatever you set manually on the dataplane pod will be reset by the opetator.",
+						Description:         "Custom labels to add to dataplane pods. Note that this does not affect the labels added to the dataplane resource (Deployment or DaemonSet) as those are copied from the Gateway, just the pods. Note also that mandatory pod labels override whatever you set here on conflict. The only way to set pod labels is here: whatever you set manually on the dataplane pod will be reset by the opetator.",
+						MarkdownDescription: "Custom labels to add to dataplane pods. Note that this does not affect the labels added to the dataplane resource (Deployment or DaemonSet) as those are copied from the Gateway, just the pods. Note also that mandatory pod labels override whatever you set here on conflict. The only way to set pod labels is here: whatever you set manually on the dataplane pod will be reset by the opetator.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"offload_engine": schema.StringAttribute{
+						Description:         "OffloadEngine defines the dataplane offload mode, either 'None', 'XDP', 'TC', or 'Auto'. Set to 'Auto' to let STUNner find the optimal offload mode. Default is 'None'.",
+						MarkdownDescription: "OffloadEngine defines the dataplane offload mode, either 'None', 'XDP', 'TC', or 'Auto'. Set to 'Auto' to let STUNner find the optimal offload mode. Default is 'None'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^None|XDP|TC|Auto$`), ""),
+						},
+					},
+
+					"offload_interfaces": schema.ListAttribute{
+						Description:         "OffloadInterfaces explicitly specifies the interfaces on which to enable the offload engine. Empty list means to enable offload on all interfaces (this is the default).",
+						MarkdownDescription: "OffloadInterfaces explicitly specifies the interfaces on which to enable the offload engine. Empty list means to enable offload on all interfaces (this is the default).",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -1781,8 +1899,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"replicas": schema.Int64Attribute{
-						Description:         "Number of desired pods. If empty or set to 1, use whatever is in the target Deployment. Otherwise, enforce this setting, overwiting whatever is set in the Deployment (this may block autoscaling the dataplane though). Defaults to 1.",
-						MarkdownDescription: "Number of desired pods. If empty or set to 1, use whatever is in the target Deployment. Otherwise, enforce this setting, overwiting whatever is set in the Deployment (this may block autoscaling the dataplane though). Defaults to 1.",
+						Description:         "Number of desired pods. If empty or set to 1, use whatever is in the target Deployment, otherwise overwite whatever is in the Deployment (this may block autoscaling the dataplane though). Ignored if the dataplane is deployed into a DaemonSet. Defaults to 1.",
+						MarkdownDescription: "Number of desired pods. If empty or set to 1, use whatever is in the target Deployment, otherwise overwite whatever is in the Deployment (this may block autoscaling the dataplane though). Ignored if the dataplane is deployed into a DaemonSet. Defaults to 1.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1793,8 +1911,8 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						MarkdownDescription: "Resources required by stunnerd.",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
@@ -1802,6 +1920,14 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 											MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -1838,6 +1964,31 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 						Description:         "SecurityContext holds pod-level security attributes and common container settings.",
 						MarkdownDescription: "SecurityContext holds pod-level security attributes and common container settings.",
 						Attributes: map[string]schema.Attribute{
+							"app_armor_profile": schema.SingleNestedAttribute{
+								Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+								Attributes: map[string]schema.Attribute{
+									"localhost_profile": schema.StringAttribute{
+										Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+										MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+										MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"fs_group": schema.Int64Attribute{
 								Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 								MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -1873,6 +2024,14 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 							"run_as_user": schema.Int64Attribute{
 								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_change_policy": schema.StringAttribute{
+								Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1945,9 +2104,17 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 							},
 
 							"supplemental_groups": schema.ListAttribute{
-								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+								Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"supplemental_groups_policy": schema.StringAttribute{
+								Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -2162,24 +2329,24 @@ func (r *StunnerL7MpIoDataplaneV1Manifest) Schema(_ context.Context, _ datasourc
 								},
 
 								"min_domains": schema.Int64Attribute{
-									Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
-									MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).",
+									Description:         "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
+									MarkdownDescription: "MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | | P P | P P | P P | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

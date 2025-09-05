@@ -194,7 +194,7 @@ func (r *OcmagentManagedOpenshiftIoManagedNotificationV1Alpha1Manifest) Schema(_
 									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Debug", "Info", "Warning", "Major", "Critical"),
+										stringvalidator.OneOf("Debug", "Info", "Warning", "Major", "Critical", "Error", "Fatal"),
 									},
 								},
 

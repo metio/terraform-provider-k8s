@@ -106,7 +106,9 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Args          *[]string `tfsdk:"args" json:"args,omitempty"`
 		BootstrapFrom *struct {
-			BackupRef *struct {
+			BackupContentType *string `tfsdk:"backup_content_type" json:"backupContentType,omitempty"`
+			BackupRef         *struct {
+				Kind *string `tfsdk:"kind" json:"kind,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"backup_ref" json:"backupRef,omitempty"`
 			RestoreJob *struct {
@@ -176,10 +178,18 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Resources *struct {
+				NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				Resources    *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
+				Tolerations *[]struct {
+					Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+					Key               *string `tfsdk:"key" json:"key,omitempty"`
+					Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+					TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+					Value             *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"restore_job" json:"restoreJob,omitempty"`
 			S3 *struct {
 				AccessKeyIdSecretKeyRef *struct {
@@ -206,12 +216,54 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				} `tfsdk:"tls" json:"tls,omitempty"`
 			} `tfsdk:"s3" json:"s3,omitempty"`
+			StagingStorage *struct {
+				PersistentVolumeClaim *struct {
+					AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
+					Resources   *struct {
+						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+					} `tfsdk:"resources" json:"resources,omitempty"`
+					Selector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"selector" json:"selector,omitempty"`
+					StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+				Volume *struct {
+					Csi *struct {
+						Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
+						FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
+						NodePublishSecretRef *struct {
+							Name *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"node_publish_secret_ref" json:"nodePublishSecretRef,omitempty"`
+						ReadOnly         *bool              `tfsdk:"read_only" json:"readOnly,omitempty"`
+						VolumeAttributes *map[string]string `tfsdk:"volume_attributes" json:"volumeAttributes,omitempty"`
+					} `tfsdk:"csi" json:"csi,omitempty"`
+					EmptyDir *struct {
+						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+						SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					HostPath *struct {
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"host_path" json:"hostPath,omitempty"`
+					Nfs *struct {
+						Path     *string `tfsdk:"path" json:"path,omitempty"`
+						ReadOnly *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						Server   *string `tfsdk:"server" json:"server,omitempty"`
+					} `tfsdk:"nfs" json:"nfs,omitempty"`
+					PersistentVolumeClaim *struct {
+						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+				} `tfsdk:"volume" json:"volume,omitempty"`
+			} `tfsdk:"staging_storage" json:"stagingStorage,omitempty"`
 			TargetRecoveryTime *string `tfsdk:"target_recovery_time" json:"targetRecoveryTime,omitempty"`
 			Volume             *struct {
-				ConfigMap *struct {
-					DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
-					Name        *string `tfsdk:"name" json:"name,omitempty"`
-				} `tfsdk:"config_map" json:"configMap,omitempty"`
 				Csi *struct {
 					Driver               *string `tfsdk:"driver" json:"driver,omitempty"`
 					FsType               *string `tfsdk:"fs_type" json:"fsType,omitempty"`
@@ -225,6 +277,10 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 					SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
 				} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+				HostPath *struct {
+					Path *string `tfsdk:"path" json:"path,omitempty"`
+					Type *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"host_path" json:"hostPath,omitempty"`
 				Nfs *struct {
 					Path     *string `tfsdk:"path" json:"path,omitempty"`
 					ReadOnly *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
@@ -234,11 +290,10 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
 					ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
 				} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
-				Secret *struct {
-					DefaultMode *int64  `tfsdk:"default_mode" json:"defaultMode,omitempty"`
-					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
-				} `tfsdk:"secret" json:"secret,omitempty"`
 			} `tfsdk:"volume" json:"volume,omitempty"`
+			VolumeSnapshotRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"volume_snapshot_ref" json:"volumeSnapshotRef,omitempty"`
 		} `tfsdk:"bootstrap_from" json:"bootstrapFrom,omitempty"`
 		Command    *[]string `tfsdk:"command" json:"command,omitempty"`
 		Connection *struct {
@@ -353,9 +408,14 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 				Port           *int64 `tfsdk:"port" json:"port,omitempty"`
+				ProbePort      *int64 `tfsdk:"probe_port" json:"probePort,omitempty"`
 				ReadinessProbe *struct {
 					Exec *struct {
 						Command *[]string `tfsdk:"command" json:"command,omitempty"`
@@ -370,7 +430,11 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -388,6 +452,26 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					RunAsNonRoot           *bool  `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser              *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				StartupProbe *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					HttpGet          *struct {
+						Host   *string `tfsdk:"host" json:"host,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 				VolumeMounts *[]struct {
 					MountPath *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -467,7 +551,11 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 				ReadinessProbe *struct {
 					Exec *struct {
@@ -483,7 +571,11 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-					TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -501,6 +593,26 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 					RunAsNonRoot           *bool  `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 					RunAsUser              *int64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				StartupProbe *struct {
+					Exec *struct {
+						Command *[]string `tfsdk:"command" json:"command,omitempty"`
+					} `tfsdk:"exec" json:"exec,omitempty"`
+					FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+					HttpGet          *struct {
+						Host   *string `tfsdk:"host" json:"host,omitempty"`
+						Path   *string `tfsdk:"path" json:"path,omitempty"`
+						Port   *string `tfsdk:"port" json:"port,omitempty"`
+						Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+					} `tfsdk:"http_get" json:"httpGet,omitempty"`
+					InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+					PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+					SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+					TcpSocket           *struct {
+						Host *string `tfsdk:"host" json:"host,omitempty"`
+						Port *string `tfsdk:"port" json:"port,omitempty"`
+					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+					TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+				} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 				VolumeMounts *[]struct {
 					MountPath *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -607,7 +719,11 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"liveness_probe" json:"livenessProbe,omitempty"`
 		MaxScale *struct {
 			Admin *struct {
@@ -800,8 +916,9 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 							} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 						} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 					} `tfsdk:"affinity" json:"affinity,omitempty"`
-					Image            *string `tfsdk:"image" json:"image,omitempty"`
-					ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+					Args             *[]string `tfsdk:"args" json:"args,omitempty"`
+					Image            *string   `tfsdk:"image" json:"image,omitempty"`
+					ImagePullPolicy  *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 					ImagePullSecrets *[]struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
@@ -892,6 +1009,40 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 				Router  *string            `tfsdk:"router" json:"router,omitempty"`
 				Suspend *bool              `tfsdk:"suspend" json:"suspend,omitempty"`
 			} `tfsdk:"services" json:"services,omitempty"`
+			Tls *struct {
+				AdminCASecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"admin_ca_secret_ref" json:"adminCASecretRef,omitempty"`
+				AdminCertIssuerRef *struct {
+					Group *string `tfsdk:"group" json:"group,omitempty"`
+					Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"admin_cert_issuer_ref" json:"adminCertIssuerRef,omitempty"`
+				AdminCertSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"admin_cert_secret_ref" json:"adminCertSecretRef,omitempty"`
+				Enabled             *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				ListenerCASecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"listener_ca_secret_ref" json:"listenerCASecretRef,omitempty"`
+				ListenerCertIssuerRef *struct {
+					Group *string `tfsdk:"group" json:"group,omitempty"`
+					Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"listener_cert_issuer_ref" json:"listenerCertIssuerRef,omitempty"`
+				ListenerCertSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"listener_cert_secret_ref" json:"listenerCertSecretRef,omitempty"`
+				ReplicationSSLEnabled *bool `tfsdk:"replication_ssl_enabled" json:"replicationSSLEnabled,omitempty"`
+				ServerCASecretRef     *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"server_ca_secret_ref" json:"serverCASecretRef,omitempty"`
+				ServerCertSecretRef *struct {
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"server_cert_secret_ref" json:"serverCertSecretRef,omitempty"`
+				VerifyPeerCertificate *bool `tfsdk:"verify_peer_certificate" json:"verifyPeerCertificate,omitempty"`
+				VerifyPeerHost        *bool `tfsdk:"verify_peer_host" json:"verifyPeerHost,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
 			UpdateStrategy *struct {
 				RollingUpdate *struct {
 					MaxUnavailable *string `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -968,8 +1119,9 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 						} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 					} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
 				} `tfsdk:"affinity" json:"affinity,omitempty"`
-				Image            *string `tfsdk:"image" json:"image,omitempty"`
-				ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+				Args             *[]string `tfsdk:"args" json:"args,omitempty"`
+				Image            *string   `tfsdk:"image" json:"image,omitempty"`
+				ImagePullPolicy  *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 				ImagePullSecrets *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
@@ -1145,15 +1297,20 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
 			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
 			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
-			TimeoutSeconds      *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 		Replicas                *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		ReplicasAllowEvenNumber *bool  `tfsdk:"replicas_allow_even_number" json:"replicasAllowEvenNumber,omitempty"`
 		Replication             *struct {
 			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			Primary *struct {
-				AutomaticFailover *bool  `tfsdk:"automatic_failover" json:"automaticFailover,omitempty"`
-				PodIndex          *int64 `tfsdk:"pod_index" json:"podIndex,omitempty"`
+				AutomaticFailover      *bool   `tfsdk:"automatic_failover" json:"automaticFailover,omitempty"`
+				AutomaticFailoverDelay *string `tfsdk:"automatic_failover_delay" json:"automaticFailoverDelay,omitempty"`
+				PodIndex               *int64  `tfsdk:"pod_index" json:"podIndex,omitempty"`
 			} `tfsdk:"primary" json:"primary,omitempty"`
 			ProbesEnabled *bool `tfsdk:"probes_enabled" json:"probesEnabled,omitempty"`
 			Replica       *struct {
@@ -1168,7 +1325,7 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 				SyncTimeout *string `tfsdk:"sync_timeout" json:"syncTimeout,omitempty"`
 				WaitPoint   *string `tfsdk:"wait_point" json:"waitPoint,omitempty"`
 			} `tfsdk:"replica" json:"replica,omitempty"`
-			SyncBinlog *bool `tfsdk:"sync_binlog" json:"syncBinlog,omitempty"`
+			SyncBinlog *int64 `tfsdk:"sync_binlog" json:"syncBinlog,omitempty"`
 		} `tfsdk:"replication" json:"replication,omitempty"`
 		Resources *struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
@@ -1279,6 +1436,26 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 				SubPath   *string `tfsdk:"sub_path" json:"subPath,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"sidecar_containers" json:"sidecarContainers,omitempty"`
+		StartupProbe *struct {
+			Exec *struct {
+				Command *[]string `tfsdk:"command" json:"command,omitempty"`
+			} `tfsdk:"exec" json:"exec,omitempty"`
+			FailureThreshold *int64 `tfsdk:"failure_threshold" json:"failureThreshold,omitempty"`
+			HttpGet          *struct {
+				Host   *string `tfsdk:"host" json:"host,omitempty"`
+				Path   *string `tfsdk:"path" json:"path,omitempty"`
+				Port   *string `tfsdk:"port" json:"port,omitempty"`
+				Scheme *string `tfsdk:"scheme" json:"scheme,omitempty"`
+			} `tfsdk:"http_get" json:"httpGet,omitempty"`
+			InitialDelaySeconds *int64 `tfsdk:"initial_delay_seconds" json:"initialDelaySeconds,omitempty"`
+			PeriodSeconds       *int64 `tfsdk:"period_seconds" json:"periodSeconds,omitempty"`
+			SuccessThreshold    *int64 `tfsdk:"success_threshold" json:"successThreshold,omitempty"`
+			TcpSocket           *struct {
+				Host *string `tfsdk:"host" json:"host,omitempty"`
+				Port *string `tfsdk:"port" json:"port,omitempty"`
+			} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
+			TimeoutSeconds *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
+		} `tfsdk:"startup_probe" json:"startupProbe,omitempty"`
 		Storage *struct {
 			Ephemeral           *bool   `tfsdk:"ephemeral" json:"ephemeral,omitempty"`
 			ResizeInUseVolumes  *bool   `tfsdk:"resize_in_use_volumes" json:"resizeInUseVolumes,omitempty"`
@@ -1306,8 +1483,35 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			WaitForVolumeResize *bool `tfsdk:"wait_for_volume_resize" json:"waitForVolumeResize,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
-		Suspend     *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
-		TimeZone    *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
+		Suspend  *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
+		TimeZone *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
+		Tls      *struct {
+			ClientCASecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"client_ca_secret_ref" json:"clientCASecretRef,omitempty"`
+			ClientCertIssuerRef *struct {
+				Group *string `tfsdk:"group" json:"group,omitempty"`
+				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"client_cert_issuer_ref" json:"clientCertIssuerRef,omitempty"`
+			ClientCertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"client_cert_secret_ref" json:"clientCertSecretRef,omitempty"`
+			Enabled           *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			GaleraSSTEnabled  *bool `tfsdk:"galera_sst_enabled" json:"galeraSSTEnabled,omitempty"`
+			Required          *bool `tfsdk:"required" json:"required,omitempty"`
+			ServerCASecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"server_ca_secret_ref" json:"serverCASecretRef,omitempty"`
+			ServerCertIssuerRef *struct {
+				Group *string `tfsdk:"group" json:"group,omitempty"`
+				Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"server_cert_issuer_ref" json:"serverCertIssuerRef,omitempty"`
+			ServerCertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"server_cert_secret_ref" json:"serverCertSecretRef,omitempty"`
+		} `tfsdk:"tls" json:"tls,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -1365,6 +1569,10 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 				Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
 				SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
 			} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+			HostPath *struct {
+				Path *string `tfsdk:"path" json:"path,omitempty"`
+				Type *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"host_path" json:"hostPath,omitempty"`
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 			Nfs  *struct {
 				Path     *string `tfsdk:"path" json:"path,omitempty"`
@@ -1473,8 +1681,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"node_affinity": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 										Description:         "",
@@ -1482,8 +1690,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"preference": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "",
@@ -1577,8 +1785,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
 										Attributes: map[string]schema.Attribute{
 											"node_selector_terms": schema.ListNestedAttribute{
 												Description:         "",
@@ -1674,8 +1882,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"pod_anti_affinity": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 										Description:         "",
@@ -1683,12 +1891,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "",
@@ -1773,8 +1981,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "",
@@ -1863,13 +2071,32 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Description:         "BootstrapFrom defines a source to bootstrap from.",
 						MarkdownDescription: "BootstrapFrom defines a source to bootstrap from.",
 						Attributes: map[string]schema.Attribute{
+							"backup_content_type": schema.StringAttribute{
+								Description:         "BackupContentType is the backup content type available in the source to bootstrap from. It is inferred based on the BackupRef and VolumeSnapshotRef fields. If inference is not possible, it defaults to Logical. Set this field explicitly when using physical backups from S3 or Volume sources.",
+								MarkdownDescription: "BackupContentType is the backup content type available in the source to bootstrap from. It is inferred based on the BackupRef and VolumeSnapshotRef fields. If inference is not possible, it defaults to Logical. Set this field explicitly when using physical backups from S3 or Volume sources.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Logical", "Physical"),
+								},
+							},
+
 							"backup_ref": schema.SingleNestedAttribute{
-								Description:         "BackupRef is a reference to a Backup object. It has priority over S3 and Volume.",
-								MarkdownDescription: "BackupRef is a reference to a Backup object. It has priority over S3 and Volume.",
+								Description:         "BackupRef is reference to a backup object. If the Kind is not specified, a logical Backup is assumed. This field takes precedence over S3 and Volume sources.",
+								MarkdownDescription: "BackupRef is reference to a backup object. If the Kind is not specified, a logical Backup is assumed. This field takes precedence over S3 and Volume sources.",
 								Attributes: map[string]schema.Attribute{
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the referent.",
+										MarkdownDescription: "Kind of the referent.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1881,8 +2108,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"restore_job": schema.SingleNestedAttribute{
-								Description:         "RestoreJob defines additional properties for the Job used to perform the Restore.",
-								MarkdownDescription: "RestoreJob defines additional properties for the Job used to perform the Restore.",
+								Description:         "RestoreJob defines additional properties for the Job used to perform the restoration.",
+								MarkdownDescription: "RestoreJob defines additional properties for the Job used to perform the restoration.",
 								Attributes: map[string]schema.Attribute{
 									"affinity": schema.SingleNestedAttribute{
 										Description:         "Affinity to be used in the Pod.",
@@ -1897,8 +2124,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"node_affinity": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 														Description:         "",
@@ -1906,8 +2133,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"preference": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "",
@@ -2001,8 +2228,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
 														Attributes: map[string]schema.Attribute{
 															"node_selector_terms": schema.ListNestedAttribute{
 																Description:         "",
@@ -2098,8 +2325,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"pod_anti_affinity": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 														Description:         "",
@@ -2107,12 +2334,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"pod_affinity_term": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "",
@@ -2197,8 +2424,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "",
@@ -2310,9 +2537,18 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Computed: false,
 									},
 
+									"node_selector": schema.MapAttribute{
+										Description:         "NodeSelector to be used in the Pod.",
+										MarkdownDescription: "NodeSelector to be used in the Pod.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resouces describes the compute resource requirements.",
-										MarkdownDescription: "Resouces describes the compute resource requirements.",
+										Description:         "Resources describes the compute resource requirements.",
+										MarkdownDescription: "Resources describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -2336,6 +2572,57 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Optional: true,
 										Computed: false,
 									},
+
+									"tolerations": schema.ListNestedAttribute{
+										Description:         "Tolerations to be used in the Pod.",
+										MarkdownDescription: "Tolerations to be used in the Pod.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"effect": schema.StringAttribute{
+													Description:         "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key": schema.StringAttribute{
+													Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"operator": schema.StringAttribute{
+													Description:         "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													MarkdownDescription: "Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"toleration_seconds": schema.Int64Attribute{
+													Description:         "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													MarkdownDescription: "Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -2343,8 +2630,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"s3": schema.SingleNestedAttribute{
-								Description:         "S3 defines the configuration to restore backups from a S3 compatible storage. It has priority over Volume.",
-								MarkdownDescription: "S3 defines the configuration to restore backups from a S3 compatible storage. It has priority over Volume.",
+								Description:         "S3 defines the configuration to restore backups from a S3 compatible storage. This field takes precedence over the Volume source.",
+								MarkdownDescription: "S3 defines the configuration to restore backups from a S3 compatible storage. This field takes precedence over the Volume source.",
 								Attributes: map[string]schema.Attribute{
 									"access_key_id_secret_key_ref": schema.SingleNestedAttribute{
 										Description:         "AccessKeyIdSecretKeyRef is a reference to a Secret key containing the S3 access key id.",
@@ -2366,8 +2653,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -2423,8 +2710,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Computed:            false,
 											},
 										},
-										Required: true,
-										Optional: false,
+										Required: false,
+										Optional: true,
 										Computed: false,
 									},
 
@@ -2500,6 +2787,298 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Computed: false,
 							},
 
+							"staging_storage": schema.SingleNestedAttribute{
+								Description:         "StagingStorage defines the temporary storage used to keep external backups (i.e. S3) while they are being processed. It defaults to an emptyDir volume, meaning that the backups will be temporarily stored in the node where the Job is scheduled.",
+								MarkdownDescription: "StagingStorage defines the temporary storage used to keep external backups (i.e. S3) while they are being processed. It defaults to an emptyDir volume, meaning that the backups will be temporarily stored in the node where the Job is scheduled.",
+								Attributes: map[string]schema.Attribute{
+									"persistent_volume_claim": schema.SingleNestedAttribute{
+										Description:         "PersistentVolumeClaim is a Kubernetes PVC specification.",
+										MarkdownDescription: "PersistentVolumeClaim is a Kubernetes PVC specification.",
+										Attributes: map[string]schema.Attribute{
+											"access_modes": schema.ListAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"resources": schema.SingleNestedAttribute{
+												Description:         "VolumeResourceRequirements describes the storage resource requirements for a volume.",
+												MarkdownDescription: "VolumeResourceRequirements describes the storage resource requirements for a volume.",
+												Attributes: map[string]schema.Attribute{
+													"limits": schema.MapAttribute{
+														Description:         "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"requests": schema.MapAttribute{
+														Description:         "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														MarkdownDescription: "Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"selector": schema.SingleNestedAttribute{
+												Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+												MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
+												Attributes: map[string]schema.Attribute{
+													"match_expressions": schema.ListNestedAttribute{
+														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "key is the label key that the selector applies to.",
+																	MarkdownDescription: "key is the label key that the selector applies to.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"operator": schema.StringAttribute{
+																	Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"values": schema.ListAttribute{
+																	Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"match_labels": schema.MapAttribute{
+														Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"storage_class_name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume": schema.SingleNestedAttribute{
+										Description:         "Volume is a Kubernetes volume specification.",
+										MarkdownDescription: "Volume is a Kubernetes volume specification.",
+										Attributes: map[string]schema.Attribute{
+											"csi": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"driver": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"fs_type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"node_publish_secret_ref": schema.SingleNestedAttribute{
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"read_only": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"volume_attributes": schema.MapAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"empty_dir": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"medium": schema.StringAttribute{
+														Description:         "StorageMedium defines ways that storage can be allocated to a volume.",
+														MarkdownDescription: "StorageMedium defines ways that storage can be allocated to a volume.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"size_limit": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"host_path": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+												Attributes: map[string]schema.Attribute{
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"nfs": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"read_only": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"server": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"persistent_volume_claim": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"claim_name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"read_only": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"target_recovery_time": schema.StringAttribute{
 								Description:         "TargetRecoveryTime is a RFC3339 (1970-01-01T00:00:00Z) date and time that defines the point in time recovery objective. It is used to determine the closest restoration source in time.",
 								MarkdownDescription: "TargetRecoveryTime is a RFC3339 (1970-01-01T00:00:00Z) date and time that defines the point in time recovery objective. It is used to determine the closest restoration source in time.",
@@ -2515,34 +3094,9 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Description:         "Volume is a Kubernetes Volume object that contains a backup.",
 								MarkdownDescription: "Volume is a Kubernetes Volume object that contains a backup.",
 								Attributes: map[string]schema.Attribute{
-									"config_map": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
-										Attributes: map[string]schema.Attribute{
-											"default_mode": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
 									"csi": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
 										Attributes: map[string]schema.Attribute{
 											"driver": schema.StringAttribute{
 												Description:         "",
@@ -2561,8 +3115,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"node_publish_secret_ref": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
 														Description:         "",
@@ -2600,8 +3154,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"empty_dir": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
 										Attributes: map[string]schema.Attribute{
 											"medium": schema.StringAttribute{
 												Description:         "StorageMedium defines ways that storage can be allocated to a volume.",
@@ -2624,9 +3178,34 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Computed: false,
 									},
 
+									"host_path": schema.SingleNestedAttribute{
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+										Attributes: map[string]schema.Attribute{
+											"path": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"nfs": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
 										Attributes: map[string]schema.Attribute{
 											"path": schema.StringAttribute{
 												Description:         "",
@@ -2658,8 +3237,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"persistent_volume_claim": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
 										Attributes: map[string]schema.Attribute{
 											"claim_name": schema.StringAttribute{
 												Description:         "",
@@ -2681,30 +3260,22 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Optional: true,
 										Computed: false,
 									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 
-									"secret": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
-										Attributes: map[string]schema.Attribute{
-											"default_mode": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"secret_name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
+							"volume_snapshot_ref": schema.SingleNestedAttribute{
+								Description:         "VolumeSnapshotRef is a reference to a VolumeSnapshot object. This field takes precedence over S3 and Volume sources.",
+								MarkdownDescription: "VolumeSnapshotRef is a reference to a VolumeSnapshot object. This field takes precedence over S3 and Volume sources.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -2915,12 +3486,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"value_from": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"config_map_key_ref": schema.SingleNestedAttribute{
-											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
-											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
+											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
+											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "",
@@ -2944,8 +3515,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"field_ref": schema.SingleNestedAttribute{
-											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
-											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
+											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
+											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
 											Attributes: map[string]schema.Attribute{
 												"api_version": schema.StringAttribute{
 													Description:         "",
@@ -2969,8 +3540,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"secret_key_ref": schema.SingleNestedAttribute{
-											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
-											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
+											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
+											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "",
@@ -3010,8 +3581,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config_map_ref": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -3035,8 +3606,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"secret_ref": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Description:         "",
@@ -3163,12 +3734,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"value_from": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
 																	Description:         "",
@@ -3192,8 +3763,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"field_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "",
@@ -3217,8 +3788,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
 																	Description:         "",
@@ -3258,8 +3829,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"config_map_ref": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
 															Description:         "",
@@ -3283,8 +3854,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"secret_ref": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
 															Description:         "",
@@ -3362,8 +3933,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "LivenessProbe to be used in the Container.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "",
@@ -3388,8 +3959,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "",
@@ -3450,6 +4021,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -3466,8 +4062,16 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "Port where the agent will be listening for connections.",
-										MarkdownDescription: "Port where the agent will be listening for connections.",
+										Description:         "Port where the agent will be listening for API connections.",
+										MarkdownDescription: "Port where the agent will be listening for API connections.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"probe_port": schema.Int64Attribute{
+										Description:         "Port where the agent will be listening for probe connections.",
+										MarkdownDescription: "Port where the agent will be listening for probe connections.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3478,8 +4082,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "ReadinessProbe to be used in the Container.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "",
@@ -3504,8 +4108,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "",
@@ -3568,6 +4172,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Computed:            false,
 											},
 
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"timeout_seconds": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -3582,8 +4211,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resouces describes the compute resource requirements.",
-										MarkdownDescription: "Resouces describes the compute resource requirements.",
+										Description:         "Resources describes the compute resource requirements.",
+										MarkdownDescription: "Resources describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -3680,6 +4309,139 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"run_as_user": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"startup_probe": schema.SingleNestedAttribute{
+										Description:         "StartupProbe to be used in the Container.",
+										MarkdownDescription: "StartupProbe to be used in the Container.",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "URIScheme identifies the scheme used for connection to a host for Get actions",
+														MarkdownDescription: "URIScheme identifies the scheme used for connection to a host for Get actions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -3959,12 +4721,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"value_from": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"config_map_key_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
 																	Description:         "",
@@ -3988,8 +4750,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"field_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"api_version": schema.StringAttribute{
 																	Description:         "",
@@ -4013,8 +4775,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														},
 
 														"secret_key_ref": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
 															Attributes: map[string]schema.Attribute{
 																"key": schema.StringAttribute{
 																	Description:         "",
@@ -4054,8 +4816,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"config_map_ref": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
 															Description:         "",
@@ -4079,8 +4841,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												},
 
 												"secret_ref": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
 															Description:         "",
@@ -4125,8 +4887,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "LivenessProbe to be used in the Container.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "",
@@ -4151,8 +4913,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "",
@@ -4213,6 +4975,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"timeout_seconds": schema.Int64Attribute{
@@ -4233,8 +5020,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "ReadinessProbe to be used in the Container.",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "",
@@ -4259,8 +5046,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "",
@@ -4323,6 +5110,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Computed:            false,
 											},
 
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"timeout_seconds": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -4337,8 +5149,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resouces describes the compute resource requirements.",
-										MarkdownDescription: "Resouces describes the compute resource requirements.",
+										Description:         "Resources describes the compute resource requirements.",
+										MarkdownDescription: "Resources describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -4447,6 +5259,139 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Computed: false,
 									},
 
+									"startup_probe": schema.SingleNestedAttribute{
+										Description:         "StartupProbe to be used in the Container.",
+										MarkdownDescription: "StartupProbe to be used in the Container.",
+										Attributes: map[string]schema.Attribute{
+											"exec": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"command": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"failure_threshold": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"http_get": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"path": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"scheme": schema.StringAttribute{
+														Description:         "URIScheme identifies the scheme used for connection to a host for Get actions",
+														MarkdownDescription: "URIScheme identifies the scheme used for connection to a host for Get actions",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"initial_delay_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"period_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"success_threshold": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"tcp_socket": schema.SingleNestedAttribute{
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+												Attributes: map[string]schema.Attribute{
+													"host": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"timeout_seconds": schema.Int64Attribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"volume_mounts": schema.ListNestedAttribute{
 										Description:         "VolumeMounts to be used in the Container.",
 										MarkdownDescription: "VolumeMounts to be used in the Container.",
@@ -4527,8 +5472,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resouces describes the compute resource requirements.",
-										MarkdownDescription: "Resouces describes the compute resource requirements.",
+										Description:         "Resources describes the compute resource requirements.",
+										MarkdownDescription: "Resources describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -4692,8 +5637,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"resources": schema.SingleNestedAttribute{
-												Description:         "Resouces describes the compute resource requirements.",
-												MarkdownDescription: "Resouces describes the compute resource requirements.",
+												Description:         "Resources describes the compute resource requirements.",
+												MarkdownDescription: "Resources describes the compute resource requirements.",
 												Attributes: map[string]schema.Attribute{
 													"limits": schema.MapAttribute{
 														Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -4886,12 +5831,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"value_from": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"config_map_key_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "",
@@ -4915,8 +5860,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "",
@@ -4940,8 +5885,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"secret_key_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "",
@@ -5003,8 +5948,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"resources": schema.SingleNestedAttribute{
-									Description:         "Resouces describes the compute resource requirements.",
-									MarkdownDescription: "Resouces describes the compute resource requirements.",
+									Description:         "Resources describes the compute resource requirements.",
+									MarkdownDescription: "Resources describes the compute resource requirements.",
 									Attributes: map[string]schema.Attribute{
 										"limits": schema.MapAttribute{
 											Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -5083,8 +6028,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "LivenessProbe to be used in the Container.",
 						Attributes: map[string]schema.Attribute{
 							"exec": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"command": schema.ListAttribute{
 										Description:         "",
@@ -5109,8 +6054,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"http_get": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"host": schema.StringAttribute{
 										Description:         "",
@@ -5171,6 +6116,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"timeout_seconds": schema.Int64Attribute{
@@ -6094,8 +7064,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"node_affinity": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
 														Attributes: map[string]schema.Attribute{
 															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 																Description:         "",
@@ -6103,8 +7073,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"preference": schema.SingleNestedAttribute{
-																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
-																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "",
@@ -6198,8 +7168,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 															},
 
 															"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-																Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
-																MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+																Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
+																MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
 																Attributes: map[string]schema.Attribute{
 																	"node_selector_terms": schema.ListNestedAttribute{
 																		Description:         "",
@@ -6295,8 +7265,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"pod_anti_affinity": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 																Description:         "",
@@ -6304,12 +7274,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"pod_affinity_term": schema.SingleNestedAttribute{
-																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
-																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
 																			Attributes: map[string]schema.Attribute{
 																				"label_selector": schema.SingleNestedAttribute{
-																					Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																					MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																					Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																					MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																					Attributes: map[string]schema.Attribute{
 																						"match_expressions": schema.ListNestedAttribute{
 																							Description:         "",
@@ -6394,8 +7364,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "",
@@ -6469,6 +7439,15 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"args": schema.ListAttribute{
+												Description:         "Args to be used in the Container.",
+												MarkdownDescription: "Args to be used in the Container.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"image": schema.StringAttribute{
@@ -6711,8 +7690,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"resources": schema.SingleNestedAttribute{
-												Description:         "Resouces describes the compute resource requirements.",
-												MarkdownDescription: "Resouces describes the compute resource requirements.",
+												Description:         "Resources describes the compute resource requirements.",
+												MarkdownDescription: "Resources describes the compute resource requirements.",
 												Attributes: map[string]schema.Attribute{
 													"limits": schema.MapAttribute{
 														Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -6963,8 +7942,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"params": schema.MapAttribute{
-										Description:         "Params defines extra parameters to pass to the monitor. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-common-monitor-parameters/. Monitor specific parameter are also suported: https://mariadb.com/kb/en/mariadb-maxscale-2308-galera-monitor/#galera-monitor-optional-parameters. https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-monitor/#configuration.",
-										MarkdownDescription: "Params defines extra parameters to pass to the monitor. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-common-monitor-parameters/. Monitor specific parameter are also suported: https://mariadb.com/kb/en/mariadb-maxscale-2308-galera-monitor/#galera-monitor-optional-parameters. https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-monitor/#configuration.",
+										Description:         "Params defines extra parameters to pass to the monitor. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-common-monitor-parameters/. Monitor specific parameter are also supported: https://mariadb.com/kb/en/mariadb-maxscale-2308-galera-monitor/#galera-monitor-optional-parameters. https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-monitor/#configuration.",
+										MarkdownDescription: "Params defines extra parameters to pass to the monitor. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-common-monitor-parameters/. Monitor specific parameter are also supported: https://mariadb.com/kb/en/mariadb-maxscale-2308-galera-monitor/#galera-monitor-optional-parameters. https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-monitor/#configuration.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -7089,8 +8068,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"params": schema.MapAttribute{
-											Description:         "Params defines extra parameters to pass to the service. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1. Router specific parameter are also suported: https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration. https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
-											MarkdownDescription: "Params defines extra parameters to pass to the service. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1. Router specific parameter are also suported: https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration. https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
+											Description:         "Params defines extra parameters to pass to the service. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1. Router specific parameter are also supported: https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration. https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
+											MarkdownDescription: "Params defines extra parameters to pass to the service. Any parameter supported by MaxScale may be specified here. See reference: https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1. Router specific parameter are also supported: https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration. https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7115,6 +8094,215 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls": schema.SingleNestedAttribute{
+								Description:         "TLS defines the PKI to be used with MaxScale.",
+								MarkdownDescription: "TLS defines the PKI to be used with MaxScale.",
+								Attributes: map[string]schema.Attribute{
+									"admin_ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "AdminCASecretRef is a reference to a Secret containing the admin certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's administrative REST API and GUI. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either adminCertSecretRef or adminCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+										MarkdownDescription: "AdminCASecretRef is a reference to a Secret containing the admin certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's administrative REST API and GUI. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either adminCertSecretRef or adminCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"admin_cert_issuer_ref": schema.SingleNestedAttribute{
+										Description:         "AdminCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's administrative REST API and GUI certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with adminCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via adminCASecretRef.",
+										MarkdownDescription: "AdminCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's administrative REST API and GUI certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with adminCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via adminCASecretRef.",
+										Attributes: map[string]schema.Attribute{
+											"group": schema.StringAttribute{
+												Description:         "Group of the resource being referred to.",
+												MarkdownDescription: "Group of the resource being referred to.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kind": schema.StringAttribute{
+												Description:         "Kind of the resource being referred to.",
+												MarkdownDescription: "Kind of the resource being referred to.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the resource being referred to.",
+												MarkdownDescription: "Name of the resource being referred to.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"admin_cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "AdminCertSecretRef is a reference to a TLS Secret used by the MaxScale's administrative REST API and GUI.",
+										MarkdownDescription: "AdminCertSecretRef is a reference to a TLS Secret used by the MaxScale's administrative REST API and GUI.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MaxScale instance. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has TLS enabled and enforced.",
+										MarkdownDescription: "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MaxScale instance. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has TLS enabled and enforced.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"listener_ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ListenerCASecretRef is a reference to a Secret containing the listener certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's listeners. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either listenerCertSecretRef or listenerCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the listener certificate.",
+										MarkdownDescription: "ListenerCASecretRef is a reference to a Secret containing the listener certificate authority keypair. It is used to establish trust and issue certificates for the MaxScale's listeners. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either listenerCertSecretRef or listenerCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the listener certificate.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"listener_cert_issuer_ref": schema.SingleNestedAttribute{
+										Description:         "ListenerCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's listeners certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with listenerCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via listenerCASecretRef.",
+										MarkdownDescription: "ListenerCertIssuerRef is a reference to a cert-manager issuer object used to issue the MaxScale's listeners certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with listenerCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via listenerCASecretRef.",
+										Attributes: map[string]schema.Attribute{
+											"group": schema.StringAttribute{
+												Description:         "Group of the resource being referred to.",
+												MarkdownDescription: "Group of the resource being referred to.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"kind": schema.StringAttribute{
+												Description:         "Kind of the resource being referred to.",
+												MarkdownDescription: "Kind of the resource being referred to.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the resource being referred to.",
+												MarkdownDescription: "Name of the resource being referred to.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"listener_cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ListenerCertSecretRef is a reference to a TLS Secret used by the MaxScale's listeners.",
+										MarkdownDescription: "ListenerCertSecretRef is a reference to a TLS Secret used by the MaxScale's listeners.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"replication_ssl_enabled": schema.BoolAttribute{
+										Description:         "ReplicationSSLEnabled specifies whether the replication SSL is enabled. If enabled, the SSL options will be added to the server configuration. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has replication enabled. If the MariaDB servers are manually provided by the user via the 'servers' field, this must be set by the user as well.",
+										MarkdownDescription: "ReplicationSSLEnabled specifies whether the replication SSL is enabled. If enabled, the SSL options will be added to the server configuration. It is enabled by default when the referred MariaDB instance (via mariaDbRef) has replication enabled. If the MariaDB servers are manually provided by the user via the 'servers' field, this must be set by the user as well.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"server_ca_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ServerCASecretRef is a reference to a Secret containing the MariaDB server CA certificates. It is used to establish trust with MariaDB servers. The Secret should contain a 'ca.crt' key in order to establish trust. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB CA bundle.",
+										MarkdownDescription: "ServerCASecretRef is a reference to a Secret containing the MariaDB server CA certificates. It is used to establish trust with MariaDB servers. The Secret should contain a 'ca.crt' key in order to establish trust. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB CA bundle.",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"server_cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "ServerCertSecretRef is a reference to a TLS Secret used by MaxScale to connect to the MariaDB servers. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB client certificate (clientCertSecretRef).",
+										MarkdownDescription: "ServerCertSecretRef is a reference to a TLS Secret used by MaxScale to connect to the MariaDB servers. If not provided, and the reference to a MariaDB resource is set (mariaDbRef), it will be defaulted to the referred MariaDB client certificate (clientCertSecretRef).",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"verify_peer_certificate": schema.BoolAttribute{
+										Description:         "VerifyPeerCertificate specifies whether the peer certificate's signature should be validated against the CA. It is disabled by default.",
+										MarkdownDescription: "VerifyPeerCertificate specifies whether the peer certificate's signature should be validated against the CA. It is disabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"verify_peer_host": schema.BoolAttribute{
+										Description:         "VerifyPeerHost specifies whether the peer certificate's SANs should match the peer host. It is disabled by default.",
+										MarkdownDescription: "VerifyPeerHost specifies whether the peer certificate's SANs should match the peer host. It is disabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,
@@ -7223,8 +8411,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"node_affinity": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 														Description:         "",
@@ -7232,8 +8420,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"preference": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "",
@@ -7327,8 +8515,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
 														Attributes: map[string]schema.Attribute{
 															"node_selector_terms": schema.ListNestedAttribute{
 																Description:         "",
@@ -7424,8 +8612,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"pod_anti_affinity": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 														Description:         "",
@@ -7433,12 +8621,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"pod_affinity_term": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
 																	Attributes: map[string]schema.Attribute{
 																		"label_selector": schema.SingleNestedAttribute{
-																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																			Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																			MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																			Attributes: map[string]schema.Attribute{
 																				"match_expressions": schema.ListNestedAttribute{
 																					Description:         "",
@@ -7523,8 +8711,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"label_selector": schema.SingleNestedAttribute{
-																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+																	Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+																	MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 																	Attributes: map[string]schema.Attribute{
 																		"match_expressions": schema.ListNestedAttribute{
 																			Description:         "",
@@ -7598,6 +8786,15 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										Required: false,
 										Optional: true,
 										Computed: false,
+									},
+
+									"args": schema.ListAttribute{
+										Description:         "Args to be used in the Container.",
+										MarkdownDescription: "Args to be used in the Container.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 
 									"image": schema.StringAttribute{
@@ -7840,8 +9037,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"resources": schema.SingleNestedAttribute{
-										Description:         "Resouces describes the compute resource requirements.",
-										MarkdownDescription: "Resouces describes the compute resource requirements.",
+										Description:         "Resources describes the compute resource requirements.",
+										MarkdownDescription: "Resources describes the compute resource requirements.",
 										Attributes: map[string]schema.Attribute{
 											"limits": schema.MapAttribute{
 												Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -8721,8 +9918,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "ReadinessProbe to be used in the Container.",
 						Attributes: map[string]schema.Attribute{
 							"exec": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#execaction-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"command": schema.ListAttribute{
 										Description:         "",
@@ -8747,8 +9944,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"http_get": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#httpgetaction-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"host": schema.StringAttribute{
 										Description:         "",
@@ -8811,6 +10008,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Computed:            false,
 							},
 
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"timeout_seconds": schema.Int64Attribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -8859,6 +10081,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									"automatic_failover": schema.BoolAttribute{
 										Description:         "AutomaticFailover indicates whether the operator should automatically update PodIndex to perform an automatic primary failover.",
 										MarkdownDescription: "AutomaticFailover indicates whether the operator should automatically update PodIndex to perform an automatic primary failover.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"automatic_failover_delay": schema.StringAttribute{
+										Description:         "AutomaticFailoverDelay indicates the duration before performing an automatic primary failover. By default, no extra delay is added.",
+										MarkdownDescription: "AutomaticFailoverDelay indicates the duration before performing an automatic primary failover. By default, no extra delay is added.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -8973,9 +10203,9 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								Computed: false,
 							},
 
-							"sync_binlog": schema.BoolAttribute{
-								Description:         "SyncBinlog indicates whether the binary log should be synchronized to the disk after every event. It trades off performance for consistency. See: https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#sync_binlog.",
-								MarkdownDescription: "SyncBinlog indicates whether the binary log should be synchronized to the disk after every event. It trades off performance for consistency. See: https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#sync_binlog.",
+							"sync_binlog": schema.Int64Attribute{
+								Description:         "SyncBinlog indicates after how many events the binary log is synchronized to the disk. The default is 1, flushing the binary log to disk after every write, which trades off performance for consistency. See: https://mariadb.com/docs/server/ha-and-performance/standard-replication/replication-and-binary-log-system-variables#sync_binlog",
+								MarkdownDescription: "SyncBinlog indicates after how many events the binary log is synchronized to the disk. The default is 1, flushing the binary log to disk after every write, which trades off performance for consistency. See: https://mariadb.com/docs/server/ha-and-performance/standard-replication/replication-and-binary-log-system-variables#sync_binlog",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -8987,8 +10217,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resouces describes the compute resource requirements.",
-						MarkdownDescription: "Resouces describes the compute resource requirements.",
+						Description:         "Resources describes the compute resource requirements.",
+						MarkdownDescription: "Resources describes the compute resource requirements.",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.MapAttribute{
 								Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -9553,12 +10783,12 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 											},
 
 											"value_from": schema.SingleNestedAttribute{
-												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
-												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#envvarsource-v1-core.",
+												Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
+												MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#envvarsource-v1-core.",
 												Attributes: map[string]schema.Attribute{
 													"config_map_key_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapkeyselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapkeyselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "",
@@ -9582,8 +10812,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectfieldselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#objectfieldselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "",
@@ -9607,8 +10837,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 													},
 
 													"secret_key_ref": schema.SingleNestedAttribute{
-														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
-														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretkeyselector-v1-core.",
+														Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
+														MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretkeyselector-v1-core.",
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
 																Description:         "",
@@ -9670,8 +10900,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"resources": schema.SingleNestedAttribute{
-									Description:         "Resouces describes the compute resource requirements.",
-									MarkdownDescription: "Resouces describes the compute resource requirements.",
+									Description:         "Resources describes the compute resource requirements.",
+									MarkdownDescription: "Resources describes the compute resource requirements.",
 									Attributes: map[string]schema.Attribute{
 										"limits": schema.MapAttribute{
 											Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -9745,6 +10975,139 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Computed: false,
 					},
 
+					"startup_probe": schema.SingleNestedAttribute{
+						Description:         "StartupProbe to be used in the Container.",
+						MarkdownDescription: "StartupProbe to be used in the Container.",
+						Attributes: map[string]schema.Attribute{
+							"exec": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#execaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"command": schema.ListAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"failure_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"http_get": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#httpgetaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"path": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"scheme": schema.StringAttribute{
+										Description:         "URIScheme identifies the scheme used for connection to a host for Get actions",
+										MarkdownDescription: "URIScheme identifies the scheme used for connection to a host for Get actions",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"initial_delay_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"period_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"success_threshold": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tcp_socket": schema.SingleNestedAttribute{
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#tcpsocketaction-v1-core.",
+								Attributes: map[string]schema.Attribute{
+									"host": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"timeout_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"storage": schema.SingleNestedAttribute{
 						Description:         "Storage defines the storage options to be used for provisioning the PVCs mounted by MariaDB.",
 						MarkdownDescription: "Storage defines the storage options to be used for provisioning the PVCs mounted by MariaDB.",
@@ -9766,16 +11129,16 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"size": schema.StringAttribute{
-								Description:         "Size of the PVCs to be mounted by MariaDB. Required if not provided in 'VolumeClaimTemplate'. It superseeds the storage size specified in 'VolumeClaimTemplate'.",
-								MarkdownDescription: "Size of the PVCs to be mounted by MariaDB. Required if not provided in 'VolumeClaimTemplate'. It superseeds the storage size specified in 'VolumeClaimTemplate'.",
+								Description:         "Size of the PVCs to be mounted by MariaDB. Required if not provided in 'VolumeClaimTemplate'. It supersedes the storage size specified in 'VolumeClaimTemplate'.",
+								MarkdownDescription: "Size of the PVCs to be mounted by MariaDB. Required if not provided in 'VolumeClaimTemplate'. It supersedes the storage size specified in 'VolumeClaimTemplate'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"storage_class_name": schema.StringAttribute{
-								Description:         "StorageClassName to be used to provision the PVCS. It superseeds the 'StorageClassName' specified in 'VolumeClaimTemplate'. If not provided, the default 'StorageClass' configured in the cluster is used.",
-								MarkdownDescription: "StorageClassName to be used to provision the PVCS. It superseeds the 'StorageClassName' specified in 'VolumeClaimTemplate'. If not provided, the default 'StorageClass' configured in the cluster is used.",
+								Description:         "StorageClassName to be used to provision the PVCS. It supersedes the 'StorageClassName' specified in 'VolumeClaimTemplate'. If not provided, the default 'StorageClass' configured in the cluster is used.",
+								MarkdownDescription: "StorageClassName to be used to provision the PVCS. It supersedes the 'StorageClassName' specified in 'VolumeClaimTemplate'. If not provided, the default 'StorageClass' configured in the cluster is used.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -9942,6 +11305,173 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tls": schema.SingleNestedAttribute{
+						Description:         "TLS defines the PKI to be used with MariaDB.",
+						MarkdownDescription: "TLS defines the PKI to be used with MariaDB.",
+						Attributes: map[string]schema.Attribute{
+							"client_ca_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ClientCASecretRef is a reference to a Secret containing the client certificate authority keypair. It is used to establish trust and issue client certificates. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either clientCertSecretRef or clientCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the client certificate.",
+								MarkdownDescription: "ClientCASecretRef is a reference to a Secret containing the client certificate authority keypair. It is used to establish trust and issue client certificates. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either clientCertSecretRef or clientCertIssuerRef fields must be provided. If not provided, a self-signed CA will be provisioned to issue the client certificate.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_cert_issuer_ref": schema.SingleNestedAttribute{
+								Description:         "ClientCertIssuerRef is a reference to a cert-manager issuer object used to issue the client certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with clientCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via clientCASecretRef.",
+								MarkdownDescription: "ClientCertIssuerRef is a reference to a cert-manager issuer object used to issue the client certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with clientCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via clientCASecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "Group of the resource being referred to.",
+										MarkdownDescription: "Group of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the resource being referred to.",
+										MarkdownDescription: "Kind of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the resource being referred to.",
+										MarkdownDescription: "Name of the resource being referred to.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"client_cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ClientCertSecretRef is a reference to a TLS Secret containing the client certificate. It is mutually exclusive with clientCertIssuerRef.",
+								MarkdownDescription: "ClientCertSecretRef is a reference to a TLS Secret containing the client certificate. It is mutually exclusive with clientCertIssuerRef.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"enabled": schema.BoolAttribute{
+								Description:         "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MariaDB instance. It is enabled by default.",
+								MarkdownDescription: "Enabled indicates whether TLS is enabled, determining if certificates should be issued and mounted to the MariaDB instance. It is enabled by default.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"galera_sst_enabled": schema.BoolAttribute{
+								Description:         "GaleraSSTEnabled determines whether Galera SST connections should use TLS. It disabled by default.",
+								MarkdownDescription: "GaleraSSTEnabled determines whether Galera SST connections should use TLS. It disabled by default.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"required": schema.BoolAttribute{
+								Description:         "Required specifies whether TLS must be enforced for all connections. User TLS requirements take precedence over this. It disabled by default.",
+								MarkdownDescription: "Required specifies whether TLS must be enforced for all connections. User TLS requirements take precedence over this. It disabled by default.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"server_ca_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ServerCASecretRef is a reference to a Secret containing the server certificate authority keypair. It is used to establish trust and issue server certificates. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either serverCertSecretRef or serverCertIssuerRef must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+								MarkdownDescription: "ServerCASecretRef is a reference to a Secret containing the server certificate authority keypair. It is used to establish trust and issue server certificates. One of: - Secret containing both the 'ca.crt' and 'ca.key' keys. This allows you to bring your own CA to Kubernetes to issue certificates. - Secret containing only the 'ca.crt' in order to establish trust. In this case, either serverCertSecretRef or serverCertIssuerRef must be provided. If not provided, a self-signed CA will be provisioned to issue the server certificate.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"server_cert_issuer_ref": schema.SingleNestedAttribute{
+								Description:         "ServerCertIssuerRef is a reference to a cert-manager issuer object used to issue the server certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with serverCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via serverCASecretRef.",
+								MarkdownDescription: "ServerCertIssuerRef is a reference to a cert-manager issuer object used to issue the server certificate. cert-manager must be installed previously in the cluster. It is mutually exclusive with serverCertSecretRef. By default, the Secret field 'ca.crt' provisioned by cert-manager will be added to the trust chain. A custom trust bundle may be specified via serverCASecretRef.",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "Group of the resource being referred to.",
+										MarkdownDescription: "Group of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind of the resource being referred to.",
+										MarkdownDescription: "Kind of the resource being referred to.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the resource being referred to.",
+										MarkdownDescription: "Name of the resource being referred to.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"server_cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "ServerCertSecretRef is a reference to a TLS Secret containing the server certificate. It is mutually exclusive with serverCertIssuerRef.",
+								MarkdownDescription: "ServerCertSecretRef is a reference to a TLS Secret containing the server certificate. It is mutually exclusive with serverCertIssuerRef.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{
@@ -10171,8 +11701,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"username": schema.StringAttribute{
-						Description:         "Username is the initial username to be created by the operator once MariaDB is ready. It has all privileges on the initial database. The initial User will have ALL PRIVILEGES in the initial Database.",
-						MarkdownDescription: "Username is the initial username to be created by the operator once MariaDB is ready. It has all privileges on the initial database. The initial User will have ALL PRIVILEGES in the initial Database.",
+						Description:         "Username is the initial username to be created by the operator once MariaDB is ready. The initial User will have ALL PRIVILEGES in the initial Database.",
+						MarkdownDescription: "Username is the initial username to be created by the operator once MariaDB is ready. The initial User will have ALL PRIVILEGES in the initial Database.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -10227,8 +11757,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config_map": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#configmapvolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapvolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#configmapvolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
 											Description:         "",
@@ -10252,8 +11782,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"csi": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#csivolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#csivolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "",
@@ -10272,8 +11802,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"node_publish_secret_ref": schema.SingleNestedAttribute{
-											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
-											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#localobjectreference-v1-core.",
+											Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
+											MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#localobjectreference-v1-core.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
 													Description:         "",
@@ -10311,8 +11841,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"empty_dir": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#emptydirvolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#emptydirvolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"medium": schema.StringAttribute{
 											Description:         "StorageMedium defines ways that storage can be allocated to a volume.",
@@ -10335,6 +11865,31 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									Computed: false,
 								},
 
+								"host_path": schema.SingleNestedAttribute{
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#hostpathvolumesource-v1-core",
+									Attributes: map[string]schema.Attribute{
+										"path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -10344,8 +11899,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"nfs": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nfsvolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nfsvolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"path": schema.StringAttribute{
 											Description:         "",
@@ -10377,8 +11932,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"persistent_volume_claim": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#persistentvolumeclaimvolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#persistentvolumeclaimvolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"claim_name": schema.StringAttribute{
 											Description:         "",
@@ -10402,8 +11957,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"secret": schema.SingleNestedAttribute{
-									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
-									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#secretvolumesource-v1-core.",
+									Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretvolumesource-v1-core.",
+									MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#secretvolumesource-v1-core.",
 									Attributes: map[string]schema.Attribute{
 										"default_mode": schema.Int64Attribute{
 											Description:         "",

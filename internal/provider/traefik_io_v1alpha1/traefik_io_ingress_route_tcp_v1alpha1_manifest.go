@@ -7,6 +7,7 @@ package traefik_io_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -165,8 +166,8 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "IngressRouteTCPSpec defines the desired state of IngressRouteTCP.",
 				Attributes: map[string]schema.Attribute{
 					"entry_points": schema.ListAttribute{
-						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/entrypoints/ Default: all.",
-						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/entrypoints/ Default: all.",
+						Description:         "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/entrypoints/ Default: all.",
+						MarkdownDescription: "EntryPoints defines the list of entry point names to bind to. Entry points have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/entrypoints/ Default: all.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -179,8 +180,8 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"match": schema.StringAttribute{
-									Description:         "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#rule_1",
-									MarkdownDescription: "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#rule_1",
+									Description:         "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#rule_1",
+									MarkdownDescription: "Match defines the router's rule. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#rule_1",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -214,11 +215,14 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"priority": schema.Int64Attribute{
-									Description:         "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#priority_1",
-									MarkdownDescription: "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#priority_1",
+									Description:         "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#priority_1",
+									MarkdownDescription: "Priority defines the router's priority. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#priority_1",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtMost(9.223372036854775e+18),
+									},
 								},
 
 								"services": schema.ListNestedAttribute{
@@ -267,8 +271,8 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 											},
 
 											"proxy_protocol": schema.SingleNestedAttribute{
-												Description:         "ProxyProtocol defines the PROXY protocol configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#proxy-protocol",
-												MarkdownDescription: "ProxyProtocol defines the PROXY protocol configuration. More info: https://doc.traefik.io/traefik/v3.2/routing/services/#proxy-protocol",
+												Description:         "ProxyProtocol defines the PROXY protocol configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/services/#proxy-protocol",
+												MarkdownDescription: "ProxyProtocol defines the PROXY protocol configuration. More info: https://doc.traefik.io/traefik/v3.5/routing/services/#proxy-protocol",
 												Attributes: map[string]schema.Attribute{
 													"version": schema.Int64Attribute{
 														Description:         "Version defines the PROXY Protocol version to use.",
@@ -276,6 +280,10 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(1),
+															int64validator.AtMost(2),
+														},
 													},
 												},
 												Required: false,
@@ -313,6 +321,9 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
 											},
 										},
 									},
@@ -322,11 +333,14 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 								},
 
 								"syntax": schema.StringAttribute{
-									Description:         "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#rulesyntax_1",
-									MarkdownDescription: "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#rulesyntax_1",
+									Description:         "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#rulesyntax_1 Deprecated: Please do not use this field and rewrite the router rules to use the v3 syntax.",
+									MarkdownDescription: "Syntax defines the router's rule syntax. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#rulesyntax_1 Deprecated: Please do not use this field and rewrite the router rules to use the v3 syntax.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("v3", "v2"),
+									},
 								},
 							},
 						},
@@ -336,20 +350,20 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"tls": schema.SingleNestedAttribute{
-						Description:         "TLS defines the TLS configuration on a layer 4 / TCP Route. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#tls_1",
-						MarkdownDescription: "TLS defines the TLS configuration on a layer 4 / TCP Route. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#tls_1",
+						Description:         "TLS defines the TLS configuration on a layer 4 / TCP Route. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#tls_1",
+						MarkdownDescription: "TLS defines the TLS configuration on a layer 4 / TCP Route. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#tls_1",
 						Attributes: map[string]schema.Attribute{
 							"cert_resolver": schema.StringAttribute{
-								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/https/acme/#certificate-resolvers",
-								MarkdownDescription: "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.2/https/acme/#certificate-resolvers",
+								Description:         "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/https/acme/#certificate-resolvers",
+								MarkdownDescription: "CertResolver defines the name of the certificate resolver to use. Cert resolvers have to be configured in the static configuration. More info: https://doc.traefik.io/traefik/v3.5/https/acme/#certificate-resolvers",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"domains": schema.ListNestedAttribute{
-								Description:         "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#domains",
-								MarkdownDescription: "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.2/routing/routers/#domains",
+								Description:         "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#domains",
+								MarkdownDescription: "Domains defines the list of domains that will be used to issue certificates. More info: https://doc.traefik.io/traefik/v3.5/routing/routers/#domains",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"main": schema.StringAttribute{
@@ -376,8 +390,8 @@ func (r *TraefikIoIngressRouteTcpV1Alpha1Manifest) Schema(_ context.Context, _ d
 							},
 
 							"options": schema.SingleNestedAttribute{
-								Description:         "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#tls-options",
-								MarkdownDescription: "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#tls-options",
+								Description:         "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#tls-options",
+								MarkdownDescription: "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection. If not defined, the 'default' TLSOption is used. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#tls-options",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
 										Description:         "Name defines the name of the referenced Traefik resource.",

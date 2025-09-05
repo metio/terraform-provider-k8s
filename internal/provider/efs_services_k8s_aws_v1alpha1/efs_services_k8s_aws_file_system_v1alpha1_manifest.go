@@ -67,7 +67,32 @@ type EfsServicesK8SAwsFileSystemV1Alpha1ManifestData struct {
 		PerformanceMode              *string  `tfsdk:"performance_mode" json:"performanceMode,omitempty"`
 		Policy                       *string  `tfsdk:"policy" json:"policy,omitempty"`
 		ProvisionedThroughputInMiBps *float64 `tfsdk:"provisioned_throughput_in_mi_bps" json:"provisionedThroughputInMiBps,omitempty"`
-		Tags                         *[]struct {
+		ReplicationConfiguration     *[]struct {
+			AvailabilityZoneName *string `tfsdk:"availability_zone_name" json:"availabilityZoneName,omitempty"`
+			FileSystemID         *string `tfsdk:"file_system_id" json:"fileSystemID,omitempty"`
+			FileSystemRef        *struct {
+				From *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"from" json:"from,omitempty"`
+			} `tfsdk:"file_system_ref" json:"fileSystemRef,omitempty"`
+			KmsKeyID  *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
+			KmsKeyRef *struct {
+				From *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"from" json:"from,omitempty"`
+			} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
+			Region  *string `tfsdk:"region" json:"region,omitempty"`
+			RoleARN *string `tfsdk:"role_arn" json:"roleARN,omitempty"`
+			RoleRef *struct {
+				From *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"from" json:"from,omitempty"`
+			} `tfsdk:"role_ref" json:"roleRef,omitempty"`
+		} `tfsdk:"replication_configuration" json:"replicationConfiguration,omitempty"`
+		Tags *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"tags" json:"tags,omitempty"`
@@ -153,8 +178,8 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 				MarkdownDescription: "FileSystemSpec defines the desired state of FileSystem.",
 				Attributes: map[string]schema.Attribute{
 					"availability_zone_name": schema.StringAttribute{
-						Description:         "Used to create a One Zone file system. It specifies the Amazon Web Services Availability Zone in which to create the file system. Use the format us-east-1a to specify the Availability Zone. For more information about One Zone file systems, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the Amazon EFS User Guide. One Zone file systems are not available in all Availability Zones in Amazon Web Services Regions where Amazon EFS is available.",
-						MarkdownDescription: "Used to create a One Zone file system. It specifies the Amazon Web Services Availability Zone in which to create the file system. Use the format us-east-1a to specify the Availability Zone. For more information about One Zone file systems, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the Amazon EFS User Guide. One Zone file systems are not available in all Availability Zones in Amazon Web Services Regions where Amazon EFS is available.",
+						Description:         "For One Zone file systems, specify the Amazon Web Services Availability Zone in which to create the file system. Use the format us-east-1a to specify the Availability Zone. For more information about One Zone file systems, see EFS file system types (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html#file-system-type) in the Amazon EFS User Guide. One Zone file systems are not available in all Availability Zones in Amazon Web Services Regions where Amazon EFS is available. Regex Pattern: '^.+$'",
+						MarkdownDescription: "For One Zone file systems, specify the Amazon Web Services Availability Zone in which to create the file system. Use the format us-east-1a to specify the Availability Zone. For more information about One Zone file systems, see EFS file system types (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html#file-system-type) in the Amazon EFS User Guide. One Zone file systems are not available in all Availability Zones in Amazon Web Services Regions where Amazon EFS is available. Regex Pattern: '^.+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -211,8 +236,8 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"kms_key_id": schema.StringAttribute{
-						Description:         "The ID of the KMS key that you want to use to protect the encrypted file system. This parameter is required only if you want to use a non-default KMS key. If this parameter is not specified, the default KMS key for Amazon EFS is used. You can specify a KMS key ID using the following formats: * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab. * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab. * Key alias - A previously created display name for a key, for example alias/projectKey1. * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1. If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter to true. EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with Amazon EFS file systems.",
-						MarkdownDescription: "The ID of the KMS key that you want to use to protect the encrypted file system. This parameter is required only if you want to use a non-default KMS key. If this parameter is not specified, the default KMS key for Amazon EFS is used. You can specify a KMS key ID using the following formats: * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab. * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab. * Key alias - A previously created display name for a key, for example alias/projectKey1. * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1. If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter to true. EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with Amazon EFS file systems.",
+						Description:         "The ID of the KMS key that you want to use to protect the encrypted file system. This parameter is required only if you want to use a non-default KMS key. If this parameter is not specified, the default KMS key for Amazon EFS is used. You can specify a KMS key ID using the following formats: * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab. * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab. * Key alias - A previously created display name for a key, for example alias/projectKey1. * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1. If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter to true. EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with Amazon EFS file systems. Regex Pattern: '^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$'",
+						MarkdownDescription: "The ID of the KMS key that you want to use to protect the encrypted file system. This parameter is required only if you want to use a non-default KMS key. If this parameter is not specified, the default KMS key for Amazon EFS is used. You can specify a KMS key ID using the following formats: * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab. * ARN - An Amazon Resource Name (ARN) for the key, for example arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab. * Key alias - A previously created display name for a key, for example alias/projectKey1. * Key alias ARN - An ARN for a key alias, for example arn:aws:kms:us-west-2:444455556666:alias/projectKey1. If you use KmsKeyId, you must set the CreateFileSystemRequest$Encrypted parameter to true. EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with Amazon EFS file systems. Regex Pattern: '^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -253,8 +278,8 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"lifecycle_policies": schema.ListNestedAttribute{
-						Description:         "An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration object. A LifecycleConfiguration object informs EFS Lifecycle management of the following: * TransitionToIA – When to move files in the file system from primary storage (Standard storage class) into the Infrequent Access (IA) storage. * TransitionToArchive – When to move files in the file system from their current storage class (either IA or Standard storage) into the Archive storage. File systems cannot transition into Archive storage before transitioning into IA storage. Therefore, TransitionToArchive must either not be set or must be later than TransitionToIA. The Archive storage class is available only for file systems that use the Elastic Throughput mode and the General Purpose Performance mode. * TransitionToPrimaryStorageClass – Whether to move files in the file system back to primary storage (Standard storage class) after they are accessed in IA or Archive storage. When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration API action, Amazon EFS requires that each LifecyclePolicy object have only a single transition. This means that in a request body, LifecyclePolicies must be structured as an array of LifecyclePolicy objects, one object for each storage transition. See the example requests in the following section for more information.",
-						MarkdownDescription: "An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration object. A LifecycleConfiguration object informs EFS Lifecycle management of the following: * TransitionToIA – When to move files in the file system from primary storage (Standard storage class) into the Infrequent Access (IA) storage. * TransitionToArchive – When to move files in the file system from their current storage class (either IA or Standard storage) into the Archive storage. File systems cannot transition into Archive storage before transitioning into IA storage. Therefore, TransitionToArchive must either not be set or must be later than TransitionToIA. The Archive storage class is available only for file systems that use the Elastic Throughput mode and the General Purpose Performance mode. * TransitionToPrimaryStorageClass – Whether to move files in the file system back to primary storage (Standard storage class) after they are accessed in IA or Archive storage. When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration API action, Amazon EFS requires that each LifecyclePolicy object have only a single transition. This means that in a request body, LifecyclePolicies must be structured as an array of LifecyclePolicy objects, one object for each storage transition. See the example requests in the following section for more information.",
+						Description:         "An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration object. A LifecycleConfiguration object informs lifecycle management of the following: * TransitionToIA – When to move files in the file system from primary storage (Standard storage class) into the Infrequent Access (IA) storage. * TransitionToArchive – When to move files in the file system from their current storage class (either IA or Standard storage) into the Archive storage. File systems cannot transition into Archive storage before transitioning into IA storage. Therefore, TransitionToArchive must either not be set or must be later than TransitionToIA. The Archive storage class is available only for file systems that use the Elastic throughput mode and the General Purpose performance mode. * TransitionToPrimaryStorageClass – Whether to move files in the file system back to primary storage (Standard storage class) after they are accessed in IA or Archive storage. When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration API action, Amazon EFS requires that each LifecyclePolicy object have only a single transition. This means that in a request body, LifecyclePolicies must be structured as an array of LifecyclePolicy objects, one object for each storage transition. See the example requests in the following section for more information.",
+						MarkdownDescription: "An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration object. A LifecycleConfiguration object informs lifecycle management of the following: * TransitionToIA – When to move files in the file system from primary storage (Standard storage class) into the Infrequent Access (IA) storage. * TransitionToArchive – When to move files in the file system from their current storage class (either IA or Standard storage) into the Archive storage. File systems cannot transition into Archive storage before transitioning into IA storage. Therefore, TransitionToArchive must either not be set or must be later than TransitionToIA. The Archive storage class is available only for file systems that use the Elastic throughput mode and the General Purpose performance mode. * TransitionToPrimaryStorageClass – Whether to move files in the file system back to primary storage (Standard storage class) after they are accessed in IA or Archive storage. When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration API action, Amazon EFS requires that each LifecyclePolicy object have only a single transition. This means that in a request body, LifecyclePolicies must be structured as an array of LifecyclePolicy objects, one object for each storage transition. See the example requests in the following section for more information.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"transition_to_archive": schema.StringAttribute{
@@ -288,16 +313,16 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"performance_mode": schema.StringAttribute{
-						Description:         "The Performance mode of the file system. We recommend generalPurpose performance mode for all file systems. File systems using the maxIO performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created. The maxIO mode is not supported on One Zone file systems. Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems. Default is generalPurpose.",
-						MarkdownDescription: "The Performance mode of the file system. We recommend generalPurpose performance mode for all file systems. File systems using the maxIO performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created. The maxIO mode is not supported on One Zone file systems. Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems. Default is generalPurpose.",
+						Description:         "The performance mode of the file system. We recommend generalPurpose performance mode for all file systems. File systems using the maxIO performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created. The maxIO mode is not supported on One Zone file systems. Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems. Default is generalPurpose.",
+						MarkdownDescription: "The performance mode of the file system. We recommend generalPurpose performance mode for all file systems. File systems using the maxIO performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations. The performance mode can't be changed after the file system has been created. The maxIO mode is not supported on One Zone file systems. Due to the higher per-operation latencies with Max I/O, we recommend using General Purpose performance mode for all file systems. Default is generalPurpose.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"policy": schema.StringAttribute{
-						Description:         "The FileSystemPolicy that you're creating. Accepts a JSON formatted policy definition. EFS file system policies have a 20,000 character limit. To find out more about the elements that make up a file system policy, see EFS Resource-based Policies (https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies).",
-						MarkdownDescription: "The FileSystemPolicy that you're creating. Accepts a JSON formatted policy definition. EFS file system policies have a 20,000 character limit. To find out more about the elements that make up a file system policy, see EFS Resource-based Policies (https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies).",
+						Description:         "The FileSystemPolicy that you're creating. Accepts a JSON formatted policy definition. EFS file system policies have a 20,000 character limit. To find out more about the elements that make up a file system policy, see Resource-based policies within Amazon EFS (https://docs.aws.amazon.com/efs/latest/ug/security_iam_service-with-iam.html#security_iam_service-with-iam-resource-based-policies). Regex Pattern: '^[sS]+$'",
+						MarkdownDescription: "The FileSystemPolicy that you're creating. Accepts a JSON formatted policy definition. EFS file system policies have a 20,000 character limit. To find out more about the elements that make up a file system policy, see Resource-based policies within Amazon EFS (https://docs.aws.amazon.com/efs/latest/ug/security_iam_service-with-iam.html#security_iam_service-with-iam-resource-based-policies). Regex Pattern: '^[sS]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -309,6 +334,159 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"replication_configuration": schema.ListNestedAttribute{
+						Description:         "An array of destination configuration objects. Only one destination configuration object is supported.",
+						MarkdownDescription: "An array of destination configuration objects. Only one destination configuration object is supported.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"availability_zone_name": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"file_system_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"file_system_ref": schema.SingleNestedAttribute{
+									Description:         "Reference field for FileSystemID",
+									MarkdownDescription: "Reference field for FileSystemID",
+									Attributes: map[string]schema.Attribute{
+										"from": schema.SingleNestedAttribute{
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"kms_key_id": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"kms_key_ref": schema.SingleNestedAttribute{
+									Description:         "Reference field for KMSKeyID",
+									MarkdownDescription: "Reference field for KMSKeyID",
+									Attributes: map[string]schema.Attribute{
+										"from": schema.SingleNestedAttribute{
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"region": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"role_arn": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"role_ref": schema.SingleNestedAttribute{
+									Description:         "Reference field for RoleARN",
+									MarkdownDescription: "Reference field for RoleARN",
+									Attributes: map[string]schema.Attribute{
+										"from": schema.SingleNestedAttribute{
+											Description:         "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference another k8s resource for finding the identifier(Id/ARN/Name)",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tags": schema.ListNestedAttribute{

@@ -206,11 +206,11 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -296,8 +296,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 													MarkdownDescription: "BackOff is a configuration of durations which will be used in an exponential backoff strategy between retries.",
 													Attributes: map[string]schema.Attribute{
 														"base_interval": schema.StringAttribute{
-															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
-															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. If not specified then the default value is '25ms'.",
+															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. If not specified then the default value is '25ms'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -337,8 +337,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
 													Attributes: map[string]schema.Attribute{
 														"max_interval": schema.StringAttribute{
-															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.",
-															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries.",
+															Description:         "MaxInterval is a maximal amount of time which will be taken between retries. If not specified then the default value is '300s'.",
+															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries. If not specified then the default value is '300s'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -407,8 +407,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 													MarkdownDescription: "BackOff is a configuration of durations which will be used in exponential backoff strategy between retries.",
 													Attributes: map[string]schema.Attribute{
 														"base_interval": schema.StringAttribute{
-															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
-															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms.",
+															Description:         "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. If not specified then the default value is '25ms'.",
+															MarkdownDescription: "BaseInterval is an amount of time which should be taken between retries. Must be greater than zero. Values less than 1 ms are rounded up to 1 ms. If not specified then the default value is '25ms'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -495,8 +495,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 													MarkdownDescription: "RateLimitedBackOff is a configuration of backoff which will be used when the upstream returns one of the headers configured.",
 													Attributes: map[string]schema.Attribute{
 														"max_interval": schema.StringAttribute{
-															Description:         "MaxInterval is a maximal amount of time which will be taken between retries.",
-															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries.",
+															Description:         "MaxInterval is a maximal amount of time which will be taken between retries. If not specified then the default value is '300s'.",
+															MarkdownDescription: "MaxInterval is a maximal amount of time which will be taken between retries. If not specified then the default value is '300s'.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -671,11 +671,11 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

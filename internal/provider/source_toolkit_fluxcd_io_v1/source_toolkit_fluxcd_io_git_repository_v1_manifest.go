@@ -68,10 +68,12 @@ type SourceToolkitFluxcdIoGitRepositoryV1ManifestData struct {
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-		Suspend *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
-		Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
-		Url     *string `tfsdk:"url" json:"url,omitempty"`
-		Verify  *struct {
+		ServiceAccountName *string   `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		SparseCheckout     *[]string `tfsdk:"sparse_checkout" json:"sparseCheckout,omitempty"`
+		Suspend            *bool     `tfsdk:"suspend" json:"suspend,omitempty"`
+		Timeout            *string   `tfsdk:"timeout" json:"timeout,omitempty"`
+		Url                *string   `tfsdk:"url" json:"url,omitempty"`
+		Verify             *struct {
 			Mode      *string `tfsdk:"mode" json:"mode,omitempty"`
 			SecretRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -221,13 +223,13 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 					},
 
 					"provider": schema.StringAttribute{
-						Description:         "Provider used for authentication, can be 'azure', 'generic'. When not specified, defaults to 'generic'.",
-						MarkdownDescription: "Provider used for authentication, can be 'azure', 'generic'. When not specified, defaults to 'generic'.",
+						Description:         "Provider used for authentication, can be 'azure', 'github', 'generic'. When not specified, defaults to 'generic'.",
+						MarkdownDescription: "Provider used for authentication, can be 'azure', 'github', 'generic'. When not specified, defaults to 'generic'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("generic", "azure"),
+							stringvalidator.OneOf("generic", "azure", "github"),
 						},
 					},
 
@@ -320,6 +322,23 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context,
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_account_name": schema.StringAttribute{
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate to the GitRepository. This field is only supported for 'azure' provider.",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate to the GitRepository. This field is only supported for 'azure' provider.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"sparse_checkout": schema.ListAttribute{
+						Description:         "SparseCheckout specifies a list of directories to checkout when cloning the repository. If specified, only these directories are included in the Artifact produced for this GitRepository.",
+						MarkdownDescription: "SparseCheckout specifies a list of directories to checkout when cloning the repository. If specified, only these directories are included in the Artifact produced for this GitRepository.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"suspend": schema.BoolAttribute{

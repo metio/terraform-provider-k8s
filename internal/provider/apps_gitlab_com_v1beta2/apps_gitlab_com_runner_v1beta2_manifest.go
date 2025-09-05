@@ -48,16 +48,23 @@ type AppsGitlabComRunnerV1Beta2ManifestData struct {
 			Credentials   *string `tfsdk:"credentials" json:"credentials,omitempty"`
 			StorageDomain *string `tfsdk:"storage_domain" json:"storageDomain,omitempty"`
 		} `tfsdk:"azure" json:"azure,omitempty"`
-		BuildImage  *string `tfsdk:"build_image" json:"buildImage,omitempty"`
-		Ca          *string `tfsdk:"ca" json:"ca,omitempty"`
-		CachePath   *string `tfsdk:"cache_path" json:"cachePath,omitempty"`
-		CacheShared *bool   `tfsdk:"cache_shared" json:"cacheShared,omitempty"`
-		CacheType   *string `tfsdk:"cache_type" json:"cacheType,omitempty"`
-		CloneURL    *string `tfsdk:"clone_url" json:"cloneURL,omitempty"`
-		Concurrent  *int64  `tfsdk:"concurrent" json:"concurrent,omitempty"`
-		Config      *string `tfsdk:"config" json:"config,omitempty"`
-		Env         *string `tfsdk:"env" json:"env,omitempty"`
-		Gcs         *struct {
+		BuildImage       *string `tfsdk:"build_image" json:"buildImage,omitempty"`
+		Ca               *string `tfsdk:"ca" json:"ca,omitempty"`
+		CachePath        *string `tfsdk:"cache_path" json:"cachePath,omitempty"`
+		CacheShared      *bool   `tfsdk:"cache_shared" json:"cacheShared,omitempty"`
+		CacheType        *string `tfsdk:"cache_type" json:"cacheType,omitempty"`
+		CloneURL         *string `tfsdk:"clone_url" json:"cloneURL,omitempty"`
+		Concurrent       *int64  `tfsdk:"concurrent" json:"concurrent,omitempty"`
+		Config           *string `tfsdk:"config" json:"config,omitempty"`
+		ConnectionMaxAge *string `tfsdk:"connection_max_age" json:"connectionMaxAge,omitempty"`
+		DeploymentSpec   *[]struct {
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Patch     *string `tfsdk:"patch" json:"patch,omitempty"`
+			PatchFile *string `tfsdk:"patch_file" json:"patchFile,omitempty"`
+			PatchType *string `tfsdk:"patch_type" json:"patchType,omitempty"`
+		} `tfsdk:"deployment_spec" json:"deploymentSpec,omitempty"`
+		Env *string `tfsdk:"env" json:"env,omitempty"`
+		Gcs *struct {
 			Bucket          *string `tfsdk:"bucket" json:"bucket,omitempty"`
 			Credentials     *string `tfsdk:"credentials" json:"credentials,omitempty"`
 			CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
@@ -66,7 +73,11 @@ type AppsGitlabComRunnerV1Beta2ManifestData struct {
 		HelperImage     *string `tfsdk:"helper_image" json:"helperImage,omitempty"`
 		ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 		Interval        *int64  `tfsdk:"interval" json:"interval,omitempty"`
+		ListenAddr      *string `tfsdk:"listen_addr" json:"listenAddr,omitempty"`
 		Locked          *bool   `tfsdk:"locked" json:"locked,omitempty"`
+		LogFormat       *string `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel        *string `tfsdk:"log_level" json:"logLevel,omitempty"`
+		Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		PodSpec         *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Patch     *string `tfsdk:"patch" json:"patch,omitempty"`
@@ -83,9 +94,11 @@ type AppsGitlabComRunnerV1Beta2ManifestData struct {
 			Location    *string `tfsdk:"location" json:"location,omitempty"`
 			Server      *string `tfsdk:"server" json:"server,omitempty"`
 		} `tfsdk:"s3" json:"s3,omitempty"`
-		Serviceaccount *string `tfsdk:"serviceaccount" json:"serviceaccount,omitempty"`
-		Tags           *string `tfsdk:"tags" json:"tags,omitempty"`
-		Token          *string `tfsdk:"token" json:"token,omitempty"`
+		SentryDsn       *string `tfsdk:"sentry_dsn" json:"sentryDsn,omitempty"`
+		Serviceaccount  *string `tfsdk:"serviceaccount" json:"serviceaccount,omitempty"`
+		ShutdownTimeout *int64  `tfsdk:"shutdown_timeout" json:"shutdownTimeout,omitempty"`
+		Tags            *string `tfsdk:"tags" json:"tags,omitempty"`
+		Token           *string `tfsdk:"token" json:"token,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -263,6 +276,57 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 						Computed:            false,
 					},
 
+					"connection_max_age": schema.StringAttribute{
+						Description:         "The maximum duration a TLS keepalive connection to the GitLab server should remain open before reconnecting. The default value is '15m' for 15 minutes. If set to '0' or lower, the connection persists as long as possible.",
+						MarkdownDescription: "The maximum duration a TLS keepalive connection to the GitLab server should remain open before reconnecting. The default value is '15m' for 15 minutes. If set to '0' or lower, the connection persists as long as possible.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"deployment_spec": schema.ListNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name is the name given to the custom Deployment Spec",
+									MarkdownDescription: "Name is the name given to the custom Deployment Spec",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"patch": schema.StringAttribute{
+									Description:         "A JSON or YAML format string that describes the changes which must be applied to the final DeploymentSpec object before it is generated. You cannot set the patch_path and patch in the same deployment_spec configuration, otherwise an error occurs.",
+									MarkdownDescription: "A JSON or YAML format string that describes the changes which must be applied to the final DeploymentSpec object before it is generated. You cannot set the patch_path and patch in the same deployment_spec configuration, otherwise an error occurs.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"patch_file": schema.StringAttribute{
+									Description:         "Path to the file that defines the changes to apply to the final DeploymentSpec object before it is generated. The file must be a JSON or YAML file. You cannot set the patch_path and patch in the same deployment_spec configuration, otherwise an error occurs.",
+									MarkdownDescription: "Path to the file that defines the changes to apply to the final DeploymentSpec object before it is generated. The file must be a JSON or YAML file. You cannot set the patch_path and patch in the same deployment_spec configuration, otherwise an error occurs.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"patch_type": schema.StringAttribute{
+									Description:         "The strategy the runner uses to apply the specified changes to the DeploymentSpec object generated by GitLab Runner. The accepted values are merge, json, and strategic (default value).",
+									MarkdownDescription: "The strategy the runner uses to apply the specified changes to the DeploymentSpec object generated by GitLab Runner. The accepted values are merge, json, and strategic (default value).",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env": schema.StringAttribute{
 						Description:         "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
 						MarkdownDescription: "Accepts configmap name. Provides user mechanism to inject environment variables in the GitLab Runner pod via the key value pairs in the ConfigMap",
@@ -336,9 +400,41 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 						Computed:            false,
 					},
 
+					"listen_addr": schema.StringAttribute{
+						Description:         "Option to set the metrics listen address for the runner.",
+						MarkdownDescription: "Option to set the metrics listen address for the runner.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"locked": schema.BoolAttribute{
 						Description:         "Specify whether the runner should be locked to a specific project. Defaults to false.",
 						MarkdownDescription: "Specify whether the runner should be locked to a specific project. Defaults to false.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"log_format": schema.StringAttribute{
+						Description:         "Specifies the log format. Options are 'runner', 'text', and 'json'. The default value is 'runner', which contains ANSI escape codes for coloring.",
+						MarkdownDescription: "Specifies the log format. Options are 'runner', 'text', and 'json'. The default value is 'runner', which contains ANSI escape codes for coloring.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"log_level": schema.StringAttribute{
+						Description:         "Option to set the log level for the runner. Valid values are 'debug', 'info', 'warn', 'error', 'fatal', 'panic'",
+						MarkdownDescription: "Option to set the log level for the runner. Valid values are 'debug', 'info', 'warn', 'error', 'fatal', 'panic'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"namespace": schema.StringAttribute{
+						Description:         "If specified, overrides the namespace where job pods are created",
+						MarkdownDescription: "If specified, overrides the namespace where job pods are created",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -460,9 +556,25 @@ func (r *AppsGitlabComRunnerV1Beta2Manifest) Schema(_ context.Context, _ datasou
 						Computed: false,
 					},
 
+					"sentry_dsn": schema.StringAttribute{
+						Description:         "Enables tracking of all system level errors to Sentry. If not specified, error tracking with Sentry will be disabled.",
+						MarkdownDescription: "Enables tracking of all system level errors to Sentry. If not specified, error tracking with Sentry will be disabled.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"serviceaccount": schema.StringAttribute{
 						Description:         "allow user to override service account used by GitLab Runner",
 						MarkdownDescription: "allow user to override service account used by GitLab Runner",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"shutdown_timeout": schema.Int64Attribute{
+						Description:         "Number of seconds until the forceful shutdown operation times out and exits the process. The default value is '30'. If set to '0' or lower, the default value is used.",
+						MarkdownDescription: "Number of seconds until the forceful shutdown operation times out and exits the process. The default value is '30'. If set to '0' or lower, the default value is used.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

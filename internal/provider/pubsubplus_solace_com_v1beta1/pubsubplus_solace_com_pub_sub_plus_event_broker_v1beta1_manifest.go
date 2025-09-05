@@ -7,6 +7,7 @@ package pubsubplus_solace_com_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -45,8 +46,9 @@ type PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1ManifestData struct {
 	Spec *struct {
 		AdminCredentialsSecret  *string `tfsdk:"admin_credentials_secret" json:"adminCredentialsSecret,omitempty"`
 		BrokerContainerSecurity *struct {
-			RunAsGroup *float64 `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
-			RunAsUser  *float64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			ReadOnlyRootFilesystem *bool    `tfsdk:"read_only_root_filesystem" json:"readOnlyRootFilesystem,omitempty"`
+			RunAsGroup             *float64 `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
+			RunAsUser              *float64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
 		} `tfsdk:"broker_container_security" json:"brokerContainerSecurity,omitempty"`
 		Developer          *bool `tfsdk:"developer" json:"developer,omitempty"`
 		EnableServiceLinks *bool `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
@@ -244,14 +246,27 @@ type PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1ManifestData struct {
 		PreSharedAuthKeySecret   *string            `tfsdk:"pre_shared_auth_key_secret" json:"preSharedAuthKeySecret,omitempty"`
 		Redundancy               *bool              `tfsdk:"redundancy" json:"redundancy,omitempty"`
 		SecurityContext          *struct {
-			FsGroup   *float64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
-			RunAsUser *float64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			FsGroup        *float64 `tfsdk:"fs_group" json:"fsGroup,omitempty"`
+			RunAsUser      *float64 `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxOptions *struct {
+				Level *string `tfsdk:"level" json:"level,omitempty"`
+				Role  *string `tfsdk:"role" json:"role,omitempty"`
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				User  *string `tfsdk:"user" json:"user,omitempty"`
+			} `tfsdk:"se_linux_options" json:"seLinuxOptions,omitempty"`
+			WindowsOptions *struct {
+				GmsaCredentialSpec     *string `tfsdk:"gmsa_credential_spec" json:"gmsaCredentialSpec,omitempty"`
+				GmsaCredentialSpecName *string `tfsdk:"gmsa_credential_spec_name" json:"gmsaCredentialSpecName,omitempty"`
+				HostProcess            *bool   `tfsdk:"host_process" json:"hostProcess,omitempty"`
+				RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
+			} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		Service *struct {
 			Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			Ports       *[]struct {
 				ContainerPort *float64 `tfsdk:"container_port" json:"containerPort,omitempty"`
 				Name          *string  `tfsdk:"name" json:"name,omitempty"`
+				NodePort      *float64 `tfsdk:"node_port" json:"nodePort,omitempty"`
 				Protocol      *string  `tfsdk:"protocol" json:"protocol,omitempty"`
 				ServicePort   *float64 `tfsdk:"service_port" json:"servicePort,omitempty"`
 			} `tfsdk:"ports" json:"ports,omitempty"`
@@ -373,6 +388,14 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 						Description:         "ContainerSecurityContext defines the container security context for the PubSubPlusEventBroker.",
 						MarkdownDescription: "ContainerSecurityContext defines the container security context for the PubSubPlusEventBroker.",
 						Attributes: map[string]schema.Attribute{
+							"read_only_root_filesystem": schema.BoolAttribute{
+								Description:         "Specifies if the root filesystem of the PubSubPlusEventBroker should be read-only. Note: This will only work for versions 10.9 and above.",
+								MarkdownDescription: "Specifies if the root filesystem of the PubSubPlusEventBroker should be read-only. Note: This will only work for versions 10.9 and above.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"run_as_group": schema.Float64Attribute{
 								Description:         "Specifies runAsGroup in container security context. 0 or unset defaults either to 1000002, or if OpenShift detected to unspecified (see documentation)",
 								MarkdownDescription: "Specifies runAsGroup in container security context. 0 or unset defaults either to 1000002, or if OpenShift detected to unspecified (see documentation)",
@@ -1747,6 +1770,88 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"se_linux_options": schema.SingleNestedAttribute{
+								Description:         "SELinuxOptions defines the SELinux context to be applied to the container.",
+								MarkdownDescription: "SELinuxOptions defines the SELinux context to be applied to the container.",
+								Attributes: map[string]schema.Attribute{
+									"level": schema.StringAttribute{
+										Description:         "Level is SELinux level label that applies to the container.",
+										MarkdownDescription: "Level is SELinux level label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"role": schema.StringAttribute{
+										Description:         "Role is a SELinux role label that applies to the container.",
+										MarkdownDescription: "Role is a SELinux role label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"type": schema.StringAttribute{
+										Description:         "Type is a SELinux type label that applies to the container.",
+										MarkdownDescription: "Type is a SELinux type label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"user": schema.StringAttribute{
+										Description:         "User is a SELinux user label that applies to the container.",
+										MarkdownDescription: "User is a SELinux user label that applies to the container.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"windows_options": schema.SingleNestedAttribute{
+								Description:         "WindowsOptions defines the Windows-specific options to be applied to the container.",
+								MarkdownDescription: "WindowsOptions defines the Windows-specific options to be applied to the container.",
+								Attributes: map[string]schema.Attribute{
+									"gmsa_credential_spec": schema.StringAttribute{
+										Description:         "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										MarkdownDescription: "GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"gmsa_credential_spec_name": schema.StringAttribute{
+										Description:         "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										MarkdownDescription: "GMSACredentialSpecName is the name of the GMSA credential spec to use.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"host_process": schema.BoolAttribute{
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"run_as_user_name": schema.StringAttribute{
+										Description:         "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										MarkdownDescription: "The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -1785,6 +1890,18 @@ func (r *PubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest) Schema(_ conte
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+										},
+
+										"node_port": schema.Float64Attribute{
+											Description:         "NodePort specifies a fixed node port when service type is NodePort",
+											MarkdownDescription: "NodePort specifies a fixed node port when service type is NodePort",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Float64{
+												float64validator.AtLeast(30000),
+												float64validator.AtMost(32767),
+											},
 										},
 
 										"protocol": schema.StringAttribute{

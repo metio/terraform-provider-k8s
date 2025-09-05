@@ -200,8 +200,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"client_request_token": schema.StringAttribute{
-						Description:         "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
-						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+						Description:         "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
+						MarkdownDescription: "A unique, case-sensitive identifier that you provide to ensurethe idempotency of the request.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -276,8 +276,8 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"launch_template": schema.SingleNestedAttribute{
-						Description:         "An object representing a node group's launch template specification. When using this object, don't directly specify instanceTypes, diskSize, or remoteAccess. Make sure that the launch template meets the requirements in launchTemplateSpecification. Also refer to Customizing managed nodes with launch templates (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
-						MarkdownDescription: "An object representing a node group's launch template specification. When using this object, don't directly specify instanceTypes, diskSize, or remoteAccess. Make sure that the launch template meets the requirements in launchTemplateSpecification. Also refer to Customizing managed nodes with launch templates (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						Description:         "An object representing a node group's launch template specification. When using this object, don't directly specify instanceTypes, diskSize, or remoteAccess. You cannot later specify a different launch template ID or name than what was used to create the node group. Make sure that the launch template meets the requirements in launchTemplateSpecification. Also refer to Customizing managed nodes with launch templates (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
+						MarkdownDescription: "An object representing a node group's launch template specification. When using this object, don't directly specify instanceTypes, diskSize, or remoteAccess. You cannot later specify a different launch template ID or name than what was used to create the node group. Make sure that the launch template meets the requirements in launchTemplateSpecification. Also refer to Customizing managed nodes with launch templates (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html) in the Amazon EKS User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"id": schema.StringAttribute{
 								Description:         "",

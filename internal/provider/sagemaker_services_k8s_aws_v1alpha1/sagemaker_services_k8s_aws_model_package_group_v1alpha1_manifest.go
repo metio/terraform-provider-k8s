@@ -130,16 +130,16 @@ func (r *SagemakerServicesK8SAwsModelPackageGroupV1Alpha1Manifest) Schema(_ cont
 				MarkdownDescription: "ModelPackageGroupSpec defines the desired state of ModelPackageGroup. A group of versioned models in the model registry.",
 				Attributes: map[string]schema.Attribute{
 					"model_package_group_description": schema.StringAttribute{
-						Description:         "A description for the model group.",
-						MarkdownDescription: "A description for the model group.",
+						Description:         "A description for the model group. Regex Pattern: '^[p{L}p{M}p{Z}p{S}p{N}p{P}]*$'",
+						MarkdownDescription: "A description for the model group. Regex Pattern: '^[p{L}p{M}p{Z}p{S}p{N}p{P}]*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"model_package_group_name": schema.StringAttribute{
-						Description:         "The name of the model group.",
-						MarkdownDescription: "The name of the model group.",
+						Description:         "The name of the model group. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the model group. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

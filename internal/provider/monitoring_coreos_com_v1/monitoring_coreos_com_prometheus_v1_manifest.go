@@ -227,13 +227,17 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 					} `tfsdk:"username" json:"username,omitempty"`
 				} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-				BearerTokenFile *string `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
-				EnableHttp2     *bool   `tfsdk:"enable_http2" json:"enableHttp2,omitempty"`
-				Name            *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace       *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				PathPrefix      *string `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
-				Port            *string `tfsdk:"port" json:"port,omitempty"`
-				Relabelings     *[]struct {
+				BearerTokenFile      *string            `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
+				EnableHttp2          *bool              `tfsdk:"enable_http2" json:"enableHttp2,omitempty"`
+				Name                 *string            `tfsdk:"name" json:"name,omitempty"`
+				Namespace            *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				PathPrefix           *string            `tfsdk:"path_prefix" json:"pathPrefix,omitempty"`
+				Port                 *string            `tfsdk:"port" json:"port,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Relabelings          *[]struct {
 					Action       *string   `tfsdk:"action" json:"action,omitempty"`
 					Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
 					Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
@@ -322,10 +326,14 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
-			BearerToken     *string `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
-			BearerTokenFile *string `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
-			Host            *string `tfsdk:"host" json:"host,omitempty"`
-			TlsConfig       *struct {
+			BearerToken          *string            `tfsdk:"bearer_token" json:"bearerToken,omitempty"`
+			BearerTokenFile      *string            `tfsdk:"bearer_token_file" json:"bearerTokenFile,omitempty"`
+			Host                 *string            `tfsdk:"host" json:"host,omitempty"`
+			NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			TlsConfig            *struct {
 				Ca *struct {
 					ConfigMap *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -387,6 +395,12 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 					} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+					FileKeyRef *struct {
+						Key        *string `tfsdk:"key" json:"key,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						Path       *string `tfsdk:"path" json:"path,omitempty"`
+						VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+					} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 						Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -457,6 +471,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
@@ -536,7 +551,14 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			RestartPolicy      *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			RestartPolicyRules *[]struct {
+				Action    *string `tfsdk:"action" json:"action,omitempty"`
+				ExitCodes *struct {
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"exit_codes" json:"exitCodes,omitempty"`
+			} `tfsdk:"restart_policy_rules" json:"restartPolicyRules,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				AppArmorProfile          *struct {
@@ -619,8 +641,9 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"containers" json:"containers,omitempty"`
-		DisableCompaction *bool `tfsdk:"disable_compaction" json:"disableCompaction,omitempty"`
-		DnsConfig         *struct {
+		ConvertClassicHistogramsToNHCB *bool `tfsdk:"convert_classic_histograms_to_nhcb" json:"convertClassicHistogramsToNHCB,omitempty"`
+		DisableCompaction              *bool `tfsdk:"disable_compaction" json:"disableCompaction,omitempty"`
+		DnsConfig                      *struct {
 			Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
 			Options     *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
@@ -631,7 +654,9 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 		DnsPolicy                     *string   `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
 		EnableAdminAPI                *bool     `tfsdk:"enable_admin_api" json:"enableAdminAPI,omitempty"`
 		EnableFeatures                *[]string `tfsdk:"enable_features" json:"enableFeatures,omitempty"`
+		EnableOTLPReceiver            *bool     `tfsdk:"enable_otlp_receiver" json:"enableOTLPReceiver,omitempty"`
 		EnableRemoteWriteReceiver     *bool     `tfsdk:"enable_remote_write_receiver" json:"enableRemoteWriteReceiver,omitempty"`
+		EnableServiceLinks            *bool     `tfsdk:"enable_service_links" json:"enableServiceLinks,omitempty"`
 		EnforcedBodySizeLimit         *string   `tfsdk:"enforced_body_size_limit" json:"enforcedBodySizeLimit,omitempty"`
 		EnforcedKeepDroppedTargets    *int64    `tfsdk:"enforced_keep_dropped_targets" json:"enforcedKeepDroppedTargets,omitempty"`
 		EnforcedLabelLimit            *int64    `tfsdk:"enforced_label_limit" json:"enforcedLabelLimit,omitempty"`
@@ -657,6 +682,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"hostAliases,omitempty"`
 		HostNetwork              *bool   `tfsdk:"host_network" json:"hostNetwork,omitempty"`
+		HostUsers                *bool   `tfsdk:"host_users" json:"hostUsers,omitempty"`
 		IgnoreNamespaceSelectors *bool   `tfsdk:"ignore_namespace_selectors" json:"ignoreNamespaceSelectors,omitempty"`
 		Image                    *string `tfsdk:"image" json:"image,omitempty"`
 		ImagePullPolicy          *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -679,6 +705,12 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 						FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 					} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+					FileKeyRef *struct {
+						Key        *string `tfsdk:"key" json:"key,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						Path       *string `tfsdk:"path" json:"path,omitempty"`
+						VolumeName *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
+					} `tfsdk:"file_key_ref" json:"fileKeyRef,omitempty"`
 					ResourceFieldRef *struct {
 						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
 						Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
@@ -749,6 +781,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
@@ -828,7 +861,14 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
-			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			RestartPolicy      *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			RestartPolicyRules *[]struct {
+				Action    *string `tfsdk:"action" json:"action,omitempty"`
+				ExitCodes *struct {
+					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+				} `tfsdk:"exit_codes" json:"exitCodes,omitempty"`
+			} `tfsdk:"restart_policy_rules" json:"restartPolicyRules,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				AppArmorProfile          *struct {
@@ -920,9 +960,16 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 		LogLevel                      *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
 		MaximumStartupDurationSeconds *int64             `tfsdk:"maximum_startup_duration_seconds" json:"maximumStartupDurationSeconds,omitempty"`
 		MinReadySeconds               *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NameEscapingScheme            *string            `tfsdk:"name_escaping_scheme" json:"nameEscapingScheme,omitempty"`
+		NameValidationScheme          *string            `tfsdk:"name_validation_scheme" json:"nameValidationScheme,omitempty"`
 		NodeSelector                  *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 		Otlp                          *struct {
-			PromoteResourceAttributes *[]string `tfsdk:"promote_resource_attributes" json:"promoteResourceAttributes,omitempty"`
+			ConvertHistogramsToNHCB           *bool     `tfsdk:"convert_histograms_to_nhcb" json:"convertHistogramsToNHCB,omitempty"`
+			IgnoreResourceAttributes          *[]string `tfsdk:"ignore_resource_attributes" json:"ignoreResourceAttributes,omitempty"`
+			KeepIdentifyingResourceAttributes *bool     `tfsdk:"keep_identifying_resource_attributes" json:"keepIdentifyingResourceAttributes,omitempty"`
+			PromoteAllResourceAttributes      *bool     `tfsdk:"promote_all_resource_attributes" json:"promoteAllResourceAttributes,omitempty"`
+			PromoteResourceAttributes         *[]string `tfsdk:"promote_resource_attributes" json:"promoteResourceAttributes,omitempty"`
+			TranslationStrategy               *string   `tfsdk:"translation_strategy" json:"translationStrategy,omitempty"`
 		} `tfsdk:"otlp" json:"otlp,omitempty"`
 		OverrideHonorLabels                  *bool `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
 		OverrideHonorTimestamps              *bool `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
@@ -1165,9 +1212,11 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			EnableHTTP2     *bool              `tfsdk:"enable_http2" json:"enableHTTP2,omitempty"`
 			FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
 			Headers         *map[string]string `tfsdk:"headers" json:"headers,omitempty"`
+			MessageVersion  *string            `tfsdk:"message_version" json:"messageVersion,omitempty"`
 			MetadataConfig  *struct {
-				Send         *bool   `tfsdk:"send" json:"send,omitempty"`
-				SendInterval *string `tfsdk:"send_interval" json:"sendInterval,omitempty"`
+				MaxSamplesPerSend *int64  `tfsdk:"max_samples_per_send" json:"maxSamplesPerSend,omitempty"`
+				Send              *bool   `tfsdk:"send" json:"send,omitempty"`
+				SendInterval      *string `tfsdk:"send_interval" json:"sendInterval,omitempty"`
 			} `tfsdk:"metadata_config" json:"metadataConfig,omitempty"`
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			NoProxy *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
@@ -1248,6 +1297,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				SampleAgeLimit    *string `tfsdk:"sample_age_limit" json:"sampleAgeLimit,omitempty"`
 			} `tfsdk:"queue_config" json:"queueConfig,omitempty"`
 			RemoteTimeout        *string `tfsdk:"remote_timeout" json:"remoteTimeout,omitempty"`
+			RoundRobinDNS        *bool   `tfsdk:"round_robin_dns" json:"roundRobinDNS,omitempty"`
 			SendExemplars        *bool   `tfsdk:"send_exemplars" json:"sendExemplars,omitempty"`
 			SendNativeHistograms *bool   `tfsdk:"send_native_histograms" json:"sendNativeHistograms,omitempty"`
 			Sigv4                *struct {
@@ -1314,9 +1364,10 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 			} `tfsdk:"write_relabel_configs" json:"writeRelabelConfigs,omitempty"`
 		} `tfsdk:"remote_write" json:"remoteWrite,omitempty"`
-		ReplicaExternalLabelName *string `tfsdk:"replica_external_label_name" json:"replicaExternalLabelName,omitempty"`
-		Replicas                 *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
-		Resources                *struct {
+		RemoteWriteReceiverMessageVersions *[]string `tfsdk:"remote_write_receiver_message_versions" json:"remoteWriteReceiverMessageVersions,omitempty"`
+		ReplicaExternalLabelName           *string   `tfsdk:"replica_external_label_name" json:"replicaExternalLabelName,omitempty"`
+		Replicas                           *int64    `tfsdk:"replicas" json:"replicas,omitempty"`
+		Resources                          *struct {
 			Claims *[]struct {
 				Name    *string `tfsdk:"name" json:"name,omitempty"`
 				Request *string `tfsdk:"request" json:"request,omitempty"`
@@ -1359,8 +1410,18 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			AttachMetadata *struct {
 				Node *bool `tfsdk:"node" json:"node,omitempty"`
 			} `tfsdk:"attach_metadata" json:"attachMetadata,omitempty"`
-			Default           *bool `tfsdk:"default" json:"default,omitempty"`
-			MetricRelabelings *[]struct {
+			Authorization *struct {
+				Credentials *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"credentials" json:"credentials,omitempty"`
+				CredentialsFile *string `tfsdk:"credentials_file" json:"credentialsFile,omitempty"`
+				Type            *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"authorization" json:"authorization,omitempty"`
+			Default                *bool   `tfsdk:"default" json:"default,omitempty"`
+			FallbackScrapeProtocol *string `tfsdk:"fallback_scrape_protocol" json:"fallbackScrapeProtocol,omitempty"`
+			MetricRelabelings      *[]struct {
 				Action       *string   `tfsdk:"action" json:"action,omitempty"`
 				Modulus      *int64    `tfsdk:"modulus" json:"modulus,omitempty"`
 				Regex        *string   `tfsdk:"regex" json:"regex,omitempty"`
@@ -1418,6 +1479,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
 		} `tfsdk:"scrape_classes" json:"scrapeClasses,omitempty"`
+		ScrapeClassicHistograms       *bool `tfsdk:"scrape_classic_histograms" json:"scrapeClassicHistograms,omitempty"`
 		ScrapeConfigNamespaceSelector *struct {
 			MatchExpressions *[]struct {
 				Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -1434,11 +1496,12 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"scrape_config_selector" json:"scrapeConfigSelector,omitempty"`
-		ScrapeInterval  *string   `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
-		ScrapeProtocols *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
-		ScrapeTimeout   *string   `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
-		Secrets         *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
-		SecurityContext *struct {
+		ScrapeFailureLogFile *string   `tfsdk:"scrape_failure_log_file" json:"scrapeFailureLogFile,omitempty"`
+		ScrapeInterval       *string   `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
+		ScrapeProtocols      *[]string `tfsdk:"scrape_protocols" json:"scrapeProtocols,omitempty"`
+		ScrapeTimeout        *string   `tfsdk:"scrape_timeout" json:"scrapeTimeout,omitempty"`
+		Secrets              *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
+		SecurityContext      *struct {
 			AppArmorProfile *struct {
 				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 				Type             *string `tfsdk:"type" json:"type,omitempty"`
@@ -1448,6 +1511,7 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1489,8 +1553,15 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"service_monitor_selector" json:"serviceMonitorSelector,omitempty"`
-		Sha     *string `tfsdk:"sha" json:"sha,omitempty"`
-		Shards  *int64  `tfsdk:"shards" json:"shards,omitempty"`
+		ServiceName          *string `tfsdk:"service_name" json:"serviceName,omitempty"`
+		Sha                  *string `tfsdk:"sha" json:"sha,omitempty"`
+		ShardRetentionPolicy *struct {
+			Retain *struct {
+				RetentionPeriod *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
+			} `tfsdk:"retain" json:"retain,omitempty"`
+			WhenScaled *string `tfsdk:"when_scaled" json:"whenScaled,omitempty"`
+		} `tfsdk:"shard_retention_policy" json:"shardRetentionPolicy,omitempty"`
+		Shards  *int64 `tfsdk:"shards" json:"shards,omitempty"`
 		Storage *struct {
 			DisableMountSubPath *bool `tfsdk:"disable_mount_sub_path" json:"disableMountSubPath,omitempty"`
 			EmptyDir            *struct {
@@ -1592,9 +1663,10 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 				} `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
-		Tag         *string `tfsdk:"tag" json:"tag,omitempty"`
-		TargetLimit *int64  `tfsdk:"target_limit" json:"targetLimit,omitempty"`
-		Thanos      *struct {
+		Tag                           *string `tfsdk:"tag" json:"tag,omitempty"`
+		TargetLimit                   *int64  `tfsdk:"target_limit" json:"targetLimit,omitempty"`
+		TerminationGracePeriodSeconds *int64  `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+		Thanos                        *struct {
 			AdditionalArgs *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
@@ -1998,6 +2070,14 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
 						} `tfsdk:"items" json:"items,omitempty"`
 					} `tfsdk:"downward_api" json:"downwardAPI,omitempty"`
+					PodCertificate *struct {
+						CertificateChainPath *string `tfsdk:"certificate_chain_path" json:"certificateChainPath,omitempty"`
+						CredentialBundlePath *string `tfsdk:"credential_bundle_path" json:"credentialBundlePath,omitempty"`
+						KeyPath              *string `tfsdk:"key_path" json:"keyPath,omitempty"`
+						KeyType              *string `tfsdk:"key_type" json:"keyType,omitempty"`
+						MaxExpirationSeconds *int64  `tfsdk:"max_expiration_seconds" json:"maxExpirationSeconds,omitempty"`
+						SignerName           *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+					} `tfsdk:"pod_certificate" json:"podCertificate,omitempty"`
 					Secret *struct {
 						Items *[]struct {
 							Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -2611,8 +2691,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2620,8 +2700,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2778,8 +2858,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2787,8 +2867,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -2882,8 +2962,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
-										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
-										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+										Description:         "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
+										MarkdownDescription: "The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and subtracting 'weight' from the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
@@ -2945,8 +3025,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2954,8 +3034,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3112,8 +3192,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3121,8 +3201,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -3297,11 +3377,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"api_version": schema.StringAttribute{
-											Description:         "Version of the Alertmanager API that Prometheus uses to send alerts. It can be 'v1' or 'v2'.",
-											MarkdownDescription: "Version of the Alertmanager API that Prometheus uses to send alerts. It can be 'v1' or 'v2'.",
+											Description:         "Version of the Alertmanager API that Prometheus uses to send alerts. It can be 'V1' or 'V2'. The field has no effect for Prometheus >= v3.0.0 because only the v2 API is supported.",
+											MarkdownDescription: "Version of the Alertmanager API that Prometheus uses to send alerts. It can be 'V1' or 'V2'. The field has no effect for Prometheus >= v3.0.0 because only the v2 API is supported.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("v1", "V1", "v2", "V2"),
+											},
 										},
 
 										"authorization": schema.SingleNestedAttribute{
@@ -3467,6 +3550,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"path_prefix": schema.StringAttribute{
 											Description:         "Prefix for the HTTP path alerts are pushed to.",
 											MarkdownDescription: "Prefix for the HTTP path alerts are pushed to.",
@@ -3481,6 +3572,34 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+											},
 										},
 
 										"relabelings": schema.ListNestedAttribute{
@@ -3892,8 +4011,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"max_version": schema.StringAttribute{
-													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3903,8 +4022,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"min_version": schema.StringAttribute{
-													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4104,6 +4223,42 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+
+							"no_proxy": schema.StringAttribute{
+								Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_connect_header": schema.MapAttribute{
+								Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_from_environment": schema.BoolAttribute{
+								Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_url": schema.StringAttribute{
+								Description:         "'proxyURL' defines the HTTP proxy server to use.",
+								MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
+								},
 							},
 
 							"tls_config": schema.SingleNestedAttribute{
@@ -4326,8 +4481,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"max_version": schema.StringAttribute{
-										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4337,8 +4492,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"min_version": schema.StringAttribute{
-										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4447,8 +4602,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+												Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+												MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -4514,6 +4669,47 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 															"field_path": schema.StringAttribute{
 																Description:         "Path of the field to select in the specified API version.",
 																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"file_key_ref": schema.SingleNestedAttribute{
+														Description:         "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+														MarkdownDescription: "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"volume_name": schema.StringAttribute{
+																Description:         "The name of the volume mount containing the env file.",
+																MarkdownDescription: "The name of the volume mount containing the env file.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -4602,8 +4798,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"env_from": schema.ListNestedAttribute{
-									Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+									Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"config_map_ref": schema.SingleNestedAttribute{
@@ -4632,8 +4828,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+												MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4695,8 +4891,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4713,8 +4909,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4781,8 +4977,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -4798,8 +4994,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4832,8 +5028,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4850,8 +5046,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4918,8 +5114,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -4935,8 +5131,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4963,6 +5159,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Optional: true,
 											Computed: false,
 										},
+
+										"stop_signal": schema.StringAttribute{
+											Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -4974,8 +5178,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5000,8 +5204,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5025,8 +5229,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5117,8 +5321,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5226,8 +5430,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5252,8 +5456,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5277,8 +5481,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5369,8 +5573,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5446,8 +5650,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 									Attributes: map[string]schema.Attribute{
 										"claims": schema.ListNestedAttribute{
-											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -5496,11 +5700,56 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"restart_policy": schema.StringAttribute{
-									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
-									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"restart_policy_rules": schema.ListNestedAttribute{
+									Description:         "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+									MarkdownDescription: "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"action": schema.StringAttribute{
+												Description:         "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+												MarkdownDescription: "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"exit_codes": schema.SingleNestedAttribute{
+												Description:         "Represents the exit codes to check on container exits.",
+												MarkdownDescription: "Represents the exit codes to check on container exits.",
+												Attributes: map[string]schema.Attribute{
+													"operator": schema.StringAttribute{
+														Description:         "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+														MarkdownDescription: "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"values": schema.ListAttribute{
+														Description:         "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+														MarkdownDescription: "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -5732,8 +5981,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5758,8 +6007,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5783,8 +6032,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5875,8 +6124,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6068,9 +6317,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"convert_classic_histograms_to_nhcb": schema.BoolAttribute{
+						Description:         "Whether to convert all scraped classic histograms into a native histogram with custom buckets. It requires Prometheus >= v3.4.0.",
+						MarkdownDescription: "Whether to convert all scraped classic histograms into a native histogram with custom buckets. It requires Prometheus >= v3.4.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"disable_compaction": schema.BoolAttribute{
-						Description:         "When true, the Prometheus compaction is disabled.",
-						MarkdownDescription: "When true, the Prometheus compaction is disabled.",
+						Description:         "When true, the Prometheus compaction is disabled. When 'spec.thanos.objectStorageConfig' or 'spec.objectStorageConfigFile' are defined, the operator automatically disables block compaction to avoid race conditions during block uploads (as the Thanos documentation recommends).",
+						MarkdownDescription: "When true, the Prometheus compaction is disabled. When 'spec.thanos.objectStorageConfig' or 'spec.objectStorageConfigFile' are defined, the operator automatically disables block compaction to avoid race conditions during block uploads (as the Thanos documentation recommends).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6161,9 +6418,25 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed:            false,
 					},
 
+					"enable_otlp_receiver": schema.BoolAttribute{
+						Description:         "Enable Prometheus to be used as a receiver for the OTLP Metrics protocol. Note that the OTLP receiver endpoint is automatically enabled if '.spec.otlpConfig' is defined. It requires Prometheus >= v2.47.0.",
+						MarkdownDescription: "Enable Prometheus to be used as a receiver for the OTLP Metrics protocol. Note that the OTLP receiver endpoint is automatically enabled if '.spec.otlpConfig' is defined. It requires Prometheus >= v2.47.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"enable_remote_write_receiver": schema.BoolAttribute{
 						Description:         "Enable Prometheus to be used as a receiver for the Prometheus remote write protocol. WARNING: This is not considered an efficient way of ingesting samples. Use it with caution for specific low-volume use cases. It is not suitable for replacing the ingestion via scraping and turning Prometheus into a push-based metrics collection system. For more information see https://prometheus.io/docs/prometheus/latest/querying/api/#remote-write-receiver It requires Prometheus >= v2.33.0.",
 						MarkdownDescription: "Enable Prometheus to be used as a receiver for the Prometheus remote write protocol. WARNING: This is not considered an efficient way of ingesting samples. Use it with caution for specific low-volume use cases. It is not suitable for replacing the ingestion via scraping and turning Prometheus into a push-based metrics collection system. For more information see https://prometheus.io/docs/prometheus/latest/querying/api/#remote-write-receiver It requires Prometheus >= v2.33.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"enable_service_links": schema.BoolAttribute{
+						Description:         "Indicates whether information about services should be injected into pod's environment variables",
+						MarkdownDescription: "Indicates whether information about services should be injected into pod's environment variables",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6362,8 +6635,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"host_network": schema.BoolAttribute{
-						Description:         "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
-						MarkdownDescription: "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
+						Description:         "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/ ). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
+						MarkdownDescription: "Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/ ). When hostNetwork is enabled, this will set the DNS policy to 'ClusterFirstWithHostNet' automatically (unless '.spec.DNSPolicy' is set to a different value).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"host_users": schema.BoolAttribute{
+						Description:         "HostUsers supports the user space in Kubernetes. More info: https://kubernetes.io/docs/tasks/configure-pod-container/user-namespaces/ The feature requires at least Kubernetes 1.28 with the 'UserNamespacesSupport' feature gate enabled. Starting Kubernetes 1.33, the feature is enabled by default.",
+						MarkdownDescription: "HostUsers supports the user space in Kubernetes. More info: https://kubernetes.io/docs/tasks/configure-pod-container/user-namespaces/ The feature requires at least Kubernetes 1.28 with the 'UserNamespacesSupport' feature gate enabled. Starting Kubernetes 1.33, the feature is enabled by default.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -6444,8 +6725,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+												Description:         "Name of the environment variable. May consist of any printable ASCII characters except '='.",
+												MarkdownDescription: "Name of the environment variable. May consist of any printable ASCII characters except '='.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
@@ -6511,6 +6792,47 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 															"field_path": schema.StringAttribute{
 																Description:         "Path of the field to select in the specified API version.",
 																MarkdownDescription: "Path of the field to select in the specified API version.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"file_key_ref": schema.SingleNestedAttribute{
+														Description:         "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+														MarkdownDescription: "FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.",
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																MarkdownDescription: "The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"optional": schema.BoolAttribute{
+																Description:         "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																MarkdownDescription: "Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod's containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"path": schema.StringAttribute{
+																Description:         "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																MarkdownDescription: "The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"volume_name": schema.StringAttribute{
+																Description:         "The name of the volume mount containing the env file.",
+																MarkdownDescription: "The name of the volume mount containing the env file.",
 																Required:            true,
 																Optional:            false,
 																Computed:            false,
@@ -6599,8 +6921,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"env_from": schema.ListNestedAttribute{
-									Description:         "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
-									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+									Description:         "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
+									MarkdownDescription: "List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"config_map_ref": schema.SingleNestedAttribute{
@@ -6629,8 +6951,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
+												MarkdownDescription: "Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -6692,8 +7014,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6710,8 +7032,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6778,8 +7100,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -6795,8 +7117,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6829,8 +7151,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6847,8 +7169,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6915,8 +7237,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -6932,8 +7254,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6960,6 +7282,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Optional: true,
 											Computed: false,
 										},
+
+										"stop_signal": schema.StringAttribute{
+											Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -6971,8 +7301,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6997,8 +7327,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7022,8 +7352,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7114,8 +7444,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7223,8 +7553,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7249,8 +7579,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7274,8 +7604,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7366,8 +7696,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7443,8 +7773,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 									Attributes: map[string]schema.Attribute{
 										"claims": schema.ListNestedAttribute{
-											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+											Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+											MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
@@ -7493,11 +7823,56 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"restart_policy": schema.StringAttribute{
-									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
-									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This field may only be set for init containers, and the only allowed value is 'Always'. For non-init containers or when this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod's restart policy and the container type. Additionally, setting the RestartPolicy as 'Always' for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy 'Always' will be shut down. This lifecycle differs from normal init containers and is often referred to as a 'sidecar' container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"restart_policy_rules": schema.ListNestedAttribute{
+									Description:         "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+									MarkdownDescription: "Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod's RestartPolicy.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"action": schema.StringAttribute{
+												Description:         "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+												MarkdownDescription: "Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is 'Restart' to restart the container.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"exit_codes": schema.SingleNestedAttribute{
+												Description:         "Represents the exit codes to check on container exits.",
+												MarkdownDescription: "Represents the exit codes to check on container exits.",
+												Attributes: map[string]schema.Attribute{
+													"operator": schema.StringAttribute{
+														Description:         "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+														MarkdownDescription: "Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"values": schema.ListAttribute{
+														Description:         "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+														MarkdownDescription: "Specifies the set of values to check for container exit codes. At most 255 elements are allowed.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -7729,8 +8104,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7755,8 +8130,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7780,8 +8155,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7872,8 +8247,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -8139,11 +8514,36 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"min_ready_seconds": schema.Int64Attribute{
-						Description:         "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) This is an alpha field from kubernetes 1.22 until 1.24 which requires enabling the StatefulSetMinReadySeconds feature gate.",
-						MarkdownDescription: "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) This is an alpha field from kubernetes 1.22 until 1.24 which requires enabling the StatefulSetMinReadySeconds feature gate.",
+						Description:         "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. If unset, pods will be considered available as soon as they are ready.",
+						MarkdownDescription: "Minimum number of seconds for which a newly created Pod should be ready without any of its container crashing for it to be considered available. If unset, pods will be considered available as soon as they are ready.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
+					},
+
+					"name_escaping_scheme": schema.StringAttribute{
+						Description:         "Specifies the character escaping scheme that will be requested when scraping for metric and label names that do not conform to the legacy Prometheus character set. It requires Prometheus >= v3.4.0.",
+						MarkdownDescription: "Specifies the character escaping scheme that will be requested when scraping for metric and label names that do not conform to the legacy Prometheus character set. It requires Prometheus >= v3.4.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("AllowUTF8", "Underscores", "Dots", "Values"),
+						},
+					},
+
+					"name_validation_scheme": schema.StringAttribute{
+						Description:         "Specifies the validation scheme for metric and label names. It requires Prometheus >= v2.55.0.",
+						MarkdownDescription: "Specifies the validation scheme for metric and label names. It requires Prometheus >= v2.55.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("UTF8", "Legacy"),
+						},
 					},
 
 					"node_selector": schema.MapAttribute{
@@ -8159,13 +8559,57 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Description:         "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.55.0.",
 						MarkdownDescription: "Settings related to the OTLP receiver feature. It requires Prometheus >= v2.55.0.",
 						Attributes: map[string]schema.Attribute{
-							"promote_resource_attributes": schema.ListAttribute{
-								Description:         "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.",
-								MarkdownDescription: "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.",
+							"convert_histograms_to_nhcb": schema.BoolAttribute{
+								Description:         "Configures optional translation of OTLP explicit bucket histograms into native histograms with custom buckets. It requires Prometheus >= v3.4.0.",
+								MarkdownDescription: "Configures optional translation of OTLP explicit bucket histograms into native histograms with custom buckets. It requires Prometheus >= v3.4.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ignore_resource_attributes": schema.ListAttribute{
+								Description:         "List of OpenTelemetry resource attributes to ignore when 'promoteAllResourceAttributes' is true. It requires 'promoteAllResourceAttributes' to be true. It requires Prometheus >= v3.5.0.",
+								MarkdownDescription: "List of OpenTelemetry resource attributes to ignore when 'promoteAllResourceAttributes' is true. It requires 'promoteAllResourceAttributes' to be true. It requires Prometheus >= v3.5.0.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"keep_identifying_resource_attributes": schema.BoolAttribute{
+								Description:         "Enables adding 'service.name', 'service.namespace' and 'service.instance.id' resource attributes to the 'target_info' metric, on top of converting them into the 'instance' and 'job' labels. It requires Prometheus >= v3.1.0.",
+								MarkdownDescription: "Enables adding 'service.name', 'service.namespace' and 'service.instance.id' resource attributes to the 'target_info' metric, on top of converting them into the 'instance' and 'job' labels. It requires Prometheus >= v3.1.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"promote_all_resource_attributes": schema.BoolAttribute{
+								Description:         "Promote all resource attributes to metric labels except the ones defined in 'ignoreResourceAttributes'. Cannot be true when 'promoteResourceAttributes' is defined. It requires Prometheus >= v3.5.0.",
+								MarkdownDescription: "Promote all resource attributes to metric labels except the ones defined in 'ignoreResourceAttributes'. Cannot be true when 'promoteResourceAttributes' is defined. It requires Prometheus >= v3.5.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"promote_resource_attributes": schema.ListAttribute{
+								Description:         "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none. Cannot be defined when 'promoteAllResourceAttributes' is true.",
+								MarkdownDescription: "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none. Cannot be defined when 'promoteAllResourceAttributes' is true.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"translation_strategy": schema.StringAttribute{
+								Description:         "Configures how the OTLP receiver endpoint translates the incoming metrics. It requires Prometheus >= v3.0.0.",
+								MarkdownDescription: "Configures how the OTLP receiver endpoint translates the incoming metrics. It requires Prometheus >= v3.0.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("NoUTF8EscapingWithSuffixes", "UnderscoreEscapingWithSuffixes", "NoTranslation"),
+								},
 							},
 						},
 						Required: false,
@@ -8227,8 +8671,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "PodMetadata configures labels and annotations which are propagated to the Prometheus pods. The following items are reserved and cannot be overridden: * 'prometheus' label, set to the name of the Prometheus object. * 'app.kubernetes.io/instance' label, set to the name of the Prometheus object. * 'app.kubernetes.io/managed-by' label, set to 'prometheus-operator'. * 'app.kubernetes.io/name' label, set to 'prometheus'. * 'app.kubernetes.io/version' label, set to the Prometheus version. * 'operator.prometheus.io/name' label, set to the name of the Prometheus object. * 'operator.prometheus.io/shard' label, set to the shard number of the Prometheus object. * 'kubectl.kubernetes.io/default-container' annotation, set to 'prometheus'.",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
-								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+								Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+								MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -8236,8 +8680,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-								MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+								Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+								MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -8245,8 +8689,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-								MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+								Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/",
+								MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -8787,8 +9231,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -8916,16 +9360,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"no_proxy": schema.StringAttribute{
-											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_connect_header": schema.MapAttribute{
-											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8933,8 +9377,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_from_environment": schema.BoolAttribute{
-											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -8947,7 +9391,7 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 											},
 										},
 
@@ -9156,8 +9600,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"max_version": schema.StringAttribute{
-													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9167,8 +9611,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"min_version": schema.StringAttribute{
-													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9207,8 +9651,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_connect_header": schema.MapAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -9216,8 +9660,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -9230,7 +9674,7 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 									},
 								},
 
@@ -9482,8 +9926,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"max_version": schema.StringAttribute{
-											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9493,8 +9937,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_version": schema.StringAttribute{
-											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9536,8 +9980,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"authorization": schema.SingleNestedAttribute{
-									Description:         "Authorization section for the URL. It requires Prometheus >= v2.26.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
-									MarkdownDescription: "Authorization section for the URL. It requires Prometheus >= v2.26.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
+									Description:         "Authorization section for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Authorization section for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'basicAuth', 'oauth2', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"credentials": schema.SingleNestedAttribute{
 											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
@@ -9594,8 +10038,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"azure_ad": schema.SingleNestedAttribute{
-									Description:         "AzureAD for the URL. It requires Prometheus >= v2.45.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
-									MarkdownDescription: "AzureAD for the URL. It requires Prometheus >= v2.45.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									Description:         "AzureAD for the URL. It requires Prometheus >= v2.45.0 or Thanos >= v0.31.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
+									MarkdownDescription: "AzureAD for the URL. It requires Prometheus >= v2.45.0 or Thanos >= v0.31.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'sigv4'.",
 									Attributes: map[string]schema.Attribute{
 										"cloud": schema.StringAttribute{
 											Description:         "The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.",
@@ -9626,8 +10070,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"oauth": schema.SingleNestedAttribute{
-											Description:         "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0.",
-											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0.",
+											Description:         "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "OAuth defines the oauth config that is being used to authenticate. Cannot be set at the same time as 'managedIdentity' or 'sdk'. It requires Prometheus >= v2.48.0 or Thanos >= v0.31.0.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.StringAttribute{
 													Description:         "'clientID' is the clientId of the Azure Active Directory application that is being used to authenticate.",
@@ -9691,8 +10135,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sdk": schema.SingleNestedAttribute{
-											Description:         "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= 2.52.0.",
-											MarkdownDescription: "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= 2.52.0.",
+											Description:         "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= v2.52.0 or Thanos >= v0.36.0.",
+											MarkdownDescription: "SDK defines the Azure SDK config that is being used to authenticate. See https://learn.microsoft.com/en-us/azure/developer/go/azure-sdk-authentication Cannot be set at the same time as 'oauth' or 'managedIdentity'. It requires Prometheus >= v2.52.0 or Thanos >= v0.36.0.",
 											Attributes: map[string]schema.Attribute{
 												"tenant_id": schema.StringAttribute{
 													Description:         "'tenantId' is the tenant ID of the azure active directory application that is being used to authenticate.",
@@ -9815,26 +10259,48 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"follow_redirects": schema.BoolAttribute{
-									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0.",
-									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0.",
+									Description:         "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Configure whether HTTP requests follow HTTP 3xx redirects. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"headers": schema.MapAttribute{
-									Description:         "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0.",
-									MarkdownDescription: "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0.",
+									Description:         "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Custom HTTP headers to be sent along with each remote write request. Be aware that headers that are set by Prometheus itself can't be overwritten. It requires Prometheus >= v2.25.0 or Thanos >= v0.24.0.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
+								"message_version": schema.StringAttribute{
+									Description:         "The Remote Write message's version to use when writing to the endpoint. 'Version1.0' corresponds to the 'prometheus.WriteRequest' protobuf message introduced in Remote Write 1.0. 'Version2.0' corresponds to the 'io.prometheus.write.v2.Request' protobuf message introduced in Remote Write 2.0. When 'Version2.0' is selected, Prometheus will automatically be configured to append the metadata of scraped metrics to the WAL. Before setting this field, consult with your remote storage provider what message version it supports. It requires Prometheus >= v2.54.0 or Thanos >= v0.37.0.",
+									MarkdownDescription: "The Remote Write message's version to use when writing to the endpoint. 'Version1.0' corresponds to the 'prometheus.WriteRequest' protobuf message introduced in Remote Write 1.0. 'Version2.0' corresponds to the 'io.prometheus.write.v2.Request' protobuf message introduced in Remote Write 2.0. When 'Version2.0' is selected, Prometheus will automatically be configured to append the metadata of scraped metrics to the WAL. Before setting this field, consult with your remote storage provider what message version it supports. It requires Prometheus >= v2.54.0 or Thanos >= v0.37.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("V1.0", "V2.0"),
+									},
+								},
+
 								"metadata_config": schema.SingleNestedAttribute{
 									Description:         "MetadataConfig configures the sending of series metadata to the remote storage.",
 									MarkdownDescription: "MetadataConfig configures the sending of series metadata to the remote storage.",
 									Attributes: map[string]schema.Attribute{
+										"max_samples_per_send": schema.Int64Attribute{
+											Description:         "MaxSamplesPerSend is the maximum number of metadata samples per send. It requires Prometheus >= v2.29.0.",
+											MarkdownDescription: "MaxSamplesPerSend is the maximum number of metadata samples per send. It requires Prometheus >= v2.29.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(-1),
+											},
+										},
+
 										"send": schema.BoolAttribute{
 											Description:         "Defines whether metric metadata is sent to the remote storage or not.",
 											MarkdownDescription: "Defines whether metric metadata is sent to the remote storage or not.",
@@ -9860,24 +10326,24 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0.",
-									MarkdownDescription: "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0.",
+									Description:         "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0 or Thanos >= 0.24.0.",
+									MarkdownDescription: "The name of the remote write queue, it must be unique if specified. The name is used in metrics and logging in order to differentiate queues. It requires Prometheus >= v2.15.0 or Thanos >= 0.24.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"no_proxy": schema.StringAttribute{
-									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"oauth2": schema.SingleNestedAttribute{
-									Description:         "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
-									MarkdownDescription: "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
+									Description:         "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
+									MarkdownDescription: "OAuth2 configuration for the URL. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"client_id": schema.SingleNestedAttribute{
 											Description:         "'clientId' specifies a key of a Secret or ConfigMap containing the OAuth2 client's ID.",
@@ -9997,16 +10463,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"no_proxy": schema.StringAttribute{
-											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_connect_header": schema.MapAttribute{
-											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -10014,8 +10480,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_from_environment": schema.BoolAttribute{
-											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10028,7 +10494,7 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 											},
 										},
 
@@ -10237,8 +10703,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"max_version": schema.StringAttribute{
-													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+													Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+													MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10248,8 +10714,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 												},
 
 												"min_version": schema.StringAttribute{
-													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+													Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+													MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10288,8 +10754,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_connect_header": schema.MapAttribute{
-									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -10297,8 +10763,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_from_environment": schema.BoolAttribute{
-									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
-									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0 or Alertmanager >= 0.25.0.",
+									Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
+									MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -10311,7 +10777,7 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https|socks5)://.+$`), ""),
 									},
 								},
 
@@ -10401,8 +10867,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"sample_age_limit": schema.StringAttribute{
-											Description:         "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0.",
-											MarkdownDescription: "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0.",
+											Description:         "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0 or Thanos >= v0.32.0.",
+											MarkdownDescription: "SampleAgeLimit drops samples older than the limit. It requires Prometheus >= v2.50.0 or Thanos >= v0.32.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10427,25 +10893,33 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 								},
 
+								"round_robin_dns": schema.BoolAttribute{
+									Description:         "When enabled: - The remote-write mechanism will resolve the hostname via DNS. - It will randomly select one of the resolved IP addresses and connect to it. When disabled (default behavior): - The Go standard library will handle hostname resolution. - It will attempt connections to each resolved IP address sequentially. Note: The connection timeout applies to the entire resolution and connection process. If disabled, the timeout is distributed across all connection attempts. It requires Prometheus >= v3.1.0 or Thanos >= v0.38.0.",
+									MarkdownDescription: "When enabled: - The remote-write mechanism will resolve the hostname via DNS. - It will randomly select one of the resolved IP addresses and connect to it. When disabled (default behavior): - The Go standard library will handle hostname resolution. - It will attempt connections to each resolved IP address sequentially. Note: The connection timeout applies to the entire resolution and connection process. If disabled, the timeout is distributed across all connection attempts. It requires Prometheus >= v3.1.0 or Thanos >= v0.38.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"send_exemplars": schema.BoolAttribute{
-									Description:         "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeature' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0.",
-									MarkdownDescription: "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeature' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0.",
+									Description:         "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeatures' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0.",
+									MarkdownDescription: "Enables sending of exemplars over remote write. Note that exemplar-storage itself must be enabled using the 'spec.enableFeatures' option for exemplars to be scraped in the first place. It requires Prometheus >= v2.27.0 or Thanos >= v0.24.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"send_native_histograms": schema.BoolAttribute{
-									Description:         "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0.",
-									MarkdownDescription: "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0.",
+									Description:         "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0 or Thanos >= v0.30.0.",
+									MarkdownDescription: "Enables sending of native histograms, also known as sparse histograms over remote write. It requires Prometheus >= v2.40.0 or Thanos >= v0.30.0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"sigv4": schema.SingleNestedAttribute{
-									Description:         "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
-									MarkdownDescription: "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
+									Description:         "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
+									MarkdownDescription: "Sigv4 allows to configures AWS's Signature Verification 4 for the URL. It requires Prometheus >= v2.26.0 or Thanos >= v0.24.0. Cannot be set at the same time as 'authorization', 'basicAuth', 'oauth2', or 'azureAd'.",
 									Attributes: map[string]schema.Attribute{
 										"access_key": schema.SingleNestedAttribute{
 											Description:         "AccessKey is the AWS API key. If not specified, the environment variable 'AWS_ACCESS_KEY_ID' is used.",
@@ -10762,8 +11236,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"max_version": schema.StringAttribute{
-											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10773,8 +11247,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_version": schema.StringAttribute{
-											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10802,6 +11276,9 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 
 								"write_relabel_configs": schema.ListNestedAttribute{
@@ -10881,6 +11358,15 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"remote_write_receiver_message_versions": schema.ListAttribute{
+						Description:         "List of the protobuf message versions to accept when receiving the remote writes. It requires Prometheus >= v2.54.0.",
+						MarkdownDescription: "List of the protobuf message versions to accept when receiving the remote writes. It requires Prometheus >= v2.54.0.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"replica_external_label_name": schema.StringAttribute{
 						Description:         "Name of Prometheus external label used to denote the replica name. The external label will _not_ be added when the field is set to the empty string (''''). Default: 'prometheus_replica'",
 						MarkdownDescription: "Name of Prometheus external label used to denote the replica name. The external label will _not_ be added when the field is set to the empty string (''''). Default: 'prometheus_replica'",
@@ -10902,8 +11388,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						MarkdownDescription: "Defines the resources requests and limits of the 'prometheus' container.",
 						Attributes: map[string]schema.Attribute{
 							"claims": schema.ListNestedAttribute{
-								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+								MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
@@ -11192,12 +11678,81 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									Computed: false,
 								},
 
+								"authorization": schema.SingleNestedAttribute{
+									Description:         "Authorization section for the ScrapeClass. It will only apply if the scrape resource doesn't specify any Authorization.",
+									MarkdownDescription: "Authorization section for the ScrapeClass. It will only apply if the scrape resource doesn't specify any Authorization.",
+									Attributes: map[string]schema.Attribute{
+										"credentials": schema.SingleNestedAttribute{
+											Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key of the secret to select from. Must be a valid secret key.",
+													MarkdownDescription: "The key of the secret to select from. Must be a valid secret key.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "Specify whether the Secret or its key must be defined",
+													MarkdownDescription: "Specify whether the Secret or its key must be defined",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"credentials_file": schema.StringAttribute{
+											Description:         "File to read a secret from, mutually exclusive with 'credentials'.",
+											MarkdownDescription: "File to read a secret from, mutually exclusive with 'credentials'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type": schema.StringAttribute{
+											Description:         "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+											MarkdownDescription: "Defines the authentication type. The value is case-insensitive. 'Basic' is not a supported value. Default: 'Bearer'",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"default": schema.BoolAttribute{
 									Description:         "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name. Only one scrape class can be set as the default.",
 									MarkdownDescription: "Default indicates that the scrape applies to all scrape objects that don't configure an explicit scrape class name. Only one scrape class can be set as the default.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"fallback_scrape_protocol": schema.StringAttribute{
+									Description:         "The protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type. It will only apply if the scrape resource doesn't specify any FallbackScrapeProtocol It requires Prometheus >= v3.0.0.",
+									MarkdownDescription: "The protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type. It will only apply if the scrape resource doesn't specify any FallbackScrapeProtocol It requires Prometheus >= v3.0.0.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("PrometheusProto", "OpenMetricsText0.0.1", "OpenMetricsText1.0.0", "PrometheusText0.0.4", "PrometheusText1.0.0"),
+									},
 								},
 
 								"metric_relabelings": schema.ListNestedAttribute{
@@ -11573,8 +12128,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"max_version": schema.StringAttribute{
-											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+											Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+											MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11584,8 +12139,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"min_version": schema.StringAttribute{
-											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+											Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+											MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -11611,6 +12166,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"scrape_classic_histograms": schema.BoolAttribute{
+						Description:         "Whether to scrape a classic histogram that is also exposed as a native histogram. Notice: 'scrapeClassicHistograms' corresponds to the 'always_scrape_classic_histograms' field in the Prometheus configuration. It requires Prometheus >= v3.5.0.",
+						MarkdownDescription: "Whether to scrape a classic histogram that is also exposed as a native histogram. Notice: 'scrapeClassicHistograms' corresponds to the 'always_scrape_classic_histograms' field in the Prometheus configuration. It requires Prometheus >= v3.5.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"scrape_config_namespace_selector": schema.SingleNestedAttribute{
@@ -11721,6 +12284,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"scrape_failure_log_file": schema.StringAttribute{
+						Description:         "File to which scrape failures are logged. Reloading the configuration will reopen the file. If the filename has an empty path, e.g. 'file.log', The Prometheus Pods will mount the file into an emptyDir volume at '/var/log/prometheus'. If a full path is provided, e.g. '/var/log/prometheus/file.log', you must mount a volume in the specified directory and it must be writable. It requires Prometheus >= v2.55.0.",
+						MarkdownDescription: "File to which scrape failures are logged. Reloading the configuration will reopen the file. If the filename has an empty path, e.g. 'file.log', The Prometheus Pods will mount the file into an emptyDir volume at '/var/log/prometheus'. If a full path is provided, e.g. '/var/log/prometheus/file.log', you must mount a volume in the specified directory and it must be writable. It requires Prometheus >= v2.55.0.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
 					"scrape_interval": schema.StringAttribute{
 						Description:         "Interval between consecutive scrapes. Default: '30s'",
 						MarkdownDescription: "Interval between consecutive scrapes. Default: '30s'",
@@ -11733,8 +12307,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"scrape_protocols": schema.ListAttribute{
-						Description:         "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
-						MarkdownDescription: "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0.",
+						Description:         "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0. 'PrometheusText1.0.0' requires Prometheus >= v3.0.0.",
+						MarkdownDescription: "The protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0. 'PrometheusText1.0.0' requires Prometheus >= v3.0.0.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -11742,8 +12316,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"scrape_timeout": schema.StringAttribute{
-						Description:         "Number of seconds to wait until a scrape request times out.",
-						MarkdownDescription: "Number of seconds to wait until a scrape request times out.",
+						Description:         "Number of seconds to wait until a scrape request times out. The value cannot be greater than the scrape interval otherwise the operator will reject the resource.",
+						MarkdownDescription: "Number of seconds to wait until a scrape request times out. The value cannot be greater than the scrape interval otherwise the operator will reject the resource.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -11825,6 +12399,14 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 							"run_as_user": schema.Int64Attribute{
 								Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 								MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_change_policy": schema.StringAttribute{
+								Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+								MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -12113,6 +12695,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed: false,
 					},
 
+					"service_name": schema.StringAttribute{
+						Description:         "The name of the service name used by the underlying StatefulSet(s) as the governing service. If defined, the Service must be created before the Prometheus/PrometheusAgent resource in the same namespace and it must define a selector that matches the pod labels. If empty, the operator will create and manage a headless service named 'prometheus-operated' for Prometheus resources, or 'prometheus-agent-operated' for PrometheusAgent resources. When deploying multiple Prometheus/PrometheusAgent resources in the same namespace, it is recommended to specify a different value for each. See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id for more details.",
+						MarkdownDescription: "The name of the service name used by the underlying StatefulSet(s) as the governing service. If defined, the Service must be created before the Prometheus/PrometheusAgent resource in the same namespace and it must define a selector that matches the pod labels. If empty, the operator will create and manage a headless service named 'prometheus-operated' for Prometheus resources, or 'prometheus-agent-operated' for PrometheusAgent resources. When deploying multiple Prometheus/PrometheusAgent resources in the same namespace, it is recommended to specify a different value for each. See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id for more details.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
+					},
+
 					"sha": schema.StringAttribute{
 						Description:         "Deprecated: use 'spec.image' instead. The image's digest can be specified as part of the image name.",
 						MarkdownDescription: "Deprecated: use 'spec.image' instead. The image's digest can be specified as part of the image name.",
@@ -12121,9 +12714,49 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed:            false,
 					},
 
+					"shard_retention_policy": schema.SingleNestedAttribute{
+						Description:         "ShardRetentionPolicy defines the retention policy for the Prometheus shards. (Alpha) Using this field requires the 'PrometheusShardRetentionPolicy' feature gate to be enabled. The final goals for this feature can be seen at https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/proposals/202310-shard-autoscaling.md#graceful-scale-down-of-prometheus-servers, however, the feature is not yet fully implemented in this PR. The limitation being: * Retention duration is not settable, for now, shards are retained forever.",
+						MarkdownDescription: "ShardRetentionPolicy defines the retention policy for the Prometheus shards. (Alpha) Using this field requires the 'PrometheusShardRetentionPolicy' feature gate to be enabled. The final goals for this feature can be seen at https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/proposals/202310-shard-autoscaling.md#graceful-scale-down-of-prometheus-servers, however, the feature is not yet fully implemented in this PR. The limitation being: * Retention duration is not settable, for now, shards are retained forever.",
+						Attributes: map[string]schema.Attribute{
+							"retain": schema.SingleNestedAttribute{
+								Description:         "Defines the config for retention when the retention policy is set to 'Retain'. This field is ineffective as of now.",
+								MarkdownDescription: "Defines the config for retention when the retention policy is set to 'Retain'. This field is ineffective as of now.",
+								Attributes: map[string]schema.Attribute{
+									"retention_period": schema.StringAttribute{
+										Description:         "Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function. Supported units: y, w, d, h, m, s, ms Examples: '30s', '1m', '1h20m15s', '15d'",
+										MarkdownDescription: "Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function. Supported units: y, w, d, h, m, s, ms Examples: '30s', '1m', '1h20m15s', '15d'",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"when_scaled": schema.StringAttribute{
+								Description:         "Defines the retention policy when the Prometheus shards are scaled down. * 'Delete', the operator will delete the pods from the scaled-down shard(s). * 'Retain', the operator will keep the pods from the scaled-down shard(s), so the data can still be queried. If not defined, the operator assumes the 'Delete' value.",
+								MarkdownDescription: "Defines the retention policy when the Prometheus shards are scaled down. * 'Delete', the operator will delete the pods from the scaled-down shard(s). * 'Retain', the operator will keep the pods from the scaled-down shard(s), so the data can still be queried. If not defined, the operator assumes the 'Delete' value.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("Retain", "Delete"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"shards": schema.Int64Attribute{
-						Description:         "Number of shards to distribute targets onto. 'spec.replicas' multiplied by 'spec.shards' is the total number of Pods created. Note that scaling down shards will not reshard data onto remaining instances, it must be manually moved. Increasing shards will not reshard data either but it will continue to be available from the same instances. To query globally, use Thanos sidecar and Thanos querier or remote write data to a central location. Sharding is performed on the content of the '__address__' target meta-label for PodMonitors and ServiceMonitors and '__param_target__' for Probes. Default: 1",
-						MarkdownDescription: "Number of shards to distribute targets onto. 'spec.replicas' multiplied by 'spec.shards' is the total number of Pods created. Note that scaling down shards will not reshard data onto remaining instances, it must be manually moved. Increasing shards will not reshard data either but it will continue to be available from the same instances. To query globally, use Thanos sidecar and Thanos querier or remote write data to a central location. Sharding is performed on the content of the '__address__' target meta-label for PodMonitors and ServiceMonitors and '__param_target__' for Probes. Default: 1",
+						Description:         "Number of shards to distribute the scraped targets onto. 'spec.replicas' multiplied by 'spec.shards' is the total number of Pods being created. When not defined, the operator assumes only one shard. Note that scaling down shards will not reshard data onto the remaining instances, it must be manually moved. Increasing shards will not reshard data either but it will continue to be available from the same instances. To query globally, use either * Thanos sidecar + querier for query federation and Thanos Ruler for rules. * Remote-write to send metrics to a central location. By default, the sharding of targets is performed on: * The '__address__' target's metadata label for PodMonitor, ServiceMonitor and ScrapeConfig resources. * The '__param_target__' label for Probe resources. Users can define their own sharding implementation by setting the '__tmp_hash' label during the target discovery with relabeling configuration (either in the monitoring resources or via scrape class). You can also disable sharding on a specific target by setting the '__tmp_disable_sharding' label with relabeling configuration. When the label value isn't empty, all Prometheus shards will scrape the target.",
+						MarkdownDescription: "Number of shards to distribute the scraped targets onto. 'spec.replicas' multiplied by 'spec.shards' is the total number of Pods being created. When not defined, the operator assumes only one shard. Note that scaling down shards will not reshard data onto the remaining instances, it must be manually moved. Increasing shards will not reshard data either but it will continue to be available from the same instances. To query globally, use either * Thanos sidecar + querier for query federation and Thanos Ruler for rules. * Remote-write to send metrics to a central location. By default, the sharding of targets is performed on: * The '__address__' target's metadata label for PodMonitor, ServiceMonitor and ScrapeConfig resources. * The '__param_target__' label for Probe resources. Users can define their own sharding implementation by setting the '__tmp_hash' label during the target discovery with relabeling configuration (either in the monitoring resources or via scrape class). You can also disable sharding on a specific target by setting the '__tmp_disable_sharding' label with relabeling configuration. When the label value isn't empty, all Prometheus shards will scrape the target.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -12360,8 +12993,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 													},
 
 													"volume_attributes_class_name": schema.StringAttribute{
-														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
-														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+														Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+														MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -12423,8 +13056,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										MarkdownDescription: "EmbeddedMetadata contains metadata relevant to an EmbeddedResource.",
 										Attributes: map[string]schema.Attribute{
 											"annotations": schema.MapAttribute{
-												Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+												Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
+												MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -12432,8 +13065,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"labels": schema.MapAttribute{
-												Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+												Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+												MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -12441,8 +13074,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"name": schema.StringAttribute{
-												Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
-												MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names",
+												Description:         "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/",
+												MarkdownDescription: "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -12630,8 +13263,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"volume_attributes_class_name": schema.StringAttribute{
-												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
-												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+												Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+												MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -12742,16 +13375,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"status": schema.StringAttribute{
-															Description:         "",
-															MarkdownDescription: "",
+															Description:         "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
+															MarkdownDescription: "Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
 														},
 
 														"type": schema.StringAttribute{
-															Description:         "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
-															MarkdownDescription: "PersistentVolumeClaimConditionType defines the condition of PV claim. Valid values are: - 'Resizing', 'FileSystemResizePending' If RecoverVolumeExpansionFailure feature gate is enabled, then following additional values can be expected: - 'ControllerResizeError', 'NodeResizeError' If VolumeAttributesClass feature gate is enabled, then following additional values can be expected: - 'ModifyVolumeError', 'ModifyingVolume'",
+															Description:         "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
+															MarkdownDescription: "Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -12764,16 +13397,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 											},
 
 											"current_volume_attributes_class_name": schema.StringAttribute{
-												Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
-												MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+												Description:         "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim",
+												MarkdownDescription: "currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"modify_volume_status": schema.SingleNestedAttribute{
-												Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
-												MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. This is a beta field and requires enabling VolumeAttributesClass feature (off by default).",
+												Description:         "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted.",
+												MarkdownDescription: "ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted.",
 												Attributes: map[string]schema.Attribute{
 													"status": schema.StringAttribute{
 														Description:         "status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.",
@@ -12833,6 +13466,17 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"termination_grace_period_seconds": schema.Int64Attribute{
+						Description:         "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption. Defaults to 600 seconds.",
+						MarkdownDescription: "Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption. Defaults to 600 seconds.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
+						},
 					},
 
 					"thanos": schema.SingleNestedAttribute{
@@ -13138,8 +13782,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"max_version": schema.StringAttribute{
-										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -13149,8 +13793,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"min_version": schema.StringAttribute{
-										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -13283,8 +13927,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Defines the resources requests and limits of the Thanos sidecar.",
 								Attributes: map[string]schema.Attribute{
 									"claims": schema.ListNestedAttribute{
-										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
-										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This is an alpha field and requires enabling the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										Description:         "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
+										MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
@@ -13616,16 +14260,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"node_affinity_policy": schema.StringAttribute{
-									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
+									MarkdownDescription: "NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"node_taints_policy": schema.StringAttribute{
-									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
-									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.",
+									Description:         "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
+									MarkdownDescription: "NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -13946,8 +14590,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"max_version": schema.StringAttribute{
-										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
-										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0.",
+										Description:         "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
+										MarkdownDescription: "Maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -13957,8 +14601,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"min_version": schema.StringAttribute{
-										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
-										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0.",
+										Description:         "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
+										MarkdownDescription: "Minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -14086,8 +14730,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"aws_elastic_block_store": schema.SingleNestedAttribute{
-									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
@@ -14127,8 +14771,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"azure_disk": schema.SingleNestedAttribute{
-									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"caching_mode": schema.StringAttribute{
 											Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -14184,8 +14828,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"azure_file": schema.SingleNestedAttribute{
-									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"read_only": schema.BoolAttribute{
 											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -14217,8 +14861,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"cephfs": schema.SingleNestedAttribute{
-									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"monitors": schema.ListAttribute{
 											Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -14284,8 +14928,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"cinder": schema.SingleNestedAttribute{
-									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -14402,8 +15046,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"csi": schema.SingleNestedAttribute{
-									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -14781,8 +15425,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														},
 
 														"volume_attributes_class_name": schema.StringAttribute{
-															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
-															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
+															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -14871,8 +15515,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"flex_volume": schema.SingleNestedAttribute{
-									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the driver to use for this volume.",
@@ -14930,8 +15574,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"flocker": schema.SingleNestedAttribute{
-									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"dataset_name": schema.StringAttribute{
 											Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -14955,8 +15599,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"gce_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -14996,8 +15640,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"git_repo": schema.SingleNestedAttribute{
-									Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-									MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 									Attributes: map[string]schema.Attribute{
 										"directory": schema.StringAttribute{
 											Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -15029,12 +15673,12 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"glusterfs": schema.SingleNestedAttribute{
-									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported.",
+									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"endpoints": schema.StringAttribute{
-											Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
-											MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
+											Description:         "endpoints is the endpoint name that details Glusterfs topology.",
+											MarkdownDescription: "endpoints is the endpoint name that details Glusterfs topology.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -15087,8 +15731,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"image": schema.SingleNestedAttribute{
-									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
-									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
 									Attributes: map[string]schema.Attribute{
 										"pull_policy": schema.StringAttribute{
 											Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
@@ -15112,8 +15756,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"iscsi": schema.SingleNestedAttribute{
-									Description:         "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
-									MarkdownDescription: "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
+									Description:         "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi",
+									MarkdownDescription: "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi",
 									Attributes: map[string]schema.Attribute{
 										"chap_auth_discovery": schema.BoolAttribute{
 											Description:         "chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication",
@@ -15285,8 +15929,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"photon_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15310,8 +15954,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"portworx_volume": schema.SingleNestedAttribute{
-									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15608,6 +16252,63 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 														Computed: false,
 													},
 
+													"pod_certificate": schema.SingleNestedAttribute{
+														Description:         "Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server. Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer. Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem. The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec. Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp. Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields. The credential bundle is a single file in PEM format. The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order). Prefer using the credential bundle format, since your application code can read it atomically. If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other. Your application will need to check for this condition, and re-read until they are consistent. The named signer controls chooses the format of the certificate it issues; consult the signer implementation's documentation to learn how to use the certificates it issues.",
+														MarkdownDescription: "Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server. Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer. Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem. The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec. Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp. Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields. The credential bundle is a single file in PEM format. The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order). Prefer using the credential bundle format, since your application code can read it atomically. If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other. Your application will need to check for this condition, and re-read until they are consistent. The named signer controls chooses the format of the certificate it issues; consult the signer implementation's documentation to learn how to use the certificates it issues.",
+														Attributes: map[string]schema.Attribute{
+															"certificate_chain_path": schema.StringAttribute{
+																Description:         "Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																MarkdownDescription: "Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"credential_bundle_path": schema.StringAttribute{
+																Description:         "Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod's application code make a single atomic read that retrieves a consistent key and certificate chain. If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key.",
+																MarkdownDescription: "Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod's application code make a single atomic read that retrieves a consistent key and certificate chain. If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key_path": schema.StringAttribute{
+																Description:         "Write the key at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																MarkdownDescription: "Write the key at this path in the projected volume. Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"key_type": schema.StringAttribute{
+																Description:         "The type of keypair Kubelet will generate for the pod. Valid values are 'RSA3072', 'RSA4096', 'ECDSAP256', 'ECDSAP384', 'ECDSAP521', and 'ED25519'.",
+																MarkdownDescription: "The type of keypair Kubelet will generate for the pod. Valid values are 'RSA3072', 'RSA4096', 'ECDSAP256', 'ECDSAP384', 'ECDSAP521', and 'ED25519'.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"max_expiration_seconds": schema.Int64Attribute{
+																Description:         "maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour). The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour). This constraint is enforced by kube-apiserver. 'kubernetes.io' signers will never issue certificates with a lifetime longer than 24 hours.",
+																MarkdownDescription: "maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour). The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime *shorter* than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour). This constraint is enforced by kube-apiserver. 'kubernetes.io' signers will never issue certificates with a lifetime longer than 24 hours.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"signer_name": schema.StringAttribute{
+																Description:         "Kubelet's generated CSRs will be addressed to this signer.",
+																MarkdownDescription: "Kubelet's generated CSRs will be addressed to this signer.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"secret": schema.SingleNestedAttribute{
 														Description:         "secret information about the secret data to project",
 														MarkdownDescription: "secret information about the secret data to project",
@@ -15713,8 +16414,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"quobyte": schema.SingleNestedAttribute{
-									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"group": schema.StringAttribute{
 											Description:         "group to map volume access to Default is no group",
@@ -15770,8 +16471,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"rbd": schema.SingleNestedAttribute{
-									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported.",
+									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
@@ -15853,8 +16554,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"scale_io": schema.SingleNestedAttribute{
-									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -16019,8 +16720,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"storageos": schema.SingleNestedAttribute{
-									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -16077,8 +16778,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"vsphere_volume": schema.SingleNestedAttribute{
-									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -16231,8 +16932,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								MarkdownDescription: "Defines the TLS parameters for HTTPS.",
 								Attributes: map[string]schema.Attribute{
 									"cert": schema.SingleNestedAttribute{
-										Description:         "Contains the TLS certificate for the server.",
-										MarkdownDescription: "Contains the TLS certificate for the server.",
+										Description:         "Secret or ConfigMap containing the TLS certificate for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'certFile'.",
+										MarkdownDescription: "Secret or ConfigMap containing the TLS certificate for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'certFile'.",
 										Attributes: map[string]schema.Attribute{
 											"config_map": schema.SingleNestedAttribute{
 												Description:         "ConfigMap containing data to use for the targets.",
@@ -16306,16 +17007,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"cert_file": schema.StringAttribute{
-										Description:         "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
-										MarkdownDescription: "Path to the TLS certificate file in the Prometheus container for the server. Mutually exclusive with 'cert'.",
+										Description:         "Path to the TLS certificate file in the container for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'cert'.",
+										MarkdownDescription: "Path to the TLS certificate file in the container for the web server. Either 'keySecret' or 'keyFile' must be defined. It is mutually exclusive with 'cert'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"cipher_suites": schema.ListAttribute{
-										Description:         "List of supported cipher suites for TLS versions up to TLS 1.2. If empty, Go default cipher suites are used. Available cipher suites are documented in the go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
-										MarkdownDescription: "List of supported cipher suites for TLS versions up to TLS 1.2. If empty, Go default cipher suites are used. Available cipher suites are documented in the go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
+										Description:         "List of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
+										MarkdownDescription: "List of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -16323,24 +17024,24 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"client_auth_type": schema.StringAttribute{
-										Description:         "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
-										MarkdownDescription: "Server policy for client authentication. Maps to ClientAuth Policies. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
+										Description:         "The server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
+										MarkdownDescription: "The server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"client_ca_file": schema.StringAttribute{
-										Description:         "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
-										MarkdownDescription: "Path to the CA certificate file for client certificate authentication to the server. Mutually exclusive with 'client_ca'.",
+										Description:         "Path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with 'client_ca'.",
+										MarkdownDescription: "Path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with 'client_ca'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"client_ca": schema.SingleNestedAttribute{
-										Description:         "Contains the CA certificate for client certificate authentication to the server.",
-										MarkdownDescription: "Contains the CA certificate for client certificate authentication to the server.",
+										Description:         "Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with 'clientCAFile'.",
+										MarkdownDescription: "Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with 'clientCAFile'.",
 										Attributes: map[string]schema.Attribute{
 											"config_map": schema.SingleNestedAttribute{
 												Description:         "ConfigMap containing data to use for the targets.",
@@ -16414,8 +17115,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"curve_preferences": schema.ListAttribute{
-										Description:         "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
-										MarkdownDescription: "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
+										Description:         "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
+										MarkdownDescription: "Elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -16423,16 +17124,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"key_file": schema.StringAttribute{
-										Description:         "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
-										MarkdownDescription: "Path to the TLS key file in the Prometheus container for the server. Mutually exclusive with 'keySecret'.",
+										Description:         "Path to the TLS private key file in the container for the web server. If defined, either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keySecret'.",
+										MarkdownDescription: "Path to the TLS private key file in the container for the web server. If defined, either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keySecret'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"key_secret": schema.SingleNestedAttribute{
-										Description:         "Secret containing the TLS key for the server.",
-										MarkdownDescription: "Secret containing the TLS key for the server.",
+										Description:         "Secret containing the TLS private key for the web server. Either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keyFile'.",
+										MarkdownDescription: "Secret containing the TLS private key for the web server. Either 'cert' or 'certFile' must be defined. It is mutually exclusive with 'keyFile'.",
 										Attributes: map[string]schema.Attribute{
 											"key": schema.StringAttribute{
 												Description:         "The key of the secret to select from. Must be a valid secret key.",
@@ -16464,16 +17165,16 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"max_version": schema.StringAttribute{
-										Description:         "Maximum TLS version that is acceptable. Defaults to TLS13.",
-										MarkdownDescription: "Maximum TLS version that is acceptable. Defaults to TLS13.",
+										Description:         "Maximum TLS version that is acceptable.",
+										MarkdownDescription: "Maximum TLS version that is acceptable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"min_version": schema.StringAttribute{
-										Description:         "Minimum TLS version that is acceptable. Defaults to TLS12.",
-										MarkdownDescription: "Minimum TLS version that is acceptable. Defaults to TLS12.",
+										Description:         "Minimum TLS version that is acceptable.",
+										MarkdownDescription: "Minimum TLS version that is acceptable.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

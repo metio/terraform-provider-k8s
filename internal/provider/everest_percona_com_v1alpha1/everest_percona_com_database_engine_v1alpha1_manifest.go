@@ -44,7 +44,13 @@ type EverestPerconaComDatabaseEngineV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		AllowedVersions *[]string `tfsdk:"allowed_versions" json:"allowedVersions,omitempty"`
-		Type            *string   `tfsdk:"type" json:"type,omitempty"`
+		SecretKeys      *struct {
+			User *[]struct {
+				Description *string `tfsdk:"description" json:"description,omitempty"`
+				Name        *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"user" json:"user,omitempty"`
+		} `tfsdk:"secret_keys" json:"secretKeys,omitempty"`
+		Type *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -132,6 +138,42 @@ func (r *EverestPerconaComDatabaseEngineV1Alpha1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"secret_keys": schema.SingleNestedAttribute{
+						Description:         "SecretKeys contains the definition of the various Secrets that the given DBEngine supports. This information acts like metadata for the Everest UI to guide the users in filling out the correct Secret keys for their clusters.",
+						MarkdownDescription: "SecretKeys contains the definition of the various Secrets that the given DBEngine supports. This information acts like metadata for the Everest UI to guide the users in filling out the correct Secret keys for their clusters.",
+						Attributes: map[string]schema.Attribute{
+							"user": schema.ListNestedAttribute{
+								Description:         "User secret keys are used to store the details of the users.",
+								MarkdownDescription: "User secret keys are used to store the details of the users.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"description": schema.StringAttribute{
+											Description:         "Description is a human-readable description of the Secret key.",
+											MarkdownDescription: "Description is a human-readable description of the Secret key.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name is the name of the Secret key.",
+											MarkdownDescription: "Name is the name of the Secret key.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"type": schema.StringAttribute{

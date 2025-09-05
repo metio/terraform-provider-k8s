@@ -66,7 +66,21 @@ type DatadoghqComDatadogMonitorV1Alpha1ManifestData struct {
 			RenotifyOccurrences    *int64    `tfsdk:"renotify_occurrences" json:"renotifyOccurrences,omitempty"`
 			RenotifyStatuses       *[]string `tfsdk:"renotify_statuses" json:"renotifyStatuses,omitempty"`
 			RequireFullWindow      *bool     `tfsdk:"require_full_window" json:"requireFullWindow,omitempty"`
-			ThresholdWindows       *struct {
+			SchedulingOptions      *struct {
+				CustomSchedule *struct {
+					Recurrence *struct {
+						Rrule    *string `tfsdk:"rrule" json:"rrule,omitempty"`
+						Start    *string `tfsdk:"start" json:"start,omitempty"`
+						Timezone *string `tfsdk:"timezone" json:"timezone,omitempty"`
+					} `tfsdk:"recurrence" json:"recurrence,omitempty"`
+				} `tfsdk:"custom_schedule" json:"customSchedule,omitempty"`
+				EvaluationWindow *struct {
+					DayStarts   *string `tfsdk:"day_starts" json:"dayStarts,omitempty"`
+					HourStarts  *int64  `tfsdk:"hour_starts" json:"hourStarts,omitempty"`
+					MonthStarts *int64  `tfsdk:"month_starts" json:"monthStarts,omitempty"`
+				} `tfsdk:"evaluation_window" json:"evaluationWindow,omitempty"`
+			} `tfsdk:"scheduling_options" json:"schedulingOptions,omitempty"`
+			ThresholdWindows *struct {
 				RecoveryWindow *string `tfsdk:"recovery_window" json:"recoveryWindow,omitempty"`
 				TriggerWindow  *string `tfsdk:"trigger_window" json:"triggerWindow,omitempty"`
 			} `tfsdk:"threshold_windows" json:"thresholdWindows,omitempty"`
@@ -185,17 +199,23 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 					"message": schema.StringAttribute{
 						Description:         "Message is a message to include with notifications for this monitor",
 						MarkdownDescription: "Message is a message to include with notifications for this monitor",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"name": schema.StringAttribute{
 						Description:         "Name is the monitor name",
 						MarkdownDescription: "Name is the monitor name",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"options": schema.SingleNestedAttribute{
@@ -340,6 +360,90 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 								Computed:            false,
 							},
 
+							"scheduling_options": schema.SingleNestedAttribute{
+								Description:         "Configuration options for scheduling.",
+								MarkdownDescription: "Configuration options for scheduling.",
+								Attributes: map[string]schema.Attribute{
+									"custom_schedule": schema.SingleNestedAttribute{
+										Description:         "Configuration options for the custom schedule. If start is omitted, the monitor creation time will be used.",
+										MarkdownDescription: "Configuration options for the custom schedule. If start is omitted, the monitor creation time will be used.",
+										Attributes: map[string]schema.Attribute{
+											"recurrence": schema.SingleNestedAttribute{
+												Description:         "DatadogMonitorOptionsSchedulingOptionsCustomScheduleRecurrence is a struct of the recurrence definition",
+												MarkdownDescription: "DatadogMonitorOptionsSchedulingOptionsCustomScheduleRecurrence is a struct of the recurrence definition",
+												Attributes: map[string]schema.Attribute{
+													"rrule": schema.StringAttribute{
+														Description:         "The recurrence rule in iCalendar format. For example, 'FREQ=MONTHLY;BYMONTHDAY=28,29,30,31;BYSETPOS=-1'.",
+														MarkdownDescription: "The recurrence rule in iCalendar format. For example, 'FREQ=MONTHLY;BYMONTHDAY=28,29,30,31;BYSETPOS=-1'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"start": schema.StringAttribute{
+														Description:         "The start date of the recurrence rule defined in 'YYYY-MM-DDThh:mm:ss' format. If omitted, the monitor creation time will be used.",
+														MarkdownDescription: "The start date of the recurrence rule defined in 'YYYY-MM-DDThh:mm:ss' format. If omitted, the monitor creation time will be used.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"timezone": schema.StringAttribute{
+														Description:         "The timezone in 'tz database' format, in which the recurrence rule is defined. For example, 'America/New_York' or 'UTC'.",
+														MarkdownDescription: "The timezone in 'tz database' format, in which the recurrence rule is defined. For example, 'America/New_York' or 'UTC'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"evaluation_window": schema.SingleNestedAttribute{
+										Description:         "Configuration options for the evaluation window. If hour_starts is set, no other fields may be set. Otherwise, day_starts and month_starts must be set together.",
+										MarkdownDescription: "Configuration options for the evaluation window. If hour_starts is set, no other fields may be set. Otherwise, day_starts and month_starts must be set together.",
+										Attributes: map[string]schema.Attribute{
+											"day_starts": schema.StringAttribute{
+												Description:         "The time of the day at which a one day cumulative evaluation window starts. Must be defined in UTC time in HH:mm format.",
+												MarkdownDescription: "The time of the day at which a one day cumulative evaluation window starts. Must be defined in UTC time in HH:mm format.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"hour_starts": schema.Int64Attribute{
+												Description:         "The minute of the hour at which a one hour cumulative evaluation window starts.",
+												MarkdownDescription: "The minute of the hour at which a one hour cumulative evaluation window starts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"month_starts": schema.Int64Attribute{
+												Description:         "The day of the month at which a one month cumulative evaluation window starts.",
+												MarkdownDescription: "The day of the month at which a one month cumulative evaluation window starts.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"threshold_windows": schema.SingleNestedAttribute{
 								Description:         "A struct of the alerting time window options.",
 								MarkdownDescription: "A struct of the alerting time window options.",
@@ -446,9 +550,12 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 					"query": schema.StringAttribute{
 						Description:         "Query is the Datadog monitor query",
 						MarkdownDescription: "Query is the Datadog monitor query",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+						},
 					},
 
 					"restricted_roles": schema.ListAttribute{
@@ -472,9 +579,12 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _
 					"type": schema.StringAttribute{
 						Description:         "Type is the monitor type",
 						MarkdownDescription: "Type is the monitor type",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("metric alert", "query alert", "service check", "event alert", "log alert", "process alert", "rum alert", "trace-analytics alert", "slo alert", "event-v2 alert", "audit alert", "composite"),
+						},
 					},
 				},
 				Required: false,

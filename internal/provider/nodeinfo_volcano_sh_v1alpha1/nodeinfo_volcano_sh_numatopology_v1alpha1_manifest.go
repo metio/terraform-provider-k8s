@@ -7,6 +7,7 @@ package nodeinfo_volcano_sh_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -131,6 +132,9 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"numa": schema.Int64Attribute{
@@ -139,6 +143,9 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 
 							"socket": schema.Int64Attribute{
@@ -147,6 +154,9 @@ func (r *NodeinfoVolcanoShNumatopologyV1Alpha1Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(0),
+								},
 							},
 						},
 						Required: false,

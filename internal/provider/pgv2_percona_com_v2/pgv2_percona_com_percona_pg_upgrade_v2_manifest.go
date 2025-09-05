@@ -267,6 +267,7 @@ type Pgv2PerconaComPerconaPgupgradeV2ManifestData struct {
 						Port *string `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"tcp_socket" json:"tcpSocket,omitempty"`
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
+				StopSignal *string `tfsdk:"stop_signal" json:"stopSignal,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			LivenessProbe *struct {
 				Exec *struct {
@@ -816,8 +817,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -825,8 +826,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -983,8 +984,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -992,8 +993,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1150,8 +1151,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1159,8 +1160,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -1317,8 +1318,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"match_label_keys": schema.ListAttribute{
-													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1326,8 +1327,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"mismatch_label_keys": schema.ListAttribute{
-													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
-													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+													Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
+													MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -1685,8 +1686,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 											},
 
 											"prefix": schema.StringAttribute{
-												Description:         "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
-												MarkdownDescription: "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.",
+												Description:         "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
+												MarkdownDescription: "Optional text to prepend to the name of each environment variable. Must be a C_IDENTIFIER.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1748,8 +1749,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -1766,8 +1767,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -1834,8 +1835,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -1851,8 +1852,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -1885,8 +1886,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 											MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -1903,8 +1904,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -1971,8 +1972,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"sleep": schema.SingleNestedAttribute{
-													Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-													MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+													Description:         "Sleep represents a duration that the container should sleep.",
+													MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 													Attributes: map[string]schema.Attribute{
 														"seconds": schema.Int64Attribute{
 															Description:         "Seconds is the number of seconds to sleep.",
@@ -1988,8 +1989,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+													Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+													MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2016,6 +2017,14 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 											Optional: true,
 											Computed: false,
 										},
+
+										"stop_signal": schema.StringAttribute{
+											Description:         "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											MarkdownDescription: "StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -2027,8 +2036,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2053,8 +2062,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2078,8 +2087,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2170,8 +2179,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2279,8 +2288,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2305,8 +2314,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2330,8 +2339,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2422,8 +2431,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -2785,8 +2794,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 									MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 									Attributes: map[string]schema.Attribute{
 										"exec": schema.SingleNestedAttribute{
-											Description:         "Exec specifies the action to take.",
-											MarkdownDescription: "Exec specifies the action to take.",
+											Description:         "Exec specifies a command to execute in the container.",
+											MarkdownDescription: "Exec specifies a command to execute in the container.",
 											Attributes: map[string]schema.Attribute{
 												"command": schema.ListAttribute{
 													Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -2811,8 +2820,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+											Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+											MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -2836,8 +2845,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"http_get": schema.SingleNestedAttribute{
-											Description:         "HTTPGet specifies the http request to perform.",
-											MarkdownDescription: "HTTPGet specifies the http request to perform.",
+											Description:         "HTTPGet specifies an HTTP GET request to perform.",
+											MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -2928,8 +2937,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 										},
 
 										"tcp_socket": schema.SingleNestedAttribute{
-											Description:         "TCPSocket specifies an action involving a TCP port.",
-											MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+											Description:         "TCPSocket specifies a connection to a TCP port.",
+											MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 											Attributes: map[string]schema.Attribute{
 												"host": schema.StringAttribute{
 													Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -3253,7 +3262,7 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 						Computed:            false,
 						Validators: []validator.Int64{
 							int64validator.AtLeast(13),
-							int64validator.AtMost(16),
+							int64validator.AtMost(17),
 						},
 					},
 

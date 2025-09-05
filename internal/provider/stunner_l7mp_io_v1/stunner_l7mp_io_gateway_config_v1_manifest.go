@@ -58,7 +58,9 @@ type StunnerL7MpIoGatewayConfigV1ManifestData struct {
 		Password                       *string            `tfsdk:"password" json:"password,omitempty"`
 		Realm                          *string            `tfsdk:"realm" json:"realm,omitempty"`
 		SharedSecret                   *string            `tfsdk:"shared_secret" json:"sharedSecret,omitempty"`
+		StunMode                       *bool              `tfsdk:"stun_mode" json:"stunMode,omitempty"`
 		UserName                       *string            `tfsdk:"user_name" json:"userName,omitempty"`
+		UserQuota                      *int64             `tfsdk:"user_quota" json:"userQuota,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -272,6 +274,14 @@ func (r *StunnerL7MpIoGatewayConfigV1Manifest) Schema(_ context.Context, _ datas
 						Computed:            false,
 					},
 
+					"stun_mode": schema.BoolAttribute{
+						Description:         "STUNMode toggles STUN-server mode. In this mode only STUN binding requests are handled, but no TURN allocations are allowed by the gateway. This is useful to prevent a DDoS vector when STUNner is deployed as a user-facing STUN server, where a client creates and removes empty allocations in a fast loop to overload the TURN server. When STUN-mode is enabled TURN credentials are optional and ignored even if provided, otherwise TURN credentials are mandatory. Default is false, which disables pure-STUN mode. Not supported in the free tier.",
+						MarkdownDescription: "STUNMode toggles STUN-server mode. In this mode only STUN binding requests are handled, but no TURN allocations are allowed by the gateway. This is useful to prevent a DDoS vector when STUNner is deployed as a user-facing STUN server, where a client creates and removes empty allocations in a fast loop to overload the TURN server. When STUN-mode is enabled TURN credentials are optional and ignored even if provided, otherwise TURN credentials are mandatory. Default is false, which disables pure-STUN mode. Not supported in the free tier.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"user_name": schema.StringAttribute{
 						Description:         "Username defines the 'username' credential for 'plaintext' authentication.",
 						MarkdownDescription: "Username defines the 'username' credential for 'plaintext' authentication.",
@@ -281,6 +291,14 @@ func (r *StunnerL7MpIoGatewayConfigV1Manifest) Schema(_ context.Context, _ datas
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
 						},
+					},
+
+					"user_quota": schema.Int64Attribute{
+						Description:         "UserQuota limits the number of allocations active at one time for a given TURN username (see RFC8656/Section 5). Overlimit allocations are rejected with a 486 (Allocation Quota Reached) error. Default is no quota. Not supported in the free tier.",
+						MarkdownDescription: "UserQuota limits the number of allocations active at one time for a given TURN username (see RFC8656/Section 5). Overlimit allocations are rejected with a 486 (Allocation Quota Reached) error. Default is no quota. Not supported in the free tier.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,
