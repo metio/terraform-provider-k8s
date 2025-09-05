@@ -173,12 +173,12 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"destination_config": schema.SingleNestedAttribute{
-								Description:         "A configuration object that specifies the destination of an event after Lambda processes it.",
-								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it.",
+								Description:         "A configuration object that specifies the destination of an event after Lambda processes it. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
+								MarkdownDescription: "A configuration object that specifies the destination of an event after Lambda processes it. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
 								Attributes: map[string]schema.Attribute{
 									"on_failure": schema.SingleNestedAttribute{
-										Description:         "A destination for events that failed processing.",
-										MarkdownDescription: "A destination for events that failed processing.",
+										Description:         "A destination for events that failed processing. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
+										MarkdownDescription: "A destination for events that failed processing. For more information, see Adding a destination (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations).",
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.StringAttribute{
 												Description:         "",
@@ -194,8 +194,8 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 									},
 
 									"on_success": schema.SingleNestedAttribute{
-										Description:         "A destination for events that were processed successfully.",
-										MarkdownDescription: "A destination for events that were processed successfully.",
+										Description:         "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination. OnSuccess is not supported in CreateEventSourceMapping or UpdateEventSourceMapping requests.",
+										MarkdownDescription: "A destination for events that were processed successfully. To retain records of successful asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations), you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination. OnSuccess is not supported in CreateEventSourceMapping or UpdateEventSourceMapping requests.",
 										Attributes: map[string]schema.Attribute{
 											"destination": schema.StringAttribute{
 												Description:         "",
@@ -253,8 +253,8 @@ func (r *LambdaServicesK8SAwsVersionV1Alpha1Manifest) Schema(_ context.Context, 
 					},
 
 					"function_name": schema.StringAttribute{
-						Description:         "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
-						MarkdownDescription: "The name of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+						Description:         "The name or ARN of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length. Regex Pattern: '^(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-d{1}:)?(d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:($LATEST|[a-zA-Z0-9-_]+))?$'",
+						MarkdownDescription: "The name or ARN of the Lambda function. Name formats * Function name - MyFunction. * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction. * Partial ARN - 123456789012:function:MyFunction. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length. Regex Pattern: '^(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-d{1}:)?(d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:($LATEST|[a-zA-Z0-9-_]+))?$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

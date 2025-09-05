@@ -59,6 +59,7 @@ type ChaosMeshOrgJvmchaosV1Alpha1ManifestData struct {
 		Pid                   *int64    `tfsdk:"pid" json:"pid,omitempty"`
 		Port                  *int64    `tfsdk:"port" json:"port,omitempty"`
 		RemoteCluster         *string   `tfsdk:"remote_cluster" json:"remoteCluster,omitempty"`
+		ReturnValue           *string   `tfsdk:"return_value" json:"returnValue,omitempty"`
 		RuleData              *string   `tfsdk:"rule_data" json:"ruleData,omitempty"`
 		Selector              *struct {
 			AnnotationSelectors *map[string]string `tfsdk:"annotation_selectors" json:"annotationSelectors,omitempty"`
@@ -288,6 +289,14 @@ func (r *ChaosMeshOrgJvmchaosV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					"remote_cluster": schema.StringAttribute{
 						Description:         "RemoteCluster represents the remote cluster where the chaos will be deployed",
 						MarkdownDescription: "RemoteCluster represents the remote cluster where the chaos will be deployed",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"return_value": schema.StringAttribute{
+						Description:         "the return value for action 'return'",
+						MarkdownDescription: "the return value for action 'return'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

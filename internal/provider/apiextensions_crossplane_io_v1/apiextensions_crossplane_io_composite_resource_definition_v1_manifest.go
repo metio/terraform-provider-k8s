@@ -88,6 +88,7 @@ type ApiextensionsCrossplaneIoCompositeResourceDefinitionV1ManifestData struct {
 			ShortNames *[]string `tfsdk:"short_names" json:"shortNames,omitempty"`
 			Singular   *string   `tfsdk:"singular" json:"singular,omitempty"`
 		} `tfsdk:"names" json:"names,omitempty"`
+		Scope    *string `tfsdk:"scope" json:"scope,omitempty"`
 		Versions *[]struct {
 			AdditionalPrinterColumns *[]struct {
 				Description *string `tfsdk:"description" json:"description,omitempty"`
@@ -234,8 +235,8 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 					},
 
 					"connection_secret_keys": schema.ListAttribute{
-						Description:         "ConnectionSecretKeys is the list of keys that will be exposed to the end user of the defined kind. If the list is empty, all keys will be published.",
-						MarkdownDescription: "ConnectionSecretKeys is the list of keys that will be exposed to the end user of the defined kind. If the list is empty, all keys will be published.",
+						Description:         "ConnectionSecretKeys is the list of connection secret keys the defined XR can publish. If the list is empty, all keys will be published. If the list isn't empty, any connection secret keys that don't appear in the list will be filtered out. Only LegacyCluster XRs support connection secrets.",
+						MarkdownDescription: "ConnectionSecretKeys is the list of connection secret keys the defined XR can publish. If the list is empty, all keys will be published. If the list isn't empty, any connection secret keys that don't appear in the list will be filtered out. Only LegacyCluster XRs support connection secrets.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -494,6 +495,17 @@ func (r *ApiextensionsCrossplaneIoCompositeResourceDefinitionV1Manifest) Schema(
 						Required: true,
 						Optional: false,
 						Computed: false,
+					},
+
+					"scope": schema.StringAttribute{
+						Description:         "Scope of the defined composite resource. Namespaced composite resources are scoped to a single namespace. Cluster scoped composite resource exist outside the scope of any namespace. Neither can be claimed. Legacy cluster scoped composite resources are cluster scoped resources that can be claimed.",
+						MarkdownDescription: "Scope of the defined composite resource. Namespaced composite resources are scoped to a single namespace. Cluster scoped composite resource exist outside the scope of any namespace. Neither can be claimed. Legacy cluster scoped composite resources are cluster scoped resources that can be claimed.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("LegacyCluster", "Namespaced", "Cluster"),
+						},
 					},
 
 					"versions": schema.ListNestedAttribute{

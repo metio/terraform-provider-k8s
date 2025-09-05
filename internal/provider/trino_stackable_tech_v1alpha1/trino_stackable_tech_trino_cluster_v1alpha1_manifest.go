@@ -66,8 +66,137 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 			} `tfsdk:"catalog_label_selector" json:"catalogLabelSelector,omitempty"`
-			ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
-			Tls           *struct {
+			FaultTolerantExecution *struct {
+				Query *struct {
+					ExchangeDeduplicationBufferSize *string `tfsdk:"exchange_deduplication_buffer_size" json:"exchangeDeduplicationBufferSize,omitempty"`
+					ExchangeManager                 *struct {
+						ConfigOverrides   *map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+						EncryptionEnabled *bool              `tfsdk:"encryption_enabled" json:"encryptionEnabled,omitempty"`
+						Hdfs              *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+							BlockSize       *string   `tfsdk:"block_size" json:"blockSize,omitempty"`
+							Hdfs            *struct {
+								ConfigMap *string `tfsdk:"config_map" json:"configMap,omitempty"`
+							} `tfsdk:"hdfs" json:"hdfs,omitempty"`
+							SkipDirectorySchemeValidation *bool `tfsdk:"skip_directory_scheme_validation" json:"skipDirectorySchemeValidation,omitempty"`
+						} `tfsdk:"hdfs" json:"hdfs,omitempty"`
+						Local *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+						} `tfsdk:"local" json:"local,omitempty"`
+						S3 *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+							Connection      *struct {
+								Inline *struct {
+									AccessStyle *string `tfsdk:"access_style" json:"accessStyle,omitempty"`
+									Credentials *struct {
+										Scope *struct {
+											ListenerVolumes *[]string `tfsdk:"listener_volumes" json:"listenerVolumes,omitempty"`
+											Node            *bool     `tfsdk:"node" json:"node,omitempty"`
+											Pod             *bool     `tfsdk:"pod" json:"pod,omitempty"`
+											Services        *[]string `tfsdk:"services" json:"services,omitempty"`
+										} `tfsdk:"scope" json:"scope,omitempty"`
+										SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
+									} `tfsdk:"credentials" json:"credentials,omitempty"`
+									Host   *string `tfsdk:"host" json:"host,omitempty"`
+									Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+									Region *struct {
+										Name *string `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"region" json:"region,omitempty"`
+									Tls *struct {
+										Verification *struct {
+											None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
+											Server *struct {
+												CaCert *struct {
+													SecretClass *string            `tfsdk:"secret_class" json:"secretClass,omitempty"`
+													WebPki      *map[string]string `tfsdk:"web_pki" json:"webPki,omitempty"`
+												} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+											} `tfsdk:"server" json:"server,omitempty"`
+										} `tfsdk:"verification" json:"verification,omitempty"`
+									} `tfsdk:"tls" json:"tls,omitempty"`
+								} `tfsdk:"inline" json:"inline,omitempty"`
+								Reference *string `tfsdk:"reference" json:"reference,omitempty"`
+							} `tfsdk:"connection" json:"connection,omitempty"`
+							ExternalId      *string `tfsdk:"external_id" json:"externalId,omitempty"`
+							IamRole         *string `tfsdk:"iam_role" json:"iamRole,omitempty"`
+							MaxErrorRetries *int64  `tfsdk:"max_error_retries" json:"maxErrorRetries,omitempty"`
+							UploadPartSize  *string `tfsdk:"upload_part_size" json:"uploadPartSize,omitempty"`
+						} `tfsdk:"s3" json:"s3,omitempty"`
+						SinkBufferPoolMinSize   *int64  `tfsdk:"sink_buffer_pool_min_size" json:"sinkBufferPoolMinSize,omitempty"`
+						SinkBuffersPerPartition *int64  `tfsdk:"sink_buffers_per_partition" json:"sinkBuffersPerPartition,omitempty"`
+						SinkMaxFileSize         *string `tfsdk:"sink_max_file_size" json:"sinkMaxFileSize,omitempty"`
+						SourceConcurrentReaders *int64  `tfsdk:"source_concurrent_readers" json:"sourceConcurrentReaders,omitempty"`
+					} `tfsdk:"exchange_manager" json:"exchangeManager,omitempty"`
+					RetryAttempts         *int64   `tfsdk:"retry_attempts" json:"retryAttempts,omitempty"`
+					RetryDelayScaleFactor *float64 `tfsdk:"retry_delay_scale_factor" json:"retryDelayScaleFactor,omitempty"`
+					RetryInitialDelay     *string  `tfsdk:"retry_initial_delay" json:"retryInitialDelay,omitempty"`
+					RetryMaxDelay         *string  `tfsdk:"retry_max_delay" json:"retryMaxDelay,omitempty"`
+				} `tfsdk:"query" json:"query,omitempty"`
+				Task *struct {
+					ExchangeDeduplicationBufferSize *string `tfsdk:"exchange_deduplication_buffer_size" json:"exchangeDeduplicationBufferSize,omitempty"`
+					ExchangeManager                 *struct {
+						ConfigOverrides   *map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+						EncryptionEnabled *bool              `tfsdk:"encryption_enabled" json:"encryptionEnabled,omitempty"`
+						Hdfs              *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+							BlockSize       *string   `tfsdk:"block_size" json:"blockSize,omitempty"`
+							Hdfs            *struct {
+								ConfigMap *string `tfsdk:"config_map" json:"configMap,omitempty"`
+							} `tfsdk:"hdfs" json:"hdfs,omitempty"`
+							SkipDirectorySchemeValidation *bool `tfsdk:"skip_directory_scheme_validation" json:"skipDirectorySchemeValidation,omitempty"`
+						} `tfsdk:"hdfs" json:"hdfs,omitempty"`
+						Local *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+						} `tfsdk:"local" json:"local,omitempty"`
+						S3 *struct {
+							BaseDirectories *[]string `tfsdk:"base_directories" json:"baseDirectories,omitempty"`
+							Connection      *struct {
+								Inline *struct {
+									AccessStyle *string `tfsdk:"access_style" json:"accessStyle,omitempty"`
+									Credentials *struct {
+										Scope *struct {
+											ListenerVolumes *[]string `tfsdk:"listener_volumes" json:"listenerVolumes,omitempty"`
+											Node            *bool     `tfsdk:"node" json:"node,omitempty"`
+											Pod             *bool     `tfsdk:"pod" json:"pod,omitempty"`
+											Services        *[]string `tfsdk:"services" json:"services,omitempty"`
+										} `tfsdk:"scope" json:"scope,omitempty"`
+										SecretClass *string `tfsdk:"secret_class" json:"secretClass,omitempty"`
+									} `tfsdk:"credentials" json:"credentials,omitempty"`
+									Host   *string `tfsdk:"host" json:"host,omitempty"`
+									Port   *int64  `tfsdk:"port" json:"port,omitempty"`
+									Region *struct {
+										Name *string `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"region" json:"region,omitempty"`
+									Tls *struct {
+										Verification *struct {
+											None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
+											Server *struct {
+												CaCert *struct {
+													SecretClass *string            `tfsdk:"secret_class" json:"secretClass,omitempty"`
+													WebPki      *map[string]string `tfsdk:"web_pki" json:"webPki,omitempty"`
+												} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+											} `tfsdk:"server" json:"server,omitempty"`
+										} `tfsdk:"verification" json:"verification,omitempty"`
+									} `tfsdk:"tls" json:"tls,omitempty"`
+								} `tfsdk:"inline" json:"inline,omitempty"`
+								Reference *string `tfsdk:"reference" json:"reference,omitempty"`
+							} `tfsdk:"connection" json:"connection,omitempty"`
+							ExternalId      *string `tfsdk:"external_id" json:"externalId,omitempty"`
+							IamRole         *string `tfsdk:"iam_role" json:"iamRole,omitempty"`
+							MaxErrorRetries *int64  `tfsdk:"max_error_retries" json:"maxErrorRetries,omitempty"`
+							UploadPartSize  *string `tfsdk:"upload_part_size" json:"uploadPartSize,omitempty"`
+						} `tfsdk:"s3" json:"s3,omitempty"`
+						SinkBufferPoolMinSize   *int64  `tfsdk:"sink_buffer_pool_min_size" json:"sinkBufferPoolMinSize,omitempty"`
+						SinkBuffersPerPartition *int64  `tfsdk:"sink_buffers_per_partition" json:"sinkBuffersPerPartition,omitempty"`
+						SinkMaxFileSize         *string `tfsdk:"sink_max_file_size" json:"sinkMaxFileSize,omitempty"`
+						SourceConcurrentReaders *int64  `tfsdk:"source_concurrent_readers" json:"sourceConcurrentReaders,omitempty"`
+					} `tfsdk:"exchange_manager" json:"exchangeManager,omitempty"`
+					RetryAttemptsPerTask  *int64   `tfsdk:"retry_attempts_per_task" json:"retryAttemptsPerTask,omitempty"`
+					RetryDelayScaleFactor *float64 `tfsdk:"retry_delay_scale_factor" json:"retryDelayScaleFactor,omitempty"`
+					RetryInitialDelay     *string  `tfsdk:"retry_initial_delay" json:"retryInitialDelay,omitempty"`
+					RetryMaxDelay         *string  `tfsdk:"retry_max_delay" json:"retryMaxDelay,omitempty"`
+				} `tfsdk:"task" json:"task,omitempty"`
+			} `tfsdk:"fault_tolerant_execution" json:"faultTolerantExecution,omitempty"`
+			Tls *struct {
 				InternalSecretClass *string `tfsdk:"internal_secret_class" json:"internalSecretClass,omitempty"`
 				ServerSecretClass   *string `tfsdk:"server_secret_class" json:"serverSecretClass,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -104,9 +233,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-				QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-				Resources             *struct {
+				QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+				QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -115,26 +245,19 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 						RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 					} `tfsdk:"memory" json:"memory,omitempty"`
-					Storage *struct {
-						Data *struct {
-							Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-							Selectors *struct {
-								MatchExpressions *[]struct {
-									Key      *string   `tfsdk:"key" json:"key,omitempty"`
-									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-							} `tfsdk:"selectors" json:"selectors,omitempty"`
-							StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-						} `tfsdk:"data" json:"data,omitempty"`
-					} `tfsdk:"storage" json:"storage,omitempty"`
+					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
+				ListenerClass       *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -167,9 +290,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-					QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-					Resources             *struct {
+					QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+					QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -178,26 +302,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 							Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 							RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 						} `tfsdk:"memory" json:"memory,omitempty"`
-						Storage *struct {
-							Data *struct {
-								Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-								Selectors *struct {
-									MatchExpressions *[]struct {
-										Key      *string   `tfsdk:"key" json:"key,omitempty"`
-										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-								} `tfsdk:"selectors" json:"selectors,omitempty"`
-								StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-							} `tfsdk:"data" json:"data,omitempty"`
-						} `tfsdk:"storage" json:"storage,omitempty"`
+						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"coordinators" json:"coordinators,omitempty"`
 		Image *struct {
@@ -237,9 +353,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 					} `tfsdk:"containers" json:"containers,omitempty"`
 					EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 				} `tfsdk:"logging" json:"logging,omitempty"`
-				QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-				QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-				Resources             *struct {
+				QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+				QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+				RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+				Resources               *struct {
 					Cpu *struct {
 						Max *string `tfsdk:"max" json:"max,omitempty"`
 						Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -248,26 +365,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 						RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 					} `tfsdk:"memory" json:"memory,omitempty"`
-					Storage *struct {
-						Data *struct {
-							Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-							Selectors *struct {
-								MatchExpressions *[]struct {
-									Key      *string   `tfsdk:"key" json:"key,omitempty"`
-									Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-									Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-								} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-								MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-							} `tfsdk:"selectors" json:"selectors,omitempty"`
-							StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-						} `tfsdk:"data" json:"data,omitempty"`
-					} `tfsdk:"storage" json:"storage,omitempty"`
+					Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"config" json:"config,omitempty"`
-			ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-			EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-			PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-			RoleConfig      *struct {
+			ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+			EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+			JvmArgumentOverrides *struct {
+				Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+				Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+				RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+			} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+			PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+			RoleConfig   *struct {
 				PodDisruptionBudget *struct {
 					Enabled        *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -300,9 +409,10 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 						} `tfsdk:"containers" json:"containers,omitempty"`
 						EnableVectorAgent *bool `tfsdk:"enable_vector_agent" json:"enableVectorAgent,omitempty"`
 					} `tfsdk:"logging" json:"logging,omitempty"`
-					QueryMaxMemory        *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
-					QueryMaxMemoryPerNode *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
-					Resources             *struct {
+					QueryMaxMemory          *string `tfsdk:"query_max_memory" json:"queryMaxMemory,omitempty"`
+					QueryMaxMemoryPerNode   *string `tfsdk:"query_max_memory_per_node" json:"queryMaxMemoryPerNode,omitempty"`
+					RequestedSecretLifetime *string `tfsdk:"requested_secret_lifetime" json:"requestedSecretLifetime,omitempty"`
+					Resources               *struct {
 						Cpu *struct {
 							Max *string `tfsdk:"max" json:"max,omitempty"`
 							Min *string `tfsdk:"min" json:"min,omitempty"`
@@ -311,26 +421,18 @@ type TrinoStackableTechTrinoClusterV1Alpha1ManifestData struct {
 							Limit         *string            `tfsdk:"limit" json:"limit,omitempty"`
 							RuntimeLimits *map[string]string `tfsdk:"runtime_limits" json:"runtimeLimits,omitempty"`
 						} `tfsdk:"memory" json:"memory,omitempty"`
-						Storage *struct {
-							Data *struct {
-								Capacity  *string `tfsdk:"capacity" json:"capacity,omitempty"`
-								Selectors *struct {
-									MatchExpressions *[]struct {
-										Key      *string   `tfsdk:"key" json:"key,omitempty"`
-										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-								} `tfsdk:"selectors" json:"selectors,omitempty"`
-								StorageClass *string `tfsdk:"storage_class" json:"storageClass,omitempty"`
-							} `tfsdk:"data" json:"data,omitempty"`
-						} `tfsdk:"storage" json:"storage,omitempty"`
+						Storage *map[string]string `tfsdk:"storage" json:"storage,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 				} `tfsdk:"config" json:"config,omitempty"`
-				ConfigOverrides *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
-				EnvOverrides    *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
-				PodOverrides    *map[string]string            `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
-				Replicas        *int64                        `tfsdk:"replicas" json:"replicas,omitempty"`
+				ConfigOverrides      *map[string]map[string]string `tfsdk:"config_overrides" json:"configOverrides,omitempty"`
+				EnvOverrides         *map[string]string            `tfsdk:"env_overrides" json:"envOverrides,omitempty"`
+				JvmArgumentOverrides *struct {
+					Add         *[]string `tfsdk:"add" json:"add,omitempty"`
+					Remove      *[]string `tfsdk:"remove" json:"remove,omitempty"`
+					RemoveRegex *[]string `tfsdk:"remove_regex" json:"removeRegex,omitempty"`
+				} `tfsdk:"jvm_argument_overrides" json:"jvmArgumentOverrides,omitempty"`
+				PodOverrides *map[string]string `tfsdk:"pod_overrides" json:"podOverrides,omitempty"`
+				Replicas     *int64             `tfsdk:"replicas" json:"replicas,omitempty"`
 			} `tfsdk:"role_groups" json:"roleGroups,omitempty"`
 		} `tfsdk:"workers" json:"workers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -423,8 +525,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication_class": schema.StringAttribute{
-											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
-											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users.",
+											Description:         "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
+											MarkdownDescription: "Name of the [AuthenticationClass](https://docs.stackable.tech/home/nightly/concepts/authentication) used to authenticate users",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -443,8 +545,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"extra_scopes": schema.ListAttribute{
-													Description:         "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
-													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the ['AuthenticationClass'].",
+													Description:         "An optional list of extra scopes which get merged with the scopes defined in the AuthenticationClass",
+													MarkdownDescription: "An optional list of extra scopes which get merged with the scopes defined in the AuthenticationClass",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -550,15 +652,885 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Computed: false,
 							},
 
-							"listener_class": schema.StringAttribute{
-								Description:         "This field controls which type of Service the Operator creates for this TrinoCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								MarkdownDescription: "This field controls which type of Service the Operator creates for this TrinoCluster: * cluster-internal: Use a ClusterIP service * external-unstable: Use a NodePort service * external-stable: Use a LoadBalancer service This is a temporary solution with the goal to keep yaml manifests forward compatible. In the future, this setting will control which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) will be used to expose the service, and ListenerClass names will stay the same, allowing for a non-breaking change.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("cluster-internal", "external-unstable", "external-stable"),
+							"fault_tolerant_execution": schema.SingleNestedAttribute{
+								Description:         "Fault tolerant execution configuration. When enabled, Trino can automatically retry queries or tasks in case of failures.",
+								MarkdownDescription: "Fault tolerant execution configuration. When enabled, Trino can automatically retry queries or tasks in case of failures.",
+								Attributes: map[string]schema.Attribute{
+									"query": schema.SingleNestedAttribute{
+										Description:         "Query-level fault tolerant execution. Retries entire queries on failure.",
+										MarkdownDescription: "Query-level fault tolerant execution. Retries entire queries on failure.",
+										Attributes: map[string]schema.Attribute{
+											"exchange_deduplication_buffer_size": schema.StringAttribute{
+												Description:         "Data size of the coordinator's in-memory buffer used to store output of query stages.",
+												MarkdownDescription: "Data size of the coordinator's in-memory buffer used to store output of query stages.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"exchange_manager": schema.SingleNestedAttribute{
+												Description:         "Exchange manager configuration for spooling intermediate data during fault tolerant execution. Optional for Query retry policy, recommended for large result sets.",
+												MarkdownDescription: "Exchange manager configuration for spooling intermediate data during fault tolerant execution. Optional for Query retry policy, recommended for large result sets.",
+												Attributes: map[string]schema.Attribute{
+													"config_overrides": schema.MapAttribute{
+														Description:         "The 'configOverrides' allow overriding arbitrary exchange manager properties.",
+														MarkdownDescription: "The 'configOverrides' allow overriding arbitrary exchange manager properties.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"encryption_enabled": schema.BoolAttribute{
+														Description:         "Whether to enable encryption of spooling data.",
+														MarkdownDescription: "Whether to enable encryption of spooling data.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"hdfs": schema.SingleNestedAttribute{
+														Description:         "HDFS-based exchange manager.",
+														MarkdownDescription: "HDFS-based exchange manager.",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "HDFS URIs for spooling data.",
+																MarkdownDescription: "HDFS URIs for spooling data.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"block_size": schema.StringAttribute{
+																Description:         "Block data size for HDFS storage.",
+																MarkdownDescription: "Block data size for HDFS storage.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"hdfs": schema.SingleNestedAttribute{
+																Description:         "HDFS connection configuration.",
+																MarkdownDescription: "HDFS connection configuration.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.StringAttribute{
+																		Description:         "Name of the [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) providing information about the HDFS cluster.",
+																		MarkdownDescription: "Name of the [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) providing information about the HDFS cluster.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"skip_directory_scheme_validation": schema.BoolAttribute{
+																Description:         "Skip directory scheme validation to support Hadoop-compatible file systems.",
+																MarkdownDescription: "Skip directory scheme validation to support Hadoop-compatible file systems.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"local": schema.SingleNestedAttribute{
+														Description:         "Local filesystem storage (not recommended for production).",
+														MarkdownDescription: "Local filesystem storage (not recommended for production).",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "Local filesystem paths for exchange storage.",
+																MarkdownDescription: "Local filesystem paths for exchange storage.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"s3": schema.SingleNestedAttribute{
+														Description:         "S3-compatible storage configuration.",
+														MarkdownDescription: "S3-compatible storage configuration.",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "S3 bucket URIs for spooling data (e.g., s3://bucket1,s3://bucket2).",
+																MarkdownDescription: "S3 bucket URIs for spooling data (e.g., s3://bucket1,s3://bucket2).",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"connection": schema.SingleNestedAttribute{
+																Description:         "S3 connection configuration. Learn more about S3 configuration in the [S3 concept docs](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																MarkdownDescription: "S3 connection configuration. Learn more about S3 configuration in the [S3 concept docs](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																Attributes: map[string]schema.Attribute{
+																	"inline": schema.SingleNestedAttribute{
+																		Description:         "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																		MarkdownDescription: "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																		Attributes: map[string]schema.Attribute{
+																			"access_style": schema.StringAttribute{
+																				Description:         "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
+																				MarkdownDescription: "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("Path", "VirtualHosted"),
+																				},
+																			},
+
+																			"credentials": schema.SingleNestedAttribute{
+																				Description:         "If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient.",
+																				MarkdownDescription: "If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient.",
+																				Attributes: map[string]schema.Attribute{
+																					"scope": schema.SingleNestedAttribute{
+																						Description:         "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
+																						MarkdownDescription: "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
+																						Attributes: map[string]schema.Attribute{
+																							"listener_volumes": schema.ListAttribute{
+																								Description:         "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																								MarkdownDescription: "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"node": schema.BoolAttribute{
+																								Description:         "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
+																								MarkdownDescription: "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"pod": schema.BoolAttribute{
+																								Description:         "The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.",
+																								MarkdownDescription: "The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"services": schema.ListAttribute{
+																								Description:         "The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.",
+																								MarkdownDescription: "The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"secret_class": schema.StringAttribute{
+																						Description:         "[SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) containing the LDAP bind credentials.",
+																						MarkdownDescription: "[SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) containing the LDAP bind credentials.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": schema.StringAttribute{
+																				Description:         "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																				MarkdownDescription: "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"port": schema.Int64Attribute{
+																				Description:         "Port the S3 server listens on. If not specified the product will determine the port to use.",
+																				MarkdownDescription: "Port the S3 server listens on. If not specified the product will determine the port to use.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																				},
+																			},
+
+																			"region": schema.SingleNestedAttribute{
+																				Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																				MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"tls": schema.SingleNestedAttribute{
+																				Description:         "Use a TLS connection. If not specified no TLS will be used.",
+																				MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
+																				Attributes: map[string]schema.Attribute{
+																					"verification": schema.SingleNestedAttribute{
+																						Description:         "The verification method used to verify the certificates of the server and/or the client.",
+																						MarkdownDescription: "The verification method used to verify the certificates of the server and/or the client.",
+																						Attributes: map[string]schema.Attribute{
+																							"none": schema.MapAttribute{
+																								Description:         "Use TLS but don't verify certificates.",
+																								MarkdownDescription: "Use TLS but don't verify certificates.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"server": schema.SingleNestedAttribute{
+																								Description:         "Use TLS and a CA certificate to verify the server.",
+																								MarkdownDescription: "Use TLS and a CA certificate to verify the server.",
+																								Attributes: map[string]schema.Attribute{
+																									"ca_cert": schema.SingleNestedAttribute{
+																										Description:         "CA cert to verify the server.",
+																										MarkdownDescription: "CA cert to verify the server.",
+																										Attributes: map[string]schema.Attribute{
+																											"secret_class": schema.StringAttribute{
+																												Description:         "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																												MarkdownDescription: "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+
+																											"web_pki": schema.MapAttribute{
+																												Description:         "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																												MarkdownDescription: "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"reference": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"external_id": schema.StringAttribute{
+																Description:         "External ID for the IAM role trust policy.",
+																MarkdownDescription: "External ID for the IAM role trust policy.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"iam_role": schema.StringAttribute{
+																Description:         "IAM role to assume for S3 access.",
+																MarkdownDescription: "IAM role to assume for S3 access.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"max_error_retries": schema.Int64Attribute{
+																Description:         "Maximum number of times the S3 client should retry a request.",
+																MarkdownDescription: "Maximum number of times the S3 client should retry a request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																},
+															},
+
+															"upload_part_size": schema.StringAttribute{
+																Description:         "Part data size for S3 multi-part upload.",
+																MarkdownDescription: "Part data size for S3 multi-part upload.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"sink_buffer_pool_min_size": schema.Int64Attribute{
+														Description:         "The minimum buffer pool size for an exchange sink. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														MarkdownDescription: "The minimum buffer pool size for an exchange sink. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"sink_buffers_per_partition": schema.Int64Attribute{
+														Description:         "The number of buffers per partition in the buffer pool. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														MarkdownDescription: "The number of buffers per partition in the buffer pool. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"sink_max_file_size": schema.StringAttribute{
+														Description:         "Max data size of files written by exchange sinks.",
+														MarkdownDescription: "Max data size of files written by exchange sinks.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"source_concurrent_readers": schema.Int64Attribute{
+														Description:         "Number of concurrent readers to read from spooling storage. The larger the number of concurrent readers, the larger the read parallelism and memory usage.",
+														MarkdownDescription: "Number of concurrent readers to read from spooling storage. The larger the number of concurrent readers, the larger the read parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"retry_attempts": schema.Int64Attribute{
+												Description:         "Maximum number of times Trino may attempt to retry a query before declaring it failed.",
+												MarkdownDescription: "Maximum number of times Trino may attempt to retry a query before declaring it failed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
+											},
+
+											"retry_delay_scale_factor": schema.Float64Attribute{
+												Description:         "Factor by which retry delay is increased on each query failure.",
+												MarkdownDescription: "Factor by which retry delay is increased on each query failure.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_initial_delay": schema.StringAttribute{
+												Description:         "Minimum time that a failed query must wait before it is retried.",
+												MarkdownDescription: "Minimum time that a failed query must wait before it is retried.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_max_delay": schema.StringAttribute{
+												Description:         "Maximum time that a failed query must wait before it is retried.",
+												MarkdownDescription: "Maximum time that a failed query must wait before it is retried.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"task": schema.SingleNestedAttribute{
+										Description:         "Task-level fault tolerant execution. Retries individual tasks on failure (requires exchange manager).",
+										MarkdownDescription: "Task-level fault tolerant execution. Retries individual tasks on failure (requires exchange manager).",
+										Attributes: map[string]schema.Attribute{
+											"exchange_deduplication_buffer_size": schema.StringAttribute{
+												Description:         "Data size of the coordinator's in-memory buffer used to store output of query stages.",
+												MarkdownDescription: "Data size of the coordinator's in-memory buffer used to store output of query stages.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"exchange_manager": schema.SingleNestedAttribute{
+												Description:         "Exchange manager configuration for spooling intermediate data during fault tolerant execution. Required for Task retry policy.",
+												MarkdownDescription: "Exchange manager configuration for spooling intermediate data during fault tolerant execution. Required for Task retry policy.",
+												Attributes: map[string]schema.Attribute{
+													"config_overrides": schema.MapAttribute{
+														Description:         "The 'configOverrides' allow overriding arbitrary exchange manager properties.",
+														MarkdownDescription: "The 'configOverrides' allow overriding arbitrary exchange manager properties.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"encryption_enabled": schema.BoolAttribute{
+														Description:         "Whether to enable encryption of spooling data.",
+														MarkdownDescription: "Whether to enable encryption of spooling data.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"hdfs": schema.SingleNestedAttribute{
+														Description:         "HDFS-based exchange manager.",
+														MarkdownDescription: "HDFS-based exchange manager.",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "HDFS URIs for spooling data.",
+																MarkdownDescription: "HDFS URIs for spooling data.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"block_size": schema.StringAttribute{
+																Description:         "Block data size for HDFS storage.",
+																MarkdownDescription: "Block data size for HDFS storage.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"hdfs": schema.SingleNestedAttribute{
+																Description:         "HDFS connection configuration.",
+																MarkdownDescription: "HDFS connection configuration.",
+																Attributes: map[string]schema.Attribute{
+																	"config_map": schema.StringAttribute{
+																		Description:         "Name of the [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) providing information about the HDFS cluster.",
+																		MarkdownDescription: "Name of the [discovery ConfigMap](https://docs.stackable.tech/home/nightly/concepts/service_discovery) providing information about the HDFS cluster.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"skip_directory_scheme_validation": schema.BoolAttribute{
+																Description:         "Skip directory scheme validation to support Hadoop-compatible file systems.",
+																MarkdownDescription: "Skip directory scheme validation to support Hadoop-compatible file systems.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"local": schema.SingleNestedAttribute{
+														Description:         "Local filesystem storage (not recommended for production).",
+														MarkdownDescription: "Local filesystem storage (not recommended for production).",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "Local filesystem paths for exchange storage.",
+																MarkdownDescription: "Local filesystem paths for exchange storage.",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"s3": schema.SingleNestedAttribute{
+														Description:         "S3-compatible storage configuration.",
+														MarkdownDescription: "S3-compatible storage configuration.",
+														Attributes: map[string]schema.Attribute{
+															"base_directories": schema.ListAttribute{
+																Description:         "S3 bucket URIs for spooling data (e.g., s3://bucket1,s3://bucket2).",
+																MarkdownDescription: "S3 bucket URIs for spooling data (e.g., s3://bucket1,s3://bucket2).",
+																ElementType:         types.StringType,
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"connection": schema.SingleNestedAttribute{
+																Description:         "S3 connection configuration. Learn more about S3 configuration in the [S3 concept docs](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																MarkdownDescription: "S3 connection configuration. Learn more about S3 configuration in the [S3 concept docs](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																Attributes: map[string]schema.Attribute{
+																	"inline": schema.SingleNestedAttribute{
+																		Description:         "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																		MarkdownDescription: "S3 connection definition as a resource. Learn more on the [S3 concept documentation](https://docs.stackable.tech/home/nightly/concepts/s3).",
+																		Attributes: map[string]schema.Attribute{
+																			"access_style": schema.StringAttribute{
+																				Description:         "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
+																				MarkdownDescription: "Which access style to use. Defaults to virtual hosted-style as most of the data products out there. Have a look at the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html).",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.String{
+																					stringvalidator.OneOf("Path", "VirtualHosted"),
+																				},
+																			},
+
+																			"credentials": schema.SingleNestedAttribute{
+																				Description:         "If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient.",
+																				MarkdownDescription: "If the S3 uses authentication you have to specify you S3 credentials. In the most cases a [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) providing 'accessKey' and 'secretKey' is sufficient.",
+																				Attributes: map[string]schema.Attribute{
+																					"scope": schema.SingleNestedAttribute{
+																						Description:         "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
+																						MarkdownDescription: "[Scope](https://docs.stackable.tech/home/nightly/secret-operator/scope) of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass).",
+																						Attributes: map[string]schema.Attribute{
+																							"listener_volumes": schema.ListAttribute{
+																								Description:         "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																								MarkdownDescription: "The listener volume scope allows Node and Service scopes to be inferred from the applicable listeners. This must correspond to Volume names in the Pod that mount Listeners.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"node": schema.BoolAttribute{
+																								Description:         "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
+																								MarkdownDescription: "The node scope is resolved to the name of the Kubernetes Node object that the Pod is running on. This will typically be the DNS name of the node.",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"pod": schema.BoolAttribute{
+																								Description:         "The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.",
+																								MarkdownDescription: "The pod scope is resolved to the name of the Kubernetes Pod. This allows the secret to differentiate between StatefulSet replicas.",
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"services": schema.ListAttribute{
+																								Description:         "The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.",
+																								MarkdownDescription: "The service scope allows Pod objects to specify custom scopes. This should typically correspond to Service objects that the Pod participates in.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"secret_class": schema.StringAttribute{
+																						Description:         "[SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) containing the LDAP bind credentials.",
+																						MarkdownDescription: "[SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) containing the LDAP bind credentials.",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"host": schema.StringAttribute{
+																				Description:         "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																				MarkdownDescription: "Host of the S3 server without any protocol or port. For example: 'west1.my-cloud.com'.",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"port": schema.Int64Attribute{
+																				Description:         "Port the S3 server listens on. If not specified the product will determine the port to use.",
+																				MarkdownDescription: "Port the S3 server listens on. If not specified the product will determine the port to use.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																				Validators: []validator.Int64{
+																					int64validator.AtLeast(0),
+																				},
+																			},
+
+																			"region": schema.SingleNestedAttribute{
+																				Description:         "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																				MarkdownDescription: "Bucket region used for signing headers (sigv4). This defaults to 'us-east-1' which is compatible with other implementations such as Minio. WARNING: Some products use the Hadoop S3 implementation which falls back to us-east-2.",
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"tls": schema.SingleNestedAttribute{
+																				Description:         "Use a TLS connection. If not specified no TLS will be used.",
+																				MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
+																				Attributes: map[string]schema.Attribute{
+																					"verification": schema.SingleNestedAttribute{
+																						Description:         "The verification method used to verify the certificates of the server and/or the client.",
+																						MarkdownDescription: "The verification method used to verify the certificates of the server and/or the client.",
+																						Attributes: map[string]schema.Attribute{
+																							"none": schema.MapAttribute{
+																								Description:         "Use TLS but don't verify certificates.",
+																								MarkdownDescription: "Use TLS but don't verify certificates.",
+																								ElementType:         types.StringType,
+																								Required:            false,
+																								Optional:            true,
+																								Computed:            false,
+																							},
+
+																							"server": schema.SingleNestedAttribute{
+																								Description:         "Use TLS and a CA certificate to verify the server.",
+																								MarkdownDescription: "Use TLS and a CA certificate to verify the server.",
+																								Attributes: map[string]schema.Attribute{
+																									"ca_cert": schema.SingleNestedAttribute{
+																										Description:         "CA cert to verify the server.",
+																										MarkdownDescription: "CA cert to verify the server.",
+																										Attributes: map[string]schema.Attribute{
+																											"secret_class": schema.StringAttribute{
+																												Description:         "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																												MarkdownDescription: "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+
+																											"web_pki": schema.MapAttribute{
+																												Description:         "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																												MarkdownDescription: "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																												ElementType:         types.StringType,
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: true,
+																										Optional: false,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: true,
+																						Optional: false,
+																						Computed: false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"reference": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"external_id": schema.StringAttribute{
+																Description:         "External ID for the IAM role trust policy.",
+																MarkdownDescription: "External ID for the IAM role trust policy.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"iam_role": schema.StringAttribute{
+																Description:         "IAM role to assume for S3 access.",
+																MarkdownDescription: "IAM role to assume for S3 access.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"max_error_retries": schema.Int64Attribute{
+																Description:         "Maximum number of times the S3 client should retry a request.",
+																MarkdownDescription: "Maximum number of times the S3 client should retry a request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																},
+															},
+
+															"upload_part_size": schema.StringAttribute{
+																Description:         "Part data size for S3 multi-part upload.",
+																MarkdownDescription: "Part data size for S3 multi-part upload.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"sink_buffer_pool_min_size": schema.Int64Attribute{
+														Description:         "The minimum buffer pool size for an exchange sink. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														MarkdownDescription: "The minimum buffer pool size for an exchange sink. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"sink_buffers_per_partition": schema.Int64Attribute{
+														Description:         "The number of buffers per partition in the buffer pool. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														MarkdownDescription: "The number of buffers per partition in the buffer pool. The larger the buffer pool size, the larger the write parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"sink_max_file_size": schema.StringAttribute{
+														Description:         "Max data size of files written by exchange sinks.",
+														MarkdownDescription: "Max data size of files written by exchange sinks.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"source_concurrent_readers": schema.Int64Attribute{
+														Description:         "Number of concurrent readers to read from spooling storage. The larger the number of concurrent readers, the larger the read parallelism and memory usage.",
+														MarkdownDescription: "Number of concurrent readers to read from spooling storage. The larger the number of concurrent readers, the larger the read parallelism and memory usage.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+												},
+												Required: true,
+												Optional: false,
+												Computed: false,
+											},
+
+											"retry_attempts_per_task": schema.Int64Attribute{
+												Description:         "Maximum number of times Trino may attempt to retry a single task before declaring the query failed.",
+												MarkdownDescription: "Maximum number of times Trino may attempt to retry a single task before declaring the query failed.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
+											},
+
+											"retry_delay_scale_factor": schema.Float64Attribute{
+												Description:         "Factor by which retry delay is increased on each task failure.",
+												MarkdownDescription: "Factor by which retry delay is increased on each task failure.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_initial_delay": schema.StringAttribute{
+												Description:         "Minimum time that a failed task must wait before it is retried.",
+												MarkdownDescription: "Minimum time that a failed task must wait before it is retried.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"retry_max_delay": schema.StringAttribute{
+												Description:         "Maximum time that a failed task must wait before it is retried.",
+												MarkdownDescription: "Maximum time that a failed task must wait before it is retried.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
 								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"tls": schema.SingleNestedAttribute{
@@ -813,6 +1785,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -868,92 +1848,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
-											"storage": schema.SingleNestedAttribute{
+											"storage": schema.MapAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"data": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"capacity": schema.StringAttribute{
-																Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"selectors": schema.SingleNestedAttribute{
-																Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																Attributes: map[string]schema.Attribute{
-																	"match_expressions": schema.ListNestedAttribute{
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		NestedObject: schema.NestedAttributeObject{
-																			Attributes: map[string]schema.Attribute{
-																				"key": schema.StringAttribute{
-																					Description:         "key is the label key that the selector applies to.",
-																					MarkdownDescription: "key is the label key that the selector applies to.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					ElementType:         types.StringType,
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"storage_class": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -984,6 +1885,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Computed:            false,
 							},
 
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"pod_overrides": schema.MapAttribute{
 								Description:         "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
 								MarkdownDescription: "In the 'podOverrides' property you can define a [PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#podtemplatespec-v1-core) to override any property that can be set on a Kubernetes Pod. Read the [Pod overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#pod-overrides) for more information.",
@@ -997,6 +1934,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Description:         "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								MarkdownDescription: "This is a product-agnostic RoleConfig, which is sufficient for most of the products.",
 								Attributes: map[string]schema.Attribute{
+									"listener_class": schema.StringAttribute{
+										Description:         "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the coordinator.",
+										MarkdownDescription: "This field controls which [ListenerClass](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass.html) is used to expose the coordinator.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"pod_disruption_budget": schema.SingleNestedAttribute{
 										Description:         "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
 										MarkdownDescription: "This struct is used to configure: 1. If PodDisruptionBudgets are created by the operator 2. The allowed number of Pods to be unavailable ('maxUnavailable') Learn more in the [allowed Pod disruptions documentation](https://docs.stackable.tech/home/nightly/concepts/operations/pod_disruptions).",
@@ -1219,6 +2164,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1274,92 +2227,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 														Computed: false,
 													},
 
-													"storage": schema.SingleNestedAttribute{
+													"storage": schema.MapAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"data": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Attributes: map[string]schema.Attribute{
-																	"capacity": schema.StringAttribute{
-																		Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-
-																	"selectors": schema.SingleNestedAttribute{
-																		Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		Attributes: map[string]schema.Attribute{
-																			"match_expressions": schema.ListNestedAttribute{
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				NestedObject: schema.NestedAttributeObject{
-																					Attributes: map[string]schema.Attribute{
-																						"key": schema.StringAttribute{
-																							Description:         "key is the label key that the selector applies to.",
-																							MarkdownDescription: "key is the label key that the selector applies to.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"operator": schema.StringAttribute{
-																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"values": schema.ListAttribute{
-																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							ElementType:         types.StringType,
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																				},
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": schema.MapAttribute{
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				ElementType:         types.StringType,
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_class": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: false,
@@ -1388,6 +2262,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{
@@ -1425,8 +2335,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 						MarkdownDescription: "Specify which image to use, the easiest way is to only configure the 'productVersion'. You can also configure a custom image registry to pull from, as well as completely custom images. Consult the [Product image selection documentation](https://docs.stackable.tech/home/nightly/concepts/product_image_selection) for details.",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1471,8 +2381,8 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1680,6 +2590,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"requested_secret_lifetime": schema.StringAttribute{
+										Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"resources": schema.SingleNestedAttribute{
 										Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 										MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -1735,92 +2653,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed: false,
 											},
 
-											"storage": schema.SingleNestedAttribute{
+											"storage": schema.MapAttribute{
 												Description:         "",
 												MarkdownDescription: "",
-												Attributes: map[string]schema.Attribute{
-													"data": schema.SingleNestedAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"capacity": schema.StringAttribute{
-																Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-
-															"selectors": schema.SingleNestedAttribute{
-																Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																Attributes: map[string]schema.Attribute{
-																	"match_expressions": schema.ListNestedAttribute{
-																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																		NestedObject: schema.NestedAttributeObject{
-																			Attributes: map[string]schema.Attribute{
-																				"key": schema.StringAttribute{
-																					Description:         "key is the label key that the selector applies to.",
-																					MarkdownDescription: "key is the label key that the selector applies to.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"operator": schema.StringAttribute{
-																					Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																					Required:            true,
-																					Optional:            false,
-																					Computed:            false,
-																				},
-
-																				"values": schema.ListAttribute{
-																					Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																					ElementType:         types.StringType,
-																					Required:            false,
-																					Optional:            true,
-																					Computed:            false,
-																				},
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"match_labels": schema.MapAttribute{
-																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																		ElementType:         types.StringType,
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"storage_class": schema.StringAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 										},
 										Required: false,
@@ -1849,6 +2688,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"jvm_argument_overrides": schema.SingleNestedAttribute{
+								Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+								Attributes: map[string]schema.Attribute{
+									"add": schema.ListAttribute{
+										Description:         "JVM arguments to be added",
+										MarkdownDescription: "JVM arguments to be added",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove": schema.ListAttribute{
+										Description:         "JVM arguments to be removed by exact match",
+										MarkdownDescription: "JVM arguments to be removed by exact match",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"remove_regex": schema.ListAttribute{
+										Description:         "JVM arguments matching any of this regexes will be removed",
+										MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"pod_overrides": schema.MapAttribute{
@@ -2086,6 +2961,14 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"requested_secret_lifetime": schema.StringAttribute{
+												Description:         "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												MarkdownDescription: "Request secret (currently only autoTls certificates) lifetime from the secret operator, e.g. '7d', or '30d'. This can be shortened by the 'maxCertificateLifetime' setting on the SecretClass issuing the TLS certificate. Defaults to '15d' for coordinators (as currently a restart kills all running queries) and '1d' for workers.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"resources": schema.SingleNestedAttribute{
 												Description:         "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
 												MarkdownDescription: "Resource usage is configured here, this includes CPU usage, memory usage and disk storage usage, if this role needs any.",
@@ -2141,92 +3024,13 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 														Computed: false,
 													},
 
-													"storage": schema.SingleNestedAttribute{
+													"storage": schema.MapAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Attributes: map[string]schema.Attribute{
-															"data": schema.SingleNestedAttribute{
-																Description:         "",
-																MarkdownDescription: "",
-																Attributes: map[string]schema.Attribute{
-																	"capacity": schema.StringAttribute{
-																		Description:         "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		MarkdownDescription: "Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors. The serialization format is: ''' <quantity> ::= <signedNumber><suffix> (Note that <suffix> may be empty, from the '' case in <decimalSI>.) <digit> ::= 0 | 1 | ... | 9 <digits> ::= <digit> | <digit><digits> <number> ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign> ::= '+' | '-' <signedNumber> ::= <number> | <sign><number> <suffix> ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI> ::= Ki | Mi | Gi | Ti | Pi | Ei (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html) <decimalSI> ::= m | '' | k | M | G | T | P | E (Note that 1024 = 1Ki but 1000 = 1k; I didn't choose the capitalization.) <decimalExponent> ::= 'e' <signedNumber> | 'E' <signedNumber> ''' No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities. When a Quantity is parsed from a string, it will remember the type of suffix it had, and will use the same type again when it is serialized. Before serializing, Quantity will be put in 'canonical form'. This means that Exponent/suffix will be adjusted up or down (with a corresponding increase or decrease in Mantissa) such that: - No precision is lost - No fractional digits will be emitted - The exponent (or suffix) is as large as possible. The sign will be omitted unless the number is negative. Examples: - 1.5 will be serialized as '1500m' - 1.5Gi will be serialized as '1536Mi' Note that the quantity will NEVER be internally represented by a floating point number. That is the whole point of this exercise. Non-canonical values will still parse as long as they are well formed, but will be re-emitted in their canonical form. (So always use canonical form, or don't diff.) This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-
-																	"selectors": schema.SingleNestedAttribute{
-																		Description:         "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.",
-																		Attributes: map[string]schema.Attribute{
-																			"match_expressions": schema.ListNestedAttribute{
-																				Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																				NestedObject: schema.NestedAttributeObject{
-																					Attributes: map[string]schema.Attribute{
-																						"key": schema.StringAttribute{
-																							Description:         "key is the label key that the selector applies to.",
-																							MarkdownDescription: "key is the label key that the selector applies to.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"operator": schema.StringAttribute{
-																							Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
-																							Required:            true,
-																							Optional:            false,
-																							Computed:            false,
-																						},
-
-																						"values": schema.ListAttribute{
-																							Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
-																							ElementType:         types.StringType,
-																							Required:            false,
-																							Optional:            true,
-																							Computed:            false,
-																						},
-																					},
-																				},
-																				Required: false,
-																				Optional: true,
-																				Computed: false,
-																			},
-
-																			"match_labels": schema.MapAttribute{
-																				Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																				ElementType:         types.StringType,
-																				Required:            false,
-																				Optional:            true,
-																				Computed:            false,
-																			},
-																		},
-																		Required: false,
-																		Optional: true,
-																		Computed: false,
-																	},
-
-																	"storage_class": schema.StringAttribute{
-																		Description:         "",
-																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
-																		Computed:            false,
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
 													},
 												},
 												Required: false,
@@ -2255,6 +3059,42 @@ func (r *TrinoStackableTechTrinoClusterV1Alpha1Manifest) Schema(_ context.Contex
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"jvm_argument_overrides": schema.SingleNestedAttribute{
+										Description:         "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										MarkdownDescription: "Allows overriding JVM arguments. Please read on the [JVM argument overrides documentation](https://docs.stackable.tech/home/nightly/concepts/overrides#jvm-argument-overrides) for details on the usage.",
+										Attributes: map[string]schema.Attribute{
+											"add": schema.ListAttribute{
+												Description:         "JVM arguments to be added",
+												MarkdownDescription: "JVM arguments to be added",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove": schema.ListAttribute{
+												Description:         "JVM arguments to be removed by exact match",
+												MarkdownDescription: "JVM arguments to be removed by exact match",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"remove_regex": schema.ListAttribute{
+												Description:         "JVM arguments matching any of this regexes will be removed",
+												MarkdownDescription: "JVM arguments matching any of this regexes will be removed",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"pod_overrides": schema.MapAttribute{

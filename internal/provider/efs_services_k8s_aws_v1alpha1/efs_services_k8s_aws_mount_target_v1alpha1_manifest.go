@@ -146,8 +146,8 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 				MarkdownDescription: "MountTargetSpec defines the desired state of MountTarget.",
 				Attributes: map[string]schema.Attribute{
 					"file_system_id": schema.StringAttribute{
-						Description:         "The ID of the file system for which to create the mount target.",
-						MarkdownDescription: "The ID of the file system for which to create the mount target.",
+						Description:         "The ID of the file system for which to create the mount target. Regex Pattern: '^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$'",
+						MarkdownDescription: "The ID of the file system for which to create the mount target. Regex Pattern: '^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -188,8 +188,8 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"ip_address": schema.StringAttribute{
-						Description:         "Valid IPv4 address within the address range of the specified subnet.",
-						MarkdownDescription: "Valid IPv4 address within the address range of the specified subnet.",
+						Description:         "Valid IPv4 address within the address range of the specified subnet. Regex Pattern: '^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$'",
+						MarkdownDescription: "Valid IPv4 address within the address range of the specified subnet. Regex Pattern: '^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -241,8 +241,8 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"subnet_id": schema.StringAttribute{
-						Description:         "The ID of the subnet to add the mount target in. For One Zone file systems, use the subnet that is associated with the file system's Availability Zone.",
-						MarkdownDescription: "The ID of the subnet to add the mount target in. For One Zone file systems, use the subnet that is associated with the file system's Availability Zone.",
+						Description:         "The ID of the subnet to add the mount target in. For One Zone file systems, use the subnet that is associated with the file system's Availability Zone. Regex Pattern: '^subnet-[0-9a-f]{8,40}$'",
+						MarkdownDescription: "The ID of the subnet to add the mount target in. For One Zone file systems, use the subnet that is associated with the file system's Availability Zone. Regex Pattern: '^subnet-[0-9a-f]{8,40}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

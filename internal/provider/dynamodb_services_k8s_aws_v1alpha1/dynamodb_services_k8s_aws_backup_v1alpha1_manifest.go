@@ -126,16 +126,16 @@ func (r *DynamodbServicesK8SAwsBackupV1Alpha1Manifest) Schema(_ context.Context,
 				MarkdownDescription: "BackupSpec defines the desired state of Backup.",
 				Attributes: map[string]schema.Attribute{
 					"backup_name": schema.StringAttribute{
-						Description:         "Specified name for the backup.",
-						MarkdownDescription: "Specified name for the backup.",
+						Description:         "Specified name for the backup. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
+						MarkdownDescription: "Specified name for the backup. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"table_name": schema.StringAttribute{
-						Description:         "The name of the table.",
-						MarkdownDescription: "The name of the table.",
+						Description:         "The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.",
+						MarkdownDescription: "The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

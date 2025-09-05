@@ -7,6 +7,7 @@ package scheduling_volcano_sh_v1beta1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -308,6 +309,10 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(1),
+							int64validator.AtMost(65535),
+						},
 					},
 				},
 				Required: false,

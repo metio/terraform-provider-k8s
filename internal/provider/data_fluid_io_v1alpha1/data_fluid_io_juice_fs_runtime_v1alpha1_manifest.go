@@ -45,10 +45,6 @@ type DataFluidIoJuiceFsruntimeV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		CleanCachePolicy *struct {
-			GracePeriodSeconds *int64 `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
-			MaxRetryAttempts   *int64 `tfsdk:"max_retry_attempts" json:"maxRetryAttempts,omitempty"`
-		} `tfsdk:"clean_cache_policy" json:"cleanCachePolicy,omitempty"`
 		Configs           *[]string `tfsdk:"configs" json:"configs,omitempty"`
 		DisablePrometheus *bool     `tfsdk:"disable_prometheus" json:"disablePrometheus,omitempty"`
 		Fuse              *struct {
@@ -180,6 +176,15 @@ type DataFluidIoJuiceFsruntimeV1Alpha1ManifestData struct {
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			ImageTag        *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
 		} `tfsdk:"juicefs_version" json:"juicefsVersion,omitempty"`
+		Management *struct {
+			CleanCachePolicy *struct {
+				GracePeriodSeconds *int64 `tfsdk:"grace_period_seconds" json:"gracePeriodSeconds,omitempty"`
+				MaxRetryAttempts   *int64 `tfsdk:"max_retry_attempts" json:"maxRetryAttempts,omitempty"`
+			} `tfsdk:"clean_cache_policy" json:"cleanCachePolicy,omitempty"`
+			MetadataSyncPolicy *struct {
+				AutoSync *bool `tfsdk:"auto_sync" json:"autoSync,omitempty"`
+			} `tfsdk:"metadata_sync_policy" json:"metadataSyncPolicy,omitempty"`
+		} `tfsdk:"management" json:"management,omitempty"`
 		Master *struct {
 			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			Env     *[]struct {
@@ -1003,31 +1008,6 @@ func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 				Description:         "JuiceFSRuntimeSpec defines the desired state of JuiceFSRuntime",
 				MarkdownDescription: "JuiceFSRuntimeSpec defines the desired state of JuiceFSRuntime",
 				Attributes: map[string]schema.Attribute{
-					"clean_cache_policy": schema.SingleNestedAttribute{
-						Description:         "CleanCachePolicy defines cleanCache Policy",
-						MarkdownDescription: "CleanCachePolicy defines cleanCache Policy",
-						Attributes: map[string]schema.Attribute{
-							"grace_period_seconds": schema.Int64Attribute{
-								Description:         "Optional duration in seconds the cache needs to clean gracefully. May be decreased in delete runtime request. Value must be non-negative integer. The value zero indicates clean immediately via the timeout command (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with timeout command. Set this value longer than the expected cleanup time for your process.",
-								MarkdownDescription: "Optional duration in seconds the cache needs to clean gracefully. May be decreased in delete runtime request. Value must be non-negative integer. The value zero indicates clean immediately via the timeout command (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with timeout command. Set this value longer than the expected cleanup time for your process.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"max_retry_attempts": schema.Int64Attribute{
-								Description:         "Optional max retry Attempts when cleanCache function returns an error after execution, runtime attempts to run it three more times by default. With Maximum Retry Attempts, you can customize the maximum number of retries. This gives you the option to continue processing retries.",
-								MarkdownDescription: "Optional max retry Attempts when cleanCache function returns an error after execution, runtime attempts to run it three more times by default. With Maximum Retry Attempts, you can customize the maximum number of retries. This gives you the option to continue processing retries.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"configs": schema.ListAttribute{
 						Description:         "Configs of JuiceFS",
 						MarkdownDescription: "Configs of JuiceFS",
@@ -1050,8 +1030,8 @@ func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 						MarkdownDescription: "Desired state for JuiceFS Fuse",
 						Attributes: map[string]schema.Attribute{
 							"clean_policy": schema.StringAttribute{
-								Description:         "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once th fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnDemand",
-								MarkdownDescription: "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports two policies: OnDemand and OnRuntimeDeleted OnDemand cleans fuse pod once th fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted Defaults to OnDemand",
+								Description:         "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports three policies: OnDemand, OnRuntimeDeleted and OnFuseChangedCleanPolicy OnDemand cleans fuse pod once the fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted OnFuseChangedCleanPolicy cleans fuse pod once the fuse pod on some node is not needed and the fuse in runtime is updated Defaults to OnRuntimeDeleted",
+								MarkdownDescription: "CleanPolicy decides when to clean Juicefs Fuse pods. Currently Fluid supports three policies: OnDemand, OnRuntimeDeleted and OnFuseChangedCleanPolicy OnDemand cleans fuse pod once the fuse pod on some node is not needed OnRuntimeDeleted cleans fuse pod only when the cache runtime is deleted OnFuseChangedCleanPolicy cleans fuse pod once the fuse pod on some node is not needed and the fuse in runtime is updated Defaults to OnRuntimeDeleted",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1921,6 +1901,57 @@ func (r *DataFluidIoJuiceFsruntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"management": schema.SingleNestedAttribute{
+						Description:         "RuntimeManagement defines policies when managing the runtime",
+						MarkdownDescription: "RuntimeManagement defines policies when managing the runtime",
+						Attributes: map[string]schema.Attribute{
+							"clean_cache_policy": schema.SingleNestedAttribute{
+								Description:         "CleanCachePolicy defines the policy of cleaning cache when shutting down the runtime",
+								MarkdownDescription: "CleanCachePolicy defines the policy of cleaning cache when shutting down the runtime",
+								Attributes: map[string]schema.Attribute{
+									"grace_period_seconds": schema.Int64Attribute{
+										Description:         "Optional duration in seconds the cache needs to clean gracefully. May be decreased in delete runtime request. Value must be non-negative integer. The value zero indicates clean immediately via the timeout command (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with timeout command. Set this value longer than the expected cleanup time for your process.",
+										MarkdownDescription: "Optional duration in seconds the cache needs to clean gracefully. May be decreased in delete runtime request. Value must be non-negative integer. The value zero indicates clean immediately via the timeout command (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with timeout command. Set this value longer than the expected cleanup time for your process.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"max_retry_attempts": schema.Int64Attribute{
+										Description:         "Optional max retry Attempts when cleanCache function returns an error after execution, runtime attempts to run it three more times by default. With Maximum Retry Attempts, you can customize the maximum number of retries. This gives you the option to continue processing retries.",
+										MarkdownDescription: "Optional max retry Attempts when cleanCache function returns an error after execution, runtime attempts to run it three more times by default. With Maximum Retry Attempts, you can customize the maximum number of retries. This gives you the option to continue processing retries.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"metadata_sync_policy": schema.SingleNestedAttribute{
+								Description:         "MetadataSyncPolicy defines the policy of syncing metadata when setting up the runtime. If not set,",
+								MarkdownDescription: "MetadataSyncPolicy defines the policy of syncing metadata when setting up the runtime. If not set,",
+								Attributes: map[string]schema.Attribute{
+									"auto_sync": schema.BoolAttribute{
+										Description:         "AutoSync enables automatic metadata sync when setting up a runtime. If not set, it defaults to true.",
+										MarkdownDescription: "AutoSync enables automatic metadata sync when setting up a runtime. If not set, it defaults to true.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

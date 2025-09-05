@@ -239,8 +239,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "A description of the rule group.",
-						MarkdownDescription: "A description of the rule group.",
+						Description:         "A description of the rule group. Regex Pattern: '^.*$'",
+						MarkdownDescription: "A description of the rule group. Regex Pattern: '^.*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -774,16 +774,16 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"rule_group_name": schema.StringAttribute{
-						Description:         "The descriptive name of the rule group. You can't change the name of a rule group after you create it.",
-						MarkdownDescription: "The descriptive name of the rule group. You can't change the name of a rule group after you create it.",
+						Description:         "The descriptive name of the rule group. You can't change the name of a rule group after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
+						MarkdownDescription: "The descriptive name of the rule group. You can't change the name of a rule group after you create it. Regex Pattern: '^[a-zA-Z0-9-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"rules": schema.StringAttribute{
-						Description:         "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
-						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricata flat format, with one rule per line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The call response returns a RuleGroup object that Network Firewall has populated from your string.",
+						Description:         "A string containing stateful rule group rules specifications in Suricata flat format, with one ruleper line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The callresponse returns a RuleGroup object that Network Firewall has populated from your string.",
+						MarkdownDescription: "A string containing stateful rule group rules specifications in Suricata flat format, with one ruleper line. Use this to import your existing Suricata compatible rule groups. You must provide either this rules setting or a populated RuleGroup setting, but not both. You can provide your rule group specification in Suricata flat format through this setting when you create or update your rule group. The callresponse returns a RuleGroup object that Network Firewall has populated from your string.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -842,8 +842,8 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"type_": schema.StringAttribute{
-						Description:         "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
-						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it contains stateless rules. If it is stateful, it contains stateful rules.",
+						Description:         "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it containsstateless rules. If it is stateful, it contains stateful rules.",
+						MarkdownDescription: "Indicates whether the rule group is stateless or stateful. If the rule group is stateless, it containsstateless rules. If it is stateful, it contains stateful rules.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

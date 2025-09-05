@@ -189,8 +189,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 										},
 
 										"reasons": schema.ListAttribute{
-											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods. Otherwise, this will apply to each reason defined. allowed reasons are Underutilized, Empty, and Drifted and additional CloudProvider-specific reasons.",
-											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods. Otherwise, this will apply to each reason defined. allowed reasons are Underutilized, Empty, and Drifted and additional CloudProvider-specific reasons.",
+											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods. Otherwise, this will apply to each reason defined. allowed reasons are Underutilized, Empty, and Drifted.",
+											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods. Otherwise, this will apply to each reason defined. allowed reasons are Underutilized, Empty, and Drifted.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -221,7 +221,7 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+|Never)$`), ""),
 								},
 							},
 
@@ -292,7 +292,7 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 										Optional:            true,
 										Computed:            false,
 										Validators: []validator.String{
-											stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+|Never)$`), ""),
 										},
 									},
 
@@ -416,8 +416,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"time_added": schema.StringAttribute{
-													Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
-													MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+													Description:         "TimeAdded represents the time at which the taint was added.",
+													MarkdownDescription: "TimeAdded represents the time at which the taint was added.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -472,8 +472,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 												},
 
 												"time_added": schema.StringAttribute{
-													Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
-													MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+													Description:         "TimeAdded represents the time at which the taint was added.",
+													MarkdownDescription: "TimeAdded represents the time at which the taint was added.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,

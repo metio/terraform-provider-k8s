@@ -526,7 +526,7 @@ func (r *SecretsHashicorpComVaultPkisecretV1Beta1Manifest) Schema(_ context.Cont
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(s|m|h))$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\.[0-9]+)?(s|m|h|d))$`), ""),
 						},
 					},
 

@@ -177,10 +177,11 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				Verbose               *bool              `tfsdk:"verbose" json:"verbose,omitempty"`
 			} `tfsdk:"builder" json:"builder,omitempty"`
 			Camel *struct {
-				Configuration  *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-				Enabled        *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-				Properties     *[]string          `tfsdk:"properties" json:"properties,omitempty"`
-				RuntimeVersion *string            `tfsdk:"runtime_version" json:"runtimeVersion,omitempty"`
+				Configuration   *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled         *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Properties      *[]string          `tfsdk:"properties" json:"properties,omitempty"`
+				RuntimeProvider *string            `tfsdk:"runtime_provider" json:"runtimeProvider,omitempty"`
+				RuntimeVersion  *string            `tfsdk:"runtime_version" json:"runtimeVersion,omitempty"`
 			} `tfsdk:"camel" json:"camel,omitempty"`
 			Container *struct {
 				AllowPrivilegeEscalation *bool              `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
@@ -197,6 +198,7 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				Name                     *string            `tfsdk:"name" json:"name,omitempty"`
 				Port                     *int64             `tfsdk:"port" json:"port,omitempty"`
 				PortName                 *string            `tfsdk:"port_name" json:"portName,omitempty"`
+				Ports                    *[]string          `tfsdk:"ports" json:"ports,omitempty"`
 				RequestCPU               *string            `tfsdk:"request_cpu" json:"requestCPU,omitempty"`
 				RequestMemory            *string            `tfsdk:"request_memory" json:"requestMemory,omitempty"`
 				RunAsNonRoot             *bool              `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
@@ -290,9 +292,16 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
 				Path             *string            `tfsdk:"path" json:"path,omitempty"`
 				PathType         *string            `tfsdk:"path_type" json:"pathType,omitempty"`
+				Paths            *[]string          `tfsdk:"paths" json:"paths,omitempty"`
 				TlsHosts         *[]string          `tfsdk:"tls_hosts" json:"tlsHosts,omitempty"`
 				TlsSecretName    *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
 			} `tfsdk:"ingress" json:"ingress,omitempty"`
+			Init_containers *struct {
+				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				InitTasks     *[]string          `tfsdk:"init_tasks" json:"initTasks,omitempty"`
+				SideCarTasks  *[]string          `tfsdk:"side_car_tasks" json:"sideCarTasks,omitempty"`
+			} `tfsdk:"init_containers" json:"init-containers,omitempty"`
 			Istio *struct {
 				Allow         *string            `tfsdk:"allow" json:"allow,omitempty"`
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
@@ -315,6 +324,7 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				User                       *string            `tfsdk:"user" json:"user,omitempty"`
 			} `tfsdk:"jolokia" json:"jolokia,omitempty"`
 			Jvm *struct {
+				Agents        *[]string          `tfsdk:"agents" json:"agents,omitempty"`
 				Classpath     *string            `tfsdk:"classpath" json:"classpath,omitempty"`
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 				Debug         *bool              `tfsdk:"debug" json:"debug,omitempty"`
@@ -376,7 +386,14 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				Level           *string            `tfsdk:"level" json:"level,omitempty"`
 			} `tfsdk:"logging" json:"logging,omitempty"`
 			Master *struct {
-				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Auto                        *bool              `tfsdk:"auto" json:"auto,omitempty"`
+				Configuration               *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled                     *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				IncludeDelegateDependencies *bool              `tfsdk:"include_delegate_dependencies" json:"includeDelegateDependencies,omitempty"`
+				LabelKey                    *string            `tfsdk:"label_key" json:"labelKey,omitempty"`
+				LabelValue                  *string            `tfsdk:"label_value" json:"labelValue,omitempty"`
+				ResourceName                *string            `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				ResourceType                *string            `tfsdk:"resource_type" json:"resourceType,omitempty"`
 			} `tfsdk:"master" json:"master,omitempty"`
 			Mount *struct {
 				Configs                          *[]string          `tfsdk:"configs" json:"configs,omitempty"`
@@ -465,10 +482,13 @@ type CamelApacheOrgIntegrationPlatformV1ManifestData struct {
 				SeccompProfileType *string            `tfsdk:"seccomp_profile_type" json:"seccompProfileType,omitempty"`
 			} `tfsdk:"security_context" json:"security-context,omitempty"`
 			Service *struct {
+				Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Auto          *bool              `tfsdk:"auto" json:"auto,omitempty"`
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 				NodePort      *bool              `tfsdk:"node_port" json:"nodePort,omitempty"`
+				Ports         *[]string          `tfsdk:"ports" json:"ports,omitempty"`
 				Type          *string            `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"service" json:"service,omitempty"`
 			Service_binding *struct {
@@ -731,8 +751,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -838,8 +858,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -871,8 +891,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -923,8 +943,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -956,8 +976,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -998,8 +1018,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1031,8 +1051,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+														MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1566,9 +1586,20 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"runtime_provider": schema.StringAttribute{
+										Description:         "The runtime provider to use for the integration. (Default, Camel K Runtime).",
+										MarkdownDescription: "The runtime provider to use for the integration. (Default, Camel K Runtime).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("quarkus", "plain-quarkus"),
+										},
+									},
+
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										Description:         "The runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster (Default, the one provided by the operator version).",
+										MarkdownDescription: "The runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster (Default, the one provided by the operator version).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1635,8 +1666,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"expose": schema.BoolAttribute{
-										Description:         "Can be used to enable/disable exposure via kubernetes Service.",
-										MarkdownDescription: "Can be used to enable/disable exposure via kubernetes Service.",
+										Description:         "Can be used to enable/disable http exposure via kubernetes Service.",
+										MarkdownDescription: "Can be used to enable/disable http exposure via kubernetes Service.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1686,16 +1717,25 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"port": schema.Int64Attribute{
-										Description:         "To configure a different port exposed by the container (default '8080').",
-										MarkdownDescription: "To configure a different port exposed by the container (default '8080').",
+										Description:         "To configure a different http port exposed by the container (default '8080').",
+										MarkdownDescription: "To configure a different http port exposed by the container (default '8080').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"port_name": schema.StringAttribute{
-										Description:         "To configure a different port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.",
-										MarkdownDescription: "To configure a different port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.",
+										Description:         "To configure a different http port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.",
+										MarkdownDescription: "To configure a different http port name for the port exposed by the container. It defaults to 'http' only when the 'expose' parameter is true.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ports": schema.ListAttribute{
+										Description:         "List of container ports available in the container (syntax: <port-name>;<port-number>[;port-protocol]). When omitted, 'port-protocol' (admitted values 'TCP', 'UDP' or 'SCTP') is 'TCP'. Don't use this for the primary http managed port (for which case you need to use 'portName' and 'port'). Don't use in Knative based environments.",
+										MarkdownDescription: "List of container ports available in the container (syntax: <port-name>;<port-number>[;port-protocol]). When omitted, 'port-protocol' (admitted values 'TCP', 'UDP' or 'SCTP') is 'TCP'. Don't use this for the primary http managed port (for which case you need to use 'portName' and 'port'). Don't use in Knative based environments.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1745,16 +1785,16 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"service_port": schema.Int64Attribute{
-										Description:         "To configure under which service port the container port is to be exposed (default '80').",
-										MarkdownDescription: "To configure under which service port the container port is to be exposed (default '80').",
+										Description:         "To configure under which service port the http container port is to be exposed (default '80').",
+										MarkdownDescription: "To configure under which service port the http container port is to be exposed (default '80').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"service_port_name": schema.StringAttribute{
-										Description:         "To configure under which service port name the container port is to be exposed (default 'http').",
-										MarkdownDescription: "To configure under which service port name the container port is to be exposed (default 'http').",
+										Description:         "To configure under which service port name the http container port is to be exposed (default 'http').",
+										MarkdownDescription: "To configure under which service port name the http container port is to be exposed (default 'http').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2050,8 +2090,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 							},
 
 							"error_handler": schema.SingleNestedAttribute{
-								Description:         "The configuration of Error Handler trait",
-								MarkdownDescription: "The configuration of Error Handler trait",
+								Description:         "The configuration of Error Handler trait Deprecated: no longer in use.",
+								MarkdownDescription: "The configuration of Error Handler trait Deprecated: no longer in use.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
 										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
@@ -2097,8 +2137,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"discovery_cache": schema.StringAttribute{
-										Description:         "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: to be removed from trait configuration.",
-										MarkdownDescription: "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: to be removed from trait configuration.",
+										Description:         "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: no longer in use.",
+										MarkdownDescription: "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: no longer in use.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2393,8 +2433,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"path": schema.StringAttribute{
-										Description:         "To configure the path exposed by the ingress (default '/').",
-										MarkdownDescription: "To configure the path exposed by the ingress (default '/').",
+										Description:         "To configure the path exposed by the ingress (default '/'). Deprecated: In favor of 'paths' - left for backward compatibility.",
+										MarkdownDescription: "To configure the path exposed by the ingress (default '/'). Deprecated: In favor of 'paths' - left for backward compatibility.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2411,6 +2451,15 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										},
 									},
 
+									"paths": schema.ListAttribute{
+										Description:         "To configure the paths exposed by the ingress (default '['/']').",
+										MarkdownDescription: "To configure the paths exposed by the ingress (default '['/']').",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"tls_hosts": schema.ListAttribute{
 										Description:         "To configure tls hosts",
 										MarkdownDescription: "To configure tls hosts",
@@ -2423,6 +2472,50 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									"tls_secret_name": schema.StringAttribute{
 										Description:         "To configure tls secret name",
 										MarkdownDescription: "To configure tls secret name",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"init_containers": schema.SingleNestedAttribute{
+								Description:         "The configuration of Init Containers trait",
+								MarkdownDescription: "The configuration of Init Containers trait",
+								Attributes: map[string]schema.Attribute{
+									"configuration": schema.MapAttribute{
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Can be used to enable or disable a trait. All traits share this common property.",
+										MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"init_tasks": schema.ListAttribute{
+										Description:         "A list of init tasks to be executed with format '<name>;<container-image>;<container-command>'.",
+										MarkdownDescription: "A list of init tasks to be executed with format '<name>;<container-image>;<container-command>'.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"side_car_tasks": schema.ListAttribute{
+										Description:         "A list of sidecar tasks to be executed with format '<name>;<container-image>;<container-command>'.",
+										MarkdownDescription: "A list of sidecar tasks to be executed with format '<name>;<container-image>;<container-command>'.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2595,6 +2688,15 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 								Description:         "The configuration of JVM trait",
 								MarkdownDescription: "The configuration of JVM trait",
 								Attributes: map[string]schema.Attribute{
+									"agents": schema.ListAttribute{
+										Description:         "A list of JVM agents to download and execute with format '<agent-name>;<agent-url>[;<jvm-agent-options>]'.",
+										MarkdownDescription: "A list of JVM agents to download and execute with format '<agent-name>;<agent-url>[;<jvm-agent-options>]'.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"classpath": schema.StringAttribute{
 										Description:         "Additional JVM classpath (use 'Linux' classpath separator)",
 										MarkdownDescription: "Additional JVM classpath (use 'Linux' classpath separator)",
@@ -3062,15 +3164,71 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 							},
 
 							"master": schema.SingleNestedAttribute{
-								Description:         "Deprecated: for backward compatibility.",
-								MarkdownDescription: "Deprecated: for backward compatibility.",
+								Description:         "The configuration of Master trait",
+								MarkdownDescription: "The configuration of Master trait",
 								Attributes: map[string]schema.Attribute{
+									"auto": schema.BoolAttribute{
+										Description:         "Enables automatic configuration of the trait.",
+										MarkdownDescription: "Enables automatic configuration of the trait.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"configuration": schema.MapAttribute{
-										Description:         "TraitConfiguration parameters configuration",
-										MarkdownDescription: "TraitConfiguration parameters configuration",
+										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
-										Required:            true,
-										Optional:            false,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Can be used to enable or disable a trait. All traits share this common property.",
+										MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"include_delegate_dependencies": schema.BoolAttribute{
+										Description:         "When this flag is active, the operator analyzes the source code to add dependencies required by delegate endpoints. E.g. when using 'master:lockname:timer', then 'camel:timer' is automatically added to the set of dependencies. It's enabled by default.",
+										MarkdownDescription: "When this flag is active, the operator analyzes the source code to add dependencies required by delegate endpoints. E.g. when using 'master:lockname:timer', then 'camel:timer' is automatically added to the set of dependencies. It's enabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"label_key": schema.StringAttribute{
+										Description:         "Label that will be used to identify all pods contending the lock. Defaults to 'camel.apache.org/integration'.",
+										MarkdownDescription: "Label that will be used to identify all pods contending the lock. Defaults to 'camel.apache.org/integration'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"label_value": schema.StringAttribute{
+										Description:         "Label value that will be used to identify all pods contending the lock. Defaults to the integration name.",
+										MarkdownDescription: "Label value that will be used to identify all pods contending the lock. Defaults to the integration name.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resource_name": schema.StringAttribute{
+										Description:         "Name of the configmap that will be used to store the lock. Defaults to '<integration-name>-lock'. Name of the configmap/lease resource that will be used to store the lock. Defaults to '<integration-name>-lock'.",
+										MarkdownDescription: "Name of the configmap that will be used to store the lock. Defaults to '<integration-name>-lock'. Name of the configmap/lease resource that will be used to store the lock. Defaults to '<integration-name>-lock'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resource_type": schema.StringAttribute{
+										Description:         "Type of Kubernetes resource to use for locking ('ConfigMap' or 'Lease'). Defaults to 'Lease'.",
+										MarkdownDescription: "Type of Kubernetes resource to use for locking ('ConfigMap' or 'Lease'). Defaults to 'Lease'.",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},
@@ -3102,8 +3260,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 									},
 
 									"empty_dirs": schema.ListAttribute{
-										Description:         "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
-										MarkdownDescription: "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
+										Description:         "A list of EmptyDir volumes to be mounted. An optional size limit may be configured (default 500Mi). Syntax: name:/container/path[:sizeLimit]",
+										MarkdownDescription: "A list of EmptyDir volumes to be mounted. An optional size limit may be configured (default 500Mi). Syntax: name:/container/path[:sizeLimit]",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3719,6 +3877,15 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 								Description:         "The configuration of Service trait",
 								MarkdownDescription: "The configuration of Service trait",
 								Attributes: map[string]schema.Attribute{
+									"annotations": schema.MapAttribute{
+										Description:         "The annotations added to the Service object.",
+										MarkdownDescription: "The annotations added to the Service object.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"auto": schema.BoolAttribute{
 										Description:         "To automatically detect from the code if a Service needs to be created.",
 										MarkdownDescription: "To automatically detect from the code if a Service needs to be created.",
@@ -3744,9 +3911,27 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 										Computed:            false,
 									},
 
+									"labels": schema.MapAttribute{
+										Description:         "The labels added to the Service object.",
+										MarkdownDescription: "The labels added to the Service object.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"node_port": schema.BoolAttribute{
 										Description:         "Enable Service to be exposed as NodePort (default 'false'). Deprecated: Use service type instead.",
 										MarkdownDescription: "Enable Service to be exposed as NodePort (default 'false'). Deprecated: Use service type instead.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"ports": schema.ListAttribute{
+										Description:         "List of container ports available in the container to expose (syntax: <port-name>;<port-number>;<container-port-number>[;<port-protocol]). When omitted, 'port-protocol' (admitted values 'TCP', 'UDP' or 'SCTP') is 'TCP'. Don't use this for the primary http managed port (which is managed by container trait). Don't use in Knative based environments.",
+										MarkdownDescription: "List of container ports available in the container to expose (syntax: <port-name>;<port-number>;<container-port-number>[;<port-protocol]). When omitted, 'port-protocol' (admitted values 'TCP', 'UDP' or 'SCTP') is 'TCP'. Don't use this for the primary http managed port (which is managed by container trait). Don't use in Knative based environments.",
+										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3769,8 +3954,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, 
 							},
 
 							"service_binding": schema.SingleNestedAttribute{
-								Description:         "The configuration of Service Binding trait",
-								MarkdownDescription: "The configuration of Service Binding trait",
+								Description:         "The configuration of Service Binding trait Deprecated: no longer in use.",
+								MarkdownDescription: "The configuration of Service Binding trait Deprecated: no longer in use.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
 										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",

@@ -533,6 +533,8 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			TimestampKey     *string            `tfsdk:"timestamp_key" json:"timestampKey,omitempty"`
 			TopicKey         *string            `tfsdk:"topic_key" json:"topicKey,omitempty"`
 			Topics           *string            `tfsdk:"topics" json:"topics,omitempty"`
+			TotalLimitSize   *string            `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
+			Workers          *int64             `tfsdk:"workers" json:"workers,omitempty"`
 		} `tfsdk:"kafka" json:"kafka,omitempty"`
 		Kinesis *struct {
 			AutoRetryRequests *bool   `tfsdk:"auto_retry_requests" json:"autoRetryRequests,omitempty"`
@@ -594,9 +596,11 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				MaxWorkerConnections   *int64  `tfsdk:"max_worker_connections" json:"maxWorkerConnections,omitempty"`
 				SourceAddress          *string `tfsdk:"source_address" json:"sourceAddress,omitempty"`
 			} `tfsdk:"networking" json:"networking,omitempty"`
-			Port       *int64    `tfsdk:"port" json:"port,omitempty"`
-			RemoveKeys *[]string `tfsdk:"remove_keys" json:"removeKeys,omitempty"`
-			TenantID   *struct {
+			Port                   *int64             `tfsdk:"port" json:"port,omitempty"`
+			RemoveKeys             *[]string          `tfsdk:"remove_keys" json:"removeKeys,omitempty"`
+			StructuredMetadata     *map[string]string `tfsdk:"structured_metadata" json:"structuredMetadata,omitempty"`
+			StructuredMetadataKeys *[]string          `tfsdk:"structured_metadata_keys" json:"structuredMetadataKeys,omitempty"`
+			TenantID               *struct {
 				ValueFrom *struct {
 					SecretKeyRef *struct {
 						Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -624,13 +628,14 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				Verify *bool   `tfsdk:"verify" json:"verify,omitempty"`
 				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
-			Uri *string `tfsdk:"uri" json:"uri,omitempty"`
+			TotalLimitSize *string `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
+			Uri            *string `tfsdk:"uri" json:"uri,omitempty"`
+			Workers        *int64  `tfsdk:"workers" json:"workers,omitempty"`
 		} `tfsdk:"loki" json:"loki,omitempty"`
 		Match      *string            `tfsdk:"match" json:"match,omitempty"`
 		MatchRegex *string            `tfsdk:"match_regex" json:"matchRegex,omitempty"`
 		Null       *map[string]string `tfsdk:"null" json:"null,omitempty"`
 		Opensearch *struct {
-			Workers          *int64  `tfsdk:"workers" json:"Workers,omitempty"`
 			AwsAuth          *string `tfsdk:"aws_auth" json:"awsAuth,omitempty"`
 			AwsExternalID    *string `tfsdk:"aws_external_id" json:"awsExternalID,omitempty"`
 			AwsRegion        *string `tfsdk:"aws_region" json:"awsRegion,omitempty"`
@@ -709,6 +714,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			TraceError     *bool   `tfsdk:"trace_error" json:"traceError,omitempty"`
 			TraceOutput    *bool   `tfsdk:"trace_output" json:"traceOutput,omitempty"`
 			Type           *string `tfsdk:"type" json:"type,omitempty"`
+			Workers        *int64  `tfsdk:"workers" json:"workers,omitempty"`
 			WriteOperation *string `tfsdk:"write_operation" json:"writeOperation,omitempty"`
 		} `tfsdk:"opensearch" json:"opensearch,omitempty"`
 		Opentelemetry *struct {
@@ -734,6 +740,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
 			LogResponsePayload    *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
+			LogsBodyKey           *string `tfsdk:"logs_body_key" json:"logsBodyKey,omitempty"`
 			LogsBodyKeyAttributes *bool   `tfsdk:"logs_body_key_attributes" json:"logsBodyKeyAttributes,omitempty"`
 			LogsUri               *string `tfsdk:"logs_uri" json:"logsUri,omitempty"`
 			MetricsUri            *string `tfsdk:"metrics_uri" json:"metricsUri,omitempty"`
@@ -864,6 +871,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			UploadChunkSize          *string `tfsdk:"upload_chunk_size" json:"UploadChunkSize,omitempty"`
 			UploadTimeout            *string `tfsdk:"upload_timeout" json:"UploadTimeout,omitempty"`
 			UsePutObject             *bool   `tfsdk:"use_put_object" json:"UsePutObject,omitempty"`
+			Workers                  *int64  `tfsdk:"workers" json:"Workers,omitempty"`
 			Tls                      *struct {
 				CaFile      *string `tfsdk:"ca_file" json:"caFile,omitempty"`
 				CaPath      *string `tfsdk:"ca_path" json:"caPath,omitempty"`
@@ -4579,6 +4587,22 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -4627,6 +4651,9 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
 							},
 
 							"role_arn": schema.StringAttribute{
@@ -5028,6 +5055,24 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"structured_metadata": schema.MapAttribute{
+								Description:         "Stream structured metadata for API request. It can be multiple comma separated key=value pairs. This is used for high cardinality data that isn't suited for using labels. Only supported in Loki 3.0+ with schema v13 and TSDB storage.",
+								MarkdownDescription: "Stream structured metadata for API request. It can be multiple comma separated key=value pairs. This is used for high cardinality data that isn't suited for using labels. Only supported in Loki 3.0+ with schema v13 and TSDB storage.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"structured_metadata_keys": schema.ListAttribute{
+								Description:         "Optional list of record keys that will be placed as structured metadata. This allows using record accessor patterns (e.g. $kubernetes['pod_name']) to reference record keys.",
+								MarkdownDescription: "Optional list of record keys that will be placed as structured metadata. This allows using record accessor patterns (e.g. $kubernetes['pod_name']) to reference record keys.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"tenant_id": schema.SingleNestedAttribute{
 								Description:         "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
 								MarkdownDescription: "Tenant ID used by default to push logs to Loki. If omitted or empty it assumes Loki is running in single-tenant mode and no X-Scope-OrgID header is sent.",
@@ -5206,9 +5251,25 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed: false,
 							},
 
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"uri": schema.StringAttribute{
 								Description:         "Specify a custom HTTP URI. It must start with forward slash.",
 								MarkdownDescription: "Specify a custom HTTP URI. It must start with forward slash.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5248,14 +5309,6 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 						Description:         "OpenSearch defines OpenSearch Output configuration.",
 						MarkdownDescription: "OpenSearch defines OpenSearch Output configuration.",
 						Attributes: map[string]schema.Attribute{
-							"workers": schema.Int64Attribute{
-								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
-								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"aws_auth": schema.StringAttribute{
 								Description:         "Enable AWS Sigv4 Authentication for Amazon OpenSearch Service.",
 								MarkdownDescription: "Enable AWS Sigv4 Authentication for Amazon OpenSearch Service.",
@@ -5627,8 +5680,8 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							},
 
 							"replace_dots": schema.BoolAttribute{
-								Description:         "When enabled, replace field name dots with underscore, required by Elasticsearch 2.0-2.3.",
-								MarkdownDescription: "When enabled, replace field name dots with underscore, required by Elasticsearch 2.0-2.3.",
+								Description:         "When enabled, replace field name dots with underscore, required by Opensearch 2.0-2.3.",
+								MarkdownDescription: "When enabled, replace field name dots with underscore, required by Opensearch 2.0-2.3.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5802,16 +5855,16 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							},
 
 							"trace_error": schema.BoolAttribute{
-								Description:         "When enabled print the elasticsearch API calls to stdout when elasticsearch returns an error",
-								MarkdownDescription: "When enabled print the elasticsearch API calls to stdout when elasticsearch returns an error",
+								Description:         "When enabled print the Opensearch API calls to stdout when Opensearch returns an error",
+								MarkdownDescription: "When enabled print the Opensearch API calls to stdout when Opensearch returns an error",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"trace_output": schema.BoolAttribute{
-								Description:         "When enabled print the elasticsearch API calls to stdout (for diag only)",
-								MarkdownDescription: "When enabled print the elasticsearch API calls to stdout (for diag only)",
+								Description:         "When enabled print the Opensearch API calls to stdout (for diag only)",
+								MarkdownDescription: "When enabled print the Opensearch API calls to stdout (for diag only)",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5820,6 +5873,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"type": schema.StringAttribute{
 								Description:         "Type name",
 								MarkdownDescription: "Type name",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
+								MarkdownDescription: "Enables dedicated thread(s) for this output. Default value is set since version 1.8.13. For previous versions is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5973,6 +6034,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"log_response_payload": schema.BoolAttribute{
 								Description:         "Log the response payload within the Fluent Bit log.",
 								MarkdownDescription: "Log the response payload within the Fluent Bit log.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"logs_body_key": schema.StringAttribute{
+								Description:         "The log body key to look up in the log events body/message. Sets the Body field of the opentelemtry logs data model.",
+								MarkdownDescription: "The log body key to look up in the log events body/message. Sets the Body field of the opentelemtry logs data model.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -6920,6 +6989,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 							"use_put_object": schema.BoolAttribute{
 								Description:         "Use the S3 PutObject API, instead of the multipart upload API.",
 								MarkdownDescription: "Use the S3 PutObject API, instead of the multipart upload API.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"workers": schema.Int64Attribute{
+								Description:         "Specify number of worker threads to use to output to S3",
+								MarkdownDescription: "Specify number of worker threads to use to output to S3",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -128,57 +128,57 @@ func (r *K8SNginxOrgGlobalConfigurationV1Manifest) Schema(_ context.Context, _ d
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "GlobalConfigurationSpec is the spec of the GlobalConfiguration resource.",
-				MarkdownDescription: "GlobalConfigurationSpec is the spec of the GlobalConfiguration resource.",
+				Description:         "GlobalConfigurationSpec resource defines the global configuration parameters of the Ingress Controller.",
+				MarkdownDescription: "GlobalConfigurationSpec resource defines the global configuration parameters of the Ingress Controller.",
 				Attributes: map[string]schema.Attribute{
 					"listeners": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Listeners field of the GlobalConfigurationSpec resource",
+						MarkdownDescription: "Listeners field of the GlobalConfigurationSpec resource",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"ipv4": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Specifies the IPv4 address to listen on.",
+									MarkdownDescription: "Specifies the IPv4 address to listen on.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"ipv6": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "ipv6 addresse that NGINX will listen on.",
+									MarkdownDescription: "ipv6 addresse that NGINX will listen on.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The name of the listener. The name must be unique across all listeners.",
+									MarkdownDescription: "The name of the listener. The name must be unique across all listeners.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The port on which the listener will accept connections.",
+									MarkdownDescription: "The port on which the listener will accept connections.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"protocol": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The protocol of the listener. For example, HTTP.",
+									MarkdownDescription: "The protocol of the listener. For example, HTTP.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"ssl": schema.BoolAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Whether the listener will be listening for SSL connections",
+									MarkdownDescription: "Whether the listener will be listening for SSL connections",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

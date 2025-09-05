@@ -180,8 +180,8 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 					},
 
 					"certificate_authority_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
-						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012",
+						Description:         "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 Regex Pattern: '^arn:[w+=/,.@-]+:acm-pca:[w+=/,.@-]*:[0-9]*:[w+=,.@-]+(/[w+=,.@-]+)*$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority (https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html). This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 Regex Pattern: '^arn:[w+=/,.@-]+:acm-pca:[w+=/,.@-]*:[0-9]*:[w+=,.@-]+(/[w+=,.@-]+)*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

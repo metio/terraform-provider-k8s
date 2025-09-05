@@ -151,10 +151,10 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"execution_role_arn": schema.StringAttribute{
-						Description:         "The execution role ARN for the job run.",
-						MarkdownDescription: "The execution role ARN for the job run.",
-						Required:            true,
-						Optional:            false,
+						Description:         "The execution role ARN for the job run. Regex Pattern: '^arn:(aws[a-zA-Z0-9-]*):iam::(d{12})?:(role((u002F)|(u002F[u0021-u007F]+u002F))[w+=,.@-]+)$'",
+						MarkdownDescription: "The execution role ARN for the job run. Regex Pattern: '^arn:(aws[a-zA-Z0-9-]*):iam::(d{12})?:(role((u002F)|(u002F[u0021-u007F]+u002F))[w+=,.@-]+)$'",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -196,24 +196,24 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the job run.",
-						MarkdownDescription: "The name of the job run.",
+						Description:         "The name of the job run. Regex Pattern: '^[.-_/#A-Za-z0-9]+$'",
+						MarkdownDescription: "The name of the job run. Regex Pattern: '^[.-_/#A-Za-z0-9]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"release_label": schema.StringAttribute{
-						Description:         "The Amazon EMR release version to use for the job run.",
-						MarkdownDescription: "The Amazon EMR release version to use for the job run.",
-						Required:            true,
-						Optional:            false,
+						Description:         "The Amazon EMR release version to use for the job run. Regex Pattern: '^[.-_/A-Za-z0-9]+$'",
+						MarkdownDescription: "The Amazon EMR release version to use for the job run. Regex Pattern: '^[.-_/A-Za-z0-9]+$'",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
@@ -227,8 +227,8 @@ func (r *EmrcontainersServicesK8SAwsJobRunV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"virtual_cluster_id": schema.StringAttribute{
-						Description:         "The virtual cluster ID for which the job run request is submitted.",
-						MarkdownDescription: "The virtual cluster ID for which the job run request is submitted.",
+						Description:         "The virtual cluster ID for which the job run request is submitted. Regex Pattern: '^[0-9a-z]+$'",
+						MarkdownDescription: "The virtual cluster ID for which the job run request is submitted. Regex Pattern: '^[0-9a-z]+$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

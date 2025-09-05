@@ -191,7 +191,7 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsimageV1Beta1Manifest) Schema(_ con
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("tier1", "tier3"),
+							stringvalidator.OneOf("tier0", "tier1", "tier3"),
 						},
 					},
 				},

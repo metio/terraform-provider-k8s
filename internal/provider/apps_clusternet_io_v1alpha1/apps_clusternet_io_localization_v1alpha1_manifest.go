@@ -52,6 +52,8 @@ type AppsClusternetIoLocalizationV1Alpha1ManifestData struct {
 		} `tfsdk:"feed" json:"feed,omitempty"`
 		OverridePolicy *string `tfsdk:"override_policy" json:"overridePolicy,omitempty"`
 		Overrides      *[]struct {
+			FieldFormat   *string `tfsdk:"field_format" json:"fieldFormat,omitempty"`
+			FieldPath     *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 			Name          *string `tfsdk:"name" json:"name,omitempty"`
 			OverrideChart *bool   `tfsdk:"override_chart" json:"overrideChart,omitempty"`
 			Type          *string `tfsdk:"type" json:"type,omitempty"`
@@ -195,6 +197,25 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Manifest) Schema(_ context.Context,
 						MarkdownDescription: "Overrides holds all the OverrideConfig.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"field_format": schema.StringAttribute{
+									Description:         "FieldFormat indicates the field format for the override value for FieldPatch.",
+									MarkdownDescription: "FieldFormat indicates the field format for the override value for FieldPatch.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("YAML", "JSON"),
+									},
+								},
+
+								"field_path": schema.StringAttribute{
+									Description:         "FieldPath indicates the field path for the override value for FieldPatch.",
+									MarkdownDescription: "FieldPath indicates the field path for the override value for FieldPatch.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "Name indicate the OverrideConfig name.",
 									MarkdownDescription: "Name indicate the OverrideConfig name.",
@@ -218,7 +239,7 @@ func (r *AppsClusternetIoLocalizationV1Alpha1Manifest) Schema(_ context.Context,
 									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Helm", "JSONPatch", "MergePatch"),
+										stringvalidator.OneOf("Helm", "JSONPatch", "MergePatch", "FieldJSONPatch", "FieldMergePatch"),
 									},
 								},
 

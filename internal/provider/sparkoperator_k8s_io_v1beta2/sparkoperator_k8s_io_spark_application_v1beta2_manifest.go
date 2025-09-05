@@ -419,7 +419,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -427,7 +428,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -493,12 +498,13 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -552,15 +558,21 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			Memory             *string            `tfsdk:"memory" json:"memory,omitempty"`
+			MemoryLimit        *string            `tfsdk:"memory_limit" json:"memoryLimit,omitempty"`
 			MemoryOverhead     *string            `tfsdk:"memory_overhead" json:"memoryOverhead,omitempty"`
 			NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodName            *string            `tfsdk:"pod_name" json:"podName,omitempty"`
 			PodSecurityContext *struct {
+				AppArmorProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -571,8 +583,9 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -597,7 +610,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -787,7 +804,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -795,7 +813,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -861,16 +883,18 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"sidecars" json:"sidecars,omitempty"`
-			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+			Template                      *map[string]string `tfsdk:"template" json:"template,omitempty"`
+			TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 			Tolerations                   *[]struct {
 				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 				Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -879,12 +903,13 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"driver" json:"driver,omitempty"`
 		DriverIngressOptions *[]struct {
@@ -905,6 +930,7 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 			InitialExecutors       *int64 `tfsdk:"initial_executors" json:"initialExecutors,omitempty"`
 			MaxExecutors           *int64 `tfsdk:"max_executors" json:"maxExecutors,omitempty"`
 			MinExecutors           *int64 `tfsdk:"min_executors" json:"minExecutors,omitempty"`
+			ShuffleTrackingEnabled *bool  `tfsdk:"shuffle_tracking_enabled" json:"shuffleTrackingEnabled,omitempty"`
 			ShuffleTrackingTimeout *int64 `tfsdk:"shuffle_tracking_timeout" json:"shuffleTrackingTimeout,omitempty"`
 		} `tfsdk:"dynamic_allocation" json:"dynamicAllocation,omitempty"`
 		Executor *struct {
@@ -1266,7 +1292,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1274,7 +1301,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1340,12 +1371,13 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -1399,14 +1431,20 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"pre_stop" json:"preStop,omitempty"`
 			} `tfsdk:"lifecycle" json:"lifecycle,omitempty"`
 			Memory             *string            `tfsdk:"memory" json:"memory,omitempty"`
+			MemoryLimit        *string            `tfsdk:"memory_limit" json:"memoryLimit,omitempty"`
 			MemoryOverhead     *string            `tfsdk:"memory_overhead" json:"memoryOverhead,omitempty"`
 			NodeSelector       *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PodSecurityContext *struct {
+				AppArmorProfile *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 				FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 				FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 				RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 				RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 				RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+				SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 				SeLinuxOptions      *struct {
 					Level *string `tfsdk:"level" json:"level,omitempty"`
 					Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1417,8 +1455,9 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1443,7 +1482,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 			} `tfsdk:"secrets" json:"secrets,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-				Capabilities             *struct {
+				AppArmorProfile          *struct {
+					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+					Type             *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+				Capabilities *struct {
 					Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 					Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 				} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1631,7 +1674,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1639,7 +1683,11 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 				SecurityContext *struct {
 					AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-					Capabilities             *struct {
+					AppArmorProfile          *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+					Capabilities *struct {
 						Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 						Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 					} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -1705,16 +1753,18 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 					Name       *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 				VolumeMounts *[]struct {
-					MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-					MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-					Name             *string `tfsdk:"name" json:"name,omitempty"`
-					ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-					SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-					SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"sidecars" json:"sidecars,omitempty"`
-			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
+			Template                      *map[string]string `tfsdk:"template" json:"template,omitempty"`
+			TerminationGracePeriodSeconds *int64             `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 			Tolerations                   *[]struct {
 				Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 				Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -1723,12 +1773,13 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				Value             *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			VolumeMounts *[]struct {
-				MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-				MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-				Name             *string `tfsdk:"name" json:"name,omitempty"`
-				ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-				SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+				MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+				Name              *string `tfsdk:"name" json:"name,omitempty"`
+				ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+				RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+				SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"executor" json:"executor,omitempty"`
 		FailureRetries       *int64             `tfsdk:"failure_retries" json:"failureRetries,omitempty"`
@@ -1861,8 +1912,14 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 			} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
 			Ephemeral *struct {
 				VolumeClaimTemplate *struct {
-					Metadata *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
-					Spec     *struct {
+					Metadata *struct {
+						Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Finalizers  *[]string          `tfsdk:"finalizers" json:"finalizers,omitempty"`
+						Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Name        *string            `tfsdk:"name" json:"name,omitempty"`
+						Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"metadata" json:"metadata,omitempty"`
+					Spec *struct {
 						AccessModes *[]string `tfsdk:"access_modes" json:"accessModes,omitempty"`
 						DataSource  *struct {
 							ApiGroup *string `tfsdk:"api_group" json:"apiGroup,omitempty"`
@@ -1934,6 +1991,10 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				Path *string `tfsdk:"path" json:"path,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
+			Image *struct {
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			Iscsi *struct {
 				ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 				ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -2565,8 +2626,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2574,8 +2635,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2732,8 +2793,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2741,8 +2802,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -2899,8 +2960,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -2908,8 +2969,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -3066,8 +3127,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3075,8 +3136,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -3252,16 +3313,16 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3325,8 +3386,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3416,8 +3477,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3457,8 +3518,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "The ConfigMap to select from",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3490,8 +3551,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "The Secret to select from",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3592,8 +3653,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										"ip": schema.StringAttribute{
 											Description:         "IP address of the host file entry.",
 											MarkdownDescription: "IP address of the host file entry.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},
@@ -3680,8 +3741,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3771,8 +3832,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -3812,8 +3873,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3845,8 +3906,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -3896,8 +3957,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -3914,8 +3975,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -3982,8 +4043,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -3999,8 +4060,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4033,8 +4094,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4051,8 +4112,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4119,8 +4180,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -4136,8 +4197,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4175,8 +4236,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4201,8 +4262,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4226,8 +4287,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4318,8 +4379,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4427,8 +4488,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4453,8 +4514,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4478,8 +4539,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -4570,8 +4631,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -4658,6 +4719,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -4708,6 +4777,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -4744,8 +4838,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4900,8 +4994,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -4926,8 +5020,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4951,8 +5045,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5043,8 +5137,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5169,8 +5263,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5187,6 +5281,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -5262,8 +5364,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5280,8 +5382,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5348,8 +5450,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"sleep": schema.SingleNestedAttribute{
-												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Description:         "Sleep represents a duration that the container should sleep.",
+												MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 												Attributes: map[string]schema.Attribute{
 													"seconds": schema.Int64Attribute{
 														Description:         "Seconds is the number of seconds to sleep.",
@@ -5365,8 +5467,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5399,8 +5501,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -5417,8 +5519,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -5485,8 +5587,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"sleep": schema.SingleNestedAttribute{
-												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Description:         "Sleep represents a duration that the container should sleep.",
+												MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 												Attributes: map[string]schema.Attribute{
 													"seconds": schema.Int64Attribute{
 														Description:         "Seconds is the number of seconds to sleep.",
@@ -5502,8 +5604,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -5544,6 +5646,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"memory_limit": schema.StringAttribute{
+								Description:         "MemoryLimit overrides the memory limit of the pod.",
+								MarkdownDescription: "MemoryLimit overrides the memory limit of the pod.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"memory_overhead": schema.StringAttribute{
 								Description:         "MemoryOverhead is the amount of off-heap memory to allocate in cluster mode, in MiB unless otherwise specified.",
 								MarkdownDescription: "MemoryOverhead is the amount of off-heap memory to allocate in cluster mode, in MiB unless otherwise specified.",
@@ -5576,6 +5686,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Description:         "PodSecurityContext specifies the PodSecurityContext to apply.",
 								MarkdownDescription: "PodSecurityContext specifies the PodSecurityContext to apply.",
 								Attributes: map[string]schema.Attribute{
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"fs_group": schema.Int64Attribute{
 										Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -5611,6 +5746,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									"run_as_user": schema.Int64Attribute{
 										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5683,9 +5826,17 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5862,6 +6013,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"capabilities": schema.SingleNestedAttribute{
 										Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -5898,8 +6074,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									},
 
 									"proc_mount": schema.StringAttribute{
-										Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6144,8 +6320,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6235,8 +6411,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6276,8 +6452,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6309,8 +6485,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -6360,8 +6536,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6378,8 +6554,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6446,8 +6622,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -6463,8 +6639,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6497,8 +6673,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6515,8 +6691,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6583,8 +6759,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -6600,8 +6776,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6639,8 +6815,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6665,8 +6841,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6690,8 +6866,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -6782,8 +6958,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -6891,8 +7067,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -6917,8 +7093,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6942,8 +7118,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7034,8 +7210,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7122,6 +7298,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -7172,6 +7356,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -7208,8 +7417,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7364,8 +7573,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -7390,8 +7599,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7415,8 +7624,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -7507,8 +7716,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -7633,8 +7842,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7651,6 +7860,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7690,6 +7907,15 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"template": schema.MapAttribute{
+								Description:         "Template is a pod template that can be used to define the driver or executor pod configurations that Spark configurations do not support. Spark version >= 3.0.0 is required. Ref: https://spark.apache.org/docs/latest/running-on-kubernetes.html#pod-template.",
+								MarkdownDescription: "Template is a pod template that can be used to define the driver or executor pod configurations that Spark configurations do not support. Spark version >= 3.0.0 is required. Ref: https://spark.apache.org/docs/latest/running-on-kubernetes.html#pod-template.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"termination_grace_period_seconds": schema.Int64Attribute{
@@ -7765,8 +7991,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										},
 
 										"mount_propagation": schema.StringAttribute{
-											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7783,6 +8009,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										"read_only": schema.BoolAttribute{
 											Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 											MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"recursive_read_only": schema.StringAttribute{
+											Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+											MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7944,6 +8178,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 							"min_executors": schema.Int64Attribute{
 								Description:         "MinExecutors is the lower bound for the number of executors if dynamic allocation is enabled.",
 								MarkdownDescription: "MinExecutors is the lower bound for the number of executors if dynamic allocation is enabled.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"shuffle_tracking_enabled": schema.BoolAttribute{
+								Description:         "ShuffleTrackingEnabled enables shuffle file tracking for executors, which allows dynamic allocation without the need for an external shuffle service. This option will try to keep alive executors that are storing shuffle data for active jobs. If external shuffle service is enabled, set ShuffleTrackingEnabled to false. ShuffleTrackingEnabled is true by default if dynamicAllocation.enabled is true.",
+								MarkdownDescription: "ShuffleTrackingEnabled enables shuffle file tracking for executors, which allows dynamic allocation without the need for an external shuffle service. This option will try to keep alive executors that are storing shuffle data for active jobs. If external shuffle service is enabled, set ShuffleTrackingEnabled to false. ShuffleTrackingEnabled is true by default if dynamicAllocation.enabled is true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -8239,8 +8481,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8248,8 +8490,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8406,8 +8648,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8415,8 +8657,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8573,8 +8815,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"match_label_keys": schema.ListAttribute{
-																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8582,8 +8824,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																},
 
 																"mismatch_label_keys": schema.ListAttribute{
-																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+																	Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+																	MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,
@@ -8740,8 +8982,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"match_label_keys": schema.ListAttribute{
-															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. Also, MatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both matchLabelKeys and labelSelector. Also, matchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8749,8 +8991,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"mismatch_label_keys": schema.ListAttribute{
-															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
-															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'LabelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both MismatchLabelKeys and LabelSelector. Also, MismatchLabelKeys cannot be set when LabelSelector isn't set. This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.",
+															Description:         "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
+															MarkdownDescription: "MismatchLabelKeys is a set of pod label keys to select which pods will be taken into consideration. The keys are used to lookup values from the incoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)' to select the group of existing pods which pods will be taken into consideration for the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming pod labels will be ignored. The default value is empty. The same key is forbidden to exist in both mismatchLabelKeys and labelSelector. Also, mismatchLabelKeys cannot be set when labelSelector isn't set. This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -8934,16 +9176,16 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Required.",
-													MarkdownDescription: "Required.",
+													Description:         "Name is this DNS resolver option's name. Required.",
+													MarkdownDescription: "Name is this DNS resolver option's name. Required.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"value": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "Value is this DNS resolver option's value.",
+													MarkdownDescription: "Value is this DNS resolver option's value.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9007,8 +9249,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -9098,8 +9340,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+															MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -9139,8 +9381,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "The ConfigMap to select from",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9172,8 +9414,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "The Secret to select from",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -9274,8 +9516,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										"ip": schema.StringAttribute{
 											Description:         "IP address of the host file entry.",
 											MarkdownDescription: "IP address of the host file entry.",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},
@@ -9362,8 +9604,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9453,8 +9695,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -9494,8 +9736,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9527,8 +9769,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -9578,8 +9820,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -9596,8 +9838,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -9664,8 +9906,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -9681,8 +9923,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -9715,8 +9957,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -9733,8 +9975,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -9801,8 +10043,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -9818,8 +10060,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -9857,8 +10099,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -9883,8 +10125,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -9908,8 +10150,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -10000,8 +10242,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -10109,8 +10351,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -10135,8 +10377,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -10160,8 +10402,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -10252,8 +10494,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -10340,6 +10582,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -10390,6 +10640,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -10426,8 +10701,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -10582,8 +10857,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -10608,8 +10883,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -10633,8 +10908,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -10725,8 +11000,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -10851,8 +11126,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10869,6 +11144,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -10947,8 +11230,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -10965,8 +11248,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -11033,8 +11316,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"sleep": schema.SingleNestedAttribute{
-												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Description:         "Sleep represents a duration that the container should sleep.",
+												MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 												Attributes: map[string]schema.Attribute{
 													"seconds": schema.Int64Attribute{
 														Description:         "Seconds is the number of seconds to sleep.",
@@ -11050,8 +11333,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -11084,8 +11367,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 										Attributes: map[string]schema.Attribute{
 											"exec": schema.SingleNestedAttribute{
-												Description:         "Exec specifies the action to take.",
-												MarkdownDescription: "Exec specifies the action to take.",
+												Description:         "Exec specifies a command to execute in the container.",
+												MarkdownDescription: "Exec specifies a command to execute in the container.",
 												Attributes: map[string]schema.Attribute{
 													"command": schema.ListAttribute{
 														Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -11102,8 +11385,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"http_get": schema.SingleNestedAttribute{
-												Description:         "HTTPGet specifies the http request to perform.",
-												MarkdownDescription: "HTTPGet specifies the http request to perform.",
+												Description:         "HTTPGet specifies an HTTP GET request to perform.",
+												MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -11170,8 +11453,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"sleep": schema.SingleNestedAttribute{
-												Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-												MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+												Description:         "Sleep represents a duration that the container should sleep.",
+												MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 												Attributes: map[string]schema.Attribute{
 													"seconds": schema.Int64Attribute{
 														Description:         "Seconds is the number of seconds to sleep.",
@@ -11187,8 +11470,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											},
 
 											"tcp_socket": schema.SingleNestedAttribute{
-												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+												Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+												MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 												Attributes: map[string]schema.Attribute{
 													"host": schema.StringAttribute{
 														Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -11229,6 +11512,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Computed:            false,
 							},
 
+							"memory_limit": schema.StringAttribute{
+								Description:         "MemoryLimit overrides the memory limit of the pod.",
+								MarkdownDescription: "MemoryLimit overrides the memory limit of the pod.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"memory_overhead": schema.StringAttribute{
 								Description:         "MemoryOverhead is the amount of off-heap memory to allocate in cluster mode, in MiB unless otherwise specified.",
 								MarkdownDescription: "MemoryOverhead is the amount of off-heap memory to allocate in cluster mode, in MiB unless otherwise specified.",
@@ -11250,6 +11541,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Description:         "PodSecurityContext specifies the PodSecurityContext to apply.",
 								MarkdownDescription: "PodSecurityContext specifies the PodSecurityContext to apply.",
 								Attributes: map[string]schema.Attribute{
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"fs_group": schema.Int64Attribute{
 										Description:         "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.",
@@ -11285,6 +11601,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									"run_as_user": schema.Int64Attribute{
 										Description:         "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"se_linux_change_policy": schema.StringAttribute{
+										Description:         "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "seLinuxChangePolicy defines how the container's SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are 'MountOption' and 'Recursive'. 'Recursive' means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. 'MountOption' mounts all eligible Pod volumes with '-o context' mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. 'MountOption' value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, 'MountOption' is used. If not specified and SELinuxMount feature gate is disabled, 'MountOption' is used for ReadWriteOncePod volumes and 'Recursive' for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11357,9 +11681,17 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									},
 
 									"supplemental_groups": schema.ListAttribute{
-										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID, the fsGroup (if specified), and group memberships defined in the container image for the uid of the container process. If unspecified, no additional groups are added to any container. Note that group memberships defined in the container image for the uid of the container process are still effective, even if they are not included in this list. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "A list of groups applied to the first process run in each container, in addition to the container's primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows.",
 										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "Defines how supplemental groups of the first container processes are calculated. Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11536,6 +11868,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										Computed:            false,
 									},
 
+									"app_armor_profile": schema.SingleNestedAttribute{
+										Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+										Attributes: map[string]schema.Attribute{
+											"localhost_profile": schema.StringAttribute{
+												Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"capabilities": schema.SingleNestedAttribute{
 										Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 										MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -11572,8 +11929,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									},
 
 									"proc_mount": schema.StringAttribute{
-										Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+										MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -11800,8 +12157,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -11891,8 +12248,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																	},
 
 																	"name": schema.StringAttribute{
-																		Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																		MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																		Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																		MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -11932,8 +12289,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The ConfigMap to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -11965,8 +12322,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														MarkdownDescription: "The Secret to select from",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -12016,8 +12373,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12034,8 +12391,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12102,8 +12459,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -12119,8 +12476,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12153,8 +12510,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													MarkdownDescription: "PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks",
 													Attributes: map[string]schema.Attribute{
 														"exec": schema.SingleNestedAttribute{
-															Description:         "Exec specifies the action to take.",
-															MarkdownDescription: "Exec specifies the action to take.",
+															Description:         "Exec specifies a command to execute in the container.",
+															MarkdownDescription: "Exec specifies a command to execute in the container.",
 															Attributes: map[string]schema.Attribute{
 																"command": schema.ListAttribute{
 																	Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12171,8 +12528,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"http_get": schema.SingleNestedAttribute{
-															Description:         "HTTPGet specifies the http request to perform.",
-															MarkdownDescription: "HTTPGet specifies the http request to perform.",
+															Description:         "HTTPGet specifies an HTTP GET request to perform.",
+															MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12239,8 +12596,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"sleep": schema.SingleNestedAttribute{
-															Description:         "Sleep represents the duration that the container should sleep before being terminated.",
-															MarkdownDescription: "Sleep represents the duration that the container should sleep before being terminated.",
+															Description:         "Sleep represents a duration that the container should sleep.",
+															MarkdownDescription: "Sleep represents a duration that the container should sleep.",
 															Attributes: map[string]schema.Attribute{
 																"seconds": schema.Int64Attribute{
 																	Description:         "Seconds is the number of seconds to sleep.",
@@ -12256,8 +12613,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"tcp_socket": schema.SingleNestedAttribute{
-															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
-															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified.",
+															Description:         "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
+															MarkdownDescription: "Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified.",
 															Attributes: map[string]schema.Attribute{
 																"host": schema.StringAttribute{
 																	Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12295,8 +12652,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12321,8 +12678,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -12346,8 +12703,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12438,8 +12795,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12547,8 +12904,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -12573,8 +12930,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -12598,8 +12955,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -12690,8 +13047,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -12778,6 +13135,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																Optional:            false,
 																Computed:            false,
 															},
+
+															"request": schema.StringAttribute{
+																Description:         "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																MarkdownDescription: "Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -12828,6 +13193,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													Computed:            false,
 												},
 
+												"app_armor_profile": schema.SingleNestedAttribute{
+													Description:         "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "appArmorProfile is the AppArmor options to use by this container. If set, this profile overrides the pod's appArmorProfile. Note that this field cannot be set when spec.os.name is windows.",
+													Attributes: map[string]schema.Attribute{
+														"localhost_profile": schema.StringAttribute{
+															Description:         "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															MarkdownDescription: "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is 'Localhost'.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															MarkdownDescription: "type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime's default profile. Unconfined - no AppArmor enforcement.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"capabilities": schema.SingleNestedAttribute{
 													Description:         "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
 													MarkdownDescription: "The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.",
@@ -12864,8 +13254,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"proc_mount": schema.StringAttribute{
-													Description:         "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
-													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													Description:         "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
+													MarkdownDescription: "procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -13020,8 +13410,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
 											Attributes: map[string]schema.Attribute{
 												"exec": schema.SingleNestedAttribute{
-													Description:         "Exec specifies the action to take.",
-													MarkdownDescription: "Exec specifies the action to take.",
+													Description:         "Exec specifies a command to execute in the container.",
+													MarkdownDescription: "Exec specifies a command to execute in the container.",
 													Attributes: map[string]schema.Attribute{
 														"command": schema.ListAttribute{
 															Description:         "Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.",
@@ -13046,8 +13436,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"grpc": schema.SingleNestedAttribute{
-													Description:         "GRPC specifies an action involving a GRPC port.",
-													MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
+													Description:         "GRPC specifies a GRPC HealthCheckRequest.",
+													MarkdownDescription: "GRPC specifies a GRPC HealthCheckRequest.",
 													Attributes: map[string]schema.Attribute{
 														"port": schema.Int64Attribute{
 															Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -13071,8 +13461,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"http_get": schema.SingleNestedAttribute{
-													Description:         "HTTPGet specifies the http request to perform.",
-													MarkdownDescription: "HTTPGet specifies the http request to perform.",
+													Description:         "HTTPGet specifies an HTTP GET request to perform.",
+													MarkdownDescription: "HTTPGet specifies an HTTP GET request to perform.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Host name to connect to, defaults to the pod IP. You probably want to set 'Host' in httpHeaders instead.",
@@ -13163,8 +13553,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 												},
 
 												"tcp_socket": schema.SingleNestedAttribute{
-													Description:         "TCPSocket specifies an action involving a TCP port.",
-													MarkdownDescription: "TCPSocket specifies an action involving a TCP port.",
+													Description:         "TCPSocket specifies a connection to a TCP port.",
+													MarkdownDescription: "TCPSocket specifies a connection to a TCP port.",
 													Attributes: map[string]schema.Attribute{
 														"host": schema.StringAttribute{
 															Description:         "Optional: Host name to connect to, defaults to the pod IP.",
@@ -13289,8 +13679,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													},
 
 													"mount_propagation": schema.StringAttribute{
-														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+														Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+														MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -13307,6 +13697,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 													"read_only": schema.BoolAttribute{
 														Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 														MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"recursive_read_only": schema.StringAttribute{
+														Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+														MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -13346,6 +13744,15 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"template": schema.MapAttribute{
+								Description:         "Template is a pod template that can be used to define the driver or executor pod configurations that Spark configurations do not support. Spark version >= 3.0.0 is required. Ref: https://spark.apache.org/docs/latest/running-on-kubernetes.html#pod-template.",
+								MarkdownDescription: "Template is a pod template that can be used to define the driver or executor pod configurations that Spark configurations do not support. Spark version >= 3.0.0 is required. Ref: https://spark.apache.org/docs/latest/running-on-kubernetes.html#pod-template.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 
 							"termination_grace_period_seconds": schema.Int64Attribute{
@@ -13421,8 +13828,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										},
 
 										"mount_propagation": schema.StringAttribute{
-											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
-											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.",
+											Description:         "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
+											MarkdownDescription: "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -13439,6 +13846,14 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										"read_only": schema.BoolAttribute{
 											Description:         "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
 											MarkdownDescription: "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"recursive_read_only": schema.StringAttribute{
+											Description:         "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
+											MarkdownDescription: "RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -13524,8 +13939,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 					"main_application_file": schema.StringAttribute{
 						Description:         "MainFile is the path to a bundled JAR, Python, or R file of the application.",
 						MarkdownDescription: "MainFile is the path to a bundled JAR, Python, or R file of the application.",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
@@ -13888,12 +14303,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"aws_elastic_block_store": schema.SingleNestedAttribute{
-									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
-									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									Description:         "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+									MarkdownDescription: "awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: AWSElasticBlockStore is deprecated. All operations for the in-tree awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -13929,8 +14344,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"azure_disk": schema.SingleNestedAttribute{
-									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
+									Description:         "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree azureDisk type are redirected to the disk.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"caching_mode": schema.StringAttribute{
 											Description:         "cachingMode is the Host Caching mode: None, Read Only, Read Write.",
@@ -13986,8 +14401,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"azure_file": schema.SingleNestedAttribute{
-									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
-									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
+									Description:         "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
+									MarkdownDescription: "azureFile represents an Azure File Service mount on the host and bind mount to the pod. Deprecated: AzureFile is deprecated. All operations for the in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"read_only": schema.BoolAttribute{
 											Description:         "readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.",
@@ -14019,8 +14434,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"cephfs": schema.SingleNestedAttribute{
-									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
+									Description:         "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
+									MarkdownDescription: "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime. Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"monitors": schema.ListAttribute{
 											Description:         "monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -14060,8 +14475,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -14086,8 +14501,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"cinder": schema.SingleNestedAttribute{
-									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
-									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									Description:         "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
+									MarkdownDescription: "cinder represents a cinder volume attached and mounted on kubelets host machine. Deprecated: Cinder is deprecated. All operations for the in-tree cinder type are redirected to the cinder.csi.openstack.org CSI driver. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -14110,8 +14525,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -14183,8 +14598,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-											MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+											Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+											MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14204,8 +14619,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"csi": schema.SingleNestedAttribute{
-									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
-									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
+									Description:         "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
+									MarkdownDescription: "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.",
@@ -14228,8 +14643,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -14280,8 +14695,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"field_ref": schema.SingleNestedAttribute{
-														Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+														Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+														MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 														Attributes: map[string]schema.Attribute{
 															"api_version": schema.StringAttribute{
 																Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -14397,13 +14812,56 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											Description:         "Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod. The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil.",
 											MarkdownDescription: "Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod. The name of the PVC will be '<pod name>-<volume name>' where '<volume name>' is the name from the 'PodSpec.Volumes' array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil.",
 											Attributes: map[string]schema.Attribute{
-												"metadata": schema.MapAttribute{
+												"metadata": schema.SingleNestedAttribute{
 													Description:         "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
 													MarkdownDescription: "May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
+													Attributes: map[string]schema.Attribute{
+														"annotations": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"finalizers": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"namespace": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 
 												"spec": schema.SingleNestedAttribute{
@@ -14583,8 +15041,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 														},
 
 														"volume_attributes_class_name": schema.StringAttribute{
-															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
-															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#volumeattributesclass (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.",
+															Description:         "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
+															MarkdownDescription: "volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it's not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -14626,8 +15084,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 									MarkdownDescription: "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
+											MarkdownDescription: "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14673,8 +15131,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"flex_volume": schema.SingleNestedAttribute{
-									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
-									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
+									Description:         "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
+									MarkdownDescription: "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead.",
 									Attributes: map[string]schema.Attribute{
 										"driver": schema.StringAttribute{
 											Description:         "driver is the name of the driver to use for this volume.",
@@ -14714,8 +15172,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -14732,8 +15190,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"flocker": schema.SingleNestedAttribute{
-									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
-									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
+									Description:         "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
+									MarkdownDescription: "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"dataset_name": schema.StringAttribute{
 											Description:         "datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated",
@@ -14757,12 +15215,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"gce_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
-									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									Description:         "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+									MarkdownDescription: "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Deprecated: GCEPersistentDisk is deprecated. All operations for the in-tree gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI driver. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
+											MarkdownDescription: "fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14798,8 +15256,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"git_repo": schema.SingleNestedAttribute{
-									Description:         "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
-									MarkdownDescription: "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									Description:         "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
+									MarkdownDescription: "gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
 									Attributes: map[string]schema.Attribute{
 										"directory": schema.StringAttribute{
 											Description:         "directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.",
@@ -14831,8 +15289,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"glusterfs": schema.SingleNestedAttribute{
-									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
-									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									Description:         "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
+									MarkdownDescription: "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
 									Attributes: map[string]schema.Attribute{
 										"endpoints": schema.StringAttribute{
 											Description:         "endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod",
@@ -14864,8 +15322,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"host_path": schema.SingleNestedAttribute{
-									Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
-									MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
+									Description:         "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+									MarkdownDescription: "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 									Attributes: map[string]schema.Attribute{
 										"path": schema.StringAttribute{
 											Description:         "path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
@@ -14878,6 +15336,31 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										"type": schema.StringAttribute{
 											Description:         "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
 											MarkdownDescription: "type for HostPath Volume Defaults to '' More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"image": schema.SingleNestedAttribute{
+									Description:         "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									MarkdownDescription: "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. - IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath). The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
+									Attributes: map[string]schema.Attribute{
+										"pull_policy": schema.StringAttribute{
+											Description:         "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											MarkdownDescription: "Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present. IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reference": schema.StringAttribute{
+											Description:         "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
+											MarkdownDescription: "Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14909,8 +15392,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										},
 
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -14970,8 +15453,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef is the CHAP Secret for iSCSI target and initiator authentication",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15062,8 +15545,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"photon_persistent_disk": schema.SingleNestedAttribute{
-									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
-									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
+									Description:         "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
+									MarkdownDescription: "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is deprecated and the in-tree photonPersistentDisk type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15087,8 +15570,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"portworx_volume": schema.SingleNestedAttribute{
-									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
+									Description:         "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
+									MarkdownDescription: "portworxVolume represents a portworx volume attached and mounted on kubelets host machine. Deprecated: PortworxVolume is deprecated. All operations for the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI driver when the CSIMigrationPortworx feature-gate is on.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15132,8 +15615,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 										},
 
 										"sources": schema.ListNestedAttribute{
-											Description:         "sources is the list of volume projections",
-											MarkdownDescription: "sources is the list of volume projections",
+											Description:         "sources is the list of volume projections. Each entry in this list handles one source.",
+											MarkdownDescription: "sources is the list of volume projections. Each entry in this list handles one source.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"cluster_trust_bundle": schema.SingleNestedAttribute{
@@ -15271,8 +15754,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -15301,8 +15784,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 																NestedObject: schema.NestedAttributeObject{
 																	Attributes: map[string]schema.Attribute{
 																		"field_ref": schema.SingleNestedAttribute{
-																			Description:         "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
-																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.",
+																			Description:         "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
+																			MarkdownDescription: "Required: Selects a field of the pod: only annotations, labels, name, namespace and uid are supported.",
 																			Attributes: map[string]schema.Attribute{
 																				"api_version": schema.StringAttribute{
 																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
@@ -15425,8 +15908,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 															},
 
 															"name": schema.StringAttribute{
-																Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-																MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+																MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 																Required:            false,
 																Optional:            true,
 																Computed:            false,
@@ -15490,8 +15973,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"quobyte": schema.SingleNestedAttribute{
-									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
-									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
+									Description:         "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
+									MarkdownDescription: "quobyte represents a Quobyte mount on the host that shares a pod's lifetime. Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"group": schema.StringAttribute{
 											Description:         "group to map volume access to Default is no group",
@@ -15547,12 +16030,12 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"rbd": schema.SingleNestedAttribute{
-									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
-									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									Description:         "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
+									MarkdownDescription: "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no longer supported. More info: https://examples.k8s.io/volumes/rbd/README.md",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
-											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
-											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine",
+											Description:         "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
+											MarkdownDescription: "fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -15604,8 +16087,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15630,8 +16113,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"scale_io": schema.SingleNestedAttribute{
-									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
+									Description:         "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
+									MarkdownDescription: "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Default is 'xfs'.",
@@ -15670,8 +16153,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15796,8 +16279,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"storageos": schema.SingleNestedAttribute{
-									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
-									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
+									Description:         "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
+									MarkdownDescription: "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15820,8 +16303,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 											MarkdownDescription: "secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+													MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15854,8 +16337,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								},
 
 								"vsphere_volume": schema.SingleNestedAttribute{
-									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
-									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
+									Description:         "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
+									MarkdownDescription: "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver.",
 									Attributes: map[string]schema.Attribute{
 										"fs_type": schema.StringAttribute{
 											Description:         "fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.",
@@ -15900,8 +16383,8 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 						Computed: false,
 					},
 				},
-				Required: false,
-				Optional: true,
+				Required: true,
+				Optional: false,
 				Computed: false,
 			},
 		},

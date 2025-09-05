@@ -70,25 +70,26 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					PerStreamRateLimitBurst   *int64 `tfsdk:"per_stream_rate_limit_burst" json:"perStreamRateLimitBurst,omitempty"`
 				} `tfsdk:"ingestion" json:"ingestion,omitempty"`
 				Otlp *struct {
-					IndexedResourceAttributes *[]string `tfsdk:"indexed_resource_attributes" json:"indexedResourceAttributes,omitempty"`
-					LogAttributes             *[]struct {
-						Action     *string   `tfsdk:"action" json:"action,omitempty"`
-						Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-					} `tfsdk:"log_attributes" json:"logAttributes,omitempty"`
-					ResourceAttributes *struct {
-						Attributes *[]struct {
-							Action     *string   `tfsdk:"action" json:"action,omitempty"`
-							Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-							Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-						} `tfsdk:"attributes" json:"attributes,omitempty"`
-						IgnoreDefaults *bool `tfsdk:"ignore_defaults" json:"ignoreDefaults,omitempty"`
-					} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
-					ScopeAttributes *[]struct {
-						Action     *string   `tfsdk:"action" json:"action,omitempty"`
-						Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-					} `tfsdk:"scope_attributes" json:"scopeAttributes,omitempty"`
+					Drop *struct {
+						LogAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"log_attributes" json:"logAttributes,omitempty"`
+						ResourceAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
+						ScopeAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"scope_attributes" json:"scopeAttributes,omitempty"`
+					} `tfsdk:"drop" json:"drop,omitempty"`
+					StreamLabels *struct {
+						ResourceAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
+					} `tfsdk:"stream_labels" json:"streamLabels,omitempty"`
 				} `tfsdk:"otlp" json:"otlp,omitempty"`
 				Queries *struct {
 					CardinalityLimit        *int64  `tfsdk:"cardinality_limit" json:"cardinalityLimit,omitempty"`
@@ -121,24 +122,26 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					PerStreamRateLimitBurst   *int64 `tfsdk:"per_stream_rate_limit_burst" json:"perStreamRateLimitBurst,omitempty"`
 				} `tfsdk:"ingestion" json:"ingestion,omitempty"`
 				Otlp *struct {
-					LogAttributes *[]struct {
-						Action     *string   `tfsdk:"action" json:"action,omitempty"`
-						Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-					} `tfsdk:"log_attributes" json:"logAttributes,omitempty"`
-					ResourceAttributes *struct {
-						Attributes *[]struct {
-							Action     *string   `tfsdk:"action" json:"action,omitempty"`
-							Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-							Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-						} `tfsdk:"attributes" json:"attributes,omitempty"`
-						IgnoreDefaults *bool `tfsdk:"ignore_defaults" json:"ignoreDefaults,omitempty"`
-					} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
-					ScopeAttributes *[]struct {
-						Action     *string   `tfsdk:"action" json:"action,omitempty"`
-						Attributes *[]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						Regex      *string   `tfsdk:"regex" json:"regex,omitempty"`
-					} `tfsdk:"scope_attributes" json:"scopeAttributes,omitempty"`
+					Drop *struct {
+						LogAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"log_attributes" json:"logAttributes,omitempty"`
+						ResourceAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
+						ScopeAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"scope_attributes" json:"scopeAttributes,omitempty"`
+					} `tfsdk:"drop" json:"drop,omitempty"`
+					StreamLabels *struct {
+						ResourceAttributes *[]struct {
+							Name  *string `tfsdk:"name" json:"name,omitempty"`
+							Regex *bool   `tfsdk:"regex" json:"regex,omitempty"`
+						} `tfsdk:"resource_attributes" json:"resourceAttributes,omitempty"`
+					} `tfsdk:"stream_labels" json:"streamLabels,omitempty"`
 				} `tfsdk:"otlp" json:"otlp,omitempty"`
 				Queries *struct {
 					Blocked *[]struct {
@@ -663,6 +666,7 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 					Value             *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 			} `tfsdk:"ruler" json:"ruler,omitempty"`
+			UseRequestsAsLimits *bool `tfsdk:"use_requests_as_limits" json:"useRequestsAsLimits,omitempty"`
 		} `tfsdk:"template" json:"template,omitempty"`
 		Tenants *struct {
 			Authentication *[]struct {
@@ -710,6 +714,9 @@ type LokiGrafanaComLokiStackV1ManifestData struct {
 			Mode      *string `tfsdk:"mode" json:"mode,omitempty"`
 			Openshift *struct {
 				AdminGroups *[]string `tfsdk:"admin_groups" json:"adminGroups,omitempty"`
+				Otlp        *struct {
+					DisableRecommendedAttributes *bool `tfsdk:"disable_recommended_attributes" json:"disableRecommendedAttributes,omitempty"`
+				} `tfsdk:"otlp" json:"otlp,omitempty"`
 			} `tfsdk:"openshift" json:"openshift,omitempty"`
 		} `tfsdk:"tenants" json:"tenants,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -938,89 +945,29 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"otlp": schema.SingleNestedAttribute{
-										Description:         "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for all tenants.",
-										MarkdownDescription: "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for all tenants.",
+										Description:         "OTLP to configure which resource, scope and log attributes are stored as stream labels or structured metadata. Tenancy modes can provide a default OTLP configuration, when no custom OTLP configuration is set or even enforce the use of some required attributes.",
+										MarkdownDescription: "OTLP to configure which resource, scope and log attributes are stored as stream labels or structured metadata. Tenancy modes can provide a default OTLP configuration, when no custom OTLP configuration is set or even enforce the use of some required attributes.",
 										Attributes: map[string]schema.Attribute{
-											"indexed_resource_attributes": schema.ListAttribute{
-												Description:         "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels.",
-												MarkdownDescription: "IndexedResourceAttributes contains the global configuration for resource attributes to store them as index labels.",
-												ElementType:         types.StringType,
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"log_attributes": schema.ListNestedAttribute{
-												Description:         "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
-												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Description:         "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															MarkdownDescription: "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("structured_metadata", "drop"),
-															},
-														},
-
-														"attributes": schema.ListAttribute{
-															Description:         "Attributes allows choosing the attributes by listing their names.",
-															MarkdownDescription: "Attributes allows choosing the attributes by listing their names.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"regex": schema.StringAttribute{
-															Description:         "Regex allows choosing the attributes by matching a regular expression.",
-															MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"resource_attributes": schema.SingleNestedAttribute{
-												Description:         "ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
+											"drop": schema.SingleNestedAttribute{
+												Description:         "Drop configures which attributes are dropped from the log entry.",
+												MarkdownDescription: "Drop configures which attributes are dropped from the log entry.",
 												Attributes: map[string]schema.Attribute{
-													"attributes": schema.ListNestedAttribute{
-														Description:         "Attributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
-														MarkdownDescription: "Attributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
+													"log_attributes": schema.ListNestedAttribute{
+														Description:         "LogAttributes lists the names of log attributes that should be included in structured metadata.",
+														MarkdownDescription: "LogAttributes lists the names of log attributes that should be included in structured metadata.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
-																"action": schema.StringAttribute{
-																	Description:         "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
-																	MarkdownDescription: "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
-																	Validators: []validator.String{
-																		stringvalidator.OneOf("index_label", "structured_metadata", "drop"),
-																	},
 																},
 
-																"attributes": schema.ListAttribute{
-																	Description:         "Attributes is the list of attributes to configure indexing or drop them altogether.",
-																	MarkdownDescription: "Attributes is the list of attributes to configure indexing or drop them altogether.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"regex": schema.StringAttribute{
-																	Description:         "Regex allows choosing the attributes by matching a regular expression.",
-																	MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1032,12 +979,58 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														Computed: false,
 													},
 
-													"ignore_defaults": schema.BoolAttribute{
-														Description:         "IgnoreDefaults controls whether to ignore the global configuration for resource attributes indexed as labels. If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.",
-														MarkdownDescription: "IgnoreDefaults controls whether to ignore the global configuration for resource attributes indexed as labels. If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
+													"resource_attributes": schema.ListNestedAttribute{
+														Description:         "ResourceAttributes lists the names of resource attributes that should be included in structured metadata.",
+														MarkdownDescription: "ResourceAttributes lists the names of resource attributes that should be included in structured metadata.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scope_attributes": schema.ListNestedAttribute{
+														Description:         "ScopeAttributes lists the names of scope attributes that should be included in structured metadata.",
+														MarkdownDescription: "ScopeAttributes lists the names of scope attributes that should be included in structured metadata.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,
@@ -1045,38 +1038,35 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
-											"scope_attributes": schema.ListNestedAttribute{
-												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
-												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Description:         "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															MarkdownDescription: "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("structured_metadata", "drop"),
+											"stream_labels": schema.SingleNestedAttribute{
+												Description:         "StreamLabels configures which resource attributes are converted to Loki stream labels.",
+												MarkdownDescription: "StreamLabels configures which resource attributes are converted to Loki stream labels.",
+												Attributes: map[string]schema.Attribute{
+													"resource_attributes": schema.ListNestedAttribute{
+														Description:         "ResourceAttributes lists the names of the resource attributes that should be converted into Loki stream labels.",
+														MarkdownDescription: "ResourceAttributes lists the names of the resource attributes that should be converted into Loki stream labels.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 														},
-
-														"attributes": schema.ListAttribute{
-															Description:         "Attributes allows choosing the attributes by listing their names.",
-															MarkdownDescription: "Attributes allows choosing the attributes by listing their names.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"regex": schema.StringAttribute{
-															Description:         "Regex allows choosing the attributes by matching a regular expression.",
-															MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,
@@ -1110,8 +1100,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1303,80 +1293,29 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 									},
 
 									"otlp": schema.SingleNestedAttribute{
-										Description:         "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for a single tenants.",
-										MarkdownDescription: "OTLP to configure which resource, scope and log attributes to store as labels or structured metadata or drop them altogether for a single tenants.",
+										Description:         "OTLP to configure which resource, scope and log attributes are stored as stream labels or structured metadata. Tenancy modes can provide a default OTLP configuration, when no custom OTLP configuration is set or even enforce the use of some required attributes. The per-tenant configuration for OTLP attributes will be merged with the global configuration.",
+										MarkdownDescription: "OTLP to configure which resource, scope and log attributes are stored as stream labels or structured metadata. Tenancy modes can provide a default OTLP configuration, when no custom OTLP configuration is set or even enforce the use of some required attributes. The per-tenant configuration for OTLP attributes will be merged with the global configuration.",
 										Attributes: map[string]schema.Attribute{
-											"log_attributes": schema.ListNestedAttribute{
-												Description:         "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
-												MarkdownDescription: "LogAttributes contains the configuration for log attributes to store them as structured metadata or drop them altogether.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Description:         "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															MarkdownDescription: "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("structured_metadata", "drop"),
-															},
-														},
-
-														"attributes": schema.ListAttribute{
-															Description:         "Attributes allows choosing the attributes by listing their names.",
-															MarkdownDescription: "Attributes allows choosing the attributes by listing their names.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"regex": schema.StringAttribute{
-															Description:         "Regex allows choosing the attributes by matching a regular expression.",
-															MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-
-											"resource_attributes": schema.SingleNestedAttribute{
-												Description:         "ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
-												MarkdownDescription: "ResourceAttributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
+											"drop": schema.SingleNestedAttribute{
+												Description:         "Drop configures which attributes are dropped from the log entry.",
+												MarkdownDescription: "Drop configures which attributes are dropped from the log entry.",
 												Attributes: map[string]schema.Attribute{
-													"attributes": schema.ListNestedAttribute{
-														Description:         "Attributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
-														MarkdownDescription: "Attributes contains the configuration for resource attributes to store them as index labels or structured metadata or drop them altogether.",
+													"log_attributes": schema.ListNestedAttribute{
+														Description:         "LogAttributes lists the names of log attributes that should be included in structured metadata.",
+														MarkdownDescription: "LogAttributes lists the names of log attributes that should be included in structured metadata.",
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
-																"action": schema.StringAttribute{
-																	Description:         "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
-																	MarkdownDescription: "Action defines the indexing action for the selected resoure attributes. They can be either indexed as labels, added to structured metadata or drop altogether.",
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,
-																	Validators: []validator.String{
-																		stringvalidator.OneOf("index_label", "structured_metadata", "drop"),
-																	},
 																},
 
-																"attributes": schema.ListAttribute{
-																	Description:         "Attributes is the list of attributes to configure indexing or drop them altogether.",
-																	MarkdownDescription: "Attributes is the list of attributes to configure indexing or drop them altogether.",
-																	ElementType:         types.StringType,
-																	Required:            false,
-																	Optional:            true,
-																	Computed:            false,
-																},
-
-																"regex": schema.StringAttribute{
-																	Description:         "Regex allows choosing the attributes by matching a regular expression.",
-																	MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -1388,12 +1327,58 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 														Computed: false,
 													},
 
-													"ignore_defaults": schema.BoolAttribute{
-														Description:         "IgnoreDefaults controls whether to ignore the global configuration for resource attributes indexed as labels. If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.",
-														MarkdownDescription: "IgnoreDefaults controls whether to ignore the global configuration for resource attributes indexed as labels. If IgnoreDefaults is true, then this spec needs to contain at least one mapping to a index label.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
+													"resource_attributes": schema.ListNestedAttribute{
+														Description:         "ResourceAttributes lists the names of resource attributes that should be included in structured metadata.",
+														MarkdownDescription: "ResourceAttributes lists the names of resource attributes that should be included in structured metadata.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"scope_attributes": schema.ListNestedAttribute{
+														Description:         "ScopeAttributes lists the names of scope attributes that should be included in structured metadata.",
+														MarkdownDescription: "ScopeAttributes lists the names of scope attributes that should be included in structured metadata.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,
@@ -1401,38 +1386,35 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 												Computed: false,
 											},
 
-											"scope_attributes": schema.ListNestedAttribute{
-												Description:         "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
-												MarkdownDescription: "ScopeAttributes contains the configuration for scope attributes to store them as structured metadata or drop them altogether.",
-												NestedObject: schema.NestedAttributeObject{
-													Attributes: map[string]schema.Attribute{
-														"action": schema.StringAttribute{
-															Description:         "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															MarkdownDescription: "Action defines the indexing action for the selected attributes. They can be either added to structured metadata or drop altogether.",
-															Required:            true,
-															Optional:            false,
-															Computed:            false,
-															Validators: []validator.String{
-																stringvalidator.OneOf("structured_metadata", "drop"),
+											"stream_labels": schema.SingleNestedAttribute{
+												Description:         "StreamLabels configures which resource attributes are converted to Loki stream labels.",
+												MarkdownDescription: "StreamLabels configures which resource attributes are converted to Loki stream labels.",
+												Attributes: map[string]schema.Attribute{
+													"resource_attributes": schema.ListNestedAttribute{
+														Description:         "ResourceAttributes lists the names of the resource attributes that should be converted into Loki stream labels.",
+														MarkdownDescription: "ResourceAttributes lists the names of the resource attributes that should be converted into Loki stream labels.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	MarkdownDescription: "Name contains either a verbatim name of an attribute or a regular expression matching many attributes.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"regex": schema.BoolAttribute{
+																	Description:         "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	MarkdownDescription: "If Regex is true, then Name is treated as a regular expression instead of as a verbatim attribute name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
 															},
 														},
-
-														"attributes": schema.ListAttribute{
-															Description:         "Attributes allows choosing the attributes by listing their names.",
-															MarkdownDescription: "Attributes allows choosing the attributes by listing their names.",
-															ElementType:         types.StringType,
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
-
-														"regex": schema.StringAttribute{
-															Description:         "Regex allows choosing the attributes by matching a regular expression.",
-															MarkdownDescription: "Regex allows choosing the attributes by matching a regular expression.",
-															Required:            false,
-															Optional:            true,
-															Computed:            false,
-														},
+														Required: false,
+														Optional: true,
+														Computed: false,
 													},
 												},
 												Required: false,
@@ -1522,8 +1504,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 											},
 
 											"max_entries_limit_per_query": schema.Int64Attribute{
-												Description:         "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
-												MarkdownDescription: "MaxEntriesLimitsPerQuery defines the maximum number of log entries that will be returned for a query.",
+												Description:         "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
+												MarkdownDescription: "MaxEntriesLimitPerQuery defines the maximum number of log entries that will be returned for a query.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -1860,7 +1842,7 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("1x.demo", "1x.extra-small", "1x.small", "1x.medium"),
+							stringvalidator.OneOf("1x.demo", "1x.pico", "1x.extra-small", "1x.small", "1x.medium"),
 						},
 					},
 
@@ -4981,6 +4963,14 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 								Optional: true,
 								Computed: false,
 							},
+
+							"use_requests_as_limits": schema.BoolAttribute{
+								Description:         "When UseRequestsAsLimits is true, the operand Pods are configured to have resource limits equal to the resource requests. This imposes a hard limit on resource usage of the LokiStack, but limits its ability to react to load spikes, whether on the ingestion or query side. Note: This is currently a tech-preview feature.",
+								MarkdownDescription: "When UseRequestsAsLimits is true, the operand Pods are configured to have resource limits equal to the resource requests. This imposes a hard limit on resource usage of the LokiStack, but limits its ability to react to load spikes, whether on the ingestion or query side. Note: This is currently a tech-preview feature.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
@@ -5287,6 +5277,23 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasour
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"otlp": schema.SingleNestedAttribute{
+										Description:         "OTLP contains settings for ingesting data using OTLP in the OpenShift tenancy mode.",
+										MarkdownDescription: "OTLP contains settings for ingesting data using OTLP in the OpenShift tenancy mode.",
+										Attributes: map[string]schema.Attribute{
+											"disable_recommended_attributes": schema.BoolAttribute{
+												Description:         "DisableRecommendedAttributes can be used to reduce the number of attributes used as stream labels. Enabling this setting removes the 'recommended attributes' from the stream labels. This requires an update to queries that relied on these attributes as stream labels, as they will no longer be indexed as such. The recommended attributes are: - k8s.container.name - k8s.cronjob.name - k8s.daemonset.name - k8s.deployment.name - k8s.job.name - k8s.node.name - k8s.pod.name - k8s.statefulset.name - kubernetes.container_name - kubernetes.host - kubernetes.pod_name - service.name This option is supposed to be combined with a custom attribute configuration listing the stream labels that should continue to exist. See also: https://github.com/rhobs/observability-data-model/blob/main/cluster-logging.md#attributes",
+												MarkdownDescription: "DisableRecommendedAttributes can be used to reduce the number of attributes used as stream labels. Enabling this setting removes the 'recommended attributes' from the stream labels. This requires an update to queries that relied on these attributes as stream labels, as they will no longer be indexed as such. The recommended attributes are: - k8s.container.name - k8s.cronjob.name - k8s.daemonset.name - k8s.deployment.name - k8s.job.name - k8s.node.name - k8s.pod.name - k8s.statefulset.name - kubernetes.container_name - kubernetes.host - kubernetes.pod_name - service.name This option is supposed to be combined with a custom attribute configuration listing the stream labels that should continue to exist. See also: https://github.com/rhobs/observability-data-model/blob/main/cluster-logging.md#attributes",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 								},
 								Required: false,

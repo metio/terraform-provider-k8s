@@ -49,6 +49,12 @@ type GatewayNginxOrgNginxProxyV1Alpha1ManifestData struct {
 		Logging      *struct {
 			ErrorLevel *string `tfsdk:"error_level" json:"errorLevel,omitempty"`
 		} `tfsdk:"logging" json:"logging,omitempty"`
+		NginxPlus *struct {
+			AllowedAddresses *[]struct {
+				Type  *string `tfsdk:"type" json:"type,omitempty"`
+				Value *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"allowed_addresses" json:"allowedAddresses,omitempty"`
+		} `tfsdk:"nginx_plus" json:"nginxPlus,omitempty"`
 		RewriteClientIP *struct {
 			Mode             *string `tfsdk:"mode" json:"mode,omitempty"`
 			SetIPRecursively *bool   `tfsdk:"set_ip_recursively" json:"setIPRecursively,omitempty"`
@@ -170,6 +176,45 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Validators: []validator.String{
 									stringvalidator.OneOf("debug", "info", "notice", "warn", "error", "crit", "alert", "emerg"),
 								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"nginx_plus": schema.SingleNestedAttribute{
+						Description:         "NginxPlus specifies NGINX Plus additional settings.",
+						MarkdownDescription: "NginxPlus specifies NGINX Plus additional settings.",
+						Attributes: map[string]schema.Attribute{
+							"allowed_addresses": schema.ListNestedAttribute{
+								Description:         "AllowedAddresses specifies IPAddresses or CIDR blocks to the allow list for accessing the NGINX Plus API.",
+								MarkdownDescription: "AllowedAddresses specifies IPAddresses or CIDR blocks to the allow list for accessing the NGINX Plus API.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"type": schema.StringAttribute{
+											Description:         "Type specifies the type of address.",
+											MarkdownDescription: "Type specifies the type of address.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("CIDR", "IPAddress"),
+											},
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "Value specifies the address value.",
+											MarkdownDescription: "Value specifies the address value.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

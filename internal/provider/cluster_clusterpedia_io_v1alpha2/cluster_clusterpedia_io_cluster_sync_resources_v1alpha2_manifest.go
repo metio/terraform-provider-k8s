@@ -43,9 +43,10 @@ type ClusterClusterpediaIoClusterSyncResourcesV1Alpha2ManifestData struct {
 
 	Spec *struct {
 		SyncResources *[]struct {
-			Group     *string   `tfsdk:"group" json:"group,omitempty"`
-			Resources *[]string `tfsdk:"resources" json:"resources,omitempty"`
-			Versions  *[]string `tfsdk:"versions" json:"versions,omitempty"`
+			EventsInvolvedResources *[]string `tfsdk:"events_involved_resources" json:"eventsInvolvedResources,omitempty"`
+			Group                   *string   `tfsdk:"group" json:"group,omitempty"`
+			Resources               *[]string `tfsdk:"resources" json:"resources,omitempty"`
+			Versions                *[]string `tfsdk:"versions" json:"versions,omitempty"`
 		} `tfsdk:"sync_resources" json:"syncResources,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -120,6 +121,15 @@ func (r *ClusterClusterpediaIoClusterSyncResourcesV1Alpha2Manifest) Schema(_ con
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"events_involved_resources": schema.ListAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"group": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",

@@ -43,6 +43,9 @@ type ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1ManifestData struct 
 
 	Spec *struct {
 		Customizations *struct {
+			ComponentResource *struct {
+				LuaScript *string `tfsdk:"lua_script" json:"luaScript,omitempty"`
+			} `tfsdk:"component_resource" json:"componentResource,omitempty"`
 			DependencyInterpretation *struct {
 				LuaScript *string `tfsdk:"lua_script" json:"luaScript,omitempty"`
 			} `tfsdk:"dependency_interpretation" json:"dependencyInterpretation,omitempty"`
@@ -141,6 +144,23 @@ func (r *ConfigKarmadaIoResourceInterpreterCustomizationV1Alpha1Manifest) Schema
 						Description:         "Customizations describe the interpretation rules.",
 						MarkdownDescription: "Customizations describe the interpretation rules.",
 						Attributes: map[string]schema.Attribute{
+							"component_resource": schema.SingleNestedAttribute{
+								Description:         "ComponentResource describes the rules for Karmada to discover the resource requirements for multiple components from the given object. This is designed for CRDs with multiple components (e.g., FlinkDeployment), but can also be used for single-component resources like Deployment. If implemented, the controller will use this to obtain per-component replica and resource requirements, and will not call ReplicaResource. If not implemented, the controller will fall back to ReplicaResource for backward compatibility. This will only be used when the feature gate 'MultiplePodTemplatesScheduling' is enabled.",
+								MarkdownDescription: "ComponentResource describes the rules for Karmada to discover the resource requirements for multiple components from the given object. This is designed for CRDs with multiple components (e.g., FlinkDeployment), but can also be used for single-component resources like Deployment. If implemented, the controller will use this to obtain per-component replica and resource requirements, and will not call ReplicaResource. If not implemented, the controller will fall back to ReplicaResource for backward compatibility. This will only be used when the feature gate 'MultiplePodTemplatesScheduling' is enabled.",
+								Attributes: map[string]schema.Attribute{
+									"lua_script": schema.StringAttribute{
+										Description:         "LuaScript holds the Lua script that is used to extract the desired replica count and resource requirements for each component of the resource. The script should implement a function as follows: ''' luaScript: > function GetComponents(desiredObj) local components = {} local jobManagerComponent = { name = 'jobmanager', replicas = desiredObj.spec.jobManager.replicas } table.insert(components, jobManagerComponent) local taskManagerComponent = { name = 'taskmanager', replicas = desiredObj.spec.taskManager.replicas } table.insert(components, taskManagerComponent) return components end ''' The content of the LuaScript needs to be a whole function including both declaration and implementation. The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. The function expects one return value: - components: the resource requirements for each component. The returned value will be set into a ResourceBinding or ClusterResourceBinding.",
+										MarkdownDescription: "LuaScript holds the Lua script that is used to extract the desired replica count and resource requirements for each component of the resource. The script should implement a function as follows: ''' luaScript: > function GetComponents(desiredObj) local components = {} local jobManagerComponent = { name = 'jobmanager', replicas = desiredObj.spec.jobManager.replicas } table.insert(components, jobManagerComponent) local taskManagerComponent = { name = 'taskmanager', replicas = desiredObj.spec.taskManager.replicas } table.insert(components, taskManagerComponent) return components end ''' The content of the LuaScript needs to be a whole function including both declaration and implementation. The parameters will be supplied by the system: - desiredObj: the object represents the configuration to be applied to the member cluster. The function expects one return value: - components: the resource requirements for each component. The returned value will be set into a ResourceBinding or ClusterResourceBinding.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"dependency_interpretation": schema.SingleNestedAttribute{
 								Description:         "DependencyInterpretation describes the rules for Karmada to analyze the dependent resources. Karmada provides built-in rules for several standard Kubernetes types, see: https://karmada.io/docs/userguide/globalview/customizing-resource-interpreter/#interpretdependency If DependencyInterpretation is set, the built-in rules will be ignored.",
 								MarkdownDescription: "DependencyInterpretation describes the rules for Karmada to analyze the dependent resources. Karmada provides built-in rules for several standard Kubernetes types, see: https://karmada.io/docs/userguide/globalview/customizing-resource-interpreter/#interpretdependency If DependencyInterpretation is set, the built-in rules will be ignored.",

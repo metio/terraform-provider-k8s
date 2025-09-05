@@ -119,20 +119,20 @@ func (r *CrdProjectcalicoOrgIpamblockV1Manifest) Schema(_ context.Context, _ dat
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPAMBlockSpec contains the specification for an IPAMBlock resource.",
-				MarkdownDescription: "IPAMBlockSpec contains the specification for an IPAMBlock resource.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"affinity": schema.StringAttribute{
-						Description:         "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
-						MarkdownDescription: "Affinity of the block, if this block has one. If set, it will be of the form 'host:<hostname>'. If not set, this block is not affine to a host.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"allocations": schema.ListAttribute{
-						Description:         "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
-						MarkdownDescription: "Array of allocations in-use within this block. nil entries mean the allocation is free. For non-nil entries at index i, the index is the ordinal of the allocation within this block and the value is the index of the associated attributes in the Attributes array.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,
@@ -140,8 +140,8 @@ func (r *CrdProjectcalicoOrgIpamblockV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"attributes": schema.ListNestedAttribute{
-						Description:         "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
-						MarkdownDescription: "Attributes is an array of arbitrary metadata associated with allocations in the block. To find attributes for a given allocation, use the value of the allocation's entry in the Allocations array as the index of the element in this array.",
+						Description:         "",
+						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"handle_id": schema.StringAttribute{
@@ -168,32 +168,32 @@ func (r *CrdProjectcalicoOrgIpamblockV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"cidr": schema.StringAttribute{
-						Description:         "The block's CIDR.",
-						MarkdownDescription: "The block's CIDR.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"deleted": schema.BoolAttribute{
-						Description:         "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
-						MarkdownDescription: "Deleted is an internal boolean used to workaround a limitation in the Kubernetes API whereby deletion will not return a conflict error if the block has been updated. It should not be set manually.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sequence_number": schema.Int64Attribute{
-						Description:         "We store a sequence number that is updated each time the block is written. Each allocation will also store the sequence number of the block at the time of its creation. When releasing an IP, passing the sequence number associated with the allocation allows us to protect against a race condition and ensure the IP hasn't been released and re-allocated since the release request.",
-						MarkdownDescription: "We store a sequence number that is updated each time the block is written. Each allocation will also store the sequence number of the block at the time of its creation. When releasing an IP, passing the sequence number associated with the allocation allows us to protect against a race condition and ensure the IP hasn't been released and re-allocated since the release request.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"sequence_number_for_allocation": schema.MapAttribute{
-						Description:         "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
-						MarkdownDescription: "Map of allocated ordinal within the block to sequence number of the block at the time of allocation. Kubernetes does not allow numerical keys for maps, so the key is cast to a string.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -201,16 +201,16 @@ func (r *CrdProjectcalicoOrgIpamblockV1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"strict_affinity": schema.BoolAttribute{
-						Description:         "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
-						MarkdownDescription: "StrictAffinity on the IPAMBlock is deprecated and no longer used by the code. Use IPAMConfig StrictAffinity instead.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"unallocated": schema.ListAttribute{
-						Description:         "Unallocated is an ordered list of allocations which are free in the block.",
-						MarkdownDescription: "Unallocated is an ordered list of allocations which are free in the block.",
+						Description:         "",
+						MarkdownDescription: "",
 						ElementType:         types.StringType,
 						Required:            true,
 						Optional:            false,

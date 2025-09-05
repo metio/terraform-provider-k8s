@@ -130,6 +130,7 @@ type AppRedislabsComRedisEnterpriseDatabaseV1Alpha1ManifestData struct {
 		DataInternodeEncryption          *bool     `tfsdk:"data_internode_encryption" json:"dataInternodeEncryption,omitempty"`
 		DatabasePort                     *int64    `tfsdk:"database_port" json:"databasePort,omitempty"`
 		DatabaseSecretName               *string   `tfsdk:"database_secret_name" json:"databaseSecretName,omitempty"`
+		DatabaseServicePort              *int64    `tfsdk:"database_service_port" json:"databaseServicePort,omitempty"`
 		DefaultUser                      *bool     `tfsdk:"default_user" json:"defaultUser,omitempty"`
 		EvictionPolicy                   *string   `tfsdk:"eviction_policy" json:"evictionPolicy,omitempty"`
 		IsRof                            *bool     `tfsdk:"is_rof" json:"isRof,omitempty"`
@@ -767,85 +768,93 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"database_port": schema.Int64Attribute{
-						Description:         "Database port number. TCP port on which the database is available. Will be generated automatically if omitted. can not be changed after creation",
-						MarkdownDescription: "Database port number. TCP port on which the database is available. Will be generated automatically if omitted. can not be changed after creation",
+						Description:         "TCP port assigned to the database within the Redis Enterprise cluster. Must be unique across all databases in the Redis Enterprise cluster. Will be generated automatically if omitted. can not be changed after creation",
+						MarkdownDescription: "TCP port assigned to the database within the Redis Enterprise cluster. Must be unique across all databases in the Redis Enterprise cluster. Will be generated automatically if omitted. can not be changed after creation",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"database_secret_name": schema.StringAttribute{
-						Description:         "The name of the secret that holds the password to the database (redis databases only). If secret does not exist, it will be created. To define the password, create an opaque secret and set the name in the spec. The password will be taken from the value of the 'password' key. Use an empty string as value within the secret to disable authentication for the database. Notes - For Active-Active databases this secret will not be automatically created, and also, memcached databases must not be set with a value, and a secret/password will not be automatically created for them. Use the memcachedSaslSecretName field to set authentication parameters for memcached databases.",
-						MarkdownDescription: "The name of the secret that holds the password to the database (redis databases only). If secret does not exist, it will be created. To define the password, create an opaque secret and set the name in the spec. The password will be taken from the value of the 'password' key. Use an empty string as value within the secret to disable authentication for the database. Notes - For Active-Active databases this secret will not be automatically created, and also, memcached databases must not be set with a value, and a secret/password will not be automatically created for them. Use the memcachedSaslSecretName field to set authentication parameters for memcached databases.",
+						Description:         "Name of the secret containing the database password (Redis databases only). The secret is created automatically if it does not exist. The password is stored under the 'password' key in the secret. If creating the secret manually, create an opaque secret with the password under the 'password' key. To disable authentication, set the value of the 'password' key in the secret to an empty string. Note: For Active-Active databases, this secret is not created automatically. For memcached databases, use memcachedSaslSecretName instead.",
+						MarkdownDescription: "Name of the secret containing the database password (Redis databases only). The secret is created automatically if it does not exist. The password is stored under the 'password' key in the secret. If creating the secret manually, create an opaque secret with the password under the 'password' key. To disable authentication, set the value of the 'password' key in the secret to an empty string. Note: For Active-Active databases, this secret is not created automatically. For memcached databases, use memcachedSaslSecretName instead.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"database_service_port": schema.Int64Attribute{
+						Description:         "A custom port to be exposed by the database Services. Can be modified/added/removed after REDB creation. If set, it'll replace the default service port (namely, databasePort or defaultRedisPort).",
+						MarkdownDescription: "A custom port to be exposed by the database Services. Can be modified/added/removed after REDB creation. If set, it'll replace the default service port (namely, databasePort or defaultRedisPort).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"default_user": schema.BoolAttribute{
-						Description:         "Is connecting with a default user allowed?",
-						MarkdownDescription: "Is connecting with a default user allowed?",
+						Description:         "Allows connections with the default user. When disabled, the DatabaseSecret is not created or updated.",
+						MarkdownDescription: "Allows connections with the default user. When disabled, the DatabaseSecret is not created or updated.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"eviction_policy": schema.StringAttribute{
-						Description:         "Database eviction policy. see more https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/",
-						MarkdownDescription: "Database eviction policy. see more https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/",
+						Description:         "Database eviction policy. See https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/",
+						MarkdownDescription: "Database eviction policy. See https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"is_rof": schema.BoolAttribute{
-						Description:         "Whether it is an RoF database or not. Applicable only for databases of type 'REDIS'. Assumed to be false if left blank.",
-						MarkdownDescription: "Whether it is an RoF database or not. Applicable only for databases of type 'REDIS'. Assumed to be false if left blank.",
+						Description:         "Enables Auto Tiering (formerly Redis on Flash) for Redis databases only. Defaults to false.",
+						MarkdownDescription: "Enables Auto Tiering (formerly Redis on Flash) for Redis databases only. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"memcached_sasl_secret_name": schema.StringAttribute{
-						Description:         "Credentials used for binary authentication in memcached databases. The credentials should be saved as an opaque secret and the name of that secret should be configured using this field. For username, use 'username' as the key and the actual username as the value. For password, use 'password' as the key and the actual password as the value. Note that connections are not encrypted.",
-						MarkdownDescription: "Credentials used for binary authentication in memcached databases. The credentials should be saved as an opaque secret and the name of that secret should be configured using this field. For username, use 'username' as the key and the actual username as the value. For password, use 'password' as the key and the actual password as the value. Note that connections are not encrypted.",
+						Description:         "Name of the secret containing credentials for memcached database authentication. Store credentials in an opaque secret with 'username' and 'password' keys. Note: Connections are not encrypted.",
+						MarkdownDescription: "Name of the secret containing credentials for memcached database authentication. Store credentials in an opaque secret with 'username' and 'password' keys. Note: Connections are not encrypted.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"memory_size": schema.StringAttribute{
-						Description:         "memory size of database. use formats like 100MB, 0.1GB. minimum value in 100MB. When redis on flash (RoF) is enabled, this value refers to RAM+Flash memory, and it must not be below 1GB.",
-						MarkdownDescription: "memory size of database. use formats like 100MB, 0.1GB. minimum value in 100MB. When redis on flash (RoF) is enabled, this value refers to RAM+Flash memory, and it must not be below 1GB.",
+						Description:         "Memory size for the database using formats like 100MB or 0.1GB. Minimum value is 100MB. For Auto Tiering (formerly Redis on Flash), this value represents RAM+Flash memory and must be at least 1GB.",
+						MarkdownDescription: "Memory size for the database using formats like 100MB or 0.1GB. Minimum value is 100MB. For Auto Tiering (formerly Redis on Flash), this value represents RAM+Flash memory and must be at least 1GB.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"modules_list": schema.ListNestedAttribute{
-						Description:         "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
-						MarkdownDescription: "List of modules associated with database. Note - For Active-Active databases this feature is currently in preview. For this feature to take effect for Active-Active databases, set a boolean environment variable with the name 'ENABLE_ALPHA_FEATURES' to True. This variable can be set via the redis-enterprise-operator pod spec, or through the operator-environment-config Config Map.",
+						Description:         "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
+						MarkdownDescription: "List of modules associated with the database. The list of valid modules for the specific cluster can be retrieved from the status of the REC object. Use the 'name' and 'versions' fields for the specific module configuration. If specifying an explicit version for a module, automatic modules versions upgrade must be disabled by setting the '.upgradeSpec.upgradeModulesToLatest' field in the REC to 'false'. Note that the option to specify module versions is deprecated, and will be removed in future releases.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"config": schema.StringAttribute{
-									Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
-									MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30",
+									Description:         "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
+									MarkdownDescription: "Module command line arguments e.g. VKEY_MAX_ENTITY_COUNT 30 30",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "The module's name e.g 'ft' for redissearch",
-									MarkdownDescription: "The module's name e.g 'ft' for redissearch",
+									Description:         "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
+									MarkdownDescription: "The name of the module, e.g. 'search' or 'ReJSON'. The complete list of modules available in the cluster can be retrieved from the '.status.modules' field in the REC.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"version": schema.StringAttribute{
-									Description:         "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
-									MarkdownDescription: "Module's semantic version e.g '1.6.12' - optional only in REDB, must be set in REAADB",
+									Description:         "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
+									MarkdownDescription: "The semantic version of the module, e.g. '1.6.12'. Optional for REDB, must be set for REAADB. Note that this field is deprecated, and will be removed in future releases.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -858,16 +867,16 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"oss_cluster": schema.BoolAttribute{
-						Description:         "OSS Cluster mode option. Note that not all client libraries support OSS cluster mode.",
-						MarkdownDescription: "OSS Cluster mode option. Note that not all client libraries support OSS cluster mode.",
+						Description:         "Enables OSS Cluster mode. Note: Not all client libraries support OSS cluster mode.",
+						MarkdownDescription: "Enables OSS Cluster mode. Note: Not all client libraries support OSS cluster mode.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"persistence": schema.StringAttribute{
-						Description:         "Database on-disk persistence policy",
-						MarkdownDescription: "Database on-disk persistence policy",
+						Description:         "Database persistence policy for on-disk storage.",
+						MarkdownDescription: "Database persistence policy for on-disk storage.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -877,24 +886,24 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"proxy_policy": schema.StringAttribute{
-						Description:         "The policy used for proxy binding to the endpoint. Supported proxy policies are: single/all-master-shards/all-nodes When left blank, the default value will be chosen according to the value of ossCluster - single if disabled, all-master-shards when enabled",
-						MarkdownDescription: "The policy used for proxy binding to the endpoint. Supported proxy policies are: single/all-master-shards/all-nodes When left blank, the default value will be chosen according to the value of ossCluster - single if disabled, all-master-shards when enabled",
+						Description:         "Proxy policy for the database. Supported proxy policies are: single/all-master-shards/all-nodes When left blank, the default value will be chosen according to the value of ossCluster - single if disabled, all-master-shards when enabled",
+						MarkdownDescription: "Proxy policy for the database. Supported proxy policies are: single/all-master-shards/all-nodes When left blank, the default value will be chosen according to the value of ossCluster - single if disabled, all-master-shards when enabled",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"rack_aware": schema.BoolAttribute{
-						Description:         "Whether database should be rack aware. This improves availability - more information: https://docs.redislabs.com/latest/rs/concepts/high-availability/rack-zone-awareness/",
-						MarkdownDescription: "Whether database should be rack aware. This improves availability - more information: https://docs.redislabs.com/latest/rs/concepts/high-availability/rack-zone-awareness/",
+						Description:         "Enables rack awareness for improved availability. See https://redis.io/docs/latest/operate/rs/clusters/configure/rack-zone-awareness/",
+						MarkdownDescription: "Enables rack awareness for improved availability. See https://redis.io/docs/latest/operate/rs/clusters/configure/rack-zone-awareness/",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"redis_enterprise_cluster": schema.SingleNestedAttribute{
-						Description:         "Connection to Redis Enterprise Cluster",
-						MarkdownDescription: "Connection to Redis Enterprise Cluster",
+						Description:         "Connection to the Redis Enterprise Cluster.",
+						MarkdownDescription: "Connection to the Redis Enterprise Cluster.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "The name of the Redis Enterprise Cluster where the database should be stored.",
@@ -977,8 +986,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"replication": schema.BoolAttribute{
-						Description:         "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability. Defaults to false.",
-						MarkdownDescription: "In-memory database replication. When enabled, database will have replica shard for every master - leading to higher availability. Defaults to false.",
+						Description:         "Enables in-memory database replication for higher availability. Creates a replica shard for every master shard. Defaults to false.",
+						MarkdownDescription: "Enables in-memory database replication for higher availability. Creates a replica shard for every master shard. Defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -993,8 +1002,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"rof_ram_size": schema.StringAttribute{
-						Description:         "The size of the RAM portion of an RoF database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
-						MarkdownDescription: "The size of the RAM portion of an RoF database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
+						Description:         "The size of the RAM portion of an Auto Tiering (formerly Redis on Flash) database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
+						MarkdownDescription: "The size of the RAM portion of an Auto Tiering (formerly Redis on Flash) database. Similarly to 'memorySize' use formats like 100MB, 0.1GB. It must be at least 10% of combined memory size (RAM and Flash), as specified by 'memorySize'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1036,8 +1045,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"shard_count": schema.Int64Attribute{
-						Description:         "Number of database server-side shards",
-						MarkdownDescription: "Number of database server-side shards",
+						Description:         "Number of database server-side shards.",
+						MarkdownDescription: "Number of database server-side shards.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1052,8 +1061,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"shards_placement": schema.StringAttribute{
-						Description:         "Control the density of shards - should they reside on as few or as many nodes as possible. Available options are 'dense' or 'sparse'. If left unset, defaults to 'dense'.",
-						MarkdownDescription: "Control the density of shards - should they reside on as few or as many nodes as possible. Available options are 'dense' or 'sparse'. If left unset, defaults to 'dense'.",
+						Description:         "Shard placement strategy: 'dense' or 'sparse'. dense: Shards reside on as few nodes as possible. sparse: Shards are distributed across as many nodes as possible.",
+						MarkdownDescription: "Shard placement strategy: 'dense' or 'sparse'. dense: Shards reside on as few nodes as possible. sparse: Shards are distributed across as many nodes as possible.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1063,8 +1072,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"tls_mode": schema.StringAttribute{
-						Description:         "Require SSL authenticated and encrypted connections to the database. enabled - all incoming connections to the Database must use SSL. disabled - no incoming connection to the Database should use SSL. replica_ssl - databases that replicate from this one need to use SSL.",
-						MarkdownDescription: "Require SSL authenticated and encrypted connections to the database. enabled - all incoming connections to the Database must use SSL. disabled - no incoming connection to the Database should use SSL. replica_ssl - databases that replicate from this one need to use SSL.",
+						Description:         "Require TLS authenticated and encrypted connections to the database. enabled - all client and replication connections to the Database must use TLS. disabled - no incoming connection to the Database should use TLS. replica_ssl - databases that replicate from this one need to use TLS.",
+						MarkdownDescription: "Require TLS authenticated and encrypted connections to the database. enabled - all client and replication connections to the Database must use TLS. disabled - no incoming connection to the Database should use TLS. replica_ssl - databases that replicate from this one need to use TLS.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1074,8 +1083,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "The type of the database (redis or memcached). Defaults to 'redis'.",
-						MarkdownDescription: "The type of the database (redis or memcached). Defaults to 'redis'.",
+						Description:         "Database type: redis or memcached.",
+						MarkdownDescription: "Database type: redis or memcached.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1089,8 +1098,8 @@ func (r *AppRedislabsComRedisEnterpriseDatabaseV1Alpha1Manifest) Schema(_ contex
 						MarkdownDescription: "Specifications for DB upgrade.",
 						Attributes: map[string]schema.Attribute{
 							"upgrade_modules_to_latest": schema.BoolAttribute{
-								Description:         "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifing the version. in addition, This field is currently not supported for Active-Active databases.",
-								MarkdownDescription: "Upgrades the modules to the latest version that supportes the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifing the version. in addition, This field is currently not supported for Active-Active databases.",
+								Description:         "DEPRECATED Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifying the version. in addition, This field is currently not supported for Active-Active databases. The default is true",
+								MarkdownDescription: "DEPRECATED Upgrades the modules to the latest version that supports the DB version during a DB upgrade action, to upgrade the DB version view the 'redisVersion' field. Notes - All modules must be without specifying the version. in addition, This field is currently not supported for Active-Active databases. The default is true",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

@@ -132,8 +132,8 @@ func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "ElasticIPAddressSpec defines the desired state of ElasticIPAddress.",
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
-						Description:         "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.",
-						MarkdownDescription: "[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.",
+						Description:         "The Elastic IP address to recover or an IPv4 address from an address pool.",
+						MarkdownDescription: "The Elastic IP address to recover or an IPv4 address from an address pool.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -148,8 +148,8 @@ func (r *Ec2ServicesK8SAwsElasticIpaddressV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"network_border_group": schema.StringAttribute{
-						Description:         "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups. Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups. You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 Classic, you receive an InvalidParameterCombination error.",
-						MarkdownDescription: "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups. Use DescribeAvailabilityZones (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html) to view the network border groups. You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 Classic, you receive an InvalidParameterCombination error.",
+						Description:         "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.",
+						MarkdownDescription: "A unique set of Availability Zones, Local Zones, or Wavelength Zones from which Amazon Web Services advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -150,8 +150,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta1Manifest) Sc
 								MarkdownDescription: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
-										MarkdownDescription: "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										Description:         "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
+										MarkdownDescription: "annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -159,8 +159,8 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta1Manifest) Sc
 									},
 
 									"labels": schema.MapAttribute{
-										Description:         "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
-										MarkdownDescription: "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										Description:         "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
+										MarkdownDescription: "labels is a map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -181,16 +181,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta1Manifest) Sc
 										MarkdownDescription: "ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.",
 										Attributes: map[string]schema.Attribute{
 											"host": schema.StringAttribute{
-												Description:         "The hostname on which the API server is serving.",
-												MarkdownDescription: "The hostname on which the API server is serving.",
+												Description:         "host is the hostname on which the API server is serving.",
+												MarkdownDescription: "host is the hostname on which the API server is serving.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(512),
+												},
 											},
 
 											"port": schema.Int64Attribute{
-												Description:         "The port on which the API server is serving.",
-												MarkdownDescription: "The port on which the API server is serving.",
+												Description:         "port is the port on which the API server is serving.",
+												MarkdownDescription: "port is the port on which the API server is serving.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
