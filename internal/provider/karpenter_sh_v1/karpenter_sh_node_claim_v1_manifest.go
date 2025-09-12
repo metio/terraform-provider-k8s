@@ -147,7 +147,7 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+)|(Never)$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]+(s|m|h))+|Never)$`), ""),
 						},
 					},
 
@@ -289,8 +289,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -345,8 +345,8 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								},
 
 								"time_added": schema.StringAttribute{
-									Description:         "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
-									MarkdownDescription: "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.",
+									Description:         "TimeAdded represents the time at which the taint was added.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -61,7 +61,8 @@ type SourceToolkitFluxcdIoBucketV1ManifestData struct {
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-		Sts *struct {
+		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+		Sts                *struct {
 			CertSecretRef *struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
@@ -272,6 +273,14 @@ func (r *SourceToolkitFluxcdIoBucketV1Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"service_account_name": schema.StringAttribute{
+						Description:         "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the bucket. This field is only supported for the 'gcp' and 'aws' providers. For more information about workload identity: https://fluxcd.io/flux/components/source/buckets/#workload-identity",
+						MarkdownDescription: "ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the bucket. This field is only supported for the 'gcp' and 'aws' providers. For more information about workload identity: https://fluxcd.io/flux/components/source/buckets/#workload-identity",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"sts": schema.SingleNestedAttribute{

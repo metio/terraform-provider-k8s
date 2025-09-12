@@ -70,9 +70,10 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 					Name     *string            `tfsdk:"name" json:"name,omitempty"`
 					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
-				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
+				SkipCommandOutput *bool   `tfsdk:"skip_command_output" json:"skipCommandOutput,omitempty"`
+				SkipLogOutput     *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+				Timeout           *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir           *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"command" json:"command,omitempty"`
 			Compiler *string `tfsdk:"compiler" json:"compiler,omitempty"`
 			Delete   *struct {
@@ -180,9 +181,12 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 					Name     *string            `tfsdk:"name" json:"name,omitempty"`
 					Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
-				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
-				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
-				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
+				Shell             *string   `tfsdk:"shell" json:"shell,omitempty"`
+				ShellArgs         *[]string `tfsdk:"shell_args" json:"shellArgs,omitempty"`
+				SkipCommandOutput *bool     `tfsdk:"skip_command_output" json:"skipCommandOutput,omitempty"`
+				SkipLogOutput     *bool     `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
+				Timeout           *string   `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir           *string   `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"script" json:"script,omitempty"`
 			Sleep *struct {
 				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -513,6 +517,14 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"skip_command_output": schema.BoolAttribute{
+											Description:         "SkipCommandOutput removes the command from the output logs.",
+											MarkdownDescription: "SkipCommandOutput removes the command from the output logs.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"skip_log_output": schema.BoolAttribute{
@@ -1224,8 +1236,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										},
 
 										"content": schema.StringAttribute{
-											Description:         "Content defines a shell script (run with 'sh -c ...').",
-											MarkdownDescription: "Content defines a shell script (run with 'sh -c ...').",
+											Description:         "Content defines a shell script (run with '$shell $shellArgs ...').",
+											MarkdownDescription: "Content defines a shell script (run with '$shell $shellArgs ...').",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1322,6 +1334,31 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"shell": schema.StringAttribute{
+											Description:         "Shell defines the host shell (run with '... $shellArgs $content').",
+											MarkdownDescription: "Shell defines the host shell (run with '... $shellArgs $content').",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"shell_args": schema.ListAttribute{
+											Description:         "ShellArgs defines arguments for the host shell (run with '$shell ... $content').",
+											MarkdownDescription: "ShellArgs defines arguments for the host shell (run with '$shell ... $content').",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"skip_command_output": schema.BoolAttribute{
+											Description:         "SkipCommandOutput removes the command from the output logs.",
+											MarkdownDescription: "SkipCommandOutput removes the command from the output logs.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"skip_log_output": schema.BoolAttribute{
@@ -1691,8 +1728,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 					},
 
 					"report_format": schema.StringAttribute{
-						Description:         "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
-						MarkdownDescription: "ReportFormat determines test report format (JSON|XML|JUNIT-TEST|JUNIT-STEP|JUNIT-OPERATION|nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
+						Description:         "ReportFormat determines test report format (JSON, XML, JUNIT-TEST, JUNIT-STEP, JUNIT-OPERATION, nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
+						MarkdownDescription: "ReportFormat determines test report format (JSON, XML, JUNIT-TEST, JUNIT-STEP, JUNIT-OPERATION, nil) nil == no report. maps to report.Type, however we don't want generated.deepcopy to have reference to it.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

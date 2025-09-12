@@ -71,7 +71,13 @@ type K8SMariadbComUserV1Alpha1ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"password_secret_key_ref" json:"passwordSecretKeyRef,omitempty"`
 		RequeueInterval *string `tfsdk:"requeue_interval" json:"requeueInterval,omitempty"`
-		RetryInterval   *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
+		Require         *struct {
+			Issuer  *string `tfsdk:"issuer" json:"issuer,omitempty"`
+			Ssl     *bool   `tfsdk:"ssl" json:"ssl,omitempty"`
+			Subject *string `tfsdk:"subject" json:"subject,omitempty"`
+			X509    *bool   `tfsdk:"x509" json:"x509,omitempty"`
+		} `tfsdk:"require" json:"require,omitempty"`
+		RetryInterval *string `tfsdk:"retry_interval" json:"retryInterval,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -341,6 +347,47 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"require": schema.SingleNestedAttribute{
+						Description:         "Require specifies TLS requirements for the user to connect. See: https://mariadb.com/kb/en/securing-connections-for-client-and-server/#requiring-tls.",
+						MarkdownDescription: "Require specifies TLS requirements for the user to connect. See: https://mariadb.com/kb/en/securing-connections-for-client-and-server/#requiring-tls.",
+						Attributes: map[string]schema.Attribute{
+							"issuer": schema.StringAttribute{
+								Description:         "Issuer indicates that the TLS certificate provided by the user must be issued by a specific issuer.",
+								MarkdownDescription: "Issuer indicates that the TLS certificate provided by the user must be issued by a specific issuer.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"ssl": schema.BoolAttribute{
+								Description:         "SSL indicates that the user must connect via TLS.",
+								MarkdownDescription: "SSL indicates that the user must connect via TLS.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"subject": schema.StringAttribute{
+								Description:         "Subject indicates that the TLS certificate provided by the user must have a specific subject.",
+								MarkdownDescription: "Subject indicates that the TLS certificate provided by the user must have a specific subject.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"x509": schema.BoolAttribute{
+								Description:         "X509 indicates that the user must provide a valid x509 certificate to connect.",
+								MarkdownDescription: "X509 indicates that the user must provide a valid x509 certificate to connect.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"retry_interval": schema.StringAttribute{

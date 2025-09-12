@@ -128,8 +128,8 @@ func (r *DynamodbServicesK8SAwsGlobalTableV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "GlobalTableSpec defines the desired state of GlobalTable. Represents the properties of a global table.",
 				Attributes: map[string]schema.Attribute{
 					"global_table_name": schema.StringAttribute{
-						Description:         "The global table name.",
-						MarkdownDescription: "The global table name.",
+						Description:         "The global table name. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
+						MarkdownDescription: "The global table name. Regex Pattern: '^[a-zA-Z0-9_.-]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

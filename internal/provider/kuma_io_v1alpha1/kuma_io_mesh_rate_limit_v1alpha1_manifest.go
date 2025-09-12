@@ -87,6 +87,39 @@ type KumaIoMeshRateLimitV1Alpha1ManifestData struct {
 				Tags        *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
 			} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 		} `tfsdk:"from" json:"from,omitempty"`
+		Rules *[]struct {
+			Default *struct {
+				Local *struct {
+					Http *struct {
+						Disabled    *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+						OnRateLimit *struct {
+							Headers *struct {
+								Add *[]struct {
+									Name  *string `tfsdk:"name" json:"name,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"add" json:"add,omitempty"`
+								Set *[]struct {
+									Name  *string `tfsdk:"name" json:"name,omitempty"`
+									Value *string `tfsdk:"value" json:"value,omitempty"`
+								} `tfsdk:"set" json:"set,omitempty"`
+							} `tfsdk:"headers" json:"headers,omitempty"`
+							Status *int64 `tfsdk:"status" json:"status,omitempty"`
+						} `tfsdk:"on_rate_limit" json:"onRateLimit,omitempty"`
+						RequestRate *struct {
+							Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+							Num      *int64  `tfsdk:"num" json:"num,omitempty"`
+						} `tfsdk:"request_rate" json:"requestRate,omitempty"`
+					} `tfsdk:"http" json:"http,omitempty"`
+					Tcp *struct {
+						ConnectionRate *struct {
+							Interval *string `tfsdk:"interval" json:"interval,omitempty"`
+							Num      *int64  `tfsdk:"num" json:"num,omitempty"`
+						} `tfsdk:"connection_rate" json:"connectionRate,omitempty"`
+						Disabled *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+					} `tfsdk:"tcp" json:"tcp,omitempty"`
+				} `tfsdk:"local" json:"local,omitempty"`
+			} `tfsdk:"default" json:"default,omitempty"`
+		} `tfsdk:"rules" json:"rules,omitempty"`
 		TargetRef *struct {
 			Kind        *string            `tfsdk:"kind" json:"kind,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -424,11 +457,11 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 
@@ -502,6 +535,209 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Computed: false,
 					},
 
+					"rules": schema.ListNestedAttribute{
+						Description:         "Rules defines inbound rate limiting configurations. Currently limited to selecting all inbound traffic, as L7 matching is not yet implemented.",
+						MarkdownDescription: "Rules defines inbound rate limiting configurations. Currently limited to selecting all inbound traffic, as L7 matching is not yet implemented.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default": schema.SingleNestedAttribute{
+									Description:         "Default contains configuration of the inbound rate limits",
+									MarkdownDescription: "Default contains configuration of the inbound rate limits",
+									Attributes: map[string]schema.Attribute{
+										"local": schema.SingleNestedAttribute{
+											Description:         "LocalConf defines local http or/and tcp rate limit configuration",
+											MarkdownDescription: "LocalConf defines local http or/and tcp rate limit configuration",
+											Attributes: map[string]schema.Attribute{
+												"http": schema.SingleNestedAttribute{
+													Description:         "LocalHTTP defines configuration of local HTTP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													MarkdownDescription: "LocalHTTP defines configuration of local HTTP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/local_rate_limit_filter",
+													Attributes: map[string]schema.Attribute{
+														"disabled": schema.BoolAttribute{
+															Description:         "Define if rate limiting should be disabled.",
+															MarkdownDescription: "Define if rate limiting should be disabled.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"on_rate_limit": schema.SingleNestedAttribute{
+															Description:         "Describes the actions to take on a rate limit event",
+															MarkdownDescription: "Describes the actions to take on a rate limit event",
+															Attributes: map[string]schema.Attribute{
+																"headers": schema.SingleNestedAttribute{
+																	Description:         "The Headers to be added to the HTTP response on a rate limit event",
+																	MarkdownDescription: "The Headers to be added to the HTTP response on a rate limit event",
+																	Attributes: map[string]schema.Attribute{
+																		"add": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																						Validators: []validator.String{
+																							stringvalidator.LengthAtLeast(1),
+																							stringvalidator.LengthAtMost(256),
+																							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																						},
+																					},
+
+																					"value": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"set": schema.ListNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																						Validators: []validator.String{
+																							stringvalidator.LengthAtLeast(1),
+																							stringvalidator.LengthAtMost(256),
+																							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9!#$%&'*+\-.^_\x60|~]+$`), ""),
+																						},
+																					},
+
+																					"value": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"status": schema.Int64Attribute{
+																	Description:         "The HTTP status code to be set on a rate limit event",
+																	MarkdownDescription: "The HTTP status code to be set on a rate limit event",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"request_rate": schema.SingleNestedAttribute{
+															Description:         "Defines how many requests are allowed per interval.",
+															MarkdownDescription: "Defines how many requests are allowed per interval.",
+															Attributes: map[string]schema.Attribute{
+																"interval": schema.StringAttribute{
+																	Description:         "The interval the number of units is accounted for.",
+																	MarkdownDescription: "The interval the number of units is accounted for.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"num": schema.Int64Attribute{
+																	Description:         "Number of units per interval (depending on usage it can be a number of requests, or a number of connections).",
+																	MarkdownDescription: "Number of units per interval (depending on usage it can be a number of requests, or a number of connections).",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"tcp": schema.SingleNestedAttribute{
+													Description:         "LocalTCP defines confguration of local TCP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter",
+													MarkdownDescription: "LocalTCP defines confguration of local TCP rate limiting https://www.envoyproxy.io/docs/envoy/latest/configuration/listeners/network_filters/local_rate_limit_filter",
+													Attributes: map[string]schema.Attribute{
+														"connection_rate": schema.SingleNestedAttribute{
+															Description:         "Defines how many connections are allowed per interval.",
+															MarkdownDescription: "Defines how many connections are allowed per interval.",
+															Attributes: map[string]schema.Attribute{
+																"interval": schema.StringAttribute{
+																	Description:         "The interval the number of units is accounted for.",
+																	MarkdownDescription: "The interval the number of units is accounted for.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"num": schema.Int64Attribute{
+																	Description:         "Number of units per interval (depending on usage it can be a number of requests, or a number of connections).",
+																	MarkdownDescription: "Number of units per interval (depending on usage it can be a number of requests, or a number of connections).",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"disabled": schema.BoolAttribute{
+															Description:         "Define if rate limiting should be disabled. Default: false",
+															MarkdownDescription: "Define if rate limiting should be disabled. Default: false",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"target_ref": schema.SingleNestedAttribute{
 						Description:         "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
 						MarkdownDescription: "TargetRef is a reference to the resource the policy takes an effect on. The resource could be either a real store object or virtual resource defined inplace.",
@@ -509,11 +745,11 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							"kind": schema.StringAttribute{
 								Description:         "Kind of the referenced resource",
 								MarkdownDescription: "Kind of the referenced resource",
-								Required:            false,
-								Optional:            true,
+								Required:            true,
+								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 								},
 							},
 
@@ -785,11 +1021,11 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										"kind": schema.StringAttribute{
 											Description:         "Kind of the referenced resource",
 											MarkdownDescription: "Kind of the referenced resource",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute", "Dataplane"),
 											},
 										},
 

@@ -42,9 +42,10 @@ type CapsuleClastixIoCapsuleConfigurationV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		EnableTLSReconciler *bool `tfsdk:"enable_tls_reconciler" json:"enableTLSReconciler,omitempty"`
-		ForceTenantPrefix   *bool `tfsdk:"force_tenant_prefix" json:"forceTenantPrefix,omitempty"`
-		NodeMetadata        *struct {
+		EnableTLSReconciler  *bool     `tfsdk:"enable_tls_reconciler" json:"enableTLSReconciler,omitempty"`
+		ForceTenantPrefix    *bool     `tfsdk:"force_tenant_prefix" json:"forceTenantPrefix,omitempty"`
+		IgnoreUserWithGroups *[]string `tfsdk:"ignore_user_with_groups" json:"ignoreUserWithGroups,omitempty"`
+		NodeMetadata         *struct {
 			ForbiddenAnnotations *struct {
 				Denied      *[]string `tfsdk:"denied" json:"denied,omitempty"`
 				DeniedRegex *string   `tfsdk:"denied_regex" json:"deniedRegex,omitempty"`
@@ -61,6 +62,7 @@ type CapsuleClastixIoCapsuleConfigurationV1Beta2ManifestData struct {
 		} `tfsdk:"overrides" json:"overrides,omitempty"`
 		ProtectedNamespaceRegex *string   `tfsdk:"protected_namespace_regex" json:"protectedNamespaceRegex,omitempty"`
 		UserGroups              *[]string `tfsdk:"user_groups" json:"userGroups,omitempty"`
+		UserNames               *[]string `tfsdk:"user_names" json:"userNames,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -140,6 +142,15 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.C
 					"force_tenant_prefix": schema.BoolAttribute{
 						Description:         "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
 						MarkdownDescription: "Enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash. This is useful to avoid Namespace name collision in a public CaaS environment.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ignore_user_with_groups": schema.ListAttribute{
+						Description:         "Define groups which when found in the request of a user will be ignored by the Capsule this might be useful if you have one group where all the users are in, but you want to separate administrators from normal users with additional groups.",
+						MarkdownDescription: "Define groups which when found in the request of a user will be ignored by the Capsule this might be useful if you have one group where all the users are in, but you want to separate administrators from normal users with additional groups.",
+						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -248,8 +259,17 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.C
 					},
 
 					"user_groups": schema.ListAttribute{
-						Description:         "Names of the groups for Capsule users.",
-						MarkdownDescription: "Names of the groups for Capsule users.",
+						Description:         "Names of the groups considered as Capsule users.",
+						MarkdownDescription: "Names of the groups considered as Capsule users.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"user_names": schema.ListAttribute{
+						Description:         "Names of the users considered as Capsule users.",
+						MarkdownDescription: "Names of the users considered as Capsule users.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

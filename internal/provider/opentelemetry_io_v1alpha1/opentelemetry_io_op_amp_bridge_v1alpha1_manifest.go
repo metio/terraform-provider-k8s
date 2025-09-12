@@ -177,8 +177,11 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 		} `tfsdk:"affinity" json:"affinity,omitempty"`
 		Capabilities      *map[string]string   `tfsdk:"capabilities" json:"capabilities,omitempty"`
 		ComponentsAllowed *map[string][]string `tfsdk:"components_allowed" json:"componentsAllowed,omitempty"`
-		Endpoint          *string              `tfsdk:"endpoint" json:"endpoint,omitempty"`
-		Env               *[]struct {
+		Description       *struct {
+			Non_identifying_attributes *map[string]string `tfsdk:"non_identifying_attributes" json:"non_identifying_attributes,omitempty"`
+		} `tfsdk:"description" json:"description,omitempty"`
+		Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+		Env      *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -240,6 +243,7 @@ type OpentelemetryIoOpAmpbridgeV1Alpha1ManifestData struct {
 			RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
 			RunAsNonRoot        *bool   `tfsdk:"run_as_non_root" json:"runAsNonRoot,omitempty"`
 			RunAsUser           *int64  `tfsdk:"run_as_user" json:"runAsUser,omitempty"`
+			SeLinuxChangePolicy *string `tfsdk:"se_linux_change_policy" json:"seLinuxChangePolicy,omitempty"`
 			SeLinuxOptions      *struct {
 				Level *string `tfsdk:"level" json:"level,omitempty"`
 				Role  *string `tfsdk:"role" json:"role,omitempty"`
@@ -1638,6 +1642,24 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed:            false,
 					},
 
+					"description": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"non_identifying_attributes": schema.MapAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								ElementType:         types.StringType,
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"endpoint": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -2059,6 +2081,14 @@ func (r *OpentelemetryIoOpAmpbridgeV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"run_as_user": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"se_linux_change_policy": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

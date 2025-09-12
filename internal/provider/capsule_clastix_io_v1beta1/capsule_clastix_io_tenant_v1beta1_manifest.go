@@ -971,8 +971,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"pod_selector": schema.SingleNestedAttribute{
-											Description:         "podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
-											MarkdownDescription: "podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.",
+											Description:         "podSelector selects the pods to which this NetworkPolicy object applies. The array of rules is applied to any pods selected by this field. An empty selector matches all pods in the policy's namespace. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is optional. If it is not specified, it defaults to an empty selector.",
+											MarkdownDescription: "podSelector selects the pods to which this NetworkPolicy object applies. The array of rules is applied to any pods selected by this field. An empty selector matches all pods in the policy's namespace. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is optional. If it is not specified, it defaults to an empty selector.",
 											Attributes: map[string]schema.Attribute{
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1019,8 +1019,8 @@ func (r *CapsuleClastixIoTenantV1Beta1Manifest) Schema(_ context.Context, _ data
 													Computed:            false,
 												},
 											},
-											Required: true,
-											Optional: false,
+											Required: false,
+											Optional: true,
 											Computed: false,
 										},
 

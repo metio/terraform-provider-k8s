@@ -131,20 +131,24 @@ func (r *IpamClusterXK8SIoIpaddressV1Alpha1Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "IPAddressSpec is the desired state of an IPAddress.",
-				MarkdownDescription: "IPAddressSpec is the desired state of an IPAddress.",
+				Description:         "spec is the desired state of IPAddress.",
+				MarkdownDescription: "spec is the desired state of IPAddress.",
 				Attributes: map[string]schema.Attribute{
 					"address": schema.StringAttribute{
-						Description:         "Address is the IP address.",
-						MarkdownDescription: "Address is the IP address.",
+						Description:         "address is the IP address.",
+						MarkdownDescription: "address is the IP address.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(39),
+						},
 					},
 
 					"claim_ref": schema.SingleNestedAttribute{
-						Description:         "ClaimRef is a reference to the claim this IPAddress was created for.",
-						MarkdownDescription: "ClaimRef is a reference to the claim this IPAddress was created for.",
+						Description:         "claimRef is a reference to the claim this IPAddress was created for.",
+						MarkdownDescription: "claimRef is a reference to the claim this IPAddress was created for.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -160,16 +164,20 @@ func (r *IpamClusterXK8SIoIpaddressV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"gateway": schema.StringAttribute{
-						Description:         "Gateway is the network gateway of the network the address is from.",
-						MarkdownDescription: "Gateway is the network gateway of the network the address is from.",
+						Description:         "gateway is the network gateway of the network the address is from.",
+						MarkdownDescription: "gateway is the network gateway of the network the address is from.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(39),
+						},
 					},
 
 					"pool_ref": schema.SingleNestedAttribute{
-						Description:         "PoolRef is a reference to the pool that this IPAddress was created from.",
-						MarkdownDescription: "PoolRef is a reference to the pool that this IPAddress was created from.",
+						Description:         "poolRef is a reference to the pool that this IPAddress was created from.",
+						MarkdownDescription: "poolRef is a reference to the pool that this IPAddress was created from.",
 						Attributes: map[string]schema.Attribute{
 							"api_group": schema.StringAttribute{
 								Description:         "APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.",
@@ -201,8 +209,8 @@ func (r *IpamClusterXK8SIoIpaddressV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"prefix": schema.Int64Attribute{
-						Description:         "Prefix is the prefix of the address.",
-						MarkdownDescription: "Prefix is the prefix of the address.",
+						Description:         "prefix is the prefix of the address.",
+						MarkdownDescription: "prefix is the prefix of the address.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

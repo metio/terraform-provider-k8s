@@ -88,6 +88,7 @@ type KyvernoIoUpdateRequestV2ManifestData struct {
 			UserInfo *struct {
 				ClusterRoles *[]string `tfsdk:"cluster_roles" json:"clusterRoles,omitempty"`
 				Roles        *[]string `tfsdk:"roles" json:"roles,omitempty"`
+				Synchronize  *bool     `tfsdk:"synchronize" json:"synchronize,omitempty"`
 				UserInfo     *struct {
 					Extra    *map[string][]string `tfsdk:"extra" json:"extra,omitempty"`
 					Groups   *[]string            `tfsdk:"groups" json:"groups,omitempty"`
@@ -108,6 +109,7 @@ type KyvernoIoUpdateRequestV2ManifestData struct {
 		} `tfsdk:"resource" json:"resource,omitempty"`
 		Rule        *string `tfsdk:"rule" json:"rule,omitempty"`
 		RuleContext *[]struct {
+			CacheRestore     *bool   `tfsdk:"cache_restore" json:"cacheRestore,omitempty"`
 			DeleteDownstream *bool   `tfsdk:"delete_downstream" json:"deleteDownstream,omitempty"`
 			Rule             *string `tfsdk:"rule" json:"rule,omitempty"`
 			Synchronize      *bool   `tfsdk:"synchronize" json:"synchronize,omitempty"`
@@ -510,6 +512,14 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 										Computed:            false,
 									},
 
+									"synchronize": schema.BoolAttribute{
+										Description:         "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+										MarkdownDescription: "DryRun indicates that modifications will definitely not be persisted for this request. Defaults to false.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"user_info": schema.SingleNestedAttribute{
 										Description:         "UserInfo is the userInfo carried in the admission request.",
 										MarkdownDescription: "UserInfo is the userInfo carried in the admission request.",
@@ -586,7 +596,7 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("mutate", "generate"),
+							stringvalidator.OneOf("mutate", "generate", "cel-generate", "cel-mutate"),
 						},
 					},
 
@@ -652,6 +662,14 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 						MarkdownDescription: "RuleContext is the associate context to apply rules. optional",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"cache_restore": schema.BoolAttribute{
+									Description:         "CacheRestore indicates whether the cache should be restored.",
+									MarkdownDescription: "CacheRestore indicates whether the cache should be restored.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"delete_downstream": schema.BoolAttribute{
 									Description:         "DeleteDownstream represents whether the downstream needs to be deleted.",
 									MarkdownDescription: "DeleteDownstream represents whether the downstream needs to be deleted.",

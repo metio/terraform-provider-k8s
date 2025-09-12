@@ -7,6 +7,7 @@ package scheduling_koordinator_sh_v1alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -16,6 +17,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -43,6 +45,14 @@ type SchedulingKoordinatorShDeviceV1Alpha1ManifestData struct {
 
 	Spec *struct {
 		Devices *[]struct {
+			Conditions *[]struct {
+				LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
+				Message            *string `tfsdk:"message" json:"message,omitempty"`
+				ObservedGeneration *int64  `tfsdk:"observed_generation" json:"observedGeneration,omitempty"`
+				Reason             *string `tfsdk:"reason" json:"reason,omitempty"`
+				Status             *string `tfsdk:"status" json:"status,omitempty"`
+				Type               *string `tfsdk:"type" json:"type,omitempty"`
+			} `tfsdk:"conditions" json:"conditions,omitempty"`
 			Health    *bool              `tfsdk:"health" json:"health,omitempty"`
 			Id        *string            `tfsdk:"id" json:"id,omitempty"`
 			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
@@ -137,6 +147,86 @@ func (r *SchedulingKoordinatorShDeviceV1Alpha1Manifest) Schema(_ context.Context
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"conditions": schema.ListNestedAttribute{
+									Description:         "Conditions represents current conditions of device",
+									MarkdownDescription: "Conditions represents current conditions of device",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"last_transition_time": schema.StringAttribute{
+												Description:         "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+												MarkdownDescription: "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													validators.DateTime64Validator(),
+												},
+											},
+
+											"message": schema.StringAttribute{
+												Description:         "message is a human readable message indicating details about the transition. This may be an empty string.",
+												MarkdownDescription: "message is a human readable message indicating details about the transition. This may be an empty string.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(32768),
+												},
+											},
+
+											"observed_generation": schema.Int64Attribute{
+												Description:         "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+												MarkdownDescription: "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.Int64{
+													int64validator.AtLeast(0),
+												},
+											},
+
+											"reason": schema.StringAttribute{
+												Description:         "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+												MarkdownDescription: "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+													stringvalidator.LengthAtMost(1024),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$`), ""),
+												},
+											},
+
+											"status": schema.StringAttribute{
+												Description:         "status of the condition, one of True, False, Unknown.",
+												MarkdownDescription: "status of the condition, one of True, False, Unknown.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("True", "False", "Unknown"),
+												},
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+												MarkdownDescription: "type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtMost(316),
+													stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`), ""),
+												},
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"health": schema.BoolAttribute{
 									Description:         "Health indicates whether the device is normal",
 									MarkdownDescription: "Health indicates whether the device is normal",

@@ -50,6 +50,7 @@ type TraefikIoTlsoptionV1Alpha1ManifestData struct {
 			SecretNames    *[]string `tfsdk:"secret_names" json:"secretNames,omitempty"`
 		} `tfsdk:"client_auth" json:"clientAuth,omitempty"`
 		CurvePreferences         *[]string `tfsdk:"curve_preferences" json:"curvePreferences,omitempty"`
+		DisableSessionTickets    *bool     `tfsdk:"disable_session_tickets" json:"disableSessionTickets,omitempty"`
 		MaxVersion               *string   `tfsdk:"max_version" json:"maxVersion,omitempty"`
 		MinVersion               *string   `tfsdk:"min_version" json:"minVersion,omitempty"`
 		PreferServerCipherSuites *bool     `tfsdk:"prefer_server_cipher_suites" json:"preferServerCipherSuites,omitempty"`
@@ -63,8 +64,8 @@ func (r *TraefikIoTlsoptionV1Alpha1Manifest) Metadata(_ context.Context, request
 
 func (r *TraefikIoTlsoptionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#tls-options",
-		MarkdownDescription: "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#tls-options",
+		Description:         "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#tls-options",
+		MarkdownDescription: "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#tls-options",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -135,8 +136,8 @@ func (r *TraefikIoTlsoptionV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 				MarkdownDescription: "TLSOptionSpec defines the desired state of a TLSOption.",
 				Attributes: map[string]schema.Attribute{
 					"alpn_protocols": schema.ListAttribute{
-						Description:         "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#alpn-protocols",
-						MarkdownDescription: "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#alpn-protocols",
+						Description:         "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#alpn-protocols",
+						MarkdownDescription: "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#alpn-protocols",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -144,8 +145,8 @@ func (r *TraefikIoTlsoptionV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"cipher_suites": schema.ListAttribute{
-						Description:         "CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#cipher-suites",
-						MarkdownDescription: "CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#cipher-suites",
+						Description:         "CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#cipher-suites",
+						MarkdownDescription: "CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#cipher-suites",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -182,9 +183,17 @@ func (r *TraefikIoTlsoptionV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 					},
 
 					"curve_preferences": schema.ListAttribute{
-						Description:         "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#curve-preferences",
-						MarkdownDescription: "CurvePreferences defines the preferred elliptic curves in a specific order. More info: https://doc.traefik.io/traefik/v3.2/https/tls/#curve-preferences",
+						Description:         "CurvePreferences defines the preferred elliptic curves. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#curve-preferences",
+						MarkdownDescription: "CurvePreferences defines the preferred elliptic curves. More info: https://doc.traefik.io/traefik/v3.5/https/tls/#curve-preferences",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"disable_session_tickets": schema.BoolAttribute{
+						Description:         "DisableSessionTickets disables TLS session resumption via session tickets.",
+						MarkdownDescription: "DisableSessionTickets disables TLS session resumption via session tickets.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

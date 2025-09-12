@@ -42,10 +42,12 @@ type ListenersStackableTechListenerClassV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		PreferredAddressType         *string            `tfsdk:"preferred_address_type" json:"preferredAddressType,omitempty"`
-		ServiceAnnotations           *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
-		ServiceExternalTrafficPolicy *string            `tfsdk:"service_external_traffic_policy" json:"serviceExternalTrafficPolicy,omitempty"`
-		ServiceType                  *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
+		LoadBalancerAllocateNodePorts *bool              `tfsdk:"load_balancer_allocate_node_ports" json:"loadBalancerAllocateNodePorts,omitempty"`
+		LoadBalancerClass             *string            `tfsdk:"load_balancer_class" json:"loadBalancerClass,omitempty"`
+		PreferredAddressType          *string            `tfsdk:"preferred_address_type" json:"preferredAddressType,omitempty"`
+		ServiceAnnotations            *map[string]string `tfsdk:"service_annotations" json:"serviceAnnotations,omitempty"`
+		ServiceExternalTrafficPolicy  *string            `tfsdk:"service_external_traffic_policy" json:"serviceExternalTrafficPolicy,omitempty"`
+		ServiceType                   *string            `tfsdk:"service_type" json:"serviceType,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -114,14 +116,30 @@ func (r *ListenersStackableTechListenerClassV1Alpha1Manifest) Schema(_ context.C
 				Description:         "Defines a policy for how [Listeners](https://docs.stackable.tech/home/nightly/listener-operator/listener) should be exposed. Read the [ListenerClass documentation](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass) for more information.",
 				MarkdownDescription: "Defines a policy for how [Listeners](https://docs.stackable.tech/home/nightly/listener-operator/listener) should be exposed. Read the [ListenerClass documentation](https://docs.stackable.tech/home/nightly/listener-operator/listenerclass) for more information.",
 				Attributes: map[string]schema.Attribute{
+					"load_balancer_allocate_node_ports": schema.BoolAttribute{
+						Description:         "Configures whether a LoadBalancer service should also allocate node ports (like NodePort). Ignored unless serviceType is LoadBalancer.",
+						MarkdownDescription: "Configures whether a LoadBalancer service should also allocate node ports (like NodePort). Ignored unless serviceType is LoadBalancer.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"load_balancer_class": schema.StringAttribute{
+						Description:         "Configures a custom Service loadBalancerClass, which can be used to access secondary load balancer controllers that are installed in the cluster, or to provision custom addresses manually. Ignored unless serviceType is LoadBalancer.",
+						MarkdownDescription: "Configures a custom Service loadBalancerClass, which can be used to access secondary load balancer controllers that are installed in the cluster, or to provision custom addresses manually. Ignored unless serviceType is LoadBalancer.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"preferred_address_type": schema.StringAttribute{
-						Description:         "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
-						MarkdownDescription: "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). The other type will be used if the preferred type is not available. By default 'Hostname' is used.",
+						Description:         "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). Can also be set to 'HostnameConservative', which will use 'IP' for 'NodePort' service types, but 'Hostname' for everything else. The other type will be used if the preferred type is not available. Defaults to 'HostnameConservative'.",
+						MarkdownDescription: "Whether addresses should prefer using the IP address ('IP') or the hostname ('Hostname'). Can also be set to 'HostnameConservative', which will use 'IP' for 'NodePort' service types, but 'Hostname' for everything else. The other type will be used if the preferred type is not available. Defaults to 'HostnameConservative'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("Hostname", "IP"),
+							stringvalidator.OneOf("Hostname", "IP", "HostnameConservative"),
 						},
 					},
 

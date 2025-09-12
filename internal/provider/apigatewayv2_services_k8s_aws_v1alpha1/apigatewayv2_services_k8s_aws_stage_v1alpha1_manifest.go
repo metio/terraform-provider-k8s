@@ -162,8 +162,8 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "StageSpec defines the desired state of Stage. Represents an API stage.",
 				Attributes: map[string]schema.Attribute{
 					"access_log_settings": schema.SingleNestedAttribute{
-						Description:         "Settings for logging access in a stage.",
-						MarkdownDescription: "Settings for logging access in a stage.",
+						Description:         "Settings for logging access in this stage.",
+						MarkdownDescription: "Settings for logging access in this stage.",
 						Attributes: map[string]schema.Attribute{
 							"destination_arn": schema.StringAttribute{
 								Description:         "Represents an Amazon Resource Name (ARN).",
@@ -187,8 +187,8 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"api_id": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The API identifier.",
+						MarkdownDescription: "The API identifier.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -229,24 +229,24 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"auto_deploy": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specifies whether updates to an API automatically trigger a new deployment. The default value is false.",
+						MarkdownDescription: "Specifies whether updates to an API automatically trigger a new deployment. The default value is false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"client_certificate_id": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The identifier of a client certificate for a Stage. Supported only for WebSocket APIs.",
+						MarkdownDescription: "The identifier of a client certificate for a Stage. Supported only for WebSocket APIs.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"default_route_settings": schema.SingleNestedAttribute{
-						Description:         "Represents a collection of route settings.",
-						MarkdownDescription: "Represents a collection of route settings.",
+						Description:         "The default route settings for the stage.",
+						MarkdownDescription: "The default route settings for the stage.",
 						Attributes: map[string]schema.Attribute{
 							"data_trace_enabled": schema.BoolAttribute{
 								Description:         "",
@@ -294,8 +294,8 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"deployment_id": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The deployment identifier of the API stage.",
+						MarkdownDescription: "The deployment identifier of the API stage.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -336,16 +336,16 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The description for the API stage.",
+						MarkdownDescription: "The description for the API stage.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"route_settings": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Route settings for the stage, by routeKey.",
+						MarkdownDescription: "Route settings for the stage, by routeKey.",
 						Attributes: map[string]schema.Attribute{
 							"data_trace_enabled": schema.BoolAttribute{
 								Description:         "",
@@ -393,16 +393,16 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"stage_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The name of the stage.",
+						MarkdownDescription: "The name of the stage.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"stage_variables": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.",
+						MarkdownDescription: "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -410,8 +410,8 @@ func (r *Apigatewayv2ServicesK8SAwsStageV1Alpha1Manifest) Schema(_ context.Conte
 					},
 
 					"tags": schema.MapAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The collection of tags. Each tag element is associated with a given resource.",
+						MarkdownDescription: "The collection of tags. Each tag element is associated with a given resource.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

@@ -45,19 +45,40 @@ type CouchbaseComCouchbaseBucketV2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		AutoCompaction *struct {
+			DatabaseFragmentationThreshold *struct {
+				Percent *int64  `tfsdk:"percent" json:"percent,omitempty"`
+				Size    *string `tfsdk:"size" json:"size,omitempty"`
+			} `tfsdk:"database_fragmentation_threshold" json:"databaseFragmentationThreshold,omitempty"`
+			TimeWindow *struct {
+				AbortCompactionOutsideWindow *bool   `tfsdk:"abort_compaction_outside_window" json:"abortCompactionOutsideWindow,omitempty"`
+				End                          *string `tfsdk:"end" json:"end,omitempty"`
+				Start                        *string `tfsdk:"start" json:"start,omitempty"`
+			} `tfsdk:"time_window" json:"timeWindow,omitempty"`
+			TombstonePurgeInterval     *string `tfsdk:"tombstone_purge_interval" json:"tombstonePurgeInterval,omitempty"`
+			ViewFragmentationThreshold *struct {
+				Percent *int64  `tfsdk:"percent" json:"percent,omitempty"`
+				Size    *string `tfsdk:"size" json:"size,omitempty"`
+			} `tfsdk:"view_fragmentation_threshold" json:"viewFragmentationThreshold,omitempty"`
+		} `tfsdk:"auto_compaction" json:"autoCompaction,omitempty"`
 		CompressionMode    *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
 		ConflictResolution *string `tfsdk:"conflict_resolution" json:"conflictResolution,omitempty"`
 		EnableFlush        *bool   `tfsdk:"enable_flush" json:"enableFlush,omitempty"`
 		EnableIndexReplica *bool   `tfsdk:"enable_index_replica" json:"enableIndexReplica,omitempty"`
 		EvictionPolicy     *string `tfsdk:"eviction_policy" json:"evictionPolicy,omitempty"`
-		IoPriority         *string `tfsdk:"io_priority" json:"ioPriority,omitempty"`
-		MaxTTL             *string `tfsdk:"max_ttl" json:"maxTTL,omitempty"`
-		MemoryQuota        *string `tfsdk:"memory_quota" json:"memoryQuota,omitempty"`
-		MinimumDurability  *string `tfsdk:"minimum_durability" json:"minimumDurability,omitempty"`
-		Name               *string `tfsdk:"name" json:"name,omitempty"`
-		Rank               *int64  `tfsdk:"rank" json:"rank,omitempty"`
-		Replicas           *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
-		Scopes             *struct {
+		HistoryRetention   *struct {
+			Bytes                    *int64 `tfsdk:"bytes" json:"bytes,omitempty"`
+			CollectionHistoryDefault *bool  `tfsdk:"collection_history_default" json:"collectionHistoryDefault,omitempty"`
+			Seconds                  *int64 `tfsdk:"seconds" json:"seconds,omitempty"`
+		} `tfsdk:"history_retention" json:"historyRetention,omitempty"`
+		IoPriority        *string `tfsdk:"io_priority" json:"ioPriority,omitempty"`
+		MaxTTL            *string `tfsdk:"max_ttl" json:"maxTTL,omitempty"`
+		MemoryQuota       *string `tfsdk:"memory_quota" json:"memoryQuota,omitempty"`
+		MinimumDurability *string `tfsdk:"minimum_durability" json:"minimumDurability,omitempty"`
+		Name              *string `tfsdk:"name" json:"name,omitempty"`
+		Rank              *int64  `tfsdk:"rank" json:"rank,omitempty"`
+		Replicas          *int64  `tfsdk:"replicas" json:"replicas,omitempty"`
+		Scopes            *struct {
 			Managed   *bool `tfsdk:"managed" json:"managed,omitempty"`
 			Resources *[]struct {
 				Kind *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -153,6 +174,126 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Schema(_ context.Context, _ data
 				Description:         "CouchbaseBucketSpec is the specification for a Couchbase bucket resource, and allows the bucket to be customized.",
 				MarkdownDescription: "CouchbaseBucketSpec is the specification for a Couchbase bucket resource, and allows the bucket to be customized.",
 				Attributes: map[string]schema.Attribute{
+					"auto_compaction": schema.SingleNestedAttribute{
+						Description:         "AutoCompaction allows the configuration of auto-compaction settings, including on what conditions disk space is reclaimed and when it is allowed to run, on a per-bucket basis. If any of these fields are configured, those that are not configured here will take the value set at the cluster level. Excluding this field (which is the default), will set the autoCompactionSettings to false and the bucket will use cluster defaults.",
+						MarkdownDescription: "AutoCompaction allows the configuration of auto-compaction settings, including on what conditions disk space is reclaimed and when it is allowed to run, on a per-bucket basis. If any of these fields are configured, those that are not configured here will take the value set at the cluster level. Excluding this field (which is the default), will set the autoCompactionSettings to false and the bucket will use cluster defaults.",
+						Attributes: map[string]schema.Attribute{
+							"database_fragmentation_threshold": schema.SingleNestedAttribute{
+								Description:         "DatabaseFragmentationThreshold defines triggers for when database compaction should start on buckets with a couchstore storage backend. This field will be ignored if the bucket has a magma storage backend.",
+								MarkdownDescription: "DatabaseFragmentationThreshold defines triggers for when database compaction should start on buckets with a couchstore storage backend. This field will be ignored if the bucket has a magma storage backend.",
+								Attributes: map[string]schema.Attribute{
+									"percent": schema.Int64Attribute{
+										Description:         "Percent specifies the level of view fragmentation that must be reached for View compaction to be automatically triggered. This field must be in the range 2-100, defaulting to the cluster level value.",
+										MarkdownDescription: "Percent specifies the level of view fragmentation that must be reached for View compaction to be automatically triggered. This field must be in the range 2-100, defaulting to the cluster level value.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(2),
+											int64validator.AtMost(100),
+										},
+									},
+
+									"size": schema.StringAttribute{
+										Description:         "Size the level of database fragmentation that must be reached for data compaction to be automatically triggered on the bucket. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										MarkdownDescription: "Size the level of database fragmentation that must be reached for data compaction to be automatically triggered on the bucket. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"time_window": schema.SingleNestedAttribute{
+								Description:         "TimeWindow allows restriction of when compaction can occur. This field will be ignored if the bucket has a magma storage backend.",
+								MarkdownDescription: "TimeWindow allows restriction of when compaction can occur. This field will be ignored if the bucket has a magma storage backend.",
+								Attributes: map[string]schema.Attribute{
+									"abort_compaction_outside_window": schema.BoolAttribute{
+										Description:         "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window, defaulting to false.",
+										MarkdownDescription: "AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window, defaulting to false.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"end": schema.StringAttribute{
+										Description:         "End is a wallclock time, in the form HH:MM, when a compaction should stop.",
+										MarkdownDescription: "End is a wallclock time, in the form HH:MM, when a compaction should stop.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$`), ""),
+										},
+									},
+
+									"start": schema.StringAttribute{
+										Description:         "Start is a wallclock time, in the form HH:MM, when a compaction is permitted to start.",
+										MarkdownDescription: "Start is a wallclock time, in the form HH:MM, when a compaction is permitted to start.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tombstone_purge_interval": schema.StringAttribute{
+								Description:         "TombstonePurgeInterval controls how long to wait before purging tombstones. This field must be in the range 1h-1440h, defaulting to the cluster level value. More info: https://golang.org/pkg/time/#ParseDuration",
+								MarkdownDescription: "TombstonePurgeInterval controls how long to wait before purging tombstones. This field must be in the range 1h-1440h, defaulting to the cluster level value. More info: https://golang.org/pkg/time/#ParseDuration",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"view_fragmentation_threshold": schema.SingleNestedAttribute{
+								Description:         "ViewFragmentationThreshold defines triggers for when view compaction should start. This field will be ignored if the bucket has a magma storage backend.",
+								MarkdownDescription: "ViewFragmentationThreshold defines triggers for when view compaction should start. This field will be ignored if the bucket has a magma storage backend.",
+								Attributes: map[string]schema.Attribute{
+									"percent": schema.Int64Attribute{
+										Description:         "Percent specifies the percentage level of View fragmentation that must be reached for View compaction to be automatically triggered on the bucket This field must be in the range 2-100, defaulting to the cluster level value.",
+										MarkdownDescription: "Percent specifies the percentage level of View fragmentation that must be reached for View compaction to be automatically triggered on the bucket This field must be in the range 2-100, defaulting to the cluster level value.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(2),
+											int64validator.AtMost(100),
+										},
+									},
+
+									"size": schema.StringAttribute{
+										Description:         "Size is the level of View fragmentation that must be reached for view compaction to be automatically triggered on the bucket. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										MarkdownDescription: "Size is the level of View fragmentation that must be reached for view compaction to be automatically triggered on the bucket. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.RegexMatches(regexp.MustCompile(`^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"compression_mode": schema.StringAttribute{
 						Description:         "CompressionMode defines how Couchbase server handles document compression. When off, documents are stored in memory, and transferred to the client uncompressed. When passive, documents are stored compressed in memory, and transferred to the client compressed when requested. When active, documents are stored compresses in memory and when transferred to the client. This field must be 'off', 'passive' or 'active', defaulting to 'passive'. Be aware 'off' in YAML 1.2 is a boolean, so must be quoted as a string in configuration files.",
 						MarkdownDescription: "CompressionMode defines how Couchbase server handles document compression. When off, documents are stored in memory, and transferred to the client uncompressed. When passive, documents are stored compressed in memory, and transferred to the client compressed when requested. When active, documents are stored compresses in memory and when transferred to the client. This field must be 'off', 'passive' or 'active', defaulting to 'passive'. Be aware 'off' in YAML 1.2 is a boolean, so must be quoted as a string in configuration files.",
@@ -200,6 +341,39 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Schema(_ context.Context, _ data
 						Validators: []validator.String{
 							stringvalidator.OneOf("valueOnly", "fullEviction"),
 						},
+					},
+
+					"history_retention": schema.SingleNestedAttribute{
+						Description:         "HistoryRetention configures settings for bucket history retention and default values for associated collections.",
+						MarkdownDescription: "HistoryRetention configures settings for bucket history retention and default values for associated collections.",
+						Attributes: map[string]schema.Attribute{
+							"bytes": schema.Int64Attribute{
+								Description:         "Bytes defines how much history an individual vbucket should aim to retain on disk in bytes. This field defaults to 0 and has a minimum working value of 2147483648. This is only supported on buckets with storageBackend=magma.",
+								MarkdownDescription: "Bytes defines how much history an individual vbucket should aim to retain on disk in bytes. This field defaults to 0 and has a minimum working value of 2147483648. This is only supported on buckets with storageBackend=magma.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"collection_history_default": schema.BoolAttribute{
+								Description:         "CollectionHistoryDefault determines whether history retention is enabled for newly created collections by default. This field defaults to true. This is only supported on buckets with storageBackend=magma.",
+								MarkdownDescription: "CollectionHistoryDefault determines whether history retention is enabled for newly created collections by default. This field defaults to true. This is only supported on buckets with storageBackend=magma.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"seconds": schema.Int64Attribute{
+								Description:         "Seconds defines how many seconds of history an individual vbucket should aim to retain on disk. This field defaults to 0. This is only supported on buckets with storageBackend=magma.",
+								MarkdownDescription: "Seconds defines how many seconds of history an individual vbucket should aim to retain on disk. This field defaults to 0. This is only supported on buckets with storageBackend=magma.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"io_priority": schema.StringAttribute{

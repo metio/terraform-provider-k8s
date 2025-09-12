@@ -16,6 +16,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -44,6 +45,7 @@ type CephRookIoCephBlockPoolRadosNamespaceV1ManifestData struct {
 
 	Spec *struct {
 		BlockPoolName *string `tfsdk:"block_pool_name" json:"blockPoolName,omitempty"`
+		ClusterID     *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
 		Mirroring     *struct {
 			Mode              *string `tfsdk:"mode" json:"mode,omitempty"`
 			RemoteNamespace   *string `tfsdk:"remote_namespace" json:"remoteNamespace,omitempty"`
@@ -142,13 +144,26 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"cluster_id": schema.StringAttribute{
+						Description:         "ClusterID to be used for this RadosNamespace in the CSI configuration. It must be unique among all Ceph clusters managed by Rook. If not specified, the clusterID will be generated and can be found in the CR status.",
+						MarkdownDescription: "ClusterID to be used for this RadosNamespace in the CSI configuration. It must be unique among all Ceph clusters managed by Rook. If not specified, the clusterID will be generated and can be found in the CR status.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(36),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), ""),
+						},
+					},
+
 					"mirroring": schema.SingleNestedAttribute{
 						Description:         "Mirroring configuration of CephBlockPoolRadosNamespace",
 						MarkdownDescription: "Mirroring configuration of CephBlockPoolRadosNamespace",
 						Attributes: map[string]schema.Attribute{
 							"mode": schema.StringAttribute{
-								Description:         "Mode is the mirroring mode; either pool or image",
-								MarkdownDescription: "Mode is the mirroring mode; either pool or image",
+								Description:         "Mode is the mirroring mode; either pool or image.",
+								MarkdownDescription: "Mode is the mirroring mode; either pool or image.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,

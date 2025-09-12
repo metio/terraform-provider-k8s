@@ -363,8 +363,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 				MarkdownDescription: "PipeSpec defines the desired state of Pipe. An object that represents a pipe. Amazon EventBridgePipes connect event sources to targets and reduces the need for specialized knowledge and integration code.",
 				Attributes: map[string]schema.Attribute{
 					"description": schema.StringAttribute{
-						Description:         "A description of the pipe.",
-						MarkdownDescription: "A description of the pipe.",
+						Description:         "A description of the pipe. Regex Pattern: '^.*$'",
+						MarkdownDescription: "A description of the pipe. Regex Pattern: '^.*$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -379,8 +379,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"enrichment": schema.StringAttribute{
-						Description:         "The ARN of the enrichment resource.",
-						MarkdownDescription: "The ARN of the enrichment resource.",
+						Description:         "The ARN of the enrichment resource. Regex Pattern: '^$|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
+						MarkdownDescription: "The ARN of the enrichment resource. Regex Pattern: '^$|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -440,24 +440,24 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "The name of the pipe.",
-						MarkdownDescription: "The name of the pipe.",
+						Description:         "The name of the pipe. Regex Pattern: '^[.-_A-Za-z0-9]+$'",
+						MarkdownDescription: "The name of the pipe. Regex Pattern: '^[.-_A-Za-z0-9]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The ARN of the role that allows the pipe to send data to the target.",
-						MarkdownDescription: "The ARN of the role that allows the pipe to send data to the target.",
+						Description:         "The ARN of the role that allows the pipe to send data to the target. Regex Pattern: '^arn:(aws[a-zA-Z-]*)?:iam::d{12}:role/?[a-zA-Z0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The ARN of the role that allows the pipe to send data to the target. Regex Pattern: '^arn:(aws[a-zA-Z-]*)?:iam::d{12}:role/?[a-zA-Z0-9+=,.@-_/]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"source": schema.StringAttribute{
-						Description:         "The ARN of the source resource.",
-						MarkdownDescription: "The ARN of the source resource.",
+						Description:         "The ARN of the source resource. Regex Pattern: '^smk://(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]).)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]):[0-9]{1,5}|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
+						MarkdownDescription: "The ARN of the source resource. Regex Pattern: '^smk://(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]).)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9]):[0-9]{1,5}|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -600,8 +600,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"filter_criteria": schema.SingleNestedAttribute{
-								Description:         "The collection of event patterns used to filter events. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
-								MarkdownDescription: "The collection of event patterns used to filter events. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
+								Description:         "The collection of event patterns used to filter events. To remove a filter, specify a FilterCriteria object with an empty array of Filter objects. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
+								MarkdownDescription: "The collection of event patterns used to filter events. To remove a filter, specify a FilterCriteria object with an empty array of Filter objects. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the Amazon EventBridge User Guide.",
 								Attributes: map[string]schema.Attribute{
 									"filters": schema.ListNestedAttribute{
 										Description:         "",
@@ -853,8 +853,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"self_managed_kafka_parameters": schema.SingleNestedAttribute{
-								Description:         "The parameters for using a self-managed Apache Kafka stream as a source.",
-								MarkdownDescription: "The parameters for using a self-managed Apache Kafka stream as a source.",
+								Description:         "The parameters for using a self-managed Apache Kafka stream as a source. A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/), CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/). For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html) in the Amazon EventBridge User Guide.",
+								MarkdownDescription: "The parameters for using a self-managed Apache Kafka stream as a source. A self managed cluster refers to any Apache Kafka cluster not hosted by Amazon Web Services. This includes both clusters you manage yourself, as well as those hosted by a third-party provider, such as Confluent Cloud (https://www.confluent.io/), CloudKarafka (https://www.cloudkarafka.com/), or Redpanda (https://redpanda.com/). For more information, see Apache Kafka streams as a source (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-kafka.html) in the Amazon EventBridge User Guide.",
 								Attributes: map[string]schema.Attribute{
 									"additional_bootstrap_servers": schema.ListAttribute{
 										Description:         "",
@@ -1026,16 +1026,16 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"target": schema.StringAttribute{
-						Description:         "The ARN of the target resource.",
-						MarkdownDescription: "The ARN of the target resource.",
+						Description:         "The ARN of the target resource. Regex Pattern: '^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
+						MarkdownDescription: "The ARN of the target resource. Regex Pattern: '^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9-]+):([a-z]{2,4}((-gov)|(-de)|(-iso([a-z]?)))?-[a-z]+(-d{1})?)?:(d{12})?:(.+)$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"target_parameters": schema.SingleNestedAttribute{
-						Description:         "The parameters required to set up a target for your pipe.",
-						MarkdownDescription: "The parameters required to set up a target for your pipe.",
+						Description:         "The parameters required to set up a target for your pipe. For more information about pipe target parameters, including how to use dynamic path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) in the Amazon EventBridge User Guide.",
+						MarkdownDescription: "The parameters required to set up a target for your pipe. For more information about pipe target parameters, including how to use dynamic path parameters, see Target parameters (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) in the Amazon EventBridge User Guide.",
 						Attributes: map[string]schema.Attribute{
 							"batch_job_parameters": schema.SingleNestedAttribute{
 								Description:         "The parameters for using an Batch job as a target.",
@@ -1791,8 +1791,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"kinesis_stream_parameters": schema.SingleNestedAttribute{
-								Description:         "The parameters for using a Kinesis stream as a source.",
-								MarkdownDescription: "The parameters for using a Kinesis stream as a source.",
+								Description:         "The parameters for using a Kinesis stream as a target.",
+								MarkdownDescription: "The parameters for using a Kinesis stream as a target.",
 								Attributes: map[string]schema.Attribute{
 									"partition_key": schema.StringAttribute{
 										Description:         "",
@@ -1825,8 +1825,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"redshift_data_parameters": schema.SingleNestedAttribute{
-								Description:         "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API ExecuteStatement.",
-								MarkdownDescription: "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API ExecuteStatement.",
+								Description:         "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API BatchExecuteStatement.",
+								MarkdownDescription: "These are custom parameters to be used when the target is a Amazon Redshift cluster to invoke the Amazon Redshift Data API BatchExecuteStatement.",
 								Attributes: map[string]schema.Attribute{
 									"database": schema.StringAttribute{
 										Description:         "// Redshift Database",
@@ -1862,8 +1862,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 									},
 
 									"statement_name": schema.StringAttribute{
-										Description:         "// A name for Redshift DataAPI statement which can be used as filter of // ListStatement.",
-										MarkdownDescription: "// A name for Redshift DataAPI statement which can be used as filter of // ListStatement.",
+										Description:         "// A name for Redshift DataAPI statement which can be used as filter of// ListStatement.",
+										MarkdownDescription: "// A name for Redshift DataAPI statement which can be used as filter of// ListStatement.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1919,8 +1919,8 @@ func (r *PipesServicesK8SAwsPipeV1Alpha1Manifest) Schema(_ context.Context, _ da
 							},
 
 							"sqs_queue_parameters": schema.SingleNestedAttribute{
-								Description:         "The parameters for using a Amazon SQS stream as a source.",
-								MarkdownDescription: "The parameters for using a Amazon SQS stream as a source.",
+								Description:         "The parameters for using a Amazon SQS stream as a target.",
+								MarkdownDescription: "The parameters for using a Amazon SQS stream as a target.",
 								Attributes: map[string]schema.Attribute{
 									"message_deduplication_id": schema.StringAttribute{
 										Description:         "",

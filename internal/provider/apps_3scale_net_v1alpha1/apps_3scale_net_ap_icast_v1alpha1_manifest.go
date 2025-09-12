@@ -47,7 +47,10 @@ type Apps3ScaleNetApicastV1Alpha1ManifestData struct {
 		AdminPortalCredentialsRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"admin_portal_credentials_ref" json:"adminPortalCredentialsRef,omitempty"`
-		AllProxy                  *string `tfsdk:"all_proxy" json:"allProxy,omitempty"`
+		AllProxy               *string `tfsdk:"all_proxy" json:"allProxy,omitempty"`
+		CaCertificateSecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"ca_certificate_secret_ref" json:"caCertificateSecretRef,omitempty"`
 		CacheConfigurationSeconds *int64  `tfsdk:"cache_configuration_seconds" json:"cacheConfigurationSeconds,omitempty"`
 		CacheMaxTime              *string `tfsdk:"cache_max_time" json:"cacheMaxTime,omitempty"`
 		CacheStatusCodes          *string `tfsdk:"cache_status_codes" json:"cacheStatusCodes,omitempty"`
@@ -71,8 +74,9 @@ type Apps3ScaleNetApicastV1Alpha1ManifestData struct {
 		} `tfsdk:"embedded_configuration_secret_ref" json:"embeddedConfigurationSecretRef,omitempty"`
 		EnabledServices *[]string `tfsdk:"enabled_services" json:"enabledServices,omitempty"`
 		ExposedHost     *struct {
-			Host *string `tfsdk:"host" json:"host,omitempty"`
-			Tls  *[]struct {
+			Host             *string `tfsdk:"host" json:"host,omitempty"`
+			IngressClassName *string `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
+			Tls              *[]struct {
 				Hosts      *[]string `tfsdk:"hosts" json:"hosts,omitempty"`
 				SecretName *string   `tfsdk:"secret_name" json:"secretName,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -227,6 +231,23 @@ func (r *Apps3ScaleNetApicastV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"ca_certificate_secret_ref": schema.SingleNestedAttribute{
+						Description:         "CACertificateSecretRef references secret containing the X.509 CA certificate in the PEM format.",
+						MarkdownDescription: "CACertificateSecretRef references secret containing the X.509 CA certificate in the PEM format.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"cache_configuration_seconds": schema.Int64Attribute{
@@ -387,6 +408,14 @@ func (r *Apps3ScaleNetApicastV1Alpha1Manifest) Schema(_ context.Context, _ datas
 								MarkdownDescription: "",
 								Required:            true,
 								Optional:            false,
+								Computed:            false,
+							},
+
+							"ingress_class_name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

@@ -43,12 +43,12 @@ type PsmdbPerconaComPerconaServerMongoDbbackupV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ClusterName      *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
-		CompressionLevel *int64  `tfsdk:"compression_level" json:"compressionLevel,omitempty"`
-		CompressionType  *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
-		PsmdbCluster     *string `tfsdk:"psmdb_cluster" json:"psmdbCluster,omitempty"`
-		StorageName      *string `tfsdk:"storage_name" json:"storageName,omitempty"`
-		Type             *string `tfsdk:"type" json:"type,omitempty"`
+		ClusterName             *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+		CompressionLevel        *int64  `tfsdk:"compression_level" json:"compressionLevel,omitempty"`
+		CompressionType         *string `tfsdk:"compression_type" json:"compressionType,omitempty"`
+		StartingDeadlineSeconds *int64  `tfsdk:"starting_deadline_seconds" json:"startingDeadlineSeconds,omitempty"`
+		StorageName             *string `tfsdk:"storage_name" json:"storageName,omitempty"`
+		Type                    *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -153,7 +153,7 @@ func (r *PsmdbPerconaComPerconaServerMongoDbbackupV1Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
-					"psmdb_cluster": schema.StringAttribute{
+					"starting_deadline_seconds": schema.Int64Attribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
@@ -176,7 +176,7 @@ func (r *PsmdbPerconaComPerconaServerMongoDbbackupV1Manifest) Schema(_ context.C
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("logical", "physical"),
+							stringvalidator.OneOf("logical", "physical", "incremental", "incremental-base"),
 						},
 					},
 				},

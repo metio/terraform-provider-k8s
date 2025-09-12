@@ -48,6 +48,42 @@ type OpaStackableTechOpaClusterV1Alpha1ManifestData struct {
 			ListenerClass *string `tfsdk:"listener_class" json:"listenerClass,omitempty"`
 			UserInfo      *struct {
 				Backend *struct {
+					ExperimentalActiveDirectory *struct {
+						AdditionalGroupAttributeFilters *map[string]string `tfsdk:"additional_group_attribute_filters" json:"additionalGroupAttributeFilters,omitempty"`
+						BaseDistinguishedName           *string            `tfsdk:"base_distinguished_name" json:"baseDistinguishedName,omitempty"`
+						CustomAttributeMappings         *map[string]string `tfsdk:"custom_attribute_mappings" json:"customAttributeMappings,omitempty"`
+						KerberosSecretClassName         *string            `tfsdk:"kerberos_secret_class_name" json:"kerberosSecretClassName,omitempty"`
+						LdapServer                      *string            `tfsdk:"ldap_server" json:"ldapServer,omitempty"`
+						Tls                             *struct {
+							Verification *struct {
+								None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
+								Server *struct {
+									CaCert *struct {
+										SecretClass *string            `tfsdk:"secret_class" json:"secretClass,omitempty"`
+										WebPki      *map[string]string `tfsdk:"web_pki" json:"webPki,omitempty"`
+									} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+								} `tfsdk:"server" json:"server,omitempty"`
+							} `tfsdk:"verification" json:"verification,omitempty"`
+						} `tfsdk:"tls" json:"tls,omitempty"`
+					} `tfsdk:"experimental_active_directory" json:"experimentalActiveDirectory,omitempty"`
+					ExperimentalEntra *struct {
+						ClientCredentialsSecret *string `tfsdk:"client_credentials_secret" json:"clientCredentialsSecret,omitempty"`
+						Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+						TenantId                *string `tfsdk:"tenant_id" json:"tenantId,omitempty"`
+						Tls                     *struct {
+							Verification *struct {
+								None   *map[string]string `tfsdk:"none" json:"none,omitempty"`
+								Server *struct {
+									CaCert *struct {
+										SecretClass *string            `tfsdk:"secret_class" json:"secretClass,omitempty"`
+										WebPki      *map[string]string `tfsdk:"web_pki" json:"webPki,omitempty"`
+									} `tfsdk:"ca_cert" json:"caCert,omitempty"`
+								} `tfsdk:"server" json:"server,omitempty"`
+							} `tfsdk:"verification" json:"verification,omitempty"`
+						} `tfsdk:"tls" json:"tls,omitempty"`
+						TokenHostname    *string `tfsdk:"token_hostname" json:"tokenHostname,omitempty"`
+						UserInfoHostname *string `tfsdk:"user_info_hostname" json:"userInfoHostname,omitempty"`
+					} `tfsdk:"experimental_entra" json:"experimentalEntra,omitempty"`
 					ExperimentalXfscAas *struct {
 						Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
 						Port     *int64  `tfsdk:"port" json:"port,omitempty"`
@@ -190,8 +226,8 @@ func (r *OpaStackableTechOpaClusterV1Alpha1Manifest) Metadata(_ context.Context,
 
 func (r *OpaStackableTechOpaClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "Auto-generated derived type for OpaSpec via 'CustomResource'",
-		MarkdownDescription: "Auto-generated derived type for OpaSpec via 'CustomResource'",
+		Description:         "Auto-generated derived type for OpaClusterSpec via 'CustomResource'",
+		MarkdownDescription: "Auto-generated derived type for OpaClusterSpec via 'CustomResource'",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -284,6 +320,233 @@ func (r *OpaStackableTechOpaClusterV1Alpha1Manifest) Schema(_ context.Context, _
 										Description:         "The backend directory service to use.",
 										MarkdownDescription: "The backend directory service to use.",
 										Attributes: map[string]schema.Attribute{
+											"experimental_active_directory": schema.SingleNestedAttribute{
+												Description:         "Backend that fetches user information from Active Directory",
+												MarkdownDescription: "Backend that fetches user information from Active Directory",
+												Attributes: map[string]schema.Attribute{
+													"additional_group_attribute_filters": schema.MapAttribute{
+														Description:         "Attributes that groups must have to be returned. These fields will be spliced into an LDAP Search Query, so wildcards can be used, but characters with a special meaning in LDAP will need to be escaped.",
+														MarkdownDescription: "Attributes that groups must have to be returned. These fields will be spliced into an LDAP Search Query, so wildcards can be used, but characters with a special meaning in LDAP will need to be escaped.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"base_distinguished_name": schema.StringAttribute{
+														Description:         "The root Distinguished Name (DN) where users and groups are located.",
+														MarkdownDescription: "The root Distinguished Name (DN) where users and groups are located.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"custom_attribute_mappings": schema.MapAttribute{
+														Description:         "Custom attributes, and their LDAP attribute names.",
+														MarkdownDescription: "Custom attributes, and their LDAP attribute names.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kerberos_secret_class_name": schema.StringAttribute{
+														Description:         "The name of the Kerberos SecretClass.",
+														MarkdownDescription: "The name of the Kerberos SecretClass.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"ldap_server": schema.StringAttribute{
+														Description:         "Hostname of the domain controller, e.g. 'ad-ds-1.contoso.com'.",
+														MarkdownDescription: "Hostname of the domain controller, e.g. 'ad-ds-1.contoso.com'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"tls": schema.SingleNestedAttribute{
+														Description:         "Use a TLS connection. If not specified no TLS will be used.",
+														MarkdownDescription: "Use a TLS connection. If not specified no TLS will be used.",
+														Attributes: map[string]schema.Attribute{
+															"verification": schema.SingleNestedAttribute{
+																Description:         "The verification method used to verify the certificates of the server and/or the client.",
+																MarkdownDescription: "The verification method used to verify the certificates of the server and/or the client.",
+																Attributes: map[string]schema.Attribute{
+																	"none": schema.MapAttribute{
+																		Description:         "Use TLS but don't verify certificates.",
+																		MarkdownDescription: "Use TLS but don't verify certificates.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"server": schema.SingleNestedAttribute{
+																		Description:         "Use TLS and a CA certificate to verify the server.",
+																		MarkdownDescription: "Use TLS and a CA certificate to verify the server.",
+																		Attributes: map[string]schema.Attribute{
+																			"ca_cert": schema.SingleNestedAttribute{
+																				Description:         "CA cert to verify the server.",
+																				MarkdownDescription: "CA cert to verify the server.",
+																				Attributes: map[string]schema.Attribute{
+																					"secret_class": schema.StringAttribute{
+																						Description:         "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																						MarkdownDescription: "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"web_pki": schema.MapAttribute{
+																						Description:         "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																						MarkdownDescription: "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"experimental_entra": schema.SingleNestedAttribute{
+												Description:         "Backend that fetches user information from Microsoft Entra",
+												MarkdownDescription: "Backend that fetches user information from Microsoft Entra",
+												Attributes: map[string]schema.Attribute{
+													"client_credentials_secret": schema.StringAttribute{
+														Description:         "Name of a Secret that contains client credentials of an Entra account with permissions 'User.ReadAll' and 'GroupMemberShip.ReadAll'. Must contain the fields 'clientId' and 'clientSecret'.",
+														MarkdownDescription: "Name of a Secret that contains client credentials of an Entra account with permissions 'User.ReadAll' and 'GroupMemberShip.ReadAll'. Must contain the fields 'clientId' and 'clientSecret'.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port of the identity provider. If TLS is used defaults to '443', otherwise to '80'.",
+														MarkdownDescription: "Port of the identity provider. If TLS is used defaults to '443', otherwise to '80'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+														},
+													},
+
+													"tenant_id": schema.StringAttribute{
+														Description:         "The Microsoft Entra tenant ID.",
+														MarkdownDescription: "The Microsoft Entra tenant ID.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"tls": schema.SingleNestedAttribute{
+														Description:         "Use a TLS connection. Should usually be set to WebPki.",
+														MarkdownDescription: "Use a TLS connection. Should usually be set to WebPki.",
+														Attributes: map[string]schema.Attribute{
+															"verification": schema.SingleNestedAttribute{
+																Description:         "The verification method used to verify the certificates of the server and/or the client.",
+																MarkdownDescription: "The verification method used to verify the certificates of the server and/or the client.",
+																Attributes: map[string]schema.Attribute{
+																	"none": schema.MapAttribute{
+																		Description:         "Use TLS but don't verify certificates.",
+																		MarkdownDescription: "Use TLS but don't verify certificates.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"server": schema.SingleNestedAttribute{
+																		Description:         "Use TLS and a CA certificate to verify the server.",
+																		MarkdownDescription: "Use TLS and a CA certificate to verify the server.",
+																		Attributes: map[string]schema.Attribute{
+																			"ca_cert": schema.SingleNestedAttribute{
+																				Description:         "CA cert to verify the server.",
+																				MarkdownDescription: "CA cert to verify the server.",
+																				Attributes: map[string]schema.Attribute{
+																					"secret_class": schema.StringAttribute{
+																						Description:         "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																						MarkdownDescription: "Name of the [SecretClass](https://docs.stackable.tech/home/nightly/secret-operator/secretclass) which will provide the CA certificate. Note that a SecretClass does not need to have a key but can also work with just a CA certificate, so if you got provided with a CA cert but don't have access to the key you can still use this method.",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"web_pki": schema.MapAttribute{
+																						Description:         "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																						MarkdownDescription: "Use TLS and the CA certificates trusted by the common web browsers to verify the server. This can be useful when you e.g. use public AWS S3 or other public available services.",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: true,
+																				Optional: false,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"token_hostname": schema.StringAttribute{
+														Description:         "Hostname of the token provider, defaults to 'login.microsoft.com'.",
+														MarkdownDescription: "Hostname of the token provider, defaults to 'login.microsoft.com'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"user_info_hostname": schema.StringAttribute{
+														Description:         "Hostname of the user info provider, defaults to 'graph.microsoft.com'.",
+														MarkdownDescription: "Hostname of the user info provider, defaults to 'graph.microsoft.com'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"experimental_xfsc_aas": schema.SingleNestedAttribute{
 												Description:         "Backend that fetches user information from the Gaia-X Cross Federation Services Components (XFSC) Authentication & Authorization Service.",
 												MarkdownDescription: "Backend that fetches user information from the Gaia-X Cross Federation Services Components (XFSC) Authentication & Authorization Service.",
@@ -513,8 +776,8 @@ func (r *OpaStackableTechOpaClusterV1Alpha1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "The OPA image to use",
 						Attributes: map[string]schema.Attribute{
 							"custom": schema.StringAttribute{
-								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
-								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'docker.stackable.tech/stackable/superset:1.4.1-stackable2.1.0'",
+								Description:         "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
+								MarkdownDescription: "Overwrite the docker image. Specify the full docker image name, e.g. 'oci.stackable.tech/sdp/superset:1.4.1-stackable2.1.0'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -559,8 +822,8 @@ func (r *OpaStackableTechOpaClusterV1Alpha1Manifest) Schema(_ context.Context, _
 							},
 
 							"repo": schema.StringAttribute{
-								Description:         "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
-								MarkdownDescription: "Name of the docker repo, e.g. 'docker.stackable.tech/stackable'",
+								Description:         "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
+								MarkdownDescription: "Name of the docker repo, e.g. 'oci.stackable.tech/sdp'",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

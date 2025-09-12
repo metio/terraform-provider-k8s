@@ -98,12 +98,14 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 				NamespaceAnnotations      *bool   `tfsdk:"namespace_annotations" json:"namespaceAnnotations,omitempty"`
 				NamespaceLabels           *bool   `tfsdk:"namespace_labels" json:"namespaceLabels,omitempty"`
 				NamespaceMetadataOnly     *bool   `tfsdk:"namespace_metadata_only" json:"namespaceMetadataOnly,omitempty"`
+				OwnerReferences           *bool   `tfsdk:"owner_references" json:"ownerReferences,omitempty"`
 				RegexParser               *string `tfsdk:"regex_parser" json:"regexParser,omitempty"`
 				RetryLimit                *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 				TlsDebug                  *int64  `tfsdk:"tls_debug" json:"tlsDebug,omitempty"`
 				TlsVerify                 *bool   `tfsdk:"tls_verify" json:"tlsVerify,omitempty"`
 				UseJournal                *bool   `tfsdk:"use_journal" json:"useJournal,omitempty"`
 				UseKubelet                *bool   `tfsdk:"use_kubelet" json:"useKubelet,omitempty"`
+				UseTagForMeta             *bool   `tfsdk:"use_tag_for_meta" json:"useTagForMeta,omitempty"`
 			} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
 			LogToMetrics *struct {
 				AddLabel           *[]string `tfsdk:"add_label" json:"addLabel,omitempty"`
@@ -237,6 +239,7 @@ type FluentbitFluentIoClusterFilterV1Alpha2ManifestData struct {
 		LogLevel   *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 		Match      *string `tfsdk:"match" json:"match,omitempty"`
 		MatchRegex *string `tfsdk:"match_regex" json:"matchRegex,omitempty"`
+		Ordinal    *int64  `tfsdk:"ordinal" json:"ordinal,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -730,6 +733,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"owner_references": schema.BoolAttribute{
+											Description:         "Include Kubernetes owner references in the extra metadata.",
+											MarkdownDescription: "Include Kubernetes owner references in the extra metadata.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"regex_parser": schema.StringAttribute{
 											Description:         "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id. The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
 											MarkdownDescription: "Set an alternative Parser to process record Tag and extract pod_name, namespace_name, container_name and docker_id. The parser must be registered in a parsers file (refer to parser filter-kube-test as an example).",
@@ -776,6 +787,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 										"use_kubelet": schema.BoolAttribute{
 											Description:         "This is an optional feature flag to get metadata information from kubelet instead of calling Kube Server API to enhance the log. This could mitigate the Kube API heavy traffic issue for large cluster.",
 											MarkdownDescription: "This is an optional feature flag to get metadata information from kubelet instead of calling Kube Server API to enhance the log. This could mitigate the Kube API heavy traffic issue for large cluster.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"use_tag_for_meta": schema.BoolAttribute{
+											Description:         "If true, Kubernetes metadata (e.g., pod_name, container_name, namespace_name etc) will be extracted from the tag itself.",
+											MarkdownDescription: "If true, Kubernetes metadata (e.g., pod_name, container_name, namespace_name etc) will be extracted from the tag itself.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1827,6 +1846,14 @@ func (r *FluentbitFluentIoClusterFilterV1Alpha2Manifest) Schema(_ context.Contex
 					"match_regex": schema.StringAttribute{
 						Description:         "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
 						MarkdownDescription: "A regular expression to match against the tags of incoming records. Use this option if you want to use the full regex syntax.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"ordinal": schema.Int64Attribute{
+						Description:         "An ordinal to influence filter ordering",
+						MarkdownDescription: "An ordinal to influence filter ordering",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -1492,9 +1492,11 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					SeccompProfileType *string            `tfsdk:"seccomp_profile_type" json:"seccompProfileType,omitempty"`
 				} `tfsdk:"security_context" json:"security-context,omitempty"`
 				Service *struct {
+					Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 					Auto          *bool              `tfsdk:"auto" json:"auto,omitempty"`
 					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 					NodePort      *bool              `tfsdk:"node_port" json:"nodePort,omitempty"`
 					Type          *string            `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"service" json:"service,omitempty"`
@@ -11171,8 +11173,8 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											},
 
 											"empty_dirs": schema.ListAttribute{
-												Description:         "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
-												MarkdownDescription: "A list of EmptyDir volumes to be mounted. Syntax: [name:/container/path]",
+												Description:         "A list of EmptyDir volumes to be mounted. An optional size limit may be configured (default 500Mi). Syntax: name:/container/path[:sizeLimit]",
+												MarkdownDescription: "A list of EmptyDir volumes to be mounted. An optional size limit may be configured (default 500Mi). Syntax: name:/container/path[:sizeLimit]",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -11788,6 +11790,15 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 										Description:         "The configuration of Service trait",
 										MarkdownDescription: "The configuration of Service trait",
 										Attributes: map[string]schema.Attribute{
+											"annotations": schema.MapAttribute{
+												Description:         "The annotations added to the Service object.",
+												MarkdownDescription: "The annotations added to the Service object.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"auto": schema.BoolAttribute{
 												Description:         "To automatically detect from the code if a Service needs to be created.",
 												MarkdownDescription: "To automatically detect from the code if a Service needs to be created.",
@@ -11808,6 +11819,15 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											"enabled": schema.BoolAttribute{
 												Description:         "Can be used to enable or disable a trait. All traits share this common property.",
 												MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"labels": schema.MapAttribute{
+												Description:         "The labels added to the Service object.",
+												MarkdownDescription: "The labels added to the Service object.",
+												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

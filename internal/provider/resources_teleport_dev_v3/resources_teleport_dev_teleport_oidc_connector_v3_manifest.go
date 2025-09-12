@@ -55,26 +55,35 @@ type ResourcesTeleportDevTeleportOidcconnectorV3ManifestData struct {
 			Allowed_https_hostnames      *[]string `tfsdk:"allowed_https_hostnames" json:"allowed_https_hostnames,omitempty"`
 			Insecure_allowed_cidr_ranges *[]string `tfsdk:"insecure_allowed_cidr_ranges" json:"insecure_allowed_cidr_ranges,omitempty"`
 		} `tfsdk:"client_redirect_settings" json:"client_redirect_settings,omitempty"`
-		Client_secret              *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
-		Display                    *string `tfsdk:"display" json:"display,omitempty"`
+		Client_secret            *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+		Display                  *string `tfsdk:"display" json:"display,omitempty"`
+		Entra_id_groups_provider *struct {
+			Disabled       *bool   `tfsdk:"disabled" json:"disabled,omitempty"`
+			Graph_endpoint *string `tfsdk:"graph_endpoint" json:"graph_endpoint,omitempty"`
+			Group_type     *string `tfsdk:"group_type" json:"group_type,omitempty"`
+		} `tfsdk:"entra_id_groups_provider" json:"entra_id_groups_provider,omitempty"`
 		Google_admin_email         *string `tfsdk:"google_admin_email" json:"google_admin_email,omitempty"`
 		Google_service_account     *string `tfsdk:"google_service_account" json:"google_service_account,omitempty"`
 		Google_service_account_uri *string `tfsdk:"google_service_account_uri" json:"google_service_account_uri,omitempty"`
 		Issuer_url                 *string `tfsdk:"issuer_url" json:"issuer_url,omitempty"`
 		Max_age                    *string `tfsdk:"max_age" json:"max_age,omitempty"`
 		Mfa                        *struct {
-			Acr_values    *string `tfsdk:"acr_values" json:"acr_values,omitempty"`
-			Client_id     *string `tfsdk:"client_id" json:"client_id,omitempty"`
-			Client_secret *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
-			Enabled       *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
-			Max_age       *string `tfsdk:"max_age" json:"max_age,omitempty"`
-			Prompt        *string `tfsdk:"prompt" json:"prompt,omitempty"`
+			Acr_values          *string `tfsdk:"acr_values" json:"acr_values,omitempty"`
+			Client_id           *string `tfsdk:"client_id" json:"client_id,omitempty"`
+			Client_secret       *string `tfsdk:"client_secret" json:"client_secret,omitempty"`
+			Enabled             *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
+			Max_age             *string `tfsdk:"max_age" json:"max_age,omitempty"`
+			Prompt              *string `tfsdk:"prompt" json:"prompt,omitempty"`
+			Request_object_mode *string `tfsdk:"request_object_mode" json:"request_object_mode,omitempty"`
 		} `tfsdk:"mfa" json:"mfa,omitempty"`
-		Prompt         *string   `tfsdk:"prompt" json:"prompt,omitempty"`
-		Provider       *string   `tfsdk:"provider" json:"provider,omitempty"`
-		Redirect_url   *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
-		Scope          *[]string `tfsdk:"scope" json:"scope,omitempty"`
-		Username_claim *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
+		Pkce_mode           *string   `tfsdk:"pkce_mode" json:"pkce_mode,omitempty"`
+		Prompt              *string   `tfsdk:"prompt" json:"prompt,omitempty"`
+		Provider            *string   `tfsdk:"provider" json:"provider,omitempty"`
+		Redirect_url        *[]string `tfsdk:"redirect_url" json:"redirect_url,omitempty"`
+		Request_object_mode *string   `tfsdk:"request_object_mode" json:"request_object_mode,omitempty"`
+		Scope               *[]string `tfsdk:"scope" json:"scope,omitempty"`
+		User_matchers       *[]string `tfsdk:"user_matchers" json:"user_matchers,omitempty"`
+		Username_claim      *string   `tfsdk:"username_claim" json:"username_claim,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -258,6 +267,39 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
+					"entra_id_groups_provider": schema.SingleNestedAttribute{
+						Description:         "EntraIDGroupsProvider configures out-of-band user groups provider. It works by following through the groups claim source, which is sent for the 'groups' claim when the user's group membership exceeds 200 max item limit.",
+						MarkdownDescription: "EntraIDGroupsProvider configures out-of-band user groups provider. It works by following through the groups claim source, which is sent for the 'groups' claim when the user's group membership exceeds 200 max item limit.",
+						Attributes: map[string]schema.Attribute{
+							"disabled": schema.BoolAttribute{
+								Description:         "Disabled specifies that the groups provider should be disabled even when Entra ID responds with a groups claim source. User may choose to disable it if they are using integrations such as SCIM or similar groups importer as connector based role mapping may be not needed in such a scenario.",
+								MarkdownDescription: "Disabled specifies that the groups provider should be disabled even when Entra ID responds with a groups claim source. User may choose to disable it if they are using integrations such as SCIM or similar groups importer as connector based role mapping may be not needed in such a scenario.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"graph_endpoint": schema.StringAttribute{
+								Description:         "GraphEndpoint is a Microsoft Graph API endpoint. The groups claim source endpoint provided by Entra ID points to the now-retired Azure AD Graph endpoint ('https://graph.windows.net'). To convert it to the newer Microsoft Graph API endpoint, Teleport defaults to the Microsoft Graph global service endpoint ('https://graph.microsoft.com'). Update GraphEndpoint to point to a different Microsoft Graph national cloud deployment endpoint.",
+								MarkdownDescription: "GraphEndpoint is a Microsoft Graph API endpoint. The groups claim source endpoint provided by Entra ID points to the now-retired Azure AD Graph endpoint ('https://graph.windows.net'). To convert it to the newer Microsoft Graph API endpoint, Teleport defaults to the Microsoft Graph global service endpoint ('https://graph.microsoft.com'). Update GraphEndpoint to point to a different Microsoft Graph national cloud deployment endpoint.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"group_type": schema.StringAttribute{
+								Description:         "GroupType is a user group type filter. Defaults to 'security-groups'. Value can be 'security-groups', 'directory-roles', 'all-groups'.",
+								MarkdownDescription: "GroupType is a user group type filter. Defaults to 'security-groups'. Value can be 'security-groups', 'directory-roles', 'all-groups'.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"google_admin_email": schema.StringAttribute{
 						Description:         "GoogleAdminEmail is the email of a google admin to impersonate.",
 						MarkdownDescription: "GoogleAdminEmail is the email of a google admin to impersonate.",
@@ -349,10 +391,26 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 								Optional:            true,
 								Computed:            false,
 							},
+
+							"request_object_mode": schema.StringAttribute{
+								Description:         "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters. If omitted, MFA flows will default to the 'RequestObjectMode' behavior specified in the base OIDC connector. Set this property to 'none' to explicitly disable request objects for the MFA client.",
+								MarkdownDescription: "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters. If omitted, MFA flows will default to the 'RequestObjectMode' behavior specified in the base OIDC connector. Set this property to 'none' to explicitly disable request objects for the MFA client.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
 						},
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"pkce_mode": schema.StringAttribute{
+						Description:         "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						MarkdownDescription: "PKCEMode represents the configuration state for PKCE (Proof Key for Code Exchange). It can be 'enabled' or 'disabled'",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"prompt": schema.StringAttribute{
@@ -380,9 +438,26 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.C
 						Computed:            false,
 					},
 
+					"request_object_mode": schema.StringAttribute{
+						Description:         "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters.",
+						MarkdownDescription: "RequestObjectMode determines how JWT-Secured Authorization Requests will be used for authorization requests. JARs, or request objects, can provide integrity protection, source authentication, and confidentiality for authorization request parameters.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"scope": schema.ListAttribute{
 						Description:         "Scope specifies additional scopes set by provider.",
 						MarkdownDescription: "Scope specifies additional scopes set by provider.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"user_matchers": schema.ListAttribute{
+						Description:         "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
+						MarkdownDescription: "UserMatchers is a set of glob patterns to narrow down which username(s) this auth connector should match for identifier-first login.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

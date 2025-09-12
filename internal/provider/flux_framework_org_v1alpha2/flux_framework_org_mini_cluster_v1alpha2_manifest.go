@@ -46,8 +46,9 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 		Archive *struct {
 			Path *string `tfsdk:"path" json:"path,omitempty"`
 		} `tfsdk:"archive" json:"archive,omitempty"`
-		Cleanup    *bool `tfsdk:"cleanup" json:"cleanup,omitempty"`
-		Containers *[]struct {
+		BackoffLimit *int64 `tfsdk:"backoff_limit" json:"backoffLimit,omitempty"`
+		Cleanup      *bool  `tfsdk:"cleanup" json:"cleanup,omitempty"`
+		Containers   *[]struct {
 			Batch    *bool   `tfsdk:"batch" json:"batch,omitempty"`
 			BatchRaw *bool   `tfsdk:"batch_raw" json:"batchRaw,omitempty"`
 			Command  *string `tfsdk:"command" json:"command,omitempty"`
@@ -63,6 +64,7 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 			} `tfsdk:"commands" json:"commands,omitempty"`
 			Environment     *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
 			Image           *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			ImagePullSecret *string            `tfsdk:"image_pull_secret" json:"imagePullSecret,omitempty"`
 			Launcher        *bool              `tfsdk:"launcher" json:"launcher,omitempty"`
 			LifeCycle       *struct {
@@ -134,16 +136,20 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 				} `tfsdk:"resources" json:"resources,omitempty"`
 				WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 			} `tfsdk:"container" json:"container,omitempty"`
-			CurveCert      *string `tfsdk:"curve_cert" json:"curveCert,omitempty"`
-			LogLevel       *int64  `tfsdk:"log_level" json:"logLevel,omitempty"`
-			MinimalService *bool   `tfsdk:"minimal_service" json:"minimalService,omitempty"`
-			MungeSecret    *string `tfsdk:"munge_secret" json:"mungeSecret,omitempty"`
-			NoWaitSocket   *bool   `tfsdk:"no_wait_socket" json:"noWaitSocket,omitempty"`
-			OptionFlags    *string `tfsdk:"option_flags" json:"optionFlags,omitempty"`
+			CurveCert      *string            `tfsdk:"curve_cert" json:"curveCert,omitempty"`
+			DisableSocket  *bool              `tfsdk:"disable_socket" json:"disableSocket,omitempty"`
+			Environment    *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
+			LogLevel       *int64             `tfsdk:"log_level" json:"logLevel,omitempty"`
+			MinimalService *bool              `tfsdk:"minimal_service" json:"minimalService,omitempty"`
+			MungeSecret    *string            `tfsdk:"munge_secret" json:"mungeSecret,omitempty"`
+			NoWaitSocket   *bool              `tfsdk:"no_wait_socket" json:"noWaitSocket,omitempty"`
+			OptionFlags    *string            `tfsdk:"option_flags" json:"optionFlags,omitempty"`
 			Scheduler      *struct {
 				QueuePolicy *string `tfsdk:"queue_policy" json:"queuePolicy,omitempty"`
+				Simple      *bool   `tfsdk:"simple" json:"simple,omitempty"`
 			} `tfsdk:"scheduler" json:"scheduler,omitempty"`
 			SubmitCommand *string `tfsdk:"submit_command" json:"submitCommand,omitempty"`
+			Topology      *string `tfsdk:"topology" json:"topology,omitempty"`
 			Wrap          *string `tfsdk:"wrap" json:"wrap,omitempty"`
 		} `tfsdk:"flux" json:"flux,omitempty"`
 		Interactive *bool              `tfsdk:"interactive" json:"interactive,omitempty"`
@@ -164,6 +170,9 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 		Pod *struct {
 			Annotations                  *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			AutomountServiceAccountToken *bool              `tfsdk:"automount_service_account_token" json:"automountServiceAccountToken,omitempty"`
+			DnsPolicy                    *string            `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			HostIPC                      *bool              `tfsdk:"host_ipc" json:"hostIPC,omitempty"`
+			HostPID                      *bool              `tfsdk:"host_pid" json:"hostPID,omitempty"`
 			Labels                       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			NodeSelector                 *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			Resources                    *map[string]string `tfsdk:"resources" json:"resources,omitempty"`
@@ -171,6 +180,12 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 			RuntimeClassName             *string            `tfsdk:"runtime_class_name" json:"runtimeClassName,omitempty"`
 			SchedulerName                *string            `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
 			ServiceAccountName           *string            `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
+			Tolerations                  *[]struct {
+				Effect   *string `tfsdk:"effect" json:"effect,omitempty"`
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Operator *string `tfsdk:"operator" json:"operator,omitempty"`
+				Value    *string `tfsdk:"value" json:"value,omitempty"`
+			} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		} `tfsdk:"pod" json:"pod,omitempty"`
 		Services *[]struct {
 			Batch    *bool   `tfsdk:"batch" json:"batch,omitempty"`
@@ -188,6 +203,7 @@ type FluxFrameworkOrgMiniClusterV1Alpha2ManifestData struct {
 			} `tfsdk:"commands" json:"commands,omitempty"`
 			Environment     *map[string]string `tfsdk:"environment" json:"environment,omitempty"`
 			Image           *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			ImagePullSecret *string            `tfsdk:"image_pull_secret" json:"imagePullSecret,omitempty"`
 			Launcher        *bool              `tfsdk:"launcher" json:"launcher,omitempty"`
 			LifeCycle       *struct {
@@ -326,6 +342,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 						Computed: false,
 					},
 
+					"backoff_limit": schema.Int64Attribute{
+						Description:         "BackoffLimit is the number of retries for the job before failing",
+						MarkdownDescription: "BackoffLimit is the number of retries for the job before failing",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"cleanup": schema.BoolAttribute{
 						Description:         "Cleanup the pods and storage when the index broker pod is complete",
 						MarkdownDescription: "Cleanup the pods and storage when the index broker pod is complete",
@@ -448,6 +472,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								"image": schema.StringAttribute{
 									Description:         "Container image must contain flux and flux-sched install",
 									MarkdownDescription: "Container image must contain flux and flux-sched install",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"image_pull_policy": schema.StringAttribute{
+									Description:         "Allow the user to dictate pulling directly",
+									MarkdownDescription: "Allow the user to dictate pulling directly",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -855,8 +887,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							},
 
 							"container": schema.SingleNestedAttribute{
-								Description:         "Container base for flux",
-								MarkdownDescription: "Container base for flux",
+								Description:         "Container base for flux. Options include only: ghcr.io/converged-computing/flux-view-rocky:arm-9 ghcr.io/converged-computing/flux-view-rocky:arn-8 ghcr.io/converged-computing/flux-view-rocky:tag-9 ghcr.io/converged-computing/flux-view-rocky:tag-8 ghcr.io/converged-computing/flux-view-ubuntu:tag-noble ghcr.io/converged-computing/flux-view-ubuntu:tag-jammy ghcr.io/converged-computing/flux-view-ubuntu:tag-focal ghcr.io/converged-computing/flux-view-ubuntu:arm-jammy ghcr.io/converged-computing/flux-view-ubuntu:arm-focal",
+								MarkdownDescription: "Container base for flux. Options include only: ghcr.io/converged-computing/flux-view-rocky:arm-9 ghcr.io/converged-computing/flux-view-rocky:arn-8 ghcr.io/converged-computing/flux-view-rocky:tag-9 ghcr.io/converged-computing/flux-view-rocky:tag-8 ghcr.io/converged-computing/flux-view-ubuntu:tag-noble ghcr.io/converged-computing/flux-view-ubuntu:tag-jammy ghcr.io/converged-computing/flux-view-ubuntu:tag-focal ghcr.io/converged-computing/flux-view-ubuntu:arm-jammy ghcr.io/converged-computing/flux-view-ubuntu:arm-focal",
 								Attributes: map[string]schema.Attribute{
 									"disable": schema.BoolAttribute{
 										Description:         "Disable the sidecar container, assuming that the main application container has flux",
@@ -962,6 +994,23 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"disable_socket": schema.BoolAttribute{
+								Description:         "Disable specifying the socket path",
+								MarkdownDescription: "Disable specifying the socket path",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"environment": schema.MapAttribute{
+								Description:         "Environment If defined, set these envars for the flux view.",
+								MarkdownDescription: "Environment If defined, set these envars for the flux view.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"log_level": schema.Int64Attribute{
 								Description:         "Log level to use for flux logging (only in non TestMode)",
 								MarkdownDescription: "Log level to use for flux logging (only in non TestMode)",
@@ -1013,6 +1062,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"simple": schema.BoolAttribute{
+										Description:         "Use sched-simple (no support for GPU)",
+										MarkdownDescription: "Use sched-simple (no support for GPU)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -1022,6 +1079,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 							"submit_command": schema.StringAttribute{
 								Description:         "Modify flux submit to be something else",
 								MarkdownDescription: "Modify flux submit to be something else",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"topology": schema.StringAttribute{
+								Description:         "Specify a custom Topology",
+								MarkdownDescription: "Specify a custom Topology",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1168,6 +1233,30 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Computed:            false,
 							},
 
+							"dns_policy": schema.StringAttribute{
+								Description:         "Pod DNS policy (defaults to ClusterFirst)",
+								MarkdownDescription: "Pod DNS policy (defaults to ClusterFirst)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"host_ipc": schema.BoolAttribute{
+								Description:         "Use Host IPC",
+								MarkdownDescription: "Use Host IPC",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"host_pid": schema.BoolAttribute{
+								Description:         "Use Host PID",
+								MarkdownDescription: "Use Host PID",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"labels": schema.MapAttribute{
 								Description:         "Labels for each pod",
 								MarkdownDescription: "Labels for each pod",
@@ -1225,6 +1314,49 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"tolerations": schema.ListNestedAttribute{
+								Description:         "Tolerations for a pod",
+								MarkdownDescription: "Tolerations for a pod",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"effect": schema.StringAttribute{
+											Description:         "The effect to have",
+											MarkdownDescription: "The effect to have",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"key": schema.StringAttribute{
+											Description:         "The label key to tolerate",
+											MarkdownDescription: "The label key to tolerate",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"operator": schema.StringAttribute{
+											Description:         "The operator to use (e.g., Equal)",
+											MarkdownDescription: "The operator to use (e.g., Equal)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value": schema.StringAttribute{
+											Description:         "E.g., NoSchedule",
+											MarkdownDescription: "E.g., NoSchedule",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -1346,6 +1478,14 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, 
 								"image": schema.StringAttribute{
 									Description:         "Container image must contain flux and flux-sched install",
 									MarkdownDescription: "Container image must contain flux and flux-sched install",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"image_pull_policy": schema.StringAttribute{
+									Description:         "Allow the user to dictate pulling directly",
+									MarkdownDescription: "Allow the user to dictate pulling directly",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

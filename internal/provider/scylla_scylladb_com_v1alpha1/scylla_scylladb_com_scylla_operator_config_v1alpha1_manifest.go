@@ -42,6 +42,7 @@ type ScyllaScylladbComScyllaOperatorConfigV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		ConfiguredClusterDomain              *string `tfsdk:"configured_cluster_domain" json:"configuredClusterDomain,omitempty"`
 		ScyllaUtilsImage                     *string `tfsdk:"scylla_utils_image" json:"scyllaUtilsImage,omitempty"`
 		UnsupportedBashToolsImageOverride    *string `tfsdk:"unsupported_bash_tools_image_override" json:"unsupportedBashToolsImageOverride,omitempty"`
 		UnsupportedGrafanaImageOverride      *string `tfsdk:"unsupported_grafana_image_override" json:"unsupportedGrafanaImageOverride,omitempty"`
@@ -114,6 +115,14 @@ func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Schema(_ context
 				Description:         "spec defines the desired state of the operator.",
 				MarkdownDescription: "spec defines the desired state of the operator.",
 				Attributes: map[string]schema.Attribute{
+					"configured_cluster_domain": schema.StringAttribute{
+						Description:         "configuredClusterDomain allows users to set the configured Kubernetes cluster domain explicitly, instead of letting Scylla Operator automatically discover it.",
+						MarkdownDescription: "configuredClusterDomain allows users to set the configured Kubernetes cluster domain explicitly, instead of letting Scylla Operator automatically discover it.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"scylla_utils_image": schema.StringAttribute{
 						Description:         "scyllaUtilsImage is a ScyllaDB image used for running ScyllaDB utilities.",
 						MarkdownDescription: "scyllaUtilsImage is a ScyllaDB image used for running ScyllaDB utilities.",

@@ -18,6 +18,7 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
+	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
@@ -45,6 +46,7 @@ type CephRookIoCephFilesystemSubVolumeGroupV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		ClusterID      *string `tfsdk:"cluster_id" json:"clusterID,omitempty"`
 		DataPoolName   *string `tfsdk:"data_pool_name" json:"dataPoolName,omitempty"`
 		FilesystemName *string `tfsdk:"filesystem_name" json:"filesystemName,omitempty"`
 		Name           *string `tfsdk:"name" json:"name,omitempty"`
@@ -134,6 +136,19 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Cont
 				Description:         "Spec represents the specification of a Ceph Filesystem SubVolumeGroup",
 				MarkdownDescription: "Spec represents the specification of a Ceph Filesystem SubVolumeGroup",
 				Attributes: map[string]schema.Attribute{
+					"cluster_id": schema.StringAttribute{
+						Description:         "ClusterID to be used for this subvolume group in the CSI configuration. It must be unique among all Ceph clusters managed by Rook. If not specified, the clusterID will be generated and can be found in the CR status.",
+						MarkdownDescription: "ClusterID to be used for this subvolume group in the CSI configuration. It must be unique among all Ceph clusters managed by Rook. If not specified, the clusterID will be generated and can be found in the CR status.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(36),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z0-9_-]+$`), ""),
+						},
+					},
+
 					"data_pool_name": schema.StringAttribute{
 						Description:         "The data pool name for the Ceph Filesystem subvolume group layout, if the default CephFS pool is not desired.",
 						MarkdownDescription: "The data pool name for the Ceph Filesystem subvolume group layout, if the default CephFS pool is not desired.",

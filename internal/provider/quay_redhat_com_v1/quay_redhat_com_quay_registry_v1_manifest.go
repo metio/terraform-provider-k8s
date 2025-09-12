@@ -202,7 +202,8 @@ type QuayRedhatComQuayRegistryV1ManifestData struct {
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
-				VolumeSize *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
+				StorageClassName *string `tfsdk:"storage_class_name" json:"storageClassName,omitempty"`
+				VolumeSize       *string `tfsdk:"volume_size" json:"volumeSize,omitempty"`
 			} `tfsdk:"overrides" json:"overrides,omitempty"`
 		} `tfsdk:"components" json:"components,omitempty"`
 		ConfigBundleSecret *string `tfsdk:"config_bundle_secret" json:"configBundleSecret,omitempty"`
@@ -1328,6 +1329,14 @@ func (r *QuayRedhatComQuayRegistryV1Manifest) Schema(_ context.Context, _ dataso
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"storage_class_name": schema.StringAttribute{
+											Description:         "StorageClassName is the name of the StorageClass to use for the PVC.",
+											MarkdownDescription: "StorageClassName is the name of the StorageClass to use for the PVC.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"volume_size": schema.StringAttribute{

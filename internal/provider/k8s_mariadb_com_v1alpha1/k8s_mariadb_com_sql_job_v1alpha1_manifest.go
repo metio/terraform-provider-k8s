@@ -185,7 +185,13 @@ type K8SMariadbComSqlJobV1Alpha1ManifestData struct {
 		} `tfsdk:"sql_config_map_key_ref" json:"sqlConfigMapKeyRef,omitempty"`
 		SuccessfulJobsHistoryLimit *int64  `tfsdk:"successful_jobs_history_limit" json:"successfulJobsHistoryLimit,omitempty"`
 		TimeZone                   *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
-		Tolerations                *[]struct {
+		TlsCASecretRef             *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"tls_ca_secret_ref" json:"tlsCASecretRef,omitempty"`
+		TlsClientCertSecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"tls_client_cert_secret_ref" json:"tlsClientCertSecretRef,omitempty"`
+		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -286,8 +292,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"node_affinity": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeaffinity-v1-core",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeaffinity-v1-core",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 										Description:         "",
@@ -295,8 +301,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"preference": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselectorterm-v1-core",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselectorterm-v1-core",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "",
@@ -390,8 +396,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 									},
 
 									"required_during_scheduling_ignored_during_execution": schema.SingleNestedAttribute{
-										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
-										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#nodeselector-v1-core",
+										Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
+										MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#nodeselector-v1-core",
 										Attributes: map[string]schema.Attribute{
 											"node_selector_terms": schema.ListNestedAttribute{
 												Description:         "",
@@ -487,8 +493,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							},
 
 							"pod_anti_affinity": schema.SingleNestedAttribute{
-								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
-								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podantiaffinity-v1-core.",
+								Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
+								MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podantiaffinity-v1-core.",
 								Attributes: map[string]schema.Attribute{
 									"preferred_during_scheduling_ignored_during_execution": schema.ListNestedAttribute{
 										Description:         "",
@@ -496,12 +502,12 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"pod_affinity_term": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#podaffinityterm-v1-core.",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podaffinityterm-v1-core.",
 													Attributes: map[string]schema.Attribute{
 														"label_selector": schema.SingleNestedAttribute{
-															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+															Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+															MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 															Attributes: map[string]schema.Attribute{
 																"match_expressions": schema.ListNestedAttribute{
 																	Description:         "",
@@ -586,8 +592,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"label_selector": schema.SingleNestedAttribute{
-													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
-													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#labelselector-v1-meta",
+													Description:         "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
+													MarkdownDescription: "Refer to the Kubernetes docs: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#labelselector-v1-meta",
 													Attributes: map[string]schema.Attribute{
 														"match_expressions": schema.ListNestedAttribute{
 															Description:         "",
@@ -1016,8 +1022,8 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"resources": schema.SingleNestedAttribute{
-						Description:         "Resouces describes the compute resource requirements.",
-						MarkdownDescription: "Resouces describes the compute resource requirements.",
+						Description:         "Resources describes the compute resource requirements.",
+						MarkdownDescription: "Resources describes the compute resource requirements.",
 						Attributes: map[string]schema.Attribute{
 							"limits": schema.MapAttribute{
 								Description:         "ResourceList is a set of (resource name, quantity) pairs.",
@@ -1220,6 +1226,40 @@ func (r *K8SMariadbComSqlJobV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"tls_ca_secret_ref": schema.SingleNestedAttribute{
+						Description:         "TLSCACertSecretRef is a reference toa CA Secret used to establish trust when executing the SqlJob. If not provided, the CA bundle provided by the referred MariaDB is used.",
+						MarkdownDescription: "TLSCACertSecretRef is a reference toa CA Secret used to establish trust when executing the SqlJob. If not provided, the CA bundle provided by the referred MariaDB is used.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tls_client_cert_secret_ref": schema.SingleNestedAttribute{
+						Description:         "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when executing the SqlJob. If not provided, the client certificate provided by the referred MariaDB is used.",
+						MarkdownDescription: "TLSClientCertSecretRef is a reference to a Kubernetes TLS Secret used as authentication when executing the SqlJob. If not provided, the client certificate provided by the referred MariaDB is used.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

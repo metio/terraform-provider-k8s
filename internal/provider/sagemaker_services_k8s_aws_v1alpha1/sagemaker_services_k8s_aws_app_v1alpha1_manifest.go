@@ -139,8 +139,8 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 				MarkdownDescription: "AppSpec defines the desired state of App.",
 				Attributes: map[string]schema.Attribute{
 					"app_name": schema.StringAttribute{
-						Description:         "The name of the app.",
-						MarkdownDescription: "The name of the app.",
+						Description:         "The name of the app. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the app. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -155,8 +155,8 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"domain_id": schema.StringAttribute{
-						Description:         "The domain ID.",
-						MarkdownDescription: "The domain ID.",
+						Description:         "The domain ID. Regex Pattern: '^d-(-*[a-z0-9]){1,61}$'",
+						MarkdownDescription: "The domain ID. Regex Pattern: '^d-(-*[a-z0-9]){1,61}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -239,8 +239,8 @@ func (r *SagemakerServicesK8SAwsAppV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"user_profile_name": schema.StringAttribute{
-						Description:         "The user profile name. If this value is not set, then SpaceName must be set.",
-						MarkdownDescription: "The user profile name. If this value is not set, then SpaceName must be set.",
+						Description:         "The user profile name. If this value is not set, then SpaceName must be set. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The user profile name. If this value is not set, then SpaceName must be set. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

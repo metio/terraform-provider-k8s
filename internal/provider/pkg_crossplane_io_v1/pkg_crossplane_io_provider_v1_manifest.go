@@ -42,13 +42,10 @@ type PkgCrossplaneIoProviderV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		CommonLabels        *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
-		ControllerConfigRef *struct {
-			Name *string `tfsdk:"name" json:"name,omitempty"`
-		} `tfsdk:"controller_config_ref" json:"controllerConfigRef,omitempty"`
-		IgnoreCrossplaneConstraints *bool   `tfsdk:"ignore_crossplane_constraints" json:"ignoreCrossplaneConstraints,omitempty"`
-		Package                     *string `tfsdk:"package" json:"package,omitempty"`
-		PackagePullPolicy           *string `tfsdk:"package_pull_policy" json:"packagePullPolicy,omitempty"`
+		CommonLabels                *map[string]string `tfsdk:"common_labels" json:"commonLabels,omitempty"`
+		IgnoreCrossplaneConstraints *bool              `tfsdk:"ignore_crossplane_constraints" json:"ignoreCrossplaneConstraints,omitempty"`
+		Package                     *string            `tfsdk:"package" json:"package,omitempty"`
+		PackagePullPolicy           *string            `tfsdk:"package_pull_policy" json:"packagePullPolicy,omitempty"`
 		PackagePullSecrets          *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"package_pull_secrets" json:"packagePullSecrets,omitempty"`
@@ -137,23 +134,6 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 						Computed:            false,
 					},
 
-					"controller_config_ref": schema.SingleNestedAttribute{
-						Description:         "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
-						MarkdownDescription: "ControllerConfigRef references a ControllerConfig resource that will be used to configure the packaged controller Deployment. Deprecated: Use RuntimeConfigReference instead.",
-						Attributes: map[string]schema.Attribute{
-							"name": schema.StringAttribute{
-								Description:         "Name of the ControllerConfig.",
-								MarkdownDescription: "Name of the ControllerConfig.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"ignore_crossplane_constraints": schema.BoolAttribute{
 						Description:         "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
 						MarkdownDescription: "IgnoreCrossplaneConstraints indicates to the package manager whether to honor Crossplane version constrains specified by the package. Default is false.",
@@ -163,8 +143,8 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 					},
 
 					"package": schema.StringAttribute{
-						Description:         "Package is the name of the package that is being requested.",
-						MarkdownDescription: "Package is the name of the package that is being requested.",
+						Description:         "Package is the name of the package that is being requested. must be a fully qualified image name, including the registry, repository, and tag. for example, 'registry.example.com/repo/package:tag'.",
+						MarkdownDescription: "Package is the name of the package that is being requested. must be a fully qualified image name, including the registry, repository, and tag. for example, 'registry.example.com/repo/package:tag'.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -184,8 +164,8 @@ func (r *PkgCrossplaneIoProviderV1Manifest) Schema(_ context.Context, _ datasour
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. TODO: Add other useful fields. apiVersion, kind, uid? More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+									Description:         "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+									MarkdownDescription: "Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

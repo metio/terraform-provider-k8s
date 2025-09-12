@@ -58,8 +58,11 @@ type AutomationKubensyncComManagedResourceV1Alpha1ManifestData struct {
 			Data *[]struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 				Ref  *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Group      *string `tfsdk:"group" json:"group,omitempty"`
+					Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+					Name       *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"ref" json:"ref,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"data" json:"data,omitempty"`
@@ -74,8 +77,8 @@ func (r *AutomationKubensyncComManagedResourceV1Alpha1Manifest) Metadata(_ conte
 
 func (r *AutomationKubensyncComManagedResourceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "ManagedResource is the Schema for the managedresources API",
-		MarkdownDescription: "ManagedResource is the Schema for the managedresources API",
+		Description:         "ManagedResource is the Schema for the managedresources API.",
+		MarkdownDescription: "ManagedResource is the Schema for the managedresources API.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -233,6 +236,30 @@ func (r *AutomationKubensyncComManagedResourceV1Alpha1Manifest) Schema(_ context
 											Description:         "Defines the reference to the resource that should be imported.",
 											MarkdownDescription: "Defines the reference to the resource that should be imported.",
 											Attributes: map[string]schema.Attribute{
+												"api_version": schema.StringAttribute{
+													Description:         "ApiVersion of the resource.",
+													MarkdownDescription: "ApiVersion of the resource.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"group": schema.StringAttribute{
+													Description:         "Group of the resource.",
+													MarkdownDescription: "Group of the resource.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"kind": schema.StringAttribute{
+													Description:         "Kind of the resource.",
+													MarkdownDescription: "Kind of the resource.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"name": schema.StringAttribute{
 													Description:         "Name of the resource.",
 													MarkdownDescription: "Name of the resource.",

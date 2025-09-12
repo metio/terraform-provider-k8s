@@ -44,6 +44,7 @@ type VeleroIoPodVolumeBackupV1ManifestData struct {
 
 	Spec *struct {
 		BackupStorageLocation *string `tfsdk:"backup_storage_location" json:"backupStorageLocation,omitempty"`
+		Cancel                *bool   `tfsdk:"cancel" json:"cancel,omitempty"`
 		Node                  *string `tfsdk:"node" json:"node,omitempty"`
 		Pod                   *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -147,6 +148,14 @@ func (r *VeleroIoPodVolumeBackupV1Manifest) Schema(_ context.Context, _ datasour
 						Computed:            false,
 					},
 
+					"cancel": schema.BoolAttribute{
+						Description:         "Cancel indicates request to cancel the ongoing PodVolumeBackup. It can be set when the PodVolumeBackup is in InProgress phase",
+						MarkdownDescription: "Cancel indicates request to cancel the ongoing PodVolumeBackup. It can be set when the PodVolumeBackup is in InProgress phase",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"node": schema.StringAttribute{
 						Description:         "Node is the name of the node that the Pod is running on.",
 						MarkdownDescription: "Node is the name of the node that the Pod is running on.",
@@ -168,8 +177,8 @@ func (r *VeleroIoPodVolumeBackupV1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: 'spec.containers{name}' (where 'name' refers to the name of the container that triggered the event) or if no container name is specified 'spec.containers[2]' (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
