@@ -73,19 +73,21 @@ type SubmarinerIoSubmarinerV1Alpha1ManifestData struct {
 			ConfigMapName *string `tfsdk:"config_map_name" json:"configMapName,omitempty"`
 			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"core_dns_custom_config" json:"coreDNSCustomConfig,omitempty"`
-		CustomDomains           *[]string          `tfsdk:"custom_domains" json:"customDomains,omitempty"`
-		Debug                   *bool              `tfsdk:"debug" json:"debug,omitempty"`
-		GlobalCIDR              *string            `tfsdk:"global_cidr" json:"globalCIDR,omitempty"`
-		HaltOnCertificateError  *bool              `tfsdk:"halt_on_certificate_error" json:"haltOnCertificateError,omitempty"`
-		ImageOverrides          *map[string]string `tfsdk:"image_overrides" json:"imageOverrides,omitempty"`
-		LoadBalancerEnabled     *bool              `tfsdk:"load_balancer_enabled" json:"loadBalancerEnabled,omitempty"`
-		Namespace               *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-		NatEnabled              *bool              `tfsdk:"nat_enabled" json:"natEnabled,omitempty"`
-		NodeSelector            *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		Repository              *string            `tfsdk:"repository" json:"repository,omitempty"`
-		ServiceCIDR             *string            `tfsdk:"service_cidr" json:"serviceCIDR,omitempty"`
-		ServiceDiscoveryEnabled *bool              `tfsdk:"service_discovery_enabled" json:"serviceDiscoveryEnabled,omitempty"`
-		Tolerations             *[]struct {
+		CustomDomains                   *[]string          `tfsdk:"custom_domains" json:"customDomains,omitempty"`
+		Debug                           *bool              `tfsdk:"debug" json:"debug,omitempty"`
+		DisableIntraClusterConnectivity *bool              `tfsdk:"disable_intra_cluster_connectivity" json:"disableIntraClusterConnectivity,omitempty"`
+		GlobalCIDR                      *string            `tfsdk:"global_cidr" json:"globalCIDR,omitempty"`
+		HaltOnCertificateError          *bool              `tfsdk:"halt_on_certificate_error" json:"haltOnCertificateError,omitempty"`
+		HostedCluster                   *bool              `tfsdk:"hosted_cluster" json:"hostedCluster,omitempty"`
+		ImageOverrides                  *map[string]string `tfsdk:"image_overrides" json:"imageOverrides,omitempty"`
+		LoadBalancerEnabled             *bool              `tfsdk:"load_balancer_enabled" json:"loadBalancerEnabled,omitempty"`
+		Namespace                       *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+		NatEnabled                      *bool              `tfsdk:"nat_enabled" json:"natEnabled,omitempty"`
+		NodeSelector                    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Repository                      *string            `tfsdk:"repository" json:"repository,omitempty"`
+		ServiceCIDR                     *string            `tfsdk:"service_cidr" json:"serviceCIDR,omitempty"`
+		ServiceDiscoveryEnabled         *bool              `tfsdk:"service_discovery_enabled" json:"serviceDiscoveryEnabled,omitempty"`
+		Tolerations                     *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
 			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
@@ -416,6 +418,14 @@ func (r *SubmarinerIoSubmarinerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 						Computed:            false,
 					},
 
+					"disable_intra_cluster_connectivity": schema.BoolAttribute{
+						Description:         "Disable intra-cluster connectivity routing.",
+						MarkdownDescription: "Disable intra-cluster connectivity routing.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"global_cidr": schema.StringAttribute{
 						Description:         "The Global CIDR super-net range for allocating GlobalCIDRs to each cluster.",
 						MarkdownDescription: "The Global CIDR super-net range for allocating GlobalCIDRs to each cluster.",
@@ -427,6 +437,14 @@ func (r *SubmarinerIoSubmarinerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					"halt_on_certificate_error": schema.BoolAttribute{
 						Description:         "Halt on certificate error (so the pod gets restarted).",
 						MarkdownDescription: "Halt on certificate error (so the pod gets restarted).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"hosted_cluster": schema.BoolAttribute{
+						Description:         "Is the cluster a hosted cluster.",
+						MarkdownDescription: "Is the cluster a hosted cluster.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -7,6 +7,7 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -43,12 +44,25 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		AllowIPIPPacketsFromWorkloads      *bool              `tfsdk:"allow_ipip_packets_from_workloads" json:"allowIPIPPacketsFromWorkloads,omitempty"`
-		AllowVXLANPacketsFromWorkloads     *bool              `tfsdk:"allow_vxlan_packets_from_workloads" json:"allowVXLANPacketsFromWorkloads,omitempty"`
-		AwsSrcDstCheck                     *string            `tfsdk:"aws_src_dst_check" json:"awsSrcDstCheck,omitempty"`
-		BpfCTLBLogFilter                   *string            `tfsdk:"bpf_ctlb_log_filter" json:"bpfCTLBLogFilter,omitempty"`
-		BpfConnectTimeLoadBalancing        *string            `tfsdk:"bpf_connect_time_load_balancing" json:"bpfConnectTimeLoadBalancing,omitempty"`
-		BpfConnectTimeLoadBalancingEnabled *bool              `tfsdk:"bpf_connect_time_load_balancing_enabled" json:"bpfConnectTimeLoadBalancingEnabled,omitempty"`
+		AllowIPIPPacketsFromWorkloads      *bool   `tfsdk:"allow_ipip_packets_from_workloads" json:"allowIPIPPacketsFromWorkloads,omitempty"`
+		AllowVXLANPacketsFromWorkloads     *bool   `tfsdk:"allow_vxlan_packets_from_workloads" json:"allowVXLANPacketsFromWorkloads,omitempty"`
+		AwsSrcDstCheck                     *string `tfsdk:"aws_src_dst_check" json:"awsSrcDstCheck,omitempty"`
+		BpfAttachType                      *string `tfsdk:"bpf_attach_type" json:"bpfAttachType,omitempty"`
+		BpfCTLBLogFilter                   *string `tfsdk:"bpf_ctlb_log_filter" json:"bpfCTLBLogFilter,omitempty"`
+		BpfConnectTimeLoadBalancing        *string `tfsdk:"bpf_connect_time_load_balancing" json:"bpfConnectTimeLoadBalancing,omitempty"`
+		BpfConnectTimeLoadBalancingEnabled *bool   `tfsdk:"bpf_connect_time_load_balancing_enabled" json:"bpfConnectTimeLoadBalancingEnabled,omitempty"`
+		BpfConntrackLogLevel               *string `tfsdk:"bpf_conntrack_log_level" json:"bpfConntrackLogLevel,omitempty"`
+		BpfConntrackMode                   *string `tfsdk:"bpf_conntrack_mode" json:"bpfConntrackMode,omitempty"`
+		BpfConntrackTimeouts               *struct {
+			CreationGracePeriod *string `tfsdk:"creation_grace_period" json:"creationGracePeriod,omitempty"`
+			GenericTimeout      *string `tfsdk:"generic_timeout" json:"genericTimeout,omitempty"`
+			IcmpTimeout         *string `tfsdk:"icmp_timeout" json:"icmpTimeout,omitempty"`
+			TcpEstablished      *string `tfsdk:"tcp_established" json:"tcpEstablished,omitempty"`
+			TcpFinsSeen         *string `tfsdk:"tcp_fins_seen" json:"tcpFinsSeen,omitempty"`
+			TcpResetSeen        *string `tfsdk:"tcp_reset_seen" json:"tcpResetSeen,omitempty"`
+			TcpSynSent          *string `tfsdk:"tcp_syn_sent" json:"tcpSynSent,omitempty"`
+			UdpTimeout          *string `tfsdk:"udp_timeout" json:"udpTimeout,omitempty"`
+		} `tfsdk:"bpf_conntrack_timeouts" json:"bpfConntrackTimeouts,omitempty"`
 		BpfDSROptoutCIDRs                  *[]string          `tfsdk:"bpf_dsr_optout_cidrs" json:"bpfDSROptoutCIDRs,omitempty"`
 		BpfDataIfacePattern                *string            `tfsdk:"bpf_data_iface_pattern" json:"bpfDataIfacePattern,omitempty"`
 		BpfDisableGROForIfaces             *string            `tfsdk:"bpf_disable_gro_for_ifaces" json:"bpfDisableGROForIfaces,omitempty"`
@@ -56,6 +70,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		BpfEnabled                         *bool              `tfsdk:"bpf_enabled" json:"bpfEnabled,omitempty"`
 		BpfEnforceRPF                      *string            `tfsdk:"bpf_enforce_rpf" json:"bpfEnforceRPF,omitempty"`
 		BpfExcludeCIDRsFromNAT             *[]string          `tfsdk:"bpf_exclude_cidrs_from_nat" json:"bpfExcludeCIDRsFromNAT,omitempty"`
+		BpfExportBufferSizeMB              *int64             `tfsdk:"bpf_export_buffer_size_mb" json:"bpfExportBufferSizeMB,omitempty"`
 		BpfExtToServiceConnmark            *int64             `tfsdk:"bpf_ext_to_service_connmark" json:"bpfExtToServiceConnmark,omitempty"`
 		BpfExternalServiceMode             *string            `tfsdk:"bpf_external_service_mode" json:"bpfExternalServiceMode,omitempty"`
 		BpfForceTrackPacketsFromIfaces     *[]string          `tfsdk:"bpf_force_track_packets_from_ifaces" json:"bpfForceTrackPacketsFromIfaces,omitempty"`
@@ -68,15 +83,20 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		BpfLogFilters                      *map[string]string `tfsdk:"bpf_log_filters" json:"bpfLogFilters,omitempty"`
 		BpfLogLevel                        *string            `tfsdk:"bpf_log_level" json:"bpfLogLevel,omitempty"`
 		BpfMapSizeConntrack                *int64             `tfsdk:"bpf_map_size_conntrack" json:"bpfMapSizeConntrack,omitempty"`
+		BpfMapSizeConntrackCleanupQueue    *int64             `tfsdk:"bpf_map_size_conntrack_cleanup_queue" json:"bpfMapSizeConntrackCleanupQueue,omitempty"`
+		BpfMapSizeConntrackScaling         *string            `tfsdk:"bpf_map_size_conntrack_scaling" json:"bpfMapSizeConntrackScaling,omitempty"`
 		BpfMapSizeIPSets                   *int64             `tfsdk:"bpf_map_size_ip_sets" json:"bpfMapSizeIPSets,omitempty"`
 		BpfMapSizeIfState                  *int64             `tfsdk:"bpf_map_size_if_state" json:"bpfMapSizeIfState,omitempty"`
 		BpfMapSizeNATAffinity              *int64             `tfsdk:"bpf_map_size_nat_affinity" json:"bpfMapSizeNATAffinity,omitempty"`
 		BpfMapSizeNATBackend               *int64             `tfsdk:"bpf_map_size_nat_backend" json:"bpfMapSizeNATBackend,omitempty"`
 		BpfMapSizeNATFrontend              *int64             `tfsdk:"bpf_map_size_nat_frontend" json:"bpfMapSizeNATFrontend,omitempty"`
+		BpfMapSizePerCpuConntrack          *int64             `tfsdk:"bpf_map_size_per_cpu_conntrack" json:"bpfMapSizePerCpuConntrack,omitempty"`
 		BpfMapSizeRoute                    *int64             `tfsdk:"bpf_map_size_route" json:"bpfMapSizeRoute,omitempty"`
 		BpfPSNATPorts                      *string            `tfsdk:"bpf_psnat_ports" json:"bpfPSNATPorts,omitempty"`
 		BpfPolicyDebugEnabled              *bool              `tfsdk:"bpf_policy_debug_enabled" json:"bpfPolicyDebugEnabled,omitempty"`
+		BpfProfiling                       *string            `tfsdk:"bpf_profiling" json:"bpfProfiling,omitempty"`
 		BpfRedirectToPeer                  *string            `tfsdk:"bpf_redirect_to_peer" json:"bpfRedirectToPeer,omitempty"`
+		CgroupV2Path                       *string            `tfsdk:"cgroup_v2_path" json:"cgroupV2Path,omitempty"`
 		ChainInsertMode                    *string            `tfsdk:"chain_insert_mode" json:"chainInsertMode,omitempty"`
 		DataplaneDriver                    *string            `tfsdk:"dataplane_driver" json:"dataplaneDriver,omitempty"`
 		DataplaneWatchdogTimeout           *string            `tfsdk:"dataplane_watchdog_timeout" json:"dataplaneWatchdogTimeout,omitempty"`
@@ -106,17 +126,22 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 			Port     *int64  `tfsdk:"port" json:"port,omitempty"`
 			Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
 		} `tfsdk:"failsafe_outbound_host_ports" json:"failsafeOutboundHostPorts,omitempty"`
-		FeatureDetectOverride  *string `tfsdk:"feature_detect_override" json:"featureDetectOverride,omitempty"`
-		FeatureGates           *string `tfsdk:"feature_gates" json:"featureGates,omitempty"`
-		FloatingIPs            *string `tfsdk:"floating_i_ps" json:"floatingIPs,omitempty"`
-		GenericXDPEnabled      *bool   `tfsdk:"generic_xdp_enabled" json:"genericXDPEnabled,omitempty"`
-		GoGCThreshold          *int64  `tfsdk:"go_gc_threshold" json:"goGCThreshold,omitempty"`
-		GoMaxProcs             *int64  `tfsdk:"go_max_procs" json:"goMaxProcs,omitempty"`
-		GoMemoryLimitMB        *int64  `tfsdk:"go_memory_limit_mb" json:"goMemoryLimitMB,omitempty"`
-		HealthEnabled          *bool   `tfsdk:"health_enabled" json:"healthEnabled,omitempty"`
-		HealthHost             *string `tfsdk:"health_host" json:"healthHost,omitempty"`
-		HealthPort             *int64  `tfsdk:"health_port" json:"healthPort,omitempty"`
-		HealthTimeoutOverrides *[]struct {
+		FeatureDetectOverride        *string `tfsdk:"feature_detect_override" json:"featureDetectOverride,omitempty"`
+		FeatureGates                 *string `tfsdk:"feature_gates" json:"featureGates,omitempty"`
+		FloatingIPs                  *string `tfsdk:"floating_i_ps" json:"floatingIPs,omitempty"`
+		FlowLogsCollectorDebugTrace  *bool   `tfsdk:"flow_logs_collector_debug_trace" json:"flowLogsCollectorDebugTrace,omitempty"`
+		FlowLogsFlushInterval        *string `tfsdk:"flow_logs_flush_interval" json:"flowLogsFlushInterval,omitempty"`
+		FlowLogsGoldmaneServer       *string `tfsdk:"flow_logs_goldmane_server" json:"flowLogsGoldmaneServer,omitempty"`
+		FlowLogsLocalReporter        *string `tfsdk:"flow_logs_local_reporter" json:"flowLogsLocalReporter,omitempty"`
+		FlowLogsPolicyEvaluationMode *string `tfsdk:"flow_logs_policy_evaluation_mode" json:"flowLogsPolicyEvaluationMode,omitempty"`
+		GenericXDPEnabled            *bool   `tfsdk:"generic_xdp_enabled" json:"genericXDPEnabled,omitempty"`
+		GoGCThreshold                *int64  `tfsdk:"go_gc_threshold" json:"goGCThreshold,omitempty"`
+		GoMaxProcs                   *int64  `tfsdk:"go_max_procs" json:"goMaxProcs,omitempty"`
+		GoMemoryLimitMB              *int64  `tfsdk:"go_memory_limit_mb" json:"goMemoryLimitMB,omitempty"`
+		HealthEnabled                *bool   `tfsdk:"health_enabled" json:"healthEnabled,omitempty"`
+		HealthHost                   *string `tfsdk:"health_host" json:"healthHost,omitempty"`
+		HealthPort                   *int64  `tfsdk:"health_port" json:"healthPort,omitempty"`
+		HealthTimeoutOverrides       *[]struct {
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 		} `tfsdk:"health_timeout_overrides" json:"healthTimeoutOverrides,omitempty"`
@@ -151,6 +176,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		MetadataPort                       *int64    `tfsdk:"metadata_port" json:"metadataPort,omitempty"`
 		MtuIfacePattern                    *string   `tfsdk:"mtu_iface_pattern" json:"mtuIfacePattern,omitempty"`
 		NatOutgoingAddress                 *string   `tfsdk:"nat_outgoing_address" json:"natOutgoingAddress,omitempty"`
+		NatOutgoingExclusions              *string   `tfsdk:"nat_outgoing_exclusions" json:"natOutgoingExclusions,omitempty"`
 		NatPortRange                       *string   `tfsdk:"nat_port_range" json:"natPortRange,omitempty"`
 		NetlinkTimeout                     *string   `tfsdk:"netlink_timeout" json:"netlinkTimeout,omitempty"`
 		NftablesFilterAllowAction          *string   `tfsdk:"nftables_filter_allow_action" json:"nftablesFilterAllowAction,omitempty"`
@@ -161,6 +187,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		NftablesRefreshInterval            *string   `tfsdk:"nftables_refresh_interval" json:"nftablesRefreshInterval,omitempty"`
 		OpenstackRegion                    *string   `tfsdk:"openstack_region" json:"openstackRegion,omitempty"`
 		PolicySyncPathPrefix               *string   `tfsdk:"policy_sync_path_prefix" json:"policySyncPathPrefix,omitempty"`
+		ProgramClusterRoutes               *string   `tfsdk:"program_cluster_routes" json:"programClusterRoutes,omitempty"`
 		PrometheusGoMetricsEnabled         *bool     `tfsdk:"prometheus_go_metrics_enabled" json:"prometheusGoMetricsEnabled,omitempty"`
 		PrometheusMetricsEnabled           *bool     `tfsdk:"prometheus_metrics_enabled" json:"prometheusMetricsEnabled,omitempty"`
 		PrometheusMetricsHost              *string   `tfsdk:"prometheus_metrics_host" json:"prometheusMetricsHost,omitempty"`
@@ -170,6 +197,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		RemoveExternalRoutes               *bool     `tfsdk:"remove_external_routes" json:"removeExternalRoutes,omitempty"`
 		ReportingInterval                  *string   `tfsdk:"reporting_interval" json:"reportingInterval,omitempty"`
 		ReportingTTL                       *string   `tfsdk:"reporting_ttl" json:"reportingTTL,omitempty"`
+		RequireMTUFile                     *bool     `tfsdk:"require_mtu_file" json:"requireMTUFile,omitempty"`
 		RouteRefreshInterval               *string   `tfsdk:"route_refresh_interval" json:"routeRefreshInterval,omitempty"`
 		RouteSource                        *string   `tfsdk:"route_source" json:"routeSource,omitempty"`
 		RouteSyncDisabled                  *bool     `tfsdk:"route_sync_disabled" json:"routeSyncDisabled,omitempty"`
@@ -204,6 +232,7 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		WireguardMTU                   *int64  `tfsdk:"wireguard_mtu" json:"wireguardMTU,omitempty"`
 		WireguardMTUV6                 *int64  `tfsdk:"wireguard_mtuv6" json:"wireguardMTUV6,omitempty"`
 		WireguardRoutingRulePriority   *int64  `tfsdk:"wireguard_routing_rule_priority" json:"wireguardRoutingRulePriority,omitempty"`
+		WireguardThreadingEnabled      *bool   `tfsdk:"wireguard_threading_enabled" json:"wireguardThreadingEnabled,omitempty"`
 		WorkloadSourceSpoofing         *string `tfsdk:"workload_source_spoofing" json:"workloadSourceSpoofing,omitempty"`
 		XdpEnabled                     *bool   `tfsdk:"xdp_enabled" json:"xdpEnabled,omitempty"`
 		XdpRefreshInterval             *string `tfsdk:"xdp_refresh_interval" json:"xdpRefreshInterval,omitempty"`
@@ -276,29 +305,40 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 				MarkdownDescription: "FelixConfigurationSpec contains the values of the Felix configuration.",
 				Attributes: map[string]schema.Attribute{
 					"allow_ipip_packets_from_workloads": schema.BoolAttribute{
-						Description:         "AllowIPIPPacketsFromWorkloads controls whether Felix will add a rule to drop IPIP encapsulated traffic from workloads [Default: false]",
-						MarkdownDescription: "AllowIPIPPacketsFromWorkloads controls whether Felix will add a rule to drop IPIP encapsulated traffic from workloads [Default: false]",
+						Description:         "AllowIPIPPacketsFromWorkloads controls whether Felix will add a rule to drop IPIP encapsulated traffic from workloads. [Default: false]",
+						MarkdownDescription: "AllowIPIPPacketsFromWorkloads controls whether Felix will add a rule to drop IPIP encapsulated traffic from workloads. [Default: false]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"allow_vxlan_packets_from_workloads": schema.BoolAttribute{
-						Description:         "AllowVXLANPacketsFromWorkloads controls whether Felix will add a rule to drop VXLAN encapsulated traffic from workloads [Default: false]",
-						MarkdownDescription: "AllowVXLANPacketsFromWorkloads controls whether Felix will add a rule to drop VXLAN encapsulated traffic from workloads [Default: false]",
+						Description:         "AllowVXLANPacketsFromWorkloads controls whether Felix will add a rule to drop VXLAN encapsulated traffic from workloads. [Default: false]",
+						MarkdownDescription: "AllowVXLANPacketsFromWorkloads controls whether Felix will add a rule to drop VXLAN encapsulated traffic from workloads. [Default: false]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"aws_src_dst_check": schema.StringAttribute{
-						Description:         "Set source-destination-check on AWS EC2 instances. Accepted value must be one of 'DoNothing', 'Enable' or 'Disable'. [Default: DoNothing]",
-						MarkdownDescription: "Set source-destination-check on AWS EC2 instances. Accepted value must be one of 'DoNothing', 'Enable' or 'Disable'. [Default: DoNothing]",
+						Description:         "AWSSrcDstCheck controls whether Felix will try to change the 'source/dest check' setting on the EC2 instance on which it is running. A value of 'Disable' will try to disable the source/dest check. Disabling the check allows for sending workload traffic without encapsulation within the same AWS subnet. [Default: DoNothing]",
+						MarkdownDescription: "AWSSrcDstCheck controls whether Felix will try to change the 'source/dest check' setting on the EC2 instance on which it is running. A value of 'Disable' will try to disable the source/dest check. Disabling the check allows for sending workload traffic without encapsulation within the same AWS subnet. [Default: DoNothing]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("DoNothing", "Enable", "Disable"),
+						},
+					},
+
+					"bpf_attach_type": schema.StringAttribute{
+						Description:         "BPFAttachType controls how are the BPF programs at the network interfaces attached. By default 'TCX' is used where available to enable easier coexistence with 3rd party programs. 'TC' can force the legacy method of attaching via a qdisc. 'TCX' falls back to 'TC' if 'TCX' is not available. [Default: TCX]",
+						MarkdownDescription: "BPFAttachType controls how are the BPF programs at the network interfaces attached. By default 'TCX' is used where available to enable easier coexistence with 3rd party programs. 'TC' can force the legacy method of attaching via a qdisc. 'TCX' falls back to 'TC' if 'TCX' is not available. [Default: TCX]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("TC", "TCX"),
 						},
 					},
 
@@ -322,16 +362,135 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_connect_time_load_balancing_enabled": schema.BoolAttribute{
-						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
-						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. This will be deprecated. Use BPFConnectTimeLoadBalancing [Default: true]",
+						Description:         "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. Deprecated: Use BPFConnectTimeLoadBalancing [Default: true]",
+						MarkdownDescription: "BPFConnectTimeLoadBalancingEnabled when in BPF mode, controls whether Felix installs the connection-time load balancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services and it improves the performance of pod-to-service connections. The only reason to disable it is for debugging purposes. Deprecated: Use BPFConnectTimeLoadBalancing [Default: true]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
+					"bpf_conntrack_log_level": schema.StringAttribute{
+						Description:         "BPFConntrackLogLevel controls the log level of the BPF conntrack cleanup program, which runs periodically to clean up expired BPF conntrack entries. [Default: Off].",
+						MarkdownDescription: "BPFConntrackLogLevel controls the log level of the BPF conntrack cleanup program, which runs periodically to clean up expired BPF conntrack entries. [Default: Off].",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Off", "Debug"),
+						},
+					},
+
+					"bpf_conntrack_mode": schema.StringAttribute{
+						Description:         "BPFConntrackCleanupMode controls how BPF conntrack entries are cleaned up. 'Auto' will use a BPF program if supported, falling back to userspace if not. 'Userspace' will always use the userspace cleanup code. 'BPFProgram' will always use the BPF program (failing if not supported). /To be deprecated in future versions as conntrack map type changed to lru_hash and userspace cleanup is the only mode that is supported. [Default: Userspace]",
+						MarkdownDescription: "BPFConntrackCleanupMode controls how BPF conntrack entries are cleaned up. 'Auto' will use a BPF program if supported, falling back to userspace if not. 'Userspace' will always use the userspace cleanup code. 'BPFProgram' will always use the BPF program (failing if not supported). /To be deprecated in future versions as conntrack map type changed to lru_hash and userspace cleanup is the only mode that is supported. [Default: Userspace]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Auto", "Userspace", "BPFProgram"),
+						},
+					},
+
+					"bpf_conntrack_timeouts": schema.SingleNestedAttribute{
+						Description:         "BPFConntrackTimers overrides the default values for the specified conntrack timer if set. Each value can be either a duration or 'Auto' to pick the value from a Linux conntrack timeout. Configurable timers are: CreationGracePeriod, TCPSynSent, TCPEstablished, TCPFinsSeen, TCPResetSeen, UDPTimeout, GenericTimeout, ICMPTimeout. Unset values are replaced by the default values with a warning log for incorrect values.",
+						MarkdownDescription: "BPFConntrackTimers overrides the default values for the specified conntrack timer if set. Each value can be either a duration or 'Auto' to pick the value from a Linux conntrack timeout. Configurable timers are: CreationGracePeriod, TCPSynSent, TCPEstablished, TCPFinsSeen, TCPResetSeen, UDPTimeout, GenericTimeout, ICMPTimeout. Unset values are replaced by the default values with a warning log for incorrect values.",
+						Attributes: map[string]schema.Attribute{
+							"creation_grace_period": schema.StringAttribute{
+								Description:         "CreationGracePeriod gives a generic grace period to new connections before they are considered for cleanup [Default: 10s].",
+								MarkdownDescription: "CreationGracePeriod gives a generic grace period to new connections before they are considered for cleanup [Default: 10s].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"generic_timeout": schema.StringAttribute{
+								Description:         "GenericTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_generic_timeout is used. If nil, Calico uses its own default value. [Default: 10m].",
+								MarkdownDescription: "GenericTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_generic_timeout is used. If nil, Calico uses its own default value. [Default: 10m].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"icmp_timeout": schema.StringAttribute{
+								Description:         "ICMPTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_icmp_timeout is used. If nil, Calico uses its own default value. [Default: 5s].",
+								MarkdownDescription: "ICMPTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_icmp_timeout is used. If nil, Calico uses its own default value. [Default: 5s].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"tcp_established": schema.StringAttribute{
+								Description:         "TCPEstablished controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_tcp_timeout_established is used. If nil, Calico uses its own default value. [Default: 1h].",
+								MarkdownDescription: "TCPEstablished controls how long it takes before considering this entry for cleanup after the connection became idle. If set to 'Auto', the value from nf_conntrack_tcp_timeout_established is used. If nil, Calico uses its own default value. [Default: 1h].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"tcp_fins_seen": schema.StringAttribute{
+								Description:         "TCPFinsSeen controls how long it takes before considering this entry for cleanup after the connection was closed gracefully. If set to 'Auto', the value from nf_conntrack_tcp_timeout_time_wait is used. If nil, Calico uses its own default value. [Default: Auto].",
+								MarkdownDescription: "TCPFinsSeen controls how long it takes before considering this entry for cleanup after the connection was closed gracefully. If set to 'Auto', the value from nf_conntrack_tcp_timeout_time_wait is used. If nil, Calico uses its own default value. [Default: Auto].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"tcp_reset_seen": schema.StringAttribute{
+								Description:         "TCPResetSeen controls how long it takes before considering this entry for cleanup after the connection was aborted. If nil, Calico uses its own default value. [Default: 40s].",
+								MarkdownDescription: "TCPResetSeen controls how long it takes before considering this entry for cleanup after the connection was aborted. If nil, Calico uses its own default value. [Default: 40s].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"tcp_syn_sent": schema.StringAttribute{
+								Description:         "TCPSynSent controls how long it takes before considering this entry for cleanup after the last SYN without a response. If set to 'Auto', the value from nf_conntrack_tcp_timeout_syn_sent is used. If nil, Calico uses its own default value. [Default: 20s].",
+								MarkdownDescription: "TCPSynSent controls how long it takes before considering this entry for cleanup after the last SYN without a response. If set to 'Auto', the value from nf_conntrack_tcp_timeout_syn_sent is used. If nil, Calico uses its own default value. [Default: 20s].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+
+							"udp_timeout": schema.StringAttribute{
+								Description:         "UDPTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If nil, Calico uses its own default value. [Default: 60s].",
+								MarkdownDescription: "UDPTimeout controls how long it takes before considering this entry for cleanup after the connection became idle. If nil, Calico uses its own default value. [Default: 60s].",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(([0-9]*(\.[0-9]*)?(ms|s|h|m|us)+)+|Auto)$`), ""),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"bpf_dsr_optout_cidrs": schema.ListAttribute{
-						Description:         "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will accesses nodeports as if BPFExternalServiceMode was set to Tunnel.",
-						MarkdownDescription: "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will accesses nodeports as if BPFExternalServiceMode was set to Tunnel.",
+						Description:         "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will access service node ports as if BPFExternalServiceMode was set to Tunnel.",
+						MarkdownDescription: "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will access service node ports as if BPFExternalServiceMode was set to Tunnel.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -339,8 +498,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_data_iface_pattern": schema.StringAttribute{
-						Description:         "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...).",
-						MarkdownDescription: "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...).",
+						Description:         "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...) or any other special device managed by Calico itself (e.g., tunnels).",
+						MarkdownDescription: "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to in order to catch traffic to/from the network. This needs to match the interfaces that Calico workload traffic flows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster. It should not match the workload interfaces (usually named cali...) or any other special device managed by Calico itself (e.g., tunnels).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -390,9 +549,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"bpf_export_buffer_size_mb": schema.Int64Attribute{
+						Description:         "BPFExportBufferSizeMB in BPF mode, controls the buffer size used for sending BPF events to felix. [Default: 1]",
+						MarkdownDescription: "BPFExportBufferSizeMB in BPF mode, controls the buffer size used for sending BPF events to felix. [Default: 1]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"bpf_ext_to_service_connmark": schema.Int64Attribute{
-						Description:         "BPFExtToServiceConnmark in BPF mode, control a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
-						MarkdownDescription: "BPFExtToServiceConnmark in BPF mode, control a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
+						Description:         "BPFExtToServiceConnmark in BPF mode, controls a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
+						MarkdownDescription: "BPFExtToServiceConnmark in BPF mode, controls a 32bit mark that is set on connections from an external client to a local service. This mark allows us to control how packets of that connection are routed within the host and how is routing interpreted by RPF check. [Default: 0]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -500,6 +667,28 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"bpf_map_size_conntrack_cleanup_queue": schema.Int64Attribute{
+						Description:         "BPFMapSizeConntrackCleanupQueue sets the size for the map used to hold NAT conntrack entries that are queued for cleanup. This should be big enough to hold all the NAT entries that expire within one cleanup interval.",
+						MarkdownDescription: "BPFMapSizeConntrackCleanupQueue sets the size for the map used to hold NAT conntrack entries that are queued for cleanup. This should be big enough to hold all the NAT entries that expire within one cleanup interval.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(1),
+						},
+					},
+
+					"bpf_map_size_conntrack_scaling": schema.StringAttribute{
+						Description:         "BPFMapSizeConntrackScaling controls whether and how we scale the conntrack map size depending on its usage. 'Disabled' make the size stay at the default or whatever is set by BPFMapSizeConntrack*. 'DoubleIfFull' doubles the size when the map is pretty much full even after cleanups. [Default: DoubleIfFull]",
+						MarkdownDescription: "BPFMapSizeConntrackScaling controls whether and how we scale the conntrack map size depending on its usage. 'Disabled' make the size stay at the default or whatever is set by BPFMapSizeConntrack*. 'DoubleIfFull' doubles the size when the map is pretty much full even after cleanups. [Default: DoubleIfFull]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Disabled|DoubleIfFull)?$`), ""),
+						},
+					},
+
 					"bpf_map_size_ip_sets": schema.Int64Attribute{
 						Description:         "BPFMapSizeIPSets sets the size for ipsets map. The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy. Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
 						MarkdownDescription: "BPFMapSizeIPSets sets the size for ipsets map. The IP sets map must be large enough to hold an entry for each endpoint matched by every selector in the source/destination matches in network policy. Selectors such as 'all()' can result in large numbers of entries (one entry per endpoint in that case).",
@@ -517,24 +706,32 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"bpf_map_size_nat_affinity": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "BPFMapSizeNATAffinity sets the size of the BPF map that stores the affinity of a connection (for services that enable that feature.",
+						MarkdownDescription: "BPFMapSizeNATAffinity sets the size of the BPF map that stores the affinity of a connection (for services that enable that feature.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_map_size_nat_backend": schema.Int64Attribute{
-						Description:         "BPFMapSizeNATBackend sets the size for nat back end map. This is the total number of endpoints. This is mostly more than the size of the number of services.",
-						MarkdownDescription: "BPFMapSizeNATBackend sets the size for nat back end map. This is the total number of endpoints. This is mostly more than the size of the number of services.",
+						Description:         "BPFMapSizeNATBackend sets the size for NAT back end map. This is the total number of endpoints. This is mostly more than the size of the number of services.",
+						MarkdownDescription: "BPFMapSizeNATBackend sets the size for NAT back end map. This is the total number of endpoints. This is mostly more than the size of the number of services.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"bpf_map_size_nat_frontend": schema.Int64Attribute{
-						Description:         "BPFMapSizeNATFrontend sets the size for nat front end map. FrontendMap should be large enough to hold an entry for each nodeport, external IP and each port in each service.",
-						MarkdownDescription: "BPFMapSizeNATFrontend sets the size for nat front end map. FrontendMap should be large enough to hold an entry for each nodeport, external IP and each port in each service.",
+						Description:         "BPFMapSizeNATFrontend sets the size for NAT front end map. FrontendMap should be large enough to hold an entry for each nodeport, external IP and each port in each service.",
+						MarkdownDescription: "BPFMapSizeNATFrontend sets the size for NAT front end map. FrontendMap should be large enough to hold an entry for each nodeport, external IP and each port in each service.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"bpf_map_size_per_cpu_conntrack": schema.Int64Attribute{
+						Description:         "BPFMapSizePerCPUConntrack determines the size of conntrack map based on the number of CPUs. If set to a non-zero value, overrides BPFMapSizeConntrack with 'BPFMapSizePerCPUConntrack * (Number of CPUs)'. This map must be large enough to hold an entry for each active connection. Warning: changing the size of the conntrack map can cause disruption.",
+						MarkdownDescription: "BPFMapSizePerCPUConntrack determines the size of conntrack map based on the number of CPUs. If set to a non-zero value, overrides BPFMapSizeConntrack with 'BPFMapSizePerCPUConntrack * (Number of CPUs)'. This map must be large enough to hold an entry for each active connection. Warning: changing the size of the conntrack map can cause disruption.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -564,9 +761,31 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
+					"bpf_profiling": schema.StringAttribute{
+						Description:         "BPFProfiling controls profiling of BPF programs. At the monent, it can be Disabled or Enabled. [Default: Disabled]",
+						MarkdownDescription: "BPFProfiling controls profiling of BPF programs. At the monent, it can be Disabled or Enabled. [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
+					},
+
 					"bpf_redirect_to_peer": schema.StringAttribute{
 						Description:         "BPFRedirectToPeer controls which whether it is allowed to forward straight to the peer side of the workload devices. It is allowed for any host L2 devices by default (L2Only), but it breaks TCP dump on the host side of workload device as it bypasses it on ingress. Value of Enabled also allows redirection from L3 host devices like IPIP tunnel or Wireguard directly to the peer side of the workload's device. This makes redirection faster, however, it breaks tools like tcpdump on the peer side. Use Enabled with caution. [Default: L2Only]",
 						MarkdownDescription: "BPFRedirectToPeer controls which whether it is allowed to forward straight to the peer side of the workload devices. It is allowed for any host L2 devices by default (L2Only), but it breaks TCP dump on the host side of workload device as it bypasses it on ingress. Value of Enabled also allows redirection from L3 host devices like IPIP tunnel or Wireguard directly to the peer side of the workload's device. This makes redirection faster, however, it breaks tools like tcpdump on the peer side. Use Enabled with caution. [Default: L2Only]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled", "L2Only"),
+						},
+					},
+
+					"cgroup_v2_path": schema.StringAttribute{
+						Description:         "CgroupV2Path overrides the default location where to find the cgroup hierarchy.",
+						MarkdownDescription: "CgroupV2Path overrides the default location where to find the cgroup hierarchy.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -579,7 +798,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(insert|append)?$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Insert|Append)?$`), ""),
 						},
 					},
 
@@ -592,16 +811,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"dataplane_watchdog_timeout": schema.StringAttribute{
-						Description:         "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s] Deprecated: replaced by the generic HealthTimeoutOverrides.",
-						MarkdownDescription: "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Increase this value if you experience spurious non-ready or non-live events when Felix is under heavy load. Decrease the value to get felix to report non-live or non-ready more quickly. [Default: 90s] Deprecated: replaced by the generic HealthTimeoutOverrides.",
+						Description:         "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Deprecated: replaced by the generic HealthTimeoutOverrides.",
+						MarkdownDescription: "DataplaneWatchdogTimeout is the readiness/liveness timeout used for Felix's (internal) dataplane driver. Deprecated: replaced by the generic HealthTimeoutOverrides.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"debug_disable_log_dropping": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DebugDisableLogDropping disables the dropping of log messages when the log buffer is full. This can significantly impact performance if log write-out is a bottleneck. [Default: false]",
+						MarkdownDescription: "DebugDisableLogDropping disables the dropping of log messages when the log buffer is full. This can significantly impact performance if log write-out is a bottleneck. [Default: false]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -616,8 +835,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_memory_profile_path": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DebugMemoryProfilePath is the path to write the memory profile to when triggered by signal.",
+						MarkdownDescription: "DebugMemoryProfilePath is the path to write the memory profile to when triggered by signal.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -632,8 +851,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_simulate_calc_graph_hang_after": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DebugSimulateCalcGraphHangAfter is used to simulate a hang in the calculation graph after the specified duration. This is useful in tests of the watchdog system only!",
+						MarkdownDescription: "DebugSimulateCalcGraphHangAfter is used to simulate a hang in the calculation graph after the specified duration. This is useful in tests of the watchdog system only!",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -643,8 +862,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_simulate_dataplane_apply_delay": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DebugSimulateDataplaneApplyDelay adds an artificial delay to every dataplane operation. This is useful for simulating a heavily loaded system for test purposes only.",
+						MarkdownDescription: "DebugSimulateDataplaneApplyDelay adds an artificial delay to every dataplane operation. This is useful for simulating a heavily loaded system for test purposes only.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -654,8 +873,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"debug_simulate_dataplane_hang_after": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DebugSimulateDataplaneHangAfter is used to simulate a hang in the dataplane after the specified duration. This is useful in tests of the watchdog system only!",
+						MarkdownDescription: "DebugSimulateDataplaneHangAfter is used to simulate a hang in the dataplane after the specified duration. This is useful in tests of the watchdog system only!",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -665,8 +884,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"default_endpoint_to_host_action": schema.StringAttribute{
-						Description:         "DefaultEndpointToHostAction controls what happens to traffic that goes from a workload endpoint to the host itself (after the traffic hits the endpoint egress policy). By default Calico blocks traffic from workload endpoints to the host itself with an iptables 'DROP' action. If you want to allow some or all traffic from endpoint to host, set this parameter to RETURN or ACCEPT. Use RETURN if you have your own rules in the iptables 'INPUT' chain; Calico will insert its rules at the top of that chain, then 'RETURN' packets to the 'INPUT' chain once it has completed processing workload endpoint egress policy. Use ACCEPT to unconditionally accept packets from workloads after processing workload endpoint egress policy. [Default: Drop]",
-						MarkdownDescription: "DefaultEndpointToHostAction controls what happens to traffic that goes from a workload endpoint to the host itself (after the traffic hits the endpoint egress policy). By default Calico blocks traffic from workload endpoints to the host itself with an iptables 'DROP' action. If you want to allow some or all traffic from endpoint to host, set this parameter to RETURN or ACCEPT. Use RETURN if you have your own rules in the iptables 'INPUT' chain; Calico will insert its rules at the top of that chain, then 'RETURN' packets to the 'INPUT' chain once it has completed processing workload endpoint egress policy. Use ACCEPT to unconditionally accept packets from workloads after processing workload endpoint egress policy. [Default: Drop]",
+						Description:         "DefaultEndpointToHostAction controls what happens to traffic that goes from a workload endpoint to the host itself (after the endpoint's egress policy is applied). By default, Calico blocks traffic from workload endpoints to the host itself with an iptables 'DROP' action. If you want to allow some or all traffic from endpoint to host, set this parameter to RETURN or ACCEPT. Use RETURN if you have your own rules in the iptables 'INPUT' chain; Calico will insert its rules at the top of that chain, then 'RETURN' packets to the 'INPUT' chain once it has completed processing workload endpoint egress policy. Use ACCEPT to unconditionally accept packets from workloads after processing workload endpoint egress policy. [Default: Drop]",
+						MarkdownDescription: "DefaultEndpointToHostAction controls what happens to traffic that goes from a workload endpoint to the host itself (after the endpoint's egress policy is applied). By default, Calico blocks traffic from workload endpoints to the host itself with an iptables 'DROP' action. If you want to allow some or all traffic from endpoint to host, set this parameter to RETURN or ACCEPT. Use RETURN if you have your own rules in the iptables 'INPUT' chain; Calico will insert its rules at the top of that chain, then 'RETURN' packets to the 'INPUT' chain once it has completed processing workload endpoint egress policy. Use ACCEPT to unconditionally accept packets from workloads after processing workload endpoint egress policy. [Default: Drop]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -676,40 +895,40 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"device_route_protocol": schema.Int64Attribute{
-						Description:         "This defines the route protocol added to programmed device routes, by default this will be RTPROT_BOOT when left blank.",
-						MarkdownDescription: "This defines the route protocol added to programmed device routes, by default this will be RTPROT_BOOT when left blank.",
+						Description:         "DeviceRouteProtocol controls the protocol to set on routes programmed by Felix. The protocol is an 8-bit label used to identify the owner of the route.",
+						MarkdownDescription: "DeviceRouteProtocol controls the protocol to set on routes programmed by Felix. The protocol is an 8-bit label used to identify the owner of the route.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"device_route_source_address": schema.StringAttribute{
-						Description:         "This is the IPv4 source address to use on programmed device routes. By default the source address is left blank, leaving the kernel to choose the source address used.",
-						MarkdownDescription: "This is the IPv4 source address to use on programmed device routes. By default the source address is left blank, leaving the kernel to choose the source address used.",
+						Description:         "DeviceRouteSourceAddress IPv4 address to set as the source hint for routes programmed by Felix. When not set the source address for local traffic from host to workload will be determined by the kernel.",
+						MarkdownDescription: "DeviceRouteSourceAddress IPv4 address to set as the source hint for routes programmed by Felix. When not set the source address for local traffic from host to workload will be determined by the kernel.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"device_route_source_address_i_pv6": schema.StringAttribute{
-						Description:         "This is the IPv6 source address to use on programmed device routes. By default the source address is left blank, leaving the kernel to choose the source address used.",
-						MarkdownDescription: "This is the IPv6 source address to use on programmed device routes. By default the source address is left blank, leaving the kernel to choose the source address used.",
+						Description:         "DeviceRouteSourceAddressIPv6 IPv6 address to set as the source hint for routes programmed by Felix. When not set the source address for local traffic from host to workload will be determined by the kernel.",
+						MarkdownDescription: "DeviceRouteSourceAddressIPv6 IPv6 address to set as the source hint for routes programmed by Felix. When not set the source address for local traffic from host to workload will be determined by the kernel.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"disable_conntrack_invalid_check": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "DisableConntrackInvalidCheck disables the check for invalid connections in conntrack. While the conntrack invalid check helps to detect malicious traffic, it can also cause issues with certain multi-NIC scenarios.",
+						MarkdownDescription: "DisableConntrackInvalidCheck disables the check for invalid connections in conntrack. While the conntrack invalid check helps to detect malicious traffic, it can also cause issues with certain multi-NIC scenarios.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"endpoint_reporting_delay": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "EndpointReportingDelay is the delay before Felix reports endpoint status to the datastore. This is only used by the OpenStack integration. [Default: 1s]",
+						MarkdownDescription: "EndpointReportingDelay is the delay before Felix reports endpoint status to the datastore. This is only used by the OpenStack integration. [Default: 1s]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -719,24 +938,24 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"endpoint_reporting_enabled": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "EndpointReportingEnabled controls whether Felix reports endpoint status to the datastore. This is only used by the OpenStack integration. [Default: false]",
+						MarkdownDescription: "EndpointReportingEnabled controls whether Felix reports endpoint status to the datastore. This is only used by the OpenStack integration. [Default: false]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"endpoint_status_path_prefix": schema.StringAttribute{
-						Description:         "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
-						MarkdownDescription: "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI for PodStartupDelay. [Default: '']",
+						Description:         "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI plugin for PodStartupDelay. [Default: /var/run/calico]",
+						MarkdownDescription: "EndpointStatusPathPrefix is the path to the directory where endpoint status will be written. Endpoint status file reporting is disabled if field is left empty. Chosen directory should match the directory used by the CNI plugin for PodStartupDelay. [Default: /var/run/calico]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"external_nodes_list": schema.ListAttribute{
-						Description:         "ExternalNodesCIDRList is a list of CIDR's of external-non-calico-nodes which may source tunnel traffic and have the tunneled traffic be accepted at calico nodes.",
-						MarkdownDescription: "ExternalNodesCIDRList is a list of CIDR's of external-non-calico-nodes which may source tunnel traffic and have the tunneled traffic be accepted at calico nodes.",
+						Description:         "ExternalNodesCIDRList is a list of CIDR's of external, non-Calico nodes from which VXLAN/IPIP overlay traffic will be allowed. By default, external tunneled traffic is blocked to reduce attack surface.",
+						MarkdownDescription: "ExternalNodesCIDRList is a list of CIDR's of external, non-Calico nodes from which VXLAN/IPIP overlay traffic will be allowed. By default, external tunneled traffic is blocked to reduce attack surface.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -744,8 +963,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"failsafe_inbound_host_ports": schema.ListNestedAttribute{
-						Description:         "FailsafeInboundHostPorts is a list of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow incoming traffic to host endpoints on irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all inbound host ports, use the value '[]'. The default value allows ssh access, DHCP, BGP, etcd and the Kubernetes API. [Default: tcp:22, udp:68, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
-						MarkdownDescription: "FailsafeInboundHostPorts is a list of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow incoming traffic to host endpoints on irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all inbound host ports, use the value '[]'. The default value allows ssh access, DHCP, BGP, etcd and the Kubernetes API. [Default: tcp:22, udp:68, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
+						Description:         "FailsafeInboundHostPorts is a list of ProtoPort struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow incoming traffic to host endpoints on irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all inbound host ports, use the value '[]'. The default value allows ssh access, DHCP, BGP, etcd and the Kubernetes API. [Default: tcp:22, udp:68, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
+						MarkdownDescription: "FailsafeInboundHostPorts is a list of ProtoPort struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow incoming traffic to host endpoints on irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all inbound host ports, use the value '[]'. The default value allows ssh access, DHCP, BGP, etcd and the Kubernetes API. [Default: tcp:22, udp:68, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"net": schema.StringAttribute{
@@ -767,8 +986,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 								"protocol": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
@@ -779,8 +998,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"failsafe_outbound_host_ports": schema.ListNestedAttribute{
-						Description:         "FailsafeOutboundHostPorts is a list of List of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow outgoing traffic from host endpoints to irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all outbound host ports, use the value '[]'. The default value opens etcd's standard ports to ensure that Felix does not get cut off from etcd as well as allowing DHCP, DNS, BGP and the Kubernetes API. [Default: udp:53, udp:67, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
-						MarkdownDescription: "FailsafeOutboundHostPorts is a list of List of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow outgoing traffic from host endpoints to irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all outbound host ports, use the value '[]'. The default value opens etcd's standard ports to ensure that Felix does not get cut off from etcd as well as allowing DHCP, DNS, BGP and the Kubernetes API. [Default: udp:53, udp:67, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
+						Description:         "FailsafeOutboundHostPorts is a list of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow outgoing traffic from host endpoints to irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all outbound host ports, use the value '[]'. The default value opens etcd's standard ports to ensure that Felix does not get cut off from etcd as well as allowing DHCP, DNS, BGP and the Kubernetes API. [Default: udp:53, udp:67, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
+						MarkdownDescription: "FailsafeOutboundHostPorts is a list of PortProto struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will allow outgoing traffic from host endpoints to irrespective of the security policy. This is useful to avoid accidentally cutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified, it defaults to 'tcp'. If a CIDR is not specified, it will allow traffic from all addresses. To disable all outbound host ports, use the value '[]'. The default value opens etcd's standard ports to ensure that Felix does not get cut off from etcd as well as allowing DHCP, DNS, BGP and the Kubernetes API. [Default: udp:53, udp:67, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"net": schema.StringAttribute{
@@ -802,8 +1021,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 								"protocol": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 								},
 							},
@@ -814,8 +1033,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"feature_detect_override": schema.StringAttribute{
-						Description:         "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
-						MarkdownDescription: "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. 'true' or 'false' will force the feature, empty or omitted values are auto-detected.",
+						Description:         "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. A value of 'true' or 'false' will force enable/disable feature, empty or omitted values fall back to auto-detection.",
+						MarkdownDescription: "FeatureDetectOverride is used to override feature detection based on auto-detected platform capabilities. Values are specified in a comma separated list with no spaces, example; 'SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock='. A value of 'true' or 'false' will force enable/disable feature, empty or omitted values fall back to auto-detection.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -843,6 +1062,55 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
+					},
+
+					"flow_logs_collector_debug_trace": schema.BoolAttribute{
+						Description:         "When FlowLogsCollectorDebugTrace is set to true, enables the logs in the collector to be printed in their entirety.",
+						MarkdownDescription: "When FlowLogsCollectorDebugTrace is set to true, enables the logs in the collector to be printed in their entirety.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"flow_logs_flush_interval": schema.StringAttribute{
+						Description:         "FlowLogsFlushInterval configures the interval at which Felix exports flow logs.",
+						MarkdownDescription: "FlowLogsFlushInterval configures the interval at which Felix exports flow logs.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$`), ""),
+						},
+					},
+
+					"flow_logs_goldmane_server": schema.StringAttribute{
+						Description:         "FlowLogGoldmaneServer is the flow server endpoint to which flow data should be published.",
+						MarkdownDescription: "FlowLogGoldmaneServer is the flow server endpoint to which flow data should be published.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"flow_logs_local_reporter": schema.StringAttribute{
+						Description:         "FlowLogsLocalReporter configures local unix socket for reporting flow data from each node. [Default: Disabled]",
+						MarkdownDescription: "FlowLogsLocalReporter configures local unix socket for reporting flow data from each node. [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Disabled", "Enabled"),
+						},
+					},
+
+					"flow_logs_policy_evaluation_mode": schema.StringAttribute{
+						Description:         "Continuous - Felix evaluates active flows on a regular basis to determine the rule traces in the flow logs. Any policy updates that impact a flow will be reflected in the pending_policies field, offering a near-real-time view of policy changes across flows. None - Felix stops evaluating pending traces. [Default: Continuous]",
+						MarkdownDescription: "Continuous - Felix evaluates active flows on a regular basis to determine the rule traces in the flow logs. Any policy updates that impact a flow will be reflected in the pending_policies field, offering a near-real-time view of policy changes across flows. None - Felix stops evaluating pending traces. [Default: Continuous]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("None", "Continuous"),
 						},
 					},
 
@@ -879,24 +1147,24 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"health_enabled": schema.BoolAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "HealthEnabled if set to true, enables Felix's health port, which provides readiness and liveness endpoints. [Default: false]",
+						MarkdownDescription: "HealthEnabled if set to true, enables Felix's health port, which provides readiness and liveness endpoints. [Default: false]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"health_host": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "HealthHost is the host that the health server should bind to. [Default: localhost]",
+						MarkdownDescription: "HealthHost is the host that the health server should bind to. [Default: localhost]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"health_port": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "HealthPort is the TCP port that the health server should bind to. [Default: 9099]",
+						MarkdownDescription: "HealthPort is the TCP port that the health server should bind to. [Default: 9099]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -930,8 +1198,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"interface_exclude": schema.StringAttribute{
-						Description:         "InterfaceExclude is a comma-separated list of interfaces that Felix should exclude when monitoring for host endpoints. The default value ensures that Felix ignores Kubernetes' IPVS dummy interface, which is used internally by kube-proxy. If you want to exclude multiple interface names using a single value, the list supports regular expressions. For regular expressions you must wrap the value with '/'. For example having values '/^kube/,veth1' will exclude all interfaces that begin with 'kube' and also the interface 'veth1'. [Default: kube-ipvs0]",
-						MarkdownDescription: "InterfaceExclude is a comma-separated list of interfaces that Felix should exclude when monitoring for host endpoints. The default value ensures that Felix ignores Kubernetes' IPVS dummy interface, which is used internally by kube-proxy. If you want to exclude multiple interface names using a single value, the list supports regular expressions. For regular expressions you must wrap the value with '/'. For example having values '/^kube/,veth1' will exclude all interfaces that begin with 'kube' and also the interface 'veth1'. [Default: kube-ipvs0]",
+						Description:         "InterfaceExclude A comma-separated list of interface names that should be excluded when Felix is resolving host endpoints. The default value ensures that Felix ignores Kubernetes' internal 'kube-ipvs0' device. If you want to exclude multiple interface names using a single value, the list supports regular expressions. For regular expressions you must wrap the value with '/'. For example having values '/^kube/,veth1' will exclude all interfaces that begin with 'kube' and also the interface 'veth1'. [Default: kube-ipvs0]",
+						MarkdownDescription: "InterfaceExclude A comma-separated list of interface names that should be excluded when Felix is resolving host endpoints. The default value ensures that Felix ignores Kubernetes' internal 'kube-ipvs0' device. If you want to exclude multiple interface names using a single value, the list supports regular expressions. For regular expressions you must wrap the value with '/'. For example having values '/^kube/,veth1' will exclude all interfaces that begin with 'kube' and also the interface 'veth1'. [Default: kube-ipvs0]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -957,8 +1225,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"ip_forwarding": schema.StringAttribute{
-						Description:         "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
-						MarkdownDescription: "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should only be disabled on hosts where Calico is used for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
+						Description:         "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should be disabled only on hosts where Calico is used solely for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
+						MarkdownDescription: "IPForwarding controls whether Felix sets the host sysctls to enable IP forwarding. IP forwarding is required when using Calico for workload networking. This should be disabled only on hosts where Calico is used solely for host protection. In BPF mode, due to a kernel interaction, either IPForwarding must be enabled or BPFEnforceRPF must be disabled. [Default: Enabled]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -976,16 +1244,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"ipip_mtu": schema.Int64Attribute{
-						Description:         "IPIPMTU is the MTU to set on the tunnel device. See Configuring MTU [Default: 1440]",
-						MarkdownDescription: "IPIPMTU is the MTU to set on the tunnel device. See Configuring MTU [Default: 1440]",
+						Description:         "IPIPMTU controls the MTU to set on the IPIP tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
+						MarkdownDescription: "IPIPMTU controls the MTU to set on the IPIP tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ipsets_refresh_interval": schema.StringAttribute{
-						Description:         "IpsetsRefreshInterval is the period at which Felix re-checks all iptables state to ensure that no other process has accidentally broken Calico's rules. Set to 0 to disable iptables refresh. [Default: 90s]",
-						MarkdownDescription: "IpsetsRefreshInterval is the period at which Felix re-checks all iptables state to ensure that no other process has accidentally broken Calico's rules. Set to 0 to disable iptables refresh. [Default: 90s]",
+						Description:         "IpsetsRefreshInterval controls the period at which Felix re-checks all IP sets to look for discrepancies. Set to 0 to disable the periodic refresh. [Default: 90s]",
+						MarkdownDescription: "IpsetsRefreshInterval controls the period at which Felix re-checks all IP sets to look for discrepancies. Set to 0 to disable the periodic refresh. [Default: 90s]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -995,19 +1263,19 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"iptables_backend": schema.StringAttribute{
-						Description:         "IptablesBackend specifies which backend of iptables will be used. The default is Auto.",
-						MarkdownDescription: "IptablesBackend specifies which backend of iptables will be used. The default is Auto.",
+						Description:         "IptablesBackend controls which backend of iptables will be used. The default is 'Auto'. Warning: changing this on a running system can leave 'orphaned' rules in the 'other' backend. These should be cleaned up to avoid confusing interactions.",
+						MarkdownDescription: "IptablesBackend controls which backend of iptables will be used. The default is 'Auto'. Warning: changing this on a running system can leave 'orphaned' rules in the 'other' backend. These should be cleaned up to avoid confusing interactions.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Auto|FelixConfiguration|FelixConfigurationList|Legacy|NFT)?$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Auto|Legacy|NFT)?$`), ""),
 						},
 					},
 
 					"iptables_filter_allow_action": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "IptablesFilterAllowAction controls what happens to traffic that is accepted by a Felix policy chain in the iptables filter table (which is used for 'normal' policy). The default will immediately 'Accept' the traffic. Use 'Return' to send the traffic back up to the system chains for further processing.",
+						MarkdownDescription: "IptablesFilterAllowAction controls what happens to traffic that is accepted by a Felix policy chain in the iptables filter table (which is used for 'normal' policy). The default will immediately 'Accept' the traffic. Use 'Return' to send the traffic back up to the system chains for further processing.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1036,8 +1304,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"iptables_lock_probe_interval": schema.StringAttribute{
-						Description:         "IptablesLockProbeInterval is the time that Felix will wait between attempts to acquire the iptables lock if it is not available. Lower values make Felix more responsive when the lock is contended, but use more CPU. [Default: 50ms]",
-						MarkdownDescription: "IptablesLockProbeInterval is the time that Felix will wait between attempts to acquire the iptables lock if it is not available. Lower values make Felix more responsive when the lock is contended, but use more CPU. [Default: 50ms]",
+						Description:         "IptablesLockProbeInterval when IptablesLockTimeout is enabled: the time that Felix will wait between attempts to acquire the iptables lock if it is not available. Lower values make Felix more responsive when the lock is contended, but use more CPU. [Default: 50ms]",
+						MarkdownDescription: "IptablesLockProbeInterval when IptablesLockTimeout is enabled: the time that Felix will wait between attempts to acquire the iptables lock if it is not available. Lower values make Felix more responsive when the lock is contended, but use more CPU. [Default: 50ms]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1047,8 +1315,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"iptables_lock_timeout": schema.StringAttribute{
-						Description:         "IptablesLockTimeout is the time that Felix will wait for the iptables lock, or 0, to disable. To use this feature, Felix must share the iptables lock file with all other processes that also take the lock. When running Felix inside a container, this requires the /run directory of the host to be mounted into the calico/node or calico/felix container. [Default: 0s disabled]",
-						MarkdownDescription: "IptablesLockTimeout is the time that Felix will wait for the iptables lock, or 0, to disable. To use this feature, Felix must share the iptables lock file with all other processes that also take the lock. When running Felix inside a container, this requires the /run directory of the host to be mounted into the calico/node or calico/felix container. [Default: 0s disabled]",
+						Description:         "IptablesLockTimeout is the time that Felix itself will wait for the iptables lock (rather than delegating the lock handling to the 'iptables' command). Deprecated: 'iptables-restore' v1.8+ always takes the lock, so enabling this feature results in deadlock. [Default: 0s disabled]",
+						MarkdownDescription: "IptablesLockTimeout is the time that Felix itself will wait for the iptables lock (rather than delegating the lock handling to the 'iptables' command). Deprecated: 'iptables-restore' v1.8+ always takes the lock, so enabling this feature results in deadlock. [Default: 0s disabled]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1058,8 +1326,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"iptables_mangle_allow_action": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "IptablesMangleAllowAction controls what happens to traffic that is accepted by a Felix policy chain in the iptables mangle table (which is used for 'pre-DNAT' policy). The default will immediately 'Accept' the traffic. Use 'Return' to send the traffic back up to the system chains for further processing.",
+						MarkdownDescription: "IptablesMangleAllowAction controls what happens to traffic that is accepted by a Felix policy chain in the iptables mangle table (which is used for 'pre-DNAT' policy). The default will immediately 'Accept' the traffic. Use 'Return' to send the traffic back up to the system chains for further processing.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1069,16 +1337,16 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"iptables_mark_mask": schema.Int64Attribute{
-						Description:         "IptablesMarkMask is the mask that Felix selects its IPTables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xff000000]",
-						MarkdownDescription: "IptablesMarkMask is the mask that Felix selects its IPTables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xff000000]",
+						Description:         "IptablesMarkMask is the mask that Felix selects its IPTables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
+						MarkdownDescription: "IptablesMarkMask is the mask that Felix selects its IPTables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"iptables_nat_outgoing_interface_filter": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "This parameter can be used to limit the host interfaces on which Calico will apply SNAT to traffic leaving a Calico IPAM pool with 'NAT outgoing' enabled. This can be useful if you have a main data interface, where traffic should be SNATted and a secondary device (such as the docker bridge) which is local to the host and doesn't require SNAT. This parameter uses the iptables interface matching syntax, which allows + as a wildcard. Most users will not need to set this. Example: if your data interfaces are eth0 and eth1 and you want to exclude the docker bridge, you could set this to eth+",
+						MarkdownDescription: "This parameter can be used to limit the host interfaces on which Calico will apply SNAT to traffic leaving a Calico IPAM pool with 'NAT outgoing' enabled. This can be useful if you have a main data interface, where traffic should be SNATted and a secondary device (such as the docker bridge) which is local to the host and doesn't require SNAT. This parameter uses the iptables interface matching syntax, which allows + as a wildcard. Most users will not need to set this. Example: if your data interfaces are eth0 and eth1 and you want to exclude the docker bridge, you could set this to eth+",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1154,7 +1422,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Debug|Info|Warning|Error|Fatal)?$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Trace|Debug|Info|Warning|Error|Fatal)?$`), ""),
 						},
 					},
 
@@ -1165,7 +1433,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Debug|Info|Warning|Error|Fatal)?$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Trace|Debug|Info|Warning|Error|Fatal)?$`), ""),
 						},
 					},
 
@@ -1176,7 +1444,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Debug|Info|Warning|Error|Fatal)?$`), ""),
+							stringvalidator.RegexMatches(regexp.MustCompile(`^(?i)(Trace|Debug|Info|Warning|Error|Fatal)?$`), ""),
 						},
 					},
 
@@ -1213,11 +1481,22 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"nat_outgoing_address": schema.StringAttribute{
-						Description:         "NATOutgoingAddress specifies an address to use when performing source NAT for traffic in a natOutgoing pool that is leaving the network. By default the address used is an address on the interface the traffic is leaving on (ie it uses the iptables MASQUERADE target)",
-						MarkdownDescription: "NATOutgoingAddress specifies an address to use when performing source NAT for traffic in a natOutgoing pool that is leaving the network. By default the address used is an address on the interface the traffic is leaving on (ie it uses the iptables MASQUERADE target)",
+						Description:         "NATOutgoingAddress specifies an address to use when performing source NAT for traffic in a natOutgoing pool that is leaving the network. By default the address used is an address on the interface the traffic is leaving on (i.e. it uses the iptables MASQUERADE target).",
+						MarkdownDescription: "NATOutgoingAddress specifies an address to use when performing source NAT for traffic in a natOutgoing pool that is leaving the network. By default the address used is an address on the interface the traffic is leaving on (i.e. it uses the iptables MASQUERADE target).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"nat_outgoing_exclusions": schema.StringAttribute{
+						Description:         "When a IP pool setting 'natOutgoing' is true, packets sent from Calico networked containers in this IP pool to destinations will be masqueraded. Configure which type of destinations is excluded from being masqueraded. - IPPoolsOnly: destinations outside of this IP pool will be masqueraded. - IPPoolsAndHostIPs: destinations outside of this IP pool and all hosts will be masqueraded. [Default: IPPoolsOnly]",
+						MarkdownDescription: "When a IP pool setting 'natOutgoing' is true, packets sent from Calico networked containers in this IP pool to destinations will be masqueraded. Configure which type of destinations is excluded from being masqueraded. - IPPoolsOnly: destinations outside of this IP pool will be masqueraded. - IPPoolsAndHostIPs: destinations outside of this IP pool and all hosts will be masqueraded. [Default: IPPoolsOnly]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("IPPoolsOnly", "IPPoolsAndHostIPs"),
+						},
 					},
 
 					"nat_port_range": schema.StringAttribute{
@@ -1229,8 +1508,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"netlink_timeout": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "NetlinkTimeout is the timeout when talking to the kernel over the netlink protocol, used for programming routes, rules, and other kernel objects. [Default: 10s]",
+						MarkdownDescription: "NetlinkTimeout is the timeout when talking to the kernel over the netlink protocol, used for programming routes, rules, and other kernel objects. [Default: 10s]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1240,8 +1519,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"nftables_filter_allow_action": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "NftablesFilterAllowAction controls the nftables action that Felix uses to represent the 'allow' policy verdict in the filter table. The default is to 'ACCEPT' the traffic, which is a terminal action. Alternatively, 'RETURN' can be used to return the traffic back to the top-level chain for further processing by your rules.",
+						MarkdownDescription: "NftablesFilterAllowAction controls the nftables action that Felix uses to represent the 'allow' policy verdict in the filter table. The default is to 'ACCEPT' the traffic, which is a terminal action. Alternatively, 'RETURN' can be used to return the traffic back to the top-level chain for further processing by your rules.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1251,8 +1530,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"nftables_filter_deny_action": schema.StringAttribute{
-						Description:         "FilterDenyAction controls what happens to traffic that is denied by network policy. By default Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
-						MarkdownDescription: "FilterDenyAction controls what happens to traffic that is denied by network policy. By default Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
+						Description:         "NftablesFilterDenyAction controls what happens to traffic that is denied by network policy. By default, Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
+						MarkdownDescription: "NftablesFilterDenyAction controls what happens to traffic that is denied by network policy. By default, Calico blocks traffic with a 'drop' action. If you want to use a 'reject' action instead you can configure it here.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1262,8 +1541,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"nftables_mangle_allow_action": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "NftablesMangleAllowAction controls the nftables action that Felix uses to represent the 'allow' policy verdict in the mangle table. The default is to 'ACCEPT' the traffic, which is a terminal action. Alternatively, 'RETURN' can be used to return the traffic back to the top-level chain for further processing by your rules.",
+						MarkdownDescription: "NftablesMangleAllowAction controls the nftables action that Felix uses to represent the 'allow' policy verdict in the mangle table. The default is to 'ACCEPT' the traffic, which is a terminal action. Alternatively, 'RETURN' can be used to return the traffic back to the top-level chain for further processing by your rules.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1273,8 +1552,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"nftables_mark_mask": schema.Int64Attribute{
-						Description:         "MarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
-						MarkdownDescription: "MarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
+						Description:         "NftablesMarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
+						MarkdownDescription: "NftablesMarkMask is the mask that Felix selects its nftables Mark bits from. Should be a 32 bit hexadecimal number with at least 8 bits set, none of which clash with any other mark bits in use on the system. [Default: 0xffff0000]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1286,6 +1565,9 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Disabled", "Enabled", "Auto"),
+						},
 					},
 
 					"nftables_refresh_interval": schema.StringAttribute{
@@ -1310,6 +1592,17 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"program_cluster_routes": schema.StringAttribute{
+						Description:         "ProgramClusterRoutes specifies whether Felix should program IPIP routes instead of BIRD. Felix always programs VXLAN routes. [Default: Disabled]",
+						MarkdownDescription: "ProgramClusterRoutes specifies whether Felix should program IPIP routes instead of BIRD. Felix always programs VXLAN routes. [Default: Disabled]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Enabled", "Disabled"),
+						},
 					},
 
 					"prometheus_go_metrics_enabled": schema.BoolAttribute{
@@ -1361,8 +1654,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"remove_external_routes": schema.BoolAttribute{
-						Description:         "Whether or not to remove device routes that have not been programmed by Felix. Disabling this will allow external applications to also add device routes. This is enabled by default which means we will remove externally added routes.",
-						MarkdownDescription: "Whether or not to remove device routes that have not been programmed by Felix. Disabling this will allow external applications to also add device routes. This is enabled by default which means we will remove externally added routes.",
+						Description:         "RemoveExternalRoutes Controls whether Felix will remove unexpected routes to workload interfaces. Felix will always clean up expected routes that use the configured DeviceRouteProtocol. To add your own routes, you must use a distinct protocol (in addition to setting this field to false).",
+						MarkdownDescription: "RemoveExternalRoutes Controls whether Felix will remove unexpected routes to workload interfaces. Felix will always clean up expected routes that use the configured DeviceRouteProtocol. To add your own routes, you must use a distinct protocol (in addition to setting this field to false).",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1388,6 +1681,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Validators: []validator.String{
 							stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$`), ""),
 						},
+					},
+
+					"require_mtu_file": schema.BoolAttribute{
+						Description:         "RequireMTUFile specifies whether mtu file is required to start the felix. Optional as to keep the same as previous behavior. [Default: false]",
+						MarkdownDescription: "RequireMTUFile specifies whether mtu file is required to start the felix. Optional as to keep the same as previous behavior. [Default: false]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"route_refresh_interval": schema.StringAttribute{
@@ -1538,40 +1839,40 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"vxlan_mtu": schema.Int64Attribute{
-						Description:         "VXLANMTU is the MTU to set on the IPv4 VXLAN tunnel device. See Configuring MTU [Default: 1410]",
-						MarkdownDescription: "VXLANMTU is the MTU to set on the IPv4 VXLAN tunnel device. See Configuring MTU [Default: 1410]",
+						Description:         "VXLANMTU is the MTU to set on the IPv4 VXLAN tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
+						MarkdownDescription: "VXLANMTU is the MTU to set on the IPv4 VXLAN tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"vxlan_mtuv6": schema.Int64Attribute{
-						Description:         "VXLANMTUV6 is the MTU to set on the IPv6 VXLAN tunnel device. See Configuring MTU [Default: 1390]",
-						MarkdownDescription: "VXLANMTUV6 is the MTU to set on the IPv6 VXLAN tunnel device. See Configuring MTU [Default: 1390]",
+						Description:         "VXLANMTUV6 is the MTU to set on the IPv6 VXLAN tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
+						MarkdownDescription: "VXLANMTUV6 is the MTU to set on the IPv6 VXLAN tunnel device. Optional as Felix auto-detects the MTU based on the MTU of the host's interfaces. [Default: 0 (auto-detect)]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"vxlan_port": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "VXLANPort is the UDP port number to use for VXLAN traffic. [Default: 4789]",
+						MarkdownDescription: "VXLANPort is the UDP port number to use for VXLAN traffic. [Default: 4789]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"vxlan_vni": schema.Int64Attribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "VXLANVNI is the VXLAN VNI to use for VXLAN traffic. You may need to change this if the default value is in use on your system. [Default: 4096]",
+						MarkdownDescription: "VXLANVNI is the VXLAN VNI to use for VXLAN traffic. You may need to change this if the default value is in use on your system. [Default: 4096]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"windows_manage_firewall_rules": schema.StringAttribute{
-						Description:         "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules. (to allow inbound access to its own metrics ports) [Default: Disabled]",
-						MarkdownDescription: "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules. (to allow inbound access to its own metrics ports) [Default: Disabled]",
+						Description:         "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules (to allow inbound access to its own metrics ports). [Default: Disabled]",
+						MarkdownDescription: "WindowsManageFirewallRules configures whether or not Felix will program Windows Firewall rules (to allow inbound access to its own metrics ports). [Default: Disabled]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1621,8 +1922,8 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					},
 
 					"wireguard_keep_alive": schema.StringAttribute{
-						Description:         "WireguardKeepAlive controls Wireguard PersistentKeepalive option. Set 0 to disable. [Default: 0]",
-						MarkdownDescription: "WireguardKeepAlive controls Wireguard PersistentKeepalive option. Set 0 to disable. [Default: 0]",
+						Description:         "WireguardPersistentKeepAlive controls Wireguard PersistentKeepalive option. Set 0 to disable. [Default: 0]",
+						MarkdownDescription: "WireguardPersistentKeepAlive controls Wireguard PersistentKeepalive option. Set 0 to disable. [Default: 0]",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1666,6 +1967,14 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 					"wireguard_routing_rule_priority": schema.Int64Attribute{
 						Description:         "WireguardRoutingRulePriority controls the priority value to use for the Wireguard routing rule. [Default: 99]",
 						MarkdownDescription: "WireguardRoutingRulePriority controls the priority value to use for the Wireguard routing rule. [Default: 99]",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"wireguard_threading_enabled": schema.BoolAttribute{
+						Description:         "WireguardThreadingEnabled controls whether Wireguard has Threaded NAPI enabled. [Default: false] This increases the maximum number of packets a Wireguard interface can process. Consider threaded NAPI only if you have high packets per second workloads that are causing dropping packets due to a saturated 'softirq' CPU core. There is a [known issue](https://lore.kernel.org/netdev/CALrw=nEoT2emQ0OAYCjM1d_6Xe_kNLSZ6dhjb5FxrLFYh4kozA@mail.gmail.com/T/) with this setting that may cause NAPI to get stuck holding the global 'rtnl_mutex' when a peer is removed. Workaround: Make sure your Linux kernel [includes this patch](https://github.com/torvalds/linux/commit/56364c910691f6d10ba88c964c9041b9ab777bd6) to unwedge NAPI.",
+						MarkdownDescription: "WireguardThreadingEnabled controls whether Wireguard has Threaded NAPI enabled. [Default: false] This increases the maximum number of packets a Wireguard interface can process. Consider threaded NAPI only if you have high packets per second workloads that are causing dropping packets due to a saturated 'softirq' CPU core. There is a [known issue](https://lore.kernel.org/netdev/CALrw=nEoT2emQ0OAYCjM1d_6Xe_kNLSZ6dhjb5FxrLFYh4kozA@mail.gmail.com/T/) with this setting that may cause NAPI to get stuck holding the global 'rtnl_mutex' when a peer is removed. Workaround: Make sure your Linux kernel [includes this patch](https://github.com/torvalds/linux/commit/56364c910691f6d10ba88c964c9041b9ab777bd6) to unwedge NAPI.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

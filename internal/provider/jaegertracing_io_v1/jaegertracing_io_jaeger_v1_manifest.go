@@ -338,6 +338,7 @@ type JaegertracingIoJaegerV1ManifestData struct {
 				} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 			} `tfsdk:"container_security_context" json:"containerSecurityContext,omitempty"`
 			DnsPolicy        *string `tfsdk:"dns_policy" json:"dnsPolicy,omitempty"`
+			Enabled          *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			HostNetwork      *bool   `tfsdk:"host_network" json:"hostNetwork,omitempty"`
 			Image            *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy  *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -8056,6 +8057,14 @@ func (r *JaegertracingIoJaegerV1Manifest) Schema(_ context.Context, _ datasource
 							},
 
 							"dns_policy": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enabled": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

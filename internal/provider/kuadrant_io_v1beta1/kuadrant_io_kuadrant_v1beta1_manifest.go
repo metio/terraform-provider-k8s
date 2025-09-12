@@ -42,7 +42,16 @@ type KuadrantIoKuadrantV1Beta1ManifestData struct {
 		Annotations map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 	} `tfsdk:"metadata" json:"metadata"`
 
-	Spec *map[string]string `tfsdk:"spec" json:"spec,omitempty"`
+	Spec *struct {
+		Mtls *struct {
+			Authorino *bool `tfsdk:"authorino" json:"authorino,omitempty"`
+			Enable    *bool `tfsdk:"enable" json:"enable,omitempty"`
+			Limitador *bool `tfsdk:"limitador" json:"limitador,omitempty"`
+		} `tfsdk:"mtls" json:"mtls,omitempty"`
+		Observability *struct {
+			Enable *bool `tfsdk:"enable" json:"enable,omitempty"`
+		} `tfsdk:"observability" json:"observability,omitempty"`
+	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
 func (r *KuadrantIoKuadrantV1Beta1Manifest) Metadata(_ context.Context, request datasource.MetadataRequest, response *datasource.MetadataResponse) {
@@ -118,13 +127,63 @@ func (r *KuadrantIoKuadrantV1Beta1Manifest) Schema(_ context.Context, _ datasour
 				},
 			},
 
-			"spec": schema.MapAttribute{
+			"spec": schema.SingleNestedAttribute{
 				Description:         "KuadrantSpec defines the desired state of Kuadrant",
 				MarkdownDescription: "KuadrantSpec defines the desired state of Kuadrant",
-				ElementType:         types.StringType,
-				Required:            false,
-				Optional:            true,
-				Computed:            false,
+				Attributes: map[string]schema.Attribute{
+					"mtls": schema.SingleNestedAttribute{
+						Description:         "MTLS is an optional entry which when enabled is set to true, kuadrant-operator will add the configuration required to enable mTLS between an Istio provided gateway and the Kuadrant components.",
+						MarkdownDescription: "MTLS is an optional entry which when enabled is set to true, kuadrant-operator will add the configuration required to enable mTLS between an Istio provided gateway and the Kuadrant components.",
+						Attributes: map[string]schema.Attribute{
+							"authorino": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"limitador": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"observability": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"enable": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+				},
+				Required: false,
+				Optional: true,
+				Computed: false,
 			},
 		},
 	}

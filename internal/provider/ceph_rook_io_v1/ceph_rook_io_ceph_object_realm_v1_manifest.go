@@ -44,7 +44,8 @@ type CephRookIoCephObjectRealmV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Pull *struct {
+		DefaultRealm *bool `tfsdk:"default_realm" json:"defaultRealm,omitempty"`
+		Pull         *struct {
 			Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
 		} `tfsdk:"pull" json:"pull,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -127,6 +128,14 @@ func (r *CephRookIoCephObjectRealmV1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "ObjectRealmSpec represent the spec of an ObjectRealm",
 				MarkdownDescription: "ObjectRealmSpec represent the spec of an ObjectRealm",
 				Attributes: map[string]schema.Attribute{
+					"default_realm": schema.BoolAttribute{
+						Description:         "Set this realm as the default in Ceph. Only one realm should be default.",
+						MarkdownDescription: "Set this realm as the default in Ceph. Only one realm should be default.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"pull": schema.SingleNestedAttribute{
 						Description:         "PullSpec represents the pulling specification of a Ceph Object Storage Gateway Realm",
 						MarkdownDescription: "PullSpec represents the pulling specification of a Ceph Object Storage Gateway Realm",

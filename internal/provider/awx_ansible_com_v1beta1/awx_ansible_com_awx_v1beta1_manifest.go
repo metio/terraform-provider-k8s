@@ -226,6 +226,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 			Ip        *string   `tfsdk:"ip" json:"ip,omitempty"`
 		} `tfsdk:"host_aliases" json:"host_aliases,omitempty"`
 		Hostname            *string   `tfsdk:"hostname" json:"hostname,omitempty"`
+		Idle_deployment     *bool     `tfsdk:"idle_deployment" json:"idle_deployment,omitempty"`
 		Image               *string   `tfsdk:"image" json:"image,omitempty"`
 		Image_pull_policy   *string   `tfsdk:"image_pull_policy" json:"image_pull_policy,omitempty"`
 		Image_pull_secret   *string   `tfsdk:"image_pull_secret" json:"image_pull_secret,omitempty"`
@@ -261,46 +262,51 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 				Storage           *string `tfsdk:"storage" json:"storage,omitempty"`
 			} `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"init_container_resource_requirements" json:"init_container_resource_requirements,omitempty"`
-		Init_projects_container_image                 *string   `tfsdk:"init_projects_container_image" json:"init_projects_container_image,omitempty"`
-		Ipv6_disabled                                 *bool     `tfsdk:"ipv6_disabled" json:"ipv6_disabled,omitempty"`
-		Kind                                          *string   `tfsdk:"kind" json:"kind,omitempty"`
-		Ldap_cacert_secret                            *string   `tfsdk:"ldap_cacert_secret" json:"ldap_cacert_secret,omitempty"`
-		Ldap_password_secret                          *string   `tfsdk:"ldap_password_secret" json:"ldap_password_secret,omitempty"`
-		Loadbalancer_class                            *string   `tfsdk:"loadbalancer_class" json:"loadbalancer_class,omitempty"`
-		Loadbalancer_ip                               *string   `tfsdk:"loadbalancer_ip" json:"loadbalancer_ip,omitempty"`
-		Loadbalancer_port                             *int64    `tfsdk:"loadbalancer_port" json:"loadbalancer_port,omitempty"`
-		Loadbalancer_protocol                         *string   `tfsdk:"loadbalancer_protocol" json:"loadbalancer_protocol,omitempty"`
-		Metrics_utility_configmap                     *string   `tfsdk:"metrics_utility_configmap" json:"metrics_utility_configmap,omitempty"`
-		Metrics_utility_console_enabled               *bool     `tfsdk:"metrics_utility_console_enabled" json:"metrics_utility_console_enabled,omitempty"`
-		Metrics_utility_cronjob_gather_schedule       *string   `tfsdk:"metrics_utility_cronjob_gather_schedule" json:"metrics_utility_cronjob_gather_schedule,omitempty"`
-		Metrics_utility_cronjob_report_schedule       *string   `tfsdk:"metrics_utility_cronjob_report_schedule" json:"metrics_utility_cronjob_report_schedule,omitempty"`
-		Metrics_utility_enabled                       *bool     `tfsdk:"metrics_utility_enabled" json:"metrics_utility_enabled,omitempty"`
-		Metrics_utility_image                         *string   `tfsdk:"metrics_utility_image" json:"metrics_utility_image,omitempty"`
-		Metrics_utility_image_pull_policy             *string   `tfsdk:"metrics_utility_image_pull_policy" json:"metrics_utility_image_pull_policy,omitempty"`
-		Metrics_utility_image_version                 *string   `tfsdk:"metrics_utility_image_version" json:"metrics_utility_image_version,omitempty"`
-		Metrics_utility_pvc_claim                     *string   `tfsdk:"metrics_utility_pvc_claim" json:"metrics_utility_pvc_claim,omitempty"`
-		Metrics_utility_pvc_claim_size                *string   `tfsdk:"metrics_utility_pvc_claim_size" json:"metrics_utility_pvc_claim_size,omitempty"`
-		Metrics_utility_pvc_claim_storage_class       *string   `tfsdk:"metrics_utility_pvc_claim_storage_class" json:"metrics_utility_pvc_claim_storage_class,omitempty"`
-		Metrics_utility_secret                        *string   `tfsdk:"metrics_utility_secret" json:"metrics_utility_secret,omitempty"`
-		Metrics_utility_ship_target                   *string   `tfsdk:"metrics_utility_ship_target" json:"metrics_utility_ship_target,omitempty"`
-		Nginx_listen_queue_size                       *int64    `tfsdk:"nginx_listen_queue_size" json:"nginx_listen_queue_size,omitempty"`
-		Nginx_worker_connections                      *int64    `tfsdk:"nginx_worker_connections" json:"nginx_worker_connections,omitempty"`
-		Nginx_worker_cpu_affinity                     *string   `tfsdk:"nginx_worker_cpu_affinity" json:"nginx_worker_cpu_affinity,omitempty"`
-		Nginx_worker_processes                        *int64    `tfsdk:"nginx_worker_processes" json:"nginx_worker_processes,omitempty"`
-		No_log                                        *bool     `tfsdk:"no_log" json:"no_log,omitempty"`
-		Node_selector                                 *string   `tfsdk:"node_selector" json:"node_selector,omitempty"`
-		Nodeport_port                                 *int64    `tfsdk:"nodeport_port" json:"nodeport_port,omitempty"`
-		Old_postgres_configuration_secret             *string   `tfsdk:"old_postgres_configuration_secret" json:"old_postgres_configuration_secret,omitempty"`
-		Pg_dump_suffix                                *string   `tfsdk:"pg_dump_suffix" json:"pg_dump_suffix,omitempty"`
-		Postgres_annotations                          *string   `tfsdk:"postgres_annotations" json:"postgres_annotations,omitempty"`
-		Postgres_configuration_secret                 *string   `tfsdk:"postgres_configuration_secret" json:"postgres_configuration_secret,omitempty"`
-		Postgres_data_volume_init                     *bool     `tfsdk:"postgres_data_volume_init" json:"postgres_data_volume_init,omitempty"`
-		Postgres_extra_args                           *[]string `tfsdk:"postgres_extra_args" json:"postgres_extra_args,omitempty"`
-		Postgres_extra_volume_mounts                  *string   `tfsdk:"postgres_extra_volume_mounts" json:"postgres_extra_volume_mounts,omitempty"`
-		Postgres_extra_volumes                        *string   `tfsdk:"postgres_extra_volumes" json:"postgres_extra_volumes,omitempty"`
-		Postgres_image                                *string   `tfsdk:"postgres_image" json:"postgres_image,omitempty"`
-		Postgres_image_version                        *string   `tfsdk:"postgres_image_version" json:"postgres_image_version,omitempty"`
-		Postgres_init_container_commands              *string   `tfsdk:"postgres_init_container_commands" json:"postgres_init_container_commands,omitempty"`
+		Init_projects_container_image           *string   `tfsdk:"init_projects_container_image" json:"init_projects_container_image,omitempty"`
+		Ipv6_disabled                           *bool     `tfsdk:"ipv6_disabled" json:"ipv6_disabled,omitempty"`
+		Kind                                    *string   `tfsdk:"kind" json:"kind,omitempty"`
+		Ldap_cacert_secret                      *string   `tfsdk:"ldap_cacert_secret" json:"ldap_cacert_secret,omitempty"`
+		Ldap_password_secret                    *string   `tfsdk:"ldap_password_secret" json:"ldap_password_secret,omitempty"`
+		Loadbalancer_class                      *string   `tfsdk:"loadbalancer_class" json:"loadbalancer_class,omitempty"`
+		Loadbalancer_ip                         *string   `tfsdk:"loadbalancer_ip" json:"loadbalancer_ip,omitempty"`
+		Loadbalancer_port                       *int64    `tfsdk:"loadbalancer_port" json:"loadbalancer_port,omitempty"`
+		Loadbalancer_protocol                   *string   `tfsdk:"loadbalancer_protocol" json:"loadbalancer_protocol,omitempty"`
+		Metrics_utility_configmap               *string   `tfsdk:"metrics_utility_configmap" json:"metrics_utility_configmap,omitempty"`
+		Metrics_utility_console_enabled         *bool     `tfsdk:"metrics_utility_console_enabled" json:"metrics_utility_console_enabled,omitempty"`
+		Metrics_utility_cronjob_gather_schedule *string   `tfsdk:"metrics_utility_cronjob_gather_schedule" json:"metrics_utility_cronjob_gather_schedule,omitempty"`
+		Metrics_utility_cronjob_report_schedule *string   `tfsdk:"metrics_utility_cronjob_report_schedule" json:"metrics_utility_cronjob_report_schedule,omitempty"`
+		Metrics_utility_enabled                 *bool     `tfsdk:"metrics_utility_enabled" json:"metrics_utility_enabled,omitempty"`
+		Metrics_utility_image                   *string   `tfsdk:"metrics_utility_image" json:"metrics_utility_image,omitempty"`
+		Metrics_utility_image_pull_policy       *string   `tfsdk:"metrics_utility_image_pull_policy" json:"metrics_utility_image_pull_policy,omitempty"`
+		Metrics_utility_image_version           *string   `tfsdk:"metrics_utility_image_version" json:"metrics_utility_image_version,omitempty"`
+		Metrics_utility_pvc_claim               *string   `tfsdk:"metrics_utility_pvc_claim" json:"metrics_utility_pvc_claim,omitempty"`
+		Metrics_utility_pvc_claim_size          *string   `tfsdk:"metrics_utility_pvc_claim_size" json:"metrics_utility_pvc_claim_size,omitempty"`
+		Metrics_utility_pvc_claim_storage_class *string   `tfsdk:"metrics_utility_pvc_claim_storage_class" json:"metrics_utility_pvc_claim_storage_class,omitempty"`
+		Metrics_utility_secret                  *string   `tfsdk:"metrics_utility_secret" json:"metrics_utility_secret,omitempty"`
+		Metrics_utility_ship_target             *string   `tfsdk:"metrics_utility_ship_target" json:"metrics_utility_ship_target,omitempty"`
+		Nginx_client_max_body_size              *int64    `tfsdk:"nginx_client_max_body_size" json:"nginx_client_max_body_size,omitempty"`
+		Nginx_listen_queue_size                 *int64    `tfsdk:"nginx_listen_queue_size" json:"nginx_listen_queue_size,omitempty"`
+		Nginx_worker_connections                *int64    `tfsdk:"nginx_worker_connections" json:"nginx_worker_connections,omitempty"`
+		Nginx_worker_cpu_affinity               *string   `tfsdk:"nginx_worker_cpu_affinity" json:"nginx_worker_cpu_affinity,omitempty"`
+		Nginx_worker_processes                  *int64    `tfsdk:"nginx_worker_processes" json:"nginx_worker_processes,omitempty"`
+		No_log                                  *bool     `tfsdk:"no_log" json:"no_log,omitempty"`
+		Node_selector                           *string   `tfsdk:"node_selector" json:"node_selector,omitempty"`
+		Nodeport_port                           *int64    `tfsdk:"nodeport_port" json:"nodeport_port,omitempty"`
+		Old_postgres_configuration_secret       *string   `tfsdk:"old_postgres_configuration_secret" json:"old_postgres_configuration_secret,omitempty"`
+		Pg_dump_suffix                          *string   `tfsdk:"pg_dump_suffix" json:"pg_dump_suffix,omitempty"`
+		Postgres_annotations                    *string   `tfsdk:"postgres_annotations" json:"postgres_annotations,omitempty"`
+		Postgres_configuration_secret           *string   `tfsdk:"postgres_configuration_secret" json:"postgres_configuration_secret,omitempty"`
+		Postgres_data_volume_init               *bool     `tfsdk:"postgres_data_volume_init" json:"postgres_data_volume_init,omitempty"`
+		Postgres_extra_args                     *[]string `tfsdk:"postgres_extra_args" json:"postgres_extra_args,omitempty"`
+		Postgres_extra_settings                 *[]struct {
+			Setting *string `tfsdk:"setting" json:"setting,omitempty"`
+			Value   *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"postgres_extra_settings" json:"postgres_extra_settings,omitempty"`
+		Postgres_extra_volume_mounts                  *string `tfsdk:"postgres_extra_volume_mounts" json:"postgres_extra_volume_mounts,omitempty"`
+		Postgres_extra_volumes                        *string `tfsdk:"postgres_extra_volumes" json:"postgres_extra_volumes,omitempty"`
+		Postgres_image                                *string `tfsdk:"postgres_image" json:"postgres_image,omitempty"`
+		Postgres_image_version                        *string `tfsdk:"postgres_image_version" json:"postgres_image_version,omitempty"`
+		Postgres_init_container_commands              *string `tfsdk:"postgres_init_container_commands" json:"postgres_init_container_commands,omitempty"`
 		Postgres_init_container_resource_requirements *struct {
 			Limits *struct {
 				Cpu     *string `tfsdk:"cpu" json:"cpu,omitempty"`
@@ -348,6 +354,7 @@ type AwxAnsibleComAwxV1Beta1ManifestData struct {
 		Projects_storage_class       *string   `tfsdk:"projects_storage_class" json:"projects_storage_class,omitempty"`
 		Projects_storage_size        *string   `tfsdk:"projects_storage_size" json:"projects_storage_size,omitempty"`
 		Projects_use_existing_claim  *string   `tfsdk:"projects_use_existing_claim" json:"projects_use_existing_claim,omitempty"`
+		Public_base_url              *string   `tfsdk:"public_base_url" json:"public_base_url,omitempty"`
 		Receptor_log_level           *string   `tfsdk:"receptor_log_level" json:"receptor_log_level,omitempty"`
 		Redis_capabilities           *[]string `tfsdk:"redis_capabilities" json:"redis_capabilities,omitempty"`
 		Redis_image                  *string   `tfsdk:"redis_image" json:"redis_image,omitempty"`
@@ -2029,6 +2036,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"idle_deployment": schema.BoolAttribute{
+						Description:         "Scale down deployments to put AWX into an idle state",
+						MarkdownDescription: "Scale down deployments to put AWX into an idle state",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "Registry path to the application container to use",
 						MarkdownDescription: "Registry path to the application container to use",
@@ -2469,6 +2484,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"nginx_client_max_body_size": schema.Int64Attribute{
+						Description:         "Sets the maximum allowed size of the client request body in megabytes (defaults to 5M)",
+						MarkdownDescription: "Sets the maximum allowed size of the client request body in megabytes (defaults to 5M)",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"nginx_listen_queue_size": schema.Int64Attribute{
 						Description:         "Set the socket listen queue size for nginx (defaults to same as uwsgi)",
 						MarkdownDescription: "Set the socket listen queue size for nginx (defaults to same as uwsgi)",
@@ -2570,12 +2593,39 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 					},
 
 					"postgres_extra_args": schema.ListAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "(Deprecated, use postgres_extra_settings parameter) Define postgres configuration arguments to use",
+						MarkdownDescription: "(Deprecated, use postgres_extra_settings parameter) Define postgres configuration arguments to use",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"postgres_extra_settings": schema.ListNestedAttribute{
+						Description:         "PostgreSQL configuration settings to be added to postgresql.conf",
+						MarkdownDescription: "PostgreSQL configuration settings to be added to postgresql.conf",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"setting": schema.StringAttribute{
+									Description:         "PostgreSQL configuration parameter name",
+									MarkdownDescription: "PostgreSQL configuration parameter name",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "PostgreSQL configuration parameter value",
+									MarkdownDescription: "PostgreSQL configuration parameter value",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"postgres_extra_volume_mounts": schema.StringAttribute{
@@ -2933,6 +2983,14 @@ func (r *AwxAnsibleComAwxV1Beta1Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("_Yes_", "_No_"),
 						},
+					},
+
+					"public_base_url": schema.StringAttribute{
+						Description:         "Public base URL",
+						MarkdownDescription: "Public base URL",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"receptor_log_level": schema.StringAttribute{

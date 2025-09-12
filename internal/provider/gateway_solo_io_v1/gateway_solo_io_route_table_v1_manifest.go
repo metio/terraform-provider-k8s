@@ -69,10 +69,6 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 				Body   *string `tfsdk:"body" json:"body,omitempty"`
 				Status *int64  `tfsdk:"status" json:"status,omitempty"`
 			} `tfsdk:"direct_response_action" json:"directResponseAction,omitempty"`
-			GraphqlApiRef *struct {
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			} `tfsdk:"graphql_api_ref" json:"graphqlApiRef,omitempty"`
 			InheritableMatchers     *bool `tfsdk:"inheritable_matchers" json:"inheritableMatchers,omitempty"`
 			InheritablePathMatchers *bool `tfsdk:"inheritable_path_matchers" json:"inheritablePathMatchers,omitempty"`
 			Matchers                *[]struct {
@@ -118,29 +114,50 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								Message    *string `tfsdk:"message" json:"message,omitempty"`
 								StatusCode *int64  `tfsdk:"status_code" json:"statusCode,omitempty"`
 							} `tfsdk:"custom_response" json:"customResponse,omitempty"`
+							Moderation *struct {
+								Openai *struct {
+									AuthToken *struct {
+										Inline      *string            `tfsdk:"inline" json:"inline,omitempty"`
+										Passthrough *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+										SecretRef   *struct {
+											Name      *string `tfsdk:"name" json:"name,omitempty"`
+											Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+										} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+									} `tfsdk:"auth_token" json:"authToken,omitempty"`
+									Model *string `tfsdk:"model" json:"model,omitempty"`
+								} `tfsdk:"openai" json:"openai,omitempty"`
+							} `tfsdk:"moderation" json:"moderation,omitempty"`
 							Regex *struct {
+								Action   *string   `tfsdk:"action" json:"action,omitempty"`
 								Builtins *[]string `tfsdk:"builtins" json:"builtins,omitempty"`
-								Matches  *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								Matches  *[]struct {
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Pattern *string `tfsdk:"pattern" json:"pattern,omitempty"`
+								} `tfsdk:"matches" json:"matches,omitempty"`
 							} `tfsdk:"regex" json:"regex,omitempty"`
 							Webhook *struct {
-								Headers *[]struct {
+								ForwardHeaders *[]struct {
 									Key       *string `tfsdk:"key" json:"key,omitempty"`
 									MatchType *string `tfsdk:"match_type" json:"matchType,omitempty"`
-								} `tfsdk:"headers" json:"headers,omitempty"`
+								} `tfsdk:"forward_headers" json:"forwardHeaders,omitempty"`
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *int64  `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"webhook" json:"webhook,omitempty"`
 						} `tfsdk:"request" json:"request,omitempty"`
 						Response *struct {
 							Regex *struct {
+								Action   *string   `tfsdk:"action" json:"action,omitempty"`
 								Builtins *[]string `tfsdk:"builtins" json:"builtins,omitempty"`
-								Matches  *[]string `tfsdk:"matches" json:"matches,omitempty"`
+								Matches  *[]struct {
+									Name    *string `tfsdk:"name" json:"name,omitempty"`
+									Pattern *string `tfsdk:"pattern" json:"pattern,omitempty"`
+								} `tfsdk:"matches" json:"matches,omitempty"`
 							} `tfsdk:"regex" json:"regex,omitempty"`
 							Webhook *struct {
-								Headers *[]struct {
+								ForwardHeaders *[]struct {
 									Key       *string `tfsdk:"key" json:"key,omitempty"`
 									MatchType *string `tfsdk:"match_type" json:"matchType,omitempty"`
-								} `tfsdk:"headers" json:"headers,omitempty"`
+								} `tfsdk:"forward_headers" json:"forwardHeaders,omitempty"`
 								Host *string `tfsdk:"host" json:"host,omitempty"`
 								Port *int64  `tfsdk:"port" json:"port,omitempty"`
 							} `tfsdk:"webhook" json:"webhook,omitempty"`
@@ -157,8 +174,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							AzureOpenai *struct {
 								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 								AuthToken  *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
+									Inline      *string            `tfsdk:"inline" json:"inline,omitempty"`
+									Passthrough *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SecretRef   *struct {
 										Name      *string `tfsdk:"name" json:"name,omitempty"`
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -168,8 +186,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"azure_openai" json:"azureOpenai,omitempty"`
 							Openai *struct {
 								AuthToken *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
+									Inline      *string            `tfsdk:"inline" json:"inline,omitempty"`
+									Passthrough *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SecretRef   *struct {
 										Name      *string `tfsdk:"name" json:"name,omitempty"`
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -192,12 +211,14 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								Insecure *bool   `tfsdk:"insecure" json:"insecure,omitempty"`
 							} `tfsdk:"weaviate" json:"weaviate,omitempty"`
 						} `tfsdk:"datastore" json:"datastore,omitempty"`
-						Embedding *struct {
+						DistanceThreshold *float64 `tfsdk:"distance_threshold" json:"distanceThreshold,omitempty"`
+						Embedding         *struct {
 							AzureOpenai *struct {
 								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 								AuthToken  *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
+									Inline      *string            `tfsdk:"inline" json:"inline,omitempty"`
+									Passthrough *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SecretRef   *struct {
 										Name      *string `tfsdk:"name" json:"name,omitempty"`
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -207,8 +228,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"azure_openai" json:"azureOpenai,omitempty"`
 							Openai *struct {
 								AuthToken *struct {
-									Inline    *string `tfsdk:"inline" json:"inline,omitempty"`
-									SecretRef *struct {
+									Inline      *string            `tfsdk:"inline" json:"inline,omitempty"`
+									Passthrough *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SecretRef   *struct {
 										Name      *string `tfsdk:"name" json:"name,omitempty"`
 										Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 									} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
@@ -395,8 +417,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 					AfterExtAuth *struct {
 						AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
 						Providers               *struct {
-							Audiences       *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
-							ClaimsToHeaders *[]struct {
+							AttachFailedStatusToMetadata *string   `tfsdk:"attach_failed_status_to_metadata" json:"attachFailedStatusToMetadata,omitempty"`
+							Audiences                    *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+							ClaimsToHeaders              *[]struct {
 								Append *bool   `tfsdk:"append" json:"append,omitempty"`
 								Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 								Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -433,8 +456,9 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 					BeforeExtAuth *struct {
 						AllowMissingOrFailedJwt *bool `tfsdk:"allow_missing_or_failed_jwt" json:"allowMissingOrFailedJwt,omitempty"`
 						Providers               *struct {
-							Audiences       *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
-							ClaimsToHeaders *[]struct {
+							AttachFailedStatusToMetadata *string   `tfsdk:"attach_failed_status_to_metadata" json:"attachFailedStatusToMetadata,omitempty"`
+							Audiences                    *[]string `tfsdk:"audiences" json:"audiences,omitempty"`
+							ClaimsToHeaders              *[]struct {
 								Append *bool   `tfsdk:"append" json:"append,omitempty"`
 								Claim  *string `tfsdk:"claim" json:"claim,omitempty"`
 								Header *string `tfsdk:"header" json:"header,omitempty"`
@@ -855,6 +879,13 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 					PreviousPriorities *struct {
 						UpdateFrequency *int64 `tfsdk:"update_frequency" json:"updateFrequency,omitempty"`
 					} `tfsdk:"previous_priorities" json:"previousPriorities,omitempty"`
+					RateLimitedRetryBackOff *struct {
+						MaxInterval  *string `tfsdk:"max_interval" json:"maxInterval,omitempty"`
+						ResetHeaders *[]struct {
+							Format *string `tfsdk:"format" json:"format,omitempty"`
+							Name   *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"reset_headers" json:"resetHeaders,omitempty"`
+					} `tfsdk:"rate_limited_retry_back_off" json:"rateLimitedRetryBackOff,omitempty"`
 					RetriableStatusCodes *[]string `tfsdk:"retriable_status_codes" json:"retriableStatusCodes,omitempty"`
 					RetryBackOff         *struct {
 						BaseInterval *string `tfsdk:"base_interval" json:"baseInterval,omitempty"`
@@ -941,6 +972,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -997,6 +1033,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1062,6 +1103,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1145,6 +1191,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1201,6 +1252,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1266,6 +1322,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1346,6 +1407,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1402,6 +1468,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1467,6 +1538,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 									} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 									ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 									Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+									SpanTransformer   *struct {
+										Name *struct {
+											Text *string `tfsdk:"text" json:"text,omitempty"`
+										} `tfsdk:"name" json:"name,omitempty"`
+									} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 								} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 								XsltTransformation *struct {
 									NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1538,6 +1614,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							SpanTransformer   *struct {
+								Name *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1594,6 +1675,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 							} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 							ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 							Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+							SpanTransformer   *struct {
+								Name *struct {
+									Text *string `tfsdk:"text" json:"text,omitempty"`
+								} `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 						} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 						XsltTransformation *struct {
 							NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1747,6 +1833,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 										ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 										Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+										SpanTransformer   *struct {
+											Name *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"name" json:"name,omitempty"`
+										} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 									} `tfsdk:"response_transformation" json:"responseTransformation,omitempty"`
 								} `tfsdk:"rest" json:"rest,omitempty"`
 							} `tfsdk:"destination_spec" json:"destinationSpec,omitempty"`
@@ -1908,6 +1999,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -1964,6 +2060,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2029,6 +2130,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2112,6 +2218,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2168,6 +2279,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2233,6 +2349,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2313,6 +2434,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2369,6 +2495,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2434,6 +2565,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 												} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 												ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 												Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+												SpanTransformer   *struct {
+													Name *struct {
+														Text *string `tfsdk:"text" json:"text,omitempty"`
+													} `tfsdk:"name" json:"name,omitempty"`
+												} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 											} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 											XsltTransformation *struct {
 												NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2495,6 +2631,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 										ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 										Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+										SpanTransformer   *struct {
+											Name *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"name" json:"name,omitempty"`
+										} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 									} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 									XsltTransformation *struct {
 										NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2551,6 +2692,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 										} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 										ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 										Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+										SpanTransformer   *struct {
+											Name *struct {
+												Text *string `tfsdk:"text" json:"text,omitempty"`
+											} `tfsdk:"name" json:"name,omitempty"`
+										} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 									} `tfsdk:"transformation_template" json:"transformationTemplate,omitempty"`
 									XsltTransformation *struct {
 										NonXmlTransform *bool   `tfsdk:"non_xml_transform" json:"nonXmlTransform,omitempty"`
@@ -2641,6 +2787,11 @@ type GatewaySoloIoRouteTableV1ManifestData struct {
 								} `tfsdk:"merge_json_keys" json:"mergeJsonKeys,omitempty"`
 								ParseBodyBehavior *string            `tfsdk:"parse_body_behavior" json:"parseBodyBehavior,omitempty"`
 								Passthrough       *map[string]string `tfsdk:"passthrough" json:"passthrough,omitempty"`
+								SpanTransformer   *struct {
+									Name *struct {
+										Text *string `tfsdk:"text" json:"text,omitempty"`
+									} `tfsdk:"name" json:"name,omitempty"`
+								} `tfsdk:"span_transformer" json:"spanTransformer,omitempty"`
 							} `tfsdk:"response_transformation" json:"responseTransformation,omitempty"`
 						} `tfsdk:"rest" json:"rest,omitempty"`
 					} `tfsdk:"destination_spec" json:"destinationSpec,omitempty"`
@@ -2904,31 +3055,6 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 												int64validator.AtLeast(0),
 												int64validator.AtMost(4.294967295e+09),
 											},
-										},
-									},
-									Required: false,
-									Optional: true,
-									Computed: false,
-								},
-
-								"graphql_api_ref": schema.SingleNestedAttribute{
-									Description:         "",
-									MarkdownDescription: "",
-									Attributes: map[string]schema.Attribute{
-										"name": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-										},
-
-										"namespace": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
 										},
 									},
 									Required: false,
@@ -3243,10 +3369,95 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Computed: false,
 																},
 
+																"moderation": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"openai": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"auth_token": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"inline": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"passthrough": schema.MapAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							ElementType:         types.StringType,
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"secret_ref": schema.SingleNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Attributes: map[string]schema.Attribute{
+																								"name": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"namespace": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+
+																				"model": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"regex": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"action": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"builtins": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -3256,13 +3467,31 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
-																		"matches": schema.ListAttribute{
+																		"matches": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"pattern": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -3274,7 +3503,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
-																		"headers": schema.ListNestedAttribute{
+																		"forward_headers": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
@@ -3339,6 +3568,14 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
+																		"action": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"builtins": schema.ListAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -3348,13 +3585,31 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Computed:            false,
 																		},
 
-																		"matches": schema.ListAttribute{
+																		"matches": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"name": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+
+																					"pattern": schema.StringAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,
@@ -3366,7 +3621,7 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Description:         "",
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
-																		"headers": schema.ListNestedAttribute{
+																		"forward_headers": schema.ListNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
 																			NestedObject: schema.NestedAttributeObject{
@@ -3494,6 +3749,15 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																					Computed:            false,
 																				},
 
+																				"passthrough": schema.MapAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"secret_ref": schema.SingleNestedAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
@@ -3556,6 +3820,15 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																				"inline": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"passthrough": schema.MapAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3709,6 +3982,14 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Computed: false,
 														},
 
+														"distance_threshold": schema.Float64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
 														"embedding": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -3732,6 +4013,15 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																				"inline": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"passthrough": schema.MapAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -3799,6 +4089,15 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																				"inline": schema.StringAttribute{
 																					Description:         "",
 																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"passthrough": schema.MapAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					ElementType:         types.StringType,
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5028,6 +5327,14 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"attach_failed_status_to_metadata": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"audiences": schema.ListAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -5272,6 +5579,14 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{
+																"attach_failed_status_to_metadata": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
 																"audiences": schema.ListAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -8011,6 +8326,50 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 													Computed: false,
 												},
 
+												"rate_limited_retry_back_off": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"max_interval": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"reset_headers": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"format": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"retriable_status_codes": schema.ListAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -8576,6 +8935,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -8937,6 +9322,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -9361,6 +9772,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -9913,6 +10350,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -10274,6 +10737,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -10698,6 +11187,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -11226,6 +11741,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Optional:            true,
 																						Computed:            false,
 																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
 																				},
 																				Required: false,
 																				Optional: true,
@@ -11587,6 +12128,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -12011,6 +12578,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																						Required:            false,
 																						Optional:            true,
 																						Computed:            false,
+																					},
+
+																					"span_transformer": schema.SingleNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						Attributes: map[string]schema.Attribute{
+																							"name": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"text": schema.StringAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Required:            false,
+																										Optional:            true,
+																										Computed:            false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
 																					},
 																				},
 																				Required: false,
@@ -12468,6 +13061,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Optional:            true,
 																	Computed:            false,
 																},
+
+																"span_transformer": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"text": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
 															},
 															Required: false,
 															Optional: true,
@@ -12829,6 +13448,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
+																},
+
+																"span_transformer": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"text": schema.StringAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
 																},
 															},
 															Required: false,
@@ -13817,6 +14462,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																							},
+
+																							"span_transformer": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"name": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
 																							},
 																						},
 																						Required: false,
@@ -14854,6 +15525,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Optional:            true,
 																													Computed:            false,
 																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
+																												},
 																											},
 																											Required: false,
 																											Optional: true,
@@ -15215,6 +15912,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
+																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
 																												},
 																											},
 																											Required: false,
@@ -15639,6 +16362,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
+																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
 																												},
 																											},
 																											Required: false,
@@ -16191,6 +16940,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Optional:            true,
 																													Computed:            false,
 																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
+																												},
 																											},
 																											Required: false,
 																											Optional: true,
@@ -16552,6 +17327,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
+																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
 																												},
 																											},
 																											Required: false,
@@ -16976,6 +17777,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
+																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
 																												},
 																											},
 																											Required: false,
@@ -17504,6 +18331,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Optional:            true,
 																													Computed:            false,
 																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
+																												},
 																											},
 																											Required: false,
 																											Optional: true,
@@ -17865,6 +18718,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Required:            false,
 																													Optional:            true,
 																													Computed:            false,
+																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
 																												},
 																											},
 																											Required: false,
@@ -18290,6 +19169,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																													Optional:            true,
 																													Computed:            false,
 																												},
+
+																												"span_transformer": schema.SingleNestedAttribute{
+																													Description:         "",
+																													MarkdownDescription: "",
+																													Attributes: map[string]schema.Attribute{
+																														"name": schema.SingleNestedAttribute{
+																															Description:         "",
+																															MarkdownDescription: "",
+																															Attributes: map[string]schema.Attribute{
+																																"text": schema.StringAttribute{
+																																	Description:         "",
+																																	MarkdownDescription: "",
+																																	Required:            false,
+																																	Optional:            true,
+																																	Computed:            false,
+																																},
+																															},
+																															Required: false,
+																															Optional: true,
+																															Computed: false,
+																														},
+																													},
+																													Required: false,
+																													Optional: true,
+																													Computed: false,
+																												},
 																											},
 																											Required: false,
 																											Optional: true,
@@ -18680,6 +19585,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Optional:            true,
 																								Computed:            false,
 																							},
+
+																							"span_transformer": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"name": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
+																							},
 																						},
 																						Required: false,
 																						Optional: true,
@@ -19041,6 +19972,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																								Required:            false,
 																								Optional:            true,
 																								Computed:            false,
+																							},
+
+																							"span_transformer": schema.SingleNestedAttribute{
+																								Description:         "",
+																								MarkdownDescription: "",
+																								Attributes: map[string]schema.Attribute{
+																									"name": schema.SingleNestedAttribute{
+																										Description:         "",
+																										MarkdownDescription: "",
+																										Attributes: map[string]schema.Attribute{
+																											"text": schema.StringAttribute{
+																												Description:         "",
+																												MarkdownDescription: "",
+																												Required:            false,
+																												Optional:            true,
+																												Computed:            false,
+																											},
+																										},
+																										Required: false,
+																										Optional: true,
+																										Computed: false,
+																									},
+																								},
+																								Required: false,
+																								Optional: true,
+																								Computed: false,
 																							},
 																						},
 																						Required: false,
@@ -19629,6 +20586,32 @@ func (r *GatewaySoloIoRouteTableV1Manifest) Schema(_ context.Context, _ datasour
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
+																		},
+
+																		"span_transformer": schema.SingleNestedAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Attributes: map[string]schema.Attribute{
+																				"name": schema.SingleNestedAttribute{
+																					Description:         "",
+																					MarkdownDescription: "",
+																					Attributes: map[string]schema.Attribute{
+																						"text": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+																					},
+																					Required: false,
+																					Optional: true,
+																					Computed: false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
 																		},
 																	},
 																	Required: false,

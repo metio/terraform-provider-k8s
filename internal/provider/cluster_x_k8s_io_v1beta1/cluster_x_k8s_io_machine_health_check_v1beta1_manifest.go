@@ -147,39 +147,40 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Specification of machine health check policy",
-				MarkdownDescription: "Specification of machine health check policy",
+				Description:         "spec is the specification of machine health check policy",
+				MarkdownDescription: "spec is the specification of machine health check policy",
 				Attributes: map[string]schema.Attribute{
 					"cluster_name": schema.StringAttribute{
-						Description:         "ClusterName is the name of the Cluster this object belongs to.",
-						MarkdownDescription: "ClusterName is the name of the Cluster this object belongs to.",
+						Description:         "clusterName is the name of the Cluster this object belongs to.",
+						MarkdownDescription: "clusterName is the name of the Cluster this object belongs to.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(63),
 						},
 					},
 
 					"max_unhealthy": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
-						MarkdownDescription: "Any further remediation is only allowed if at most 'MaxUnhealthy' machines selected by 'selector' are not healthy. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						Description:         "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						MarkdownDescription: "maxUnhealthy specifies the maximum number of unhealthy machines allowed. Any further remediation is only allowed if at most 'maxUnhealthy' machines selected by 'selector' are not healthy. Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_startup_timeout": schema.StringAttribute{
-						Description:         "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
-						MarkdownDescription: "NodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+						Description:         "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
+						MarkdownDescription: "nodeStartupTimeout allows to set the maximum time for MachineHealthCheck to consider a Machine unhealthy if a corresponding Node isn't associated through a 'Spec.ProviderID' field. The duration set in this field is compared to the greatest of: - Cluster's infrastructure ready condition timestamp (if and when available) - Control Plane's initialized condition timestamp (if and when available) - Machine's infrastructure ready condition timestamp (if and when available) - Machine's metadata creation timestamp Defaults to 10 minutes. If you wish to disable this feature, set the value explicitly to 0.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"remediation_template": schema.SingleNestedAttribute{
-						Description:         "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
-						MarkdownDescription: "RemediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+						Description:         "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
+						MarkdownDescription: "remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Cluster API.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -243,8 +244,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"selector": schema.SingleNestedAttribute{
-						Description:         "Label selector to match machines whose health will be exercised",
-						MarkdownDescription: "Label selector to match machines whose health will be exercised",
+						Description:         "selector is a label selector to match machines whose health will be exercised",
+						MarkdownDescription: "selector is a label selector to match machines whose health will be exercised",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -297,13 +298,13 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"unhealthy_conditions": schema.ListNestedAttribute{
-						Description:         "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
-						MarkdownDescription: "UnhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						Description:         "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
+						MarkdownDescription: "unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"status": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "status of the condition, one of True, False, Unknown.",
+									MarkdownDescription: "status of the condition, one of True, False, Unknown.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -313,16 +314,16 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 								},
 
 								"timeout": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
+									MarkdownDescription: "timeout is the duration that a node must be in a given status for, after which the node is considered unhealthy. For example, with a value of '1h', the node must match the status for at least 1 hour before being considered unhealthy.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "type of Node condition",
+									MarkdownDescription: "type of Node condition",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -338,12 +339,14 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Beta1Manifest) Schema(_ context.Contex
 					},
 
 					"unhealthy_range": schema.StringAttribute{
-						Description:         "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
-						MarkdownDescription: "Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'UnhealthyRange'. Takes precedence over MaxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						Description:         "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
+						MarkdownDescription: "unhealthyRange specifies the range of unhealthy machines allowed. Any further remediation is only allowed if the number of machines selected by 'selector' as not healthy is within the range of 'unhealthyRange'. Takes precedence over maxUnhealthy. Eg. '[3-5]' - This means that remediation will be allowed only when: (a) there are at least 3 unhealthy machines (and) (b) there are at most 5 unhealthy machines Deprecated: This field is deprecated and is going to be removed in the next apiVersion. Please see https://github.com/kubernetes-sigs/cluster-api/issues/10722 for more details.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
+							stringvalidator.LengthAtLeast(1),
+							stringvalidator.LengthAtMost(32),
 							stringvalidator.RegexMatches(regexp.MustCompile(`^\[[0-9]+-[0-9]+\]$`), ""),
 						},
 					},

@@ -63,9 +63,10 @@ type Ec2ServicesK8SAwsVpcendpointV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
-		ServiceName *string   `tfsdk:"service_name" json:"serviceName,omitempty"`
-		SubnetIDs   *[]string `tfsdk:"subnet_i_ds" json:"subnetIDs,omitempty"`
-		SubnetRefs  *[]struct {
+		ServiceName   *string   `tfsdk:"service_name" json:"serviceName,omitempty"`
+		ServiceRegion *string   `tfsdk:"service_region" json:"serviceRegion,omitempty"`
+		SubnetIDs     *[]string `tfsdk:"subnet_i_ds" json:"subnetIDs,omitempty"`
+		SubnetRefs    *[]struct {
 			From *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -205,8 +206,8 @@ func (r *Ec2ServicesK8SAwsVpcendpointV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"route_table_i_ds": schema.ListAttribute{
-						Description:         "(Gateway endpoint) One or more route table IDs.",
-						MarkdownDescription: "(Gateway endpoint) One or more route table IDs.",
+						Description:         "(Gateway endpoint) The route table IDs.",
+						MarkdownDescription: "(Gateway endpoint) The route table IDs.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -250,8 +251,8 @@ func (r *Ec2ServicesK8SAwsVpcendpointV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"security_group_i_ds": schema.ListAttribute{
-						Description:         "(Interface endpoint) The ID of one or more security groups to associate with the endpoint network interface.",
-						MarkdownDescription: "(Interface endpoint) The ID of one or more security groups to associate with the endpoint network interface.",
+						Description:         "(Interface endpoint) The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC.",
+						MarkdownDescription: "(Interface endpoint) The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -295,16 +296,24 @@ func (r *Ec2ServicesK8SAwsVpcendpointV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"service_name": schema.StringAttribute{
-						Description:         "The service name. To get a list of available services, use the DescribeVpcEndpointServices request, or get the name from the service provider.",
-						MarkdownDescription: "The service name. To get a list of available services, use the DescribeVpcEndpointServices request, or get the name from the service provider.",
-						Required:            true,
-						Optional:            false,
+						Description:         "The name of the endpoint service.",
+						MarkdownDescription: "The name of the endpoint service.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"service_region": schema.StringAttribute{
+						Description:         "The Region where the service is hosted. The default is the current Region.",
+						MarkdownDescription: "The Region where the service is hosted. The default is the current Region.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"subnet_i_ds": schema.ListAttribute{
-						Description:         "(Interface and Gateway Load Balancer endpoints) The ID of one or more subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify one subnet only.",
-						MarkdownDescription: "(Interface and Gateway Load Balancer endpoints) The ID of one or more subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify one subnet only.",
+						Description:         "(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create endpoint network interfaces. For a Gateway Load Balancer endpoint, you can specify only one subnet.",
+						MarkdownDescription: "(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create endpoint network interfaces. For a Gateway Load Balancer endpoint, you can specify only one subnet.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -383,8 +392,8 @@ func (r *Ec2ServicesK8SAwsVpcendpointV1Alpha1Manifest) Schema(_ context.Context,
 					},
 
 					"vpc_id": schema.StringAttribute{
-						Description:         "The ID of the VPC in which the endpoint will be used.",
-						MarkdownDescription: "The ID of the VPC in which the endpoint will be used.",
+						Description:         "The ID of the VPC.",
+						MarkdownDescription: "The ID of the VPC.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -112,17 +112,24 @@ type NetworkingIstioIoSidecarV1Beta1ManifestData struct {
 				TargetPort *int64  `tfsdk:"target_port" json:"targetPort,omitempty"`
 			} `tfsdk:"port" json:"port,omitempty"`
 			Tls *struct {
-				CaCertificates        *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
-				CaCrl                 *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
-				CipherSuites          *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
-				CredentialName        *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
-				HttpsRedirect         *bool     `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
-				MaxProtocolVersion    *string   `tfsdk:"max_protocol_version" json:"maxProtocolVersion,omitempty"`
-				MinProtocolVersion    *string   `tfsdk:"min_protocol_version" json:"minProtocolVersion,omitempty"`
-				Mode                  *string   `tfsdk:"mode" json:"mode,omitempty"`
-				PrivateKey            *string   `tfsdk:"private_key" json:"privateKey,omitempty"`
-				ServerCertificate     *string   `tfsdk:"server_certificate" json:"serverCertificate,omitempty"`
-				SubjectAltNames       *[]string `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
+				CaCertCredentialName *string   `tfsdk:"ca_cert_credential_name" json:"caCertCredentialName,omitempty"`
+				CaCertificates       *string   `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+				CaCrl                *string   `tfsdk:"ca_crl" json:"caCrl,omitempty"`
+				CipherSuites         *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
+				CredentialName       *string   `tfsdk:"credential_name" json:"credentialName,omitempty"`
+				CredentialNames      *[]string `tfsdk:"credential_names" json:"credentialNames,omitempty"`
+				HttpsRedirect        *bool     `tfsdk:"https_redirect" json:"httpsRedirect,omitempty"`
+				MaxProtocolVersion   *string   `tfsdk:"max_protocol_version" json:"maxProtocolVersion,omitempty"`
+				MinProtocolVersion   *string   `tfsdk:"min_protocol_version" json:"minProtocolVersion,omitempty"`
+				Mode                 *string   `tfsdk:"mode" json:"mode,omitempty"`
+				PrivateKey           *string   `tfsdk:"private_key" json:"privateKey,omitempty"`
+				ServerCertificate    *string   `tfsdk:"server_certificate" json:"serverCertificate,omitempty"`
+				SubjectAltNames      *[]string `tfsdk:"subject_alt_names" json:"subjectAltNames,omitempty"`
+				TlsCertificates      *[]struct {
+					CaCertificates    *string `tfsdk:"ca_certificates" json:"caCertificates,omitempty"`
+					PrivateKey        *string `tfsdk:"private_key" json:"privateKey,omitempty"`
+					ServerCertificate *string `tfsdk:"server_certificate" json:"serverCertificate,omitempty"`
+				} `tfsdk:"tls_certificates" json:"tlsCertificates,omitempty"`
 				VerifyCertificateHash *[]string `tfsdk:"verify_certificate_hash" json:"verifyCertificateHash,omitempty"`
 				VerifyCertificateSpki *[]string `tfsdk:"verify_certificate_spki" json:"verifyCertificateSpki,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
@@ -719,6 +726,14 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 									Description:         "Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh.",
 									MarkdownDescription: "Set of TLS related options that will enable TLS termination on the sidecar for requests originating from outside the mesh.",
 									Attributes: map[string]schema.Attribute{
+										"ca_cert_credential_name": schema.StringAttribute{
+											Description:         "For mutual TLS, the name of the secret or the configmap that holds CA certificates.",
+											MarkdownDescription: "For mutual TLS, the name of the secret or the configmap that holds CA certificates.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"ca_certificates": schema.StringAttribute{
 											Description:         "REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.",
 											MarkdownDescription: "REQUIRED if mode is 'MUTUAL' or 'OPTIONAL_MUTUAL'.",
@@ -747,6 +762,15 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 										"credential_name": schema.StringAttribute{
 											Description:         "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
 											MarkdownDescription: "For gateways running on Kubernetes, the name of the secret that holds the TLS certs including the CA certificates.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"credential_names": schema.ListAttribute{
+											Description:         "Same as CredentialName but for multiple certificates.",
+											MarkdownDescription: "Same as CredentialName but for multiple certificates.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -816,6 +840,41 @@ func (r *NetworkingIstioIoSidecarV1Beta1Manifest) Schema(_ context.Context, _ da
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_certificates": schema.ListNestedAttribute{
+											Description:         "Only one of 'server_certificate', 'private_key' or 'credential_name' or 'credential_names' or 'tls_certificates' should be specified.",
+											MarkdownDescription: "Only one of 'server_certificate', 'private_key' or 'credential_name' or 'credential_names' or 'tls_certificates' should be specified.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"ca_certificates": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"private_key": schema.StringAttribute{
+														Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+														MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"server_certificate": schema.StringAttribute{
+														Description:         "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+														MarkdownDescription: "REQUIRED if mode is 'SIMPLE' or 'MUTUAL'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"verify_certificate_hash": schema.ListAttribute{

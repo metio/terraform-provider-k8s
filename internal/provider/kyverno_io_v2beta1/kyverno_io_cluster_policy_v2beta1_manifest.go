@@ -46,6 +46,7 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 		Admission                      *bool   `tfsdk:"admission" json:"admission,omitempty"`
 		ApplyRules                     *string `tfsdk:"apply_rules" json:"applyRules,omitempty"`
 		Background                     *bool   `tfsdk:"background" json:"background,omitempty"`
+		EmitWarning                    *bool   `tfsdk:"emit_warning" json:"emitWarning,omitempty"`
 		FailurePolicy                  *string `tfsdk:"failure_policy" json:"failurePolicy,omitempty"`
 		GenerateExisting               *bool   `tfsdk:"generate_existing" json:"generateExisting,omitempty"`
 		GenerateExistingOnPolicyUpdate *bool   `tfsdk:"generate_existing_on_policy_update" json:"generateExistingOnPolicyUpdate,omitempty"`
@@ -506,6 +507,7 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 						MessageExpression *string `tfsdk:"message_expression" json:"messageExpression,omitempty"`
 						Reason            *string `tfsdk:"reason" json:"reason,omitempty"`
 					} `tfsdk:"expressions" json:"expressions,omitempty"`
+					Generate  *bool `tfsdk:"generate" json:"generate,omitempty"`
 					ParamKind *struct {
 						ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 						Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -991,6 +993,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 					"background": schema.BoolAttribute{
 						Description:         "Background controls if rules are applied to existing resources during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
 						MarkdownDescription: "Background controls if rules are applied to existing resources during a background scan. Optional. Default value is 'true'. The value must be set to 'false' if the policy rule uses variables that are only available in the admission review request (e.g. user name).",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"emit_warning": schema.BoolAttribute{
+						Description:         "EmitWarning enables API response warnings for mutate policy rules or validate policy rules with validationFailureAction set to Audit. Enabling this option will extend admission request processing times. The default value is 'false'.",
+						MarkdownDescription: "EmitWarning enables API response warnings for mutate policy rules or validate policy rules with validationFailureAction set to Audit. Enabling this option will extend admission request processing times. The default value is 'false'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -3428,8 +3438,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"patch_strategic_merge": schema.MapAttribute{
-														Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
-														MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+														Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/.",
+														MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -3437,8 +3447,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"patches_json6902": schema.StringAttribute{
-														Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
-														MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+														Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/.",
+														MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3564,8 +3574,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"patch_strategic_merge": schema.MapAttribute{
-											Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
-											MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/patchesstrategicmerge/.",
+											Description:         "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/.",
+											MarkdownDescription: "PatchStrategicMerge is a strategic merge patch used to modify resources. See https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/ and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3573,8 +3583,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"patches_json6902": schema.StringAttribute{
-											Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
-											MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/patchesjson6902/.",
+											Description:         "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/.",
+											MarkdownDescription: "PatchesJSON6902 is a list of RFC 6902 JSON Patch declarations used to modify resources. See https://tools.ietf.org/html/rfc6902 and https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4206,6 +4216,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"generate": schema.BoolAttribute{
+													Description:         "Generate specifies whether to generate a Kubernetes ValidatingAdmissionPolicy from the rule. Optional. Defaults to 'false' if not specified.",
+													MarkdownDescription: "Generate specifies whether to generate a Kubernetes ValidatingAdmissionPolicy from the rule. Optional. Defaults to 'false' if not specified.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"param_kind": schema.SingleNestedAttribute{

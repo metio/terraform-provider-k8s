@@ -441,16 +441,16 @@ func (r *ChaosMeshOrgPodIochaosV1Alpha1Manifest) Schema(_ context.Context, _ dat
 					},
 
 					"container": schema.StringAttribute{
-						Description:         "TODO: support multiple different container to inject in one pod",
-						MarkdownDescription: "TODO: support multiple different container to inject in one pod",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"volume_mount_path": schema.StringAttribute{
-						Description:         "VolumeMountPath represents the target mount path It must be a root of mount path now. TODO: search the mount parent of any path automatically. TODO: support multiple different volume mount path in one pod",
-						MarkdownDescription: "VolumeMountPath represents the target mount path It must be a root of mount path now. TODO: search the mount parent of any path automatically. TODO: support multiple different volume mount path in one pod",
+						Description:         "VolumeMountPath represents the target mount path It must be a root of mount path now.",
+						MarkdownDescription: "VolumeMountPath represents the target mount path It must be a root of mount path now.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

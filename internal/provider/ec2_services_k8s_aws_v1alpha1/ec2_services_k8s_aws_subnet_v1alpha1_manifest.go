@@ -163,8 +163,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"availability_zone": schema.StringAttribute{
-						Description:         "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) in the Amazon Elastic Compute Cloud User Guide. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
-						MarkdownDescription: "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Regions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) in the Amazon Elastic Compute Cloud User Guide. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
+						Description:         "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Local Zones (https://docs.aws.amazon.com/local-zones/latest/ug/available-local-zones.html). To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
+						MarkdownDescription: "The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Local Zones (https://docs.aws.amazon.com/local-zones/latest/ug/available-local-zones.html). To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -227,8 +227,8 @@ func (r *Ec2ServicesK8SAwsSubnetV1Alpha1Manifest) Schema(_ context.Context, _ da
 					},
 
 					"ipv6_cidr_block": schema.StringAttribute{
-						Description:         "The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length. This parameter is required for an IPv6 only subnet.",
-						MarkdownDescription: "The IPv6 network range for the subnet, in CIDR notation. The subnet size must use a /64 prefix length. This parameter is required for an IPv6 only subnet.",
+						Description:         "The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.",
+						MarkdownDescription: "The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

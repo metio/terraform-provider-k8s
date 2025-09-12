@@ -43,12 +43,23 @@ type CrdProjectcalicoOrgKubeControllersConfigurationV1ManifestData struct {
 
 	Spec *struct {
 		Controllers *struct {
+			LoadBalancer *struct {
+				AssignIPs *string `tfsdk:"assign_i_ps" json:"assignIPs,omitempty"`
+			} `tfsdk:"load_balancer" json:"loadBalancer,omitempty"`
 			Namespace *struct {
 				ReconcilerPeriod *string `tfsdk:"reconciler_period" json:"reconcilerPeriod,omitempty"`
 			} `tfsdk:"namespace" json:"namespace,omitempty"`
 			Node *struct {
 				HostEndpoint *struct {
-					AutoCreate *string `tfsdk:"auto_create" json:"autoCreate,omitempty"`
+					AutoCreate                *string `tfsdk:"auto_create" json:"autoCreate,omitempty"`
+					CreateDefaultHostEndpoint *string `tfsdk:"create_default_host_endpoint" json:"createDefaultHostEndpoint,omitempty"`
+					Templates                 *[]struct {
+						GenerateName      *string            `tfsdk:"generate_name" json:"generateName,omitempty"`
+						InterfaceCIDRs    *[]string          `tfsdk:"interface_cidrs" json:"interfaceCIDRs,omitempty"`
+						InterfaceSelector *string            `tfsdk:"interface_selector" json:"interfaceSelector,omitempty"`
+						Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						NodeSelector      *string            `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+					} `tfsdk:"templates" json:"templates,omitempty"`
 				} `tfsdk:"host_endpoint" json:"hostEndpoint,omitempty"`
 				LeakGracePeriod  *string `tfsdk:"leak_grace_period" json:"leakGracePeriod,omitempty"`
 				ReconcilerPeriod *string `tfsdk:"reconciler_period" json:"reconcilerPeriod,omitempty"`
@@ -134,20 +145,37 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "KubeControllersConfigurationSpec contains the values of the Kubernetes controllers configuration.",
-				MarkdownDescription: "KubeControllersConfigurationSpec contains the values of the Kubernetes controllers configuration.",
+				Description:         "",
+				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"controllers": schema.SingleNestedAttribute{
-						Description:         "Controllers enables and configures individual Kubernetes controllers",
-						MarkdownDescription: "Controllers enables and configures individual Kubernetes controllers",
+						Description:         "",
+						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"load_balancer": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"assign_i_ps": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"namespace": schema.SingleNestedAttribute{
-								Description:         "Namespace enables and configures the namespace controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "Namespace enables and configures the namespace controller. Enabled by default, set to nil to disable.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"reconciler_period": schema.StringAttribute{
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -159,19 +187,83 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 							},
 
 							"node": schema.SingleNestedAttribute{
-								Description:         "Node enables and configures the node controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "Node enables and configures the node controller. Enabled by default, set to nil to disable.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"host_endpoint": schema.SingleNestedAttribute{
-										Description:         "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
-										MarkdownDescription: "HostEndpoint controls syncing nodes to host endpoints. Disabled by default, set to nil to disable.",
+										Description:         "",
+										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
 											"auto_create": schema.StringAttribute{
-												Description:         "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
-												MarkdownDescription: "AutoCreate enables automatic creation of host endpoints for every node. [Default: Disabled]",
+												Description:         "",
+												MarkdownDescription: "",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"create_default_host_endpoint": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"templates": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"generate_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.LengthAtMost(253),
+															},
+														},
+
+														"interface_cidrs": schema.ListAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"interface_selector": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"labels": schema.MapAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"node_selector": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,
@@ -180,24 +272,24 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 									},
 
 									"leak_grace_period": schema.StringAttribute{
-										Description:         "LeakGracePeriod is the period used by the controller to determine if an IP address has been leaked. Set to 0 to disable IP garbage collection. [Default: 15m]",
-										MarkdownDescription: "LeakGracePeriod is the period used by the controller to determine if an IP address has been leaked. Set to 0 to disable IP garbage collection. [Default: 15m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"reconciler_period": schema.StringAttribute{
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"sync_labels": schema.StringAttribute{
-										Description:         "SyncLabels controls whether to copy Kubernetes node labels to Calico nodes. [Default: Enabled]",
-										MarkdownDescription: "SyncLabels controls whether to copy Kubernetes node labels to Calico nodes. [Default: Enabled]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -209,12 +301,12 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 							},
 
 							"policy": schema.SingleNestedAttribute{
-								Description:         "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "Policy enables and configures the policy controller. Enabled by default, set to nil to disable.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"reconciler_period": schema.StringAttribute{
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -226,12 +318,12 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 							},
 
 							"service_account": schema.SingleNestedAttribute{
-								Description:         "ServiceAccount enables and configures the service account controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "ServiceAccount enables and configures the service account controller. Enabled by default, set to nil to disable.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"reconciler_period": schema.StringAttribute{
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -243,12 +335,12 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 							},
 
 							"workload_endpoint": schema.SingleNestedAttribute{
-								Description:         "WorkloadEndpoint enables and configures the workload endpoint controller. Enabled by default, set to nil to disable.",
-								MarkdownDescription: "WorkloadEndpoint enables and configures the workload endpoint controller. Enabled by default, set to nil to disable.",
+								Description:         "",
+								MarkdownDescription: "",
 								Attributes: map[string]schema.Attribute{
 									"reconciler_period": schema.StringAttribute{
-										Description:         "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
-										MarkdownDescription: "ReconcilerPeriod is the period to perform reconciliation with the Calico datastore. [Default: 5m]",
+										Description:         "",
+										MarkdownDescription: "",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -265,40 +357,40 @@ func (r *CrdProjectcalicoOrgKubeControllersConfigurationV1Manifest) Schema(_ con
 					},
 
 					"debug_profile_port": schema.Int64Attribute{
-						Description:         "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling is disabled.",
-						MarkdownDescription: "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling is disabled.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"etcd_v3_compaction_period": schema.StringAttribute{
-						Description:         "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
-						MarkdownDescription: "EtcdV3CompactionPeriod is the period between etcdv3 compaction requests. Set to 0 to disable. [Default: 10m]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"health_checks": schema.StringAttribute{
-						Description:         "HealthChecks enables or disables support for health checks [Default: Enabled]",
-						MarkdownDescription: "HealthChecks enables or disables support for health checks [Default: Enabled]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"log_severity_screen": schema.StringAttribute{
-						Description:         "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
-						MarkdownDescription: "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"prometheus_metrics_port": schema.Int64Attribute{
-						Description:         "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
-						MarkdownDescription: "PrometheusMetricsPort is the TCP port that the Prometheus metrics server should bind to. Set to 0 to disable. [Default: 9094]",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

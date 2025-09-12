@@ -43,9 +43,10 @@ type AuthzedComSpiceDbclusterV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Channel *string            `tfsdk:"channel" json:"channel,omitempty"`
-		Config  *map[string]string `tfsdk:"config" json:"config,omitempty"`
-		Patches *[]struct {
+		BaseImage *string            `tfsdk:"base_image" json:"baseImage,omitempty"`
+		Channel   *string            `tfsdk:"channel" json:"channel,omitempty"`
+		Config    *map[string]string `tfsdk:"config" json:"config,omitempty"`
+		Patches   *[]struct {
 			Kind  *string            `tfsdk:"kind" json:"kind,omitempty"`
 			Patch *map[string]string `tfsdk:"patch" json:"patch,omitempty"`
 		} `tfsdk:"patches" json:"patches,omitempty"`
@@ -131,6 +132,14 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 				Description:         "ClusterSpec holds the desired state of the cluster.",
 				MarkdownDescription: "ClusterSpec holds the desired state of the cluster.",
 				Attributes: map[string]schema.Attribute{
+					"base_image": schema.StringAttribute{
+						Description:         "BaseImage specifies the base container image to use for SpiceDB. If not specified, will fall back to the operator's --base-image flag, then to the imageName defined in the update graph.",
+						MarkdownDescription: "BaseImage specifies the base container image to use for SpiceDB. If not specified, will fall back to the operator's --base-image flag, then to the imageName defined in the update graph.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"channel": schema.StringAttribute{
 						Description:         "Channel is a defined series of updates that operator should follow. The operator is configured with a datasource that configures available channels and update paths. If 'version' is not specified, then the operator will keep SpiceDB up-to-date with the current head of the channel. If 'version' is specified, then the operator will write available updates in the status.",
 						MarkdownDescription: "Channel is a defined series of updates that operator should follow. The operator is configured with a datasource that configures available channels and update paths. If 'version' is not specified, then the operator will keep SpiceDB up-to-date with the current head of the channel. If 'version' is specified, then the operator will write available updates in the status.",

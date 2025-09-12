@@ -140,8 +140,8 @@ func (r *PrometheusserviceServicesK8SAwsAlertManagerDefinitionV1Alpha1Manifest) 
 					},
 
 					"workspace_id": schema.StringAttribute{
-						Description:         "The ID of the workspace in which to create the alert manager definition.",
-						MarkdownDescription: "The ID of the workspace in which to create the alert manager definition.",
+						Description:         "The ID of the workspace to add the alert manager definition to. Regex Pattern: '[0-9A-Za-z][-.0-9A-Z_a-z]*'",
+						MarkdownDescription: "The ID of the workspace to add the alert manager definition to. Regex Pattern: '[0-9A-Za-z][-.0-9A-Z_a-z]*'",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

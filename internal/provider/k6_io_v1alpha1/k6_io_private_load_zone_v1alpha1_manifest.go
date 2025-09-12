@@ -43,6 +43,18 @@ type K6IoPrivateLoadZoneV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
+		Config *struct {
+			Secrets *[]struct {
+				ConfigMapRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
+				SecretRef *struct {
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			} `tfsdk:"secrets" json:"secrets,omitempty"`
+		} `tfsdk:"config" json:"config,omitempty"`
 		Image            *string `tfsdk:"image" json:"image,omitempty"`
 		ImagePullSecrets *[]struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -138,6 +150,76 @@ func (r *K6IoPrivateLoadZoneV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 				Description:         "",
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
+					"config": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"secrets": schema.ListNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"config_map_ref": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"secret_ref": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"optional": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",

@@ -7,6 +7,7 @@ package longhorn_io_v1beta2
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -43,40 +44,42 @@ type LonghornIoVolumeV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Standby                     *bool     `tfsdk:"standby" json:"Standby,omitempty"`
-		AccessMode                  *string   `tfsdk:"access_mode" json:"accessMode,omitempty"`
-		BackendStoreDriver          *string   `tfsdk:"backend_store_driver" json:"backendStoreDriver,omitempty"`
-		BackingImage                *string   `tfsdk:"backing_image" json:"backingImage,omitempty"`
-		BackupCompressionMethod     *string   `tfsdk:"backup_compression_method" json:"backupCompressionMethod,omitempty"`
-		DataEngine                  *string   `tfsdk:"data_engine" json:"dataEngine,omitempty"`
-		DataLocality                *string   `tfsdk:"data_locality" json:"dataLocality,omitempty"`
-		DataSource                  *string   `tfsdk:"data_source" json:"dataSource,omitempty"`
-		DisableFrontend             *bool     `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
-		DiskSelector                *[]string `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
-		Encrypted                   *bool     `tfsdk:"encrypted" json:"encrypted,omitempty"`
-		EngineImage                 *string   `tfsdk:"engine_image" json:"engineImage,omitempty"`
-		FreezeFilesystemForSnapshot *string   `tfsdk:"freeze_filesystem_for_snapshot" json:"freezeFilesystemForSnapshot,omitempty"`
-		FromBackup                  *string   `tfsdk:"from_backup" json:"fromBackup,omitempty"`
-		Frontend                    *string   `tfsdk:"frontend" json:"frontend,omitempty"`
-		Image                       *string   `tfsdk:"image" json:"image,omitempty"`
-		LastAttachedBy              *string   `tfsdk:"last_attached_by" json:"lastAttachedBy,omitempty"`
-		Migratable                  *bool     `tfsdk:"migratable" json:"migratable,omitempty"`
-		MigrationNodeID             *string   `tfsdk:"migration_node_id" json:"migrationNodeID,omitempty"`
-		NodeID                      *string   `tfsdk:"node_id" json:"nodeID,omitempty"`
-		NodeSelector                *[]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		NumberOfReplicas            *int64    `tfsdk:"number_of_replicas" json:"numberOfReplicas,omitempty"`
-		ReplicaAutoBalance          *string   `tfsdk:"replica_auto_balance" json:"replicaAutoBalance,omitempty"`
-		ReplicaDiskSoftAntiAffinity *string   `tfsdk:"replica_disk_soft_anti_affinity" json:"replicaDiskSoftAntiAffinity,omitempty"`
-		ReplicaSoftAntiAffinity     *string   `tfsdk:"replica_soft_anti_affinity" json:"replicaSoftAntiAffinity,omitempty"`
-		ReplicaZoneSoftAntiAffinity *string   `tfsdk:"replica_zone_soft_anti_affinity" json:"replicaZoneSoftAntiAffinity,omitempty"`
-		RestoreVolumeRecurringJob   *string   `tfsdk:"restore_volume_recurring_job" json:"restoreVolumeRecurringJob,omitempty"`
-		RevisionCounterDisabled     *bool     `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
-		Size                        *string   `tfsdk:"size" json:"size,omitempty"`
-		SnapshotDataIntegrity       *string   `tfsdk:"snapshot_data_integrity" json:"snapshotDataIntegrity,omitempty"`
-		SnapshotMaxCount            *int64    `tfsdk:"snapshot_max_count" json:"snapshotMaxCount,omitempty"`
-		SnapshotMaxSize             *string   `tfsdk:"snapshot_max_size" json:"snapshotMaxSize,omitempty"`
-		StaleReplicaTimeout         *int64    `tfsdk:"stale_replica_timeout" json:"staleReplicaTimeout,omitempty"`
-		UnmapMarkSnapChainRemoved   *string   `tfsdk:"unmap_mark_snap_chain_removed" json:"unmapMarkSnapChainRemoved,omitempty"`
+		Standby                         *bool     `tfsdk:"standby" json:"Standby,omitempty"`
+		AccessMode                      *string   `tfsdk:"access_mode" json:"accessMode,omitempty"`
+		BackingImage                    *string   `tfsdk:"backing_image" json:"backingImage,omitempty"`
+		BackupBlockSize                 *string   `tfsdk:"backup_block_size" json:"backupBlockSize,omitempty"`
+		BackupCompressionMethod         *string   `tfsdk:"backup_compression_method" json:"backupCompressionMethod,omitempty"`
+		BackupTargetName                *string   `tfsdk:"backup_target_name" json:"backupTargetName,omitempty"`
+		DataEngine                      *string   `tfsdk:"data_engine" json:"dataEngine,omitempty"`
+		DataLocality                    *string   `tfsdk:"data_locality" json:"dataLocality,omitempty"`
+		DataSource                      *string   `tfsdk:"data_source" json:"dataSource,omitempty"`
+		DisableFrontend                 *bool     `tfsdk:"disable_frontend" json:"disableFrontend,omitempty"`
+		DiskSelector                    *[]string `tfsdk:"disk_selector" json:"diskSelector,omitempty"`
+		Encrypted                       *bool     `tfsdk:"encrypted" json:"encrypted,omitempty"`
+		FreezeFilesystemForSnapshot     *string   `tfsdk:"freeze_filesystem_for_snapshot" json:"freezeFilesystemForSnapshot,omitempty"`
+		FromBackup                      *string   `tfsdk:"from_backup" json:"fromBackup,omitempty"`
+		Frontend                        *string   `tfsdk:"frontend" json:"frontend,omitempty"`
+		Image                           *string   `tfsdk:"image" json:"image,omitempty"`
+		LastAttachedBy                  *string   `tfsdk:"last_attached_by" json:"lastAttachedBy,omitempty"`
+		Migratable                      *bool     `tfsdk:"migratable" json:"migratable,omitempty"`
+		MigrationNodeID                 *string   `tfsdk:"migration_node_id" json:"migrationNodeID,omitempty"`
+		NodeID                          *string   `tfsdk:"node_id" json:"nodeID,omitempty"`
+		NodeSelector                    *[]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		NumberOfReplicas                *int64    `tfsdk:"number_of_replicas" json:"numberOfReplicas,omitempty"`
+		OfflineRebuilding               *string   `tfsdk:"offline_rebuilding" json:"offlineRebuilding,omitempty"`
+		ReplicaAutoBalance              *string   `tfsdk:"replica_auto_balance" json:"replicaAutoBalance,omitempty"`
+		ReplicaDiskSoftAntiAffinity     *string   `tfsdk:"replica_disk_soft_anti_affinity" json:"replicaDiskSoftAntiAffinity,omitempty"`
+		ReplicaRebuildingBandwidthLimit *int64    `tfsdk:"replica_rebuilding_bandwidth_limit" json:"replicaRebuildingBandwidthLimit,omitempty"`
+		ReplicaSoftAntiAffinity         *string   `tfsdk:"replica_soft_anti_affinity" json:"replicaSoftAntiAffinity,omitempty"`
+		ReplicaZoneSoftAntiAffinity     *string   `tfsdk:"replica_zone_soft_anti_affinity" json:"replicaZoneSoftAntiAffinity,omitempty"`
+		RestoreVolumeRecurringJob       *string   `tfsdk:"restore_volume_recurring_job" json:"restoreVolumeRecurringJob,omitempty"`
+		RevisionCounterDisabled         *bool     `tfsdk:"revision_counter_disabled" json:"revisionCounterDisabled,omitempty"`
+		Size                            *string   `tfsdk:"size" json:"size,omitempty"`
+		SnapshotDataIntegrity           *string   `tfsdk:"snapshot_data_integrity" json:"snapshotDataIntegrity,omitempty"`
+		SnapshotMaxCount                *int64    `tfsdk:"snapshot_max_count" json:"snapshotMaxCount,omitempty"`
+		SnapshotMaxSize                 *string   `tfsdk:"snapshot_max_size" json:"snapshotMaxSize,omitempty"`
+		StaleReplicaTimeout             *int64    `tfsdk:"stale_replica_timeout" json:"staleReplicaTimeout,omitempty"`
+		UnmapMarkSnapChainRemoved       *string   `tfsdk:"unmap_mark_snap_chain_removed" json:"unmapMarkSnapChainRemoved,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -176,20 +179,23 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						},
 					},
 
-					"backend_store_driver": schema.StringAttribute{
-						Description:         "Deprecated:Replaced by field 'dataEngine'.'",
-						MarkdownDescription: "Deprecated:Replaced by field 'dataEngine'.'",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"backing_image": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"backup_block_size": schema.StringAttribute{
+						Description:         "BackupBlockSize indicate the block size to create backups. The block size is immutable.",
+						MarkdownDescription: "BackupBlockSize indicate the block size to create backups. The block size is immutable.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("2097152", "16777216"),
+						},
 					},
 
 					"backup_compression_method": schema.StringAttribute{
@@ -201,6 +207,14 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Validators: []validator.String{
 							stringvalidator.OneOf("none", "lz4", "gzip"),
 						},
+					},
+
+					"backup_target_name": schema.StringAttribute{
+						Description:         "The backup target name that the volume will be backed up to or is synced.",
+						MarkdownDescription: "The backup target name that the volume will be backed up to or is synced.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"data_engine": schema.StringAttribute{
@@ -258,14 +272,6 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
-					"engine_image": schema.StringAttribute{
-						Description:         "Deprecated: Replaced by field 'image'.",
-						MarkdownDescription: "Deprecated: Replaced by field 'image'.",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
-					},
-
 					"freeze_filesystem_for_snapshot": schema.StringAttribute{
 						Description:         "Setting that freezes the filesystem on the root partition before a snapshot is created.",
 						MarkdownDescription: "Setting that freezes the filesystem on the root partition before a snapshot is created.",
@@ -292,7 +298,7 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", ""),
+							stringvalidator.OneOf("blockdev", "iscsi", "nvmf", "ublk", ""),
 						},
 					},
 
@@ -353,6 +359,17 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 					},
 
+					"offline_rebuilding": schema.StringAttribute{
+						Description:         "Specifies whether Longhorn should rebuild replicas while the detached volume is degraded. - ignored: Use the global setting for offline replica rebuilding. - enabled: Enable offline rebuilding for this volume, regardless of the global setting. - disabled: Disable offline rebuilding for this volume, regardless of the global setting",
+						MarkdownDescription: "Specifies whether Longhorn should rebuild replicas while the detached volume is degraded. - ignored: Use the global setting for offline replica rebuilding. - enabled: Enable offline rebuilding for this volume, regardless of the global setting. - disabled: Disable offline rebuilding for this volume, regardless of the global setting",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("ignored", "disabled", "enabled"),
+						},
+					},
+
 					"replica_auto_balance": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -372,6 +389,17 @@ func (r *LonghornIoVolumeV1Beta2Manifest) Schema(_ context.Context, _ datasource
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("ignored", "enabled", "disabled"),
+						},
+					},
+
+					"replica_rebuilding_bandwidth_limit": schema.Int64Attribute{
+						Description:         "ReplicaRebuildingBandwidthLimit controls the maximum write bandwidth (in megabytes per second) allowed on the destination replica during the rebuilding process. Set this value to 0 to disable bandwidth limiting.",
+						MarkdownDescription: "ReplicaRebuildingBandwidthLimit controls the maximum write bandwidth (in megabytes per second) allowed on the destination replica during the rebuilding process. Set this value to 0 to disable bandwidth limiting.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.Int64{
+							int64validator.AtLeast(0),
 						},
 					},
 

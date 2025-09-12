@@ -51,6 +51,7 @@ type HiveOpenshiftIoSelectorSyncSetV1ManifestData struct {
 			} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 			MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 		} `tfsdk:"cluster_deployment_selector" json:"clusterDeploymentSelector,omitempty"`
+		EnablePatchTemplates    *bool `tfsdk:"enable_patch_templates" json:"enablePatchTemplates,omitempty"`
 		EnableResourceTemplates *bool `tfsdk:"enable_resource_templates" json:"enableResourceTemplates,omitempty"`
 		Patches                 *[]struct {
 			ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
@@ -203,6 +204,14 @@ func (r *HiveOpenshiftIoSelectorSyncSetV1Manifest) Schema(_ context.Context, _ d
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"enable_patch_templates": schema.BoolAttribute{
+						Description:         "EnablePatchTemplates, if True, causes hive to honor golang text/templates in Patches[].Patch strings. While the standard syntax is supported, it won't do you a whole lot of good as the parser does not pass a data object (i.e. there is no 'dot' for you to use). This currently exists to expose a single function: {{ fromCDLabel 'some.label/key' }} will be substituted with the string value of ClusterDeployment.Labels['some.label/key']. The empty string is interpolated if there are no labels, or if the indicated key does not exist. Note that the patch string must be valid JSON after interpolation. This may make for odd-looking quoting in the uninterpolated string.",
+						MarkdownDescription: "EnablePatchTemplates, if True, causes hive to honor golang text/templates in Patches[].Patch strings. While the standard syntax is supported, it won't do you a whole lot of good as the parser does not pass a data object (i.e. there is no 'dot' for you to use). This currently exists to expose a single function: {{ fromCDLabel 'some.label/key' }} will be substituted with the string value of ClusterDeployment.Labels['some.label/key']. The empty string is interpolated if there are no labels, or if the indicated key does not exist. Note that the patch string must be valid JSON after interpolation. This may make for odd-looking quoting in the uninterpolated string.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"enable_resource_templates": schema.BoolAttribute{

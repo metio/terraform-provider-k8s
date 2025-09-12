@@ -51,7 +51,12 @@ type ArgoprojIoAppProjectV1Alpha1ManifestData struct {
 			Group *string `tfsdk:"group" json:"group,omitempty"`
 			Kind  *string `tfsdk:"kind" json:"kind,omitempty"`
 		} `tfsdk:"cluster_resource_whitelist" json:"clusterResourceWhitelist,omitempty"`
-		Description  *string `tfsdk:"description" json:"description,omitempty"`
+		Description                *string `tfsdk:"description" json:"description,omitempty"`
+		DestinationServiceAccounts *[]struct {
+			DefaultServiceAccount *string `tfsdk:"default_service_account" json:"defaultServiceAccount,omitempty"`
+			Namespace             *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Server                *string `tfsdk:"server" json:"server,omitempty"`
+		} `tfsdk:"destination_service_accounts" json:"destinationServiceAccounts,omitempty"`
 		Destinations *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
@@ -91,8 +96,10 @@ type ArgoprojIoAppProjectV1Alpha1ManifestData struct {
 		SourceNamespaces *[]string `tfsdk:"source_namespaces" json:"sourceNamespaces,omitempty"`
 		SourceRepos      *[]string `tfsdk:"source_repos" json:"sourceRepos,omitempty"`
 		SyncWindows      *[]struct {
+			AndOperator  *bool     `tfsdk:"and_operator" json:"andOperator,omitempty"`
 			Applications *[]string `tfsdk:"applications" json:"applications,omitempty"`
 			Clusters     *[]string `tfsdk:"clusters" json:"clusters,omitempty"`
+			Description  *string   `tfsdk:"description" json:"description,omitempty"`
 			Duration     *string   `tfsdk:"duration" json:"duration,omitempty"`
 			Kind         *string   `tfsdk:"kind" json:"kind,omitempty"`
 			ManualSync   *bool     `tfsdk:"manual_sync" json:"manualSync,omitempty"`
@@ -240,6 +247,44 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.LengthAtMost(255),
+						},
+					},
+
+					"destination_service_accounts": schema.ListNestedAttribute{
+						Description:         "DestinationServiceAccounts holds information about the service accounts to be impersonated for the application sync operation for each destination.",
+						MarkdownDescription: "DestinationServiceAccounts holds information about the service accounts to be impersonated for the application sync operation for each destination.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"default_service_account": schema.StringAttribute{
+									Description:         "DefaultServiceAccount to be used for impersonation during the sync operation",
+									MarkdownDescription: "DefaultServiceAccount to be used for impersonation during the sync operation",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"namespace": schema.StringAttribute{
+									Description:         "Namespace specifies the target namespace for the application's resources.",
+									MarkdownDescription: "Namespace specifies the target namespace for the application's resources.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"server": schema.StringAttribute{
+									Description:         "Server specifies the URL of the target cluster's Kubernetes control plane API.",
+									MarkdownDescription: "Server specifies the URL of the target cluster's Kubernetes control plane API.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"destinations": schema.ListNestedAttribute{
@@ -513,6 +558,14 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "SyncWindows controls when syncs can be run for apps in this project",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"and_operator": schema.BoolAttribute{
+									Description:         "UseAndOperator use AND operator for matching applications, namespaces and clusters instead of the default OR operator",
+									MarkdownDescription: "UseAndOperator use AND operator for matching applications, namespaces and clusters instead of the default OR operator",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"applications": schema.ListAttribute{
 									Description:         "Applications contains a list of applications that the window will apply to",
 									MarkdownDescription: "Applications contains a list of applications that the window will apply to",
@@ -526,6 +579,14 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									Description:         "Clusters contains a list of clusters that the window will apply to",
 									MarkdownDescription: "Clusters contains a list of clusters that the window will apply to",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"description": schema.StringAttribute{
+									Description:         "Description of the sync that will be applied to the schedule, can be used to add any information such as a ticket number for example",
+									MarkdownDescription: "Description of the sync that will be applied to the schedule, can be used to add any information such as a ticket number for example",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

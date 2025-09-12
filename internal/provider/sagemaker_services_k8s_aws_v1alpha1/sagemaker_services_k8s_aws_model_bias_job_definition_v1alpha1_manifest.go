@@ -188,8 +188,8 @@ func (r *SagemakerServicesK8SAwsModelBiasJobDefinitionV1Alpha1Manifest) Schema(_
 				MarkdownDescription: "ModelBiasJobDefinitionSpec defines the desired state of ModelBiasJobDefinition.",
 				Attributes: map[string]schema.Attribute{
 					"job_definition_name": schema.StringAttribute{
-						Description:         "The name of the bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
-						MarkdownDescription: "The name of the bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.",
+						Description:         "The name of the bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
+						MarkdownDescription: "The name of the bias job definition. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account. Regex Pattern: '^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -550,8 +550,8 @@ func (r *SagemakerServicesK8SAwsModelBiasJobDefinitionV1Alpha1Manifest) Schema(_
 					},
 
 					"role_arn": schema.StringAttribute{
-						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
-						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.",
+						Description:         "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
+						MarkdownDescription: "The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf. Regex Pattern: '^arn:aws[a-z-]*:iam::d{12}:role/?[a-zA-Z_0-9+=,.@-_/]+$'",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

@@ -8,6 +8,7 @@ package policy_networking_k8s_io_v1alpha1
 import (
 	"context"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -68,7 +69,8 @@ type PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1ManifestData struct 
 					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
 					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 				} `tfsdk:"namespaces" json:"namespaces,omitempty"`
-				Pods *struct {
+				Networks *[]string `tfsdk:"networks" json:"networks,omitempty"`
+				Pods     *struct {
 					NamespaceSelector *struct {
 						MatchExpressions *[]struct {
 							Key      *string   `tfsdk:"key" json:"key,omitempty"`
@@ -228,13 +230,13 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 				MarkdownDescription: "Specification of the desired behavior of BaselineAdminNetworkPolicy.",
 				Attributes: map[string]schema.Attribute{
 					"egress": schema.ListNestedAttribute{
-						Description:         "Egress is the list of Egress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Egress rules will be allowed in each BANP instance. The relative precedence of egress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. BANPs with no egress rules do not affect egress traffic. Support: Core",
-						MarkdownDescription: "Egress is the list of Egress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Egress rules will be allowed in each BANP instance. The relative precedence of egress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. BANPs with no egress rules do not affect egress traffic. Support: Core",
+						Description:         "Egress is the list of Egress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Egress rules will be allowed in each BANP instance. The relative precedence of egress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. BANPs with no egress rules do not affect egress traffic.",
+						MarkdownDescription: "Egress is the list of Egress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Egress rules will be allowed in each BANP instance. The relative precedence of egress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the egress rules would take the highest precedence. BANPs with no egress rules do not affect egress traffic.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic Support: Core",
-									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic Support: Core",
+									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic",
+									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -244,8 +246,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies. Support: Core",
-									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies. Support: Core",
+									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies.",
+									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -260,12 +262,12 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"port_number": schema.SingleNestedAttribute{
-												Description:         "Port selects a port on a pod(s) based on number. Support: Core",
-												MarkdownDescription: "Port selects a port on a pod(s) based on number. Support: Core",
+												Description:         "Port selects a port on a pod(s) based on number.",
+												MarkdownDescription: "Port selects a port on a pod(s) based on number.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
-														Description:         "Number defines a network port value. Support: Core",
-														MarkdownDescription: "Number defines a network port value. Support: Core",
+														Description:         "Number defines a network port value.",
+														MarkdownDescription: "Number defines a network port value.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -276,8 +278,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -292,12 +294,12 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 											},
 
 											"port_range": schema.SingleNestedAttribute{
-												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
-												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
+												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values.",
+												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values.",
 												Attributes: map[string]schema.Attribute{
 													"end": schema.Int64Attribute{
-														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
-														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
+														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start.",
+														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -308,16 +310,16 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"start": schema.Int64Attribute{
-														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
-														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
+														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End.",
+														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -342,13 +344,13 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"to": schema.ListNestedAttribute{
-									Description:         "To is the list of destinations whose traffic this rule applies to. If any BaselineAdminNetworkPolicyEgressPeer matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
-									MarkdownDescription: "To is the list of destinations whose traffic this rule applies to. If any BaselineAdminNetworkPolicyEgressPeer matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
+									Description:         "To is the list of destinations whose traffic this rule applies to. If any element matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item.",
+									MarkdownDescription: "To is the list of destinations whose traffic this rule applies to. If any element matches the destination of outgoing traffic then the specified action is applied. This field must be defined and contain at least one item.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"namespaces": schema.SingleNestedAttribute{
-												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
-												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer.",
+												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer.",
 												Attributes: map[string]schema.Attribute{
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -399,13 +401,25 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 												Optional: true,
 												Computed: false,
 												Validators: []validator.Object{
-													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("pods")),
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("networks"), path.MatchRelative().AtParent().AtName("pods")),
+												},
+											},
+
+											"networks": schema.ListAttribute{
+												Description:         "Networks defines a way to select peers via CIDR blocks. This is intended for representing entities that live outside the cluster, which can't be selected by pods, namespaces and nodes peers, but note that cluster-internal traffic will be checked against the rule as well. So if you Allow or Deny traffic to ''0.0.0.0/0'', that will allow or deny all IPv4 pod-to-pod traffic as well. If you don't want that, add a rule that Passes all pod traffic before the Networks rule. Each item in Networks should be provided in the CIDR format and should be IPv4 or IPv6, for example '10.0.0.0/8' or 'fd00::/8'. Networks can have upto 25 CIDRs specified.",
+												MarkdownDescription: "Networks defines a way to select peers via CIDR blocks. This is intended for representing entities that live outside the cluster, which can't be selected by pods, namespaces and nodes peers, but note that cluster-internal traffic will be checked against the rule as well. So if you Allow or Deny traffic to ''0.0.0.0/0'', that will allow or deny all IPv4 pod-to-pod traffic as well. If you don't want that, add a rule that Passes all pod traffic before the Networks rule. Each item in Networks should be provided in the CIDR format and should be IPv4 or IPv6, for example '10.0.0.0/8' or 'fd00::/8'. Networks can have upto 25 CIDRs specified.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.List{
+													listvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("namespaces"), path.MatchRelative().AtParent().AtName("pods")),
 												},
 											},
 
 											"pods": schema.SingleNestedAttribute{
-												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
-												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer.",
+												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer.",
 												Attributes: map[string]schema.Attribute{
 													"namespace_selector": schema.SingleNestedAttribute{
 														Description:         "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
@@ -519,7 +533,7 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 												Optional: true,
 												Computed: false,
 												Validators: []validator.Object{
-													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("namespaces")),
+													objectvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("namespaces"), path.MatchRelative().AtParent().AtName("networks")),
 												},
 											},
 										},
@@ -536,13 +550,13 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 					},
 
 					"ingress": schema.ListNestedAttribute{
-						Description:         "Ingress is the list of Ingress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Ingress rules will be allowed in each BANP instance. The relative precedence of ingress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. BANPs with no ingress rules do not affect ingress traffic. Support: Core",
-						MarkdownDescription: "Ingress is the list of Ingress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Ingress rules will be allowed in each BANP instance. The relative precedence of ingress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. BANPs with no ingress rules do not affect ingress traffic. Support: Core",
+						Description:         "Ingress is the list of Ingress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Ingress rules will be allowed in each BANP instance. The relative precedence of ingress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. BANPs with no ingress rules do not affect ingress traffic.",
+						MarkdownDescription: "Ingress is the list of Ingress rules to be applied to the selected pods if they are not matched by any AdminNetworkPolicy or NetworkPolicy rules. A total of 100 Ingress rules will be allowed in each BANP instance. The relative precedence of ingress rules within a single BANP object will be determined by the order in which the rule is written. Thus, a rule that appears at the top of the ingress rules would take the highest precedence. BANPs with no ingress rules do not affect ingress traffic.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"action": schema.StringAttribute{
-									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic Support: Core",
-									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic Support: Core",
+									Description:         "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic",
+									MarkdownDescription: "Action specifies the effect this rule will have on matching traffic. Currently the following actions are supported: Allow: allows the selected traffic Deny: denies the selected traffic",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -552,13 +566,13 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"from": schema.ListNestedAttribute{
-									Description:         "From is the list of sources whose traffic this rule applies to. If any AdminNetworkPolicyIngressPeer matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
-									MarkdownDescription: "From is the list of sources whose traffic this rule applies to. If any AdminNetworkPolicyIngressPeer matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item. Support: Core",
+									Description:         "From is the list of sources whose traffic this rule applies to. If any element matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item.",
+									MarkdownDescription: "From is the list of sources whose traffic this rule applies to. If any element matches the source of incoming traffic then the specified action is applied. This field must be defined and contain at least one item.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"namespaces": schema.SingleNestedAttribute{
-												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
-												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												Description:         "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer.",
+												MarkdownDescription: "Namespaces defines a way to select all pods within a set of Namespaces. Note that host-networked pods are not included in this type of peer.",
 												Attributes: map[string]schema.Attribute{
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -614,8 +628,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 											},
 
 											"pods": schema.SingleNestedAttribute{
-												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
-												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer. Support: Core",
+												Description:         "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer.",
+												MarkdownDescription: "Pods defines a way to select a set of pods in a set of namespaces. Note that host-networked pods are not included in this type of peer.",
 												Attributes: map[string]schema.Attribute{
 													"namespace_selector": schema.SingleNestedAttribute{
 														Description:         "NamespaceSelector follows standard label selector semantics; if empty, it selects all Namespaces.",
@@ -740,8 +754,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies. Support: Core",
-									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies. Support: Core",
+									Description:         "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies.",
+									MarkdownDescription: "Name is an identifier for this rule, that may be no more than 100 characters in length. This field should be used by the implementation to help improve observability, readability and error-reporting for any applied BaselineAdminNetworkPolicies.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -751,17 +765,17 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 								},
 
 								"ports": schema.ListNestedAttribute{
-									Description:         "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
-									MarkdownDescription: "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port. Support: Core",
+									Description:         "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port.",
+									MarkdownDescription: "Ports allows for matching traffic based on port and protocols. This field is a list of ports which should be matched on the pods selected for this policy i.e the subject of the policy. So it matches on the destination port for the ingress traffic. If Ports is not set then the rule does not filter traffic via port.",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"port_number": schema.SingleNestedAttribute{
-												Description:         "Port selects a port on a pod(s) based on number. Support: Core",
-												MarkdownDescription: "Port selects a port on a pod(s) based on number. Support: Core",
+												Description:         "Port selects a port on a pod(s) based on number.",
+												MarkdownDescription: "Port selects a port on a pod(s) based on number.",
 												Attributes: map[string]schema.Attribute{
 													"port": schema.Int64Attribute{
-														Description:         "Number defines a network port value. Support: Core",
-														MarkdownDescription: "Number defines a network port value. Support: Core",
+														Description:         "Number defines a network port value.",
+														MarkdownDescription: "Number defines a network port value.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -772,8 +786,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -788,12 +802,12 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 											},
 
 											"port_range": schema.SingleNestedAttribute{
-												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
-												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values. Support: Core",
+												Description:         "PortRange selects a port range on a pod(s) based on provided start and end values.",
+												MarkdownDescription: "PortRange selects a port range on a pod(s) based on provided start and end values.",
 												Attributes: map[string]schema.Attribute{
 													"end": schema.Int64Attribute{
-														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
-														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start. Support: Core",
+														Description:         "End defines a network port that is the end of a port range, the End value must be greater than Start.",
+														MarkdownDescription: "End defines a network port that is the end of a port range, the End value must be greater than Start.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -804,16 +818,16 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 													},
 
 													"protocol": schema.StringAttribute{
-														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
-														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Support: Core",
+														Description:         "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
+														MarkdownDescription: "Protocol is the network protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"start": schema.Int64Attribute{
-														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
-														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End. Support: Core",
+														Description:         "Start defines a network port that is the start of a port range, the Start value must be less than End.",
+														MarkdownDescription: "Start defines a network port that is the start of a port range, the Start value must be less than End.",
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
@@ -844,8 +858,8 @@ func (r *PolicyNetworkingK8SIoBaselineAdminNetworkPolicyV1Alpha1Manifest) Schema
 					},
 
 					"subject": schema.SingleNestedAttribute{
-						Description:         "Subject defines the pods to which this BaselineAdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection. Support: Core",
-						MarkdownDescription: "Subject defines the pods to which this BaselineAdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection. Support: Core",
+						Description:         "Subject defines the pods to which this BaselineAdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection.",
+						MarkdownDescription: "Subject defines the pods to which this BaselineAdminNetworkPolicy applies. Note that host-networked pods are not included in subject selection.",
 						Attributes: map[string]schema.Attribute{
 							"namespaces": schema.SingleNestedAttribute{
 								Description:         "Namespaces is used to select pods via namespace selectors.",

@@ -173,12 +173,12 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 				MarkdownDescription: "TransportServerSpec is the spec of the TransportServer resource.",
 				Attributes: map[string]schema.Attribute{
 					"action": schema.SingleNestedAttribute{
-						Description:         "TransportServerAction defines an action.",
-						MarkdownDescription: "TransportServerAction defines an action.",
+						Description:         "The action to perform for a request.",
+						MarkdownDescription: "The action to perform for a request.",
 						Attributes: map[string]schema.Attribute{
 							"pass": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "Passes connections/datagrams to an upstream. The upstream with that name must be defined in the resource.",
+								MarkdownDescription: "Passes connections/datagrams to an upstream. The upstream with that name must be defined in the resource.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -190,36 +190,36 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"host": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as my-app or hello.example.com. When using a wildcard domain like *.example.com the domain must be contained in double quotes. The host value needs to be unique among all Ingress and VirtualServer resources.",
+						MarkdownDescription: "The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as my-app or hello.example.com. When using a wildcard domain like *.example.com the domain must be contained in double quotes. The host value needs to be unique among all Ingress and VirtualServer resources.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"ingress_class_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Specifies which Ingress Controller must handle the VirtualServer resource.",
+						MarkdownDescription: "Specifies which Ingress Controller must handle the VirtualServer resource.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"listener": schema.SingleNestedAttribute{
-						Description:         "TransportServerListener defines a listener for a TransportServer.",
-						MarkdownDescription: "TransportServerListener defines a listener for a TransportServer.",
+						Description:         "Sets a custom HTTP and/or HTTPS listener. Valid fields are listener.http and listener.https. Each field must reference the name of a valid listener defined in a GlobalConfiguration resource",
+						MarkdownDescription: "Sets a custom HTTP and/or HTTPS listener. Valid fields are listener.http and listener.https. Each field must reference the name of a valid listener defined in a GlobalConfiguration resource",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The name of a listener defined in a GlobalConfiguration resource.",
+								MarkdownDescription: "The name of a listener defined in a GlobalConfiguration resource.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"protocol": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The protocol of the listener.",
+								MarkdownDescription: "The protocol of the listener.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -231,20 +231,20 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"server_snippets": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Sets a custom snippet in server context. Overrides the server-snippets ConfigMap key.",
+						MarkdownDescription: "Sets a custom snippet in server context. Overrides the server-snippets ConfigMap key.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"session_parameters": schema.SingleNestedAttribute{
-						Description:         "SessionParameters defines session parameters.",
-						MarkdownDescription: "SessionParameters defines session parameters.",
+						Description:         "The parameters of the session to be used for the Server context",
+						MarkdownDescription: "The parameters of the session to be used for the Server context",
 						Attributes: map[string]schema.Attribute{
 							"timeout": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The timeout between two successive read or write operations on client or proxied server connections. The default is 10m.",
+								MarkdownDescription: "The timeout between two successive read or write operations on client or proxied server connections. The default is 10m.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -256,16 +256,16 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"stream_snippets": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "Sets a custom snippet in the stream context. Overrides the stream-snippets ConfigMap key.",
+						MarkdownDescription: "Sets a custom snippet in the stream context. Overrides the stream-snippets ConfigMap key.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"tls": schema.SingleNestedAttribute{
-						Description:         "TransportServerTLS defines TransportServerTLS configuration for a TransportServer.",
-						MarkdownDescription: "TransportServerTLS defines TransportServerTLS configuration for a TransportServer.",
+						Description:         "The TLS termination configuration.",
+						MarkdownDescription: "The TLS termination configuration.",
 						Attributes: map[string]schema.Attribute{
 							"secret": schema.StringAttribute{
 								Description:         "",
@@ -285,48 +285,48 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "UpstreamParameters defines parameters for an upstream.",
 						Attributes: map[string]schema.Attribute{
 							"connect_timeout": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The timeout for establishing a connection with a proxied server. The default is 60s.",
+								MarkdownDescription: "The timeout for establishing a connection with a proxied server. The default is 60s.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"next_upstream": schema.BoolAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "If a connection to the proxied server cannot be established, determines whether a client connection will be passed to the next server. The default is true.",
+								MarkdownDescription: "If a connection to the proxied server cannot be established, determines whether a client connection will be passed to the next server. The default is true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"next_upstream_timeout": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The time allowed to pass a connection to the next server. The default is 0.",
+								MarkdownDescription: "The time allowed to pass a connection to the next server. The default is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"next_upstream_tries": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The number of tries for passing a connection to the next server. The default is 0.",
+								MarkdownDescription: "The number of tries for passing a connection to the next server. The default is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"udp_requests": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The number of datagrams, after receiving which, the next datagram from the same client starts a new session. The default is 0.",
+								MarkdownDescription: "The number of datagrams, after receiving which, the next datagram from the same client starts a new session. The default is 0.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"udp_responses": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The number of datagrams expected from the proxied server in response to a client datagram. By default, the number of datagrams is not limited.",
+								MarkdownDescription: "The number of datagrams expected from the proxied server in response to a client datagram. By default, the number of datagrams is not limited.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -338,85 +338,85 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"upstreams": schema.ListNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
+						Description:         "A list of upstreams.",
+						MarkdownDescription: "A list of upstreams.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"backup": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The name of the backup service of type ExternalName. This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the random, hash or ip_hash load balancing methods.",
+									MarkdownDescription: "The name of the backup service of type ExternalName. This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the random, hash or ip_hash load balancing methods.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"backup_port": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range 1..65535.",
+									MarkdownDescription: "The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range 1..65535.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"fail_timeout": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Sets the number of unsuccessful attempts to communicate with the server that should happen in the duration set by the failTimeout parameter to consider the server unavailable. The default is 1.",
+									MarkdownDescription: "Sets the number of unsuccessful attempts to communicate with the server that should happen in the duration set by the failTimeout parameter to consider the server unavailable. The default is 1.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"health_check": schema.SingleNestedAttribute{
-									Description:         "TransportServerHealthCheck defines the parameters for active Upstream HealthChecks.",
-									MarkdownDescription: "TransportServerHealthCheck defines the parameters for active Upstream HealthChecks.",
+									Description:         "The health check configuration for the Upstream. Note: this feature is supported only in NGINX Plus.",
+									MarkdownDescription: "The health check configuration for the Upstream. Note: this feature is supported only in NGINX Plus.",
 									Attributes: map[string]schema.Attribute{
 										"enable": schema.BoolAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "Enables a health check for an upstream server. The default is false.",
+											MarkdownDescription: "Enables a health check for an upstream server. The default is false.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"fails": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "The number of consecutive failed health checks of a particular upstream server after which this server will be considered unhealthy. The default is 1.",
+											MarkdownDescription: "The number of consecutive failed health checks of a particular upstream server after which this server will be considered unhealthy. The default is 1.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"interval": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "The interval between two consecutive health checks. The default is 5s.",
+											MarkdownDescription: "The interval between two consecutive health checks. The default is 5s.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"jitter": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "The time within which each health check will be randomly delayed. By default, there is no delay.",
+											MarkdownDescription: "The time within which each health check will be randomly delayed. By default, there is no delay.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"match": schema.SingleNestedAttribute{
-											Description:         "TransportServerMatch defines the parameters of a custom health check.",
-											MarkdownDescription: "TransportServerMatch defines the parameters of a custom health check.",
+											Description:         "Controls the data to send and the response to expect for the healthcheck.",
+											MarkdownDescription: "Controls the data to send and the response to expect for the healthcheck.",
 											Attributes: map[string]schema.Attribute{
 												"expect": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "A literal string or a regular expression that the data obtained from the server should match. The regular expression is specified with the preceding ~* modifier (for case-insensitive matching), or the ~ modifier (for case-sensitive matching). NGINX Ingress Controller validates a regular expression using the RE2 syntax.",
+													MarkdownDescription: "A literal string or a regular expression that the data obtained from the server should match. The regular expression is specified with the preceding ~* modifier (for case-insensitive matching), or the ~ modifier (for case-sensitive matching). NGINX Ingress Controller validates a regular expression using the RE2 syntax.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"send": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
+													Description:         "A string to send to an upstream server.",
+													MarkdownDescription: "A string to send to an upstream server.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -428,24 +428,24 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 										},
 
 										"passes": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "The number of consecutive passed health checks of a particular upstream server after which the server will be considered healthy. The default is 1.",
+											MarkdownDescription: "The number of consecutive passed health checks of a particular upstream server after which the server will be considered healthy. The default is 1.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"port": schema.Int64Attribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "The port used for health check requests. By default, the server port is used. Note: in contrast with the port of the upstream, this port is not a service port, but a port of a pod.",
+											MarkdownDescription: "The port used for health check requests. By default, the server port is used. Note: in contrast with the port of the upstream, this port is not a service port, but a port of a pod.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"timeout": schema.StringAttribute{
-											Description:         "",
-											MarkdownDescription: "",
+											Description:         "This overrides the timeout set by proxy_timeout which is set in SessionParameters for health checks. The default value is 5s.",
+											MarkdownDescription: "This overrides the timeout set by proxy_timeout which is set in SessionParameters for health checks. The default value is 5s.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -457,48 +457,48 @@ func (r *K8SNginxOrgTransportServerV1Manifest) Schema(_ context.Context, _ datas
 								},
 
 								"load_balancing_method": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The method used to load balance the upstream servers. By default, connections are distributed between the servers using a weighted round-robin balancing method.",
+									MarkdownDescription: "The method used to load balance the upstream servers. By default, connections are distributed between the servers using a weighted round-robin balancing method.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"max_conns": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Sets the time during which the specified number of unsuccessful attempts to communicate with the server should happen to consider the server unavailable and the period of time the server will be considered unavailable. The default is 10s.",
+									MarkdownDescription: "Sets the time during which the specified number of unsuccessful attempts to communicate with the server should happen to consider the server unavailable and the period of time the server will be considered unavailable. The default is 10s.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"max_fails": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "Sets the number of maximum connections to the proxied server. Default value is zero, meaning there is no limit. The default is 0.",
+									MarkdownDescription: "Sets the number of maximum connections to the proxied server. Default value is zero, meaning there is no limit. The default is 0.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, hello and upstream-123 are valid. The name must be unique among all upstreams of the resource.",
+									MarkdownDescription: "The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, hello and upstream-123 are valid. The name must be unique among all upstreams of the resource.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"port": schema.Int64Attribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The port of the service. If the service doesn’t define that port, NGINX will assume the service has zero endpoints and close client connections/ignore datagrams. The port must fall into the range 1..65535.",
+									MarkdownDescription: "The port of the service. If the service doesn’t define that port, NGINX will assume the service has zero endpoints and close client connections/ignore datagrams. The port must fall into the range 1..65535.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"service": schema.StringAttribute{
-									Description:         "",
-									MarkdownDescription: "",
+									Description:         "The name of a service. The service must belong to the same namespace as the resource. If the service doesn’t exist, NGINX will assume the service has zero endpoints and close client connections/ignore datagrams.",
+									MarkdownDescription: "The name of a service. The service must belong to the same namespace as the resource. If the service doesn’t exist, NGINX will assume the service has zero endpoints and close client connections/ignore datagrams.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

@@ -145,6 +145,7 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 			BindCredentialsSecretName *string `tfsdk:"bind_credentials_secret_name" json:"bindCredentialsSecretName,omitempty"`
 			CaCertificateSecretName   *string `tfsdk:"ca_certificate_secret_name" json:"caCertificateSecretName,omitempty"`
 			CacheTTLSeconds           *int64  `tfsdk:"cache_ttl_seconds" json:"cacheTTLSeconds,omitempty"`
+			DirectoryTimeoutSeconds   *int64  `tfsdk:"directory_timeout_seconds" json:"directoryTimeoutSeconds,omitempty"`
 			EnabledForControlPlane    *bool   `tfsdk:"enabled_for_control_plane" json:"enabledForControlPlane,omitempty"`
 			EnabledForDataPlane       *bool   `tfsdk:"enabled_for_data_plane" json:"enabledForDataPlane,omitempty"`
 			Protocol                  *string `tfsdk:"protocol" json:"protocol,omitempty"`
@@ -216,8 +217,7 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 				TopologyKey *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 			} `tfsdk:"required_during_scheduling_ignored_during_execution" json:"requiredDuringSchedulingIgnoredDuringExecution,omitempty"`
 		} `tfsdk:"pod_anti_affinity" json:"podAntiAffinity,omitempty"`
-		PodSecurityPolicyName *string `tfsdk:"pod_security_policy_name" json:"podSecurityPolicyName,omitempty"`
-		PodStartingPolicy     *struct {
+		PodStartingPolicy *struct {
 			Enabled                  *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
 			StartingThresholdSeconds *int64 `tfsdk:"starting_threshold_seconds" json:"startingThresholdSeconds,omitempty"`
 		} `tfsdk:"pod_starting_policy" json:"podStartingPolicy,omitempty"`
@@ -1288,6 +1288,14 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 		} `tfsdk:"redis_on_flash_spec" json:"redisOnFlashSpec,omitempty"`
 		RedisUpgradePolicy *string `tfsdk:"redis_upgrade_policy" json:"redisUpgradePolicy,omitempty"`
 		Resp3Default       *bool   `tfsdk:"resp3_default" json:"resp3Default,omitempty"`
+		SecurityContext    *struct {
+			ReadOnlyRootFilesystemPolicy *struct {
+				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"read_only_root_filesystem_policy" json:"readOnlyRootFilesystemPolicy,omitempty"`
+			ResourceLimits *struct {
+				AllowAutoAdjustment *bool `tfsdk:"allow_auto_adjustment" json:"allowAutoAdjustment,omitempty"`
+			} `tfsdk:"resource_limits" json:"resourceLimits,omitempty"`
+		} `tfsdk:"security_context" json:"securityContext,omitempty"`
 		ServiceAccountName *string `tfsdk:"service_account_name" json:"serviceAccountName,omitempty"`
 		Services           *struct {
 			ApiService *struct {
@@ -1296,8 +1304,9 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 			ServicesAnnotations *map[string]string `tfsdk:"services_annotations" json:"servicesAnnotations,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
 		ServicesRiggerSpec *struct {
-			DatabaseServiceType *string `tfsdk:"database_service_type" json:"databaseServiceType,omitempty"`
-			ExtraEnvVars        *[]struct {
+			DatabaseServicePortPolicy *string `tfsdk:"database_service_port_policy" json:"databaseServicePortPolicy,omitempty"`
+			DatabaseServiceType       *string `tfsdk:"database_service_type" json:"databaseServiceType,omitempty"`
+			ExtraEnvVars              *[]struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -2550,6 +2559,25 @@ type AppRedislabsComRedisEnterpriseClusterV1Alpha1ManifestData struct {
 		UpgradeSpec   *struct {
 			AutoUpgradeRedisEnterprise *bool `tfsdk:"auto_upgrade_redis_enterprise" json:"autoUpgradeRedisEnterprise,omitempty"`
 		} `tfsdk:"upgrade_spec" json:"upgradeSpec,omitempty"`
+		UsageMeter *struct {
+			CallHomeClient *struct {
+				Disabled  *bool `tfsdk:"disabled" json:"disabled,omitempty"`
+				ImageSpec *struct {
+					DigestHash      *string `tfsdk:"digest_hash" json:"digestHash,omitempty"`
+					ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+					Repository      *string `tfsdk:"repository" json:"repository,omitempty"`
+					VersionTag      *string `tfsdk:"version_tag" json:"versionTag,omitempty"`
+				} `tfsdk:"image_spec" json:"imageSpec,omitempty"`
+				ProxySecretName *string `tfsdk:"proxy_secret_name" json:"proxySecretName,omitempty"`
+				Resources       *struct {
+					Claims *[]struct {
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"claims" json:"claims,omitempty"`
+					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+				} `tfsdk:"resources" json:"resources,omitempty"`
+			} `tfsdk:"call_home_client" json:"callHomeClient,omitempty"`
+		} `tfsdk:"usage_meter" json:"usageMeter,omitempty"`
 		Username      *string `tfsdk:"username" json:"username,omitempty"`
 		VaultCASecret *string `tfsdk:"vault_ca_secret" json:"vaultCASecret,omitempty"`
 		Volumes       *[]struct {
@@ -3587,6 +3615,14 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 								Computed:            false,
 							},
 
+							"directory_timeout_seconds": schema.Int64Attribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"enabled_for_control_plane": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -4074,14 +4110,6 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 						Required: false,
 						Optional: true,
 						Computed: false,
-					},
-
-					"pod_security_policy_name": schema.StringAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
-						Computed:            false,
 					},
 
 					"pod_starting_policy": schema.SingleNestedAttribute{
@@ -11275,6 +11303,49 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 						Computed:            false,
 					},
 
+					"security_context": schema.SingleNestedAttribute{
+						Description:         "The security configuration that will be applied to RS pods.",
+						MarkdownDescription: "The security configuration that will be applied to RS pods.",
+						Attributes: map[string]schema.Attribute{
+							"read_only_root_filesystem_policy": schema.SingleNestedAttribute{
+								Description:         "Policy controlling whether to enable read-only root filesystem for the Redis Enterprise software containers. Note that certain filesystem paths remain writable through mounted volumes to ensure proper functionality.",
+								MarkdownDescription: "Policy controlling whether to enable read-only root filesystem for the Redis Enterprise software containers. Note that certain filesystem paths remain writable through mounted volumes to ensure proper functionality.",
+								Attributes: map[string]schema.Attribute{
+									"enabled": schema.BoolAttribute{
+										Description:         "Whether to enable read-only root filesystem for the Redis Enterprise software containers. Default is false.",
+										MarkdownDescription: "Whether to enable read-only root filesystem for the Redis Enterprise software containers. Default is false.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"resource_limits": schema.SingleNestedAttribute{
+								Description:         "Settings pertaining to resource limits management by the Redis Enterprise Node container.",
+								MarkdownDescription: "Settings pertaining to resource limits management by the Redis Enterprise Node container.",
+								Attributes: map[string]schema.Attribute{
+									"allow_auto_adjustment": schema.BoolAttribute{
+										Description:         "Allow Redis Enterprise to adjust resource limits, like max open file descriptors, of its data plane processes. When this option is enabled, the SYS_RESOURCE capability is added to the Redis Enterprise pods, and their allowPrivilegeEscalation field is set. Turned off by default.",
+										MarkdownDescription: "Allow Redis Enterprise to adjust resource limits, like max open file descriptors, of its data plane processes. When this option is enabled, the SYS_RESOURCE capability is added to the Redis Enterprise pods, and their allowPrivilegeEscalation field is set. Turned off by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"service_account_name": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -11325,6 +11396,17 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
+							"database_service_port_policy": schema.StringAttribute{
+								Description:         "databaseServicePortPolicy instructs how to determine the service ports for REDB services. Defaults to DatabasePortForward, if not specified otherwise. Note - Regardless whether this flag is set or not, if an REDB/REAADB configured with databaseServicePort that would be the port exposed by the Service. DatabasePortForward - The service port will be the same as the database port. RedisDefaultPort - The service port will be the default Redis port (6379).",
+								MarkdownDescription: "databaseServicePortPolicy instructs how to determine the service ports for REDB services. Defaults to DatabasePortForward, if not specified otherwise. Note - Regardless whether this flag is set or not, if an REDB/REAADB configured with databaseServicePort that would be the port exposed by the Service. DatabasePortForward - The service port will be the same as the database port. RedisDefaultPort - The service port will be the default Redis port (6379).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("DatabasePortForward", "RedisDefaultPort"),
+								},
+							},
+
 							"database_service_type": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -19701,6 +19783,127 @@ func (r *AppRedislabsComRedisEnterpriseClusterV1Alpha1Manifest) Schema(_ context
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"usage_meter": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"call_home_client": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"disabled": schema.BoolAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"image_spec": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"digest_hash": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"image_pull_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"repository": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"version_tag": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"proxy_secret_name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"resources": schema.SingleNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Attributes: map[string]schema.Attribute{
+											"claims": schema.ListNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"limits": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"requests": schema.MapAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
