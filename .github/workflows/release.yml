@@ -89,7 +89,7 @@ jobs:
       - id: upload
         name: Upload Artifact
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: terraform-provider-k8s-${{ matrix.goos }}-${{ matrix.goarch }}
           path: terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
