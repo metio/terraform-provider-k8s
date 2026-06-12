@@ -47,7 +47,7 @@ jobs:
         name: Build Provider
         run: go build -v
       - name: Wait for other checks to succeed
-        uses: lewagon/wait-on-check-action@v1.4.1
+        uses: lewagon/wait-on-check-action@v1.8.0
         with:
           ref: ${{ github.ref }}
           running-workflow-name: Build Project
