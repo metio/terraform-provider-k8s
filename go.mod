@@ -6,7 +6,7 @@ module github.com/metio/terraform-provider-k8s
 go 1.26.0
 
 require (
-	github.com/gruntwork-io/terratest v1.0.0
+	github.com/gruntwork-io/terratest v1.0.1
 	github.com/hashicorp/terraform-plugin-docs v0.25.0
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
 	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0
