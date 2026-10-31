@@ -6,10 +6,14 @@ on:
   schedule:
     - cron: 23 6 * * MON
   workflow_dispatch:
+permissions:
+  contents: read
+
 jobs:
   prepare:
     name: Prepare Release
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     outputs:
       commit_count: ${{ steps.commits.outputs.count }}
       release_version: ${{ steps.release.outputs.version }}
@@ -17,7 +21,7 @@ jobs:
     steps:
       - id: checkout
         name: Clone Git Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
       - id: last_release
@@ -36,6 +40,7 @@ jobs:
     name: Build ${{ matrix.goos }}/${{ matrix.goarch }}
     needs: prepare
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     strategy:
       matrix:
         include:
@@ -55,10 +60,10 @@ jobs:
       - id: checkout
         name: Clone Git Repository
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - id: setup_go
         name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         if: needs.prepare.outputs.commit_count > 0
         with:
           go-version-file: go.mod
@@ -89,7 +94,7 @@ jobs:
       - id: upload
         name: Upload Artifact
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: terraform-provider-k8s-${{ matrix.goos }}-${{ matrix.goarch }}
           path: terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
@@ -97,19 +102,20 @@ jobs:
     name: GitHub Release
     needs: [prepare, build]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write
     steps:
       - id: checkout
         name: Clone Git Repository
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
       - id: download
         name: Download Artifacts
         if: needs.prepare.outputs.commit_count > 0
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           path: dist
           pattern: terraform-provider-k8s-*
@@ -137,7 +143,7 @@ jobs:
           > terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
       - id: import_gpg
         name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
+        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6
         if: needs.prepare.outputs.commit_count > 0
         with:
           gpg_private_key: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
@@ -155,7 +161,7 @@ jobs:
       - id: create_release
         name: Create Release
         if: needs.prepare.outputs.commit_count > 0
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
           tag_name: ${{ needs.prepare.outputs.release_version }}
           name: ${{ needs.prepare.outputs.release_version }}
@@ -176,7 +182,7 @@ jobs:
       - id: mail
         name: Send Mail
         if: needs.prepare.outputs.commit_count > 0
-        uses: dawidd6/action-send-mail@v6
+        uses: dawidd6/action-send-mail@6d98ae34d733f9a723a9e04e94f2f24ba05e1402 # v6
         with:
           server_address: ${{ secrets.MAIL_SERVER }}
           server_port: ${{ secrets.MAIL_PORT }}
@@ -189,7 +195,7 @@ jobs:
       - id: matrix
         name: Send Matrix Message
         if: needs.prepare.outputs.commit_count > 0
-        uses: s3krit/matrix-message-action@v0.0.3
+        uses: s3krit/matrix-message-action@70ad3fb812ee0e45ff8999d6af11cafad11a6ecf # v0.0.3
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}

@@ -15,17 +15,22 @@ on:
       - internal/**
       - templates/**
       - tools/**
+permissions:
+  contents: read
+  checks: read
+
 jobs:
   build:
     name: Build Project
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - id: setup_go
         name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
           cache: true
@@ -47,7 +52,7 @@ jobs:
         name: Build Provider
         run: go build -v
       - name: Wait for other checks to succeed
-        uses: lewagon/wait-on-check-action@v1.8.0
+        uses: lewagon/wait-on-check-action@96d9100b431964d10e0136aff8b9ccb92470505e # v1.8.0
         with:
           ref: ${{ github.ref }}
           running-workflow-name: Build Project

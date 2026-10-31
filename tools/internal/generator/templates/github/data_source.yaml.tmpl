@@ -10,10 +10,14 @@ on:
       - internal/provider/{{ .Package }}/{{ .DataSourceFile }}
       - internal/provider/{{ .Package }}/{{ .DataSourceTestFile }}
       - terratest/{{ .Package }}/{{ .DataSourceTestFile }}
+permissions:
+  contents: read
+
 jobs:
   terratest:
     name: Test with Terraform {{ `${{ matrix.terraform }}` }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     strategy:
       fail-fast: true
       matrix:
@@ -23,16 +27,16 @@ jobs:
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - id: setup_go
         name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
           cache: true
       - id: setup_terraform
         name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
         with:
           terraform_version: {{ `${{ matrix.terraform }}` }}
           terraform_wrapper: false
