@@ -81,12 +81,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 						Policies         *[]string          `tfsdk:"policies" json:"policies,omitempty"`
 						Resources        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
 						ResourcesData    *[]struct {
-							_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-							Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-							DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-							Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-							Name        *string              `tfsdk:"name" json:"name,omitempty"`
-							Owner       *struct {
+							UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+							Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+							DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+							Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+							Name         *string              `tfsdk:"name" json:"name,omitempty"`
+							Owner        *struct {
 								Id   *string `tfsdk:"id" json:"id,omitempty"`
 								Name *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"owner" json:"owner,omitempty"`
@@ -111,12 +111,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					} `tfsdk:"policies" json:"policies,omitempty"`
 					PolicyEnforcementMode *string `tfsdk:"policy_enforcement_mode" json:"policyEnforcementMode,omitempty"`
 					Resources             *[]struct {
-						_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-						Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-						Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-						Name        *string              `tfsdk:"name" json:"name,omitempty"`
-						Owner       *struct {
+						UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+						Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+						DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+						Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+						Name         *string              `tfsdk:"name" json:"name,omitempty"`
+						Owner        *struct {
 							Id   *string `tfsdk:"id" json:"id,omitempty"`
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"owner" json:"owner,omitempty"`
@@ -296,12 +296,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 						Policies         *[]string          `tfsdk:"policies" json:"policies,omitempty"`
 						Resources        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
 						ResourcesData    *[]struct {
-							_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-							Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-							DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-							Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-							Name        *string              `tfsdk:"name" json:"name,omitempty"`
-							Owner       *struct {
+							UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+							Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+							DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+							Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+							Name         *string              `tfsdk:"name" json:"name,omitempty"`
+							Owner        *struct {
 								Id   *string `tfsdk:"id" json:"id,omitempty"`
 								Name *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"owner" json:"owner,omitempty"`
@@ -326,12 +326,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					} `tfsdk:"policies" json:"policies,omitempty"`
 					PolicyEnforcementMode *string `tfsdk:"policy_enforcement_mode" json:"policyEnforcementMode,omitempty"`
 					Resources             *[]struct {
-						_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-						Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-						Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-						Name        *string              `tfsdk:"name" json:"name,omitempty"`
-						Owner       *struct {
+						UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+						Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+						DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+						Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+						Name         *string              `tfsdk:"name" json:"name,omitempty"`
+						Owner        *struct {
 							Id   *string `tfsdk:"id" json:"id,omitempty"`
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"owner" json:"owner,omitempty"`
@@ -571,12 +571,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 						Policies         *[]string          `tfsdk:"policies" json:"policies,omitempty"`
 						Resources        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
 						ResourcesData    *[]struct {
-							_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-							Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-							DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-							Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-							Name        *string              `tfsdk:"name" json:"name,omitempty"`
-							Owner       *struct {
+							UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+							Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+							DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+							Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+							Name         *string              `tfsdk:"name" json:"name,omitempty"`
+							Owner        *struct {
 								Id   *string `tfsdk:"id" json:"id,omitempty"`
 								Name *string `tfsdk:"name" json:"name,omitempty"`
 							} `tfsdk:"owner" json:"owner,omitempty"`
@@ -601,12 +601,12 @@ type K8SKeycloakOrgKeycloakRealmImportV2Alpha1ManifestData struct {
 					} `tfsdk:"policies" json:"policies,omitempty"`
 					PolicyEnforcementMode *string `tfsdk:"policy_enforcement_mode" json:"policyEnforcementMode,omitempty"`
 					Resources             *[]struct {
-						_id         *string              `tfsdk:"_id" json:"_id,omitempty"`
-						Attributes  *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
-						DisplayName *string              `tfsdk:"display_name" json:"displayName,omitempty"`
-						Icon_uri    *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
-						Name        *string              `tfsdk:"name" json:"name,omitempty"`
-						Owner       *struct {
+						UnderscoreId *string              `tfsdk:"_id" json:"_id,omitempty"`
+						Attributes   *map[string][]string `tfsdk:"attributes" json:"attributes,omitempty"`
+						DisplayName  *string              `tfsdk:"display_name" json:"displayName,omitempty"`
+						Icon_uri     *string              `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
+						Name         *string              `tfsdk:"name" json:"name,omitempty"`
+						Owner        *struct {
 							Id   *string `tfsdk:"id" json:"id,omitempty"`
 							Name *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"owner" json:"owner,omitempty"`

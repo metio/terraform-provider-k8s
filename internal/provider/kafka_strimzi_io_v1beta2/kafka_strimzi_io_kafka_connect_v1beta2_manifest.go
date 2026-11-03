@@ -175,9 +175,9 @@ type KafkaStrimziIoKafkaConnectV1Beta2ManifestData struct {
 			} `tfsdk:"authentication" json:"authentication,omitempty"`
 		} `tfsdk:"jmx_options" json:"jmxOptions,omitempty"`
 		JvmOptions *struct {
-			_XX                  *map[string]string `tfsdk:"xx" json:"-XX,omitempty"`
-			_Xms                 *string            `tfsdk:"xms" json:"-Xms,omitempty"`
-			_Xmx                 *string            `tfsdk:"xmx" json:"-Xmx,omitempty"`
+			DashXX               *map[string]string `tfsdk:"xx" json:"-XX,omitempty"`
+			DashXms              *string            `tfsdk:"xms" json:"-Xms,omitempty"`
+			DashXmx              *string            `tfsdk:"xmx" json:"-Xmx,omitempty"`
 			GcLoggingEnabled     *bool              `tfsdk:"gc_logging_enabled" json:"gcLoggingEnabled,omitempty"`
 			JavaSystemProperties *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`

@@ -123,7 +123,7 @@ type KeycloakOrgKeycloakRealmV1Alpha1ManifestData struct {
 						Policies         *[]string          `tfsdk:"policies" json:"policies,omitempty"`
 						Resources        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
 						ResourcesData    *[]struct {
-							_id                *string            `tfsdk:"_id" json:"_id,omitempty"`
+							UnderscoreId       *string            `tfsdk:"_id" json:"_id,omitempty"`
 							Attributes         *map[string]string `tfsdk:"attributes" json:"attributes,omitempty"`
 							DisplayName        *string            `tfsdk:"display_name" json:"displayName,omitempty"`
 							Icon_uri           *string            `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
@@ -139,7 +139,7 @@ type KeycloakOrgKeycloakRealmV1Alpha1ManifestData struct {
 					} `tfsdk:"policies" json:"policies,omitempty"`
 					PolicyEnforcementMode *string `tfsdk:"policy_enforcement_mode" json:"policyEnforcementMode,omitempty"`
 					Resources             *[]struct {
-						_id                *string            `tfsdk:"_id" json:"_id,omitempty"`
+						UnderscoreId       *string            `tfsdk:"_id" json:"_id,omitempty"`
 						Attributes         *map[string]string `tfsdk:"attributes" json:"attributes,omitempty"`
 						DisplayName        *string            `tfsdk:"display_name" json:"displayName,omitempty"`
 						Icon_uri           *string            `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
@@ -165,7 +165,7 @@ type KeycloakOrgKeycloakRealmV1Alpha1ManifestData struct {
 							Policies         *[]string          `tfsdk:"policies" json:"policies,omitempty"`
 							Resources        *[]string          `tfsdk:"resources" json:"resources,omitempty"`
 							ResourcesData    *[]struct {
-								_id                *string            `tfsdk:"_id" json:"_id,omitempty"`
+								UnderscoreId       *string            `tfsdk:"_id" json:"_id,omitempty"`
 								Attributes         *map[string]string `tfsdk:"attributes" json:"attributes,omitempty"`
 								DisplayName        *string            `tfsdk:"display_name" json:"displayName,omitempty"`
 								Icon_uri           *string            `tfsdk:"icon_uri" json:"icon_uri,omitempty"`
@@ -180,7 +180,7 @@ type KeycloakOrgKeycloakRealmV1Alpha1ManifestData struct {
 							Type       *string   `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"policies" json:"policies,omitempty"`
 						Resources *[]struct {
-							_id                *string            `tfsdk:"_id" json:"_id,omitempty"`
+							UnderscoreId       *string            `tfsdk:"_id" json:"_id,omitempty"`
 							Attributes         *map[string]string `tfsdk:"attributes" json:"attributes,omitempty"`
 							DisplayName        *string            `tfsdk:"display_name" json:"displayName,omitempty"`
 							Icon_uri           *string            `tfsdk:"icon_uri" json:"icon_uri,omitempty"`

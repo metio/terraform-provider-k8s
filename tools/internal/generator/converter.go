@@ -325,6 +325,13 @@ func terraformAttributeName(str string, rootPath bool) string {
 
 func goName(s string) string {
 	clean := upperCaseFirstLetter(s)
+	// encoding/json skips unexported fields, so a name must start with an upper case letter.
+	if len(clean) > 1 && strings.HasPrefix(clean, "-") {
+		clean = "Dash" + upperCaseFirstLetter(clean[1:])
+	}
+	if len(clean) > 1 && strings.HasPrefix(clean, "_") {
+		clean = "Underscore" + upperCaseFirstLetter(clean[1:])
+	}
 	if strings.HasPrefix(clean, "3") {
 		clean = strings.Replace(clean, "3", "Three", 1)
 	}
