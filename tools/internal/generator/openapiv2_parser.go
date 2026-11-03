@@ -29,12 +29,9 @@ func ParseOpenAPIv2Files(basePath string) []v2high.Swagger {
 			if docErr != nil {
 				return docErr
 			}
-			docModel, errors := document.BuildV2Model()
-			if len(errors) > 0 {
-				for i := range errors {
-					fmt.Printf("error: %e\n", errors[i])
-				}
-				panic(fmt.Sprintf("cannot create v3 model from document: %d errors reported", len(errors)))
+			docModel, buildErr := document.BuildV2Model()
+			if buildErr != nil {
+				panic(fmt.Sprintf("cannot create v2 model from document %s: %v", path, buildErr))
 			}
 			schemas = append(schemas, docModel.Model)
 		}

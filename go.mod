@@ -13,9 +13,9 @@ require (
 	github.com/hashicorp/terraform-plugin-go v0.31.0
 	github.com/hashicorp/terraform-plugin-log v0.11.0
 	github.com/iancoleman/strcase v0.3.0
+	github.com/pb33f/go-yaml v0.1.1
 	github.com/pb33f/libopenapi v0.41.8
 	github.com/stretchr/testify v1.12.1
-	gopkg.in/yaml.v3 v3.0.1
 	k8s.io/apiextensions-apiserver v0.37.2
 	k8s.io/apimachinery v0.37.2
 	k8s.io/client-go v0.37.2
@@ -111,7 +111,6 @@ require (
 	github.com/monochromegane/go-gitignore v0.0.0-20200626010858-205db1a8cc00 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/oklog/run v1.1.0 // indirect
-	github.com/pb33f/go-yaml v0.1.1 // indirect
 	github.com/pb33f/jsonpath v0.8.4 // indirect
 	github.com/pb33f/ordered-map/v2 v2.3.2 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
@@ -151,6 +150,7 @@ require (
 	gopkg.in/evanphx/json-patch.v4 v4.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/api v0.37.2 // indirect
 	k8s.io/cli-runtime v0.37.2 // indirect
 	k8s.io/component-base v0.37.2 // indirect

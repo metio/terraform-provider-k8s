@@ -7,8 +7,8 @@ package generator
 
 import (
 	"fmt"
+	"github.com/pb33f/go-yaml"
 	"github.com/pb33f/libopenapi/datamodel/high/base"
-	"gopkg.in/yaml.v3"
 	"strconv"
 )
 
