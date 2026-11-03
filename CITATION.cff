@@ -9,7 +9,7 @@ authors:
 - family-names: Hoß
   given-names: Sebastian
   email: seb@hoß.de
-url: https://github.com/metio/terraform-provider-k8s/
+url: https://registry.terraform.io/providers/metio/k8s/
 license: 0BSD
 keywords:
   - kubernetes
