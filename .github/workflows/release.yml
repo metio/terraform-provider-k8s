@@ -1,14 +1,16 @@
 # SPDX-FileCopyrightText: The terraform-provider-k8s Authors
 # SPDX-License-Identifier: 0BSD
 
-name: Automated Release
+name: Release
 on:
   schedule:
-    - cron: 23 6 * * MON
+    - cron: 59 15 * * 5
   workflow_dispatch:
 permissions:
   contents: read
-
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 jobs:
   prepare:
     name: Prepare Release
@@ -17,28 +19,29 @@ jobs:
     outputs:
       commit_count: ${{ steps.commits.outputs.count }}
       release_version: ${{ steps.release.outputs.version }}
-      previous_version: ${{ steps.last_release.outputs.tag }}
     steps:
-      - id: checkout
-        name: Clone Git Repository
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
+          persist-credentials: false
       - id: last_release
-        name: Fetch last release info
-        run: echo "tag=$(gh release view --json tagName --jq '.tagName')" >> $GITHUB_OUTPUT
+        name: Fetch Last Release
+        run: echo "tag=$(gh release view --json tagName --jq '.tagName')" >> "$GITHUB_OUTPUT"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
       - id: commits
         name: Count Commits
-        run: echo "count=$(git rev-list --count ${{ steps.last_release.outputs.tag }}..HEAD)" >> $GITHUB_OUTPUT
+        run: echo "count=$(git rev-list --count "${LAST_RELEASE}..HEAD")" >> "$GITHUB_OUTPUT"
+        env:
+          LAST_RELEASE: ${{ steps.last_release.outputs.tag }}
       - id: release
         name: Create Release Version
         if: steps.commits.outputs.count > 0
-        run: echo "version=$(date +'%Y.%-m.%-d')" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +'%Y.%-m.%-d')" >> "$GITHUB_OUTPUT"
   build:
     name: Build ${{ matrix.goos }}/${{ matrix.goarch }}
     needs: prepare
+    if: needs.prepare.outputs.commit_count > 0
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -56,45 +59,26 @@ jobs:
             goarch: arm64
           - goos: windows
             goarch: amd64
+    env:
+      VERSION: ${{ needs.prepare.outputs.release_version }}
+      GOOS: ${{ matrix.goos }}
+      GOARCH: ${{ matrix.goarch }}
     steps:
-      - id: checkout
-        name: Clone Git Repository
-        if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-      - id: setup_go
-        name: Set up Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
-        if: needs.prepare.outputs.commit_count > 0
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          go-version-file: go.mod
-          cache: true
-      - id: build
-        name: Build Project
-        if: needs.prepare.outputs.commit_count > 0
-        run: >
-          go build
-          -o terraform-provider-k8s_v${{ needs.prepare.outputs.release_version }}
-          -trimpath
-          -ldflags="-s -w -X main.version=${{ needs.prepare.outputs.release_version }} -X main.commit=${{ github.sha }}"
+          persist-credentials: false
+      - uses: metio/ci/breto@bfcb1a4d37c4fd4d5d9c27181191dcad0d04f90c # 2026.11.1211658
+        with:
+          registries: github:metio/toolchains
+      - name: Build Provider
+        run: |
+          binary="terraform-provider-k8s_v${VERSION}"
+          if [ "$GOOS" = windows ]; then binary="$binary.exe"; fi
+          go build -trimpath -ldflags="-s -w -X main.version=${VERSION} -X main.commit=${GITHUB_SHA}" -o "$binary"
+          zip --recurse-paths "terraform-provider-k8s_${VERSION}_${GOOS}_${GOARCH}.zip" "$binary" LICENSE LICENSES README.md
         env:
           CGO_ENABLED: 0
-          GOOS: ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
-      - id: zip
-        name: Create Zip Archive
-        if: needs.prepare.outputs.commit_count > 0
-        run: >
-          zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
-          terraform-provider-k8s_v${{ needs.prepare.outputs.release_version }}
-          LICENSE
-          LICENSES/0BSD.txt
-          LICENSES/Apache-2.0.txt
-          README.md
-      - id: upload
-        name: Upload Artifact
-        if: needs.prepare.outputs.commit_count > 0
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: terraform-provider-k8s-${{ matrix.goos }}-${{ matrix.goarch }}
           path: terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_${{ matrix.goos }}_${{ matrix.goarch }}.zip
@@ -105,83 +89,38 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+    env:
+      VERSION: ${{ needs.prepare.outputs.release_version }}
     steps:
-      - id: checkout
-        name: Clone Git Repository
-        if: needs.prepare.outputs.commit_count > 0
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          fetch-depth: 0
-      - id: download
-        name: Download Artifacts
-        if: needs.prepare.outputs.commit_count > 0
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+          persist-credentials: false
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           path: dist
           pattern: terraform-provider-k8s-*
           merge-multiple: true
-      - id: manifest
-        name: Version Manifest
-        if: needs.prepare.outputs.commit_count > 0
-        run: >
-          cp
-          terraform-registry-manifest.json
-          dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
-      - id: checksums
-        name: Calculate Checksums
-        if: needs.prepare.outputs.commit_count > 0
-        run: >
-          cd dist &&
-          sha256sum
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_amd64.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm64.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_amd64.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_arm64.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_windows_amd64.zip
-          terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
-          > terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
-      - id: import_gpg
-        name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6
-        if: needs.prepare.outputs.commit_count > 0
-        with:
-          gpg_private_key: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
-          passphrase: ${{ secrets.GPG_SECRET_KEY_PASSWORD }}
-      - id: sign_checksums
-        name: Sign Checksums
-        if: needs.prepare.outputs.commit_count > 0
-        run: >
-          gpg
-          --batch
-          --local-user ${{ steps.import_gpg.outputs.fingerprint }}
-          --output dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS.sig
-          --detach-sign
-          dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
-      - id: create_release
-        name: Create Release
-        if: needs.prepare.outputs.commit_count > 0
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
-        with:
-          tag_name: ${{ needs.prepare.outputs.release_version }}
-          name: ${{ needs.prepare.outputs.release_version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-          files: |
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_amd64.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_linux_arm64.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_amd64.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_darwin_arm64.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_windows_amd64.zip
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_SHA256SUMS.sig
-            dist/terraform-provider-k8s_${{ needs.prepare.outputs.release_version }}_manifest.json
-      - id: mail
-        name: Send Mail
-        if: needs.prepare.outputs.commit_count > 0
+      - name: Calculate Checksums
+        run: |
+          cp terraform-registry-manifest.json "dist/terraform-provider-k8s_${VERSION}_manifest.json"
+          cd dist
+          sha256sum -- *.zip "terraform-provider-k8s_${VERSION}_manifest.json" > "terraform-provider-k8s_${VERSION}_SHA256SUMS"
+      # The Terraform Registry only accepts a GPG signature of the checksums.
+      - name: Sign Checksums
+        run: |
+          export GNUPGHOME="$RUNNER_TEMP/gnupg"
+          mkdir --mode=700 "$GNUPGHOME"
+          printf '%s' "$GPG_SECRET_KEY_BASE64" | base64 --decode | gpg --batch --import
+          printf '%s' "$GPG_SECRET_KEY_PASSWORD" | gpg --batch --pinentry-mode loopback --passphrase-fd 0 \
+            --output "dist/terraform-provider-k8s_${VERSION}_SHA256SUMS.sig" --detach-sign "dist/terraform-provider-k8s_${VERSION}_SHA256SUMS"
+        env:
+          GPG_SECRET_KEY_BASE64: ${{ secrets.GPG_SECRET_KEY_BASE64 }}
+          GPG_SECRET_KEY_PASSWORD: ${{ secrets.GPG_SECRET_KEY_PASSWORD }}
+      - name: Create Release
+        run: gh release create "$VERSION" --target "$GITHUB_SHA" --title "$VERSION" --generate-notes dist/*
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Send Mail
         uses: dawidd6/action-send-mail@6d98ae34d733f9a723a9e04e94f2f24ba05e1402 # v6
         with:
           server_address: ${{ secrets.MAIL_SERVER }}
@@ -189,15 +128,13 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: ${{ github.event.repository.name }} version ${{ needs.prepare.outputs.release_version }} published
-          body: See https://github.com/metio/terraform-provider-k8s/releases/tag/${{ needs.prepare.outputs.release_version }} for details.
+          body: See ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.prepare.outputs.release_version }} for details.
           to: ${{ secrets.MAIL_RECIPIENT }}
           from: ${{ secrets.MAIL_SENDER }}
-      - id: matrix
-        name: Send Matrix Message
-        if: needs.prepare.outputs.commit_count > 0
+      - name: Send Matrix Message
         uses: s3krit/matrix-message-action@70ad3fb812ee0e45ff8999d6af11cafad11a6ecf # v0.0.3
         with:
           room_id: ${{ secrets.MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          message: ${{ github.event.repository.name }} version [${{ needs.prepare.outputs.release_version }}](https://github.com/metio/terraform-provider-k8s/releases/tag/${{ needs.prepare.outputs.release_version }}) published
+          message: ${{ github.event.repository.name }} version [${{ needs.prepare.outputs.release_version }}](${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.prepare.outputs.release_version }}) published
           server: ${{ secrets.MATRIX_SERVER }}
