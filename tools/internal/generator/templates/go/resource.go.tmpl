@@ -45,7 +45,6 @@ import (
 	k8sSchema "k8s.io/apimachinery/pkg/runtime/schema"
 	k8sTypes "k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/dynamic"
-	"k8s.io/utils/pointer"
 	{{ if .AdditionalImports.MathBig -}}
 	"math/big"
 	{{ end -}}
@@ -99,6 +98,7 @@ func (r *{{ .ResourceTypeStruct }}) Metadata(_ context.Context, request resource
 	response.TypeName = request.ProviderTypeName + "_{{ .ResourceTypeName }}"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *{{ .ResourceTypeStruct }}) Schema(_ context.Context, _ resource.SchemaRequest, response *resource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "{{ .Description }}",
@@ -312,8 +312,8 @@ func (r *{{ .ResourceTypeStruct }}) Create(ctx context.Context, request resource
 		return
 	}
 
-	model.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
-	model.Kind = pointer.String("{{ .Kind }}")
+	model.ApiVersion = new("{{ .Group }}/{{ .Version }}")
+	model.Kind = new("{{ .Kind }}")
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
@@ -331,7 +331,7 @@ func (r *{{ .ResourceTypeStruct }}) Create(ctx context.Context, request resource
 	}
 	patchOptions := meta.PatchOptions{
 		FieldManager:    fieldManager,
-		Force:           pointer.Bool(forceConflicts),
+		Force:           new(forceConflicts),
 		FieldValidation: "Strict",
 	}
 
@@ -470,8 +470,8 @@ func (r *{{ .ResourceTypeStruct }}) Update(ctx context.Context, request resource
 		return
 	}
 
-	model.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
-	model.Kind = pointer.String("{{ .Kind }}")
+	model.ApiVersion = new("{{ .Group }}/{{ .Version }}")
+	model.Kind = new("{{ .Kind }}")
 
 	bytes, err := json.Marshal(model)
 	if err != nil {
@@ -489,7 +489,7 @@ func (r *{{ .ResourceTypeStruct }}) Update(ctx context.Context, request resource
 	}
 	patchOptions := meta.PatchOptions{
 		FieldManager:    fieldManager,
-		Force:           pointer.Bool(forceConflicts),
+		Force:           new(forceConflicts),
 		FieldValidation: "Strict",
 	}
 

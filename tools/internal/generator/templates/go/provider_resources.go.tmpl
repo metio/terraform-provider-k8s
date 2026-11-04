@@ -12,6 +12,7 @@ import (
 	{{ end }}
 )
 
+//lint:ignore U1000 the provider offers no resources until Resources returns them again
 func allResources() []func() resource.Resource {
 	return []func() resource.Resource{
 		{{ range $index, $resource := .Resources }}//{{ $resource.Package }}.New{{ $resource.ResourceTypeStruct }},

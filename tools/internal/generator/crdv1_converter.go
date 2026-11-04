@@ -7,10 +7,11 @@ package generator
 
 import (
 	"fmt"
-	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	"k8s.io/utils/strings/slices"
+	"slices"
 	"sort"
 	"strings"
+
+	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 )
 
 func ConvertCRDv1(crds []*apiextensionsv1.CustomResourceDefinition) []*TemplateData {

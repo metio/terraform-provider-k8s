@@ -48,7 +48,7 @@ out/coverage.html: out/coverage.out
 
 out/go-format-sentinel: $(shell find . -type f -name '*.go')
 	mkdir --parents $(@D)
-	gofmt -s -w -e .
+	go tool gofumpt -w .
 	touch $@
 
 out/go-vet-sentinel: $(shell find . -type f -name '*.go')

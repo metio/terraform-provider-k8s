@@ -8,12 +8,13 @@ package generator
 import (
 	"fmt"
 	"io/fs"
-	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	clientschema "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+
+	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
+	clientschema "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme"
 )
 
 var deserializer = clientschema.Codecs.UniversalDeserializer()
@@ -23,7 +24,7 @@ func ParseCRDv1Files(basePath string) []*apiextensionsv1.CustomResourceDefinitio
 
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if !d.IsDir() && strings.HasSuffix(path, ".yaml") {
-			file, fileErr := os.ReadFile(path)
+			file, fileErr := os.ReadFile(path) // #nosec G122,G304 -- reads the schemas checked into this repository
 			if fileErr != nil {
 				return fmt.Errorf("error reading %s: %v", path, fileErr)
 			}

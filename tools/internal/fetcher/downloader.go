@@ -16,12 +16,12 @@ import (
 
 func downloadFile(path string, url string) error {
 	dir := filepath.Dir(path)
-	err := os.MkdirAll(dir, os.ModePerm)
+	err := os.MkdirAll(dir, 0o750)
 	if err != nil {
 		log.Printf("error creating %s", dir)
 		log.Fatal(err)
 	}
-	out, err := os.Create(path)
+	out, err := os.Create(path) // #nosec G304 -- the fetcher derives the path from its own source list
 	if err != nil {
 		return err
 	}

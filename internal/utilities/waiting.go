@@ -6,9 +6,10 @@
 package utilities
 
 import (
+	"time"
+
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"time"
 )
 
 func DetermineTimeout(attributes map[string]attr.Value) time.Duration {

@@ -5,7 +5,7 @@
 
 package generator
 
-import "k8s.io/utils/strings/slices"
+import "slices"
 
 var namespacedObjects = []string{
 	"io.k8s.api.apps.v1.DaemonSet",

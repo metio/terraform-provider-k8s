@@ -16,9 +16,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
 )
 
-var (
-	_ basetypes.StringTypable = (*NormalizedType)(nil)
-)
+var _ basetypes.StringTypable = (*NormalizedType)(nil)
 
 // NormalizedType is an attribute type that represents a valid JSON string (RFC 7159). Semantic equality logic is defined for NormalizedType
 // such that inconsequential differences between JSON strings are ignored (whitespace, property order, etc). If you need strict, byte-for-byte,

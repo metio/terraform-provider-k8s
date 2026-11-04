@@ -38,7 +38,7 @@ func GenerateExamples(templatePath string, outputPath string, data []*TemplateDa
 		//if err != nil {
 		//	log.Fatal(err)
 		//}
-		err := os.MkdirAll(manifestDirectory, os.ModePerm)
+		err := os.MkdirAll(manifestDirectory, 0o750)
 		if err != nil {
 			log.Fatal(err)
 		}

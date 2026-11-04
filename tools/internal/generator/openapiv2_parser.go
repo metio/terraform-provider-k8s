@@ -7,13 +7,14 @@ package generator
 
 import (
 	"fmt"
-	"github.com/pb33f/libopenapi"
-	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
 	"io/fs"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/pb33f/libopenapi"
+	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
 )
 
 func ParseOpenAPIv2Files(basePath string) []v2high.Swagger {
@@ -21,7 +22,7 @@ func ParseOpenAPIv2Files(basePath string) []v2high.Swagger {
 
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if !d.IsDir() && strings.HasSuffix(path, ".json") {
-			fileContent, readErr := os.ReadFile(path)
+			fileContent, readErr := os.ReadFile(path) // #nosec G122,G304 -- reads the schemas checked into this repository
 			if readErr != nil {
 				return readErr
 			}

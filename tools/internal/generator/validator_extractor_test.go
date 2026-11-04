@@ -6,8 +6,10 @@
 package generator
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/pb33f/go-yaml"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_escapeRegexPattern(t *testing.T) {
@@ -41,4 +43,10 @@ func Test_escapeRegexPattern(t *testing.T) {
 			assert.Equalf(t, tt.escaped, escapeRegexPattern(tt.pattern), "escapeRegexPattern(%s)", tt.pattern)
 		})
 	}
+}
+
+func TestOpenapiv2EnumsKeepTheValuesThatParse(t *testing.T) {
+	enums := []*yaml.Node{{Value: "1"}, {Value: "2.5"}, {Value: "x"}}
+	assert.Equal(t, []int64{1}, openapiv2IntEnums(enums))
+	assert.Equal(t, []float64{1, 2.5}, openapiv2FloatEnums(enums))
 }

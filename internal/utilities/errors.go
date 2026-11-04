@@ -8,9 +8,10 @@ package utilities
 import (
 	"errors"
 	"fmt"
+	"net/http"
+
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	k8sErrors "k8s.io/apimachinery/pkg/api/errors"
-	"net/http"
 )
 
 func GetNamespacedResourceError(err error, name string, namespace string) diag.Diagnostic {
@@ -33,8 +34,7 @@ func GetResourceError(err error, name string) diag.Diagnostic {
 }
 
 func notFoundGetError(err error, description string) diag.Diagnostic {
-	var statusError *k8sErrors.StatusError
-	if errors.As(err, &statusError) {
+	if statusError, ok := errors.AsType[*k8sErrors.StatusError](err); ok {
 		if statusError.Status().Code == http.StatusNotFound {
 			return diag.NewErrorDiagnostic("Unable to find resource", description)
 		}

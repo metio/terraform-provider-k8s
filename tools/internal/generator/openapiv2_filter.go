@@ -6,9 +6,10 @@
 package generator
 
 import (
-	"github.com/pb33f/libopenapi/datamodel/high/base"
-	"k8s.io/utils/strings/slices"
+	"slices"
 	"strings"
+
+	"github.com/pb33f/libopenapi/datamodel/high/base"
 )
 
 var supportedKubernetesApiObjects = []string{

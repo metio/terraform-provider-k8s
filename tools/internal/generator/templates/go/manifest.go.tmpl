@@ -42,7 +42,6 @@ import (
 	{{ end -}}
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	{{ if .AdditionalImports.MathBig -}}
 	"math/big"
 	{{ end -}}
@@ -83,6 +82,7 @@ func (r *{{ .ManifestTypeStruct }}) Metadata(_ context.Context, request datasour
 	response.TypeName = request.ProviderTypeName + "_{{ .ManifestTypeName }}"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *{{ .ManifestTypeStruct }}) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "{{ .Description }}",
@@ -171,11 +171,11 @@ func (r *{{ .ManifestTypeStruct }}) Read(ctx context.Context, request datasource
 	}
 
 	{{ if .Group -}}
-	model.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
+	model.ApiVersion = new("{{ .Group }}/{{ .Version }}")
 	{{ else -}}
-	model.ApiVersion = pointer.String("{{ .Version }}")
+	model.ApiVersion = new("{{ .Version }}")
 	{{ end -}}
-	model.Kind = pointer.String("{{ .Kind }}")
+	model.Kind = new("{{ .Kind }}")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

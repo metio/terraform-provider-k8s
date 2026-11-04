@@ -7,7 +7,7 @@ package generator
 
 import (
 	"fmt"
-	"k8s.io/utils/strings/slices"
+	"slices"
 )
 
 func GenerateProvider(templatePath string, outputPath string, data []*TemplateData) {

@@ -7,11 +7,12 @@ package validators
 
 import (
 	"context"
+	"testing"
+	"time"
+
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"testing"
-	"time"
 )
 
 func TestDateTime64Validator(t *testing.T) {

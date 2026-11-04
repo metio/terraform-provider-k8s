@@ -7,9 +7,10 @@ package generator
 
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/pb33f/go-yaml"
 	"github.com/pb33f/libopenapi/datamodel/high/base"
-	"strconv"
 )
 
 var _ validatorExtractor = (*openapiv2ValidatorExtractor)(nil)
@@ -137,7 +138,7 @@ func openapiv2IntEnums(enums []*yaml.Node) []int64 {
 	var values []int64
 
 	for _, val := range enums {
-		if number, err := strconv.ParseInt(val.Value, 10, 64); err != nil {
+		if number, err := strconv.ParseInt(val.Value, 10, 64); err == nil {
 			values = append(values, number)
 		}
 	}
@@ -149,7 +150,7 @@ func openapiv2FloatEnums(enums []*yaml.Node) []float64 {
 	var values []float64
 
 	for _, val := range enums {
-		if number, err := strconv.ParseFloat(val.Value, 10); err != nil {
+		if number, err := strconv.ParseFloat(val.Value, 64); err == nil {
 			values = append(values, number)
 		}
 	}

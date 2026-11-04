@@ -19,7 +19,6 @@ import (
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	k8sSchema "k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
-	"k8s.io/utils/pointer"
 	{{ if .AdditionalImports.MathBig -}}
 	"math/big"
 	{{ end -}}
@@ -60,6 +59,7 @@ func (r *{{ .DataSourceTypeStruct }}) Metadata(_ context.Context, request dataso
 	response.TypeName = request.ProviderTypeName + "_{{ .DataSourceTypeName }}"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *{{ .DataSourceTypeStruct }}) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "{{ .Description }}",
@@ -193,11 +193,11 @@ func (r *{{ .DataSourceTypeStruct }}) Read(ctx context.Context, request datasour
 	}
 
 	{{ if .Group -}}
-	data.ApiVersion = pointer.String("{{ .Group }}/{{ .Version }}")
+	data.ApiVersion = new("{{ .Group }}/{{ .Version }}")
 	{{ else -}}
-	data.ApiVersion = pointer.String("{{ .Version }}")
+	data.ApiVersion = new("{{ .Version }}")
 	{{ end -}}
-	data.Kind = pointer.String("{{ .Kind }}")
+	data.Kind = new("{{ .Kind }}")
 	data.Metadata = readResponse.Metadata
 	{{ range $index, $property := .Properties -}}
 	data.{{ $property.GoName }} = readResponse.{{ $property.GoName }}

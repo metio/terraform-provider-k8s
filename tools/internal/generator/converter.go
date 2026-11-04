@@ -7,10 +7,11 @@ package generator
 
 import (
 	"fmt"
-	"github.com/iancoleman/strcase"
 	"regexp"
 	"strings"
 	"unicode"
+
+	"github.com/iancoleman/strcase"
 )
 
 type TemplateData struct {
@@ -154,17 +155,19 @@ func propertyPath(path string, attributeName string) string {
 	return fmt.Sprintf("%s.%s", path, attributeName)
 }
 
-var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
-var matchAllCap = regexp.MustCompile("([a-z0-9])([A-Z])")
-var matchBackticks = regexp.MustCompile(`\x60`)
-var matchDoubleQuotes = regexp.MustCompile("\"")
-var matchNewlines = regexp.MustCompile("\n")
-var matchBackslashes = regexp.MustCompile(`\\`)
-var matchMultipleWhitespace = regexp.MustCompile(`\s+`)
-var matchDashes = regexp.MustCompile("-")
-var matchDots = regexp.MustCompile(`\.`)
-var matchSlashes = regexp.MustCompile("/")
-var matchColons = regexp.MustCompile(":")
+var (
+	matchFirstCap           = regexp.MustCompile("(.)([A-Z][a-z]+)")
+	matchAllCap             = regexp.MustCompile("([a-z0-9])([A-Z])")
+	matchBackticks          = regexp.MustCompile(`\x60`)
+	matchDoubleQuotes       = regexp.MustCompile("\"")
+	matchNewlines           = regexp.MustCompile("\n")
+	matchBackslashes        = regexp.MustCompile(`\\`)
+	matchMultipleWhitespace = regexp.MustCompile(`\s+`)
+	matchDashes             = regexp.MustCompile("-")
+	matchDots               = regexp.MustCompile(`\.`)
+	matchSlashes            = regexp.MustCompile("/")
+	matchColons             = regexp.MustCompile(":")
+)
 
 func toSnakeCase(str string) string {
 	snake := matchFirstCap.ReplaceAllString(str, "${1}_${2}")

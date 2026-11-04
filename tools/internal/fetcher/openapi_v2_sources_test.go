@@ -6,11 +6,12 @@
 package fetcher_test
 
 import (
-	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
-	"github.com/stretchr/testify/assert"
 	"sort"
 	"strings"
 	"testing"
+
+	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAlphabeticalOpenAPIs(t *testing.T) {

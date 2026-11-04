@@ -11,7 +11,7 @@
     {{ end -}}
     } {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
 {{ else if .TerraformCustomType -}}
-{{ .GoName }} {{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
+{{ .GoName }} {{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }}"{{ .BT -}}
 {{ else -}}
 {{ .GoName }} *{{ .GoType }} {{ .BT }}tfsdk:"{{ .TerraformAttributeName }}" json:"{{ .Name }},omitempty"{{ .BT -}}
 {{ end -}}

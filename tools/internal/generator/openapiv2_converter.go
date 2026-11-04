@@ -7,11 +7,12 @@ package generator
 
 import (
 	"fmt"
-	"github.com/pb33f/libopenapi/datamodel/high/base"
-	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
-	"k8s.io/utils/strings/slices"
+	"slices"
 	"sort"
 	"strings"
+
+	"github.com/pb33f/libopenapi/datamodel/high/base"
+	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
 )
 
 func ConvertOpenAPIv2(schemas []v2high.Swagger) []*TemplateData {

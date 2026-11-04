@@ -8,8 +8,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
 	"log"
+
+	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
 )
 
 func main() {

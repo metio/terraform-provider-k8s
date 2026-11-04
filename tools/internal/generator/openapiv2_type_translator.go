@@ -16,7 +16,7 @@ type openapiv2TypeTranslator struct {
 }
 
 func (t *openapiv2TypeTranslator) hasNoType() bool {
-	return t.property.Type == nil || len(t.property.Type) == 0
+	return len(t.property.Type) == 0
 }
 
 func (t *openapiv2TypeTranslator) isIntOrString() bool {

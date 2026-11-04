@@ -6,8 +6,9 @@
 package utilities
 
 import (
-	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"strings"
+
+	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func MapDeletionPropagation(value string) *v1.DeletionPropagation {

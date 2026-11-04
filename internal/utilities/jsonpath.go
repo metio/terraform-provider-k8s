@@ -7,9 +7,10 @@ package utilities
 
 import (
 	"errors"
+	"strings"
+
 	"k8s.io/client-go/util/jsonpath"
 	cmdget "k8s.io/kubectl/pkg/cmd/get"
-	"strings"
 )
 
 func NewJSONPathParser(relaxedExpression string) (*jsonpath.JSONPath, error) {

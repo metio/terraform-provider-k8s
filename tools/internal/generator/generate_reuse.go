@@ -7,6 +7,7 @@ package generator
 
 import (
 	"fmt"
+
 	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
 )
 

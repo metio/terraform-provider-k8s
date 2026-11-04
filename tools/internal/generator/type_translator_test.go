@@ -5,12 +5,13 @@
 package generator
 
 import (
+	"testing"
+
 	"github.com/pb33f/go-yaml"
 	"github.com/pb33f/libopenapi/datamodel/high/base"
 	"github.com/pb33f/libopenapi/orderedmap"
 	"github.com/stretchr/testify/assert"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	"testing"
 )
 
 func TestTranslateTypeWith(t *testing.T) {
@@ -173,7 +174,7 @@ func TestTranslateTypeWith(t *testing.T) {
 					Items: &apiextensionsv1.JSONSchemaPropsOrArray{
 						Schema: &apiextensionsv1.JSONSchemaProps{
 							Type:                   "object",
-							XPreserveUnknownFields: Ptr(true),
+							XPreserveUnknownFields: new(true),
 						},
 					},
 				},
@@ -313,7 +314,7 @@ func TestTranslateTypeWith(t *testing.T) {
 					AdditionalProperties: &apiextensionsv1.JSONSchemaPropsOrBool{
 						Schema: &apiextensionsv1.JSONSchemaProps{
 							Type:                   "object",
-							XPreserveUnknownFields: Ptr(true),
+							XPreserveUnknownFields: new(true),
 						},
 					},
 				},
@@ -331,7 +332,7 @@ func TestTranslateTypeWith(t *testing.T) {
 					AdditionalProperties: &apiextensionsv1.JSONSchemaPropsOrBool{
 						Schema: &apiextensionsv1.JSONSchemaProps{
 							Type:                   "object",
-							XPreserveUnknownFields: Ptr(true),
+							XPreserveUnknownFields: new(true),
 							Properties: map[string]apiextensionsv1.JSONSchemaProps{
 								"firs": {},
 							},
@@ -440,7 +441,7 @@ func TestTranslateTypeWith(t *testing.T) {
 		"CRDv1/unknown-fields": {
 			translator: &crd1TypeTranslator{
 				property: &apiextensionsv1.JSONSchemaProps{
-					XPreserveUnknownFields: Ptr(true),
+					XPreserveUnknownFields: new(true),
 				},
 			},
 			attributeType: "schema.MapAttribute",
@@ -452,7 +453,7 @@ func TestTranslateTypeWith(t *testing.T) {
 		"CRDv1/unknown-fields-with-properties": {
 			translator: &crd1TypeTranslator{
 				property: &apiextensionsv1.JSONSchemaProps{
-					XPreserveUnknownFields: Ptr(true),
+					XPreserveUnknownFields: new(true),
 					Properties: map[string]apiextensionsv1.JSONSchemaProps{
 						"firs": {},
 					},
@@ -994,7 +995,6 @@ func TestTranslateTypeWith(t *testing.T) {
 	}
 
 	for name, test := range testCases {
-		test := test
 		t.Run(name, func(t *testing.T) {
 			attributeType, valueType, elementType, goType, customType := translateTypeWith(test.translator, test.terraformResourceName, test.propPath)
 
@@ -1007,6 +1007,7 @@ func TestTranslateTypeWith(t *testing.T) {
 	}
 }
 
+//go:fix inline
 func Ptr[T any](v T) *T {
-	return &v
+	return new(v)
 }

@@ -8,12 +8,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
-	"github.com/metio/terraform-provider-k8s/tools/internal/generator"
 	"log"
 	"os"
 	"path/filepath"
 	"sort"
+
+	"github.com/metio/terraform-provider-k8s/tools/internal/fetcher"
+	"github.com/metio/terraform-provider-k8s/tools/internal/generator"
 )
 
 func main() {

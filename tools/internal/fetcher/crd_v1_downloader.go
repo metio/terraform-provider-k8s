@@ -68,7 +68,7 @@ func unzip(src, dest string) error {
 		}
 	}()
 
-	err = os.MkdirAll(dest, 0755)
+	err = os.MkdirAll(dest, 0o750)
 	if err != nil {
 		return err
 	}
@@ -84,7 +84,7 @@ func unzip(src, dest string) error {
 			}
 		}()
 
-		path := filepath.Join(dest, f.Name)
+		path := filepath.Join(dest, f.Name) // #nosec G305 -- the prefix check below rejects paths outside dest
 
 		// Check for ZipSlip (Directory traversal)
 		if !strings.HasPrefix(path, filepath.Clean(dest)+string(os.PathSeparator)) {
@@ -101,7 +101,7 @@ func unzip(src, dest string) error {
 			if err != nil {
 				return err
 			}
-			f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
+			f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode()) // #nosec G304 -- path passed the ZipSlip check above
 			if err != nil {
 				return err
 			}
@@ -111,7 +111,7 @@ func unzip(src, dest string) error {
 				}
 			}()
 
-			_, err = io.Copy(f, rc)
+			_, err = io.Copy(f, rc) // #nosec G110 -- archives come from the upstream projects listed in the fetcher
 			if err != nil {
 				return err
 			}
@@ -150,7 +150,7 @@ func copyDirectory(scrDir, dest string) error {
 
 		switch fileInfo.Mode() & os.ModeType {
 		case os.ModeDir:
-			if err := createIfNotExists(destPath, 0755); err != nil {
+			if err := createIfNotExists(destPath, 0o755); err != nil {
 				return err
 			}
 			if err := copyDirectory(sourcePath, destPath); err != nil {
@@ -186,14 +186,14 @@ func copyDirectory(scrDir, dest string) error {
 }
 
 func copyFile(srcFile, dstFile string) error {
-	out, err := os.Create(dstFile)
+	out, err := os.Create(dstFile) // #nosec G304 -- both paths come from the fetcher's own source list
 	if err != nil {
 		return err
 	}
 
 	defer out.Close()
 
-	in, err := os.Open(srcFile)
+	in, err := os.Open(srcFile) // #nosec G304 -- both paths come from the fetcher's own source list
 	if err != nil {
 		return err
 	}

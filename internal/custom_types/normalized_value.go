@@ -69,7 +69,6 @@ func (v Normalized) StringSemanticEquals(_ context.Context, newValuable basetype
 	}
 
 	result, err := jsonEqual(newValue.ValueString(), v.ValueString())
-
 	if err != nil {
 		diags.AddError(
 			"Semantic Equality Check Error",
@@ -106,7 +105,7 @@ func normalizeJSONString(jsonStr string) (string, error) {
 	// of StringSemanticEquals for examples.
 	dec.UseNumber()
 
-	var temp interface{}
+	var temp any
 	if err := dec.Decode(&temp); err != nil {
 		return "", err
 	}

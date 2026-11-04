@@ -8,8 +8,9 @@ package validators
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"regexp"
+
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 )
