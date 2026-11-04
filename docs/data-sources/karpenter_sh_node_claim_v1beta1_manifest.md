@@ -18,6 +18,13 @@ data "k8s_karpenter_sh_node_claim_v1beta1_manifest" "example" {
     name = "some-name"
 
   }
+
+  spec = {
+    node_class_ref = {
+      name = "some-value"
+    }
+    requirements = []
+  }
 }
 ```
 

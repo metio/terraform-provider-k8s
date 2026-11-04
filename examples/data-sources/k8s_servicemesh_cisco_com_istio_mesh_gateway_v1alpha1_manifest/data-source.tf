@@ -3,4 +3,13 @@ data "k8s_servicemesh_cisco_com_istio_mesh_gateway_v1alpha1_manifest" "example" 
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    istio_control_plane = {}
+    service = {
+      ports = []
+      type  = "ClusterIP"
+    }
+    type = "ingress"
+  }
 }

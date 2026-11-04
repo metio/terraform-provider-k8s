@@ -3,4 +3,8 @@ data "k8s_kyverno_io_cleanup_policy_v2alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    schedule = "some-value"
+  }
 }

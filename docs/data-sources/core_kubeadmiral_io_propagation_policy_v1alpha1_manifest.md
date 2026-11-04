@@ -18,6 +18,10 @@ data "k8s_core_kubeadmiral_io_propagation_policy_v1alpha1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    scheduling_mode = "Duplicate"
+  }
 }
 ```
 

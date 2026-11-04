@@ -18,6 +18,11 @@ data "k8s_core_kubeadmiral_io_scheduler_plugin_webhook_configuration_v1alpha1_ma
     name = "some-name"
 
   }
+
+  spec = {
+    payload_versions = []
+    url_prefix       = "some-value"
+  }
 }
 ```
 

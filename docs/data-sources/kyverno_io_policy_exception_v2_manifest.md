@@ -18,6 +18,11 @@ data "k8s_kyverno_io_policy_exception_v2_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    exceptions = []
+    match      = {}
+  }
 }
 ```
 

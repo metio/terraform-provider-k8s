@@ -18,6 +18,13 @@ data "k8s_bpfman_io_fentry_program_v1alpha1_manifest" "example" {
     name = "some-name"
 
   }
+
+  spec = {
+    bpffunctionname = "some-value"
+    bytecode        = {}
+    func_name       = "some-value"
+    nodeselector    = {}
+  }
 }
 ```
 

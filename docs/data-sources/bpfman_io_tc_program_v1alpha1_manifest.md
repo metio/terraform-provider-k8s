@@ -18,6 +18,17 @@ data "k8s_bpfman_io_tc_program_v1alpha1_manifest" "example" {
     name = "some-name"
 
   }
+
+  spec = {
+    bpffunctionname = "some-value"
+    bytecode        = {}
+    direction       = "ingress"
+    interfaceselector = {
+      primarynodeinterface = true
+    }
+    nodeselector = {}
+    priority     = 1
+  }
 }
 ```
 

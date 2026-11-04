@@ -18,6 +18,16 @@ data "k8s_bpfman_io_xdp_program_v1alpha1_manifest" "example" {
     name = "some-name"
 
   }
+
+  spec = {
+    bpffunctionname = "some-value"
+    bytecode        = {}
+    interfaceselector = {
+      primarynodeinterface = true
+    }
+    nodeselector = {}
+    priority     = 1
+  }
 }
 ```
 

@@ -18,6 +18,13 @@ data "k8s_postgresql_cnpg_io_scheduled_backup_v1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    cluster = {
+      name = "some-value"
+    }
+    schedule = "some-value"
+  }
 }
 ```
 

@@ -3,4 +3,11 @@ data "k8s_policy_networking_k8s_io_admin_network_policy_v1alpha1_manifest" "exam
     name = "some-name"
 
   }
+
+  spec = {
+    priority = 1
+    subject = {
+      namespaces = {}
+    }
+  }
 }

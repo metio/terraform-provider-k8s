@@ -18,6 +18,10 @@ data "k8s_stunner_l7mp_io_udp_route_v1_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+
+  spec = {
+    rules = []
+  }
 }
 ```
 

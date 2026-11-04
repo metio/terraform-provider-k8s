@@ -3,4 +3,8 @@ data "k8s_clustertemplate_openshift_io_cluster_template_v1alpha1_manifest" "exam
     name = "some-name"
 
   }
+
+  spec = {
+    cluster_definition = "some-value"
+  }
 }

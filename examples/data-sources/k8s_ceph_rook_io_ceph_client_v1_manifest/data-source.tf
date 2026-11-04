@@ -4,6 +4,8 @@ data "k8s_ceph_rook_io_ceph_client_v1_manifest" "example" {
     namespace = "some-namespace"
   }
   spec = {
-    caps = 3
+    caps = {
+      mon = "allow r"
+    }
   }
 }
