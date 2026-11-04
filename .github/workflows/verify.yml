@@ -13,10 +13,11 @@ permissions:
 jobs:
   go:
     name: Golang
-    uses: metio/ci/.github/workflows/golang.yml@0ccc3e67b712d7b7951c92ed1201da183e89e1d8 # metio/ci#94
+    uses: metio/ci/.github/workflows/golang.yml@00adafd0fe1924f57325d9dd264d5d731fb099ad # 2026.11.4082509
     with:
       packages: ./internal/... ./tools/...
       test-timeout-minutes: 60
+      lint-timeout-minutes: 30
   docs:
     name: Documentation
     runs-on: ubuntu-latest
