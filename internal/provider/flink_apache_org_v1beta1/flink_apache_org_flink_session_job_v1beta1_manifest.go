@@ -7,6 +7,7 @@ package flink_apache_org_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FlinkApacheOrgFlinkSessionJobV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &FlinkApacheOrgFlinkSessionJobV1Beta1Manifest{}
 
 func NewFlinkApacheOrgFlinkSessionJobV1Beta1Manifest() datasource.DataSource {
 	return &FlinkApacheOrgFlinkSessionJobV1Beta1Manifest{}
@@ -66,6 +64,7 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_flink_apache_org_flink_session_job_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -285,8 +284,8 @@ func (r *FlinkApacheOrgFlinkSessionJobV1Beta1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("flink.apache.org/v1beta1")
-	model.Kind = pointer.String("FlinkSessionJob")
+	model.ApiVersion = new("flink.apache.org/v1beta1")
+	model.Kind = new("FlinkSessionJob")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

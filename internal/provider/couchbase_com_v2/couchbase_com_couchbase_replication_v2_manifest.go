@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseReplicationV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseReplicationV2Manifest{}
 
 func NewCouchbaseComCouchbaseReplicationV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseReplicationV2Manifest{}
@@ -74,6 +72,7 @@ func (r *CouchbaseComCouchbaseReplicationV2Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_replication_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseReplicationV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replication stream from a source bucket to a destination bucket. This provides off-site backup, migration, and disaster recovery.",
@@ -351,8 +350,8 @@ func (r *CouchbaseComCouchbaseReplicationV2Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseReplication")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseReplication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

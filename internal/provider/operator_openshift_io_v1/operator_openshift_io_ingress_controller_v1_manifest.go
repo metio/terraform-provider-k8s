@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoIngressControllerV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoIngressControllerV1Manifest{}
 
 func NewOperatorOpenshiftIoIngressControllerV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoIngressControllerV1Manifest{}
@@ -231,6 +229,7 @@ func (r *OperatorOpenshiftIoIngressControllerV1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_ingress_controller_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoIngressControllerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressController describes a managed ingress controller for the cluster. The controller can service OpenShift Route and Kubernetes Ingress resources.  When an IngressController is created, a new ingress controller deployment is created to allow external traffic to reach the services that expose Ingress or Route resources. Updating this resource may lead to disruption for public facing network connections as a new ingress controller revision may be rolled out.  https://kubernetes.io/docs/concepts/services-networking/ingress-controllers  Whenever possible, sensible defaults for the platform are used. See each field for more details.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -1635,8 +1634,8 @@ func (r *OperatorOpenshiftIoIngressControllerV1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("IngressController")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("IngressController")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

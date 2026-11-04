@@ -7,9 +7,10 @@ package kafka_strimzi_io_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kafka_strimzi_io_v1beta1"
-	"testing"
 )
 
 func TestKafkaStrimziIoKafkaTopicV1Beta1Manifest_ValidateSchema(t *testing.T) {

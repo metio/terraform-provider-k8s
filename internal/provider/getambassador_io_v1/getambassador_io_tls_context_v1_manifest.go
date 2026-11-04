@@ -7,6 +7,7 @@ package getambassador_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoTlscontextV1Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoTlscontextV1Manifest{}
 
 func NewGetambassadorIoTlscontextV1Manifest() datasource.DataSource {
 	return &GetambassadorIoTlscontextV1Manifest{}
@@ -67,6 +65,7 @@ func (r *GetambassadorIoTlscontextV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_tls_context_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoTlscontextV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TLSContext is the Schema for the tlscontexts API",
@@ -303,8 +302,8 @@ func (r *GetambassadorIoTlscontextV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v1")
-	model.Kind = pointer.String("TLSContext")
+	model.ApiVersion = new("getambassador.io/v1")
+	model.Kind = new("TLSContext")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

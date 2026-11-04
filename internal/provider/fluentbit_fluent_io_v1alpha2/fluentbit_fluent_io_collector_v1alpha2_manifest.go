@@ -7,6 +7,7 @@ package fluentbit_fluent_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FluentbitFluentIoCollectorV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &FluentbitFluentIoCollectorV1Alpha2Manifest{}
 
 func NewFluentbitFluentIoCollectorV1Alpha2Manifest() datasource.DataSource {
 	return &FluentbitFluentIoCollectorV1Alpha2Manifest{}
@@ -642,6 +640,7 @@ func (r *FluentbitFluentIoCollectorV1Alpha2Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_fluentbit_fluent_io_collector_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FluentbitFluentIoCollectorV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Collector is the Schema for the fluentbits API",
@@ -4763,8 +4762,8 @@ func (r *FluentbitFluentIoCollectorV1Alpha2Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("fluentbit.fluent.io/v1alpha2")
-	model.Kind = pointer.String("Collector")
+	model.ApiVersion = new("fluentbit.fluent.io/v1alpha2")
+	model.Kind = new("Collector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

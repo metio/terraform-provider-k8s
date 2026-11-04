@@ -7,6 +7,7 @@ package storageos_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StorageosComStorageOsclusterV1Manifest{}
-)
+var _ datasource.DataSource = &StorageosComStorageOsclusterV1Manifest{}
 
 func NewStorageosComStorageOsclusterV1Manifest() datasource.DataSource {
 	return &StorageosComStorageOsclusterV1Manifest{}
@@ -226,6 +224,7 @@ func (r *StorageosComStorageOsclusterV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_storageos_com_storage_os_cluster_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StorageosComStorageOsclusterV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "StorageOSCluster is the Schema for the storageosclusters API",
@@ -1573,8 +1572,8 @@ func (r *StorageosComStorageOsclusterV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("storageos.com/v1")
-	model.Kind = pointer.String("StorageOSCluster")
+	model.ApiVersion = new("storageos.com/v1")
+	model.Kind = new("StorageOSCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package camel_apache_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CamelApacheOrgPipeV1Manifest{}
-)
+var _ datasource.DataSource = &CamelApacheOrgPipeV1Manifest{}
 
 func NewCamelApacheOrgPipeV1Manifest() datasource.DataSource {
 	return &CamelApacheOrgPipeV1Manifest{}
@@ -1586,6 +1584,7 @@ func (r *CamelApacheOrgPipeV1Manifest) Metadata(_ context.Context, request datas
 	response.TypeName = request.ProviderTypeName + "_camel_apache_org_pipe_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CamelApacheOrgPipeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Pipe is the Schema for the Pipe API.",
@@ -12284,8 +12283,8 @@ func (r *CamelApacheOrgPipeV1Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ApiVersion = pointer.String("camel.apache.org/v1")
-	model.Kind = pointer.String("Pipe")
+	model.ApiVersion = new("camel.apache.org/v1")
+	model.Kind = new("Pipe")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

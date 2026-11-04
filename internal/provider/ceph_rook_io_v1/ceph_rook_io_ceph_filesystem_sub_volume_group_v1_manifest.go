@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -17,13 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephFilesystemSubVolumeGroupV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephFilesystemSubVolumeGroupV1Manifest{}
 
 func NewCephRookIoCephFilesystemSubVolumeGroupV1Manifest() datasource.DataSource {
 	return &CephRookIoCephFilesystemSubVolumeGroupV1Manifest{}
@@ -61,6 +59,7 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_filesystem_sub_volume_group_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephFilesystemSubVolumeGroup represents a Ceph Filesystem SubVolumeGroup",
@@ -228,8 +227,8 @@ func (r *CephRookIoCephFilesystemSubVolumeGroupV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephFilesystemSubVolumeGroup")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephFilesystemSubVolumeGroup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package flux_framework_org_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FluxFrameworkOrgMiniClusterV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &FluxFrameworkOrgMiniClusterV1Alpha2Manifest{}
 
 func NewFluxFrameworkOrgMiniClusterV1Alpha2Manifest() datasource.DataSource {
 	return &FluxFrameworkOrgMiniClusterV1Alpha2Manifest{}
@@ -236,6 +234,7 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_flux_framework_org_mini_cluster_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MiniCluster is the Schema for a Flux job launcher on K8s",
@@ -1664,8 +1663,8 @@ func (r *FluxFrameworkOrgMiniClusterV1Alpha2Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("flux-framework.org/v1alpha2")
-	model.Kind = pointer.String("MiniCluster")
+	model.ApiVersion = new("flux-framework.org/v1alpha2")
+	model.Kind = new("MiniCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package storage_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StorageKubeblocksIoStorageProviderV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &StorageKubeblocksIoStorageProviderV1Alpha1Manifest{}
 
 func NewStorageKubeblocksIoStorageProviderV1Alpha1Manifest() datasource.DataSource {
 	return &StorageKubeblocksIoStorageProviderV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_storage_kubeblocks_io_storage_provider_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "StorageProvider comprises specifications that provide guidance on accessing remote storage. Currently the supported access methods are via a dedicated CSI driver or the 'datasafed' tool. In case of CSI driver, the specification expounds on provisioning PVCs for that driver. As for the 'datasafed' tool, the specification provides insights on generating the necessary configuration file. Deprecated since v0.9, moving to dataprotection.kubeblocks.io API group, will be removed in v0.11.",
@@ -203,8 +202,8 @@ func (r *StorageKubeblocksIoStorageProviderV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("storage.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("StorageProvider")
+	model.ApiVersion = new("storage.kubeblocks.io/v1alpha1")
+	model.Kind = new("StorageProvider")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

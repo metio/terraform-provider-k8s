@@ -7,6 +7,7 @@ package sonataflow_org_v1alpha08
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SonataflowOrgSonataFlowV1Alpha08Manifest{}
-)
+var _ datasource.DataSource = &SonataflowOrgSonataFlowV1Alpha08Manifest{}
 
 func NewSonataflowOrgSonataFlowV1Alpha08Manifest() datasource.DataSource {
 	return &SonataflowOrgSonataFlowV1Alpha08Manifest{}
@@ -62,21 +60,19 @@ type SonataflowOrgSonataFlowV1Alpha08ManifestData struct {
 					ContextAttributeName  *string `tfsdk:"context_attribute_name" json:"contextAttributeName,omitempty"`
 					ContextAttributeValue *string `tfsdk:"context_attribute_value" json:"contextAttributeValue,omitempty"`
 				} `tfsdk:"correlation" json:"correlation,omitempty"`
-				DataOnly *bool   `tfsdk:"data_only" json:"dataOnly,omitempty"`
-				Kind     *string `tfsdk:"kind" json:"kind,omitempty"`
-				Metadata *struct {
-				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Name   *string `tfsdk:"name" json:"name,omitempty"`
-				Source *string `tfsdk:"source" json:"source,omitempty"`
-				Type   *string `tfsdk:"type" json:"type,omitempty"`
+				DataOnly *bool     `tfsdk:"data_only" json:"dataOnly,omitempty"`
+				Kind     *string   `tfsdk:"kind" json:"kind,omitempty"`
+				Metadata *struct{} `tfsdk:"metadata" json:"metadata,omitempty"`
+				Name     *string   `tfsdk:"name" json:"name,omitempty"`
+				Source   *string   `tfsdk:"source" json:"source,omitempty"`
+				Type     *string   `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"events" json:"events,omitempty"`
 			Functions *[]struct {
-				AuthRef  *string `tfsdk:"auth_ref" json:"authRef,omitempty"`
-				Metadata *struct {
-				} `tfsdk:"metadata" json:"metadata,omitempty"`
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Operation *string `tfsdk:"operation" json:"operation,omitempty"`
-				Type      *string `tfsdk:"type" json:"type,omitempty"`
+				AuthRef   *string   `tfsdk:"auth_ref" json:"authRef,omitempty"`
+				Metadata  *struct{} `tfsdk:"metadata" json:"metadata,omitempty"`
+				Name      *string   `tfsdk:"name" json:"name,omitempty"`
+				Operation *string   `tfsdk:"operation" json:"operation,omitempty"`
+				Type      *string   `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"functions" json:"functions,omitempty"`
 			KeepActive *bool              `tfsdk:"keep_active" json:"keepActive,omitempty"`
 			Metadata   *map[string]string `tfsdk:"metadata" json:"metadata,omitempty"`
@@ -1459,6 +1455,7 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_sonataflow_org_sonata_flow_v1alpha08_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SonataFlow is the descriptor representation for a workflow application based on the CNCF Serverless Workflow specification.",
@@ -10985,8 +10982,8 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("sonataflow.org/v1alpha08")
-	model.Kind = pointer.String("SonataFlow")
+	model.ApiVersion = new("sonataflow.org/v1alpha08")
+	model.Kind = new("SonataFlow")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

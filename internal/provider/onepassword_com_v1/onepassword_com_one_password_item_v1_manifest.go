@@ -7,6 +7,7 @@ package onepassword_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OnepasswordComOnePasswordItemV1Manifest{}
-)
+var _ datasource.DataSource = &OnepasswordComOnePasswordItemV1Manifest{}
 
 func NewOnepasswordComOnePasswordItemV1Manifest() datasource.DataSource {
 	return &OnepasswordComOnePasswordItemV1Manifest{}
@@ -52,6 +50,7 @@ func (r *OnepasswordComOnePasswordItemV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_onepassword_com_one_password_item_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OnepasswordComOnePasswordItemV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OnePasswordItem is the Schema for the onepassworditems API",
@@ -158,8 +157,8 @@ func (r *OnepasswordComOnePasswordItemV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("onepassword.com/v1")
-	model.Kind = pointer.String("OnePasswordItem")
+	model.ApiVersion = new("onepassword.com/v1")
+	model.Kind = new("OnePasswordItem")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

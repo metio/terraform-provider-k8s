@@ -7,6 +7,7 @@ package jobset_x_k8s_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &JobsetXK8SIoJobSetV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &JobsetXK8SIoJobSetV1Alpha2Manifest{}
 
 func NewJobsetXK8SIoJobSetV1Alpha2Manifest() datasource.DataSource {
 	return &JobsetXK8SIoJobSetV1Alpha2Manifest{}
@@ -1445,6 +1443,7 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_jobset_x_k8s_io_job_set_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "JobSet is the Schema for the jobsets API",
@@ -10889,8 +10888,8 @@ func (r *JobsetXK8SIoJobSetV1Alpha2Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("jobset.x-k8s.io/v1alpha2")
-	model.Kind = pointer.String("JobSet")
+	model.ApiVersion = new("jobset.x-k8s.io/v1alpha2")
+	model.Kind = new("JobSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

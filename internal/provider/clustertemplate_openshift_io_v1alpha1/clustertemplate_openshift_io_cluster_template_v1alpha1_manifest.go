@@ -7,6 +7,7 @@ package clustertemplate_openshift_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest{}
 
 func NewClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest() datasource.DataSource {
 	return &ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest{}
@@ -54,6 +52,7 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest) Metadata(_ c
 	response.TypeName = request.ProviderTypeName + "_clustertemplate_openshift_io_cluster_template_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Template of a cluster - both installation and post-install setup are defined as ArgoCD application spec. Any application source is supported - typically a Helm chart",
@@ -168,8 +167,8 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ApiVersion = pointer.String("clustertemplate.openshift.io/v1alpha1")
-	model.Kind = pointer.String("ClusterTemplate")
+	model.ApiVersion = new("clustertemplate.openshift.io/v1alpha1")
+	model.Kind = new("ClusterTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

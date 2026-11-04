@@ -7,9 +7,10 @@ package work_karmada_io_v1alpha2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/work_karmada_io_v1alpha2"
-	"testing"
 )
 
 func TestWorkKarmadaIoResourceBindingV1Alpha2Manifest_ValidateSchema(t *testing.T) {

@@ -7,6 +7,8 @@ package gateway_nginx_org_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNginxOrgNginxProxyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNginxOrgNginxProxyV1Alpha1Manifest{}
 
 func NewGatewayNginxOrgNginxProxyV1Alpha1Manifest() datasource.DataSource {
 	return &GatewayNginxOrgNginxProxyV1Alpha1Manifest{}
@@ -77,6 +75,7 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_gateway_nginx_org_nginx_proxy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NginxProxy is a configuration object that is attached to a GatewayClass parametersRef. It provides a way to configure global settings for all Gateways defined from the GatewayClass.",
@@ -363,8 +362,8 @@ func (r *GatewayNginxOrgNginxProxyV1Alpha1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.nginx.org/v1alpha1")
-	model.Kind = pointer.String("NginxProxy")
+	model.ApiVersion = new("gateway.nginx.org/v1alpha1")
+	model.Kind = new("NginxProxy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

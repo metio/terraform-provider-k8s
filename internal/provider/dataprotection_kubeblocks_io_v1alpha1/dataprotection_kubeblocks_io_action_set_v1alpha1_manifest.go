@@ -7,6 +7,7 @@ package dataprotection_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DataprotectionKubeblocksIoActionSetV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DataprotectionKubeblocksIoActionSetV1Alpha1Manifest{}
 
 func NewDataprotectionKubeblocksIoActionSetV1Alpha1Manifest() datasource.DataSource {
 	return &DataprotectionKubeblocksIoActionSetV1Alpha1Manifest{}
@@ -119,6 +117,7 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_dataprotection_kubeblocks_io_action_set_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ActionSet is the Schema for the actionsets API",
@@ -693,8 +692,8 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("dataprotection.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("ActionSet")
+	model.ApiVersion = new("dataprotection.kubeblocks.io/v1alpha1")
+	model.Kind = new("ActionSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package k8s_otterize_com_v1alpha2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_otterize_com_v1alpha2"
-	"testing"
 )
 
 func TestK8SOtterizeComProtectedServiceV1Alpha2Manifest_ValidateSchema(t *testing.T) {

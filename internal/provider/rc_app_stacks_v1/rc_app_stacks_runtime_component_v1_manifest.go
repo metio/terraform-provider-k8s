@@ -7,6 +7,8 @@ package rc_app_stacks_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RcAppStacksRuntimeComponentV1Manifest{}
-)
+var _ datasource.DataSource = &RcAppStacksRuntimeComponentV1Manifest{}
 
 func NewRcAppStacksRuntimeComponentV1Manifest() datasource.DataSource {
 	return &RcAppStacksRuntimeComponentV1Manifest{}
@@ -1412,6 +1410,7 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_rc_app_stacks_runtime_component_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Represents the deployment of a runtime component",
@@ -10655,8 +10654,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("rc.app.stacks/v1")
-	model.Kind = pointer.String("RuntimeComponent")
+	model.ApiVersion = new("rc.app.stacks/v1")
+	model.Kind = new("RuntimeComponent")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

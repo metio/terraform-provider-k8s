@@ -7,9 +7,10 @@ package machine_openshift_io_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/machine_openshift_io_v1"
-	"testing"
 )
 
 func TestMachineOpenshiftIoControlPlaneMachineSetV1Manifest_ValidateSchema(t *testing.T) {

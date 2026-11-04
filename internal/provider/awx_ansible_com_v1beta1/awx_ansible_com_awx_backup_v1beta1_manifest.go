@@ -7,6 +7,7 @@ package awx_ansible_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AwxAnsibleComAwxbackupV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AwxAnsibleComAwxbackupV1Beta1Manifest{}
 
 func NewAwxAnsibleComAwxbackupV1Beta1Manifest() datasource.DataSource {
 	return &AwxAnsibleComAwxbackupV1Beta1Manifest{}
@@ -76,6 +74,7 @@ func (r *AwxAnsibleComAwxbackupV1Beta1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_awx_ansible_com_awx_backup_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AwxAnsibleComAwxbackupV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Schema validation for the AWXBackup CRD",
@@ -357,8 +356,8 @@ func (r *AwxAnsibleComAwxbackupV1Beta1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("awx.ansible.com/v1beta1")
-	model.Kind = pointer.String("AWXBackup")
+	model.ApiVersion = new("awx.ansible.com/v1beta1")
+	model.Kind = new("AWXBackup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

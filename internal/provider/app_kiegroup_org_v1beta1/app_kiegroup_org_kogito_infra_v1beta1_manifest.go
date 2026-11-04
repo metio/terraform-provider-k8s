@@ -7,6 +7,7 @@ package app_kiegroup_org_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppKiegroupOrgKogitoInfraV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AppKiegroupOrgKogitoInfraV1Beta1Manifest{}
 
 func NewAppKiegroupOrgKogitoInfraV1Beta1Manifest() datasource.DataSource {
 	return &AppKiegroupOrgKogitoInfraV1Beta1Manifest{}
@@ -96,6 +94,7 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_app_kiegroup_org_kogito_infra_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "KogitoInfra is the resource to bind a Custom Resource (CR) not managed by Kogito Operator to a given deployed Kogito service. It holds the reference of a CR managed by another operator such as Strimzi. For example: one can create a Kafka CR via Strimzi and link this resource using KogitoInfra to a given Kogito service (custom or supporting, such as Data Index). Please refer to the Kogito Operator documentation (https://docs.jboss.org/kogito/release/latest/html_single/) for more information.",
@@ -500,8 +499,8 @@ func (r *AppKiegroupOrgKogitoInfraV1Beta1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("app.kiegroup.org/v1beta1")
-	model.Kind = pointer.String("KogitoInfra")
+	model.ApiVersion = new("app.kiegroup.org/v1beta1")
+	model.Kind = new("KogitoInfra")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

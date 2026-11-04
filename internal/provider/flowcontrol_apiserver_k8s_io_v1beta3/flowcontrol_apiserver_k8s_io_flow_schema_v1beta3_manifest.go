@@ -7,6 +7,7 @@ package flowcontrol_apiserver_k8s_io_v1beta3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest{}
-)
+var _ datasource.DataSource = &FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest{}
 
 func NewFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest() datasource.DataSource {
 	return &FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest{}
@@ -82,6 +80,7 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_flowcontrol_apiserver_k8s_io_flow_schema_v1beta3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a 'flow distinguisher'.",
@@ -375,8 +374,8 @@ func (r *FlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("flowcontrol.apiserver.k8s.io/v1beta3")
-	model.Kind = pointer.String("FlowSchema")
+	model.ApiVersion = new("flowcontrol.apiserver.k8s.io/v1beta3")
+	model.Kind = new("FlowSchema")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package cert_manager_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CertManagerIoIssuerV1Manifest{}
-)
+var _ datasource.DataSource = &CertManagerIoIssuerV1Manifest{}
 
 func NewCertManagerIoIssuerV1Manifest() datasource.DataSource {
 	return &CertManagerIoIssuerV1Manifest{}
@@ -635,6 +633,7 @@ func (r *CertManagerIoIssuerV1Manifest) Metadata(_ context.Context, request data
 	response.TypeName = request.ProviderTypeName + "_cert_manager_io_issuer_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CertManagerIoIssuerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "An Issuer represents a certificate issuing authority which can be referenced as part of 'issuerRef' fields. It is scoped to a single namespace and can therefore only be referenced by resources within the same namespace.",
@@ -4602,8 +4601,8 @@ func (r *CertManagerIoIssuerV1Manifest) Read(ctx context.Context, request dataso
 		return
 	}
 
-	model.ApiVersion = pointer.String("cert-manager.io/v1")
-	model.Kind = pointer.String("Issuer")
+	model.ApiVersion = new("cert-manager.io/v1")
+	model.Kind = new("Issuer")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

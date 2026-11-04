@@ -7,6 +7,7 @@ package imaging_ingestion_alvearie_org_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest{}
 
 func NewImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest() datasource.DataSource {
 	return &ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest{}
@@ -64,6 +62,7 @@ func (r *ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest) Metadata(_
 	response.TypeName = request.ProviderTypeName + "_imaging_ingestion_alvearie_org_dicom_event_bridge_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DicomEventBridge is the Schema for the dicomeventbridges API",
@@ -254,8 +253,8 @@ func (r *ImagingIngestionAlvearieOrgDicomEventBridgeV1Alpha1Manifest) Read(ctx c
 		return
 	}
 
-	model.ApiVersion = pointer.String("imaging-ingestion.alvearie.org/v1alpha1")
-	model.Kind = pointer.String("DicomEventBridge")
+	model.ApiVersion = new("imaging-ingestion.alvearie.org/v1alpha1")
+	model.Kind = new("DicomEventBridge")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

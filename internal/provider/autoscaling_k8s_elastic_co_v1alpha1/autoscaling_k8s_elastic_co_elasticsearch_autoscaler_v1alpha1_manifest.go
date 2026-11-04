@@ -7,6 +7,7 @@ package autoscaling_k8s_elastic_co_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest{}
 
 func NewAutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest() datasource.DataSource {
 	return &AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest{}
@@ -80,6 +78,7 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_autoscaling_k8s_elastic_co_elasticsearch_autoscaler_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ElasticsearchAutoscaler represents an ElasticsearchAutoscaler resource in a Kubernetes cluster.",
@@ -368,8 +367,8 @@ func (r *AutoscalingK8SElasticCoElasticsearchAutoscalerV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("autoscaling.k8s.elastic.co/v1alpha1")
-	model.Kind = pointer.String("ElasticsearchAutoscaler")
+	model.ApiVersion = new("autoscaling.k8s.elastic.co/v1alpha1")
+	model.Kind = new("ElasticsearchAutoscaler")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

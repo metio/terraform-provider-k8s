@@ -7,6 +7,8 @@ package cert_manager_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CertManagerIoClusterIssuerV1Manifest{}
-)
+var _ datasource.DataSource = &CertManagerIoClusterIssuerV1Manifest{}
 
 func NewCertManagerIoClusterIssuerV1Manifest() datasource.DataSource {
 	return &CertManagerIoClusterIssuerV1Manifest{}
@@ -634,6 +632,7 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_cert_manager_io_cluster_issuer_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CertManagerIoClusterIssuerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A ClusterIssuer represents a certificate issuing authority which can be referenced as part of 'issuerRef' fields. It is similar to an Issuer, however it is cluster-scoped and therefore can be referenced by resources that exist in *any* namespace, not just the same namespace as the referent.",
@@ -4589,8 +4588,8 @@ func (r *CertManagerIoClusterIssuerV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("cert-manager.io/v1")
-	model.Kind = pointer.String("ClusterIssuer")
+	model.ApiVersion = new("cert-manager.io/v1")
+	model.Kind = new("ClusterIssuer")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package sns_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SnsServicesK8SAwsTopicV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SnsServicesK8SAwsTopicV1Alpha1Manifest{}
 
 func NewSnsServicesK8SAwsTopicV1Alpha1Manifest() datasource.DataSource {
 	return &SnsServicesK8SAwsTopicV1Alpha1Manifest{}
@@ -76,6 +74,7 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_sns_services_k8s_aws_topic_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Topic is the Schema for the Topics API",
@@ -341,8 +340,8 @@ func (r *SnsServicesK8SAwsTopicV1Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("sns.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("Topic")
+	model.ApiVersion = new("sns.services.k8s.aws/v1alpha1")
+	model.Kind = new("Topic")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

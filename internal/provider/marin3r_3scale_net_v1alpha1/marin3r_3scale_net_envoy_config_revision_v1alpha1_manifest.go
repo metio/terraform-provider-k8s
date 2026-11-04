@@ -7,6 +7,7 @@ package marin3r_3scale_net_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest{}
 
 func NewMarin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest() datasource.DataSource {
 	return &Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest{}
@@ -114,6 +112,7 @@ func (r *Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_marin3r_3scale_net_envoy_config_revision_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EnvoyConfigRevision is an internal resource that stores a specific version of an EnvoyConfig resource. EnvoyConfigRevisions are automatically created and deleted by the EnvoyConfig controller and are not intended to be directly used. Use EnvoyConfig objects instead.",
@@ -646,8 +645,8 @@ func (r *Marin3R3ScaleNetEnvoyConfigRevisionV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("marin3r.3scale.net/v1alpha1")
-	model.Kind = pointer.String("EnvoyConfigRevision")
+	model.ApiVersion = new("marin3r.3scale.net/v1alpha1")
+	model.Kind = new("EnvoyConfigRevision")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

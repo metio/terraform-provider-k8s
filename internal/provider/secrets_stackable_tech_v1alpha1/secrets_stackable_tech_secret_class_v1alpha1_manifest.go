@@ -7,6 +7,8 @@ package secrets_stackable_tech_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecretsStackableTechSecretClassV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SecretsStackableTechSecretClassV1Alpha1Manifest{}
 
 func NewSecretsStackableTechSecretClassV1Alpha1Manifest() datasource.DataSource {
 	return &SecretsStackableTechSecretClassV1Alpha1Manifest{}
@@ -113,6 +111,7 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_secrets_stackable_tech_secret_class_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for SecretClassSpec via 'CustomResource'",
@@ -574,8 +573,8 @@ func (r *SecretsStackableTechSecretClassV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("secrets.stackable.tech/v1alpha1")
-	model.Kind = pointer.String("SecretClass")
+	model.ApiVersion = new("secrets.stackable.tech/v1alpha1")
+	model.Kind = new("SecretClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

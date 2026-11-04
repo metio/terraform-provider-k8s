@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoAmazonCloudIntegrationV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoAmazonCloudIntegrationV1Manifest{}
 
 func NewOperatorTigeraIoAmazonCloudIntegrationV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoAmazonCloudIntegrationV1Manifest{}
@@ -57,6 +55,7 @@ func (r *OperatorTigeraIoAmazonCloudIntegrationV1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_amazon_cloud_integration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoAmazonCloudIntegrationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AmazonCloudIntegration is the Schema for the amazoncloudintegrations API",
@@ -204,8 +203,8 @@ func (r *OperatorTigeraIoAmazonCloudIntegrationV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("AmazonCloudIntegration")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("AmazonCloudIntegration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

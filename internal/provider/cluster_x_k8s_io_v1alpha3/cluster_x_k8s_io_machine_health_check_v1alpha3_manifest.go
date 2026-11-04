@@ -7,6 +7,7 @@ package cluster_x_k8s_io_v1alpha3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest{}
 
 func NewClusterXK8SIoMachineHealthCheckV1Alpha3Manifest() datasource.DataSource {
 	return &ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest{}
@@ -75,6 +73,7 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_cluster_x_k8s_io_machine_health_check_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MachineHealthCheck is the Schema for the machinehealthchecks API. Deprecated: This type will be removed in one of the next releases.",
@@ -352,8 +351,8 @@ func (r *ClusterXK8SIoMachineHealthCheckV1Alpha3Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("cluster.x-k8s.io/v1alpha3")
-	model.Kind = pointer.String("MachineHealthCheck")
+	model.ApiVersion = new("cluster.x-k8s.io/v1alpha3")
+	model.Kind = new("MachineHealthCheck")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

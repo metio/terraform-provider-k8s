@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoComponentV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoComponentV1Alpha1Manifest{}
 
 func NewAppsKubeblocksIoComponentV1Alpha1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoComponentV1Alpha1Manifest{}
@@ -1220,6 +1218,7 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_component_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Component is a fundamental building block of a Cluster object. For example, a Redis Cluster can include Components like 'redis', 'sentinel', and potentially a proxy like 'twemproxy'. The Component object is responsible for managing the lifecycle of all replicas within a Cluster component, It supports a wide range of operations including provisioning, stopping, restarting, termination, upgrading, configuration changes, vertical and horizontal scaling, failover, switchover, cross-node migration, scheduling configuration, exposing Services, managing system accounts, enabling/disabling exporter, and configuring log collection. Component is an internal sub-object derived from the user-submitted Cluster object. It is designed primarily to be used by the KubeBlocks controllers, users are discouraged from modifying Component objects directly and should use them only for monitoring Component statuses.",
@@ -9225,8 +9224,8 @@ func (r *AppsKubeblocksIoComponentV1Alpha1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("Component")
+	model.ApiVersion = new("apps.kubeblocks.io/v1alpha1")
+	model.Kind = new("Component")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

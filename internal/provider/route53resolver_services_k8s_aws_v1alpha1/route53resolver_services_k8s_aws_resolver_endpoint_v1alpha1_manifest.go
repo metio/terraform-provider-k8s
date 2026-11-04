@@ -7,6 +7,7 @@ package route53resolver_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest{}
 
 func NewRoute53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest() datasource.DataSource {
 	return &Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest{}
@@ -75,6 +73,7 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Metadata
 	response.TypeName = request.ProviderTypeName + "_route53resolver_services_k8s_aws_resolver_endpoint_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ResolverEndpoint is the Schema for the ResolverEndpoints API",
@@ -330,8 +329,8 @@ func (r *Route53ResolverServicesK8SAwsResolverEndpointV1Alpha1Manifest) Read(ctx
 		return
 	}
 
-	model.ApiVersion = pointer.String("route53resolver.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("ResolverEndpoint")
+	model.ApiVersion = new("route53resolver.services.k8s.aws/v1alpha1")
+	model.Kind = new("ResolverEndpoint")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

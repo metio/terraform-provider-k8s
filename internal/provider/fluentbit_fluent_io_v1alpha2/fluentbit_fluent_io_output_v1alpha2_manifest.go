@@ -7,6 +7,8 @@ package fluentbit_fluent_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FluentbitFluentIoOutputV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &FluentbitFluentIoOutputV1Alpha2Manifest{}
 
 func NewFluentbitFluentIoOutputV1Alpha2Manifest() datasource.DataSource {
 	return &FluentbitFluentIoOutputV1Alpha2Manifest{}
@@ -1093,6 +1091,7 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_fluentbit_fluent_io_output_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Output is the schema for namespace level output API",
@@ -8511,8 +8510,8 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("fluentbit.fluent.io/v1alpha2")
-	model.Kind = pointer.String("Output")
+	model.ApiVersion = new("fluentbit.fluent.io/v1alpha2")
+	model.Kind = new("Output")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

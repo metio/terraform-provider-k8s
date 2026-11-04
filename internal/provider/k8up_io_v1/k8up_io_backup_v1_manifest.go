@@ -7,6 +7,7 @@ package k8up_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &K8UpIoBackupV1Manifest{}
-)
+var _ datasource.DataSource = &K8UpIoBackupV1Manifest{}
 
 func NewK8UpIoBackupV1Manifest() datasource.DataSource {
 	return &K8UpIoBackupV1Manifest{}
@@ -228,6 +226,7 @@ func (r *K8UpIoBackupV1Manifest) Metadata(_ context.Context, request datasource.
 	response.TypeName = request.ProviderTypeName + "_k8up_io_backup_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *K8UpIoBackupV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Backup is the Schema for the backups API",
@@ -1494,8 +1493,8 @@ func (r *K8UpIoBackupV1Manifest) Read(ctx context.Context, request datasource.Re
 		return
 	}
 
-	model.ApiVersion = pointer.String("k8up.io/v1")
-	model.Kind = pointer.String("Backup")
+	model.ApiVersion = new("k8up.io/v1")
+	model.Kind = new("Backup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

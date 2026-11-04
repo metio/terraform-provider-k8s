@@ -7,6 +7,7 @@ package memorydb_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MemorydbServicesK8SAwsClusterV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MemorydbServicesK8SAwsClusterV1Alpha1Manifest{}
 
 func NewMemorydbServicesK8SAwsClusterV1Alpha1Manifest() datasource.DataSource {
 	return &MemorydbServicesK8SAwsClusterV1Alpha1Manifest{}
@@ -110,6 +108,7 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_memorydb_services_k8s_aws_cluster_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Cluster is the Schema for the Clusters API",
@@ -595,8 +594,8 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("memorydb.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("Cluster")
+	model.ApiVersion = new("memorydb.services.k8s.aws/v1alpha1")
+	model.Kind = new("Cluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

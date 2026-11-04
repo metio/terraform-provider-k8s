@@ -7,9 +7,10 @@ package jobsmanager_raczylo_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/jobsmanager_raczylo_com_v1beta1"
-	"testing"
 )
 
 func TestJobsmanagerRaczyloComManagedJobV1Beta1Manifest_ValidateSchema(t *testing.T) {

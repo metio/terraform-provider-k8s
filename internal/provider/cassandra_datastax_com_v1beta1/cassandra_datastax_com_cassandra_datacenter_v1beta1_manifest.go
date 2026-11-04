@@ -7,6 +7,8 @@ package cassandra_datastax_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CassandraDatastaxComCassandraDatacenterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &CassandraDatastaxComCassandraDatacenterV1Beta1Manifest{}
 
 func NewCassandraDatastaxComCassandraDatacenterV1Beta1Manifest() datasource.DataSource {
 	return &CassandraDatastaxComCassandraDatacenterV1Beta1Manifest{}
@@ -1976,6 +1974,7 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Metadata(_ cont
 	response.TypeName = request.ProviderTypeName + "_cassandra_datastax_com_cassandra_datacenter_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CassandraDatacenter is the Schema for the cassandradatacenters API",
@@ -15030,8 +15029,8 @@ func (r *CassandraDatastaxComCassandraDatacenterV1Beta1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("cassandra.datastax.com/v1beta1")
-	model.Kind = pointer.String("CassandraDatacenter")
+	model.ApiVersion = new("cassandra.datastax.com/v1beta1")
+	model.Kind = new("CassandraDatacenter")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoLogCollectorV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoLogCollectorV1Manifest{}
 
 func NewOperatorTigeraIoLogCollectorV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoLogCollectorV1Manifest{}
@@ -131,6 +129,7 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_log_collector_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoLogCollectorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "LogCollector installs the components required for Tigera flow and DNS log collection. At most one instance of this resource is supported. It must be named 'tigera-secure'. When created, this installs fluentd on all nodes configured to collect Tigera log data and export it to Tigera's Elasticsearch cluster as well as any additionally configured destinations.",
@@ -726,8 +725,8 @@ func (r *OperatorTigeraIoLogCollectorV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("LogCollector")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("LogCollector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

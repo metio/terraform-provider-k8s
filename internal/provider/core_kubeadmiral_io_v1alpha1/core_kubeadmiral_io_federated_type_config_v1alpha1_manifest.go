@@ -7,6 +7,7 @@ package core_kubeadmiral_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest{}
 
 func NewCoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest() datasource.DataSource {
 	return &CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest{}
@@ -74,6 +72,7 @@ func (r *CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_core_kubeadmiral_io_federated_type_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FederatedTypeConfig specifies an API resource type to federate and various type-specific options.",
@@ -319,8 +318,8 @@ func (r *CoreKubeadmiralIoFederatedTypeConfigV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("core.kubeadmiral.io/v1alpha1")
-	model.Kind = pointer.String("FederatedTypeConfig")
+	model.ApiVersion = new("core.kubeadmiral.io/v1alpha1")
+	model.Kind = new("FederatedTypeConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

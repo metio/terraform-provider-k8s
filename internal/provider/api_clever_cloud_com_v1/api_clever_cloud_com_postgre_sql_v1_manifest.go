@@ -7,6 +7,7 @@ package api_clever_cloud_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiCleverCloudComPostgreSqlV1Manifest{}
-)
+var _ datasource.DataSource = &ApiCleverCloudComPostgreSqlV1Manifest{}
 
 func NewApiCleverCloudComPostgreSqlV1Manifest() datasource.DataSource {
 	return &ApiCleverCloudComPostgreSqlV1Manifest{}
@@ -60,6 +58,7 @@ func (r *ApiCleverCloudComPostgreSqlV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_api_clever_cloud_com_postgre_sql_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiCleverCloudComPostgreSqlV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for Spec via 'CustomResource'",
@@ -211,8 +210,8 @@ func (r *ApiCleverCloudComPostgreSqlV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("api.clever-cloud.com/v1")
-	model.Kind = pointer.String("PostgreSql")
+	model.ApiVersion = new("api.clever-cloud.com/v1")
+	model.Kind = new("PostgreSql")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

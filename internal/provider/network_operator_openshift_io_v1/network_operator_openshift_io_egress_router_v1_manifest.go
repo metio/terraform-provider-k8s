@@ -7,6 +7,7 @@ package network_operator_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkOperatorOpenshiftIoEgressRouterV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkOperatorOpenshiftIoEgressRouterV1Manifest{}
 
 func NewNetworkOperatorOpenshiftIoEgressRouterV1Manifest() datasource.DataSource {
 	return &NetworkOperatorOpenshiftIoEgressRouterV1Manifest{}
@@ -71,6 +69,7 @@ func (r *NetworkOperatorOpenshiftIoEgressRouterV1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_network_operator_openshift_io_egress_router_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkOperatorOpenshiftIoEgressRouterV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EgressRouter is a feature allowing the user to define an egress router that acts as a bridge between pods and external systems. The egress router runs a service that redirects egress traffic originating from a pod or a group of pods to a remote external system or multiple destinations as per configuration.  It is consumed by the cluster-network-operator. More specifically, given an EgressRouter CR with <name>, the CNO will create and manage: - A service called <name> - An egress pod called <name> - A NAD called <name>  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).  EgressRouter is a single egressrouter pod configuration object.",
@@ -307,8 +306,8 @@ func (r *NetworkOperatorOpenshiftIoEgressRouterV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("network.operator.openshift.io/v1")
-	model.Kind = pointer.String("EgressRouter")
+	model.ApiVersion = new("network.operator.openshift.io/v1")
+	model.Kind = new("EgressRouter")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

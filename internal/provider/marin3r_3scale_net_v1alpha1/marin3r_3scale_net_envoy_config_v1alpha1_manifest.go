@@ -7,6 +7,7 @@ package marin3r_3scale_net_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest{}
 
 func NewMarin3R3ScaleNetEnvoyConfigV1Alpha1Manifest() datasource.DataSource {
 	return &Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest{}
@@ -113,6 +111,7 @@ func (r *Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_marin3r_3scale_net_envoy_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EnvoyConfig holds the configuration for a given envoy nodeID. The spec of an EnvoyConfig object holds the Envoy resources that conform the desired configuration for the given nodeID and that the discovery service will send to any envoy client that identifies itself with that nodeID.",
@@ -637,8 +636,8 @@ func (r *Marin3R3ScaleNetEnvoyConfigV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("marin3r.3scale.net/v1alpha1")
-	model.Kind = pointer.String("EnvoyConfig")
+	model.ApiVersion = new("marin3r.3scale.net/v1alpha1")
+	model.Kind = new("EnvoyConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

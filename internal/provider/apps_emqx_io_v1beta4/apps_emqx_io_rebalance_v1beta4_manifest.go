@@ -7,6 +7,7 @@ package apps_emqx_io_v1beta4
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsEmqxIoRebalanceV1Beta4Manifest{}
-)
+var _ datasource.DataSource = &AppsEmqxIoRebalanceV1Beta4Manifest{}
 
 func NewAppsEmqxIoRebalanceV1Beta4Manifest() datasource.DataSource {
 	return &AppsEmqxIoRebalanceV1Beta4Manifest{}
@@ -62,6 +60,7 @@ func (r *AppsEmqxIoRebalanceV1Beta4Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_apps_emqx_io_rebalance_v1beta4_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsEmqxIoRebalanceV1Beta4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -236,8 +235,8 @@ func (r *AppsEmqxIoRebalanceV1Beta4Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.emqx.io/v1beta4")
-	model.Kind = pointer.String("Rebalance")
+	model.ApiVersion = new("apps.emqx.io/v1beta4")
+	model.Kind = new("Rebalance")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

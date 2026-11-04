@@ -7,6 +7,7 @@ package cilium_io_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumIdentityV2Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumIdentityV2Manifest{}
 
 func NewCiliumIoCiliumIdentityV2Manifest() datasource.DataSource {
 	return &CiliumIoCiliumIdentityV2Manifest{}
@@ -48,6 +46,7 @@ func (r *CiliumIoCiliumIdentityV2Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_identity_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumIdentityV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumIdentity is a CRD that represents an identity managed by Cilium. It is intended as a backing store for identity allocation, acting as the global coordination backend, and can be used in place of a KVStore (such as etcd). The name of the CRD is the numeric identity and the labels on the CRD object are the kubernetes sourced labels seen by cilium. This is currently the only label source possible when running under kubernetes. Non-kubernetes labels are filtered but all labels, from all sources, are places in the SecurityLabels field. These also include the source and are used to define the identity. The labels under metav1.ObjectMeta can be used when searching for CiliumIdentity instances that include particular labels. This can be done with invocations such as: kubectl get ciliumid -l 'foo=bar'",
@@ -126,8 +125,8 @@ func (r *CiliumIoCiliumIdentityV2Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2")
-	model.Kind = pointer.String("CiliumIdentity")
+	model.ApiVersion = new("cilium.io/v2")
+	model.Kind = new("CiliumIdentity")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package groupsnapshot_storage_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest{}
 
 func NewGroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest() datasource.DataSource {
 	return &GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest{}
@@ -68,6 +66,7 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Me
 	response.TypeName = request.ProviderTypeName + "_groupsnapshot_storage_k8s_io_volume_group_snapshot_content_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VolumeGroupSnapshotContent represents the actual 'on-disk' group snapshot object in the underlying storage system",
@@ -282,8 +281,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest) Re
 		return
 	}
 
-	model.ApiVersion = pointer.String("groupsnapshot.storage.k8s.io/v1alpha1")
-	model.Kind = pointer.String("VolumeGroupSnapshotContent")
+	model.ApiVersion = new("groupsnapshot.storage.k8s.io/v1alpha1")
+	model.Kind = new("VolumeGroupSnapshotContent")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

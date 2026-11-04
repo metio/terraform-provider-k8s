@@ -7,6 +7,8 @@ package helm_toolkit_fluxcd_io_v2beta2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest{}
-)
+var _ datasource.DataSource = &HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest{}
 
 func NewHelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest() datasource.DataSource {
 	return &HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest{}
@@ -224,6 +222,7 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_helm_toolkit_fluxcd_io_helm_release_v2beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HelmRelease is the Schema for the helmreleases API",
@@ -1622,8 +1621,8 @@ func (r *HelmToolkitFluxcdIoHelmReleaseV2Beta2Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("helm.toolkit.fluxcd.io/v2beta2")
-	model.Kind = pointer.String("HelmRelease")
+	model.ApiVersion = new("helm.toolkit.fluxcd.io/v2beta2")
+	model.Kind = new("HelmRelease")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package boskos_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &BoskosK8SIoResourceObjectV1Manifest{}
-)
+var _ datasource.DataSource = &BoskosK8SIoResourceObjectV1Manifest{}
 
 func NewBoskosK8SIoResourceObjectV1Manifest() datasource.DataSource {
 	return &BoskosK8SIoResourceObjectV1Manifest{}
@@ -51,6 +49,7 @@ func (r *BoskosK8SIoResourceObjectV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_boskos_k8s_io_resource_object_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *BoskosK8SIoResourceObjectV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Abstracts any resource type that can be tracked by boskos",
@@ -149,8 +148,8 @@ func (r *BoskosK8SIoResourceObjectV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("boskos.k8s.io/v1")
-	model.Kind = pointer.String("ResourceObject")
+	model.ApiVersion = new("boskos.k8s.io/v1")
+	model.Kind = new("ResourceObject")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

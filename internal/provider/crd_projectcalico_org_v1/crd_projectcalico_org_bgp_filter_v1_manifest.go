@@ -7,6 +7,7 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgBgpfilterV1Manifest{}
-)
+var _ datasource.DataSource = &CrdProjectcalicoOrgBgpfilterV1Manifest{}
 
 func NewCrdProjectcalicoOrgBgpfilterV1Manifest() datasource.DataSource {
 	return &CrdProjectcalicoOrgBgpfilterV1Manifest{}
@@ -94,6 +92,7 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_filter_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -508,8 +507,8 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
-	model.Kind = pointer.String("BGPFilter")
+	model.ApiVersion = new("crd.projectcalico.org/v1")
+	model.Kind = new("BGPFilter")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

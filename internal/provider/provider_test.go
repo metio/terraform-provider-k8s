@@ -7,9 +7,10 @@ package provider_test
 
 import (
 	"context"
+	"testing"
+
 	fwprovider "github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/metio/terraform-provider-k8s/internal/provider"
-	"testing"
 )
 
 func TestProvider_Schema(t *testing.T) {

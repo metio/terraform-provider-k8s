@@ -7,6 +7,8 @@ package telemetry_istio_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TelemetryIstioIoTelemetryV1Manifest{}
-)
+var _ datasource.DataSource = &TelemetryIstioIoTelemetryV1Manifest{}
 
 func NewTelemetryIstioIoTelemetryV1Manifest() datasource.DataSource {
 	return &TelemetryIstioIoTelemetryV1Manifest{}
@@ -121,6 +119,7 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_telemetry_istio_io_telemetry_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TelemetryIstioIoTelemetryV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -713,8 +712,8 @@ func (r *TelemetryIstioIoTelemetryV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("telemetry.istio.io/v1")
-	model.Kind = pointer.String("Telemetry")
+	model.ApiVersion = new("telemetry.istio.io/v1")
+	model.Kind = new("Telemetry")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

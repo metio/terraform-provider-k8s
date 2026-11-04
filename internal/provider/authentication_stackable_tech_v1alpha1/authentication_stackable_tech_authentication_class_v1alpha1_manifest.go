@@ -7,6 +7,7 @@ package authentication_stackable_tech_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest{}
 
 func NewAuthenticationStackableTechAuthenticationClassV1Alpha1Manifest() datasource.DataSource {
 	return &AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest{}
@@ -86,6 +84,7 @@ func (r *AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_authentication_stackable_tech_authentication_class_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for AuthenticationClassSpec via 'CustomResource'",
@@ -402,8 +401,8 @@ func (r *AuthenticationStackableTechAuthenticationClassV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("authentication.stackable.tech/v1alpha1")
-	model.Kind = pointer.String("AuthenticationClass")
+	model.ApiVersion = new("authentication.stackable.tech/v1alpha1")
+	model.Kind = new("AuthenticationClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

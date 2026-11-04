@@ -7,6 +7,7 @@ package lb_lbconfig_carlosedp_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest{}
-)
+var _ datasource.DataSource = &LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest{}
 
 func NewLbLbconfigCarlosedpComExternalLoadBalancerV1Manifest() datasource.DataSource {
 	return &LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest{}
@@ -71,6 +69,7 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_lb_lbconfig_carlosedp_com_external_load_balancer_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ExternalLoadBalancer is the Schema for the externalloadbalancers API",
@@ -340,8 +339,8 @@ func (r *LbLbconfigCarlosedpComExternalLoadBalancerV1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("lb.lbconfig.carlosedp.com/v1")
-	model.Kind = pointer.String("ExternalLoadBalancer")
+	model.ApiVersion = new("lb.lbconfig.carlosedp.com/v1")
+	model.Kind = new("ExternalLoadBalancer")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

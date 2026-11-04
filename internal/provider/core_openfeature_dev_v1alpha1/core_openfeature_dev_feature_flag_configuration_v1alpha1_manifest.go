@@ -7,6 +7,7 @@ package core_openfeature_dev_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest{}
 
 func NewCoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest() datasource.DataSource {
 	return &CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest{}
@@ -98,6 +96,7 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest) Metadata(_ 
 	response.TypeName = request.ProviderTypeName + "_core_openfeature_dev_feature_flag_configuration_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FeatureFlagConfiguration is the Schema for the featureflagconfigurations API",
@@ -500,8 +499,8 @@ func (r *CoreOpenfeatureDevFeatureFlagConfigurationV1Alpha1Manifest) Read(ctx co
 		return
 	}
 
-	model.ApiVersion = pointer.String("core.openfeature.dev/v1alpha1")
-	model.Kind = pointer.String("FeatureFlagConfiguration")
+	model.ApiVersion = new("core.openfeature.dev/v1alpha1")
+	model.Kind = new("FeatureFlagConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

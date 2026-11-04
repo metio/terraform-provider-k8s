@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest{}
 
 func NewHiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest{}
@@ -168,6 +166,7 @@ func (r *HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_selector_sync_identity_provider_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SelectorSyncIdentityProvider is the Schema for the SelectorSyncSet API",
@@ -1004,8 +1003,8 @@ func (r *HiveOpenshiftIoSelectorSyncIdentityProviderV1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("SelectorSyncIdentityProvider")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("SelectorSyncIdentityProvider")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

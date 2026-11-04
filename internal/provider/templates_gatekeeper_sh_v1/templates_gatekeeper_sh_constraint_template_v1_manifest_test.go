@@ -7,9 +7,10 @@ package templates_gatekeeper_sh_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/templates_gatekeeper_sh_v1"
-	"testing"
 )
 
 func TestTemplatesGatekeeperShConstraintTemplateV1Manifest_ValidateSchema(t *testing.T) {

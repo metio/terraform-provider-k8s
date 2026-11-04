@@ -7,6 +7,7 @@ package bpfd_dev_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
@@ -19,13 +20,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &BpfdDevTcProgramV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &BpfdDevTcProgramV1Alpha1Manifest{}
 
 func NewBpfdDevTcProgramV1Alpha1Manifest() datasource.DataSource {
 	return &BpfdDevTcProgramV1Alpha1Manifest{}
@@ -89,6 +87,7 @@ func (r *BpfdDevTcProgramV1Alpha1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_bpfd_dev_tc_program_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *BpfdDevTcProgramV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TcProgram is the Schema for the TcProgram API",
@@ -426,8 +425,8 @@ func (r *BpfdDevTcProgramV1Alpha1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("bpfd.dev/v1alpha1")
-	model.Kind = pointer.String("TcProgram")
+	model.ApiVersion = new("bpfd.dev/v1alpha1")
+	model.Kind = new("TcProgram")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

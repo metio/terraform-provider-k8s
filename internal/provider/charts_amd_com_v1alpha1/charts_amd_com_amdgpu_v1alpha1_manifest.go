@@ -7,6 +7,7 @@ package charts_amd_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ChartsAmdComAmdgpuV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ChartsAmdComAmdgpuV1Alpha1Manifest{}
 
 func NewChartsAmdComAmdgpuV1Alpha1Manifest() datasource.DataSource {
 	return &ChartsAmdComAmdgpuV1Alpha1Manifest{}
@@ -49,6 +47,7 @@ func (r *ChartsAmdComAmdgpuV1Alpha1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_charts_amd_com_amdgpu_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ChartsAmdComAmdgpuV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AMDGPU is the Schema for the amdgpus API",
@@ -139,8 +138,8 @@ func (r *ChartsAmdComAmdgpuV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("charts.amd.com/v1alpha1")
-	model.Kind = pointer.String("AMDGPU")
+	model.ApiVersion = new("charts.amd.com/v1alpha1")
+	model.Kind = new("AMDGPU")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package bpfd_dev_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &BpfdDevUprobeProgramV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &BpfdDevUprobeProgramV1Alpha1Manifest{}
 
 func NewBpfdDevUprobeProgramV1Alpha1Manifest() datasource.DataSource {
 	return &BpfdDevUprobeProgramV1Alpha1Manifest{}
@@ -83,6 +81,7 @@ func (r *BpfdDevUprobeProgramV1Alpha1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_bpfd_dev_uprobe_program_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *BpfdDevUprobeProgramV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "UprobeProgram is the Schema for the UprobePrograms API",
@@ -397,8 +396,8 @@ func (r *BpfdDevUprobeProgramV1Alpha1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("bpfd.dev/v1alpha1")
-	model.Kind = pointer.String("UprobeProgram")
+	model.ApiVersion = new("bpfd.dev/v1alpha1")
+	model.Kind = new("UprobeProgram")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

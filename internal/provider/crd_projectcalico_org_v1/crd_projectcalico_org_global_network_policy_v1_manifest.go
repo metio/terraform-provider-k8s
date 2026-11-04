@@ -7,6 +7,7 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest{}
 
 func NewCrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest() datasource.DataSource {
 	return &CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest{}
@@ -175,6 +173,7 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_global_network_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -1127,8 +1126,8 @@ func (r *CrdProjectcalicoOrgGlobalNetworkPolicyV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
-	model.Kind = pointer.String("GlobalNetworkPolicy")
+	model.ApiVersion = new("crd.projectcalico.org/v1")
+	model.Kind = new("GlobalNetworkPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

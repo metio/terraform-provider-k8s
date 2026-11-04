@@ -7,6 +7,7 @@ package groupsnapshot_storage_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest{}
 
 func NewGroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest() datasource.DataSource {
 	return &GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest{}
@@ -50,6 +48,7 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Meta
 	response.TypeName = request.ProviderTypeName + "_groupsnapshot_storage_k8s_io_volume_group_snapshot_class_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VolumeGroupSnapshotClass specifies parameters that a underlying storage system uses when creating a volume group snapshot. A specific VolumeGroupSnapshotClass is used by specifying its name in a VolumeGroupSnapshot object. VolumeGroupSnapshotClasses are non-namespaced.",
@@ -147,8 +146,8 @@ func (r *GroupsnapshotStorageK8SIoVolumeGroupSnapshotClassV1Alpha1Manifest) Read
 		return
 	}
 
-	model.ApiVersion = pointer.String("groupsnapshot.storage.k8s.io/v1alpha1")
-	model.Kind = pointer.String("VolumeGroupSnapshotClass")
+	model.ApiVersion = new("groupsnapshot.storage.k8s.io/v1alpha1")
+	model.Kind = new("VolumeGroupSnapshotClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

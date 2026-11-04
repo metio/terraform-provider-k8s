@@ -7,6 +7,7 @@ package longhorn_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LonghornIoReplicaV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &LonghornIoReplicaV1Beta1Manifest{}
 
 func NewLonghornIoReplicaV1Beta1Manifest() datasource.DataSource {
 	return &LonghornIoReplicaV1Beta1Manifest{}
@@ -49,6 +47,7 @@ func (r *LonghornIoReplicaV1Beta1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_longhorn_io_replica_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LonghornIoReplicaV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Replica is where Longhorn stores replica object.",
@@ -139,8 +138,8 @@ func (r *LonghornIoReplicaV1Beta1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("longhorn.io/v1beta1")
-	model.Kind = pointer.String("Replica")
+	model.ApiVersion = new("longhorn.io/v1beta1")
+	model.Kind = new("Replica")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

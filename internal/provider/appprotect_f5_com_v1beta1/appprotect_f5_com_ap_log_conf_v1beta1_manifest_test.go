@@ -7,9 +7,10 @@ package appprotect_f5_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/appprotect_f5_com_v1beta1"
-	"testing"
 )
 
 func TestAppprotectF5ComAplogConfV1Beta1Manifest_ValidateSchema(t *testing.T) {

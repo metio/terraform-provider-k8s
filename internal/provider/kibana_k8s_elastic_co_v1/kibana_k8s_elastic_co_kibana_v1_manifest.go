@@ -7,6 +7,7 @@ package kibana_k8s_elastic_co_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KibanaK8SElasticCoKibanaV1Manifest{}
-)
+var _ datasource.DataSource = &KibanaK8SElasticCoKibanaV1Manifest{}
 
 func NewKibanaK8SElasticCoKibanaV1Manifest() datasource.DataSource {
 	return &KibanaK8SElasticCoKibanaV1Manifest{}
@@ -1459,6 +1457,7 @@ func (r *KibanaK8SElasticCoKibanaV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_kibana_k8s_elastic_co_kibana_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KibanaK8SElasticCoKibanaV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Kibana represents a Kibana resource in a Kubernetes cluster.",
@@ -10997,8 +10996,8 @@ func (r *KibanaK8SElasticCoKibanaV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("kibana.k8s.elastic.co/v1")
-	model.Kind = pointer.String("Kibana")
+	model.ApiVersion = new("kibana.k8s.elastic.co/v1")
+	model.Kind = new("Kibana")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

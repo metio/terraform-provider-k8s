@@ -7,6 +7,8 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephNfsV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephNfsV1Manifest{}
 
 func NewCephRookIoCephNfsV1Manifest() datasource.DataSource {
 	return &CephRookIoCephNfsV1Manifest{}
@@ -652,6 +650,7 @@ func (r *CephRookIoCephNfsV1Manifest) Metadata(_ context.Context, request dataso
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_nfs_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephNFS represents a Ceph NFS",
@@ -4680,8 +4679,8 @@ func (r *CephRookIoCephNfsV1Manifest) Read(ctx context.Context, request datasour
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephNFS")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephNFS")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

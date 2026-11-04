@@ -7,6 +7,7 @@ package tinkerbell_org_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TinkerbellOrgOsieV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &TinkerbellOrgOsieV1Alpha2Manifest{}
 
 func NewTinkerbellOrgOsieV1Alpha2Manifest() datasource.DataSource {
 	return &TinkerbellOrgOsieV1Alpha2Manifest{}
@@ -52,6 +50,7 @@ func (r *TinkerbellOrgOsieV1Alpha2Manifest) Metadata(_ context.Context, request 
 	response.TypeName = request.ProviderTypeName + "_tinkerbell_org_osie_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TinkerbellOrgOsieV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OSIE describes an Operating System Installation Environment. It is used by Tinkerbell to provision machines and should launch the Tink Worker component.",
@@ -158,8 +157,8 @@ func (r *TinkerbellOrgOsieV1Alpha2Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ApiVersion = pointer.String("tinkerbell.org/v1alpha2")
-	model.Kind = pointer.String("OSIE")
+	model.ApiVersion = new("tinkerbell.org/v1alpha2")
+	model.Kind = new("OSIE")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

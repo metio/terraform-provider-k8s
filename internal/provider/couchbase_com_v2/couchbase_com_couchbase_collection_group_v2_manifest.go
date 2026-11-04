@@ -7,6 +7,7 @@ package couchbase_com_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseCollectionGroupV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseCollectionGroupV2Manifest{}
 
 func NewCouchbaseComCouchbaseCollectionGroupV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseCollectionGroupV2Manifest{}
@@ -52,6 +50,7 @@ func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_collection_group_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseCollectionGroup represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection group must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource. Unlike the CouchbaseCollection resource, a collection group represents multiple collections, with common configuration parameters, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic. It also forms the basis of Couchbase RBAC security boundaries.",
@@ -159,8 +158,8 @@ func (r *CouchbaseComCouchbaseCollectionGroupV2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseCollectionGroup")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseCollectionGroup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

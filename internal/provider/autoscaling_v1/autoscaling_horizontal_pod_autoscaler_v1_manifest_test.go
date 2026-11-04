@@ -7,9 +7,10 @@ package autoscaling_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/autoscaling_v1"
-	"testing"
 )
 
 func TestAutoscalingHorizontalPodAutoscalerV1Manifest_ValidateSchema(t *testing.T) {

@@ -7,6 +7,8 @@ package imageregistry_operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ImageregistryOperatorOpenshiftIoConfigV1Manifest{}
-)
+var _ datasource.DataSource = &ImageregistryOperatorOpenshiftIoConfigV1Manifest{}
 
 func NewImageregistryOperatorOpenshiftIoConfigV1Manifest() datasource.DataSource {
 	return &ImageregistryOperatorOpenshiftIoConfigV1Manifest{}
@@ -323,6 +321,7 @@ func (r *ImageregistryOperatorOpenshiftIoConfigV1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_imageregistry_operator_openshift_io_config_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ImageregistryOperatorOpenshiftIoConfigV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Config is the configuration object for a registry instance managed by the registry operator  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -2319,8 +2318,8 @@ func (r *ImageregistryOperatorOpenshiftIoConfigV1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("imageregistry.operator.openshift.io/v1")
-	model.Kind = pointer.String("Config")
+	model.ApiVersion = new("imageregistry.operator.openshift.io/v1")
+	model.Kind = new("Config")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

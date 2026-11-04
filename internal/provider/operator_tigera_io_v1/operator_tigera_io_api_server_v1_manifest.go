@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoApiserverV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoApiserverV1Manifest{}
 
 func NewOperatorTigeraIoApiserverV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoApiserverV1Manifest{}
@@ -243,6 +241,7 @@ func (r *OperatorTigeraIoApiserverV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_api_server_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoApiserverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIServer installs the Tigera API server and related resources. At most one instance of this resource is supported. It must be named 'default' or 'tigera-secure'.",
@@ -1619,8 +1618,8 @@ func (r *OperatorTigeraIoApiserverV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("APIServer")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("APIServer")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

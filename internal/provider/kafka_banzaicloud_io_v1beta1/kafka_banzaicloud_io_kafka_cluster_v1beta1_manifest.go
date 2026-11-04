@@ -7,6 +7,8 @@ package kafka_banzaicloud_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest{}
 
 func NewKafkaBanzaicloudIoKafkaClusterV1Beta1Manifest() datasource.DataSource {
 	return &KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest{}
@@ -3547,6 +3545,7 @@ func (r *KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_kafka_banzaicloud_io_kafka_cluster_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "KafkaCluster is the Schema for the kafkaclusters API",
@@ -27139,8 +27138,8 @@ func (r *KafkaBanzaicloudIoKafkaClusterV1Beta1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("kafka.banzaicloud.io/v1beta1")
-	model.Kind = pointer.String("KafkaCluster")
+	model.ApiVersion = new("kafka.banzaicloud.io/v1beta1")
+	model.Kind = new("KafkaCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

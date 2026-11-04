@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoClusterV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoClusterV1Alpha1Manifest{}
 
 func NewAppsKubeblocksIoClusterV1Alpha1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoClusterV1Alpha1Manifest{}
@@ -2596,6 +2594,7 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_cluster_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Cluster offers a unified management interface for a wide variety of database and storage systems: - Relational databases: MySQL, PostgreSQL, MariaDB - NoSQL databases: Redis, MongoDB - KV stores: ZooKeeper, etcd - Analytics systems: ElasticSearch, OpenSearch, ClickHouse, Doris, StarRocks, Solr - Message queues: Kafka, Pulsar - Distributed SQL: TiDB, OceanBase - Vector databases: Qdrant, Milvus, Weaviate - Object storage: Minio KubeBlocks utilizes an abstraction layer to encapsulate the characteristics of these diverse systems. A Cluster is composed of multiple Components, each defined by vendors or KubeBlocks Addon developers via ComponentDefinition, arranged in Directed Acyclic Graph (DAG) topologies. The topologies, defined in a ClusterDefinition, coordinate reconciliation across Cluster's lifecycle phases: Creating, Running, Updating, Stopping, Stopped, Deleting. Lifecycle management ensures that each Component operates in harmony, executing appropriate actions at each lifecycle stage. For sharded-nothing architecture, the Cluster supports managing multiple shards, each shard managed by a separate Component, supporting dynamic resharding. The Cluster object is aimed to maintain the overall integrity and availability of a database cluster, serves as the central control point, abstracting the complexity of multiple-component management, and providing a unified interface for cluster-wide operations.",
@@ -20011,8 +20010,8 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("Cluster")
+	model.ApiVersion = new("apps.kubeblocks.io/v1alpha1")
+	model.Kind = new("Cluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

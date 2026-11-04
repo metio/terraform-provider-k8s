@@ -7,6 +7,7 @@ package storage_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StorageK8SIoCsidriverV1Manifest{}
-)
+var _ datasource.DataSource = &StorageK8SIoCsidriverV1Manifest{}
 
 func NewStorageK8SIoCsidriverV1Manifest() datasource.DataSource {
 	return &StorageK8SIoCsidriverV1Manifest{}
@@ -60,6 +58,7 @@ func (r *StorageK8SIoCsidriverV1Manifest) Metadata(_ context.Context, request da
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_driver_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StorageK8SIoCsidriverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
@@ -222,8 +221,8 @@ func (r *StorageK8SIoCsidriverV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ApiVersion = pointer.String("storage.k8s.io/v1")
-	model.Kind = pointer.String("CSIDriver")
+	model.ApiVersion = new("storage.k8s.io/v1")
+	model.Kind = new("CSIDriver")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

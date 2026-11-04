@@ -7,9 +7,10 @@ package crd_projectcalico_org_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/crd_projectcalico_org_v1"
-	"testing"
 )
 
 func TestCrdProjectcalicoOrgClusterInformationV1Manifest_ValidateSchema(t *testing.T) {

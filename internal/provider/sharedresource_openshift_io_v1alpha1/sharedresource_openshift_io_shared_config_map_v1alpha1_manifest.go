@@ -7,6 +7,7 @@ package sharedresource_openshift_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest{}
 
 func NewSharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest() datasource.DataSource {
 	return &SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest{}
@@ -54,6 +52,7 @@ func (r *SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_sharedresource_openshift_io_shared_config_map_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SharedConfigMap allows a ConfigMap to be shared across namespaces. Pods can mount the shared ConfigMap by adding a CSI volume to the pod specification using the 'csi.sharedresource.openshift.io' CSI driver and a reference to the SharedConfigMap in the volume attributes:  spec: volumes: - name: shared-configmap csi: driver: csi.sharedresource.openshift.io volumeAttributes: sharedConfigMap: my-share  For the mount to be successful, the pod's service account must be granted permission to 'use' the named SharedConfigMap object within its namespace with an appropriate Role and RoleBinding. For compactness, here are example 'oc' invocations for creating such Role and RoleBinding objects.  'oc create role shared-resource-my-share --verb=use --resource=sharedconfigmaps.sharedresource.openshift.io --resource-name=my-share' 'oc create rolebinding shared-resource-my-share --role=shared-resource-my-share --serviceaccount=my-namespace:default'  Shared resource objects, in this case ConfigMaps, have default permissions of list, get, and watch for system authenticated users.  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support. These capabilities should not be used by applications needing long term support.",
@@ -165,8 +164,8 @@ func (r *SharedresourceOpenshiftIoSharedConfigMapV1Alpha1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("sharedresource.openshift.io/v1alpha1")
-	model.Kind = pointer.String("SharedConfigMap")
+	model.ApiVersion = new("sharedresource.openshift.io/v1alpha1")
+	model.Kind = new("SharedConfigMap")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

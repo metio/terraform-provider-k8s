@@ -7,9 +7,10 @@ package resources_teleport_dev_v3_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/resources_teleport_dev_v3"
-	"testing"
 )
 
 func TestResourcesTeleportDevTeleportOidcconnectorV3Manifest_ValidateSchema(t *testing.T) {

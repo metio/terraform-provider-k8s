@@ -7,6 +7,7 @@ package ingress_operator_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &IngressOperatorOpenshiftIoDnsrecordV1Manifest{}
-)
+var _ datasource.DataSource = &IngressOperatorOpenshiftIoDnsrecordV1Manifest{}
 
 func NewIngressOperatorOpenshiftIoDnsrecordV1Manifest() datasource.DataSource {
 	return &IngressOperatorOpenshiftIoDnsrecordV1Manifest{}
@@ -56,6 +54,7 @@ func (r *IngressOperatorOpenshiftIoDnsrecordV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_ingress_operator_openshift_io_dns_record_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *IngressOperatorOpenshiftIoDnsrecordV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSRecord is a DNS record managed in the zones defined by dns.config.openshift.io/cluster .spec.publicZone and .spec.privateZone.  Cluster admin manipulation of this resource is not supported. This resource is only for internal communication of OpenShift operators.  If DNSManagementPolicy is 'Unmanaged', the operator will not be responsible for managing the DNS records on the cloud provider.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -199,8 +198,8 @@ func (r *IngressOperatorOpenshiftIoDnsrecordV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("ingress.operator.openshift.io/v1")
-	model.Kind = pointer.String("DNSRecord")
+	model.ApiVersion = new("ingress.operator.openshift.io/v1")
+	model.Kind = new("DNSRecord")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

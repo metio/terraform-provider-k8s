@@ -7,6 +7,7 @@ package apps_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsStatefulSetV1Manifest{}
-)
+var _ datasource.DataSource = &AppsStatefulSetV1Manifest{}
 
 func NewAppsStatefulSetV1Manifest() datasource.DataSource {
 	return &AppsStatefulSetV1Manifest{}
@@ -1524,6 +1522,7 @@ func (r *AppsStatefulSetV1Manifest) Metadata(_ context.Context, request datasour
 	response.TypeName = request.ProviderTypeName + "_apps_stateful_set_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsStatefulSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "StatefulSet represents a set of pods with consistent identities. Identities are defined as: - Network: A single stable DNS and hostname. - Storage: As many VolumeClaims as requested. The StatefulSet guarantees that a given network identity will always map to the same storage identity.",
@@ -11674,8 +11673,8 @@ func (r *AppsStatefulSetV1Manifest) Read(ctx context.Context, request datasource
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps/v1")
-	model.Kind = pointer.String("StatefulSet")
+	model.ApiVersion = new("apps/v1")
+	model.Kind = new("StatefulSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package tests_testkube_io_v3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TestsTestkubeIoTestV3Manifest{}
-)
+var _ datasource.DataSource = &TestsTestkubeIoTestV3Manifest{}
 
 func NewTestsTestkubeIoTestV3Manifest() datasource.DataSource {
 	return &TestsTestkubeIoTestV3Manifest{}
@@ -185,6 +183,7 @@ func (r *TestsTestkubeIoTestV3Manifest) Metadata(_ context.Context, request data
 	response.TypeName = request.ProviderTypeName + "_tests_testkube_io_test_v3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TestsTestkubeIoTestV3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Test is the Schema for the tests API",
@@ -1231,8 +1230,8 @@ func (r *TestsTestkubeIoTestV3Manifest) Read(ctx context.Context, request dataso
 		return
 	}
 
-	model.ApiVersion = pointer.String("tests.testkube.io/v3")
-	model.Kind = pointer.String("Test")
+	model.ApiVersion = new("tests.testkube.io/v3")
+	model.Kind = new("Test")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

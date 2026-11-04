@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseMigrationReplicationV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseMigrationReplicationV2Manifest{}
 
 func NewCouchbaseComCouchbaseMigrationReplicationV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseMigrationReplicationV2Manifest{}
@@ -65,6 +63,7 @@ func (r *CouchbaseComCouchbaseMigrationReplicationV2Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_migration_replication_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseMigrationReplicationV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The CouchbaseScopeMigration resource represents the use of the special migration mapping within XDCR to take a filtered list from the default scope and collection of the source bucket, replicate it to named scopes and collections within the target bucket. The bucket-to-bucket replication cannot duplicate any used by the CouchbaseReplication resource, as these two types of replication are mutually exclusive between buckets. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#migration",
@@ -269,8 +268,8 @@ func (r *CouchbaseComCouchbaseMigrationReplicationV2Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseMigrationReplication")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseMigrationReplication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

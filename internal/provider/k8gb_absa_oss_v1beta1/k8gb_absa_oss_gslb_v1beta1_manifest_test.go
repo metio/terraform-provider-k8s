@@ -7,9 +7,10 @@ package k8gb_absa_oss_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8gb_absa_oss_v1beta1"
-	"testing"
 )
 
 func TestK8GbAbsaOssGslbV1Beta1Manifest_ValidateSchema(t *testing.T) {

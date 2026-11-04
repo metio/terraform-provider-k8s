@@ -7,6 +7,8 @@ package kuadrant_io_v1beta3
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KuadrantIoRateLimitPolicyV1Beta3Manifest{}
-)
+var _ datasource.DataSource = &KuadrantIoRateLimitPolicyV1Beta3Manifest{}
 
 func NewKuadrantIoRateLimitPolicyV1Beta3Manifest() datasource.DataSource {
 	return &KuadrantIoRateLimitPolicyV1Beta3Manifest{}
@@ -99,6 +97,7 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_kuadrant_io_rate_limit_policy_v1beta3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "RateLimitPolicy enables rate limiting for service workloads in a Gateway API network",
@@ -547,8 +546,8 @@ func (r *KuadrantIoRateLimitPolicyV1Beta3Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("kuadrant.io/v1beta3")
-	model.Kind = pointer.String("RateLimitPolicy")
+	model.ApiVersion = new("kuadrant.io/v1beta3")
+	model.Kind = new("RateLimitPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

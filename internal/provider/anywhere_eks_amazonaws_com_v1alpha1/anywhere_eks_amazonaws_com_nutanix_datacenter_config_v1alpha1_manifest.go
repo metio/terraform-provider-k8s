@@ -7,6 +7,8 @@ package anywhere_eks_amazonaws_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest{}
 
 func NewAnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest() datasource.DataSource {
 	return &AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest{}
@@ -73,6 +71,7 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_anywhere_eks_amazonaws_com_nutanix_datacenter_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NutanixDatacenterConfig is the Schema for the NutanixDatacenterConfigs API",
@@ -327,8 +326,8 @@ func (r *AnywhereEksAmazonawsComNutanixDatacenterConfigV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("anywhere.eks.amazonaws.com/v1alpha1")
-	model.Kind = pointer.String("NutanixDatacenterConfig")
+	model.ApiVersion = new("anywhere.eks.amazonaws.com/v1alpha1")
+	model.Kind = new("NutanixDatacenterConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

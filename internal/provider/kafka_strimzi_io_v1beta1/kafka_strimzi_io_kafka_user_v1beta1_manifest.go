@@ -7,6 +7,7 @@ package kafka_strimzi_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -17,13 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KafkaStrimziIoKafkaUserV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &KafkaStrimziIoKafkaUserV1Beta1Manifest{}
 
 func NewKafkaStrimziIoKafkaUserV1Beta1Manifest() datasource.DataSource {
 	return &KafkaStrimziIoKafkaUserV1Beta1Manifest{}
@@ -92,6 +90,7 @@ func (r *KafkaStrimziIoKafkaUserV1Beta1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_kafka_strimzi_io_kafka_user_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KafkaStrimziIoKafkaUserV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -460,8 +459,8 @@ func (r *KafkaStrimziIoKafkaUserV1Beta1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("kafka.strimzi.io/v1beta1")
-	model.Kind = pointer.String("KafkaUser")
+	model.ApiVersion = new("kafka.strimzi.io/v1beta1")
+	model.Kind = new("KafkaUser")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

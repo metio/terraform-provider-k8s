@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComScrapeConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComScrapeConfigV1Alpha1Manifest{}
 
 func NewMonitoringCoreosComScrapeConfigV1Alpha1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComScrapeConfigV1Alpha1Manifest{}
@@ -2173,6 +2171,7 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_scrape_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ScrapeConfig defines a namespaced Prometheus scrape_config to be aggregated across multiple namespaces into the Prometheus configuration.",
@@ -16897,8 +16896,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1alpha1")
-	model.Kind = pointer.String("ScrapeConfig")
+	model.ApiVersion = new("monitoring.coreos.com/v1alpha1")
+	model.Kind = new("ScrapeConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

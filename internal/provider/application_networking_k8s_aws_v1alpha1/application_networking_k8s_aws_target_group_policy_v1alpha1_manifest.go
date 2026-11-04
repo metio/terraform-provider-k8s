@@ -7,6 +7,8 @@ package application_networking_k8s_aws_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest{}
 
 func NewApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest() datasource.DataSource {
 	return &ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest{}
@@ -72,6 +70,7 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Metadata(
 	response.TypeName = request.ProviderTypeName + "_application_networking_k8s_aws_target_group_policy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -352,8 +351,8 @@ func (r *ApplicationNetworkingK8SAwsTargetGroupPolicyV1Alpha1Manifest) Read(ctx 
 		return
 	}
 
-	model.ApiVersion = pointer.String("application-networking.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("TargetGroupPolicy")
+	model.ApiVersion = new("application-networking.k8s.aws/v1alpha1")
+	model.Kind = new("TargetGroupPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

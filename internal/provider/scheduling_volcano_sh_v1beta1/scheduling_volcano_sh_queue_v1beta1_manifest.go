@@ -7,6 +7,7 @@ package scheduling_volcano_sh_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SchedulingVolcanoShQueueV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &SchedulingVolcanoShQueueV1Beta1Manifest{}
 
 func NewSchedulingVolcanoShQueueV1Beta1Manifest() datasource.DataSource {
 	return &SchedulingVolcanoShQueueV1Beta1Manifest{}
@@ -74,6 +72,7 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_scheduling_volcano_sh_queue_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Queue is a queue of PodGroup.",
@@ -327,8 +326,8 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("scheduling.volcano.sh/v1beta1")
-	model.Kind = pointer.String("Queue")
+	model.ApiVersion = new("scheduling.volcano.sh/v1beta1")
+	model.Kind = new("Queue")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

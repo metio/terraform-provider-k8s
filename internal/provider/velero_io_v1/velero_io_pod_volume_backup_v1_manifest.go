@@ -7,6 +7,7 @@ package velero_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VeleroIoPodVolumeBackupV1Manifest{}
-)
+var _ datasource.DataSource = &VeleroIoPodVolumeBackupV1Manifest{}
 
 func NewVeleroIoPodVolumeBackupV1Manifest() datasource.DataSource {
 	return &VeleroIoPodVolumeBackupV1Manifest{}
@@ -66,6 +64,7 @@ func (r *VeleroIoPodVolumeBackupV1Manifest) Metadata(_ context.Context, request 
 	response.TypeName = request.ProviderTypeName + "_velero_io_pod_volume_backup_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VeleroIoPodVolumeBackupV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -282,8 +281,8 @@ func (r *VeleroIoPodVolumeBackupV1Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ApiVersion = pointer.String("velero.io/v1")
-	model.Kind = pointer.String("PodVolumeBackup")
+	model.ApiVersion = new("velero.io/v1")
+	model.Kind = new("PodVolumeBackup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

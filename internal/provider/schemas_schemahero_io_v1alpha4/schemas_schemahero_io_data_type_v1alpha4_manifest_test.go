@@ -7,9 +7,10 @@ package schemas_schemahero_io_v1alpha4_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/schemas_schemahero_io_v1alpha4"
-	"testing"
 )
 
 func TestSchemasSchemaheroIoDataTypeV1Alpha4Manifest_ValidateSchema(t *testing.T) {

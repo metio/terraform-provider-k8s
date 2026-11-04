@@ -7,6 +7,7 @@ package isindir_github_com_v1alpha3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &IsindirGithubComSopsSecretV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &IsindirGithubComSopsSecretV1Alpha3Manifest{}
 
 func NewIsindirGithubComSopsSecretV1Alpha3Manifest() datasource.DataSource {
 	return &IsindirGithubComSopsSecretV1Alpha3Manifest{}
@@ -101,6 +99,7 @@ func (r *IsindirGithubComSopsSecretV1Alpha3Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_isindir_github_com_sops_secret_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *IsindirGithubComSopsSecretV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SopsSecret is the Schema for the sopssecrets API",
@@ -561,8 +560,8 @@ func (r *IsindirGithubComSopsSecretV1Alpha3Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("isindir.github.com/v1alpha3")
-	model.Kind = pointer.String("SopsSecret")
+	model.ApiVersion = new("isindir.github.com/v1alpha3")
+	model.Kind = new("SopsSecret")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

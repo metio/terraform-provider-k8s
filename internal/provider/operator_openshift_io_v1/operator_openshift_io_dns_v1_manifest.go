@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoDnsV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoDnsV1Manifest{}
 
 func NewOperatorOpenshiftIoDnsV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoDnsV1Manifest{}
@@ -104,6 +102,7 @@ func (r *OperatorOpenshiftIoDnsV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_dns_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoDnsV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.  This supports the DNS-based service discovery specification: https://github.com/kubernetes/dns/blob/master/docs/specification.md  More details: https://kubernetes.io/docs/tasks/administer-cluster/coredns  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -572,8 +571,8 @@ func (r *OperatorOpenshiftIoDnsV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("DNS")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("DNS")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

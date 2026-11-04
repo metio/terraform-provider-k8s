@@ -7,6 +7,7 @@ package camel_apache_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CamelApacheOrgIntegrationV1Manifest{}
-)
+var _ datasource.DataSource = &CamelApacheOrgIntegrationV1Manifest{}
 
 func NewCamelApacheOrgIntegrationV1Manifest() datasource.DataSource {
 	return &CamelApacheOrgIntegrationV1Manifest{}
@@ -1530,6 +1528,7 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_camel_apache_org_integration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CamelApacheOrgIntegrationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Integration is the Schema for the integrations API.",
@@ -11844,8 +11843,8 @@ func (r *CamelApacheOrgIntegrationV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("camel.apache.org/v1")
-	model.Kind = pointer.String("Integration")
+	model.ApiVersion = new("camel.apache.org/v1")
+	model.Kind = new("Integration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

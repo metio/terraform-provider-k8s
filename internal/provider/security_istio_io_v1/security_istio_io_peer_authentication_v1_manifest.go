@@ -7,6 +7,7 @@ package security_istio_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecurityIstioIoPeerAuthenticationV1Manifest{}
-)
+var _ datasource.DataSource = &SecurityIstioIoPeerAuthenticationV1Manifest{}
 
 func NewSecurityIstioIoPeerAuthenticationV1Manifest() datasource.DataSource {
 	return &SecurityIstioIoPeerAuthenticationV1Manifest{}
@@ -59,6 +57,7 @@ func (r *SecurityIstioIoPeerAuthenticationV1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_security_istio_io_peer_authentication_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecurityIstioIoPeerAuthenticationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -207,8 +206,8 @@ func (r *SecurityIstioIoPeerAuthenticationV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("security.istio.io/v1")
-	model.Kind = pointer.String("PeerAuthentication")
+	model.ApiVersion = new("security.istio.io/v1")
+	model.Kind = new("PeerAuthentication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

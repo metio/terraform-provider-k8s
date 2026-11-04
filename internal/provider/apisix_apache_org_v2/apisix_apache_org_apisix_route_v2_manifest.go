@@ -7,6 +7,7 @@ package apisix_apache_org_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApisixApacheOrgApisixRouteV2Manifest{}
-)
+var _ datasource.DataSource = &ApisixApacheOrgApisixRouteV2Manifest{}
 
 func NewApisixApacheOrgApisixRouteV2Manifest() datasource.DataSource {
 	return &ApisixApacheOrgApisixRouteV2Manifest{}
@@ -135,6 +133,7 @@ func (r *ApisixApacheOrgApisixRouteV2Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_apisix_apache_org_apisix_route_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApisixApacheOrgApisixRouteV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -858,8 +857,8 @@ func (r *ApisixApacheOrgApisixRouteV2Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("apisix.apache.org/v2")
-	model.Kind = pointer.String("ApisixRoute")
+	model.ApiVersion = new("apisix.apache.org/v2")
+	model.Kind = new("ApisixRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

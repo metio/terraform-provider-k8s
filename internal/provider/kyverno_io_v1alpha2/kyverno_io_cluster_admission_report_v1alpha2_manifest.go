@@ -7,6 +7,7 @@ package kyverno_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KyvernoIoClusterAdmissionReportV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &KyvernoIoClusterAdmissionReportV1Alpha2Manifest{}
 
 func NewKyvernoIoClusterAdmissionReportV1Alpha2Manifest() datasource.DataSource {
 	return &KyvernoIoClusterAdmissionReportV1Alpha2Manifest{}
@@ -96,6 +94,7 @@ func (r *KyvernoIoClusterAdmissionReportV1Alpha2Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_kyverno_io_cluster_admission_report_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KyvernoIoClusterAdmissionReportV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterAdmissionReport is the Schema for the ClusterAdmissionReports API",
@@ -516,8 +515,8 @@ func (r *KyvernoIoClusterAdmissionReportV1Alpha2Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("kyverno.io/v1alpha2")
-	model.Kind = pointer.String("ClusterAdmissionReport")
+	model.ApiVersion = new("kyverno.io/v1alpha2")
+	model.Kind = new("ClusterAdmissionReport")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package getambassador_io_v3alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoDevPortalV3Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoDevPortalV3Alpha1Manifest{}
 
 func NewGetambassadorIoDevPortalV3Alpha1Manifest() datasource.DataSource {
 	return &GetambassadorIoDevPortalV3Alpha1Manifest{}
@@ -72,6 +70,7 @@ func (r *GetambassadorIoDevPortalV3Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_dev_portal_v3alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoDevPortalV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DevPortal is the Schema for the DevPortals API DevPortal resources specify the 'what' and 'how' is shown in a DevPortal: 1. 'what' is in a DevPortal can be controlled with - a 'selector', that can be used for filtering 'Mappings'. - a 'docs' listing of (services, url) 2. 'how' is a pointer to some 'contents' (a checkout of a Git repository with go-templates/markdown/css). Multiple 'DevPortal's can exist in the cluster, and the Dev Portal server will show them at different endpoints. A 'DevPortal' resource with a special name, 'ambassador', will be used for configuring the default Dev Portal (served at '/docs/' by default).",
@@ -321,8 +320,8 @@ func (r *GetambassadorIoDevPortalV3Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v3alpha1")
-	model.Kind = pointer.String("DevPortal")
+	model.ApiVersion = new("getambassador.io/v3alpha1")
+	model.Kind = new("DevPortal")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

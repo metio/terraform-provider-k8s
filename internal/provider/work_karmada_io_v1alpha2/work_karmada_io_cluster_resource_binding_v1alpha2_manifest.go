@@ -7,6 +7,8 @@ package work_karmada_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest{}
 
 func NewWorkKarmadaIoClusterResourceBindingV1Alpha2Manifest() datasource.DataSource {
 	return &WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest{}
@@ -214,6 +212,7 @@ func (r *WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_work_karmada_io_cluster_resource_binding_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterResourceBinding represents a binding of a kubernetes resource with a ClusterPropagationPolicy.",
@@ -1425,8 +1424,8 @@ func (r *WorkKarmadaIoClusterResourceBindingV1Alpha2Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("work.karmada.io/v1alpha2")
-	model.Kind = pointer.String("ClusterResourceBinding")
+	model.ApiVersion = new("work.karmada.io/v1alpha2")
+	model.Kind = new("ClusterResourceBinding")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

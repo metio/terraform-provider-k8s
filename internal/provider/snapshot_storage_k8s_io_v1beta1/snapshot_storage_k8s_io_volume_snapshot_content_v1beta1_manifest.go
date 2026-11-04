@@ -7,6 +7,7 @@ package snapshot_storage_k8s_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest{}
 
 func NewSnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest() datasource.DataSource {
 	return &SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest{}
@@ -65,6 +63,7 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_snapshot_storage_k8s_io_volume_snapshot_content_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VolumeSnapshotContent represents the actual 'on-disk' snapshot object in the underlying storage system",
@@ -260,8 +259,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotContentV1Beta1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("snapshot.storage.k8s.io/v1beta1")
-	model.Kind = pointer.String("VolumeSnapshotContent")
+	model.ApiVersion = new("snapshot.storage.k8s.io/v1beta1")
+	model.Kind = new("VolumeSnapshotContent")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

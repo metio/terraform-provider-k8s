@@ -7,6 +7,7 @@ package execution_furiko_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ExecutionFurikoIoJobConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ExecutionFurikoIoJobConfigV1Alpha1Manifest{}
 
 func NewExecutionFurikoIoJobConfigV1Alpha1Manifest() datasource.DataSource {
 	return &ExecutionFurikoIoJobConfigV1Alpha1Manifest{}
@@ -120,6 +118,7 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_execution_furiko_io_job_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "JobConfig is the schema for a single job configuration. Multiple Job objects belong to a single JobConfig.",
@@ -678,8 +677,8 @@ func (r *ExecutionFurikoIoJobConfigV1Alpha1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("execution.furiko.io/v1alpha1")
-	model.Kind = pointer.String("JobConfig")
+	model.ApiVersion = new("execution.furiko.io/v1alpha1")
+	model.Kind = new("JobConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

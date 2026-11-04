@@ -7,6 +7,7 @@ package mariadb_mmontes_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MariadbMmontesIoGrantV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MariadbMmontesIoGrantV1Alpha1Manifest{}
 
 func NewMariadbMmontesIoGrantV1Alpha1Manifest() datasource.DataSource {
 	return &MariadbMmontesIoGrantV1Alpha1Manifest{}
@@ -68,6 +66,7 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_mariadb_mmontes_io_grant_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Grant is the Schema for the grants API. It is used to define grants as if you were running a 'GRANT' statement.",
@@ -296,8 +295,8 @@ func (r *MariadbMmontesIoGrantV1Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("mariadb.mmontes.io/v1alpha1")
-	model.Kind = pointer.String("Grant")
+	model.ApiVersion = new("mariadb.mmontes.io/v1alpha1")
+	model.Kind = new("Grant")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest{}
 
 func NewMonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest{}
@@ -1943,6 +1941,7 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_alertmanager_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AlertmanagerConfig configures the Prometheus Alertmanager, specifying how alerts should be grouped, inhibited and notified to external systems.",
@@ -14867,8 +14866,8 @@ func (r *MonitoringCoreosComAlertmanagerConfigV1Alpha1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1alpha1")
-	model.Kind = pointer.String("AlertmanagerConfig")
+	model.ApiVersion = new("monitoring.coreos.com/v1alpha1")
+	model.Kind = new("AlertmanagerConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

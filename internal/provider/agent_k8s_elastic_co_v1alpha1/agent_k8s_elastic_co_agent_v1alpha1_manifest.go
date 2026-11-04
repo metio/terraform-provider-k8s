@@ -7,6 +7,7 @@ package agent_k8s_elastic_co_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AgentK8SElasticCoAgentV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AgentK8SElasticCoAgentV1Alpha1Manifest{}
 
 func NewAgentK8SElasticCoAgentV1Alpha1Manifest() datasource.DataSource {
 	return &AgentK8SElasticCoAgentV1Alpha1Manifest{}
@@ -4158,6 +4156,7 @@ func (r *AgentK8SElasticCoAgentV1Alpha1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_agent_k8s_elastic_co_agent_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AgentK8SElasticCoAgentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Agent is the Schema for the Agents API.",
@@ -31801,8 +31800,8 @@ func (r *AgentK8SElasticCoAgentV1Alpha1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("agent.k8s.elastic.co/v1alpha1")
-	model.Kind = pointer.String("Agent")
+	model.ApiVersion = new("agent.k8s.elastic.co/v1alpha1")
+	model.Kind = new("Agent")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

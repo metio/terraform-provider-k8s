@@ -7,9 +7,10 @@ package velero_io_v2alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/velero_io_v2alpha1"
-	"testing"
 )
 
 func TestVeleroIoDataUploadV2Alpha1Manifest_ValidateSchema(t *testing.T) {

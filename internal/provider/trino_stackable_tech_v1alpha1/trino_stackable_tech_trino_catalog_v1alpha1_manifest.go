@@ -7,6 +7,7 @@ package trino_stackable_tech_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TrinoStackableTechTrinoCatalogV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &TrinoStackableTechTrinoCatalogV1Alpha1Manifest{}
 
 func NewTrinoStackableTechTrinoCatalogV1Alpha1Manifest() datasource.DataSource {
 	return &TrinoStackableTechTrinoCatalogV1Alpha1Manifest{}
@@ -189,6 +187,7 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_trino_stackable_tech_trino_catalog_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for TrinoCatalogSpec via 'CustomResource'",
@@ -1137,8 +1136,8 @@ func (r *TrinoStackableTechTrinoCatalogV1Alpha1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("trino.stackable.tech/v1alpha1")
-	model.Kind = pointer.String("TrinoCatalog")
+	model.ApiVersion = new("trino.stackable.tech/v1alpha1")
+	model.Kind = new("TrinoCatalog")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

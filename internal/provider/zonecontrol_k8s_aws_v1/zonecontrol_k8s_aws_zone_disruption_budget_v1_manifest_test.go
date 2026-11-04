@@ -7,9 +7,10 @@ package zonecontrol_k8s_aws_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/zonecontrol_k8s_aws_v1"
-	"testing"
 )
 
 func TestZonecontrolK8SAwsZoneDisruptionBudgetV1Manifest_ValidateSchema(t *testing.T) {

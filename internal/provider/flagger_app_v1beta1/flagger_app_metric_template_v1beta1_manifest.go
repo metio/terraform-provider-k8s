@@ -7,6 +7,7 @@ package flagger_app_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FlaggerAppMetricTemplateV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &FlaggerAppMetricTemplateV1Beta1Manifest{}
 
 func NewFlaggerAppMetricTemplateV1Beta1Manifest() datasource.DataSource {
 	return &FlaggerAppMetricTemplateV1Beta1Manifest{}
@@ -60,6 +58,7 @@ func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_flagger_app_metric_template_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MetricTemplate is the Schema for the MetricTemplates API.",
@@ -219,8 +218,8 @@ func (r *FlaggerAppMetricTemplateV1Beta1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("flagger.app/v1beta1")
-	model.Kind = pointer.String("MetricTemplate")
+	model.ApiVersion = new("flagger.app/v1beta1")
+	model.Kind = new("MetricTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

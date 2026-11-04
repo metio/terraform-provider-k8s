@@ -7,6 +7,8 @@ package org_eclipse_che_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OrgEclipseCheCheClusterV2Manifest{}
-)
+var _ datasource.DataSource = &OrgEclipseCheCheClusterV2Manifest{}
 
 func NewOrgEclipseCheCheClusterV2Manifest() datasource.DataSource {
 	return &OrgEclipseCheCheClusterV2Manifest{}
@@ -899,6 +897,7 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Metadata(_ context.Context, request 
 	response.TypeName = request.ProviderTypeName + "_org_eclipse_che_che_cluster_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation. Based on these settings, the Operator automatically creates and maintains several ConfigMaps: 'che', 'plugin-registry' that will contain the appropriate environment variables of the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
@@ -6835,8 +6834,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ApiVersion = pointer.String("org.eclipse.che/v2")
-	model.Kind = pointer.String("CheCluster")
+	model.ApiVersion = new("org.eclipse.che/v2")
+	model.Kind = new("CheCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package app_terraform_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppTerraformIoModuleV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &AppTerraformIoModuleV1Alpha2Manifest{}
 
 func NewAppTerraformIoModuleV1Alpha2Manifest() datasource.DataSource {
 	return &AppTerraformIoModuleV1Alpha2Manifest{}
@@ -77,6 +75,7 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_app_terraform_io_module_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppTerraformIoModuleV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Module is the Schema for the modules API Module implements the API-driven Run Workflow More information: - https://developer.hashicorp.com/terraform/cloud-docs/run/api",
@@ -364,8 +363,8 @@ func (r *AppTerraformIoModuleV1Alpha2Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("app.terraform.io/v1alpha2")
-	model.Kind = pointer.String("Module")
+	model.ApiVersion = new("app.terraform.io/v1alpha2")
+	model.Kind = new("Module")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

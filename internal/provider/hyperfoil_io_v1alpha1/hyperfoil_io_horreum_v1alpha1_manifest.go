@@ -7,6 +7,7 @@ package hyperfoil_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HyperfoilIoHorreumV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &HyperfoilIoHorreumV1Alpha1Manifest{}
 
 func NewHyperfoilIoHorreumV1Alpha1Manifest() datasource.DataSource {
 	return &HyperfoilIoHorreumV1Alpha1Manifest{}
@@ -92,6 +90,7 @@ func (r *HyperfoilIoHorreumV1Alpha1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_hyperfoil_io_horreum_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HyperfoilIoHorreumV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Horreum is the object configuring Horreum performance results repository",
@@ -469,8 +468,8 @@ func (r *HyperfoilIoHorreumV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("hyperfoil.io/v1alpha1")
-	model.Kind = pointer.String("Horreum")
+	model.ApiVersion = new("hyperfoil.io/v1alpha1")
+	model.Kind = new("Horreum")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

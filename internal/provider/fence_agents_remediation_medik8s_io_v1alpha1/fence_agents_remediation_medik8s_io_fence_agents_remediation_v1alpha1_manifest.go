@@ -7,6 +7,8 @@ package fence_agents_remediation_medik8s_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest{}
 
 func NewFenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest() datasource.DataSource {
 	return &FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest) 
 	response.TypeName = request.ProviderTypeName + "_fence_agents_remediation_medik8s_io_fence_agents_remediation_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FenceAgentsRemediation is the Schema for the fenceagentsremediations API",
@@ -218,8 +217,8 @@ func (r *FenceAgentsRemediationMedik8SIoFenceAgentsRemediationV1Alpha1Manifest) 
 		return
 	}
 
-	model.ApiVersion = pointer.String("fence-agents-remediation.medik8s.io/v1alpha1")
-	model.Kind = pointer.String("FenceAgentsRemediation")
+	model.ApiVersion = new("fence-agents-remediation.medik8s.io/v1alpha1")
+	model.Kind = new("FenceAgentsRemediation")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

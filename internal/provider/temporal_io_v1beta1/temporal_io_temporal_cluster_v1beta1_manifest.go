@@ -7,6 +7,8 @@ package temporal_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TemporalIoTemporalClusterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &TemporalIoTemporalClusterV1Beta1Manifest{}
 
 func NewTemporalIoTemporalClusterV1Beta1Manifest() datasource.DataSource {
 	return &TemporalIoTemporalClusterV1Beta1Manifest{}
@@ -883,6 +881,7 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_temporal_io_temporal_cluster_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TemporalIoTemporalClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TemporalCluster defines a temporal cluster deployment.",
@@ -6620,8 +6619,8 @@ func (r *TemporalIoTemporalClusterV1Beta1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("temporal.io/v1beta1")
-	model.Kind = pointer.String("TemporalCluster")
+	model.ApiVersion = new("temporal.io/v1beta1")
+	model.Kind = new("TemporalCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

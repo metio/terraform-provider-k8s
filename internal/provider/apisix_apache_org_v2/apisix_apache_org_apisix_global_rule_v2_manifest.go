@@ -7,6 +7,7 @@ package apisix_apache_org_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApisixApacheOrgApisixGlobalRuleV2Manifest{}
-)
+var _ datasource.DataSource = &ApisixApacheOrgApisixGlobalRuleV2Manifest{}
 
 func NewApisixApacheOrgApisixGlobalRuleV2Manifest() datasource.DataSource {
 	return &ApisixApacheOrgApisixGlobalRuleV2Manifest{}
@@ -57,6 +55,7 @@ func (r *ApisixApacheOrgApisixGlobalRuleV2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_apisix_apache_org_apisix_global_rule_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApisixApacheOrgApisixGlobalRuleV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -202,8 +201,8 @@ func (r *ApisixApacheOrgApisixGlobalRuleV2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("apisix.apache.org/v2")
-	model.Kind = pointer.String("ApisixGlobalRule")
+	model.ApiVersion = new("apisix.apache.org/v2")
+	model.Kind = new("ApisixGlobalRule")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

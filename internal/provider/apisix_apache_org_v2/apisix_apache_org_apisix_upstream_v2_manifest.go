@@ -7,6 +7,8 @@ package apisix_apache_org_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -17,14 +19,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApisixApacheOrgApisixUpstreamV2Manifest{}
-)
+var _ datasource.DataSource = &ApisixApacheOrgApisixUpstreamV2Manifest{}
 
 func NewApisixApacheOrgApisixUpstreamV2Manifest() datasource.DataSource {
 	return &ApisixApacheOrgApisixUpstreamV2Manifest{}
@@ -176,6 +174,7 @@ func (r *ApisixApacheOrgApisixUpstreamV2Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_apisix_apache_org_apisix_upstream_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApisixApacheOrgApisixUpstreamV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -1248,8 +1247,8 @@ func (r *ApisixApacheOrgApisixUpstreamV2Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("apisix.apache.org/v2")
-	model.Kind = pointer.String("ApisixUpstream")
+	model.ApiVersion = new("apisix.apache.org/v2")
+	model.Kind = new("ApisixUpstream")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

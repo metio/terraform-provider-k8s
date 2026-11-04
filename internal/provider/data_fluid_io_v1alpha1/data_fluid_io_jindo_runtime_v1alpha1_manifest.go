@@ -7,6 +7,8 @@ package data_fluid_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DataFluidIoJindoRuntimeV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DataFluidIoJindoRuntimeV1Alpha1Manifest{}
 
 func NewDataFluidIoJindoRuntimeV1Alpha1Manifest() datasource.DataSource {
 	return &DataFluidIoJindoRuntimeV1Alpha1Manifest{}
@@ -812,6 +810,7 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_jindo_runtime_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "JindoRuntime is the Schema for the jindoruntimes API",
@@ -6052,8 +6051,8 @@ func (r *DataFluidIoJindoRuntimeV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("data.fluid.io/v1alpha1")
-	model.Kind = pointer.String("JindoRuntime")
+	model.ApiVersion = new("data.fluid.io/v1alpha1")
+	model.Kind = new("JindoRuntime")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

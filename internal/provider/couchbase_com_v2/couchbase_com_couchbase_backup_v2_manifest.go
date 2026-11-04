@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseBackupV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseBackupV2Manifest{}
 
 func NewCouchbaseComCouchbaseBackupV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseBackupV2Manifest{}
@@ -104,6 +102,7 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_backup_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseBackupV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseBackup allows automatic backup of all data from a Couchbase cluster into persistent storage.",
@@ -600,8 +599,8 @@ func (r *CouchbaseComCouchbaseBackupV2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseBackup")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseBackup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

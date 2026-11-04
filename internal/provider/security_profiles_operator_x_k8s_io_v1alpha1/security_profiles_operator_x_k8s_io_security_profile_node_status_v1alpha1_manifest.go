@@ -7,6 +7,7 @@ package security_profiles_operator_x_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest{}
 
 func NewSecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest() datasource.DataSource {
 	return &SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest{}
@@ -50,6 +48,7 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest
 	response.TypeName = request.ProviderTypeName + "_security_profiles_operator_x_k8s_io_security_profile_node_status_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SecurityProfileNodeStatus is a per-node status of a security profile",
@@ -148,8 +147,8 @@ func (r *SecurityProfilesOperatorXK8SIoSecurityProfileNodeStatusV1Alpha1Manifest
 		return
 	}
 
-	model.ApiVersion = pointer.String("security-profiles-operator.x-k8s.io/v1alpha1")
-	model.Kind = pointer.String("SecurityProfileNodeStatus")
+	model.ApiVersion = new("security-profiles-operator.x-k8s.io/v1alpha1")
+	model.Kind = new("SecurityProfileNodeStatus")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

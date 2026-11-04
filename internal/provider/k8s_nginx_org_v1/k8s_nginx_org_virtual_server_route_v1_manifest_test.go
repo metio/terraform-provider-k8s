@@ -7,9 +7,10 @@ package k8s_nginx_org_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_nginx_org_v1"
-	"testing"
 )
 
 func TestK8SNginxOrgVirtualServerRouteV1Manifest_ValidateSchema(t *testing.T) {

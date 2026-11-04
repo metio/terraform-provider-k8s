@@ -8,6 +8,9 @@ package provider
 import (
 	"context"
 	"fmt"
+	"os"
+	"strconv"
+
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
@@ -18,8 +21,6 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/tools/clientcmd"
-	"os"
-	"strconv"
 )
 
 type K8sProvider struct {

@@ -7,6 +7,8 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephObjectZoneV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephObjectZoneV1Manifest{}
 
 func NewCephRookIoCephObjectZoneV1Manifest() datasource.DataSource {
 	return &CephRookIoCephObjectZoneV1Manifest{}
@@ -170,6 +168,7 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_object_zone_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephObjectZoneV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephObjectZone represents a Ceph Object Store Gateway Zone",
@@ -1121,8 +1120,8 @@ func (r *CephRookIoCephObjectZoneV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephObjectZone")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephObjectZone")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package operator_knative_dev_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorKnativeDevKnativeServingV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &OperatorKnativeDevKnativeServingV1Beta1Manifest{}
 
 func NewOperatorKnativeDevKnativeServingV1Beta1Manifest() datasource.DataSource {
 	return &OperatorKnativeDevKnativeServingV1Beta1Manifest{}
@@ -505,6 +503,7 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_operator_knative_dev_knative_serving_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Schema for the knativeservings API",
@@ -3646,8 +3645,8 @@ func (r *OperatorKnativeDevKnativeServingV1Beta1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.knative.dev/v1beta1")
-	model.Kind = pointer.String("KnativeServing")
+	model.ApiVersion = new("operator.knative.dev/v1beta1")
+	model.Kind = new("KnativeServing")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

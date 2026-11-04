@@ -7,6 +7,7 @@ package leaksignal_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LeaksignalComClusterLeaksignalIstioV1Manifest{}
-)
+var _ datasource.DataSource = &LeaksignalComClusterLeaksignalIstioV1Manifest{}
 
 func NewLeaksignalComClusterLeaksignalIstioV1Manifest() datasource.DataSource {
 	return &LeaksignalComClusterLeaksignalIstioV1Manifest{}
@@ -70,6 +68,7 @@ func (r *LeaksignalComClusterLeaksignalIstioV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_leaksignal_com_cluster_leaksignal_istio_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LeaksignalComClusterLeaksignalIstioV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Deploy LeakSignal Proxy in all istio-enabled namespaces, can be overriden by local LeaksignalIstios.",
@@ -313,8 +312,8 @@ func (r *LeaksignalComClusterLeaksignalIstioV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("leaksignal.com/v1")
-	model.Kind = pointer.String("ClusterLeaksignalIstio")
+	model.ApiVersion = new("leaksignal.com/v1")
+	model.Kind = new("ClusterLeaksignalIstio")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

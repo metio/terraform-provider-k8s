@@ -7,6 +7,7 @@ package autoscaling_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AutoscalingHorizontalPodAutoscalerV2Manifest{}
-)
+var _ datasource.DataSource = &AutoscalingHorizontalPodAutoscalerV2Manifest{}
 
 func NewAutoscalingHorizontalPodAutoscalerV2Manifest() datasource.DataSource {
 	return &AutoscalingHorizontalPodAutoscalerV2Manifest{}
@@ -161,6 +159,7 @@ func (r *AutoscalingHorizontalPodAutoscalerV2Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_autoscaling_horizontal_pod_autoscaler_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AutoscalingHorizontalPodAutoscalerV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.",
@@ -968,8 +967,8 @@ func (r *AutoscalingHorizontalPodAutoscalerV2Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("autoscaling/v2")
-	model.Kind = pointer.String("HorizontalPodAutoscaler")
+	model.ApiVersion = new("autoscaling/v2")
+	model.Kind = new("HorizontalPodAutoscaler")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

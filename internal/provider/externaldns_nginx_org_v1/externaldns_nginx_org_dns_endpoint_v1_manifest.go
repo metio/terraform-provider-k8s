@@ -7,6 +7,7 @@ package externaldns_nginx_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ExternaldnsNginxOrgDnsendpointV1Manifest{}
-)
+var _ datasource.DataSource = &ExternaldnsNginxOrgDnsendpointV1Manifest{}
 
 func NewExternaldnsNginxOrgDnsendpointV1Manifest() datasource.DataSource {
 	return &ExternaldnsNginxOrgDnsendpointV1Manifest{}
@@ -61,6 +59,7 @@ func (r *ExternaldnsNginxOrgDnsendpointV1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_externaldns_nginx_org_dns_endpoint_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ExternaldnsNginxOrgDnsendpointV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSEndpoint is the CRD wrapper for Endpoint",
@@ -231,8 +230,8 @@ func (r *ExternaldnsNginxOrgDnsendpointV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("externaldns.nginx.org/v1")
-	model.Kind = pointer.String("DNSEndpoint")
+	model.ApiVersion = new("externaldns.nginx.org/v1")
+	model.Kind = new("DNSEndpoint")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

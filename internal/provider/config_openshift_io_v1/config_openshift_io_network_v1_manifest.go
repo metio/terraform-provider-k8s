@@ -7,6 +7,8 @@ package config_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigOpenshiftIoNetworkV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigOpenshiftIoNetworkV1Manifest{}
 
 func NewConfigOpenshiftIoNetworkV1Manifest() datasource.DataSource {
 	return &ConfigOpenshiftIoNetworkV1Manifest{}
@@ -65,6 +63,7 @@ func (r *ConfigOpenshiftIoNetworkV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_config_openshift_io_network_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigOpenshiftIoNetworkV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Network holds cluster-wide information about Network. The canonical name is 'cluster'. It is used to configure the desired network configuration, such as: IP address pools for services/pod IPs, network plugin, etc. Please view network.spec for an explanation on what applies when configuring this resource.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -246,8 +245,8 @@ func (r *ConfigOpenshiftIoNetworkV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.openshift.io/v1")
-	model.Kind = pointer.String("Network")
+	model.ApiVersion = new("config.openshift.io/v1")
+	model.Kind = new("Network")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

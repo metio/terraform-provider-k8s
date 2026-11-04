@@ -7,6 +7,7 @@ package databases_spotahome_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DatabasesSpotahomeComRedisFailoverV1Manifest{}
-)
+var _ datasource.DataSource = &DatabasesSpotahomeComRedisFailoverV1Manifest{}
 
 func NewDatabasesSpotahomeComRedisFailoverV1Manifest() datasource.DataSource {
 	return &DatabasesSpotahomeComRedisFailoverV1Manifest{}
@@ -2466,6 +2464,7 @@ func (r *DatabasesSpotahomeComRedisFailoverV1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_databases_spotahome_com_redis_failover_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DatabasesSpotahomeComRedisFailoverV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "RedisFailover represents a Redis failover",
@@ -18737,8 +18736,8 @@ func (r *DatabasesSpotahomeComRedisFailoverV1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("databases.spotahome.com/v1")
-	model.Kind = pointer.String("RedisFailover")
+	model.ApiVersion = new("databases.spotahome.com/v1")
+	model.Kind = new("RedisFailover")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

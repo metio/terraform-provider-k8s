@@ -7,6 +7,8 @@ package loki_grafana_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
@@ -19,14 +21,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LokiGrafanaComLokiStackV1Manifest{}
-)
+var _ datasource.DataSource = &LokiGrafanaComLokiStackV1Manifest{}
 
 func NewLokiGrafanaComLokiStackV1Manifest() datasource.DataSource {
 	return &LokiGrafanaComLokiStackV1Manifest{}
@@ -719,6 +717,7 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Metadata(_ context.Context, request 
 	response.TypeName = request.ProviderTypeName + "_loki_grafana_com_loki_stack_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LokiGrafanaComLokiStackV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "LokiStack is the Schema for the lokistacks API",
@@ -5316,8 +5315,8 @@ func (r *LokiGrafanaComLokiStackV1Manifest) Read(ctx context.Context, request da
 		return
 	}
 
-	model.ApiVersion = pointer.String("loki.grafana.com/v1")
-	model.Kind = pointer.String("LokiStack")
+	model.ApiVersion = new("loki.grafana.com/v1")
+	model.Kind = new("LokiStack")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

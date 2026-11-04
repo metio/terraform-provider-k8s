@@ -7,6 +7,7 @@ package actions_summerwind_dev_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest{}
 
 func NewActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest() datasource.DataSource {
 	return &ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest{}
@@ -106,6 +104,7 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_actions_summerwind_dev_horizontal_runner_autoscaler_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HorizontalRunnerAutoscaler is the Schema for the horizontalrunnerautoscaler API",
@@ -599,8 +598,8 @@ func (r *ActionsSummerwindDevHorizontalRunnerAutoscalerV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("actions.summerwind.dev/v1alpha1")
-	model.Kind = pointer.String("HorizontalRunnerAutoscaler")
+	model.ApiVersion = new("actions.summerwind.dev/v1alpha1")
+	model.Kind = new("HorizontalRunnerAutoscaler")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

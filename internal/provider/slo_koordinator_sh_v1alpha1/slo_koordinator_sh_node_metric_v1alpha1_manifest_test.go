@@ -7,9 +7,10 @@ package slo_koordinator_sh_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/slo_koordinator_sh_v1alpha1"
-	"testing"
 )
 
 func TestSloKoordinatorShNodeMetricV1Alpha1Manifest_ValidateSchema(t *testing.T) {

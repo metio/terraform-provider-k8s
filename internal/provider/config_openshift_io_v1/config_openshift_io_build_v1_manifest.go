@@ -7,6 +7,7 @@ package config_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigOpenshiftIoBuildV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigOpenshiftIoBuildV1Manifest{}
 
 func NewConfigOpenshiftIoBuildV1Manifest() datasource.DataSource {
 	return &ConfigOpenshiftIoBuildV1Manifest{}
@@ -123,6 +121,7 @@ func (r *ConfigOpenshiftIoBuildV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_config_openshift_io_build_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigOpenshiftIoBuildV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Build configures the behavior of OpenShift builds for the entire cluster. This includes default settings that can be overridden in BuildConfig objects, and overrides which are applied to all builds.  The canonical name is 'cluster'  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -682,8 +681,8 @@ func (r *ConfigOpenshiftIoBuildV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.openshift.io/v1")
-	model.Kind = pointer.String("Build")
+	model.ApiVersion = new("config.openshift.io/v1")
+	model.Kind = new("Build")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

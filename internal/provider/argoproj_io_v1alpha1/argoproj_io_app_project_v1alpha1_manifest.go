@@ -7,6 +7,7 @@ package argoproj_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ArgoprojIoAppProjectV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ArgoprojIoAppProjectV1Alpha1Manifest{}
 
 func NewArgoprojIoAppProjectV1Alpha1Manifest() datasource.DataSource {
 	return &ArgoprojIoAppProjectV1Alpha1Manifest{}
@@ -107,6 +105,7 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_argoproj_io_app_project_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)",
@@ -603,8 +602,8 @@ func (r *ArgoprojIoAppProjectV1Alpha1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("argoproj.io/v1alpha1")
-	model.Kind = pointer.String("AppProject")
+	model.ApiVersion = new("argoproj.io/v1alpha1")
+	model.Kind = new("AppProject")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

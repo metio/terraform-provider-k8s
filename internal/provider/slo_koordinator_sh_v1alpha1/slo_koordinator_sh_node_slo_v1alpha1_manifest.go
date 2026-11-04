@@ -7,6 +7,7 @@ package slo_koordinator_sh_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SloKoordinatorShNodeSloV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SloKoordinatorShNodeSloV1Alpha1Manifest{}
 
 func NewSloKoordinatorShNodeSloV1Alpha1Manifest() datasource.DataSource {
 	return &SloKoordinatorShNodeSloV1Alpha1Manifest{}
@@ -383,6 +381,7 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_slo_koordinator_sh_node_slo_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NodeSLO is the Schema for the nodeslos API",
@@ -3201,8 +3200,8 @@ func (r *SloKoordinatorShNodeSloV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("slo.koordinator.sh/v1alpha1")
-	model.Kind = pointer.String("NodeSLO")
+	model.ApiVersion = new("slo.koordinator.sh/v1alpha1")
+	model.Kind = new("NodeSLO")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

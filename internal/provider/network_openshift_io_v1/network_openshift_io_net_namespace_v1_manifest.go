@@ -7,6 +7,8 @@ package network_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkOpenshiftIoNetNamespaceV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkOpenshiftIoNetNamespaceV1Manifest{}
 
 func NewNetworkOpenshiftIoNetNamespaceV1Manifest() datasource.DataSource {
 	return &NetworkOpenshiftIoNetNamespaceV1Manifest{}
@@ -52,6 +50,7 @@ func (r *NetworkOpenshiftIoNetNamespaceV1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_network_openshift_io_net_namespace_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkOpenshiftIoNetNamespaceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NetNamespace describes a single isolated network. When using the redhat/openshift-ovs-multitenant plugin, every Namespace will have a corresponding NetNamespace object with the same name. (When using redhat/openshift-ovs-subnet, NetNamespaces are not used.)  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -153,8 +152,8 @@ func (r *NetworkOpenshiftIoNetNamespaceV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("network.openshift.io/v1")
-	model.Kind = pointer.String("NetNamespace")
+	model.ApiVersion = new("network.openshift.io/v1")
+	model.Kind = new("NetNamespace")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

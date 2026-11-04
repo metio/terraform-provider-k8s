@@ -7,6 +7,7 @@ package capabilities_3scale_net_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest{}
 
 func NewCapabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest() datasource.DataSource {
 	return &Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest{}
@@ -63,6 +61,7 @@ func (r *Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest) Metadata(_ 
 	response.TypeName = request.ProviderTypeName + "_capabilities_3scale_net_custom_policy_definition_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CustomPolicyDefinition is the Schema for the custompolicydefinitions API",
@@ -245,8 +244,8 @@ func (r *Capabilities3ScaleNetCustomPolicyDefinitionV1Beta1Manifest) Read(ctx co
 		return
 	}
 
-	model.ApiVersion = pointer.String("capabilities.3scale.net/v1beta1")
-	model.Kind = pointer.String("CustomPolicyDefinition")
+	model.ApiVersion = new("capabilities.3scale.net/v1beta1")
+	model.Kind = new("CustomPolicyDefinition")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

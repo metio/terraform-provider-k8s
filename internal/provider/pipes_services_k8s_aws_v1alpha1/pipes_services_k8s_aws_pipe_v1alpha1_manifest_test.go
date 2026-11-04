@@ -7,9 +7,10 @@ package pipes_services_k8s_aws_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pipes_services_k8s_aws_v1alpha1"
-	"testing"
 )
 
 func TestPipesServicesK8SAwsPipeV1Alpha1Manifest_ValidateSchema(t *testing.T) {

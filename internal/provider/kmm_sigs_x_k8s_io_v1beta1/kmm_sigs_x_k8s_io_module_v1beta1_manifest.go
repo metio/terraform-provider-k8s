@@ -7,6 +7,7 @@ package kmm_sigs_x_k8s_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KmmSigsXK8SIoModuleV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &KmmSigsXK8SIoModuleV1Beta1Manifest{}
 
 func NewKmmSigsXK8SIoModuleV1Beta1Manifest() datasource.DataSource {
 	return &KmmSigsXK8SIoModuleV1Beta1Manifest{}
@@ -520,6 +518,7 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_kmm_sigs_x_k8s_io_module_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Module describes how to load a module on different kernel versions",
@@ -3710,8 +3709,8 @@ func (r *KmmSigsXK8SIoModuleV1Beta1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("kmm.sigs.x-k8s.io/v1beta1")
-	model.Kind = pointer.String("Module")
+	model.ApiVersion = new("kmm.sigs.x-k8s.io/v1beta1")
+	model.Kind = new("Module")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

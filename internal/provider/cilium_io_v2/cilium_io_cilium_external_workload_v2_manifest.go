@@ -7,6 +7,8 @@ package cilium_io_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumExternalWorkloadV2Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumExternalWorkloadV2Manifest{}
 
 func NewCiliumIoCiliumExternalWorkloadV2Manifest() datasource.DataSource {
 	return &CiliumIoCiliumExternalWorkloadV2Manifest{}
@@ -52,6 +50,7 @@ func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_external_workload_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumExternalWorkload is a Kubernetes Custom Resource that contains a specification for an external workload that can join the cluster. The name of the CRD is the FQDN of the external workload, and it needs to match the name in the workload registration. The labels on the CRD object are the labels that will be used to allocate a Cilium Identity for the external workload. If 'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labels are not explicitly specified, they will be defaulted to 'default' and <workload name>, respectively. 'io.cilium.k8s.policy.cluster' will always be defined as the name of the current cluster, which defaults to 'default'.",
@@ -152,8 +151,8 @@ func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2")
-	model.Kind = pointer.String("CiliumExternalWorkload")
+	model.ApiVersion = new("cilium.io/v2")
+	model.Kind = new("CiliumExternalWorkload")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

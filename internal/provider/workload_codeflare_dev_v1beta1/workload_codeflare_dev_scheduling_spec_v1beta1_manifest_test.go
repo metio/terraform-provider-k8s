@@ -7,9 +7,10 @@ package workload_codeflare_dev_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/workload_codeflare_dev_v1beta1"
-	"testing"
 )
 
 func TestWorkloadCodeflareDevSchedulingSpecV1Beta1Manifest_ValidateSchema(t *testing.T) {

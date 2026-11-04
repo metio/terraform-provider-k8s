@@ -7,6 +7,7 @@ package cloudwatch_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest{}
 
 func NewCloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest() datasource.DataSource {
 	return &CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest{}
@@ -98,6 +96,7 @@ func (r *CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_cloudwatch_services_k8s_aws_metric_alarm_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MetricAlarm is the Schema for the MetricAlarms API",
@@ -541,8 +540,8 @@ func (r *CloudwatchServicesK8SAwsMetricAlarmV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("cloudwatch.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("MetricAlarm")
+	model.ApiVersion = new("cloudwatch.services.k8s.aws/v1alpha1")
+	model.Kind = new("MetricAlarm")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

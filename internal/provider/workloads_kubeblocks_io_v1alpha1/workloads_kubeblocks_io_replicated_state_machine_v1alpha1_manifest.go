@@ -7,6 +7,8 @@ package workloads_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest{}
 
 func NewWorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest() datasource.DataSource {
 	return &WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest{}
@@ -2016,6 +2014,7 @@ func (r *WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest) Metadata(_
 	response.TypeName = request.ProviderTypeName + "_workloads_kubeblocks_io_replicated_state_machine_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ReplicatedStateMachine is the Schema for the replicatedstatemachines API.",
@@ -15430,8 +15429,8 @@ func (r *WorkloadsKubeblocksIoReplicatedStateMachineV1Alpha1Manifest) Read(ctx c
 		return
 	}
 
-	model.ApiVersion = pointer.String("workloads.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("ReplicatedStateMachine")
+	model.ApiVersion = new("workloads.kubeblocks.io/v1alpha1")
+	model.Kind = new("ReplicatedStateMachine")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

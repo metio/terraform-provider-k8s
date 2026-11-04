@@ -7,6 +7,7 @@ package integration_rock8s_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &IntegrationRock8SComSocketV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &IntegrationRock8SComSocketV1Beta1Manifest{}
 
 func NewIntegrationRock8SComSocketV1Beta1Manifest() datasource.DataSource {
 	return &IntegrationRock8SComSocketV1Beta1Manifest{}
@@ -377,6 +375,7 @@ func (r *IntegrationRock8SComSocketV1Beta1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_integration_rock8s_com_socket_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *IntegrationRock8SComSocketV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Socket is the Schema for the sockets API",
@@ -2678,8 +2677,8 @@ func (r *IntegrationRock8SComSocketV1Beta1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("integration.rock8s.com/v1beta1")
-	model.Kind = pointer.String("Socket")
+	model.ApiVersion = new("integration.rock8s.com/v1beta1")
+	model.Kind = new("Socket")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package cilium_io_v2alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest{}
 
 func NewCiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest() datasource.DataSource {
 	return &CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest{}
@@ -64,6 +62,7 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_load_balancer_ip_pool_v2alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
@@ -253,8 +252,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
-	model.Kind = pointer.String("CiliumLoadBalancerIPPool")
+	model.ApiVersion = new("cilium.io/v2alpha1")
+	model.Kind = new("CiliumLoadBalancerIPPool")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

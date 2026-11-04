@@ -7,6 +7,8 @@ package route_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RouteOpenshiftIoRouteV1Manifest{}
-)
+var _ datasource.DataSource = &RouteOpenshiftIoRouteV1Manifest{}
 
 func NewRouteOpenshiftIoRouteV1Manifest() datasource.DataSource {
 	return &RouteOpenshiftIoRouteV1Manifest{}
@@ -99,6 +97,7 @@ func (r *RouteOpenshiftIoRouteV1Manifest) Metadata(_ context.Context, request da
 	response.TypeName = request.ProviderTypeName + "_route_openshift_io_route_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RouteOpenshiftIoRouteV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A route allows developers to expose services through an HTTP(S) aware load balancing and proxy layer via a public DNS entry. The route may further specify TLS options and a certificate, or specify a public CNAME that the router should also accept for HTTP and HTTPS traffic. An administrator typically configures their router to be visible outside the cluster firewall, and may also add additional security, caching, or traffic controls on the service content. Routers usually talk directly to the service endpoints.  Once a route is created, the 'host' field may not be changed. Generally, routers use the oldest route with a given host when resolving conflicts.  Routers are subject to additional customization and may support additional controls via the annotations field.  Because administrators may configure multiple routers, the route status field is used to return information to clients about the names and states of the route under each router. If a client chooses a duplicate name, for instance, the route status conditions are used to indicate the route cannot be chosen.  To enable HTTP/2 ALPN on a route it requires a custom (non-wildcard) certificate. This prevents connection coalescing by clients, notably web browsers. We do not support HTTP/2 ALPN on routes that use the default certificate because of the risk of connection re-use/coalescing. Routes that do not have their own custom certificate will not be HTTP/2 ALPN-enabled on either the frontend or the backend.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -551,8 +550,8 @@ func (r *RouteOpenshiftIoRouteV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ApiVersion = pointer.String("route.openshift.io/v1")
-	model.Kind = pointer.String("Route")
+	model.ApiVersion = new("route.openshift.io/v1")
+	model.Kind = new("Route")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

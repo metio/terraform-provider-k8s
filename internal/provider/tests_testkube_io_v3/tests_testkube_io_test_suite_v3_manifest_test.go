@@ -7,9 +7,10 @@ package tests_testkube_io_v3_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/tests_testkube_io_v3"
-	"testing"
 )
 
 func TestTestsTestkubeIoTestSuiteV3Manifest_ValidateSchema(t *testing.T) {

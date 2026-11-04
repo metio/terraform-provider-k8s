@@ -7,6 +7,7 @@ package datadoghq_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DatadoghqComDatadogMonitorV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DatadoghqComDatadogMonitorV1Alpha1Manifest{}
 
 func NewDatadoghqComDatadogMonitorV1Alpha1Manifest() datasource.DataSource {
 	return &DatadoghqComDatadogMonitorV1Alpha1Manifest{}
@@ -92,6 +90,7 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_datadoghq_com_datadog_monitor_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DatadogMonitor allows to define and manage Monitors from your Kubernetes Cluster",
@@ -494,8 +493,8 @@ func (r *DatadoghqComDatadogMonitorV1Alpha1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("datadoghq.com/v1alpha1")
-	model.Kind = pointer.String("DatadogMonitor")
+	model.ApiVersion = new("datadoghq.com/v1alpha1")
+	model.Kind = new("DatadogMonitor")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest{}
 
 func NewGatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest{}
@@ -61,6 +59,7 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_reference_grant_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ReferenceGrant identifies kinds of resources in other namespaces that are trusted to reference the specified kinds of resources in the same namespace as the policy. Each ReferenceGrant can be used to represent a unique trust relationship. Additional Reference Grants can be used to add to the set of trusted sources of inbound references for the namespace they are defined within. All cross-namespace references in Gateway API (with the exception of cross-namespace Gateway-route attachment) require a ReferenceGrant. ReferenceGrant is a form of runtime verification allowing users to assert which cross-namespace object references are permitted. Implementations that support ReferenceGrant MUST NOT permit cross-namespace references which have no grant, and MUST respond to the removal of a grant by revoking the access that the grant allowed.",
@@ -248,8 +247,8 @@ func (r *GatewayNetworkingK8SIoReferenceGrantV1Beta1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1beta1")
-	model.Kind = pointer.String("ReferenceGrant")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1beta1")
+	model.Kind = new("ReferenceGrant")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package kyverno_io_v2beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kyverno_io_v2beta1"
-	"testing"
 )
 
 func TestKyvernoIoCleanupPolicyV2Beta1Manifest_ValidateSchema(t *testing.T) {

@@ -7,6 +7,7 @@ package notification_toolkit_fluxcd_io_v1beta3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NotificationToolkitFluxcdIoAlertV1Beta3Manifest{}
-)
+var _ datasource.DataSource = &NotificationToolkitFluxcdIoAlertV1Beta3Manifest{}
 
 func NewNotificationToolkitFluxcdIoAlertV1Beta3Manifest() datasource.DataSource {
 	return &NotificationToolkitFluxcdIoAlertV1Beta3Manifest{}
@@ -66,6 +64,7 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_notification_toolkit_fluxcd_io_alert_v1beta3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Alert is the Schema for the alerts API",
@@ -293,8 +292,8 @@ func (r *NotificationToolkitFluxcdIoAlertV1Beta3Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("notification.toolkit.fluxcd.io/v1beta3")
-	model.Kind = pointer.String("Alert")
+	model.ApiVersion = new("notification.toolkit.fluxcd.io/v1beta3")
+	model.Kind = new("Alert")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

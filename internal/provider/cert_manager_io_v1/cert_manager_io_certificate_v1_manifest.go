@@ -7,6 +7,7 @@ package cert_manager_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CertManagerIoCertificateV1Manifest{}
-)
+var _ datasource.DataSource = &CertManagerIoCertificateV1Manifest{}
 
 func NewCertManagerIoCertificateV1Manifest() datasource.DataSource {
 	return &CertManagerIoCertificateV1Manifest{}
@@ -129,6 +127,7 @@ func (r *CertManagerIoCertificateV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_cert_manager_io_certificate_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CertManagerIoCertificateV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A Certificate resource should be created to ensure an up to date and signed X.509 certificate is stored in the Kubernetes Secret resource named in 'spec.secretName'. The stored certificate will be renewed before it expires (as configured by 'spec.renewBefore').",
@@ -794,8 +793,8 @@ func (r *CertManagerIoCertificateV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("cert-manager.io/v1")
-	model.Kind = pointer.String("Certificate")
+	model.ApiVersion = new("cert-manager.io/v1")
+	model.Kind = new("Certificate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

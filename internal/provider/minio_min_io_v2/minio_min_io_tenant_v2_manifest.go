@@ -7,6 +7,7 @@ package minio_min_io_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MinioMinIoTenantV2Manifest{}
-)
+var _ datasource.DataSource = &MinioMinIoTenantV2Manifest{}
 
 func NewMinioMinIoTenantV2Manifest() datasource.DataSource {
 	return &MinioMinIoTenantV2Manifest{}
@@ -2048,6 +2046,7 @@ func (r *MinioMinIoTenantV2Manifest) Metadata(_ context.Context, request datasou
 	response.TypeName = request.ProviderTypeName + "_minio_min_io_tenant_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MinioMinIoTenantV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -15549,8 +15548,8 @@ func (r *MinioMinIoTenantV2Manifest) Read(ctx context.Context, request datasourc
 		return
 	}
 
-	model.ApiVersion = pointer.String("minio.min.io/v2")
-	model.Kind = pointer.String("Tenant")
+	model.ApiVersion = new("minio.min.io/v2")
+	model.Kind = new("Tenant")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

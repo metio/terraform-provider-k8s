@@ -7,6 +7,7 @@ package canaries_flanksource_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CanariesFlanksourceComTopologyV1Manifest{}
-)
+var _ datasource.DataSource = &CanariesFlanksourceComTopologyV1Manifest{}
 
 func NewCanariesFlanksourceComTopologyV1Manifest() datasource.DataSource {
 	return &CanariesFlanksourceComTopologyV1Manifest{}
@@ -140,13 +138,11 @@ type CanariesFlanksourceComTopologyV1ManifestData struct {
 			Summary    *struct {
 				Checks    *map[string]string `tfsdk:"checks" json:"checks,omitempty"`
 				Healthy   *int64             `tfsdk:"healthy" json:"healthy,omitempty"`
-				Incidents *struct {
-				} `tfsdk:"incidents" json:"incidents,omitempty"`
-				Info     *int64 `tfsdk:"info" json:"info,omitempty"`
-				Insights *struct {
-				} `tfsdk:"insights" json:"insights,omitempty"`
-				Unhealthy *int64 `tfsdk:"unhealthy" json:"unhealthy,omitempty"`
-				Warning   *int64 `tfsdk:"warning" json:"warning,omitempty"`
+				Incidents *struct{}          `tfsdk:"incidents" json:"incidents,omitempty"`
+				Info      *int64             `tfsdk:"info" json:"info,omitempty"`
+				Insights  *struct{}          `tfsdk:"insights" json:"insights,omitempty"`
+				Unhealthy *int64             `tfsdk:"unhealthy" json:"unhealthy,omitempty"`
+				Warning   *int64             `tfsdk:"warning" json:"warning,omitempty"`
 			} `tfsdk:"summary" json:"summary,omitempty"`
 			Tooltip *string `tfsdk:"tooltip" json:"tooltip,omitempty"`
 			Type    *string `tfsdk:"type" json:"type,omitempty"`
@@ -442,6 +438,7 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_canaries_flanksource_com_topology_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CanariesFlanksourceComTopologyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -3257,8 +3254,8 @@ func (r *CanariesFlanksourceComTopologyV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("canaries.flanksource.com/v1")
-	model.Kind = pointer.String("Topology")
+	model.ApiVersion = new("canaries.flanksource.com/v1")
+	model.Kind = new("Topology")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

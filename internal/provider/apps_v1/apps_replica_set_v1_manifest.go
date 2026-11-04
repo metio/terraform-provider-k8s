@@ -7,6 +7,7 @@ package apps_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsReplicaSetV1Manifest{}
-)
+var _ datasource.DataSource = &AppsReplicaSetV1Manifest{}
 
 func NewAppsReplicaSetV1Manifest() datasource.DataSource {
 	return &AppsReplicaSetV1Manifest{}
@@ -1421,6 +1419,7 @@ func (r *AppsReplicaSetV1Manifest) Metadata(_ context.Context, request datasourc
 	response.TypeName = request.ProviderTypeName + "_apps_replica_set_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsReplicaSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ReplicaSet ensures that a specified number of pod replicas are running at any given time.",
@@ -10822,8 +10821,8 @@ func (r *AppsReplicaSetV1Manifest) Read(ctx context.Context, request datasource.
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps/v1")
-	model.Kind = pointer.String("ReplicaSet")
+	model.ApiVersion = new("apps/v1")
+	model.Kind = new("ReplicaSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

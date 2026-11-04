@@ -7,6 +7,8 @@ package networking_gke_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingGkeIoGcpbackendPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingGkeIoGcpbackendPolicyV1Manifest{}
 
 func NewNetworkingGkeIoGcpbackendPolicyV1Manifest() datasource.DataSource {
 	return &NetworkingGkeIoGcpbackendPolicyV1Manifest{}
@@ -80,6 +78,7 @@ func (r *NetworkingGkeIoGcpbackendPolicyV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_networking_gke_io_gcp_backend_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingGkeIoGcpbackendPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GCPBackendPolicy provides a way to apply LoadBalancer policy configuration with the GKE implementation of the Gateway API.",
@@ -382,8 +381,8 @@ func (r *NetworkingGkeIoGcpbackendPolicyV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.gke.io/v1")
-	model.Kind = pointer.String("GCPBackendPolicy")
+	model.ApiVersion = new("networking.gke.io/v1")
+	model.Kind = new("GCPBackendPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

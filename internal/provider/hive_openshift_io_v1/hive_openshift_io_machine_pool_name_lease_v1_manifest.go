@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoMachinePoolNameLeaseV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoMachinePoolNameLeaseV1Manifest{}
 
 func NewHiveOpenshiftIoMachinePoolNameLeaseV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoMachinePoolNameLeaseV1Manifest{}
@@ -49,6 +47,7 @@ func (r *HiveOpenshiftIoMachinePoolNameLeaseV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_machine_pool_name_lease_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoMachinePoolNameLeaseV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MachinePoolNameLease is the Schema for the MachinePoolNameLeases API. This resource is mostly empty as we're primarily relying on the name to determine if a lease is available. Note that not all cloud providers require the use of a lease for naming, at present this is only required for GCP where we're extremely restricted on name lengths.",
@@ -139,8 +138,8 @@ func (r *HiveOpenshiftIoMachinePoolNameLeaseV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("MachinePoolNameLease")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("MachinePoolNameLease")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

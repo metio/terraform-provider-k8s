@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephBlockPoolRadosNamespaceV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephBlockPoolRadosNamespaceV1Manifest{}
 
 func NewCephRookIoCephBlockPoolRadosNamespaceV1Manifest() datasource.DataSource {
 	return &CephRookIoCephBlockPoolRadosNamespaceV1Manifest{}
@@ -61,6 +59,7 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_block_pool_rados_namespace_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephBlockPoolRadosNamespace represents a Ceph BlockPool Rados Namespace",
@@ -230,8 +229,8 @@ func (r *CephRookIoCephBlockPoolRadosNamespaceV1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephBlockPoolRadosNamespace")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephBlockPoolRadosNamespace")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

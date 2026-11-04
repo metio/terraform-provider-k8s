@@ -7,9 +7,10 @@ package api_clever_cloud_com_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/api_clever_cloud_com_v1"
-	"testing"
 )
 
 func TestApiCleverCloudComRedisV1Manifest_ValidateSchema(t *testing.T) {

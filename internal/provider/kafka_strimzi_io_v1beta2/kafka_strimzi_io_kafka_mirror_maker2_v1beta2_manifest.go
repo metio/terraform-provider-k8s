@@ -7,6 +7,8 @@ package kafka_strimzi_io_v1beta2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest{}
-)
+var _ datasource.DataSource = &KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest{}
 
 func NewKafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest() datasource.DataSource {
 	return &KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest{}
@@ -954,6 +952,7 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_kafka_strimzi_io_kafka_mirror_maker2_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -7183,8 +7182,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("kafka.strimzi.io/v1beta2")
-	model.Kind = pointer.String("KafkaMirrorMaker2")
+	model.ApiVersion = new("kafka.strimzi.io/v1beta2")
+	model.Kind = new("KafkaMirrorMaker2")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

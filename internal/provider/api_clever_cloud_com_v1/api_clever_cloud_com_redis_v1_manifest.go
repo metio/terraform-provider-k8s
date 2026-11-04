@@ -7,6 +7,7 @@ package api_clever_cloud_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiCleverCloudComRedisV1Manifest{}
-)
+var _ datasource.DataSource = &ApiCleverCloudComRedisV1Manifest{}
 
 func NewApiCleverCloudComRedisV1Manifest() datasource.DataSource {
 	return &ApiCleverCloudComRedisV1Manifest{}
@@ -60,6 +58,7 @@ func (r *ApiCleverCloudComRedisV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_api_clever_cloud_com_redis_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiCleverCloudComRedisV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for Spec via 'CustomResource'",
@@ -211,8 +210,8 @@ func (r *ApiCleverCloudComRedisV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("api.clever-cloud.com/v1")
-	model.Kind = pointer.String("Redis")
+	model.ApiVersion = new("api.clever-cloud.com/v1")
+	model.Kind = new("Redis")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

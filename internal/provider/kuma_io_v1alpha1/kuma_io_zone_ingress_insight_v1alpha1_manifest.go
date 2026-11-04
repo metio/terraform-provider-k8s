@@ -7,6 +7,7 @@ package kuma_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KumaIoZoneIngressInsightV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &KumaIoZoneIngressInsightV1Alpha1Manifest{}
 
 func NewKumaIoZoneIngressInsightV1Alpha1Manifest() datasource.DataSource {
 	return &KumaIoZoneIngressInsightV1Alpha1Manifest{}
@@ -50,6 +48,7 @@ func (r *KumaIoZoneIngressInsightV1Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_kuma_io_zone_ingress_insight_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KumaIoZoneIngressInsightV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -148,8 +147,8 @@ func (r *KumaIoZoneIngressInsightV1Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("kuma.io/v1alpha1")
-	model.Kind = pointer.String("ZoneIngressInsight")
+	model.ApiVersion = new("kuma.io/v1alpha1")
+	model.Kind = new("ZoneIngressInsight")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

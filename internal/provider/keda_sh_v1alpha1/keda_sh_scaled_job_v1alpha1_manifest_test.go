@@ -7,9 +7,10 @@ package keda_sh_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/keda_sh_v1alpha1"
-	"testing"
 )
 
 func TestKedaShScaledJobV1Alpha1Manifest_ValidateSchema(t *testing.T) {

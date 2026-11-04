@@ -7,9 +7,10 @@ package acid_zalan_do_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/acid_zalan_do_v1"
-	"testing"
 )
 
 func TestAcidZalanDoPostgresTeamV1Manifest_ValidateSchema(t *testing.T) {

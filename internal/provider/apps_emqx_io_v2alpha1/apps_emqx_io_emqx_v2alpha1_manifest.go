@@ -7,6 +7,8 @@ package apps_emqx_io_v2alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsEmqxIoEmqxV2Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsEmqxIoEmqxV2Alpha1Manifest{}
 
 func NewAppsEmqxIoEmqxV2Alpha1Manifest() datasource.DataSource {
 	return &AppsEmqxIoEmqxV2Alpha1Manifest{}
@@ -2612,6 +2610,7 @@ func (r *AppsEmqxIoEmqxV2Alpha1Manifest) Metadata(_ context.Context, request dat
 	response.TypeName = request.ProviderTypeName + "_apps_emqx_io_emqx_v2alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsEmqxIoEmqxV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -19870,8 +19869,8 @@ func (r *AppsEmqxIoEmqxV2Alpha1Manifest) Read(ctx context.Context, request datas
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.emqx.io/v2alpha1")
-	model.Kind = pointer.String("EMQX")
+	model.ApiVersion = new("apps.emqx.io/v2alpha1")
+	model.Kind = new("EMQX")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

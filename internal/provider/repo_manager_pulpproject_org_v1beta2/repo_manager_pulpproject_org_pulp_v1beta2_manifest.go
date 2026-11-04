@@ -7,6 +7,7 @@ package repo_manager_pulpproject_org_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RepoManagerPulpprojectOrgPulpV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &RepoManagerPulpprojectOrgPulpV1Beta2Manifest{}
 
 func NewRepoManagerPulpprojectOrgPulpV1Beta2Manifest() datasource.DataSource {
 	return &RepoManagerPulpprojectOrgPulpV1Beta2Manifest{}
@@ -1708,6 +1706,7 @@ func (r *RepoManagerPulpprojectOrgPulpV1Beta2Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_repo_manager_pulpproject_org_pulp_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RepoManagerPulpprojectOrgPulpV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Pulp is the Schema for the pulps API",
@@ -12933,8 +12932,8 @@ func (r *RepoManagerPulpprojectOrgPulpV1Beta2Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("repo-manager.pulpproject.org/v1beta2")
-	model.Kind = pointer.String("Pulp")
+	model.ApiVersion = new("repo-manager.pulpproject.org/v1beta2")
+	model.Kind = new("Pulp")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

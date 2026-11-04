@@ -7,6 +7,7 @@ package ecr_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &EcrServicesK8SAwsRepositoryV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &EcrServicesK8SAwsRepositoryV1Alpha1Manifest{}
 
 func NewEcrServicesK8SAwsRepositoryV1Alpha1Manifest() datasource.DataSource {
 	return &EcrServicesK8SAwsRepositoryV1Alpha1Manifest{}
@@ -66,6 +64,7 @@ func (r *EcrServicesK8SAwsRepositoryV1Alpha1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_ecr_services_k8s_aws_repository_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *EcrServicesK8SAwsRepositoryV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Repository is the Schema for the Repositories API",
@@ -265,8 +264,8 @@ func (r *EcrServicesK8SAwsRepositoryV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("ecr.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("Repository")
+	model.ApiVersion = new("ecr.services.k8s.aws/v1alpha1")
+	model.Kind = new("Repository")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

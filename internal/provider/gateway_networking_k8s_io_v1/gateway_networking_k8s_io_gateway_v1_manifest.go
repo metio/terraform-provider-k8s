@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoGatewayV1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoGatewayV1Manifest{}
 
 func NewGatewayNetworkingK8SIoGatewayV1Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoGatewayV1Manifest{}
@@ -99,6 +97,7 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_gateway_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Gateway represents an instance of a service-traffic handling infrastructure by binding Listeners to a set of IP addresses.",
@@ -581,8 +580,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1")
-	model.Kind = pointer.String("Gateway")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1")
+	model.Kind = new("Gateway")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

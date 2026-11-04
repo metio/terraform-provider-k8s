@@ -7,6 +7,7 @@ package cert_manager_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CertManagerIoCertificateRequestV1Manifest{}
-)
+var _ datasource.DataSource = &CertManagerIoCertificateRequestV1Manifest{}
 
 func NewCertManagerIoCertificateRequestV1Manifest() datasource.DataSource {
 	return &CertManagerIoCertificateRequestV1Manifest{}
@@ -63,6 +61,7 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_cert_manager_io_certificate_request_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CertManagerIoCertificateRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A CertificateRequest is used to request a signed certificate from one of the configured issuers. All fields within the CertificateRequest's 'spec' are immutable after creation. A CertificateRequest will either succeed or fail, as denoted by its 'Ready' status condition and its 'status.failureTime' field. A CertificateRequest is a one-shot resource, meaning it represents a single point in time request for a certificate and cannot be re-used.",
@@ -256,8 +255,8 @@ func (r *CertManagerIoCertificateRequestV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("cert-manager.io/v1")
-	model.Kind = pointer.String("CertificateRequest")
+	model.ApiVersion = new("cert-manager.io/v1")
+	model.Kind = new("CertificateRequest")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

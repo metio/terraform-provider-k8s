@@ -7,6 +7,7 @@ package zookeeper_pravega_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest{}
 
 func NewZookeeperPravegaIoZookeeperClusterV1Beta1Manifest() datasource.DataSource {
 	return &ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest{}
@@ -1142,6 +1140,7 @@ func (r *ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest) Metadata(_ context.C
 	response.TypeName = request.ProviderTypeName + "_zookeeper_pravega_io_zookeeper_cluster_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ZookeeperCluster is the Schema for the zookeeperclusters API",
@@ -8573,8 +8572,8 @@ func (r *ZookeeperPravegaIoZookeeperClusterV1Beta1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ApiVersion = pointer.String("zookeeper.pravega.io/v1beta1")
-	model.Kind = pointer.String("ZookeeperCluster")
+	model.ApiVersion = new("zookeeper.pravega.io/v1beta1")
+	model.Kind = new("ZookeeperCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

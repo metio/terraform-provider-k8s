@@ -7,6 +7,8 @@ package kustomize_toolkit_fluxcd_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KustomizeToolkitFluxcdIoKustomizationV1Manifest{}
-)
+var _ datasource.DataSource = &KustomizeToolkitFluxcdIoKustomizationV1Manifest{}
 
 func NewKustomizeToolkitFluxcdIoKustomizationV1Manifest() datasource.DataSource {
 	return &KustomizeToolkitFluxcdIoKustomizationV1Manifest{}
@@ -122,6 +120,7 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_kustomize_toolkit_fluxcd_io_kustomization_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Kustomization is the Schema for the kustomizations API.",
@@ -737,8 +736,8 @@ func (r *KustomizeToolkitFluxcdIoKustomizationV1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("kustomize.toolkit.fluxcd.io/v1")
-	model.Kind = pointer.String("Kustomization")
+	model.ApiVersion = new("kustomize.toolkit.fluxcd.io/v1")
+	model.Kind = new("Kustomization")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

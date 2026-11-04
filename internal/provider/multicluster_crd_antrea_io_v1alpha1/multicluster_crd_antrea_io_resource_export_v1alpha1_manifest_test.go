@@ -7,9 +7,10 @@ package multicluster_crd_antrea_io_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/multicluster_crd_antrea_io_v1alpha1"
-	"testing"
 )
 
 func TestMulticlusterCrdAntreaIoResourceExportV1Alpha1Manifest_ValidateSchema(t *testing.T) {

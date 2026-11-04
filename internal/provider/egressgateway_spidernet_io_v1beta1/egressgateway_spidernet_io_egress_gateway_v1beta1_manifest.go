@@ -7,6 +7,7 @@ package egressgateway_spidernet_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest{}
 
 func NewEgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest() datasource.DataSource {
 	return &EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest{}
@@ -67,6 +65,7 @@ func (r *EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_egressgateway_spidernet_io_egress_gateway_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EgressGateway egress gateway",
@@ -267,8 +266,8 @@ func (r *EgressgatewaySpidernetIoEgressGatewayV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("egressgateway.spidernet.io/v1beta1")
-	model.Kind = pointer.String("EgressGateway")
+	model.ApiVersion = new("egressgateway.spidernet.io/v1beta1")
+	model.Kind = new("EgressGateway")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

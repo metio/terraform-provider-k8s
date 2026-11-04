@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoImageSetV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoImageSetV1Manifest{}
 
 func NewOperatorTigeraIoImageSetV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoImageSetV1Manifest{}
@@ -53,6 +51,7 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_image_set_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoImageSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ImageSet is used to specify image digests for the images that the operator deploys. The name of the ImageSet is expected to be in the format '<variant>-<release>'. The 'variant' used is 'enterprise' if the InstallationSpec Variant is 'TigeraSecureEnterprise' otherwise it is 'calico'. The 'release' must match the version of the variant that the operator is built to deploy, this version can be obtained by passing the '--version' flag to the operator binary.",
@@ -158,8 +157,8 @@ func (r *OperatorTigeraIoImageSetV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("ImageSet")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("ImageSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

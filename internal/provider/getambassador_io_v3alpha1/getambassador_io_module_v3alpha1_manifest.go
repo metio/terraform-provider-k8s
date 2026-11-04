@@ -7,6 +7,7 @@ package getambassador_io_v3alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoModuleV3Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoModuleV3Alpha1Manifest{}
 
 func NewGetambassadorIoModuleV3Alpha1Manifest() datasource.DataSource {
 	return &GetambassadorIoModuleV3Alpha1Manifest{}
@@ -52,6 +50,7 @@ func (r *GetambassadorIoModuleV3Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_module_v3alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoModuleV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A Module defines system-wide configuration. The type of module is controlled by the .metadata.name; valid names are 'ambassador' or 'tls'. https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador/#the-ambassador-module https://www.getambassador.io/docs/edge-stack/latest/topics/running/tls/#tls-module-deprecated",
@@ -160,8 +159,8 @@ func (r *GetambassadorIoModuleV3Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v3alpha1")
-	model.Kind = pointer.String("Module")
+	model.ApiVersion = new("getambassador.io/v3alpha1")
+	model.Kind = new("Module")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

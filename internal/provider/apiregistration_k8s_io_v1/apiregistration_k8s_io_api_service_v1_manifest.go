@@ -7,6 +7,7 @@ package apiregistration_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiregistrationK8SIoApiserviceV1Manifest{}
-)
+var _ datasource.DataSource = &ApiregistrationK8SIoApiserviceV1Manifest{}
 
 func NewApiregistrationK8SIoApiserviceV1Manifest() datasource.DataSource {
 	return &ApiregistrationK8SIoApiserviceV1Manifest{}
@@ -60,6 +58,7 @@ func (r *ApiregistrationK8SIoApiserviceV1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_apiregistration_k8s_io_api_service_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiregistrationK8SIoApiserviceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIService represents a server for a particular GroupVersion. Name must be 'version.group'.",
@@ -222,8 +221,8 @@ func (r *ApiregistrationK8SIoApiserviceV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("apiregistration.k8s.io/v1")
-	model.Kind = pointer.String("APIService")
+	model.ApiVersion = new("apiregistration.k8s.io/v1")
+	model.Kind = new("APIService")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package monocle_monocle_change_metrics_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest{}
 
 func NewMonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest() datasource.DataSource {
 	return &MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest{}
@@ -59,6 +57,7 @@ func (r *MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_monocle_monocle_change_metrics_io_monocle_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Monocle is the Schema for the monocles API",
@@ -210,8 +209,8 @@ func (r *MonocleMonocleChangeMetricsIoMonocleV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("monocle.monocle.change-metrics.io/v1alpha1")
-	model.Kind = pointer.String("Monocle")
+	model.ApiVersion = new("monocle.monocle.change-metrics.io/v1alpha1")
+	model.Kind = new("Monocle")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

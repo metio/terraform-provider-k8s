@@ -7,6 +7,8 @@ package clustertemplate_openshift_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest{}
 
 func NewClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest() datasource.DataSource {
 	return &ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_clustertemplate_openshift_io_cluster_template_quota_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Defines which ClusterTemplates can be used in a given namespace",
@@ -200,8 +199,8 @@ func (r *ClustertemplateOpenshiftIoClusterTemplateQuotaV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("clustertemplate.openshift.io/v1alpha1")
-	model.Kind = pointer.String("ClusterTemplateQuota")
+	model.ApiVersion = new("clustertemplate.openshift.io/v1alpha1")
+	model.Kind = new("ClusterTemplateQuota")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package flowcontrol_apiserver_k8s_io_v1beta3_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/flowcontrol_apiserver_k8s_io_v1beta3"
-	"testing"
 )
 
 func TestFlowcontrolApiserverK8SIoFlowSchemaV1Beta3Manifest_ValidateSchema(t *testing.T) {

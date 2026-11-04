@@ -7,9 +7,10 @@ package getambassador_io_v2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/getambassador_io_v2"
-	"testing"
 )
 
 func TestGetambassadorIoTcpmappingV2Manifest_ValidateSchema(t *testing.T) {

@@ -7,9 +7,10 @@ package logging_banzaicloud_io_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/logging_banzaicloud_io_v1beta1"
-	"testing"
 )
 
 func TestLoggingBanzaicloudIoSyslogNgclusterFlowV1Beta1Manifest_ValidateSchema(t *testing.T) {

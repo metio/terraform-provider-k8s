@@ -7,10 +7,11 @@ package lerentis_uploadfilter24_eu_v1beta6
 
 import (
 	"fmt"
-	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest(t *testing.T) {
@@ -26,10 +27,10 @@ func TestLerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest(t *testing.T) 
 	defer os.RemoveAll(path + "/terraform.tfstate.backup")
 	defer os.RemoveAll(path + "/.terraform")
 
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApplyAndIdempotent(t, terraformOptions)
+	defer terraform.DestroyContext(t, t.Context(), terraformOptions)
+	terraform.InitAndApplyAndIdempotentContext(t, t.Context(), terraformOptions)
 
-	outputMap := terraform.OutputMap(t, terraformOptions, "manifests")
+	outputMap := terraform.OutputMapContext(t, t.Context(), terraformOptions, "manifests")
 	for key, value := range outputMap {
 		assert.NotEmpty(t, value, fmt.Sprintf("data %s.%s did not produce an output", "k8s_lerentis_uploadfilter24_eu_bitwarden_template_v1beta6_manifest", key))
 	}

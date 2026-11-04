@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoConfigV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoConfigV1Manifest{}
 
 func NewOperatorOpenshiftIoConfigV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoConfigV1Manifest{}
@@ -55,6 +53,7 @@ func (r *OperatorOpenshiftIoConfigV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_config_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoConfigV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Config specifies the behavior of the config operator which is responsible for creating the initial configuration of other components on the cluster.  The operator also handles installation, migration or synchronization of cloud configurations for AWS and Azure cloud based clusters  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -184,8 +183,8 @@ func (r *OperatorOpenshiftIoConfigV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("Config")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("Config")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

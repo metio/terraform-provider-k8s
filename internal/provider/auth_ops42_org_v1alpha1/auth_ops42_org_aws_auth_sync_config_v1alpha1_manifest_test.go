@@ -7,9 +7,10 @@ package auth_ops42_org_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/auth_ops42_org_v1alpha1"
-	"testing"
 )
 
 func TestAuthOps42OrgAwsAuthSyncConfigV1Alpha1Manifest_ValidateSchema(t *testing.T) {

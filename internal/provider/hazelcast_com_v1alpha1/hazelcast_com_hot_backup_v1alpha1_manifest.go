@@ -7,6 +7,7 @@ package hazelcast_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HazelcastComHotBackupV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &HazelcastComHotBackupV1Alpha1Manifest{}
 
 func NewHazelcastComHotBackupV1Alpha1Manifest() datasource.DataSource {
 	return &HazelcastComHotBackupV1Alpha1Manifest{}
@@ -54,6 +52,7 @@ func (r *HazelcastComHotBackupV1Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_hazelcast_com_hot_backup_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HazelcastComHotBackupV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HotBackup is the Schema for the hot backup API",
@@ -176,8 +175,8 @@ func (r *HazelcastComHotBackupV1Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("hazelcast.com/v1alpha1")
-	model.Kind = pointer.String("HotBackup")
+	model.ApiVersion = new("hazelcast.com/v1alpha1")
+	model.Kind = new("HotBackup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

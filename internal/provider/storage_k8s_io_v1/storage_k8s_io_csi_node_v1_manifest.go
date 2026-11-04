@@ -7,6 +7,7 @@ package storage_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StorageK8SIoCsinodeV1Manifest{}
-)
+var _ datasource.DataSource = &StorageK8SIoCsinodeV1Manifest{}
 
 func NewStorageK8SIoCsinodeV1Manifest() datasource.DataSource {
 	return &StorageK8SIoCsinodeV1Manifest{}
@@ -57,6 +55,7 @@ func (r *StorageK8SIoCsinodeV1Manifest) Metadata(_ context.Context, request data
 	response.TypeName = request.ProviderTypeName + "_storage_k8s_io_csi_node_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StorageK8SIoCsinodeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
@@ -188,8 +187,8 @@ func (r *StorageK8SIoCsinodeV1Manifest) Read(ctx context.Context, request dataso
 		return
 	}
 
-	model.ApiVersion = pointer.String("storage.k8s.io/v1")
-	model.Kind = pointer.String("CSINode")
+	model.ApiVersion = new("storage.k8s.io/v1")
+	model.Kind = new("CSINode")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

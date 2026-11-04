@@ -7,9 +7,10 @@ package s3_snappcloud_io_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/s3_snappcloud_io_v1alpha1"
-	"testing"
 )
 
 func TestS3SnappcloudIoS3UserV1Alpha1Manifest_ValidateSchema(t *testing.T) {

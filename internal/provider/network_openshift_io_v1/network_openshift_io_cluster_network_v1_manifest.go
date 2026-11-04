@@ -7,6 +7,8 @@ package network_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkOpenshiftIoClusterNetworkV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkOpenshiftIoClusterNetworkV1Manifest{}
 
 func NewNetworkOpenshiftIoClusterNetworkV1Manifest() datasource.DataSource {
 	return &NetworkOpenshiftIoClusterNetworkV1Manifest{}
@@ -59,6 +57,7 @@ func (r *NetworkOpenshiftIoClusterNetworkV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_network_openshift_io_cluster_network_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkOpenshiftIoClusterNetworkV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterNetwork describes the cluster network. There is normally only one object of this type, named 'default', which is created by the SDN network plugin based on the master configuration when the cluster is brought up for the first time.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -228,8 +227,8 @@ func (r *NetworkOpenshiftIoClusterNetworkV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("network.openshift.io/v1")
-	model.Kind = pointer.String("ClusterNetwork")
+	model.ApiVersion = new("network.openshift.io/v1")
+	model.Kind = new("ClusterNetwork")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

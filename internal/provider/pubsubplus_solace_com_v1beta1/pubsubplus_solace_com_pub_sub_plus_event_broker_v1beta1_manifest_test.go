@@ -7,9 +7,10 @@ package pubsubplus_solace_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/pubsubplus_solace_com_v1beta1"
-	"testing"
 )
 
 func TestPubsubplusSolaceComPubSubPlusEventBrokerV1Beta1Manifest_ValidateSchema(t *testing.T) {

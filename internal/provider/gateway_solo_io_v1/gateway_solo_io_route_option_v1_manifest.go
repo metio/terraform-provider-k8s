@@ -7,6 +7,7 @@ package gateway_solo_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewaySoloIoRouteOptionV1Manifest{}
-)
+var _ datasource.DataSource = &GatewaySoloIoRouteOptionV1Manifest{}
 
 func NewGatewaySoloIoRouteOptionV1Manifest() datasource.DataSource {
 	return &GatewaySoloIoRouteOptionV1Manifest{}
@@ -1602,6 +1600,7 @@ func (r *GatewaySoloIoRouteOptionV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_gateway_solo_io_route_option_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewaySoloIoRouteOptionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -11755,8 +11754,8 @@ func (r *GatewaySoloIoRouteOptionV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.solo.io/v1")
-	model.Kind = pointer.String("RouteOption")
+	model.ApiVersion = new("gateway.solo.io/v1")
+	model.Kind = new("RouteOption")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

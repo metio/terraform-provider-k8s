@@ -7,6 +7,7 @@ package apiextensions_crossplane_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest{}
 
 func NewApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest() datasource.DataSource {
 	return &ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest{}
@@ -216,6 +214,7 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Metadata(_
 	response.TypeName = request.ProviderTypeName + "_apiextensions_crossplane_io_composition_revision_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A CompositionRevision represents a revision of a Composition. Crossplane creates new revisions when there are changes to the Composition. Crossplane creates and manages CompositionRevisions. Don't directly edit CompositionRevisions.",
@@ -1471,8 +1470,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Read(ctx c
 		return
 	}
 
-	model.ApiVersion = pointer.String("apiextensions.crossplane.io/v1beta1")
-	model.Kind = pointer.String("CompositionRevision")
+	model.ApiVersion = new("apiextensions.crossplane.io/v1beta1")
+	model.Kind = new("CompositionRevision")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

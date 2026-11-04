@@ -7,6 +7,7 @@ package apps_clusternet_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsClusternetIoSubscriptionV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsClusternetIoSubscriptionV1Alpha1Manifest{}
 
 func NewAppsClusternetIoSubscriptionV1Alpha1Manifest() datasource.DataSource {
 	return &AppsClusternetIoSubscriptionV1Alpha1Manifest{}
@@ -123,6 +121,7 @@ func (r *AppsClusternetIoSubscriptionV1Alpha1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_apps_clusternet_io_subscription_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsClusternetIoSubscriptionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Subscription represents the policy that install a group of resources to one or more clusters.",
@@ -727,8 +726,8 @@ func (r *AppsClusternetIoSubscriptionV1Alpha1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.clusternet.io/v1alpha1")
-	model.Kind = pointer.String("Subscription")
+	model.ApiVersion = new("apps.clusternet.io/v1alpha1")
+	model.Kind = new("Subscription")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

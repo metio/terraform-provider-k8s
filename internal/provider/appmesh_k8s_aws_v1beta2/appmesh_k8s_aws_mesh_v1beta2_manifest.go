@@ -7,6 +7,7 @@ package appmesh_k8s_aws_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppmeshK8SAwsMeshV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &AppmeshK8SAwsMeshV1Beta2Manifest{}
 
 func NewAppmeshK8SAwsMeshV1Beta2Manifest() datasource.DataSource {
 	return &AppmeshK8SAwsMeshV1Beta2Manifest{}
@@ -65,6 +63,7 @@ func (r *AppmeshK8SAwsMeshV1Beta2Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_appmesh_k8s_aws_mesh_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppmeshK8SAwsMeshV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Mesh is the Schema for the meshes API",
@@ -253,8 +252,8 @@ func (r *AppmeshK8SAwsMeshV1Beta2Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("appmesh.k8s.aws/v1beta2")
-	model.Kind = pointer.String("Mesh")
+	model.ApiVersion = new("appmesh.k8s.aws/v1beta2")
+	model.Kind = new("Mesh")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package getambassador_io_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoConsulResolverV2Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoConsulResolverV2Manifest{}
 
 func NewGetambassadorIoConsulResolverV2Manifest() datasource.DataSource {
 	return &GetambassadorIoConsulResolverV2Manifest{}
@@ -53,6 +51,7 @@ func (r *GetambassadorIoConsulResolverV2Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_consul_resolver_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoConsulResolverV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ConsulResolver is the Schema for the ConsulResolver API",
@@ -168,8 +167,8 @@ func (r *GetambassadorIoConsulResolverV2Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v2")
-	model.Kind = pointer.String("ConsulResolver")
+	model.ApiVersion = new("getambassador.io/v2")
+	model.Kind = new("ConsulResolver")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package tinkerbell_org_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TinkerbellOrgHardwareV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &TinkerbellOrgHardwareV1Alpha2Manifest{}
 
 func NewTinkerbellOrgHardwareV1Alpha2Manifest() datasource.DataSource {
 	return &TinkerbellOrgHardwareV1Alpha2Manifest{}
@@ -82,6 +80,7 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_tinkerbell_org_hardware_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Hardware is a logical representation of a machine that can execute Workflows.",
@@ -390,8 +389,8 @@ func (r *TinkerbellOrgHardwareV1Alpha2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("tinkerbell.org/v1alpha2")
-	model.Kind = pointer.String("Hardware")
+	model.ApiVersion = new("tinkerbell.org/v1alpha2")
+	model.Kind = new("Hardware")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

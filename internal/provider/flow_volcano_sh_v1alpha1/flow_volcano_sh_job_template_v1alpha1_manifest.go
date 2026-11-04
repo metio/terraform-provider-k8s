@@ -7,6 +7,7 @@ package flow_volcano_sh_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FlowVolcanoShJobTemplateV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &FlowVolcanoShJobTemplateV1Alpha1Manifest{}
 
 func NewFlowVolcanoShJobTemplateV1Alpha1Manifest() datasource.DataSource {
 	return &FlowVolcanoShJobTemplateV1Alpha1Manifest{}
@@ -1423,6 +1421,7 @@ func (r *FlowVolcanoShJobTemplateV1Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_flow_volcano_sh_job_template_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FlowVolcanoShJobTemplateV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -10729,8 +10728,8 @@ func (r *FlowVolcanoShJobTemplateV1Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("flow.volcano.sh/v1alpha1")
-	model.Kind = pointer.String("JobTemplate")
+	model.ApiVersion = new("flow.volcano.sh/v1alpha1")
+	model.Kind = new("JobTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

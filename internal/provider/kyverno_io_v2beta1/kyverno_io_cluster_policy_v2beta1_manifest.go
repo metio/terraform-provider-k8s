@@ -7,6 +7,7 @@ package kyverno_io_v2beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KyvernoIoClusterPolicyV2Beta1Manifest{}
-)
+var _ datasource.DataSource = &KyvernoIoClusterPolicyV2Beta1Manifest{}
 
 func NewKyvernoIoClusterPolicyV2Beta1Manifest() datasource.DataSource {
 	return &KyvernoIoClusterPolicyV2Beta1Manifest{}
@@ -908,6 +906,7 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_kyverno_io_cluster_policy_v2beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterPolicy declares validation, mutation, and generation behaviors for matching resources.",
@@ -6969,8 +6968,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("kyverno.io/v2beta1")
-	model.Kind = pointer.String("ClusterPolicy")
+	model.ApiVersion = new("kyverno.io/v2beta1")
+	model.Kind = new("ClusterPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package schemas_schemahero_io_v1alpha4
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SchemasSchemaheroIoTableV1Alpha4Manifest{}
-)
+var _ datasource.DataSource = &SchemasSchemaheroIoTableV1Alpha4Manifest{}
 
 func NewSchemasSchemaheroIoTableV1Alpha4Manifest() datasource.DataSource {
 	return &SchemasSchemaheroIoTableV1Alpha4Manifest{}
@@ -333,6 +331,7 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_schemas_schemahero_io_table_v1alpha4_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Table is the Schema for the tables API",
@@ -2372,8 +2371,8 @@ func (r *SchemasSchemaheroIoTableV1Alpha4Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("schemas.schemahero.io/v1alpha4")
-	model.Kind = pointer.String("Table")
+	model.ApiVersion = new("schemas.schemahero.io/v1alpha4")
+	model.Kind = new("Table")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

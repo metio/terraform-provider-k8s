@@ -7,6 +7,7 @@ package longhorn_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LonghornIoBackupVolumeV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &LonghornIoBackupVolumeV1Beta1Manifest{}
 
 func NewLonghornIoBackupVolumeV1Beta1Manifest() datasource.DataSource {
 	return &LonghornIoBackupVolumeV1Beta1Manifest{}
@@ -49,6 +47,7 @@ func (r *LonghornIoBackupVolumeV1Beta1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_longhorn_io_backup_volume_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LonghornIoBackupVolumeV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BackupVolume is where Longhorn stores backup volume object.",
@@ -139,8 +138,8 @@ func (r *LonghornIoBackupVolumeV1Beta1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("longhorn.io/v1beta1")
-	model.Kind = pointer.String("BackupVolume")
+	model.ApiVersion = new("longhorn.io/v1beta1")
+	model.Kind = new("BackupVolume")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

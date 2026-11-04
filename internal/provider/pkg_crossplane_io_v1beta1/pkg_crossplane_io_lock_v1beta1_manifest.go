@@ -7,6 +7,7 @@ package pkg_crossplane_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PkgCrossplaneIoLockV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &PkgCrossplaneIoLockV1Beta1Manifest{}
 
 func NewPkgCrossplaneIoLockV1Beta1Manifest() datasource.DataSource {
 	return &PkgCrossplaneIoLockV1Beta1Manifest{}
@@ -58,6 +56,7 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_pkg_crossplane_io_lock_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PkgCrossplaneIoLockV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Lock is the CRD type that tracks package dependencies.",
@@ -205,8 +204,8 @@ func (r *PkgCrossplaneIoLockV1Beta1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("pkg.crossplane.io/v1beta1")
-	model.Kind = pointer.String("Lock")
+	model.ApiVersion = new("pkg.crossplane.io/v1beta1")
+	model.Kind = new("Lock")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

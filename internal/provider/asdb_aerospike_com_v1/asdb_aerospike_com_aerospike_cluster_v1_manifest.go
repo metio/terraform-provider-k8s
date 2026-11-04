@@ -7,6 +7,7 @@ package asdb_aerospike_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AsdbAerospikeComAerospikeClusterV1Manifest{}
-)
+var _ datasource.DataSource = &AsdbAerospikeComAerospikeClusterV1Manifest{}
 
 func NewAsdbAerospikeComAerospikeClusterV1Manifest() datasource.DataSource {
 	return &AsdbAerospikeComAerospikeClusterV1Manifest{}
@@ -1483,6 +1481,7 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_asdb_aerospike_com_aerospike_cluster_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AerospikeCluster is the schema for the AerospikeCluster API",
@@ -11379,8 +11378,8 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("asdb.aerospike.com/v1")
-	model.Kind = pointer.String("AerospikeCluster")
+	model.ApiVersion = new("asdb.aerospike.com/v1")
+	model.Kind = new("AerospikeCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

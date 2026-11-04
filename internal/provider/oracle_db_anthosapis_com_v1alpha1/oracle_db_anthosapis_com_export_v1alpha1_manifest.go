@@ -7,6 +7,7 @@ package oracle_db_anthosapis_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OracleDbAnthosapisComExportV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &OracleDbAnthosapisComExportV1Alpha1Manifest{}
 
 func NewOracleDbAnthosapisComExportV1Alpha1Manifest() datasource.DataSource {
 	return &OracleDbAnthosapisComExportV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *OracleDbAnthosapisComExportV1Alpha1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_oracle_db_anthosapis_com_export_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OracleDbAnthosapisComExportV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Export is the Schema for the exports API.",
@@ -222,8 +221,8 @@ func (r *OracleDbAnthosapisComExportV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("oracle.db.anthosapis.com/v1alpha1")
-	model.Kind = pointer.String("Export")
+	model.ApiVersion = new("oracle.db.anthosapis.com/v1alpha1")
+	model.Kind = new("Export")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

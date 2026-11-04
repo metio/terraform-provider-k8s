@@ -7,6 +7,8 @@ package azure_microsoft_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AzureMicrosoftComAzureSqlServerV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AzureMicrosoftComAzureSqlServerV1Beta1Manifest{}
 
 func NewAzureMicrosoftComAzureSqlServerV1Beta1Manifest() datasource.DataSource {
 	return &AzureMicrosoftComAzureSqlServerV1Beta1Manifest{}
@@ -55,6 +53,7 @@ func (r *AzureMicrosoftComAzureSqlServerV1Beta1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_azure_microsoft_com_azure_sql_server_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AzureMicrosoftComAzureSqlServerV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AzureSqlServer is the Schema for the azuresqlservers API",
@@ -184,8 +183,8 @@ func (r *AzureMicrosoftComAzureSqlServerV1Beta1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("azure.microsoft.com/v1beta1")
-	model.Kind = pointer.String("AzureSqlServer")
+	model.ApiVersion = new("azure.microsoft.com/v1beta1")
+	model.Kind = new("AzureSqlServer")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

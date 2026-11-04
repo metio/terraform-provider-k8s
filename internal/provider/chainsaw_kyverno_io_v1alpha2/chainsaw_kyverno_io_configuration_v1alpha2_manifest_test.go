@@ -7,9 +7,10 @@ package chainsaw_kyverno_io_v1alpha2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chainsaw_kyverno_io_v1alpha2"
-	"testing"
 )
 
 func TestChainsawKyvernoIoConfigurationV1Alpha2Manifest_ValidateSchema(t *testing.T) {

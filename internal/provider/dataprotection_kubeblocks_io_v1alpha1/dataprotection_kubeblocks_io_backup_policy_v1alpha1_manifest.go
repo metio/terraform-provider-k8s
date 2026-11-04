@@ -7,6 +7,8 @@ package dataprotection_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest{}
 
 func NewDataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest() datasource.DataSource {
 	return &DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest{}
@@ -290,6 +288,7 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Metadata(_ cont
 	response.TypeName = request.ProviderTypeName + "_dataprotection_kubeblocks_io_backup_policy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BackupPolicy is the Schema for the backuppolicies API.",
@@ -2014,8 +2013,8 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("dataprotection.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("BackupPolicy")
+	model.ApiVersion = new("dataprotection.kubeblocks.io/v1alpha1")
+	model.Kind = new("BackupPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

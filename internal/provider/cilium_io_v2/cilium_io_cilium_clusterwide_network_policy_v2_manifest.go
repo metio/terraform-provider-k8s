@@ -7,6 +7,8 @@ package cilium_io_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumClusterwideNetworkPolicyV2Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumClusterwideNetworkPolicyV2Manifest{}
 
 func NewCiliumIoCiliumClusterwideNetworkPolicyV2Manifest() datasource.DataSource {
 	return &CiliumIoCiliumClusterwideNetworkPolicyV2Manifest{}
@@ -853,6 +851,7 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_clusterwide_network_policy_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumClusterwideNetworkPolicy is a Kubernetes third-party resource with an modified version of CiliumNetworkPolicy which is cluster scoped rather than namespace scoped.",
@@ -6732,8 +6731,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2")
-	model.Kind = pointer.String("CiliumClusterwideNetworkPolicy")
+	model.ApiVersion = new("cilium.io/v2")
+	model.Kind = new("CiliumClusterwideNetworkPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

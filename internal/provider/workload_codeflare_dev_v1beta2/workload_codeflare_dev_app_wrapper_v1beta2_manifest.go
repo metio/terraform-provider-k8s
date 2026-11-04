@@ -7,6 +7,7 @@ package workload_codeflare_dev_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &WorkloadCodeflareDevAppWrapperV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &WorkloadCodeflareDevAppWrapperV1Beta2Manifest{}
 
 func NewWorkloadCodeflareDevAppWrapperV1Beta2Manifest() datasource.DataSource {
 	return &WorkloadCodeflareDevAppWrapperV1Beta2Manifest{}
@@ -72,6 +70,7 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_workload_codeflare_dev_app_wrapper_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AppWrapper is the Schema for the appwrappers API",
@@ -323,8 +322,8 @@ func (r *WorkloadCodeflareDevAppWrapperV1Beta2Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("workload.codeflare.dev/v1beta2")
-	model.Kind = pointer.String("AppWrapper")
+	model.ApiVersion = new("workload.codeflare.dev/v1beta2")
+	model.Kind = new("AppWrapper")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

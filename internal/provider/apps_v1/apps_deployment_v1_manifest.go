@@ -7,6 +7,7 @@ package apps_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsDeploymentV1Manifest{}
-)
+var _ datasource.DataSource = &AppsDeploymentV1Manifest{}
 
 func NewAppsDeploymentV1Manifest() datasource.DataSource {
 	return &AppsDeploymentV1Manifest{}
@@ -1431,6 +1429,7 @@ func (r *AppsDeploymentV1Manifest) Metadata(_ context.Context, request datasourc
 	response.TypeName = request.ProviderTypeName + "_apps_deployment_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsDeploymentV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Deployment enables declarative updates for Pods and ReplicaSets.",
@@ -10904,8 +10903,8 @@ func (r *AppsDeploymentV1Manifest) Read(ctx context.Context, request datasource.
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps/v1")
-	model.Kind = pointer.String("Deployment")
+	model.ApiVersion = new("apps/v1")
+	model.Kind = new("Deployment")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,10 +7,11 @@ package capabilities_3scale_net_v1beta1
 
 import (
 	"fmt"
-	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCapabilities3ScaleNetProxyConfigPromoteV1Beta1Manifest(t *testing.T) {
@@ -26,10 +27,10 @@ func TestCapabilities3ScaleNetProxyConfigPromoteV1Beta1Manifest(t *testing.T) {
 	defer os.RemoveAll(path + "/terraform.tfstate.backup")
 	defer os.RemoveAll(path + "/.terraform")
 
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApplyAndIdempotent(t, terraformOptions)
+	defer terraform.DestroyContext(t, t.Context(), terraformOptions)
+	terraform.InitAndApplyAndIdempotentContext(t, t.Context(), terraformOptions)
 
-	outputMap := terraform.OutputMap(t, terraformOptions, "manifests")
+	outputMap := terraform.OutputMapContext(t, t.Context(), terraformOptions, "manifests")
 	for key, value := range outputMap {
 		assert.NotEmpty(t, value, fmt.Sprintf("data %s.%s did not produce an output", "k8s_capabilities_3scale_net_proxy_config_promote_v1beta1_manifest", key))
 	}

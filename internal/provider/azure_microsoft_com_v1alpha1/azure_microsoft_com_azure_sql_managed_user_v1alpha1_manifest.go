@@ -7,6 +7,8 @@ package azure_microsoft_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest{}
 
 func NewAzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest() datasource.DataSource {
 	return &AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest{}
@@ -60,6 +58,7 @@ func (r *AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_azure_microsoft_com_azure_sql_managed_user_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AzureSQLManagedUser is the Schema for the azuresqlmanagedusers API",
@@ -233,8 +232,8 @@ func (r *AzureMicrosoftComAzureSqlmanagedUserV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("azure.microsoft.com/v1alpha1")
-	model.Kind = pointer.String("AzureSQLManagedUser")
+	model.ApiVersion = new("azure.microsoft.com/v1alpha1")
+	model.Kind = new("AzureSQLManagedUser")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

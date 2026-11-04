@@ -7,6 +7,8 @@ package source_toolkit_fluxcd_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SourceToolkitFluxcdIoBucketV1Manifest{}
-)
+var _ datasource.DataSource = &SourceToolkitFluxcdIoBucketV1Manifest{}
 
 func NewSourceToolkitFluxcdIoBucketV1Manifest() datasource.DataSource {
 	return &SourceToolkitFluxcdIoBucketV1Manifest{}
@@ -80,6 +78,7 @@ func (r *SourceToolkitFluxcdIoBucketV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_bucket_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SourceToolkitFluxcdIoBucketV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Bucket is the Schema for the buckets API.",
@@ -375,8 +374,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("source.toolkit.fluxcd.io/v1")
-	model.Kind = pointer.String("Bucket")
+	model.ApiVersion = new("source.toolkit.fluxcd.io/v1")
+	model.Kind = new("Bucket")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

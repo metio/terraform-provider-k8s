@@ -7,6 +7,8 @@ package pgv2_percona_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Pgv2PerconaComPerconaPgclusterV2Manifest{}
-)
+var _ datasource.DataSource = &Pgv2PerconaComPerconaPgclusterV2Manifest{}
 
 func NewPgv2PerconaComPerconaPgclusterV2Manifest() datasource.DataSource {
 	return &Pgv2PerconaComPerconaPgclusterV2Manifest{}
@@ -2750,6 +2748,7 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_pgv2_percona_com_percona_pg_cluster_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PerconaPGCluster is the CRD that defines a Percona PG Cluster",
@@ -21043,8 +21042,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("pgv2.percona.com/v2")
-	model.Kind = pointer.String("PerconaPGCluster")
+	model.ApiVersion = new("pgv2.percona.com/v2")
+	model.Kind = new("PerconaPGCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

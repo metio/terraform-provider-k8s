@@ -7,6 +7,8 @@ package extensions_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ExtensionsKubeblocksIoAddonV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ExtensionsKubeblocksIoAddonV1Alpha1Manifest{}
 
 func NewExtensionsKubeblocksIoAddonV1Alpha1Manifest() datasource.DataSource {
 	return &ExtensionsKubeblocksIoAddonV1Alpha1Manifest{}
@@ -178,6 +176,7 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_extensions_kubeblocks_io_addon_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Addon is the Schema for the add-ons API.",
@@ -1137,8 +1136,8 @@ func (r *ExtensionsKubeblocksIoAddonV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("extensions.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("Addon")
+	model.ApiVersion = new("extensions.kubeblocks.io/v1alpha1")
+	model.Kind = new("Addon")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

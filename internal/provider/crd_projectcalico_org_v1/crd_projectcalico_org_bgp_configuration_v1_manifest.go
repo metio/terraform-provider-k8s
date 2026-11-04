@@ -7,6 +7,8 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgBgpconfigurationV1Manifest{}
-)
+var _ datasource.DataSource = &CrdProjectcalicoOrgBgpconfigurationV1Manifest{}
 
 func NewCrdProjectcalicoOrgBgpconfigurationV1Manifest() datasource.DataSource {
 	return &CrdProjectcalicoOrgBgpconfigurationV1Manifest{}
@@ -82,6 +80,7 @@ func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_bgp_configuration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BGPConfiguration contains the configuration for any BGP routing.",
@@ -378,8 +377,8 @@ func (r *CrdProjectcalicoOrgBgpconfigurationV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
-	model.Kind = pointer.String("BGPConfiguration")
+	model.ApiVersion = new("crd.projectcalico.org/v1")
+	model.Kind = new("BGPConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

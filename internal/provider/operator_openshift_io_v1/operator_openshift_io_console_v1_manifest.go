@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -17,14 +19,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoConsoleV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoConsoleV1Manifest{}
 
 func NewOperatorOpenshiftIoConsoleV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoConsoleV1Manifest{}
@@ -135,6 +133,7 @@ func (r *OperatorOpenshiftIoConsoleV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_console_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoConsoleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Console provides a means to configure an operator to manage the console.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -820,8 +819,8 @@ func (r *OperatorOpenshiftIoConsoleV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("Console")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("Console")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

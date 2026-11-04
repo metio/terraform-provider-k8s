@@ -7,6 +7,7 @@ package opentelemetry_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest{}
 
 func NewOpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest() datasource.DataSource {
 	return &OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest{}
@@ -1686,6 +1684,7 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_opentelemetry_io_open_telemetry_collector_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -12769,8 +12768,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("opentelemetry.io/v1beta1")
-	model.Kind = pointer.String("OpenTelemetryCollector")
+	model.ApiVersion = new("opentelemetry.io/v1beta1")
+	model.Kind = new("OpenTelemetryCollector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

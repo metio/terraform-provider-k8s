@@ -7,6 +7,7 @@ package appprotectdos_f5_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppprotectdosF5ComApdosPolicyV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AppprotectdosF5ComApdosPolicyV1Beta1Manifest{}
 
 func NewAppprotectdosF5ComApdosPolicyV1Beta1Manifest() datasource.DataSource {
 	return &AppprotectdosF5ComApdosPolicyV1Beta1Manifest{}
@@ -55,6 +53,7 @@ func (r *AppprotectdosF5ComApdosPolicyV1Beta1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_appprotectdos_f5_com_ap_dos_policy_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppprotectdosF5ComApdosPolicyV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APDosPolicy is the Schema for the APDosPolicy API",
@@ -200,8 +199,8 @@ func (r *AppprotectdosF5ComApdosPolicyV1Beta1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("appprotectdos.f5.com/v1beta1")
-	model.Kind = pointer.String("APDosPolicy")
+	model.ApiVersion = new("appprotectdos.f5.com/v1beta1")
+	model.Kind = new("APDosPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

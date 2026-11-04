@@ -7,6 +7,7 @@ package external_secrets_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -17,13 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest{}
 
 func NewExternalSecretsIoClusterSecretStoreV1Alpha1Manifest() datasource.DataSource {
 	return &ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest{}
@@ -436,6 +434,7 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_external_secrets_io_cluster_secret_store_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterSecretStore represents a secure external location for storing secrets, which can be referenced as part of 'storeRef' fields.",
@@ -3031,8 +3030,8 @@ func (r *ExternalSecretsIoClusterSecretStoreV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("external-secrets.io/v1alpha1")
-	model.Kind = pointer.String("ClusterSecretStore")
+	model.ApiVersion = new("external-secrets.io/v1alpha1")
+	model.Kind = new("ClusterSecretStore")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoAuthenticationV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoAuthenticationV1Manifest{}
 
 func NewOperatorTigeraIoAuthenticationV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoAuthenticationV1Manifest{}
@@ -112,6 +110,7 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_authentication_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoAuthenticationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Authentication is the Schema for the authentications API",
@@ -610,8 +609,8 @@ func (r *OperatorTigeraIoAuthenticationV1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("Authentication")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("Authentication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

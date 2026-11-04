@@ -7,6 +7,8 @@ package networking_istio_io_v1alpha3
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingIstioIoEnvoyFilterV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &NetworkingIstioIoEnvoyFilterV1Alpha3Manifest{}
 
 func NewNetworkingIstioIoEnvoyFilterV1Alpha3Manifest() datasource.DataSource {
 	return &NetworkingIstioIoEnvoyFilterV1Alpha3Manifest{}
@@ -115,6 +113,7 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_networking_istio_io_envoy_filter_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -662,8 +661,8 @@ func (r *NetworkingIstioIoEnvoyFilterV1Alpha3Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.istio.io/v1alpha3")
-	model.Kind = pointer.String("EnvoyFilter")
+	model.ApiVersion = new("networking.istio.io/v1alpha3")
+	model.Kind = new("EnvoyFilter")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

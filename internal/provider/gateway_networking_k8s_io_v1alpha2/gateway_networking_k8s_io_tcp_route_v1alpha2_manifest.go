@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest{}
 
 func NewGatewayNetworkingK8SIoTcprouteV1Alpha2Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest{}
@@ -71,6 +69,7 @@ func (r *GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_tcp_route_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TCPRoute provides a way to route TCP requests. When combined with a Gateway listener, it can be used to forward connections on the port specified by the listener to a set of backends specified by the TCPRoute.",
@@ -356,8 +355,8 @@ func (r *GatewayNetworkingK8SIoTcprouteV1Alpha2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1alpha2")
-	model.Kind = pointer.String("TCPRoute")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1alpha2")
+	model.Kind = new("TCPRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

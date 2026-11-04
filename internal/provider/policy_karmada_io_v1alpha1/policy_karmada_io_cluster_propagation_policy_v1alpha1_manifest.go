@@ -7,6 +7,7 @@ package policy_karmada_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest{}
 
 func NewPolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest() datasource.DataSource {
 	return &PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest{}
@@ -171,6 +169,7 @@ func (r *PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest) Metadata(_ con
 	response.TypeName = request.ProviderTypeName + "_policy_karmada_io_cluster_propagation_policy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterPropagationPolicy represents the cluster-wide policy that propagates a group of resources to one or more clusters. Different with PropagationPolicy that could only propagate resources in its own namespace, ClusterPropagationPolicy is able to propagate cluster level resources and resources in any namespace other than system reserved ones. System reserved namespaces are: karmada-system, karmada-cluster, karmada-es-*.",
@@ -1088,8 +1087,8 @@ func (r *PolicyKarmadaIoClusterPropagationPolicyV1Alpha1Manifest) Read(ctx conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("policy.karmada.io/v1alpha1")
-	model.Kind = pointer.String("ClusterPropagationPolicy")
+	model.ApiVersion = new("policy.karmada.io/v1alpha1")
+	model.Kind = new("ClusterPropagationPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

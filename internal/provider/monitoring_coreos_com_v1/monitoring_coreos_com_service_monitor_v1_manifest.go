@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComServiceMonitorV1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComServiceMonitorV1Manifest{}
 
 func NewMonitoringCoreosComServiceMonitorV1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComServiceMonitorV1Manifest{}
@@ -237,6 +235,7 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_service_monitor_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComServiceMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'ServiceMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of services. Among other things, it allows to specify: * The services to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'ServiceMonitor' objects using label and namespace selectors.",
@@ -1636,8 +1635,8 @@ func (r *MonitoringCoreosComServiceMonitorV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
-	model.Kind = pointer.String("ServiceMonitor")
+	model.ApiVersion = new("monitoring.coreos.com/v1")
+	model.Kind = new("ServiceMonitor")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

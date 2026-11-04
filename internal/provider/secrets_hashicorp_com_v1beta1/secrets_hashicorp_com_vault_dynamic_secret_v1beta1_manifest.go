@@ -7,6 +7,8 @@ package secrets_hashicorp_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest{}
 
 func NewSecretsHashicorpComVaultDynamicSecretV1Beta1Manifest() datasource.DataSource {
 	return &SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest{}
@@ -93,6 +91,7 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_secrets_hashicorp_com_vault_dynamic_secret_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VaultDynamicSecret is the Schema for the vaultdynamicsecrets API",
@@ -493,8 +492,8 @@ func (r *SecretsHashicorpComVaultDynamicSecretV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("secrets.hashicorp.com/v1beta1")
-	model.Kind = pointer.String("VaultDynamicSecret")
+	model.ApiVersion = new("secrets.hashicorp.com/v1beta1")
+	model.Kind = new("VaultDynamicSecret")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package clusters_clusternet_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest{}
 
 func NewClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest() datasource.DataSource {
 	return &ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest{}
@@ -56,6 +54,7 @@ func (r *ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest) Metadata
 	response.TypeName = request.ProviderTypeName + "_clusters_clusternet_io_cluster_registration_request_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterRegistrationRequest is the Schema for the clusterregistrationrequests API",
@@ -197,8 +196,8 @@ func (r *ClustersClusternetIoClusterRegistrationRequestV1Beta1Manifest) Read(ctx
 		return
 	}
 
-	model.ApiVersion = pointer.String("clusters.clusternet.io/v1beta1")
-	model.Kind = pointer.String("ClusterRegistrationRequest")
+	model.ApiVersion = new("clusters.clusternet.io/v1beta1")
+	model.Kind = new("ClusterRegistrationRequest")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

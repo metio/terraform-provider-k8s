@@ -7,9 +7,10 @@ package resources_teleport_dev_v6_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/resources_teleport_dev_v6"
-	"testing"
 )
 
 func TestResourcesTeleportDevTeleportRoleV6Manifest_ValidateSchema(t *testing.T) {

@@ -7,6 +7,7 @@ package velero_io_v2alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VeleroIoDataDownloadV2Alpha1Manifest{}
-)
+var _ datasource.DataSource = &VeleroIoDataDownloadV2Alpha1Manifest{}
 
 func NewVeleroIoDataDownloadV2Alpha1Manifest() datasource.DataSource {
 	return &VeleroIoDataDownloadV2Alpha1Manifest{}
@@ -62,6 +60,7 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_velero_io_data_download_v2alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VeleroIoDataDownloadV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DataDownload acts as the protocol between data mover plugins and data mover controller for the datamover restore operation",
@@ -242,8 +241,8 @@ func (r *VeleroIoDataDownloadV2Alpha1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("velero.io/v2alpha1")
-	model.Kind = pointer.String("DataDownload")
+	model.ApiVersion = new("velero.io/v2alpha1")
+	model.Kind = new("DataDownload")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

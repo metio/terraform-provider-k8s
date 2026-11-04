@@ -7,6 +7,8 @@ package remediation_medik8s_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest{}
 
 func NewRemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest() datasource.DataSource {
 	return &RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest{}
@@ -87,6 +85,7 @@ func (r *RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_remediation_medik8s_io_node_health_check_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NodeHealthCheck is the Schema for the nodehealthchecks API",
@@ -440,8 +439,8 @@ func (r *RemediationMedik8SIoNodeHealthCheckV1Alpha1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("remediation.medik8s.io/v1alpha1")
-	model.Kind = pointer.String("NodeHealthCheck")
+	model.ApiVersion = new("remediation.medik8s.io/v1alpha1")
+	model.Kind = new("NodeHealthCheck")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

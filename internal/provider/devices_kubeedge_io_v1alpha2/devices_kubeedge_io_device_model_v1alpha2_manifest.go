@@ -7,6 +7,7 @@ package devices_kubeedge_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DevicesKubeedgeIoDeviceModelV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &DevicesKubeedgeIoDeviceModelV1Alpha2Manifest{}
 
 func NewDevicesKubeedgeIoDeviceModelV1Alpha2Manifest() datasource.DataSource {
 	return &DevicesKubeedgeIoDeviceModelV1Alpha2Manifest{}
@@ -89,6 +87,7 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_devices_kubeedge_io_device_model_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DeviceModel is the Schema for the device model API",
@@ -455,8 +454,8 @@ func (r *DevicesKubeedgeIoDeviceModelV1Alpha2Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("devices.kubeedge.io/v1alpha2")
-	model.Kind = pointer.String("DeviceModel")
+	model.ApiVersion = new("devices.kubeedge.io/v1alpha2")
+	model.Kind = new("DeviceModel")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

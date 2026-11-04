@@ -7,6 +7,7 @@ package limitador_kuadrant_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LimitadorKuadrantIoLimitadorV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &LimitadorKuadrantIoLimitadorV1Alpha1Manifest{}
 
 func NewLimitadorKuadrantIoLimitadorV1Alpha1Manifest() datasource.DataSource {
 	return &LimitadorKuadrantIoLimitadorV1Alpha1Manifest{}
@@ -241,6 +239,7 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_limitador_kuadrant_io_limitador_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Limitador is the Schema for the limitadors API",
@@ -1570,8 +1569,8 @@ func (r *LimitadorKuadrantIoLimitadorV1Alpha1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("limitador.kuadrant.io/v1alpha1")
-	model.Kind = pointer.String("Limitador")
+	model.ApiVersion = new("limitador.kuadrant.io/v1alpha1")
+	model.Kind = new("Limitador")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

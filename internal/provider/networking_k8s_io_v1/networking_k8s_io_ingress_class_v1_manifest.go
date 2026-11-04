@@ -7,6 +7,7 @@ package networking_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingK8SIoIngressClassV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingK8SIoIngressClassV1Manifest{}
 
 func NewNetworkingK8SIoIngressClassV1Manifest() datasource.DataSource {
 	return &NetworkingK8SIoIngressClassV1Manifest{}
@@ -57,6 +55,7 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_networking_k8s_io_ingress_class_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingK8SIoIngressClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IngressClass represents the class of the Ingress, referenced by the Ingress Spec. The 'ingressclass.kubernetes.io/is-default-class' annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class.",
@@ -192,8 +191,8 @@ func (r *NetworkingK8SIoIngressClassV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.k8s.io/v1")
-	model.Kind = pointer.String("IngressClass")
+	model.ApiVersion = new("networking.k8s.io/v1")
+	model.Kind = new("IngressClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

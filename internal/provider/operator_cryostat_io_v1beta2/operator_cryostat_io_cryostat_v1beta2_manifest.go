@@ -7,6 +7,8 @@ package operator_cryostat_io_v1beta2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorCryostatIoCryostatV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &OperatorCryostatIoCryostatV1Beta2Manifest{}
 
 func NewOperatorCryostatIoCryostatV1Beta2Manifest() datasource.DataSource {
 	return &OperatorCryostatIoCryostatV1Beta2Manifest{}
@@ -838,6 +836,7 @@ func (r *OperatorCryostatIoCryostatV1Beta2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_operator_cryostat_io_cryostat_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorCryostatIoCryostatV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Cryostat allows you to install Cryostat for a single namespace, or multiple namespaces. It contains configuration options for controlling the Deployment of the Cryostat application and its related components. A Cryostat instance must be created to instruct the operator to deploy the Cryostat application.",
@@ -6161,8 +6160,8 @@ func (r *OperatorCryostatIoCryostatV1Beta2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.cryostat.io/v1beta2")
-	model.Kind = pointer.String("Cryostat")
+	model.ApiVersion = new("operator.cryostat.io/v1beta2")
+	model.Kind = new("Cryostat")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

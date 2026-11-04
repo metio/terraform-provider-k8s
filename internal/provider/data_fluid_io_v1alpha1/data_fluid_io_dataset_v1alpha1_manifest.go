@@ -7,6 +7,7 @@ package data_fluid_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DataFluidIoDatasetV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DataFluidIoDatasetV1Alpha1Manifest{}
 
 func NewDataFluidIoDatasetV1Alpha1Manifest() datasource.DataSource {
 	return &DataFluidIoDatasetV1Alpha1Manifest{}
@@ -119,6 +117,7 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_data_fluid_io_dataset_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DataFluidIoDatasetV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Dataset is the Schema for the datasets API",
@@ -679,8 +678,8 @@ func (r *DataFluidIoDatasetV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("data.fluid.io/v1alpha1")
-	model.Kind = pointer.String("Dataset")
+	model.ApiVersion = new("data.fluid.io/v1alpha1")
+	model.Kind = new("Dataset")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

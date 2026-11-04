@@ -7,6 +7,8 @@ package grafana_integreatly_org_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest{}
 
 func NewGrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest() datasource.DataSource {
 	return &GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest{}
@@ -133,6 +131,7 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_grafana_integreatly_org_grafana_dashboard_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GrafanaDashboard is the Schema for the grafanadashboards API",
@@ -775,8 +774,8 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("grafana.integreatly.org/v1beta1")
-	model.Kind = pointer.String("GrafanaDashboard")
+	model.ApiVersion = new("grafana.integreatly.org/v1beta1")
+	model.Kind = new("GrafanaDashboard")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

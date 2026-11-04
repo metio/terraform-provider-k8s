@@ -7,6 +7,7 @@ package cilium_io_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumNodeV2Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumNodeV2Manifest{}
 
 func NewCiliumIoCiliumNodeV2Manifest() datasource.DataSource {
 	return &CiliumIoCiliumNodeV2Manifest{}
@@ -129,6 +127,7 @@ func (r *CiliumIoCiliumNodeV2Manifest) Metadata(_ context.Context, request datas
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_node_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumNodeV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumNode represents a node managed by Cilium. It contains a specification to control various node specific configuration aspects and a status section to represent the status of the node.",
@@ -789,8 +788,8 @@ func (r *CiliumIoCiliumNodeV2Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2")
-	model.Kind = pointer.String("CiliumNode")
+	model.ApiVersion = new("cilium.io/v2")
+	model.Kind = new("CiliumNode")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

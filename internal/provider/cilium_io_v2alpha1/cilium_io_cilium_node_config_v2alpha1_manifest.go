@@ -7,6 +7,7 @@ package cilium_io_v2alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumNodeConfigV2Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumNodeConfigV2Alpha1Manifest{}
 
 func NewCiliumIoCiliumNodeConfigV2Alpha1Manifest() datasource.DataSource {
 	return &CiliumIoCiliumNodeConfigV2Alpha1Manifest{}
@@ -59,6 +57,7 @@ func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_node_config_v2alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumNodeConfig is a list of configuration key-value pairs. It is applied to nodes indicated by a label selector. If multiple overrides apply to the same node, they will be ordered by name with later Overrides overwriting any conflicting keys.",
@@ -212,8 +211,8 @@ func (r *CiliumIoCiliumNodeConfigV2Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2alpha1")
-	model.Kind = pointer.String("CiliumNodeConfig")
+	model.ApiVersion = new("cilium.io/v2alpha1")
+	model.Kind = new("CiliumNodeConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

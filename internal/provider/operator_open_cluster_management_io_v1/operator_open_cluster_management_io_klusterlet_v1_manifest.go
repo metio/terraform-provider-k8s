@@ -7,6 +7,8 @@ package operator_open_cluster_management_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenClusterManagementIoKlusterletV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenClusterManagementIoKlusterletV1Manifest{}
 
 func NewOperatorOpenClusterManagementIoKlusterletV1Manifest() datasource.DataSource {
 	return &OperatorOpenClusterManagementIoKlusterletV1Manifest{}
@@ -123,6 +121,7 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_operator_open_cluster_management_io_klusterlet_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Klusterlet represents controllers to install the resources for a managed cluster. When configured, the Klusterlet requires a secret named bootstrap-hub-kubeconfig in the agent namespace to allow API requests to the hub for the registration protocol. In Hosted mode, the Klusterlet requires an additional secret named external-managed-kubeconfig in the agent namespace to allow API requests to the managed cluster for resources installation.",
@@ -718,8 +717,8 @@ func (r *OperatorOpenClusterManagementIoKlusterletV1Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.open-cluster-management.io/v1")
-	model.Kind = pointer.String("Klusterlet")
+	model.ApiVersion = new("operator.open-cluster-management.io/v1")
+	model.Kind = new("Klusterlet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package apigatewayv2_services_k8s_aws_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apigatewayv2_services_k8s_aws_v1alpha1"
-	"testing"
 )
 
 func TestApigatewayv2ServicesK8SAwsVpclinkV1Alpha1Manifest_ValidateSchema(t *testing.T) {

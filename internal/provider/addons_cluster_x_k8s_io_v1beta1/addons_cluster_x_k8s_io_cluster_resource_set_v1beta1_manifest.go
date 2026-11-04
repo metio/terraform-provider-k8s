@@ -7,6 +7,7 @@ package addons_cluster_x_k8s_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest{}
 
 func NewAddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest() datasource.DataSource {
 	return &AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest{}
@@ -63,6 +61,7 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_addons_cluster_x_k8s_io_cluster_resource_set_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterResourceSet is the Schema for the clusterresourcesets API.",
@@ -251,8 +250,8 @@ func (r *AddonsClusterXK8SIoClusterResourceSetV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("addons.cluster.x-k8s.io/v1beta1")
-	model.Kind = pointer.String("ClusterResourceSet")
+	model.ApiVersion = new("addons.cluster.x-k8s.io/v1beta1")
+	model.Kind = new("ClusterResourceSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

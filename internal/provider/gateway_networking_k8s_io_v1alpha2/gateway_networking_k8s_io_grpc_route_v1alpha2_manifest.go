@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest{}
 
 func NewGatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest{}
@@ -161,6 +159,7 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_grpc_route_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GRPCRoute provides a way to route gRPC requests. This includes the capability to match requests by hostname, gRPC service, gRPC method, or HTTP/2 header. Filters can be used to specify additional processing steps. Backends specify where matching requests will be routed. GRPCRoute falls under extended support within the Gateway API. Within the following specification, the word 'MUST' indicates that an implementation supporting GRPCRoute must conform to the indicated requirement, but an implementation not supporting this route type need not follow the requirement unless explicitly indicated. Implementations supporting 'GRPCRoute' with the 'HTTPS' 'ProtocolType' MUST accept HTTP/2 connections without an initial upgrade from HTTP/1.1, i.e. via ALPN. If the implementation does not support this, then it MUST set the 'Accepted' condition to 'False' for the affected listener with a reason of 'UnsupportedProtocol'. Implementations MAY also accept HTTP/2 connections with an upgrade from HTTP/1. Implementations supporting 'GRPCRoute' with the 'HTTP' 'ProtocolType' MUST support HTTP/2 over cleartext TCP (h2c, https://www.rfc-editor.org/rfc/rfc7540#section-3.1) without an initial upgrade from HTTP/1.1, i.e. with prior knowledge (https://www.rfc-editor.org/rfc/rfc7540#section-3.4). If the implementation does not support this, then it MUST set the 'Accepted' condition to 'False' for the affected listener with a reason of 'UnsupportedProtocol'. Implementations MAY also accept HTTP/2 connections with an upgrade from HTTP/1, i.e. without prior knowledge.",
@@ -1198,8 +1197,8 @@ func (r *GatewayNetworkingK8SIoGrpcrouteV1Alpha2Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1alpha2")
-	model.Kind = pointer.String("GRPCRoute")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1alpha2")
+	model.Kind = new("GRPCRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

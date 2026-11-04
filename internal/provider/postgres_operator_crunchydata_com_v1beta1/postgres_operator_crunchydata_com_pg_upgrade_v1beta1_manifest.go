@@ -7,6 +7,7 @@ package postgres_operator_crunchydata_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest{}
 
 func NewPostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest() datasource.DataSource {
 	return &PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest{}
@@ -210,6 +208,7 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Metadata(_ cont
 	response.TypeName = request.ProviderTypeName + "_postgres_operator_crunchydata_com_pg_upgrade_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PGUpgrade is the Schema for the pgupgrades API",
@@ -1391,8 +1390,8 @@ func (r *PostgresOperatorCrunchydataComPgupgradeV1Beta1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("postgres-operator.crunchydata.com/v1beta1")
-	model.Kind = pointer.String("PGUpgrade")
+	model.ApiVersion = new("postgres-operator.crunchydata.com/v1beta1")
+	model.Kind = new("PGUpgrade")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

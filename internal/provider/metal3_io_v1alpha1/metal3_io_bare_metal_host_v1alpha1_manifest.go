@@ -7,6 +7,8 @@ package metal3_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Metal3IoBareMetalHostV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &Metal3IoBareMetalHostV1Alpha1Manifest{}
 
 func NewMetal3IoBareMetalHostV1Alpha1Manifest() datasource.DataSource {
 	return &Metal3IoBareMetalHostV1Alpha1Manifest{}
@@ -146,6 +144,7 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_metal3_io_bare_metal_host_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BareMetalHost is the Schema for the baremetalhosts API",
@@ -941,8 +940,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("metal3.io/v1alpha1")
-	model.Kind = pointer.String("BareMetalHost")
+	model.ApiVersion = new("metal3.io/v1alpha1")
+	model.Kind = new("BareMetalHost")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

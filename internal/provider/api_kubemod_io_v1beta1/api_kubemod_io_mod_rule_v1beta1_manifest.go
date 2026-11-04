@@ -7,6 +7,7 @@ package api_kubemod_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiKubemodIoModRuleV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ApiKubemodIoModRuleV1Beta1Manifest{}
 
 func NewApiKubemodIoModRuleV1Beta1Manifest() datasource.DataSource {
 	return &ApiKubemodIoModRuleV1Beta1Manifest{}
@@ -69,6 +67,7 @@ func (r *ApiKubemodIoModRuleV1Beta1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_api_kubemod_io_mod_rule_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiKubemodIoModRuleV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ModRule is the Schema for the modrules API",
@@ -312,8 +311,8 @@ func (r *ApiKubemodIoModRuleV1Beta1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("api.kubemod.io/v1beta1")
-	model.Kind = pointer.String("ModRule")
+	model.ApiVersion = new("api.kubemod.io/v1beta1")
+	model.Kind = new("ModRule")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

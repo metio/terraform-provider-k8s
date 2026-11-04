@@ -7,6 +7,7 @@ package camel_apache_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CamelApacheOrgIntegrationProfileV1Manifest{}
-)
+var _ datasource.DataSource = &CamelApacheOrgIntegrationProfileV1Manifest{}
 
 func NewCamelApacheOrgIntegrationProfileV1Manifest() datasource.DataSource {
 	return &CamelApacheOrgIntegrationProfileV1Manifest{}
@@ -481,6 +479,7 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_camel_apache_org_integration_profile_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. Deprecated: may be removed in future releases. Make use of IntegrationPlatform instead.",
@@ -3756,8 +3755,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("camel.apache.org/v1")
-	model.Kind = pointer.String("IntegrationProfile")
+	model.ApiVersion = new("camel.apache.org/v1")
+	model.Kind = new("IntegrationProfile")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package config_storageos_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigStorageosComOperatorConfigV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigStorageosComOperatorConfigV1Manifest{}
 
 func NewConfigStorageosComOperatorConfigV1Manifest() datasource.DataSource {
 	return &ConfigStorageosComOperatorConfigV1Manifest{}
@@ -82,6 +80,7 @@ func (r *ConfigStorageosComOperatorConfigV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_config_storageos_com_operator_config_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigStorageosComOperatorConfigV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OperatorConfig is the Schema for the operatorconfigs API",
@@ -401,8 +400,8 @@ func (r *ConfigStorageosComOperatorConfigV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.storageos.com/v1")
-	model.Kind = pointer.String("OperatorConfig")
+	model.ApiVersion = new("config.storageos.com/v1")
+	model.Kind = new("OperatorConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

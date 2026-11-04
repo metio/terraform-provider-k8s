@@ -7,6 +7,7 @@ package getambassador_io_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoRateLimitServiceV2Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoRateLimitServiceV2Manifest{}
 
 func NewGetambassadorIoRateLimitServiceV2Manifest() datasource.DataSource {
 	return &GetambassadorIoRateLimitServiceV2Manifest{}
@@ -61,6 +59,7 @@ func (r *GetambassadorIoRateLimitServiceV2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_rate_limit_service_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoRateLimitServiceV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "RateLimitService is the Schema for the ratelimitservices API",
@@ -236,8 +235,8 @@ func (r *GetambassadorIoRateLimitServiceV2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v2")
-	model.Kind = pointer.String("RateLimitService")
+	model.ApiVersion = new("getambassador.io/v2")
+	model.Kind = new("RateLimitService")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoCheckpointV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoCheckpointV1Manifest{}
 
 func NewHiveOpenshiftIoCheckpointV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoCheckpointV1Manifest{}
@@ -56,6 +54,7 @@ func (r *HiveOpenshiftIoCheckpointV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_checkpoint_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoCheckpointV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Checkpoint is the Schema for the backup of Hive objects.",
@@ -190,8 +189,8 @@ func (r *HiveOpenshiftIoCheckpointV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("Checkpoint")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("Checkpoint")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

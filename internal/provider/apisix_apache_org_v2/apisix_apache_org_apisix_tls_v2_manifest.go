@@ -7,6 +7,7 @@ package apisix_apache_org_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApisixApacheOrgApisixTlsV2Manifest{}
-)
+var _ datasource.DataSource = &ApisixApacheOrgApisixTlsV2Manifest{}
 
 func NewApisixApacheOrgApisixTlsV2Manifest() datasource.DataSource {
 	return &ApisixApacheOrgApisixTlsV2Manifest{}
@@ -64,6 +62,7 @@ func (r *ApisixApacheOrgApisixTlsV2Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_apisix_apache_org_apisix_tls_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApisixApacheOrgApisixTlsV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ApisixTls defines SSL resource in APISIX.",
@@ -259,8 +258,8 @@ func (r *ApisixApacheOrgApisixTlsV2Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("apisix.apache.org/v2")
-	model.Kind = pointer.String("ApisixTls")
+	model.ApiVersion = new("apisix.apache.org/v2")
+	model.Kind = new("ApisixTls")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

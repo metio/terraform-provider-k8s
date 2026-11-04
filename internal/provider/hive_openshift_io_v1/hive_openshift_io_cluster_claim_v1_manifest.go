@@ -7,6 +7,8 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoClusterClaimV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoClusterClaimV1Manifest{}
 
 func NewHiveOpenshiftIoClusterClaimV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoClusterClaimV1Manifest{}
@@ -60,6 +58,7 @@ func (r *HiveOpenshiftIoClusterClaimV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_cluster_claim_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoClusterClaimV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterClaim represents a claim to a cluster from a cluster pool.",
@@ -220,8 +219,8 @@ func (r *HiveOpenshiftIoClusterClaimV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("ClusterClaim")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("ClusterClaim")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

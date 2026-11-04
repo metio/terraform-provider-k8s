@@ -7,6 +7,7 @@ package psmdb_percona_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PsmdbPerconaComPerconaServerMongoDbV1Manifest{}
-)
+var _ datasource.DataSource = &PsmdbPerconaComPerconaServerMongoDbV1Manifest{}
 
 func NewPsmdbPerconaComPerconaServerMongoDbV1Manifest() datasource.DataSource {
 	return &PsmdbPerconaComPerconaServerMongoDbV1Manifest{}
@@ -6848,6 +6846,7 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_psmdb_percona_com_percona_server_mongo_db_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -52729,8 +52728,8 @@ func (r *PsmdbPerconaComPerconaServerMongoDbV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("psmdb.percona.com/v1")
-	model.Kind = pointer.String("PerconaServerMongoDB")
+	model.ApiVersion = new("psmdb.percona.com/v1")
+	model.Kind = new("PerconaServerMongoDB")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package kyverno_io_v2beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KyvernoIoCleanupPolicyV2Beta1Manifest{}
-)
+var _ datasource.DataSource = &KyvernoIoCleanupPolicyV2Beta1Manifest{}
 
 func NewKyvernoIoCleanupPolicyV2Beta1Manifest() datasource.DataSource {
 	return &KyvernoIoCleanupPolicyV2Beta1Manifest{}
@@ -248,6 +246,7 @@ func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_kyverno_io_cleanup_policy_v2beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CleanupPolicy defines a rule for resource cleanup.",
@@ -1726,8 +1725,8 @@ func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("kyverno.io/v2beta1")
-	model.Kind = pointer.String("CleanupPolicy")
+	model.ApiVersion = new("kyverno.io/v2beta1")
+	model.Kind = new("CleanupPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

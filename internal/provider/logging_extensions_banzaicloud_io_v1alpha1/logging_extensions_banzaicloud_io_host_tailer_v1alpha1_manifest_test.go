@@ -7,9 +7,10 @@ package logging_extensions_banzaicloud_io_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/logging_extensions_banzaicloud_io_v1alpha1"
-	"testing"
 )
 
 func TestLoggingExtensionsBanzaicloudIoHostTailerV1Alpha1Manifest_ValidateSchema(t *testing.T) {

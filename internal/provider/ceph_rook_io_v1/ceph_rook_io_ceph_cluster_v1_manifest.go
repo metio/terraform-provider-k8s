@@ -7,6 +7,8 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -17,14 +19,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephClusterV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephClusterV1Manifest{}
 
 func NewCephRookIoCephClusterV1Manifest() datasource.DataSource {
 	return &CephRookIoCephClusterV1Manifest{}
@@ -884,6 +882,7 @@ func (r *CephRookIoCephClusterV1Manifest) Metadata(_ context.Context, request da
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_cluster_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephClusterV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephCluster is a Ceph storage cluster",
@@ -6678,8 +6677,8 @@ func (r *CephRookIoCephClusterV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephCluster")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

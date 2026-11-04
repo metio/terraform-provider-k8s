@@ -7,9 +7,10 @@ package k8s_mariadb_com_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k8s_mariadb_com_v1alpha1"
-	"testing"
 )
 
 func TestK8SMariadbComMariaDbV1Alpha1Manifest_ValidateSchema(t *testing.T) {

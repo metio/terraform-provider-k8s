@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoSyncIdentityProviderV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoSyncIdentityProviderV1Manifest{}
 
 func NewHiveOpenshiftIoSyncIdentityProviderV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoSyncIdentityProviderV1Manifest{}
@@ -164,6 +162,7 @@ func (r *HiveOpenshiftIoSyncIdentityProviderV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_sync_identity_provider_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoSyncIdentityProviderV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SyncIdentityProvider is the Schema for the SyncIdentityProvider API",
@@ -977,8 +976,8 @@ func (r *HiveOpenshiftIoSyncIdentityProviderV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("SyncIdentityProvider")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("SyncIdentityProvider")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

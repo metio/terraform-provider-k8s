@@ -7,6 +7,7 @@ package core_kubeadmiral_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest{}
 
 func NewCoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest() datasource.DataSource {
 	return &CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest{}
@@ -102,6 +100,7 @@ func (r *CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest) Metadata(_ c
 	response.TypeName = request.ProviderTypeName + "_core_kubeadmiral_io_cluster_propagation_policy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterPropagationPolicy describes the scheduling rules for a resource.",
@@ -556,8 +555,8 @@ func (r *CoreKubeadmiralIoClusterPropagationPolicyV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ApiVersion = pointer.String("core.kubeadmiral.io/v1alpha1")
-	model.Kind = pointer.String("ClusterPropagationPolicy")
+	model.ApiVersion = new("core.kubeadmiral.io/v1alpha1")
+	model.Kind = new("ClusterPropagationPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

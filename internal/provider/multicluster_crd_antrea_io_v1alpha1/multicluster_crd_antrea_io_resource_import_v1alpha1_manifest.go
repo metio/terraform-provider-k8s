@@ -7,6 +7,7 @@ package multicluster_crd_antrea_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest{}
 
 func NewMulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest() datasource.DataSource {
 	return &MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest{}
@@ -555,6 +553,7 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_multicluster_crd_antrea_io_resource_import_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ResourceImport is the Schema for the resourceimports API.",
@@ -4006,8 +4005,8 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("multicluster.crd.antrea.io/v1alpha1")
-	model.Kind = pointer.String("ResourceImport")
+	model.ApiVersion = new("multicluster.crd.antrea.io/v1alpha1")
+	model.Kind = new("ResourceImport")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

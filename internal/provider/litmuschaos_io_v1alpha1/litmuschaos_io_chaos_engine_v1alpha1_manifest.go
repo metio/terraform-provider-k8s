@@ -7,6 +7,8 @@ package litmuschaos_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -17,14 +19,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LitmuschaosIoChaosEngineV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &LitmuschaosIoChaosEngineV1Alpha1Manifest{}
 
 func NewLitmuschaosIoChaosEngineV1Alpha1Manifest() datasource.DataSource {
 	return &LitmuschaosIoChaosEngineV1Alpha1Manifest{}
@@ -582,6 +580,7 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_litmuschaos_io_chaos_engine_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -4265,8 +4264,8 @@ func (r *LitmuschaosIoChaosEngineV1Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("litmuschaos.io/v1alpha1")
-	model.Kind = pointer.String("ChaosEngine")
+	model.ApiVersion = new("litmuschaos.io/v1alpha1")
+	model.Kind = new("ChaosEngine")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

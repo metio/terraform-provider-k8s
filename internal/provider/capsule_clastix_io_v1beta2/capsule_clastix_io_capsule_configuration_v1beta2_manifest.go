@@ -7,6 +7,7 @@ package capsule_clastix_io_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest{}
 
 func NewCapsuleClastixIoCapsuleConfigurationV1Beta2Manifest() datasource.DataSource {
 	return &CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest{}
@@ -68,6 +66,7 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_capsule_clastix_io_capsule_configuration_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CapsuleConfiguration is the Schema for the Capsule configuration API.",
@@ -273,8 +272,8 @@ func (r *CapsuleClastixIoCapsuleConfigurationV1Beta2Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("capsule.clastix.io/v1beta2")
-	model.Kind = pointer.String("CapsuleConfiguration")
+	model.ApiVersion = new("capsule.clastix.io/v1beta2")
+	model.Kind = new("CapsuleConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

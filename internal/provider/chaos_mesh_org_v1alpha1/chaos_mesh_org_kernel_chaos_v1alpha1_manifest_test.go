@@ -7,9 +7,10 @@ package chaos_mesh_org_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/chaos_mesh_org_v1alpha1"
-	"testing"
 )
 
 func TestChaosMeshOrgKernelChaosV1Alpha1Manifest_ValidateSchema(t *testing.T) {

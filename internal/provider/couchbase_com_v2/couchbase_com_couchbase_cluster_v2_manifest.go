@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseClusterV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseClusterV2Manifest{}
 
 func NewCouchbaseComCouchbaseClusterV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseClusterV2Manifest{}
@@ -818,6 +816,7 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_cluster_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseClusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The CouchbaseCluster resource represents a Couchbase cluster. It allows configuration of cluster topology, networking, storage and security options.",
@@ -6351,8 +6350,8 @@ func (r *CouchbaseComCouchbaseClusterV2Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseCluster")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

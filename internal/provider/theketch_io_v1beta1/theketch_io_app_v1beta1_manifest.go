@@ -7,6 +7,7 @@ package theketch_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TheketchIoAppV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &TheketchIoAppV1Beta1Manifest{}
 
 func NewTheketchIoAppV1Beta1Manifest() datasource.DataSource {
 	return &TheketchIoAppV1Beta1Manifest{}
@@ -612,6 +610,7 @@ func (r *TheketchIoAppV1Beta1Manifest) Metadata(_ context.Context, request datas
 	response.TypeName = request.ProviderTypeName + "_theketch_io_app_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TheketchIoAppV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "App is the Schema for the apps API.",
@@ -4489,8 +4488,8 @@ func (r *TheketchIoAppV1Beta1Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ApiVersion = pointer.String("theketch.io/v1beta1")
-	model.Kind = pointer.String("App")
+	model.ApiVersion = new("theketch.io/v1beta1")
+	model.Kind = new("App")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

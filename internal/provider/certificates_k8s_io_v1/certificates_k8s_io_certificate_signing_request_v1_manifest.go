@@ -7,6 +7,7 @@ package certificates_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CertificatesK8SIoCertificateSigningRequestV1Manifest{}
-)
+var _ datasource.DataSource = &CertificatesK8SIoCertificateSigningRequestV1Manifest{}
 
 func NewCertificatesK8SIoCertificateSigningRequestV1Manifest() datasource.DataSource {
 	return &CertificatesK8SIoCertificateSigningRequestV1Manifest{}
@@ -57,6 +55,7 @@ func (r *CertificatesK8SIoCertificateSigningRequestV1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_certificates_k8s_io_certificate_signing_request_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CertificatesK8SIoCertificateSigningRequestV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued. Kubelets use this API to obtain: 1. client certificates to authenticate to kube-apiserver (with the 'kubernetes.io/kube-apiserver-client-kubelet' signerName). 2. serving certificates for TLS endpoints kube-apiserver can connect to securely (with the 'kubernetes.io/kubelet-serving' signerName). This API can be used to request client certificates to authenticate to kube-apiserver (with the 'kubernetes.io/kube-apiserver-client' signerName), or to obtain certificates from custom non-Kubernetes signers.",
@@ -205,8 +204,8 @@ func (r *CertificatesK8SIoCertificateSigningRequestV1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("certificates.k8s.io/v1")
-	model.Kind = pointer.String("CertificateSigningRequest")
+	model.ApiVersion = new("certificates.k8s.io/v1")
+	model.Kind = new("CertificateSigningRequest")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

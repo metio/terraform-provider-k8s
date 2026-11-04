@@ -7,6 +7,8 @@ package machine_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -18,14 +20,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MachineOpenshiftIoControlPlaneMachineSetV1Manifest{}
-)
+var _ datasource.DataSource = &MachineOpenshiftIoControlPlaneMachineSetV1Manifest{}
 
 func NewMachineOpenshiftIoControlPlaneMachineSetV1Manifest() datasource.DataSource {
 	return &MachineOpenshiftIoControlPlaneMachineSetV1Manifest{}
@@ -150,6 +148,7 @@ func (r *MachineOpenshiftIoControlPlaneMachineSetV1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_machine_openshift_io_control_plane_machine_set_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MachineOpenshiftIoControlPlaneMachineSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ControlPlaneMachineSet ensures that a specified number of control plane machine replicas are running at any given time. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -937,8 +936,8 @@ func (r *MachineOpenshiftIoControlPlaneMachineSetV1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("machine.openshift.io/v1")
-	model.Kind = pointer.String("ControlPlaneMachineSet")
+	model.ApiVersion = new("machine.openshift.io/v1")
+	model.Kind = new("ControlPlaneMachineSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

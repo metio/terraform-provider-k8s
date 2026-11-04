@@ -7,9 +7,10 @@ package isindir_github_com_v1alpha3_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/isindir_github_com_v1alpha3"
-	"testing"
 )
 
 func TestIsindirGithubComSopsSecretV1Alpha3Manifest_ValidateSchema(t *testing.T) {

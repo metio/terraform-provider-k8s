@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoClusterVersionV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoClusterVersionV1Alpha1Manifest{}
 
 func NewAppsKubeblocksIoClusterVersionV1Alpha1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoClusterVersionV1Alpha1Manifest{}
@@ -87,6 +85,7 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_cluster_version_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterVersion is the Schema for the ClusterVersions API. Deprecated: ClusterVersion has been replaced by ComponentVersion since v0.9. This struct is maintained for backward compatibility and its use is discouraged.",
@@ -455,8 +454,8 @@ func (r *AppsKubeblocksIoClusterVersionV1Alpha1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("ClusterVersion")
+	model.ApiVersion = new("apps.kubeblocks.io/v1alpha1")
+	model.Kind = new("ClusterVersion")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

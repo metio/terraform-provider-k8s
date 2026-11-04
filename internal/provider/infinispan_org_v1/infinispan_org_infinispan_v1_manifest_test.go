@@ -7,9 +7,10 @@ package infinispan_org_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/infinispan_org_v1"
-	"testing"
 )
 
 func TestInfinispanOrgInfinispanV1Manifest_ValidateSchema(t *testing.T) {

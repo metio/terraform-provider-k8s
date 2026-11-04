@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoCsisnapshotControllerV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoCsisnapshotControllerV1Manifest{}
 
 func NewOperatorOpenshiftIoCsisnapshotControllerV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoCsisnapshotControllerV1Manifest{}
@@ -55,6 +53,7 @@ func (r *OperatorOpenshiftIoCsisnapshotControllerV1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_csi_snapshot_controller_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoCsisnapshotControllerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CSISnapshotController provides a means to configure an operator to manage the CSI snapshots. 'cluster' is the canonical name.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -184,8 +183,8 @@ func (r *OperatorOpenshiftIoCsisnapshotControllerV1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("CSISnapshotController")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("CSISnapshotController")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

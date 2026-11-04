@@ -7,6 +7,8 @@ package kueue_x_k8s_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KueueXK8SIoLocalQueueV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &KueueXK8SIoLocalQueueV1Beta1Manifest{}
 
 func NewKueueXK8SIoLocalQueueV1Beta1Manifest() datasource.DataSource {
 	return &KueueXK8SIoLocalQueueV1Beta1Manifest{}
@@ -53,6 +51,7 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_kueue_x_k8s_io_local_queue_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "LocalQueue is the Schema for the localQueues API",
@@ -166,8 +165,8 @@ func (r *KueueXK8SIoLocalQueueV1Beta1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("kueue.x-k8s.io/v1beta1")
-	model.Kind = pointer.String("LocalQueue")
+	model.ApiVersion = new("kueue.x-k8s.io/v1beta1")
+	model.Kind = new("LocalQueue")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

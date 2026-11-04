@@ -7,6 +7,8 @@ package config_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigOpenshiftIoIngressV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigOpenshiftIoIngressV1Manifest{}
 
 func NewConfigOpenshiftIoIngressV1Manifest() datasource.DataSource {
 	return &ConfigOpenshiftIoIngressV1Manifest{}
@@ -86,6 +84,7 @@ func (r *ConfigOpenshiftIoIngressV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_config_openshift_io_ingress_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigOpenshiftIoIngressV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Ingress holds cluster-wide information about ingress, including the default ingress domain used for routes. The canonical name is 'cluster'.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -422,8 +421,8 @@ func (r *ConfigOpenshiftIoIngressV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.openshift.io/v1")
-	model.Kind = pointer.String("Ingress")
+	model.ApiVersion = new("config.openshift.io/v1")
+	model.Kind = new("Ingress")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

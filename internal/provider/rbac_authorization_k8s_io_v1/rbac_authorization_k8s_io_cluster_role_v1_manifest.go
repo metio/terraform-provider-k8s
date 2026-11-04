@@ -7,6 +7,7 @@ package rbac_authorization_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RbacAuthorizationK8SIoClusterRoleV1Manifest{}
-)
+var _ datasource.DataSource = &RbacAuthorizationK8SIoClusterRoleV1Manifest{}
 
 func NewRbacAuthorizationK8SIoClusterRoleV1Manifest() datasource.DataSource {
 	return &RbacAuthorizationK8SIoClusterRoleV1Manifest{}
@@ -64,6 +62,7 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_rbac_authorization_k8s_io_cluster_role_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.",
@@ -254,8 +253,8 @@ func (r *RbacAuthorizationK8SIoClusterRoleV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("rbac.authorization.k8s.io/v1")
-	model.Kind = pointer.String("ClusterRole")
+	model.ApiVersion = new("rbac.authorization.k8s.io/v1")
+	model.Kind = new("ClusterRole")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package appmesh_k8s_aws_v1beta2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/appmesh_k8s_aws_v1beta2"
-	"testing"
 )
 
 func TestAppmeshK8SAwsVirtualServiceV1Beta2Manifest_ValidateSchema(t *testing.T) {

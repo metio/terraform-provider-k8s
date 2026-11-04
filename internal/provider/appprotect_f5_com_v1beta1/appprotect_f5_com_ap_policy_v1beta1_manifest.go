@@ -7,6 +7,8 @@ package appprotect_f5_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppprotectF5ComAppolicyV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AppprotectF5ComAppolicyV1Beta1Manifest{}
 
 func NewAppprotectF5ComAppolicyV1Beta1Manifest() datasource.DataSource {
 	return &AppprotectF5ComAppolicyV1Beta1Manifest{}
@@ -699,6 +697,7 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_appprotect_f5_com_ap_policy_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APPolicyConfig is the Schema for the APPolicyconfigs API",
@@ -5682,8 +5681,8 @@ func (r *AppprotectF5ComAppolicyV1Beta1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("appprotect.f5.com/v1beta1")
-	model.Kind = pointer.String("APPolicy")
+	model.ApiVersion = new("appprotect.f5.com/v1beta1")
+	model.Kind = new("APPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

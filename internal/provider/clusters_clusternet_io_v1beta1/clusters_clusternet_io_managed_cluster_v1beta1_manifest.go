@@ -7,6 +7,8 @@ package clusters_clusternet_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ClustersClusternetIoManagedClusterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ClustersClusternetIoManagedClusterV1Beta1Manifest{}
 
 func NewClustersClusternetIoManagedClusterV1Beta1Manifest() datasource.DataSource {
 	return &ClustersClusternetIoManagedClusterV1Beta1Manifest{}
@@ -61,6 +59,7 @@ func (r *ClustersClusternetIoManagedClusterV1Beta1Manifest) Metadata(_ context.C
 	response.TypeName = request.ProviderTypeName + "_clusters_clusternet_io_managed_cluster_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ClustersClusternetIoManagedClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ManagedCluster is the Schema for the managedclusters API",
@@ -238,8 +237,8 @@ func (r *ClustersClusternetIoManagedClusterV1Beta1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ApiVersion = pointer.String("clusters.clusternet.io/v1beta1")
-	model.Kind = pointer.String("ManagedCluster")
+	model.ApiVersion = new("clusters.clusternet.io/v1beta1")
+	model.Kind = new("ManagedCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

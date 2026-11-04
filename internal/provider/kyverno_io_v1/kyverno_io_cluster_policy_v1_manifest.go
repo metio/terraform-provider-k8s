@@ -7,6 +7,7 @@ package kyverno_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -17,13 +18,10 @@ import (
 	"github.com/metio/terraform-provider-k8s/internal/custom_types"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KyvernoIoClusterPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &KyvernoIoClusterPolicyV1Manifest{}
 
 func NewKyvernoIoClusterPolicyV1Manifest() datasource.DataSource {
 	return &KyvernoIoClusterPolicyV1Manifest{}
@@ -61,7 +59,7 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 				ApiCall *struct {
 					Data *[]struct {
 						Key   *string                 `tfsdk:"key" json:"key,omitempty"`
-						Value custom_types.Normalized `tfsdk:"value" json:"value,omitempty"`
+						Value custom_types.Normalized `tfsdk:"value" json:"value"`
 					} `tfsdk:"data" json:"data,omitempty"`
 					Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
 					JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
@@ -958,6 +956,7 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_kyverno_io_cluster_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterPolicy declares validation, mutation, and generation behaviors for matching resources.",
@@ -7380,8 +7379,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("kyverno.io/v1")
-	model.Kind = pointer.String("ClusterPolicy")
+	model.ApiVersion = new("kyverno.io/v1")
+	model.Kind = new("ClusterPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

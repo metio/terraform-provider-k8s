@@ -7,6 +7,8 @@ package chainsaw_kyverno_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ChainsawKyvernoIoConfigurationV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &ChainsawKyvernoIoConfigurationV1Alpha2Manifest{}
 
 func NewChainsawKyvernoIoConfigurationV1Alpha2Manifest() datasource.DataSource {
 	return &ChainsawKyvernoIoConfigurationV1Alpha2Manifest{}
@@ -267,6 +265,7 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_chainsaw_kyverno_io_configuration_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Configuration is the resource that contains the configuration used to run tests.",
@@ -1903,8 +1902,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha2Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("chainsaw.kyverno.io/v1alpha2")
-	model.Kind = pointer.String("Configuration")
+	model.ApiVersion = new("chainsaw.kyverno.io/v1alpha2")
+	model.Kind = new("Configuration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

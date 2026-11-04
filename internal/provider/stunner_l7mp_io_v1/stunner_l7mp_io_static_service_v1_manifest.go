@@ -7,6 +7,7 @@ package stunner_l7mp_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StunnerL7MpIoStaticServiceV1Manifest{}
-)
+var _ datasource.DataSource = &StunnerL7MpIoStaticServiceV1Manifest{}
 
 func NewStunnerL7MpIoStaticServiceV1Manifest() datasource.DataSource {
 	return &StunnerL7MpIoStaticServiceV1Manifest{}
@@ -51,6 +49,7 @@ func (r *StunnerL7MpIoStaticServiceV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_stunner_l7mp_io_static_service_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StunnerL7MpIoStaticServiceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "StaticService is a set of static IP address prefixes STUNner allows access to via a UDPRoute (or TCPRoute in the future). In contrast to Kubernetes Services, StaticServices expose all ports on the given IPs. See also https://github.com/kubernetes/enhancements/pull/2611.",
@@ -150,8 +149,8 @@ func (r *StunnerL7MpIoStaticServiceV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("stunner.l7mp.io/v1")
-	model.Kind = pointer.String("StaticService")
+	model.ApiVersion = new("stunner.l7mp.io/v1")
+	model.Kind = new("StaticService")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package security_istio_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecurityIstioIoAuthorizationPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &SecurityIstioIoAuthorizationPolicyV1Manifest{}
 
 func NewSecurityIstioIoAuthorizationPolicyV1Manifest() datasource.DataSource {
 	return &SecurityIstioIoAuthorizationPolicyV1Manifest{}
@@ -103,6 +101,7 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_security_istio_io_authorization_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecurityIstioIoAuthorizationPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -599,8 +598,8 @@ func (r *SecurityIstioIoAuthorizationPolicyV1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("security.istio.io/v1")
-	model.Kind = pointer.String("AuthorizationPolicy")
+	model.ApiVersion = new("security.istio.io/v1")
+	model.Kind = new("AuthorizationPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

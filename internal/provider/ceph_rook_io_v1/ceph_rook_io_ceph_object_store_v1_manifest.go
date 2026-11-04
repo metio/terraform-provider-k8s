@@ -7,6 +7,8 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephObjectStoreV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephObjectStoreV1Manifest{}
 
 func NewCephRookIoCephObjectStoreV1Manifest() datasource.DataSource {
 	return &CephRookIoCephObjectStoreV1Manifest{}
@@ -558,6 +556,7 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_object_store_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephObjectStore represents a Ceph Object Store Gateway",
@@ -4091,8 +4090,8 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephObjectStore")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephObjectStore")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package volsync_backube_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VolsyncBackubeReplicationSourceV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &VolsyncBackubeReplicationSourceV1Alpha1Manifest{}
 
 func NewVolsyncBackubeReplicationSourceV1Alpha1Manifest() datasource.DataSource {
 	return &VolsyncBackubeReplicationSourceV1Alpha1Manifest{}
@@ -844,6 +842,7 @@ func (r *VolsyncBackubeReplicationSourceV1Alpha1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_volsync_backube_replication_source_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VolsyncBackubeReplicationSourceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A ReplicationSource is a VolSync resource that you can use to define the source PVC and replication mover type, enabling you to replicate or synchronize PVC data to a remote location.",
@@ -6344,8 +6343,8 @@ func (r *VolsyncBackubeReplicationSourceV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("volsync.backube/v1alpha1")
-	model.Kind = pointer.String("ReplicationSource")
+	model.ApiVersion = new("volsync.backube/v1alpha1")
+	model.Kind = new("ReplicationSource")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package emrcontainers_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest{}
 
 func NewEmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest() datasource.DataSource {
 	return &EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest{}
@@ -61,6 +59,7 @@ func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Metadata(_ c
 	response.TypeName = request.ProviderTypeName + "_emrcontainers_services_k8s_aws_virtual_cluster_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VirtualCluster is the Schema for the VirtualClusters API",
@@ -219,8 +218,8 @@ func (r *EmrcontainersServicesK8SAwsVirtualClusterV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ApiVersion = pointer.String("emrcontainers.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("VirtualCluster")
+	model.ApiVersion = new("emrcontainers.services.k8s.aws/v1alpha1")
+	model.Kind = new("VirtualCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

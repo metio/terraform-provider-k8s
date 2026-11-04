@@ -7,6 +7,7 @@ package chisel_operator_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ChiselOperatorIoExitNodeProvisionerV1Manifest{}
-)
+var _ datasource.DataSource = &ChiselOperatorIoExitNodeProvisionerV1Manifest{}
 
 func NewChiselOperatorIoExitNodeProvisionerV1Manifest() datasource.DataSource {
 	return &ChiselOperatorIoExitNodeProvisionerV1Manifest{}
@@ -67,6 +65,7 @@ func (r *ChiselOperatorIoExitNodeProvisionerV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_chisel_operator_io_exit_node_provisioner_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ChiselOperatorIoExitNodeProvisionerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Auto-generated derived type for ExitNodeProvisionerSpec via 'CustomResource'",
@@ -273,8 +272,8 @@ func (r *ChiselOperatorIoExitNodeProvisionerV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("chisel-operator.io/v1")
-	model.Kind = pointer.String("ExitNodeProvisioner")
+	model.ApiVersion = new("chisel-operator.io/v1")
+	model.Kind = new("ExitNodeProvisioner")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

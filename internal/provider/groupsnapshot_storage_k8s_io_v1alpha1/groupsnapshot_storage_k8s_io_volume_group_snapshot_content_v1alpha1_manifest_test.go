@@ -7,9 +7,10 @@ package groupsnapshot_storage_k8s_io_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/groupsnapshot_storage_k8s_io_v1alpha1"
-	"testing"
 )
 
 func TestGroupsnapshotStorageK8SIoVolumeGroupSnapshotContentV1Alpha1Manifest_ValidateSchema(t *testing.T) {

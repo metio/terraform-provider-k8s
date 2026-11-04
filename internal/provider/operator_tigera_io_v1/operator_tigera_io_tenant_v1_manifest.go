@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoTenantV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoTenantV1Manifest{}
 
 func NewOperatorTigeraIoTenantV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoTenantV1Manifest{}
@@ -275,6 +273,7 @@ func (r *OperatorTigeraIoTenantV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_tenant_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoTenantV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Tenant is the Schema for the tenants API",
@@ -1836,8 +1835,8 @@ func (r *OperatorTigeraIoTenantV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("Tenant")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("Tenant")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package source_toolkit_fluxcd_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SourceToolkitFluxcdIoHelmRepositoryV1Manifest{}
-)
+var _ datasource.DataSource = &SourceToolkitFluxcdIoHelmRepositoryV1Manifest{}
 
 func NewSourceToolkitFluxcdIoHelmRepositoryV1Manifest() datasource.DataSource {
 	return &SourceToolkitFluxcdIoHelmRepositoryV1Manifest{}
@@ -70,6 +68,7 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_helm_repository_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SourceToolkitFluxcdIoHelmRepositoryV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HelmRepository is the Schema for the helmrepositories API.",
@@ -302,8 +301,8 @@ func (r *SourceToolkitFluxcdIoHelmRepositoryV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("source.toolkit.fluxcd.io/v1")
-	model.Kind = pointer.String("HelmRepository")
+	model.ApiVersion = new("source.toolkit.fluxcd.io/v1")
+	model.Kind = new("HelmRepository")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

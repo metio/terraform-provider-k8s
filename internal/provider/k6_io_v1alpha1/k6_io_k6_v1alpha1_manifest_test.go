@@ -7,9 +7,10 @@ package k6_io_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/k6_io_v1alpha1"
-	"testing"
 )
 
 func TestK6IoK6V1Alpha1Manifest_ValidateSchema(t *testing.T) {

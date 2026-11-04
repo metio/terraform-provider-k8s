@@ -7,9 +7,10 @@ package integration_rock8s_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/integration_rock8s_com_v1beta1"
-	"testing"
 )
 
 func TestIntegrationRock8SComPlugV1Beta1Manifest_ValidateSchema(t *testing.T) {

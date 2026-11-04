@@ -7,6 +7,7 @@ package wgpolicyk8s_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest{}
 
 func NewWgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest() datasource.DataSource {
 	return &Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest{}
@@ -103,6 +101,7 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest) Metadata(_ context.Co
 	response.TypeName = request.ProviderTypeName + "_wgpolicyk8s_io_cluster_policy_report_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterPolicyReport is the Schema for the clusterpolicyreports API",
@@ -576,8 +575,8 @@ func (r *Wgpolicyk8SIoClusterPolicyReportV1Alpha2Manifest) Read(ctx context.Cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("wgpolicyk8s.io/v1alpha2")
-	model.Kind = pointer.String("ClusterPolicyReport")
+	model.ApiVersion = new("wgpolicyk8s.io/v1alpha2")
+	model.Kind = new("ClusterPolicyReport")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

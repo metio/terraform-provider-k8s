@@ -7,6 +7,7 @@ package k8up_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &K8UpIoPreBackupPodV1Manifest{}
-)
+var _ datasource.DataSource = &K8UpIoPreBackupPodV1Manifest{}
 
 func NewK8UpIoPreBackupPodV1Manifest() datasource.DataSource {
 	return &K8UpIoPreBackupPodV1Manifest{}
@@ -1325,6 +1323,7 @@ func (r *K8UpIoPreBackupPodV1Manifest) Metadata(_ context.Context, request datas
 	response.TypeName = request.ProviderTypeName + "_k8up_io_pre_backup_pod_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *K8UpIoPreBackupPodV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PreBackupPod is the Schema for the prebackuppods API",
@@ -9948,8 +9947,8 @@ func (r *K8UpIoPreBackupPodV1Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ApiVersion = pointer.String("k8up.io/v1")
-	model.Kind = pointer.String("PreBackupPod")
+	model.ApiVersion = new("k8up.io/v1")
+	model.Kind = new("PreBackupPod")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

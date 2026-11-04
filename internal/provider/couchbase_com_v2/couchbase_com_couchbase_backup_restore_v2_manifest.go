@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseBackupRestoreV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseBackupRestoreV2Manifest{}
 
 func NewCouchbaseComCouchbaseBackupRestoreV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseBackupRestoreV2Manifest{}
@@ -108,6 +106,7 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_backup_restore_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.",
@@ -622,8 +621,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseBackupRestore")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseBackupRestore")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

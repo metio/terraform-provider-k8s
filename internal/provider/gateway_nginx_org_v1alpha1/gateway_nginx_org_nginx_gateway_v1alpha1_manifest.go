@@ -7,6 +7,7 @@ package gateway_nginx_org_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNginxOrgNginxGatewayV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNginxOrgNginxGatewayV1Alpha1Manifest{}
 
 func NewGatewayNginxOrgNginxGatewayV1Alpha1Manifest() datasource.DataSource {
 	return &GatewayNginxOrgNginxGatewayV1Alpha1Manifest{}
@@ -53,6 +51,7 @@ func (r *GatewayNginxOrgNginxGatewayV1Alpha1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_gateway_nginx_org_nginx_gateway_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNginxOrgNginxGatewayV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NginxGateway represents the dynamic configuration for an NGINX Gateway Fabric control plane.",
@@ -163,8 +162,8 @@ func (r *GatewayNginxOrgNginxGatewayV1Alpha1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.nginx.org/v1alpha1")
-	model.Kind = pointer.String("NginxGateway")
+	model.ApiVersion = new("gateway.nginx.org/v1alpha1")
+	model.Kind = new("NginxGateway")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

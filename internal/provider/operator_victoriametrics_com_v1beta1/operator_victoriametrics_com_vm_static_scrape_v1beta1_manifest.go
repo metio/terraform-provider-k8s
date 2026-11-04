@@ -7,6 +7,7 @@ package operator_victoriametrics_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest{}
 
 func NewOperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest() datasource.DataSource {
 	return &OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest{}
@@ -247,6 +245,7 @@ func (r *OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest) Metadata(_ con
 	response.TypeName = request.ProviderTypeName + "_operator_victoriametrics_com_vm_static_scrape_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VMStaticScrape defines static targets configuration for scraping.",
@@ -1687,8 +1686,8 @@ func (r *OperatorVictoriametricsComVmstaticScrapeV1Beta1Manifest) Read(ctx conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.victoriametrics.com/v1beta1")
-	model.Kind = pointer.String("VMStaticScrape")
+	model.ApiVersion = new("operator.victoriametrics.com/v1beta1")
+	model.Kind = new("VMStaticScrape")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

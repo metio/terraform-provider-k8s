@@ -7,6 +7,8 @@ package snapscheduler_backube_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SnapschedulerBackubeSnapshotScheduleV1Manifest{}
-)
+var _ datasource.DataSource = &SnapschedulerBackubeSnapshotScheduleV1Manifest{}
 
 func NewSnapschedulerBackubeSnapshotScheduleV1Manifest() datasource.DataSource {
 	return &SnapschedulerBackubeSnapshotScheduleV1Manifest{}
@@ -70,6 +68,7 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_snapscheduler_backube_snapshot_schedule_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SnapshotSchedule defines a schedule for taking automated snapshots of PVC(s)",
@@ -290,8 +289,8 @@ func (r *SnapschedulerBackubeSnapshotScheduleV1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("snapscheduler.backube/v1")
-	model.Kind = pointer.String("SnapshotSchedule")
+	model.ApiVersion = new("snapscheduler.backube/v1")
+	model.Kind = new("SnapshotSchedule")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

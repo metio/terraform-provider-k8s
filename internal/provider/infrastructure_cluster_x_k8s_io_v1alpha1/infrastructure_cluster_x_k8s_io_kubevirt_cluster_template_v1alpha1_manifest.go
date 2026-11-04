@@ -7,6 +7,7 @@ package infrastructure_cluster_x_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest{}
 
 func NewInfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest() datasource.DataSource {
 	return &InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest{}
@@ -89,6 +87,7 @@ func (r *InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest) Met
 	response.TypeName = request.ProviderTypeName + "_infrastructure_cluster_x_k8s_io_kubevirt_cluster_template_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "KubevirtClusterTemplate is the Schema for the kubevirtclustertemplates API.",
@@ -431,8 +430,8 @@ func (r *InfrastructureClusterXK8SIoKubevirtClusterTemplateV1Alpha1Manifest) Rea
 		return
 	}
 
-	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1alpha1")
-	model.Kind = pointer.String("KubevirtClusterTemplate")
+	model.ApiVersion = new("infrastructure.cluster.x-k8s.io/v1alpha1")
+	model.Kind = new("KubevirtClusterTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

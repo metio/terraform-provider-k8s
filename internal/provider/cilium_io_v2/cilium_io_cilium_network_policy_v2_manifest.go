@@ -7,6 +7,8 @@ package cilium_io_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CiliumIoCiliumNetworkPolicyV2Manifest{}
-)
+var _ datasource.DataSource = &CiliumIoCiliumNetworkPolicyV2Manifest{}
 
 func NewCiliumIoCiliumNetworkPolicyV2Manifest() datasource.DataSource {
 	return &CiliumIoCiliumNetworkPolicyV2Manifest{}
@@ -854,6 +852,7 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_cilium_io_cilium_network_policy_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CiliumNetworkPolicy is a Kubernetes third-party resource with an extended version of NetworkPolicy.",
@@ -6745,8 +6744,8 @@ func (r *CiliumIoCiliumNetworkPolicyV2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("cilium.io/v2")
-	model.Kind = pointer.String("CiliumNetworkPolicy")
+	model.ApiVersion = new("cilium.io/v2")
+	model.Kind = new("CiliumNetworkPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

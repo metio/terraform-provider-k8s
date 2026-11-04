@@ -7,6 +7,7 @@ package couchbase_com_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseAutoscalerV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseAutoscalerV2Manifest{}
 
 func NewCouchbaseComCouchbaseAutoscalerV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseAutoscalerV2Manifest{}
@@ -53,6 +51,7 @@ func (r *CouchbaseComCouchbaseAutoscalerV2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_autoscaler_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseAutoscalerV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.",
@@ -165,8 +164,8 @@ func (r *CouchbaseComCouchbaseAutoscalerV2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseAutoscaler")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseAutoscaler")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

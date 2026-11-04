@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseBucketV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseBucketV2Manifest{}
 
 func NewCouchbaseComCouchbaseBucketV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseBucketV2Manifest{}
@@ -80,6 +78,7 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_bucket_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseBucketV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The CouchbaseBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseBucket provides replication and persistence for documents contained by it.",
@@ -413,8 +412,8 @@ func (r *CouchbaseComCouchbaseBucketV2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseBucket")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseBucket")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

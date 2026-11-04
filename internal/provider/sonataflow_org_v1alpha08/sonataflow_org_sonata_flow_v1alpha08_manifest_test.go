@@ -7,9 +7,10 @@ package sonataflow_org_v1alpha08_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sonataflow_org_v1alpha08"
-	"testing"
 )
 
 func TestSonataflowOrgSonataFlowV1Alpha08Manifest_ValidateSchema(t *testing.T) {

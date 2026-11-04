@@ -7,6 +7,7 @@ package core_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &EndpointsV1Manifest{}
-)
+var _ datasource.DataSource = &EndpointsV1Manifest{}
 
 func NewEndpointsV1Manifest() datasource.DataSource {
 	return &EndpointsV1Manifest{}
@@ -84,6 +82,7 @@ func (r *EndpointsV1Manifest) Metadata(_ context.Context, request datasource.Met
 	response.TypeName = request.ProviderTypeName + "_endpoints_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *EndpointsV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Endpoints is a collection of endpoints that implement the actual service. Example: Name: 'mysvc', Subsets: [ { Addresses: [{'ip': '10.10.1.1'}, {'ip': '10.10.2.2'}], Ports: [{'name': 'a', 'port': 8675}, {'name': 'b', 'port': 309}] }, { Addresses: [{'ip': '10.10.3.3'}], Ports: [{'name': 'a', 'port': 93}, {'name': 'b', 'port': 76}] }, ]",
@@ -419,8 +418,8 @@ func (r *EndpointsV1Manifest) Read(ctx context.Context, request datasource.ReadR
 		return
 	}
 
-	model.ApiVersion = pointer.String("v1")
-	model.Kind = pointer.String("Endpoints")
+	model.ApiVersion = new("v1")
+	model.Kind = new("Endpoints")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

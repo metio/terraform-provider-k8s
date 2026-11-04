@@ -7,6 +7,7 @@ package operator_marin3r_3scale_net_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest{}
 
 func NewOperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest() datasource.DataSource {
 	return &OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest{}
@@ -339,6 +337,7 @@ func (r *OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest) Metadata(_ con
 	response.TypeName = request.ProviderTypeName + "_operator_marin3r_3scale_net_envoy_deployment_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EnvoyDeployment is a resource to deploy and manage a Kubernetes Deployment of Envoy Pods.",
@@ -2347,8 +2346,8 @@ func (r *OperatorMarin3R3ScaleNetEnvoyDeploymentV1Alpha1Manifest) Read(ctx conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.marin3r.3scale.net/v1alpha1")
-	model.Kind = pointer.String("EnvoyDeployment")
+	model.ApiVersion = new("operator.marin3r.3scale.net/v1alpha1")
+	model.Kind = new("EnvoyDeployment")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

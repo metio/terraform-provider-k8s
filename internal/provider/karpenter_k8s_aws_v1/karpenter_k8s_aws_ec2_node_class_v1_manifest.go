@@ -7,6 +7,8 @@ package karpenter_k8s_aws_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KarpenterK8SAwsEc2NodeClassV1Manifest{}
-)
+var _ datasource.DataSource = &KarpenterK8SAwsEc2NodeClassV1Manifest{}
 
 func NewKarpenterK8SAwsEc2NodeClassV1Manifest() datasource.DataSource {
 	return &KarpenterK8SAwsEc2NodeClassV1Manifest{}
@@ -110,6 +108,7 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_karpenter_k8s_aws_ec2_node_class_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EC2NodeClass is the Schema for the EC2NodeClass API",
@@ -680,8 +679,8 @@ func (r *KarpenterK8SAwsEc2NodeClassV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("karpenter.k8s.aws/v1")
-	model.Kind = pointer.String("EC2NodeClass")
+	model.ApiVersion = new("karpenter.k8s.aws/v1")
+	model.Kind = new("EC2NodeClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

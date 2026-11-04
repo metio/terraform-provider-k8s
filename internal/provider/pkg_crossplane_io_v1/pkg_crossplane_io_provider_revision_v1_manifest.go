@@ -7,6 +7,7 @@ package pkg_crossplane_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PkgCrossplaneIoProviderRevisionV1Manifest{}
-)
+var _ datasource.DataSource = &PkgCrossplaneIoProviderRevisionV1Manifest{}
 
 func NewPkgCrossplaneIoProviderRevisionV1Manifest() datasource.DataSource {
 	return &PkgCrossplaneIoProviderRevisionV1Manifest{}
@@ -69,6 +67,7 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_pkg_crossplane_io_provider_revision_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A ProviderRevision represents a revision of a Provider. Crossplane creates new revisions when there are changes to a Provider. Crossplane creates and manages ProviderRevisions. Don't directly edit ProviderRevisions.",
@@ -289,8 +288,8 @@ func (r *PkgCrossplaneIoProviderRevisionV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("pkg.crossplane.io/v1")
-	model.Kind = pointer.String("ProviderRevision")
+	model.ApiVersion = new("pkg.crossplane.io/v1")
+	model.Kind = new("ProviderRevision")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

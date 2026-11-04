@@ -7,6 +7,7 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CrdProjectcalicoOrgGlobalNetworkSetV1Manifest{}
-)
+var _ datasource.DataSource = &CrdProjectcalicoOrgGlobalNetworkSetV1Manifest{}
 
 func NewCrdProjectcalicoOrgGlobalNetworkSetV1Manifest() datasource.DataSource {
 	return &CrdProjectcalicoOrgGlobalNetworkSetV1Manifest{}
@@ -50,6 +48,7 @@ func (r *CrdProjectcalicoOrgGlobalNetworkSetV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_crd_projectcalico_org_global_network_set_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CrdProjectcalicoOrgGlobalNetworkSetV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GlobalNetworkSet contains a set of arbitrary IP sub-networks/CIDRs that share labels to allow rules to refer to them via selectors. The labels of GlobalNetworkSet are not namespaced.",
@@ -137,8 +136,8 @@ func (r *CrdProjectcalicoOrgGlobalNetworkSetV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("crd.projectcalico.org/v1")
-	model.Kind = pointer.String("GlobalNetworkSet")
+	model.ApiVersion = new("crd.projectcalico.org/v1")
+	model.Kind = new("GlobalNetworkSet")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

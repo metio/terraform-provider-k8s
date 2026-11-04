@@ -7,9 +7,10 @@ package keycloak_k8s_reddec_net_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/keycloak_k8s_reddec_net_v1alpha1"
-	"testing"
 )
 
 func TestKeycloakK8SReddecNetKeycloakClientV1Alpha1Manifest_ValidateSchema(t *testing.T) {

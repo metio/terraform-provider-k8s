@@ -7,6 +7,7 @@ package security_profiles_operator_x_k8s_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest{}
 
 func NewSecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest() datasource.DataSource {
 	return &SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest{}
@@ -52,6 +50,7 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest) Metada
 	response.TypeName = request.ProviderTypeName + "_security_profiles_operator_x_k8s_io_raw_selinux_profile_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "RawSelinuxProfile is the Schema for the rawselinuxprofiles API.",
@@ -158,8 +157,8 @@ func (r *SecurityProfilesOperatorXK8SIoRawSelinuxProfileV1Alpha2Manifest) Read(c
 		return
 	}
 
-	model.ApiVersion = pointer.String("security-profiles-operator.x-k8s.io/v1alpha2")
-	model.Kind = pointer.String("RawSelinuxProfile")
+	model.ApiVersion = new("security-profiles-operator.x-k8s.io/v1alpha2")
+	model.Kind = new("RawSelinuxProfile")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

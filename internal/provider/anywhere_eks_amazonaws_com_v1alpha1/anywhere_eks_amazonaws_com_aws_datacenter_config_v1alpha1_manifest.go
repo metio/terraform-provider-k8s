@@ -7,6 +7,7 @@ package anywhere_eks_amazonaws_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest{}
 
 func NewAnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest() datasource.DataSource {
 	return &AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest{}
@@ -52,6 +50,7 @@ func (r *AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest) Metadata(_ 
 	response.TypeName = request.ProviderTypeName + "_anywhere_eks_amazonaws_com_aws_datacenter_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AWSDatacenterConfig is the Schema for the AWSDatacenterConfigs API.",
@@ -158,8 +157,8 @@ func (r *AnywhereEksAmazonawsComAwsdatacenterConfigV1Alpha1Manifest) Read(ctx co
 		return
 	}
 
-	model.ApiVersion = pointer.String("anywhere.eks.amazonaws.com/v1alpha1")
-	model.Kind = pointer.String("AWSDatacenterConfig")
+	model.ApiVersion = new("anywhere.eks.amazonaws.com/v1alpha1")
+	model.Kind = new("AWSDatacenterConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

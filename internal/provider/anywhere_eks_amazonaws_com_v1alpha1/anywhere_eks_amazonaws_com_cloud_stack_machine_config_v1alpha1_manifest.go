@@ -7,6 +7,7 @@ package anywhere_eks_amazonaws_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest{}
 
 func NewAnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest() datasource.DataSource {
 	return &AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest{}
@@ -75,6 +73,7 @@ func (r *AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_anywhere_eks_amazonaws_com_cloud_stack_machine_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CloudStackMachineConfig is the Schema for the cloudstackmachineconfigs API.",
@@ -343,8 +342,8 @@ func (r *AnywhereEksAmazonawsComCloudStackMachineConfigV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("anywhere.eks.amazonaws.com/v1alpha1")
-	model.Kind = pointer.String("CloudStackMachineConfig")
+	model.ApiVersion = new("anywhere.eks.amazonaws.com/v1alpha1")
+	model.Kind = new("CloudStackMachineConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

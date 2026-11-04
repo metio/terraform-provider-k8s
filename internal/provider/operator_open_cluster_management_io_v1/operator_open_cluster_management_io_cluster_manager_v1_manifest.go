@@ -7,6 +7,8 @@ package operator_open_cluster_management_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenClusterManagementIoClusterManagerV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenClusterManagementIoClusterManagerV1Manifest{}
 
 func NewOperatorOpenClusterManagementIoClusterManagerV1Manifest() datasource.DataSource {
 	return &OperatorOpenClusterManagementIoClusterManagerV1Manifest{}
@@ -108,6 +106,7 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Metadata(_ con
 	response.TypeName = request.ProviderTypeName + "_operator_open_cluster_management_io_cluster_manager_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterManager configures the controllers on the hub that govern registration and work distribution for attached Klusterlets. In Default mode, ClusterManager will only be deployed in open-cluster-management-hub namespace. In Hosted mode, ClusterManager will be deployed in the namespace with the same name as cluster manager.",
@@ -581,8 +580,8 @@ func (r *OperatorOpenClusterManagementIoClusterManagerV1Manifest) Read(ctx conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.open-cluster-management.io/v1")
-	model.Kind = pointer.String("ClusterManager")
+	model.ApiVersion = new("operator.open-cluster-management.io/v1")
+	model.Kind = new("ClusterManager")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

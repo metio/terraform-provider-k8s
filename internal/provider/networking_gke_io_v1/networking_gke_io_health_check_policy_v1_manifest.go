@@ -7,6 +7,8 @@ package networking_gke_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingGkeIoHealthCheckPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingGkeIoHealthCheckPolicyV1Manifest{}
 
 func NewNetworkingGkeIoHealthCheckPolicyV1Manifest() datasource.DataSource {
 	return &NetworkingGkeIoHealthCheckPolicyV1Manifest{}
@@ -111,6 +109,7 @@ func (r *NetworkingGkeIoHealthCheckPolicyV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_networking_gke_io_health_check_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingGkeIoHealthCheckPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HealthCheckPolicy provides a way to create and attach a HealthCheck to a BackendService with the GKE implementation of the Gateway API. This policy can only be attached to a BackendService.",
@@ -762,8 +761,8 @@ func (r *NetworkingGkeIoHealthCheckPolicyV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.gke.io/v1")
-	model.Kind = pointer.String("HealthCheckPolicy")
+	model.ApiVersion = new("networking.gke.io/v1")
+	model.Kind = new("HealthCheckPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package azure_microsoft_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest{}
 
 func NewAzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest() datasource.DataSource {
 	return &AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_azure_microsoft_com_my_sqlv_net_rule_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MySQLVNetRule is the Schema for the mysqlvnetrules API",
@@ -208,8 +207,8 @@ func (r *AzureMicrosoftComMySqlvnetRuleV1Alpha1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("azure.microsoft.com/v1alpha1")
-	model.Kind = pointer.String("MySQLVNetRule")
+	model.ApiVersion = new("azure.microsoft.com/v1alpha1")
+	model.Kind = new("MySQLVNetRule")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

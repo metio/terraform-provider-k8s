@@ -7,6 +7,7 @@ package pgv2_percona_com_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Pgv2PerconaComPerconaPgupgradeV2Manifest{}
-)
+var _ datasource.DataSource = &Pgv2PerconaComPerconaPgupgradeV2Manifest{}
 
 func NewPgv2PerconaComPerconaPgupgradeV2Manifest() datasource.DataSource {
 	return &Pgv2PerconaComPerconaPgupgradeV2Manifest{}
@@ -470,6 +468,7 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_pgv2_percona_com_percona_pg_upgrade_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PerconaPGUpgrade is the Schema for the perconapgupgrades API",
@@ -3392,8 +3391,8 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("pgv2.percona.com/v2")
-	model.Kind = pointer.String("PerconaPGUpgrade")
+	model.ApiVersion = new("pgv2.percona.com/v2")
+	model.Kind = new("PerconaPGUpgrade")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

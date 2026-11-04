@@ -7,6 +7,8 @@ package postgres_operator_crunchydata_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest{}
 
 func NewPostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest() datasource.DataSource {
 	return &PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest{}
@@ -2629,6 +2627,7 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Metadata(
 	response.TypeName = request.ProviderTypeName + "_postgres_operator_crunchydata_com_postgres_cluster_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PostgresCluster is the Schema for the postgresclusters API",
@@ -20039,8 +20038,8 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Read(ctx 
 		return
 	}
 
-	model.ApiVersion = pointer.String("postgres-operator.crunchydata.com/v1beta1")
-	model.Kind = pointer.String("PostgresCluster")
+	model.ApiVersion = new("postgres-operator.crunchydata.com/v1beta1")
+	model.Kind = new("PostgresCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

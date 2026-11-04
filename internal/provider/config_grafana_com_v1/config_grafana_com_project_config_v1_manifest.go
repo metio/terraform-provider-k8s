@@ -7,6 +7,7 @@ package config_grafana_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigGrafanaComProjectConfigV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigGrafanaComProjectConfigV1Manifest{}
 
 func NewConfigGrafanaComProjectConfigV1Manifest() datasource.DataSource {
 	return &ConfigGrafanaComProjectConfigV1Manifest{}
@@ -91,6 +89,7 @@ func (r *ConfigGrafanaComProjectConfigV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_config_grafana_com_project_config_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigGrafanaComProjectConfigV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ProjectConfig is the Schema for the projectconfigs API",
@@ -475,8 +474,8 @@ func (r *ConfigGrafanaComProjectConfigV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.grafana.com/v1")
-	model.Kind = pointer.String("ProjectConfig")
+	model.ApiVersion = new("config.grafana.com/v1")
+	model.Kind = new("ProjectConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

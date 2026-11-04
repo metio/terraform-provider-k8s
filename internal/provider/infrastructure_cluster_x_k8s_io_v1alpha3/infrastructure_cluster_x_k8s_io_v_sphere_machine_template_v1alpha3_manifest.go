@@ -7,6 +7,7 @@ package infrastructure_cluster_x_k8s_io_v1alpha3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest{}
 
 func NewInfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest() datasource.DataSource {
 	return &InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest{}
@@ -112,6 +110,7 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest) Meta
 	response.TypeName = request.ProviderTypeName + "_infrastructure_cluster_x_k8s_io_v_sphere_machine_template_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VSphereMachineTemplate is the Schema for the vspheremachinetemplates API Deprecated: This type will be removed in one of the next releases.",
@@ -659,8 +658,8 @@ func (r *InfrastructureClusterXK8SIoVsphereMachineTemplateV1Alpha3Manifest) Read
 		return
 	}
 
-	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1alpha3")
-	model.Kind = pointer.String("VSphereMachineTemplate")
+	model.ApiVersion = new("infrastructure.cluster.x-k8s.io/v1alpha3")
+	model.Kind = new("VSphereMachineTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package mariadb_mmontes_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MariadbMmontesIoConnectionV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MariadbMmontesIoConnectionV1Alpha1Manifest{}
 
 func NewMariadbMmontesIoConnectionV1Alpha1Manifest() datasource.DataSource {
 	return &MariadbMmontesIoConnectionV1Alpha1Manifest{}
@@ -96,6 +94,7 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_mariadb_mmontes_io_connection_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Connection is the Schema for the connections API. It is used to configure connection strings for the applications connecting to MariaDB.",
@@ -522,8 +521,8 @@ func (r *MariadbMmontesIoConnectionV1Alpha1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("mariadb.mmontes.io/v1alpha1")
-	model.Kind = pointer.String("Connection")
+	model.ApiVersion = new("mariadb.mmontes.io/v1alpha1")
+	model.Kind = new("Connection")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

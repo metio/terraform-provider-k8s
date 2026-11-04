@@ -7,6 +7,7 @@ package m4e_krestomat_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &M4EKrestomatIoPhpfpmV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &M4EKrestomatIoPhpfpmV1Alpha1Manifest{}
 
 func NewM4EKrestomatIoPhpfpmV1Alpha1Manifest() datasource.DataSource {
 	return &M4EKrestomatIoPhpfpmV1Alpha1Manifest{}
@@ -49,6 +47,7 @@ func (r *M4EKrestomatIoPhpfpmV1Alpha1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_m4e_krestomat_io_phpfpm_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *M4EKrestomatIoPhpfpmV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Phpfpm is the Schema for the phpfpms API",
@@ -139,8 +138,8 @@ func (r *M4EKrestomatIoPhpfpmV1Alpha1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("m4e.krestomat.io/v1alpha1")
-	model.Kind = pointer.String("Phpfpm")
+	model.ApiVersion = new("m4e.krestomat.io/v1alpha1")
+	model.Kind = new("Phpfpm")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

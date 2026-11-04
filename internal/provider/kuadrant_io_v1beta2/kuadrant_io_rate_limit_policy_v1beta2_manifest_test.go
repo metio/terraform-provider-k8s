@@ -7,9 +7,10 @@ package kuadrant_io_v1beta2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/kuadrant_io_v1beta2"
-	"testing"
 )
 
 func TestKuadrantIoRateLimitPolicyV1Beta2Manifest_ValidateSchema(t *testing.T) {

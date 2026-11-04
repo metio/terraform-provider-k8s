@@ -7,6 +7,7 @@ package networking_istio_io_v1alpha3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingIstioIoVirtualServiceV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &NetworkingIstioIoVirtualServiceV1Alpha3Manifest{}
 
 func NewNetworkingIstioIoVirtualServiceV1Alpha3Manifest() datasource.DataSource {
 	return &NetworkingIstioIoVirtualServiceV1Alpha3Manifest{}
@@ -264,6 +262,7 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_networking_istio_io_virtual_service_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -1819,8 +1818,8 @@ func (r *NetworkingIstioIoVirtualServiceV1Alpha3Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.istio.io/v1alpha3")
-	model.Kind = pointer.String("VirtualService")
+	model.ApiVersion = new("networking.istio.io/v1alpha3")
+	model.Kind = new("VirtualService")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package apicodegen_apimatic_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
@@ -20,13 +21,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApicodegenApimaticIoApimaticV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ApicodegenApimaticIoApimaticV1Beta1Manifest{}
 
 func NewApicodegenApimaticIoApimaticV1Beta1Manifest() datasource.DataSource {
 	return &ApicodegenApimaticIoApimaticV1Beta1Manifest{}
@@ -240,6 +238,7 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_apicodegen_apimatic_io_api_matic_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIMatic is the Schema for the apimatics API",
@@ -1671,8 +1670,8 @@ func (r *ApicodegenApimaticIoApimaticV1Beta1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("apicodegen.apimatic.io/v1beta1")
-	model.Kind = pointer.String("APIMatic")
+	model.ApiVersion = new("apicodegen.apimatic.io/v1beta1")
+	model.Kind = new("APIMatic")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

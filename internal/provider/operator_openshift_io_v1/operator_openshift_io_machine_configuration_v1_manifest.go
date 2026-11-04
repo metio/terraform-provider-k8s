@@ -7,6 +7,8 @@ package operator_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorOpenshiftIoMachineConfigurationV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorOpenshiftIoMachineConfigurationV1Manifest{}
 
 func NewOperatorOpenshiftIoMachineConfigurationV1Manifest() datasource.DataSource {
 	return &OperatorOpenshiftIoMachineConfigurationV1Manifest{}
@@ -58,6 +56,7 @@ func (r *OperatorOpenshiftIoMachineConfigurationV1Manifest) Metadata(_ context.C
 	response.TypeName = request.ProviderTypeName + "_operator_openshift_io_machine_configuration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorOpenshiftIoMachineConfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MachineConfiguration provides information to configure an operator to manage Machine Configuration.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -211,8 +210,8 @@ func (r *OperatorOpenshiftIoMachineConfigurationV1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.openshift.io/v1")
-	model.Kind = pointer.String("MachineConfiguration")
+	model.ApiVersion = new("operator.openshift.io/v1")
+	model.Kind = new("MachineConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

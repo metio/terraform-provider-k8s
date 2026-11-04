@@ -7,6 +7,7 @@ package velero_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VeleroIoBackupV1Manifest{}
-)
+var _ datasource.DataSource = &VeleroIoBackupV1Manifest{}
 
 func NewVeleroIoBackupV1Manifest() datasource.DataSource {
 	return &VeleroIoBackupV1Manifest{}
@@ -130,6 +128,7 @@ func (r *VeleroIoBackupV1Manifest) Metadata(_ context.Context, request datasourc
 	response.TypeName = request.ProviderTypeName + "_velero_io_backup_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VeleroIoBackupV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Backup is a Velero resource that represents the capture of Kubernetes cluster state at a point in time (API objects and associated volume state).",
@@ -798,8 +797,8 @@ func (r *VeleroIoBackupV1Manifest) Read(ctx context.Context, request datasource.
 		return
 	}
 
-	model.ApiVersion = pointer.String("velero.io/v1")
-	model.Kind = pointer.String("Backup")
+	model.ApiVersion = new("velero.io/v1")
+	model.Kind = new("Backup")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

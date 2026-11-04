@@ -7,6 +7,7 @@ package apps_3scale_net_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Apps3ScaleNetApimanagerV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &Apps3ScaleNetApimanagerV1Alpha1Manifest{}
 
 func NewApps3ScaleNetApimanagerV1Alpha1Manifest() datasource.DataSource {
 	return &Apps3ScaleNetApimanagerV1Alpha1Manifest{}
@@ -3088,6 +3086,7 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_apps_3scale_net_api_manager_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APIManager is the Schema for the apimanagers API",
@@ -23708,8 +23707,8 @@ func (r *Apps3ScaleNetApimanagerV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.3scale.net/v1alpha1")
-	model.Kind = pointer.String("APIManager")
+	model.ApiVersion = new("apps.3scale.net/v1alpha1")
+	model.Kind = new("APIManager")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

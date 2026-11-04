@@ -7,6 +7,7 @@ package tests_testkube_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TestsTestkubeIoTestTriggerV1Manifest{}
-)
+var _ datasource.DataSource = &TestsTestkubeIoTestTriggerV1Manifest{}
 
 func NewTestsTestkubeIoTestTriggerV1Manifest() datasource.DataSource {
 	return &TestsTestkubeIoTestTriggerV1Manifest{}
@@ -104,6 +102,7 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_tests_testkube_io_test_trigger_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TestsTestkubeIoTestTriggerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TestTrigger is the Schema for the testtriggers API",
@@ -587,8 +586,8 @@ func (r *TestsTestkubeIoTestTriggerV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("tests.testkube.io/v1")
-	model.Kind = pointer.String("TestTrigger")
+	model.ApiVersion = new("tests.testkube.io/v1")
+	model.Kind = new("TestTrigger")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

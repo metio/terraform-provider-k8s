@@ -7,6 +7,7 @@ package gloo_solo_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GlooSoloIoUpstreamV1Manifest{}
-)
+var _ datasource.DataSource = &GlooSoloIoUpstreamV1Manifest{}
 
 func NewGlooSoloIoUpstreamV1Manifest() datasource.DataSource {
 	return &GlooSoloIoUpstreamV1Manifest{}
@@ -966,6 +964,7 @@ func (r *GlooSoloIoUpstreamV1Manifest) Metadata(_ context.Context, request datas
 	response.TypeName = request.ProviderTypeName + "_gloo_solo_io_upstream_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -7205,8 +7204,8 @@ func (r *GlooSoloIoUpstreamV1Manifest) Read(ctx context.Context, request datasou
 		return
 	}
 
-	model.ApiVersion = pointer.String("gloo.solo.io/v1")
-	model.Kind = pointer.String("Upstream")
+	model.ApiVersion = new("gloo.solo.io/v1")
+	model.Kind = new("Upstream")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

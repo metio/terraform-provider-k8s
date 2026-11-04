@@ -7,6 +7,7 @@ package logging_banzaicloud_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest{}
 
 func NewLoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest() datasource.DataSource {
 	return &LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest{}
@@ -184,6 +182,7 @@ func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_logging_banzaicloud_io_syslog_ng_flow_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -1206,8 +1205,8 @@ func (r *LoggingBanzaicloudIoSyslogNgflowV1Beta1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("logging.banzaicloud.io/v1beta1")
-	model.Kind = pointer.String("SyslogNGFlow")
+	model.ApiVersion = new("logging.banzaicloud.io/v1beta1")
+	model.Kind = new("SyslogNGFlow")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

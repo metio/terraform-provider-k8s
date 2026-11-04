@@ -7,6 +7,7 @@ package operator_cluster_x_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest{}
 
 func NewOperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest() datasource.DataSource {
 	return &OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest{}
@@ -293,6 +291,7 @@ func (r *OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest) Metadata(_ c
 	response.TypeName = request.ProviderTypeName + "_operator_cluster_x_k8s_io_control_plane_provider_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ControlPlaneProvider is the Schema for the controlplaneproviders API. Deprecated: This type will be removed in one of the next releases.",
@@ -2018,8 +2017,8 @@ func (r *OperatorClusterXK8SIoControlPlaneProviderV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.cluster.x-k8s.io/v1alpha1")
-	model.Kind = pointer.String("ControlPlaneProvider")
+	model.ApiVersion = new("operator.cluster.x-k8s.io/v1alpha1")
+	model.Kind = new("ControlPlaneProvider")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

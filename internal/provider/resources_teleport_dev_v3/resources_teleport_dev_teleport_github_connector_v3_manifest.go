@@ -7,6 +7,7 @@ package resources_teleport_dev_v3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ResourcesTeleportDevTeleportGithubConnectorV3Manifest{}
-)
+var _ datasource.DataSource = &ResourcesTeleportDevTeleportGithubConnectorV3Manifest{}
 
 func NewResourcesTeleportDevTeleportGithubConnectorV3Manifest() datasource.DataSource {
 	return &ResourcesTeleportDevTeleportGithubConnectorV3Manifest{}
@@ -65,6 +63,7 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_github_connector_v3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GithubConnector is the Schema for the githubconnectors API",
@@ -266,8 +265,8 @@ func (r *ResourcesTeleportDevTeleportGithubConnectorV3Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("resources.teleport.dev/v3")
-	model.Kind = pointer.String("TeleportGithubConnector")
+	model.ApiVersion = new("resources.teleport.dev/v3")
+	model.Kind = new("TeleportGithubConnector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

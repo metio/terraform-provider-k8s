@@ -7,6 +7,8 @@ package console_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConsoleOpenshiftIoConsolePluginV1Manifest{}
-)
+var _ datasource.DataSource = &ConsoleOpenshiftIoConsolePluginV1Manifest{}
 
 func NewConsoleOpenshiftIoConsolePluginV1Manifest() datasource.DataSource {
 	return &ConsoleOpenshiftIoConsolePluginV1Manifest{}
@@ -77,6 +75,7 @@ func (r *ConsoleOpenshiftIoConsolePluginV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_console_openshift_io_console_plugin_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConsoleOpenshiftIoConsolePluginV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ConsolePlugin is an extension for customizing OpenShift web console by dynamically loading code from another service running on the cluster.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -376,8 +375,8 @@ func (r *ConsoleOpenshiftIoConsolePluginV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("console.openshift.io/v1")
-	model.Kind = pointer.String("ConsolePlugin")
+	model.ApiVersion = new("console.openshift.io/v1")
+	model.Kind = new("ConsolePlugin")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

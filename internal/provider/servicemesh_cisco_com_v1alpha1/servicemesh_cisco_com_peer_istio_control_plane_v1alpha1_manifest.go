@@ -7,6 +7,8 @@ package servicemesh_cisco_com_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest{}
 
 func NewServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest() datasource.DataSource {
 	return &ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest{}
@@ -3525,6 +3523,7 @@ func (r *ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_servicemesh_cisco_com_peer_istio_control_plane_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -26854,8 +26853,8 @@ func (r *ServicemeshCiscoComPeerIstioControlPlaneV1Alpha1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("servicemesh.cisco.com/v1alpha1")
-	model.Kind = pointer.String("PeerIstioControlPlane")
+	model.ApiVersion = new("servicemesh.cisco.com/v1alpha1")
+	model.Kind = new("PeerIstioControlPlane")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

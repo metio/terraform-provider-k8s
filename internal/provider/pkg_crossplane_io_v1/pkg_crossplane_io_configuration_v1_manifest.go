@@ -7,6 +7,7 @@ package pkg_crossplane_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &PkgCrossplaneIoConfigurationV1Manifest{}
-)
+var _ datasource.DataSource = &PkgCrossplaneIoConfigurationV1Manifest{}
 
 func NewPkgCrossplaneIoConfigurationV1Manifest() datasource.DataSource {
 	return &PkgCrossplaneIoConfigurationV1Manifest{}
@@ -59,6 +57,7 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_pkg_crossplane_io_configuration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *PkgCrossplaneIoConfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A Configuration installs an OCI compatible Crossplane package, extending Crossplane with support for new kinds of CompositeResourceDefinitions and Compositions. Read the Crossplane documentation for [more information about Configuration packages](https://docs.crossplane.io/latest/concepts/packages).",
@@ -213,8 +212,8 @@ func (r *PkgCrossplaneIoConfigurationV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("pkg.crossplane.io/v1")
-	model.Kind = pointer.String("Configuration")
+	model.ApiVersion = new("pkg.crossplane.io/v1")
+	model.Kind = new("Configuration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

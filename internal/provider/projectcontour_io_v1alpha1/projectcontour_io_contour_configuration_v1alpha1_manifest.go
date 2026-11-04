@@ -7,6 +7,8 @@ package projectcontour_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ProjectcontourIoContourConfigurationV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ProjectcontourIoContourConfigurationV1Alpha1Manifest{}
 
 func NewProjectcontourIoContourConfigurationV1Alpha1Manifest() datasource.DataSource {
 	return &ProjectcontourIoContourConfigurationV1Alpha1Manifest{}
@@ -277,6 +275,7 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_projectcontour_io_contour_configuration_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ContourConfiguration is the schema for a Contour instance.",
@@ -1938,8 +1937,8 @@ func (r *ProjectcontourIoContourConfigurationV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("projectcontour.io/v1alpha1")
-	model.Kind = pointer.String("ContourConfiguration")
+	model.ApiVersion = new("projectcontour.io/v1alpha1")
+	model.Kind = new("ContourConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

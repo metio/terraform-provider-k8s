@@ -7,6 +7,8 @@ package tinkerbell_org_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TinkerbellOrgTemplateV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &TinkerbellOrgTemplateV1Alpha2Manifest{}
 
 func NewTinkerbellOrgTemplateV1Alpha2Manifest() datasource.DataSource {
 	return &TinkerbellOrgTemplateV1Alpha2Manifest{}
@@ -65,6 +63,7 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_tinkerbell_org_template_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Template defines a set of actions to be run on a target machine. The template is rendered prior to execution where it is exposed to Hardware and user defined data. Most fields within the TemplateSpec may contain templates values excluding .TemplateSpec.Actions[].Name. See https://pkg.go.dev/text/template for more details.",
@@ -263,8 +262,8 @@ func (r *TinkerbellOrgTemplateV1Alpha2Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("tinkerbell.org/v1alpha2")
-	model.Kind = pointer.String("Template")
+	model.ApiVersion = new("tinkerbell.org/v1alpha2")
+	model.Kind = new("Template")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComProbeV1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComProbeV1Manifest{}
 
 func NewMonitoringCoreosComProbeV1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComProbeV1Manifest{}
@@ -237,6 +235,7 @@ func (r *MonitoringCoreosComProbeV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_probe_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComProbeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'Probe' custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the [blackbox exporter](https://github.com/prometheus/blackbox_exporter). The 'Probe' resource needs 2 pieces of information: * The list of probed addresses which can be defined statically or by discovering Kubernetes Ingress objects. * The prober which exposes the availability of probed endpoints (over various protocols such HTTP, TCP, ICMP, ...) as Prometheus metrics. 'Prometheus' and 'PrometheusAgent' objects select 'Probe' objects using label and namespace selectors.",
@@ -1615,8 +1614,8 @@ func (r *MonitoringCoreosComProbeV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
-	model.Kind = pointer.String("Probe")
+	model.ApiVersion = new("monitoring.coreos.com/v1")
+	model.Kind = new("Probe")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

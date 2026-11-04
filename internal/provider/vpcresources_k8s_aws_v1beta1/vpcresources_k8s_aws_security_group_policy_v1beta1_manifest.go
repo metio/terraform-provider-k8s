@@ -7,6 +7,7 @@ package vpcresources_k8s_aws_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest{}
 
 func NewVpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest() datasource.DataSource {
 	return &VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest{}
@@ -69,6 +67,7 @@ func (r *VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_vpcresources_k8s_aws_security_group_policy_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Custom Resource Definition for applying security groups to pods",
@@ -285,8 +284,8 @@ func (r *VpcresourcesK8SAwsSecurityGroupPolicyV1Beta1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("vpcresources.k8s.aws/v1beta1")
-	model.Kind = pointer.String("SecurityGroupPolicy")
+	model.ApiVersion = new("vpcresources.k8s.aws/v1beta1")
+	model.Kind = new("SecurityGroupPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

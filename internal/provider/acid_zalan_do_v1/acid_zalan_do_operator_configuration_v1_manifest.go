@@ -7,6 +7,8 @@ package acid_zalan_do_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AcidZalanDoOperatorConfigurationV1Manifest{}
-)
+var _ datasource.DataSource = &AcidZalanDoOperatorConfigurationV1Manifest{}
 
 func NewAcidZalanDoOperatorConfigurationV1Manifest() datasource.DataSource {
 	return &AcidZalanDoOperatorConfigurationV1Manifest{}
@@ -269,6 +267,7 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_acid_zalan_do_operator_configuration_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -2102,8 +2101,8 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("acid.zalan.do/v1")
-	model.Kind = pointer.String("OperatorConfiguration")
+	model.ApiVersion = new("acid.zalan.do/v1")
+	model.Kind = new("OperatorConfiguration")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package kuadrant_io_v1beta2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KuadrantIoAuthPolicyV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &KuadrantIoAuthPolicyV1Beta2Manifest{}
 
 func NewKuadrantIoAuthPolicyV1Beta2Manifest() datasource.DataSource {
 	return &KuadrantIoAuthPolicyV1Beta2Manifest{}
@@ -1963,6 +1961,7 @@ func (r *KuadrantIoAuthPolicyV1Beta2Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_kuadrant_io_auth_policy_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KuadrantIoAuthPolicyV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "AuthPolicy enables authentication and authorization for service workloads in a Gateway API network",
@@ -15287,8 +15286,8 @@ func (r *KuadrantIoAuthPolicyV1Beta2Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("kuadrant.io/v1beta2")
-	model.Kind = pointer.String("AuthPolicy")
+	model.ApiVersion = new("kuadrant.io/v1beta2")
+	model.Kind = new("AuthPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

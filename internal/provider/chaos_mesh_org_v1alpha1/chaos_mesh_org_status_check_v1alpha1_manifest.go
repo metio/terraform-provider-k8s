@@ -7,6 +7,7 @@ package chaos_mesh_org_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ChaosMeshOrgStatusCheckV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &ChaosMeshOrgStatusCheckV1Alpha1Manifest{}
 
 func NewChaosMeshOrgStatusCheckV1Alpha1Manifest() datasource.DataSource {
 	return &ChaosMeshOrgStatusCheckV1Alpha1Manifest{}
@@ -68,6 +66,7 @@ func (r *ChaosMeshOrgStatusCheckV1Alpha1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_chaos_mesh_org_status_check_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ChaosMeshOrgStatusCheckV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -306,8 +305,8 @@ func (r *ChaosMeshOrgStatusCheckV1Alpha1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("chaos-mesh.org/v1alpha1")
-	model.Kind = pointer.String("StatusCheck")
+	model.ApiVersion = new("chaos-mesh.org/v1alpha1")
+	model.Kind = new("StatusCheck")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,9 +7,10 @@ package scheduling_volcano_sh_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/scheduling_volcano_sh_v1beta1"
-	"testing"
 )
 
 func TestSchedulingVolcanoShPodGroupV1Beta1Manifest_ValidateSchema(t *testing.T) {

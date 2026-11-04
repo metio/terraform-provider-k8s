@@ -7,6 +7,7 @@ package ceph_rook_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CephRookIoCephBucketNotificationV1Manifest{}
-)
+var _ datasource.DataSource = &CephRookIoCephBucketNotificationV1Manifest{}
 
 func NewCephRookIoCephBucketNotificationV1Manifest() datasource.DataSource {
 	return &CephRookIoCephBucketNotificationV1Manifest{}
@@ -66,6 +64,7 @@ func (r *CephRookIoCephBucketNotificationV1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_ceph_rook_io_ceph_bucket_notification_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CephRookIoCephBucketNotificationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CephBucketNotification represents a Bucket Notifications",
@@ -275,8 +274,8 @@ func (r *CephRookIoCephBucketNotificationV1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("ceph.rook.io/v1")
-	model.Kind = pointer.String("CephBucketNotification")
+	model.ApiVersion = new("ceph.rook.io/v1")
+	model.Kind = new("CephBucketNotification")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

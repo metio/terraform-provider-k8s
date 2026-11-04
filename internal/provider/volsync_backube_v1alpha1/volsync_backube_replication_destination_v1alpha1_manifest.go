@@ -7,6 +7,8 @@ package volsync_backube_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &VolsyncBackubeReplicationDestinationV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &VolsyncBackubeReplicationDestinationV1Alpha1Manifest{}
 
 func NewVolsyncBackubeReplicationDestinationV1Alpha1Manifest() datasource.DataSource {
 	return &VolsyncBackubeReplicationDestinationV1Alpha1Manifest{}
@@ -662,6 +660,7 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_volsync_backube_replication_destination_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A ReplicationDestination is a VolSync resource that you can use to define the destination of a VolSync replication or synchronization.",
@@ -4943,8 +4942,8 @@ func (r *VolsyncBackubeReplicationDestinationV1Alpha1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("volsync.backube/v1alpha1")
-	model.Kind = pointer.String("ReplicationDestination")
+	model.ApiVersion = new("volsync.backube/v1alpha1")
+	model.Kind = new("ReplicationDestination")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

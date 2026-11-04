@@ -7,6 +7,7 @@ package scheduling_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SchedulingK8SIoPriorityClassV1Manifest{}
-)
+var _ datasource.DataSource = &SchedulingK8SIoPriorityClassV1Manifest{}
 
 func NewSchedulingK8SIoPriorityClassV1Manifest() datasource.DataSource {
 	return &SchedulingK8SIoPriorityClassV1Manifest{}
@@ -51,6 +49,7 @@ func (r *SchedulingK8SIoPriorityClassV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_scheduling_k8s_io_priority_class_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SchedulingK8SIoPriorityClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
@@ -152,8 +151,8 @@ func (r *SchedulingK8SIoPriorityClassV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("scheduling.k8s.io/v1")
-	model.Kind = pointer.String("PriorityClass")
+	model.ApiVersion = new("scheduling.k8s.io/v1")
+	model.Kind = new("PriorityClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

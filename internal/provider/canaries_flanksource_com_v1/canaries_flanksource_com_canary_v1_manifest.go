@@ -7,6 +7,7 @@ package canaries_flanksource_com_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CanariesFlanksourceComCanaryV1Manifest{}
-)
+var _ datasource.DataSource = &CanariesFlanksourceComCanaryV1Manifest{}
 
 func NewCanariesFlanksourceComCanaryV1Manifest() datasource.DataSource {
 	return &CanariesFlanksourceComCanaryV1Manifest{}
@@ -58,11 +56,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Icon            *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Ignore          *[]string          `tfsdk:"ignore" json:"ignore,omitempty"`
 			Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics         *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Metrics         *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name            *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace       *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password        *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -223,15 +220,14 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Endpoint *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon     *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics  *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Query         *string `tfsdk:"query" json:"query,omitempty"`
-			Region        *string `tfsdk:"region" json:"region,omitempty"`
+			Endpoint      *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Query         *string            `tfsdk:"query" json:"query,omitempty"`
+			Region        *string            `tfsdk:"region" json:"region,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -393,15 +389,14 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Endpoint    *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			IgnoreRules *[]string          `tfsdk:"ignore_rules" json:"ignoreRules,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Region        *string `tfsdk:"region" json:"region,omitempty"`
+			Endpoint      *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			IgnoreRules   *[]string          `tfsdk:"ignore_rules" json:"ignoreRules,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Region        *string            `tfsdk:"region" json:"region,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -544,13 +539,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name                *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace           *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Organization        *string `tfsdk:"organization" json:"organization,omitempty"`
+			Icon                *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics             *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name                *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace           *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Organization        *string            `tfsdk:"organization" json:"organization,omitempty"`
 			PersonalAccessToken *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -674,12 +668,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -820,14 +813,13 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Endpoint *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon     *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics  *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Region        *string `tfsdk:"region" json:"region,omitempty"`
+			Endpoint      *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Region        *string            `tfsdk:"region" json:"region,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1007,11 +999,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Icon           *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Image          *string            `tfsdk:"image" json:"image,omitempty"`
 			Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics        *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Relationships *struct {
+			Metrics        *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name           *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Relationships  *struct {
 				Components *[]struct {
 					Agent *struct {
 						Expr  *string `tfsdk:"expr" json:"expr,omitempty"`
@@ -1092,15 +1083,14 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"containerd" json:"containerd,omitempty"`
 		ContainerdPush *[]struct {
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Image       *string            `tfsdk:"image" json:"image,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password      *string `tfsdk:"password" json:"password,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Image         *string            `tfsdk:"image" json:"image,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password      *string            `tfsdk:"password" json:"password,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1218,13 +1208,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				Instance *string `tfsdk:"instance" json:"instance,omitempty"`
 				Project  *string `tfsdk:"project" json:"project,omitempty"`
 			} `tfsdk:"gcp" json:"gcp,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			MaxAge  *string            `tfsdk:"max_age" json:"maxAge,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			MaxAge        *string            `tfsdk:"max_age" json:"maxAge,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1318,18 +1307,17 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			TransformDeleteStrategy *string `tfsdk:"transform_delete_strategy" json:"transformDeleteStrategy,omitempty"`
 		} `tfsdk:"database_backup" json:"databaseBackup,omitempty"`
 		Dns *[]struct {
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Exactreply  *[]string          `tfsdk:"exactreply" json:"exactreply,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Minrecords    *int64  `tfsdk:"minrecords" json:"minrecords,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Port          *int64  `tfsdk:"port" json:"port,omitempty"`
-			Query         *string `tfsdk:"query" json:"query,omitempty"`
-			Querytype     *string `tfsdk:"querytype" json:"querytype,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Exactreply    *[]string          `tfsdk:"exactreply" json:"exactreply,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Minrecords    *int64             `tfsdk:"minrecords" json:"minrecords,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Port          *int64             `tfsdk:"port" json:"port,omitempty"`
+			Query         *string            `tfsdk:"query" json:"query,omitempty"`
+			Querytype     *string            `tfsdk:"querytype" json:"querytype,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1460,11 +1448,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Icon           *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Image          *string            `tfsdk:"image" json:"image,omitempty"`
 			Labels         *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics        *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Relationships *struct {
+			Metrics        *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name           *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Relationships  *struct {
 				Components *[]struct {
 					Agent *struct {
 						Expr  *string `tfsdk:"expr" json:"expr,omitempty"`
@@ -1585,14 +1572,13 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"auth" json:"auth,omitempty"`
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Image       *string            `tfsdk:"image" json:"image,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Image         *string            `tfsdk:"image" json:"image,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1701,13 +1687,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Host    *string            `tfsdk:"host" json:"host,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Host          *string            `tfsdk:"host" json:"host,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -1810,13 +1795,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Index   *string            `tfsdk:"index" json:"index,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Index     *string            `tfsdk:"index" json:"index,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -2191,12 +2175,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"env" json:"env,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -2399,20 +2382,19 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				Endpoint      *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
 				SkipTLSVerify *bool   `tfsdk:"skip_tls_verify" json:"skipTLSVerify,omitempty"`
 			} `tfsdk:"gcp_connection" json:"gcpConnection,omitempty"`
-			Icon     *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			MaxAge   *string            `tfsdk:"max_age" json:"maxAge,omitempty"`
-			MaxCount *int64             `tfsdk:"max_count" json:"maxCount,omitempty"`
-			MaxSize  *string            `tfsdk:"max_size" json:"maxSize,omitempty"`
-			Metrics  *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			MinAge        *string `tfsdk:"min_age" json:"minAge,omitempty"`
-			MinCount      *int64  `tfsdk:"min_count" json:"minCount,omitempty"`
-			MinSize       *string `tfsdk:"min_size" json:"minSize,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Path          *string `tfsdk:"path" json:"path,omitempty"`
-			Recursive     *bool   `tfsdk:"recursive" json:"recursive,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			MaxAge        *string            `tfsdk:"max_age" json:"maxAge,omitempty"`
+			MaxCount      *int64             `tfsdk:"max_count" json:"maxCount,omitempty"`
+			MaxSize       *string            `tfsdk:"max_size" json:"maxSize,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			MinAge        *string            `tfsdk:"min_age" json:"minAge,omitempty"`
+			MinCount      *int64             `tfsdk:"min_count" json:"minCount,omitempty"`
+			MinSize       *string            `tfsdk:"min_size" json:"minSize,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Path          *string            `tfsdk:"path" json:"path,omitempty"`
+			Recursive     *bool              `tfsdk:"recursive" json:"recursive,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -2601,13 +2583,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Filename *string            `tfsdk:"filename" json:"filename,omitempty"`
-			Icon     *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics  *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Filename  *string            `tfsdk:"filename" json:"filename,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -2767,13 +2748,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"github_token" json:"githubToken,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Query         *string `tfsdk:"query" json:"query,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Query         *string            `tfsdk:"query" json:"query,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -2907,16 +2887,15 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"username" json:"username,omitempty"`
 			} `tfsdk:"auth" json:"auth,omitempty"`
-			Cafile      *string            `tfsdk:"cafile" json:"cafile,omitempty"`
-			Chartmuseum *string            `tfsdk:"chartmuseum" json:"chartmuseum,omitempty"`
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Project       *string `tfsdk:"project" json:"project,omitempty"`
+			Cafile        *string            `tfsdk:"cafile" json:"cafile,omitempty"`
+			Chartmuseum   *string            `tfsdk:"chartmuseum" json:"chartmuseum,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Project       *string            `tfsdk:"project" json:"project,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -3050,13 +3029,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Labels       *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			MaxSSLExpiry *int64             `tfsdk:"max_ssl_expiry" json:"maxSSLExpiry,omitempty"`
 			Method       *string            `tfsdk:"method" json:"method,omitempty"`
-			Metrics      *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Ntlm      *bool   `tfsdk:"ntlm" json:"ntlm,omitempty"`
-			Ntlmv2    *bool   `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
-			Oauth2    *struct {
+			Metrics      *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name         *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace    *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Ntlm         *bool              `tfsdk:"ntlm" json:"ntlm,omitempty"`
+			Ntlmv2       *bool              `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
+			Oauth2       *struct {
 				Params   *map[string]string `tfsdk:"params" json:"params,omitempty"`
 				Scope    *[]string          `tfsdk:"scope" json:"scope,omitempty"`
 				TokenURL *string            `tfsdk:"token_url" json:"tokenURL,omitempty"`
@@ -3262,16 +3240,15 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"username" json:"username,omitempty"`
 		} `tfsdk:"http" json:"http,omitempty"`
 		Icmp *[]struct {
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Endpoint    *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name                *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace           *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			PacketCount         *int64  `tfsdk:"packet_count" json:"packetCount,omitempty"`
-			PacketLossThreshold *int64  `tfsdk:"packet_loss_threshold" json:"packetLossThreshold,omitempty"`
+			Description         *string            `tfsdk:"description" json:"description,omitempty"`
+			Endpoint            *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon                *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels              *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics             *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name                *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace           *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			PacketCount         *int64             `tfsdk:"packet_count" json:"packetCount,omitempty"`
+			PacketLossThreshold *int64             `tfsdk:"packet_loss_threshold" json:"packetLossThreshold,omitempty"`
 			Relationships       *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -3378,13 +3355,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"jmx" json:"jmx,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string   `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
-			Port          *int64    `tfsdk:"port" json:"port,omitempty"`
-			Properties    *[]string `tfsdk:"properties" json:"properties,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Port          *int64             `tfsdk:"port" json:"port,omitempty"`
+			Properties    *[]string          `tfsdk:"properties" json:"properties,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -3478,12 +3454,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -3610,11 +3585,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name              *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace         *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics           *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name              *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace         *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			NamespaceSelector *struct {
 				FieldSelector *string `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
 				LabelSelector *string `tfsdk:"label_selector" json:"labelSelector,omitempty"`
@@ -3753,11 +3727,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"kubeconfig" json:"kubeconfig,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -3865,11 +3838,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
 			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Metrics     *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password    *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -3995,11 +3967,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
 			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Metrics     *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password    *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -4049,12 +4020,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -4197,12 +4167,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -4349,8 +4318,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			IngressName          *string            `tfsdk:"ingress_name" json:"ingressName,omitempty"`
 			IngressTimeout       *int64             `tfsdk:"ingress_timeout" json:"ingressTimeout,omitempty"`
 			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics              *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
+			Metrics              *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name                 *string            `tfsdk:"name" json:"name,omitempty"`
 			Namespace            *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			NamespaceAnnotations *map[string]string `tfsdk:"namespace_annotations" json:"namespaceAnnotations,omitempty"`
@@ -4451,13 +4419,12 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Index   *string            `tfsdk:"index" json:"index,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Index     *string            `tfsdk:"index" json:"index,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -4606,15 +4573,14 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			IngressName          *string            `tfsdk:"ingress_name" json:"ingressName,omitempty"`
 			IngressTimeout       *int64             `tfsdk:"ingress_timeout" json:"ingressTimeout,omitempty"`
 			Labels               *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics              *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Path          *string `tfsdk:"path" json:"path,omitempty"`
-			Port          *int64  `tfsdk:"port" json:"port,omitempty"`
-			PriorityClass *string `tfsdk:"priority_class" json:"priorityClass,omitempty"`
-			ReadyTimeout  *int64  `tfsdk:"ready_timeout" json:"readyTimeout,omitempty"`
-			Relationships *struct {
+			Metrics              *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name                 *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace            *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Path                 *string            `tfsdk:"path" json:"path,omitempty"`
+			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
+			PriorityClass        *string            `tfsdk:"priority_class" json:"priorityClass,omitempty"`
+			ReadyTimeout         *int64             `tfsdk:"ready_timeout" json:"readyTimeout,omitempty"`
+			Relationships        *struct {
 				Components *[]struct {
 					Agent *struct {
 						Expr  *string `tfsdk:"expr" json:"expr,omitempty"`
@@ -4706,12 +4672,11 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Password  *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -4874,15 +4839,14 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				JsonPath   *string `tfsdk:"json_path" json:"jsonPath,omitempty"`
 				Template   *string `tfsdk:"template" json:"template,omitempty"`
 			} `tfsdk:"display" json:"display,omitempty"`
-			Host    *string            `tfsdk:"host" json:"host,omitempty"`
-			Icon    *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels  *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Ntlm      *bool   `tfsdk:"ntlm" json:"ntlm,omitempty"`
-			Ntlmv2    *bool   `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
+			Host      *string            `tfsdk:"host" json:"host,omitempty"`
+			Icon      *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels    *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics   *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name      *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Ntlm      *bool              `tfsdk:"ntlm" json:"ntlm,omitempty"`
+			Ntlmv2    *bool              `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
 			Oauth     *struct {
 				ClientID *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -5126,11 +5090,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Description *string            `tfsdk:"description" json:"description,omitempty"`
 			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Metrics     *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name        *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace   *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password    *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -5278,11 +5241,10 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			Icon              *string            `tfsdk:"icon" json:"icon,omitempty"`
 			Labels            *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			MaxAge            *string            `tfsdk:"max_age" json:"maxAge,omitempty"`
-			Metrics           *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name      *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			Password  *struct {
+			Metrics           *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name              *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace         *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Password          *struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Value     *string `tfsdk:"value" json:"value,omitempty"`
 				ValueFrom *struct {
@@ -5422,20 +5384,19 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key" json:"accessKey,omitempty"`
-			AssumeRole  *string            `tfsdk:"assume_role" json:"assumeRole,omitempty"`
-			Bucket      *string            `tfsdk:"bucket" json:"bucket,omitempty"`
-			BucketName  *string            `tfsdk:"bucket_name" json:"bucketName,omitempty"`
-			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Endpoint    *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
-			ObjectPath    *string `tfsdk:"object_path" json:"objectPath,omitempty"`
-			Region        *string `tfsdk:"region" json:"region,omitempty"`
+			AssumeRole    *string            `tfsdk:"assume_role" json:"assumeRole,omitempty"`
+			Bucket        *string            `tfsdk:"bucket" json:"bucket,omitempty"`
+			BucketName    *string            `tfsdk:"bucket_name" json:"bucketName,omitempty"`
+			Connection    *string            `tfsdk:"connection" json:"connection,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Endpoint      *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			ObjectPath    *string            `tfsdk:"object_path" json:"objectPath,omitempty"`
+			Region        *string            `tfsdk:"region" json:"region,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -5559,14 +5520,13 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 		Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
 		Severity *string `tfsdk:"severity" json:"severity,omitempty"`
 		Tcp      *[]struct {
-			Description *string            `tfsdk:"description" json:"description,omitempty"`
-			Endpoint    *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Icon        *string            `tfsdk:"icon" json:"icon,omitempty"`
-			Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-			Metrics     *[]struct {
-			} `tfsdk:"metrics" json:"metrics,omitempty"`
-			Name          *string `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Description   *string            `tfsdk:"description" json:"description,omitempty"`
+			Endpoint      *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Icon          *string            `tfsdk:"icon" json:"icon,omitempty"`
+			Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+			Metrics       *[]struct{}        `tfsdk:"metrics" json:"metrics,omitempty"`
+			Name          *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
 			Relationships *struct {
 				Components *[]struct {
 					Agent *struct {
@@ -5788,6 +5748,7 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_canaries_flanksource_com_canary_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Canary is the Schema for the canaries API",
@@ -43524,8 +43485,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("canaries.flanksource.com/v1")
-	model.Kind = pointer.String("Canary")
+	model.ApiVersion = new("canaries.flanksource.com/v1")
+	model.Kind = new("Canary")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

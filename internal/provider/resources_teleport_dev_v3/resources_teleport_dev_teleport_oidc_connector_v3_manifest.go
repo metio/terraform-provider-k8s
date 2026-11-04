@@ -7,6 +7,7 @@ package resources_teleport_dev_v3
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ResourcesTeleportDevTeleportOidcconnectorV3Manifest{}
-)
+var _ datasource.DataSource = &ResourcesTeleportDevTeleportOidcconnectorV3Manifest{}
 
 func NewResourcesTeleportDevTeleportOidcconnectorV3Manifest() datasource.DataSource {
 	return &ResourcesTeleportDevTeleportOidcconnectorV3Manifest{}
@@ -82,6 +80,7 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Metadata(_ context
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_oidc_connector_v3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OIDCConnector is the Schema for the oidcconnectors API",
@@ -414,8 +413,8 @@ func (r *ResourcesTeleportDevTeleportOidcconnectorV3Manifest) Read(ctx context.C
 		return
 	}
 
-	model.ApiVersion = pointer.String("resources.teleport.dev/v3")
-	model.Kind = pointer.String("TeleportOIDCConnector")
+	model.ApiVersion = new("resources.teleport.dev/v3")
+	model.Kind = new("TeleportOIDCConnector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

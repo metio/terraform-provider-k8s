@@ -7,6 +7,7 @@ package camel_apache_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CamelApacheOrgIntegrationKitV1Manifest{}
-)
+var _ datasource.DataSource = &CamelApacheOrgIntegrationKitV1Manifest{}
 
 func NewCamelApacheOrgIntegrationKitV1Manifest() datasource.DataSource {
 	return &CamelApacheOrgIntegrationKitV1Manifest{}
@@ -120,6 +118,7 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_camel_apache_org_integration_kit_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CamelApacheOrgIntegrationKitV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IntegrationKit defines a container image and additional configuration needed to run an 'Integration'. An 'IntegrationKit' is a generic image generally built from the requirements of an 'Integration', but agnostic to it, in order to be reused by any other 'Integration' which has the same required set of capabilities. An 'IntegrationKit' may be used for other kits as a base container layer, when the 'incremental' build option is enabled.",
@@ -757,8 +756,8 @@ func (r *CamelApacheOrgIntegrationKitV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("camel.apache.org/v1")
-	model.Kind = pointer.String("IntegrationKit")
+	model.ApiVersion = new("camel.apache.org/v1")
+	model.Kind = new("IntegrationKit")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

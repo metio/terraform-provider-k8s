@@ -7,6 +7,7 @@ package getambassador_io_v3alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest{}
 
 func NewGetambassadorIoKubernetesServiceResolverV3Alpha1Manifest() datasource.DataSource {
 	return &GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest{}
@@ -51,6 +49,7 @@ func (r *GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_kubernetes_service_resolver_v3alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "KubernetesServiceResolver is the Schema for the kubernetesserviceresolver API",
@@ -150,8 +149,8 @@ func (r *GetambassadorIoKubernetesServiceResolverV3Alpha1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v3alpha1")
-	model.Kind = pointer.String("KubernetesServiceResolver")
+	model.ApiVersion = new("getambassador.io/v3alpha1")
+	model.Kind = new("KubernetesServiceResolver")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

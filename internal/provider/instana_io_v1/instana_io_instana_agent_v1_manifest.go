@@ -7,6 +7,7 @@ package instana_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &InstanaIoInstanaAgentV1Manifest{}
-)
+var _ datasource.DataSource = &InstanaIoInstanaAgentV1Manifest{}
 
 func NewInstanaIoInstanaAgentV1Manifest() datasource.DataSource {
 	return &InstanaIoInstanaAgentV1Manifest{}
@@ -333,6 +331,7 @@ func (r *InstanaIoInstanaAgentV1Manifest) Metadata(_ context.Context, request da
 	response.TypeName = request.ProviderTypeName + "_instana_io_instana_agent_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *InstanaIoInstanaAgentV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "InstanaAgent is the Schema for the agents API",
@@ -2318,8 +2317,8 @@ func (r *InstanaIoInstanaAgentV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ApiVersion = pointer.String("instana.io/v1")
-	model.Kind = pointer.String("InstanaAgent")
+	model.ApiVersion = new("instana.io/v1")
+	model.Kind = new("InstanaAgent")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

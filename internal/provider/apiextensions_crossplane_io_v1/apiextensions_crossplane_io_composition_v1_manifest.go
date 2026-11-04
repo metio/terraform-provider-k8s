@@ -7,6 +7,7 @@ package apiextensions_crossplane_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApiextensionsCrossplaneIoCompositionV1Manifest{}
-)
+var _ datasource.DataSource = &ApiextensionsCrossplaneIoCompositionV1Manifest{}
 
 func NewApiextensionsCrossplaneIoCompositionV1Manifest() datasource.DataSource {
 	return &ApiextensionsCrossplaneIoCompositionV1Manifest{}
@@ -215,6 +213,7 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_apiextensions_crossplane_io_composition_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "A Composition defines a collection of managed resources or functions that Crossplane uses to create and manage new composite resources. Read the Crossplane documentation for [more information about Compositions](https://docs.crossplane.io/latest/concepts/compositions).",
@@ -1462,8 +1461,8 @@ func (r *ApiextensionsCrossplaneIoCompositionV1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("apiextensions.crossplane.io/v1")
-	model.Kind = pointer.String("Composition")
+	model.ApiVersion = new("apiextensions.crossplane.io/v1")
+	model.Kind = new("Composition")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

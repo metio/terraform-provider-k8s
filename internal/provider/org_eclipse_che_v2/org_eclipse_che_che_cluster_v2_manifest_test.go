@@ -7,9 +7,10 @@ package org_eclipse_che_v2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/org_eclipse_che_v2"
-	"testing"
 )
 
 func TestOrgEclipseCheCheClusterV2Manifest_ValidateSchema(t *testing.T) {

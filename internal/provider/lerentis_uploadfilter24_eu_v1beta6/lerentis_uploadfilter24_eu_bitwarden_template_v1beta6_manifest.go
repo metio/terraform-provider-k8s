@@ -7,6 +7,7 @@ package lerentis_uploadfilter24_eu_v1beta6
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest{}
-)
+var _ datasource.DataSource = &LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest{}
 
 func NewLerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest() datasource.DataSource {
 	return &LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest{}
@@ -56,6 +54,7 @@ func (r *LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_lerentis_uploadfilter24_eu_bitwarden_template_v1beta6_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -196,8 +195,8 @@ func (r *LerentisUploadfilter24EuBitwardenTemplateV1Beta6Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("lerentis.uploadfilter24.eu/v1beta6")
-	model.Kind = pointer.String("BitwardenTemplate")
+	model.ApiVersion = new("lerentis.uploadfilter24.eu/v1beta6")
+	model.Kind = new("BitwardenTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

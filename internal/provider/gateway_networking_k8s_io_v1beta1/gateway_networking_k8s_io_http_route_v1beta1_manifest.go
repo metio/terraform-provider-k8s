@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoHttprouteV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoHttprouteV1Beta1Manifest{}
 
 func NewGatewayNetworkingK8SIoHttprouteV1Beta1Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoHttprouteV1Beta1Manifest{}
@@ -208,6 +206,7 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_http_route_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HTTPRoute provides a way to route HTTP requests. This includes the capability to match requests by hostname, path, header, or query param. Filters can be used to specify additional processing steps. Backends specify where matching requests should be routed.",
@@ -1647,8 +1646,8 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1beta1")
-	model.Kind = pointer.String("HTTPRoute")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1beta1")
+	model.Kind = new("HTTPRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

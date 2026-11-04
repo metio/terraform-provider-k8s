@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoMachinePoolV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoMachinePoolV1Manifest{}
 
 func NewHiveOpenshiftIoMachinePoolV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoMachinePoolV1Manifest{}
@@ -176,6 +174,7 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_machine_pool_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MachinePool is the Schema for the machinepools API",
@@ -1120,8 +1119,8 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("MachinePool")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("MachinePool")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

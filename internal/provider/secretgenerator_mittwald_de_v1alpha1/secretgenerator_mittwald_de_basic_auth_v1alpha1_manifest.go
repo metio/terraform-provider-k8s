@@ -7,6 +7,7 @@ package secretgenerator_mittwald_de_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest{}
 
 func NewSecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest() datasource.DataSource {
 	return &SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest{}
@@ -55,6 +53,7 @@ func (r *SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_secretgenerator_mittwald_de_basic_auth_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BasicAuth is the Schema for the basicauths API",
@@ -186,8 +185,8 @@ func (r *SecretgeneratorMittwaldDeBasicAuthV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("secretgenerator.mittwald.de/v1alpha1")
-	model.Kind = pointer.String("BasicAuth")
+	model.ApiVersion = new("secretgenerator.mittwald.de/v1alpha1")
+	model.Kind = new("BasicAuth")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

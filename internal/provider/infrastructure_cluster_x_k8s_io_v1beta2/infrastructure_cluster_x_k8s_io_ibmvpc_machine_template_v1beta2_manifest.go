@@ -7,6 +7,7 @@ package infrastructure_cluster_x_k8s_io_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest{}
 
 func NewInfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest() datasource.DataSource {
 	return &InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest{}
@@ -112,6 +110,7 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest) Metada
 	response.TypeName = request.ProviderTypeName + "_infrastructure_cluster_x_k8s_io_ibmvpc_machine_template_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IBMVPCMachineTemplate is the Schema for the ibmvpcmachinetemplates API.",
@@ -650,8 +649,8 @@ func (r *InfrastructureClusterXK8SIoIbmvpcmachineTemplateV1Beta2Manifest) Read(c
 		return
 	}
 
-	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1beta2")
-	model.Kind = pointer.String("IBMVPCMachineTemplate")
+	model.ApiVersion = new("infrastructure.cluster.x-k8s.io/v1beta2")
+	model.Kind = new("IBMVPCMachineTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

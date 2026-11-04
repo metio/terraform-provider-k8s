@@ -7,6 +7,7 @@ package image_toolkit_fluxcd_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest{}
 
 func NewImageToolkitFluxcdIoImagePolicyV1Beta1Manifest() datasource.DataSource {
 	return &ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest{}
@@ -69,6 +67,7 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_image_toolkit_fluxcd_io_image_policy_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ImagePolicy is the Schema for the imagepolicies API",
@@ -275,8 +274,8 @@ func (r *ImageToolkitFluxcdIoImagePolicyV1Beta1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("image.toolkit.fluxcd.io/v1beta1")
-	model.Kind = pointer.String("ImagePolicy")
+	model.ApiVersion = new("image.toolkit.fluxcd.io/v1beta1")
+	model.Kind = new("ImagePolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

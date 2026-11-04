@@ -7,6 +7,8 @@ package source_toolkit_fluxcd_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SourceToolkitFluxcdIoGitRepositoryV1Manifest{}
-)
+var _ datasource.DataSource = &SourceToolkitFluxcdIoGitRepositoryV1Manifest{}
 
 func NewSourceToolkitFluxcdIoGitRepositoryV1Manifest() datasource.DataSource {
 	return &SourceToolkitFluxcdIoGitRepositoryV1Manifest{}
@@ -84,6 +82,7 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_source_toolkit_fluxcd_io_git_repository_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GitRepository is the Schema for the gitrepositories API.",
@@ -406,8 +405,8 @@ func (r *SourceToolkitFluxcdIoGitRepositoryV1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("source.toolkit.fluxcd.io/v1")
-	model.Kind = pointer.String("GitRepository")
+	model.ApiVersion = new("source.toolkit.fluxcd.io/v1")
+	model.Kind = new("GitRepository")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

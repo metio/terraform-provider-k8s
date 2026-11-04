@@ -7,6 +7,7 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoPacketCaptureV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoPacketCaptureV1Manifest{}
 
 func NewOperatorTigeraIoPacketCaptureV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoPacketCaptureV1Manifest{}
@@ -77,6 +75,7 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_packet_capture_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoPacketCaptureV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PacketCapture is used to configure the resource requirement for PacketCapture deployment. It must be named 'tigera-secure'.",
@@ -327,8 +326,8 @@ func (r *OperatorTigeraIoPacketCaptureV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("PacketCapture")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("PacketCapture")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package network_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkOpenshiftIoEgressNetworkPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkOpenshiftIoEgressNetworkPolicyV1Manifest{}
 
 func NewNetworkOpenshiftIoEgressNetworkPolicyV1Manifest() datasource.DataSource {
 	return &NetworkOpenshiftIoEgressNetworkPolicyV1Manifest{}
@@ -58,6 +56,7 @@ func (r *NetworkOpenshiftIoEgressNetworkPolicyV1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_network_openshift_io_egress_network_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkOpenshiftIoEgressNetworkPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EgressNetworkPolicy describes the current egress network policy for a Namespace. When using the 'redhat/openshift-ovs-multitenant' network plugin, traffic from a pod to an IP address outside the cluster will be checked against each EgressNetworkPolicyRule in the pod's namespace's EgressNetworkPolicy, in order. If no rule matches (or no EgressNetworkPolicy is present) then the traffic will be allowed by default.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -201,8 +200,8 @@ func (r *NetworkOpenshiftIoEgressNetworkPolicyV1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("network.openshift.io/v1")
-	model.Kind = pointer.String("EgressNetworkPolicy")
+	model.ApiVersion = new("network.openshift.io/v1")
+	model.Kind = new("EgressNetworkPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package flows_netobserv_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &FlowsNetobservIoFlowCollectorV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &FlowsNetobservIoFlowCollectorV1Beta1Manifest{}
 
 func NewFlowsNetobservIoFlowCollectorV1Beta1Manifest() datasource.DataSource {
 	return &FlowsNetobservIoFlowCollectorV1Beta1Manifest{}
@@ -560,6 +558,7 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_flows_netobserv_io_flow_collector_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "'FlowCollector' is the schema for the network flows collection API, which pilots and configures the underlying deployments.",
@@ -4225,8 +4224,8 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("flows.netobserv.io/v1beta1")
-	model.Kind = pointer.String("FlowCollector")
+	model.ApiVersion = new("flows.netobserv.io/v1beta1")
+	model.Kind = new("FlowCollector")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

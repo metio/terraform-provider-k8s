@@ -7,9 +7,10 @@ package camel_apache_org_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/camel_apache_org_v1"
-	"testing"
 )
 
 func TestCamelApacheOrgIntegrationKitV1Manifest_ValidateSchema(t *testing.T) {

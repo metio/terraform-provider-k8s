@@ -7,6 +7,7 @@ package wgpolicyk8s_io_v1alpha2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &Wgpolicyk8SIoPolicyReportV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &Wgpolicyk8SIoPolicyReportV1Alpha2Manifest{}
 
 func NewWgpolicyk8SIoPolicyReportV1Alpha2Manifest() datasource.DataSource {
 	return &Wgpolicyk8SIoPolicyReportV1Alpha2Manifest{}
@@ -104,6 +102,7 @@ func (r *Wgpolicyk8SIoPolicyReportV1Alpha2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_wgpolicyk8s_io_policy_report_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *Wgpolicyk8SIoPolicyReportV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "PolicyReport is the Schema for the policyreports API",
@@ -589,8 +588,8 @@ func (r *Wgpolicyk8SIoPolicyReportV1Alpha2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("wgpolicyk8s.io/v1alpha2")
-	model.Kind = pointer.String("PolicyReport")
+	model.ApiVersion = new("wgpolicyk8s.io/v1alpha2")
+	model.Kind = new("PolicyReport")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package registry_devfile_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest{}
 
 func NewRegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest() datasource.DataSource {
 	return &RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest{}
@@ -55,6 +53,7 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Metadata(_ cont
 	response.TypeName = request.ProviderTypeName + "_registry_devfile_io_devfile_registries_list_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DevfileRegistriesList is a custom resource where namespace users can add a list of Devfile Registries to allow devfiles to be visible at the namespace level. In order to be added to the list, the Devfile Registries must be reachable, supports the Devfile v2.0 spec and above, and is not using the default namespace.",
@@ -180,8 +179,8 @@ func (r *RegistryDevfileIoDevfileRegistriesListV1Alpha1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("registry.devfile.io/v1alpha1")
-	model.Kind = pointer.String("DevfileRegistriesList")
+	model.ApiVersion = new("registry.devfile.io/v1alpha1")
+	model.Kind = new("DevfileRegistriesList")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

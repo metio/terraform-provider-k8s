@@ -7,6 +7,7 @@ package acme_cert_manager_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AcmeCertManagerIoOrderV1Manifest{}
-)
+var _ datasource.DataSource = &AcmeCertManagerIoOrderV1Manifest{}
 
 func NewAcmeCertManagerIoOrderV1Manifest() datasource.DataSource {
 	return &AcmeCertManagerIoOrderV1Manifest{}
@@ -60,6 +58,7 @@ func (r *AcmeCertManagerIoOrderV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_acme_cert_manager_io_order_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AcmeCertManagerIoOrderV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Order is a type to represent an Order with an ACME server",
@@ -228,8 +227,8 @@ func (r *AcmeCertManagerIoOrderV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("acme.cert-manager.io/v1")
-	model.Kind = pointer.String("Order")
+	model.ApiVersion = new("acme.cert-manager.io/v1")
+	model.Kind = new("Order")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

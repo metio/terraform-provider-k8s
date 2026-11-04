@@ -7,6 +7,7 @@ package m4e_krestomat_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &M4EKrestomatIoRoutineV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &M4EKrestomatIoRoutineV1Alpha1Manifest{}
 
 func NewM4EKrestomatIoRoutineV1Alpha1Manifest() datasource.DataSource {
 	return &M4EKrestomatIoRoutineV1Alpha1Manifest{}
@@ -49,6 +47,7 @@ func (r *M4EKrestomatIoRoutineV1Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_m4e_krestomat_io_routine_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *M4EKrestomatIoRoutineV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Routine is the Schema for the routines API",
@@ -139,8 +138,8 @@ func (r *M4EKrestomatIoRoutineV1Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("m4e.krestomat.io/v1alpha1")
-	model.Kind = pointer.String("Routine")
+	model.ApiVersion = new("m4e.krestomat.io/v1alpha1")
+	model.Kind = new("Routine")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

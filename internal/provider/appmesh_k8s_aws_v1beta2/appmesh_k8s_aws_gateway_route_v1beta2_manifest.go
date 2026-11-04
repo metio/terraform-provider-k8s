@@ -7,6 +7,7 @@ package appmesh_k8s_aws_v1beta2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppmeshK8SAwsGatewayRouteV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &AppmeshK8SAwsGatewayRouteV1Beta2Manifest{}
 
 func NewAppmeshK8SAwsGatewayRouteV1Beta2Manifest() datasource.DataSource {
 	return &AppmeshK8SAwsGatewayRouteV1Beta2Manifest{}
@@ -221,6 +219,7 @@ func (r *AppmeshK8SAwsGatewayRouteV1Beta2Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_appmesh_k8s_aws_gateway_route_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppmeshK8SAwsGatewayRouteV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "GatewayRoute is the Schema for the gatewayroutes API",
@@ -1504,8 +1503,8 @@ func (r *AppmeshK8SAwsGatewayRouteV1Beta2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("appmesh.k8s.aws/v1beta2")
-	model.Kind = pointer.String("GatewayRoute")
+	model.ApiVersion = new("appmesh.k8s.aws/v1beta2")
+	model.Kind = new("GatewayRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

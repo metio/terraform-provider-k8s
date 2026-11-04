@@ -7,10 +7,11 @@ package admissionregistration_k8s_io_v1
 
 import (
 	"fmt"
-	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Manifest(t *testing.T) {
@@ -26,10 +27,10 @@ func TestAdmissionregistrationK8SIoMutatingWebhookConfigurationV1Manifest(t *tes
 	defer os.RemoveAll(path + "/terraform.tfstate.backup")
 	defer os.RemoveAll(path + "/.terraform")
 
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApplyAndIdempotent(t, terraformOptions)
+	defer terraform.DestroyContext(t, t.Context(), terraformOptions)
+	terraform.InitAndApplyAndIdempotentContext(t, t.Context(), terraformOptions)
 
-	outputMap := terraform.OutputMap(t, terraformOptions, "manifests")
+	outputMap := terraform.OutputMapContext(t, t.Context(), terraformOptions, "manifests")
 	for key, value := range outputMap {
 		assert.NotEmpty(t, value, fmt.Sprintf("data %s.%s did not produce an output", "k8s_admissionregistration_k8s_io_mutating_webhook_configuration_v1_manifest", key))
 	}

@@ -7,6 +7,8 @@ package acme_cert_manager_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AcmeCertManagerIoChallengeV1Manifest{}
-)
+var _ datasource.DataSource = &AcmeCertManagerIoChallengeV1Manifest{}
 
 func NewAcmeCertManagerIoChallengeV1Manifest() datasource.DataSource {
 	return &AcmeCertManagerIoChallengeV1Manifest{}
@@ -547,6 +545,7 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_acme_cert_manager_io_challenge_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AcmeCertManagerIoChallengeV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Challenge is a type to represent a Challenge request with an ACME server",
@@ -3952,8 +3951,8 @@ func (r *AcmeCertManagerIoChallengeV1Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("acme.cert-manager.io/v1")
-	model.Kind = pointer.String("Challenge")
+	model.ApiVersion = new("acme.cert-manager.io/v1")
+	model.Kind = new("Challenge")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

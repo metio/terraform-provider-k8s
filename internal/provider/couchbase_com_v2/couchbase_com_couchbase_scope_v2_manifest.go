@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseScopeV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseScopeV2Manifest{}
 
 func NewCouchbaseComCouchbaseScopeV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseScopeV2Manifest{}
@@ -69,6 +67,7 @@ func (r *CouchbaseComCouchbaseScopeV2Manifest) Metadata(_ context.Context, reque
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_scope_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseScopeV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseScope represents a logical unit of data storage that sits between buckets and collections e.g. a bucket may contain multiple scopes, and a scope may contain multiple collections. At present, scopes are not nested, so provide only a single level of abstraction. Scopes provide a coarser grained basis for role-based access control (RBAC) and cross-datacenter replication (XDCR) than collections, but finer that buckets. In order to be considered by the Operator, a scope must be referenced by either a 'CouchbaseBucket' or 'CouchbaseEphemeralBucket' resource.",
@@ -294,8 +293,8 @@ func (r *CouchbaseComCouchbaseScopeV2Manifest) Read(ctx context.Context, request
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseScope")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseScope")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

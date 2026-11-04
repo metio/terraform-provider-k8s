@@ -7,6 +7,7 @@ package resources_teleport_dev_v5
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ResourcesTeleportDevTeleportRoleV5Manifest{}
-)
+var _ datasource.DataSource = &ResourcesTeleportDevTeleportRoleV5Manifest{}
 
 func NewResourcesTeleportDevTeleportRoleV5Manifest() datasource.DataSource {
 	return &ResourcesTeleportDevTeleportRoleV5Manifest{}
@@ -293,6 +291,7 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_resources_teleport_dev_teleport_role_v5_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Role is the Schema for the roles API",
@@ -2237,8 +2236,8 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("resources.teleport.dev/v5")
-	model.Kind = pointer.String("TeleportRole")
+	model.ApiVersion = new("resources.teleport.dev/v5")
+	model.Kind = new("TeleportRole")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

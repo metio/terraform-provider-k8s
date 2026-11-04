@@ -7,6 +7,8 @@ package servicebinding_io_v1alpha3
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ServicebindingIoServiceBindingV1Alpha3Manifest{}
-)
+var _ datasource.DataSource = &ServicebindingIoServiceBindingV1Alpha3Manifest{}
 
 func NewServicebindingIoServiceBindingV1Alpha3Manifest() datasource.DataSource {
 	return &ServicebindingIoServiceBindingV1Alpha3Manifest{}
@@ -77,6 +75,7 @@ func (r *ServicebindingIoServiceBindingV1Alpha3Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_servicebinding_io_service_binding_v1alpha3_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ServicebindingIoServiceBindingV1Alpha3Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServiceBinding is the Schema for the servicebindings API",
@@ -351,8 +350,8 @@ func (r *ServicebindingIoServiceBindingV1Alpha3Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("servicebinding.io/v1alpha3")
-	model.Kind = pointer.String("ServiceBinding")
+	model.ApiVersion = new("servicebinding.io/v1alpha3")
+	model.Kind = new("ServiceBinding")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

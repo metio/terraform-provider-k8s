@@ -7,9 +7,10 @@ package apps_emqx_io_v1beta4_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_emqx_io_v1beta4"
-	"testing"
 )
 
 func TestAppsEmqxIoEmqxPluginV1Beta4Manifest_ValidateSchema(t *testing.T) {

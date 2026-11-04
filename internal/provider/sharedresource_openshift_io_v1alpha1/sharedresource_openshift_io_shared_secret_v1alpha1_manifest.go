@@ -7,6 +7,7 @@ package sharedresource_openshift_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest{}
 
 func NewSharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest() datasource.DataSource {
 	return &SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest{}
@@ -54,6 +52,7 @@ func (r *SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_sharedresource_openshift_io_shared_secret_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SharedSecret allows a Secret to be shared across namespaces. Pods can mount the shared Secret by adding a CSI volume to the pod specification using the 'csi.sharedresource.openshift.io' CSI driver and a reference to the SharedSecret in the volume attributes:  spec: volumes: - name: shared-secret csi: driver: csi.sharedresource.openshift.io volumeAttributes: sharedSecret: my-share  For the mount to be successful, the pod's service account must be granted permission to 'use' the named SharedSecret object within its namespace with an appropriate Role and RoleBinding. For compactness, here are example 'oc' invocations for creating such Role and RoleBinding objects.  'oc create role shared-resource-my-share --verb=use --resource=sharedsecrets.sharedresource.openshift.io --resource-name=my-share' 'oc create rolebinding shared-resource-my-share --role=shared-resource-my-share --serviceaccount=my-namespace:default'  Shared resource objects, in this case Secrets, have default permissions of list, get, and watch for system authenticated users.  Compatibility level 4: No compatibility is provided, the API can change at any point for any reason. These capabilities should not be used by applications needing long term support. These capabilities should not be used by applications needing long term support.",
@@ -165,8 +164,8 @@ func (r *SharedresourceOpenshiftIoSharedSecretV1Alpha1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("sharedresource.openshift.io/v1alpha1")
-	model.Kind = pointer.String("SharedSecret")
+	model.ApiVersion = new("sharedresource.openshift.io/v1alpha1")
+	model.Kind = new("SharedSecret")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

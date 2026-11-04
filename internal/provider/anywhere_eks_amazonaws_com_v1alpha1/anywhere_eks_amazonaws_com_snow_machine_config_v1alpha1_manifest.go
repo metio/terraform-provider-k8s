@@ -7,6 +7,7 @@ package anywhere_eks_amazonaws_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest{}
 
 func NewAnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest() datasource.DataSource {
 	return &AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest{}
@@ -129,6 +127,7 @@ func (r *AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest) Metadata(_ co
 	response.TypeName = request.ProviderTypeName + "_anywhere_eks_amazonaws_com_snow_machine_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SnowMachineConfig is the Schema for the SnowMachineConfigs API.",
@@ -797,8 +796,8 @@ func (r *AnywhereEksAmazonawsComSnowMachineConfigV1Alpha1Manifest) Read(ctx cont
 		return
 	}
 
-	model.ApiVersion = pointer.String("anywhere.eks.amazonaws.com/v1alpha1")
-	model.Kind = pointer.String("SnowMachineConfig")
+	model.ApiVersion = new("anywhere.eks.amazonaws.com/v1alpha1")
+	model.Kind = new("SnowMachineConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package operator_tigera_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorTigeraIoInstallationV1Manifest{}
-)
+var _ datasource.DataSource = &OperatorTigeraIoInstallationV1Manifest{}
 
 func NewOperatorTigeraIoInstallationV1Manifest() datasource.DataSource {
 	return &OperatorTigeraIoInstallationV1Manifest{}
@@ -1243,6 +1241,7 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_operator_tigera_io_installation_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Installation configures an installation of Calico or Calico Enterprise. At most one instance of this resource is supported. It must be named 'default'. The Installation API installs core networking and network policy components, and provides general install-time configuration.",
@@ -9378,8 +9377,8 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.tigera.io/v1")
-	model.Kind = pointer.String("Installation")
+	model.ApiVersion = new("operator.tigera.io/v1")
+	model.Kind = new("Installation")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

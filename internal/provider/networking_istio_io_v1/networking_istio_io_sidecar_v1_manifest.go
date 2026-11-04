@@ -7,6 +7,7 @@ package networking_istio_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingIstioIoSidecarV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingIstioIoSidecarV1Manifest{}
 
 func NewNetworkingIstioIoSidecarV1Manifest() datasource.DataSource {
 	return &NetworkingIstioIoSidecarV1Manifest{}
@@ -147,6 +145,7 @@ func (r *NetworkingIstioIoSidecarV1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_networking_istio_io_sidecar_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingIstioIoSidecarV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -948,8 +947,8 @@ func (r *NetworkingIstioIoSidecarV1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.istio.io/v1")
-	model.Kind = pointer.String("Sidecar")
+	model.ApiVersion = new("networking.istio.io/v1")
+	model.Kind = new("Sidecar")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

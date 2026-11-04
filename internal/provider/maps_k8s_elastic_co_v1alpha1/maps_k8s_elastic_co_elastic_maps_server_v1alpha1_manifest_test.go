@@ -7,9 +7,10 @@ package maps_k8s_elastic_co_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/maps_k8s_elastic_co_v1alpha1"
-	"testing"
 )
 
 func TestMapsK8SElasticCoElasticMapsServerV1Alpha1Manifest_ValidateSchema(t *testing.T) {

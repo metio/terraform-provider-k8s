@@ -7,6 +7,7 @@ package authzed_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AuthzedComSpiceDbclusterV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AuthzedComSpiceDbclusterV1Alpha1Manifest{}
 
 func NewAuthzedComSpiceDbclusterV1Alpha1Manifest() datasource.DataSource {
 	return &AuthzedComSpiceDbclusterV1Alpha1Manifest{}
@@ -58,6 +56,7 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_authzed_com_spice_db_cluster_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SpiceDBCluster defines all options for a full SpiceDB cluster",
@@ -209,8 +208,8 @@ func (r *AuthzedComSpiceDbclusterV1Alpha1Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("authzed.com/v1alpha1")
-	model.Kind = pointer.String("SpiceDBCluster")
+	model.ApiVersion = new("authzed.com/v1alpha1")
+	model.Kind = new("SpiceDBCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

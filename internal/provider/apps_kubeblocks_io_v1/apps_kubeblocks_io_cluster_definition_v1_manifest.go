@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoClusterDefinitionV1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoClusterDefinitionV1Manifest{}
 
 func NewAppsKubeblocksIoClusterDefinitionV1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoClusterDefinitionV1Manifest{}
@@ -67,6 +65,7 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_cluster_definition_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ClusterDefinition defines the topology for databases or storage systems, offering a variety of topological configurations to meet diverse deployment needs and scenarios. It includes a list of Components and/or Shardings, each linked to a ComponentDefinition or a ShardingDefinition, which enhances reusability and reduce redundancy. For example, widely used components such as etcd and Zookeeper can be defined once and reused across multiple ClusterDefinitions, simplifying the setup of new systems. Additionally, ClusterDefinition also specifies the sequence of startup, upgrade, and shutdown between Components and/or Shardings, ensuring a controlled and predictable management of cluster lifecycles.",
@@ -279,8 +278,8 @@ func (r *AppsKubeblocksIoClusterDefinitionV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1")
-	model.Kind = pointer.String("ClusterDefinition")
+	model.ApiVersion = new("apps.kubeblocks.io/v1")
+	model.Kind = new("ClusterDefinition")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

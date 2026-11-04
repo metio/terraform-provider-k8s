@@ -7,6 +7,8 @@ package appprotect_f5_com_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppprotectF5ComAplogConfV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AppprotectF5ComAplogConfV1Beta1Manifest{}
 
 func NewAppprotectF5ComAplogConfV1Beta1Manifest() datasource.DataSource {
 	return &AppprotectF5ComAplogConfV1Beta1Manifest{}
@@ -67,6 +65,7 @@ func (r *AppprotectF5ComAplogConfV1Beta1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_appprotect_f5_com_ap_log_conf_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppprotectF5ComAplogConfV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "APLogConf is the Schema for the APLogConfs API",
@@ -278,8 +277,8 @@ func (r *AppprotectF5ComAplogConfV1Beta1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("appprotect.f5.com/v1beta1")
-	model.Kind = pointer.String("APLogConf")
+	model.ApiVersion = new("appprotect.f5.com/v1beta1")
+	model.Kind = new("APLogConf")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

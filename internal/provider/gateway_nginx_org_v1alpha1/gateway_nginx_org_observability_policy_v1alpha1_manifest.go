@@ -7,6 +7,8 @@ package gateway_nginx_org_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest{}
 
 func NewGatewayNginxOrgObservabilityPolicyV1Alpha1Manifest() datasource.DataSource {
 	return &GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest{}
@@ -67,6 +65,7 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_gateway_nginx_org_observability_policy_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the GatewayClass parametersRef.",
@@ -298,8 +297,8 @@ func (r *GatewayNginxOrgObservabilityPolicyV1Alpha1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.nginx.org/v1alpha1")
-	model.Kind = pointer.String("ObservabilityPolicy")
+	model.ApiVersion = new("gateway.nginx.org/v1alpha1")
+	model.Kind = new("ObservabilityPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

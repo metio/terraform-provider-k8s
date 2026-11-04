@@ -7,9 +7,10 @@ package cluster_x_k8s_io_v1alpha4_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/cluster_x_k8s_io_v1alpha4"
-	"testing"
 )
 
 func TestClusterXK8SIoMachineSetV1Alpha4Manifest_ValidateSchema(t *testing.T) {

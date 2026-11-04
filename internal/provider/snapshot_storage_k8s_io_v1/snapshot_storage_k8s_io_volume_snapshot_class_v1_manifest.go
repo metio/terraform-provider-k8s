@@ -7,6 +7,7 @@ package snapshot_storage_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest{}
-)
+var _ datasource.DataSource = &SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest{}
 
 func NewSnapshotStorageK8SIoVolumeSnapshotClassV1Manifest() datasource.DataSource {
 	return &SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest{}
@@ -50,6 +48,7 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Metadata(_ context.C
 	response.TypeName = request.ProviderTypeName + "_snapshot_storage_k8s_io_volume_snapshot_class_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced",
@@ -147,8 +146,8 @@ func (r *SnapshotStorageK8SIoVolumeSnapshotClassV1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ApiVersion = pointer.String("snapshot.storage.k8s.io/v1")
-	model.Kind = pointer.String("VolumeSnapshotClass")
+	model.ApiVersion = new("snapshot.storage.k8s.io/v1")
+	model.Kind = new("VolumeSnapshotClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

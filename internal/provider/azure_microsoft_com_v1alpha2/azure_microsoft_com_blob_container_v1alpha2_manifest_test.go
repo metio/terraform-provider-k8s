@@ -7,9 +7,10 @@ package azure_microsoft_com_v1alpha2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1alpha2"
-	"testing"
 )
 
 func TestAzureMicrosoftComBlobContainerV1Alpha2Manifest_ValidateSchema(t *testing.T) {

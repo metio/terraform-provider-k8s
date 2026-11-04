@@ -7,6 +7,7 @@ package hive_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveOpenshiftIoDnszoneV1Manifest{}
-)
+var _ datasource.DataSource = &HiveOpenshiftIoDnszoneV1Manifest{}
 
 func NewHiveOpenshiftIoDnszoneV1Manifest() datasource.DataSource {
 	return &HiveOpenshiftIoDnszoneV1Manifest{}
@@ -79,6 +77,7 @@ func (r *HiveOpenshiftIoDnszoneV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_hive_openshift_io_dns_zone_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveOpenshiftIoDnszoneV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DNSZone is the Schema for the dnszones API",
@@ -350,8 +349,8 @@ func (r *HiveOpenshiftIoDnszoneV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("hive.openshift.io/v1")
-	model.Kind = pointer.String("DNSZone")
+	model.ApiVersion = new("hive.openshift.io/v1")
+	model.Kind = new("DNSZone")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

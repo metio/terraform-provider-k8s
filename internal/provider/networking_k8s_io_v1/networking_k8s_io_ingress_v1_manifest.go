@@ -7,6 +7,7 @@ package networking_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingK8SIoIngressV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingK8SIoIngressV1Manifest{}
 
 func NewNetworkingK8SIoIngressV1Manifest() datasource.DataSource {
 	return &NetworkingK8SIoIngressV1Manifest{}
@@ -92,6 +90,7 @@ func (r *NetworkingK8SIoIngressV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_networking_k8s_io_ingress_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingK8SIoIngressV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc.",
@@ -441,8 +440,8 @@ func (r *NetworkingK8SIoIngressV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.k8s.io/v1")
-	model.Kind = pointer.String("Ingress")
+	model.ApiVersion = new("networking.k8s.io/v1")
+	model.Kind = new("Ingress")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

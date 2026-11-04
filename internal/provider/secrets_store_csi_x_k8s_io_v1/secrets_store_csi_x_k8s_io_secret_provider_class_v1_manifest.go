@@ -7,6 +7,7 @@ package secrets_store_csi_x_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest{}
-)
+var _ datasource.DataSource = &SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest{}
 
 func NewSecretsStoreCsiXK8SIoSecretProviderClassV1Manifest() datasource.DataSource {
 	return &SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest{}
@@ -62,6 +60,7 @@ func (r *SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest) Metadata(_ context.
 	response.TypeName = request.ProviderTypeName + "_secrets_store_csi_x_k8s_io_secret_provider_class_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SecretProviderClass is the Schema for the secretproviderclasses API",
@@ -241,8 +240,8 @@ func (r *SecretsStoreCsiXK8SIoSecretProviderClassV1Manifest) Read(ctx context.Co
 		return
 	}
 
-	model.ApiVersion = pointer.String("secrets-store.csi.x-k8s.io/v1")
-	model.Kind = pointer.String("SecretProviderClass")
+	model.ApiVersion = new("secrets-store.csi.x-k8s.io/v1")
+	model.Kind = new("SecretProviderClass")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

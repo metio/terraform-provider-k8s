@@ -7,6 +7,7 @@ package multicluster_x_k8s_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MulticlusterXK8SIoServiceImportV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &MulticlusterXK8SIoServiceImportV1Alpha1Manifest{}
 
 func NewMulticlusterXK8SIoServiceImportV1Alpha1Manifest() datasource.DataSource {
 	return &MulticlusterXK8SIoServiceImportV1Alpha1Manifest{}
@@ -64,6 +62,7 @@ func (r *MulticlusterXK8SIoServiceImportV1Alpha1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_multicluster_x_k8s_io_service_import_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MulticlusterXK8SIoServiceImportV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServiceImport describes a service imported from clusters in a ClusterSet.",
@@ -251,8 +250,8 @@ func (r *MulticlusterXK8SIoServiceImportV1Alpha1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("multicluster.x-k8s.io/v1alpha1")
-	model.Kind = pointer.String("ServiceImport")
+	model.ApiVersion = new("multicluster.x-k8s.io/v1alpha1")
+	model.Kind = new("ServiceImport")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

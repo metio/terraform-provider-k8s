@@ -7,6 +7,8 @@ package apisix_apache_org_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/float64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ApisixApacheOrgApisixClusterConfigV2Manifest{}
-)
+var _ datasource.DataSource = &ApisixApacheOrgApisixClusterConfigV2Manifest{}
 
 func NewApisixApacheOrgApisixClusterConfigV2Manifest() datasource.DataSource {
 	return &ApisixApacheOrgApisixClusterConfigV2Manifest{}
@@ -66,6 +64,7 @@ func (r *ApisixApacheOrgApisixClusterConfigV2Manifest) Metadata(_ context.Contex
 	response.TypeName = request.ProviderTypeName + "_apisix_apache_org_apisix_cluster_config_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ApisixApacheOrgApisixClusterConfigV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -243,8 +242,8 @@ func (r *ApisixApacheOrgApisixClusterConfigV2Manifest) Read(ctx context.Context,
 		return
 	}
 
-	model.ApiVersion = pointer.String("apisix.apache.org/v2")
-	model.Kind = pointer.String("ApisixClusterConfig")
+	model.ApiVersion = new("apisix.apache.org/v2")
+	model.Kind = new("ApisixClusterConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

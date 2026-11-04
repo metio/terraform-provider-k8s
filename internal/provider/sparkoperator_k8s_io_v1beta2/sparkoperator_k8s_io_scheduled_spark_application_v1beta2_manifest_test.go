@@ -7,9 +7,10 @@ package sparkoperator_k8s_io_v1beta2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/sparkoperator_k8s_io_v1beta2"
-	"testing"
 )
 
 func TestSparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest_ValidateSchema(t *testing.T) {

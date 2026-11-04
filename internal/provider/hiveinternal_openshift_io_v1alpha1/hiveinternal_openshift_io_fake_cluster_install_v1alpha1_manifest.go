@@ -7,6 +7,7 @@ package hiveinternal_openshift_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest{}
 
 func NewHiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest() datasource.DataSource {
 	return &HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest{}
@@ -77,6 +75,7 @@ func (r *HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest) Metadata(_ c
 	response.TypeName = request.ProviderTypeName + "_hiveinternal_openshift_io_fake_cluster_install_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "FakeClusterInstall represents a fake request to provision an agent based cluster.",
@@ -320,8 +319,8 @@ func (r *HiveinternalOpenshiftIoFakeClusterInstallV1Alpha1Manifest) Read(ctx con
 		return
 	}
 
-	model.ApiVersion = pointer.String("hiveinternal.openshift.io/v1alpha1")
-	model.Kind = pointer.String("FakeClusterInstall")
+	model.ApiVersion = new("hiveinternal.openshift.io/v1alpha1")
+	model.Kind = new("FakeClusterInstall")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

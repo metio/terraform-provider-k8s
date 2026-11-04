@@ -7,6 +7,8 @@ package sparkoperator_k8s_io_v1beta2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest{}
-)
+var _ datasource.DataSource = &SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest{}
 
 func NewSparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest() datasource.DataSource {
 	return &SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest{}
@@ -2099,6 +2097,7 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Metadata(_ 
 	response.TypeName = request.ProviderTypeName + "_sparkoperator_k8s_io_scheduled_spark_application_v1beta2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ScheduledSparkApplication is the Schema for the scheduledsparkapplications API.",
@@ -15973,8 +15972,8 @@ func (r *SparkoperatorK8SIoScheduledSparkApplicationV1Beta2Manifest) Read(ctx co
 		return
 	}
 
-	model.ApiVersion = pointer.String("sparkoperator.k8s.io/v1beta2")
-	model.Kind = pointer.String("ScheduledSparkApplication")
+	model.ApiVersion = new("sparkoperator.k8s.io/v1beta2")
+	model.Kind = new("ScheduledSparkApplication")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

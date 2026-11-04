@@ -7,6 +7,7 @@ package operator_victoriametrics_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &OperatorVictoriametricsComVlogsV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &OperatorVictoriametricsComVlogsV1Beta1Manifest{}
 
 func NewOperatorVictoriametricsComVlogsV1Beta1Manifest() datasource.DataSource {
 	return &OperatorVictoriametricsComVlogsV1Beta1Manifest{}
@@ -183,6 +181,7 @@ func (r *OperatorVictoriametricsComVlogsV1Beta1Manifest) Metadata(_ context.Cont
 	response.TypeName = request.ProviderTypeName + "_operator_victoriametrics_com_v_logs_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *OperatorVictoriametricsComVlogsV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "VLogs is the Schema for the vlogs API",
@@ -1251,8 +1250,8 @@ func (r *OperatorVictoriametricsComVlogsV1Beta1Manifest) Read(ctx context.Contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("operator.victoriametrics.com/v1beta1")
-	model.Kind = pointer.String("VLogs")
+	model.ApiVersion = new("operator.victoriametrics.com/v1beta1")
+	model.Kind = new("VLogs")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

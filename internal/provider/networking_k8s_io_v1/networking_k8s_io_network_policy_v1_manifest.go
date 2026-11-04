@@ -7,6 +7,7 @@ package networking_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingK8SIoNetworkPolicyV1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingK8SIoNetworkPolicyV1Manifest{}
 
 func NewNetworkingK8SIoNetworkPolicyV1Manifest() datasource.DataSource {
 	return &NetworkingK8SIoNetworkPolicyV1Manifest{}
@@ -117,6 +115,7 @@ func (r *NetworkingK8SIoNetworkPolicyV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_networking_k8s_io_network_policy_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingK8SIoNetworkPolicyV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "NetworkPolicy describes what network traffic is allowed for a set of Pods",
@@ -652,8 +651,8 @@ func (r *NetworkingK8SIoNetworkPolicyV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.k8s.io/v1")
-	model.Kind = pointer.String("NetworkPolicy")
+	model.ApiVersion = new("networking.k8s.io/v1")
+	model.Kind = new("NetworkPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

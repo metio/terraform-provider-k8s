@@ -7,6 +7,7 @@ package sriovnetwork_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest{}
-)
+var _ datasource.DataSource = &SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest{}
 
 func NewSriovnetworkOpenshiftIoSriovIbnetworkV1Manifest() datasource.DataSource {
 	return &SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest{}
@@ -56,6 +54,7 @@ func (r *SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_sriovnetwork_openshift_io_sriov_ib_network_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SriovIBNetwork is the Schema for the sriovibnetworks API",
@@ -197,8 +196,8 @@ func (r *SriovnetworkOpenshiftIoSriovIbnetworkV1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("sriovnetwork.openshift.io/v1")
-	model.Kind = pointer.String("SriovIBNetwork")
+	model.ApiVersion = new("sriovnetwork.openshift.io/v1")
+	model.Kind = new("SriovIBNetwork")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

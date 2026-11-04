@@ -7,9 +7,10 @@ package operator_victoriametrics_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/operator_victoriametrics_com_v1beta1"
-	"testing"
 )
 
 func TestOperatorVictoriametricsComVmpodScrapeV1Beta1Manifest_ValidateSchema(t *testing.T) {

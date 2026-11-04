@@ -7,6 +7,8 @@ package kuma_io_v1alpha1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &KumaIoMeshRateLimitV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &KumaIoMeshRateLimitV1Alpha1Manifest{}
 
 func NewKumaIoMeshRateLimitV1Alpha1Manifest() datasource.DataSource {
 	return &KumaIoMeshRateLimitV1Alpha1Manifest{}
@@ -147,6 +145,7 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Metadata(_ context.Context, reques
 	response.TypeName = request.ProviderTypeName + "_kuma_io_mesh_rate_limit_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -880,8 +879,8 @@ func (r *KumaIoMeshRateLimitV1Alpha1Manifest) Read(ctx context.Context, request 
 		return
 	}
 
-	model.ApiVersion = pointer.String("kuma.io/v1alpha1")
-	model.Kind = pointer.String("MeshRateLimit")
+	model.ApiVersion = new("kuma.io/v1alpha1")
+	model.Kind = new("MeshRateLimit")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

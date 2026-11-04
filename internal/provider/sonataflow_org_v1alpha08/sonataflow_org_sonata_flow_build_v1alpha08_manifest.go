@@ -7,6 +7,7 @@ package sonataflow_org_v1alpha08
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SonataflowOrgSonataFlowBuildV1Alpha08Manifest{}
-)
+var _ datasource.DataSource = &SonataflowOrgSonataFlowBuildV1Alpha08Manifest{}
 
 func NewSonataflowOrgSonataFlowBuildV1Alpha08Manifest() datasource.DataSource {
 	return &SonataflowOrgSonataFlowBuildV1Alpha08Manifest{}
@@ -109,6 +107,7 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_sonataflow_org_sonata_flow_build_v1alpha08_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "SonataFlowBuild is an internal custom resource to control workflow build instances in the target platform",
@@ -582,8 +581,8 @@ func (r *SonataflowOrgSonataFlowBuildV1Alpha08Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("sonataflow.org/v1alpha08")
-	model.Kind = pointer.String("SonataFlowBuild")
+	model.ApiVersion = new("sonataflow.org/v1alpha08")
+	model.Kind = new("SonataFlowBuild")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package config_openshift_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigOpenshiftIoInfrastructureV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigOpenshiftIoInfrastructureV1Manifest{}
 
 func NewConfigOpenshiftIoInfrastructureV1Manifest() datasource.DataSource {
 	return &ConfigOpenshiftIoInfrastructureV1Manifest{}
@@ -153,6 +151,7 @@ func (r *ConfigOpenshiftIoInfrastructureV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_config_openshift_io_infrastructure_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigOpenshiftIoInfrastructureV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Infrastructure holds cluster-wide information about Infrastructure.  The canonical name is 'cluster'  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -1012,8 +1011,8 @@ func (r *ConfigOpenshiftIoInfrastructureV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.openshift.io/v1")
-	model.Kind = pointer.String("Infrastructure")
+	model.ApiVersion = new("config.openshift.io/v1")
+	model.Kind = new("Infrastructure")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

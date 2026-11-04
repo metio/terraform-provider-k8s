@@ -7,6 +7,7 @@ package getambassador_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/objectvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -18,13 +19,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GetambassadorIoMappingV1Manifest{}
-)
+var _ datasource.DataSource = &GetambassadorIoMappingV1Manifest{}
 
 func NewGetambassadorIoMappingV1Manifest() datasource.DataSource {
 	return &GetambassadorIoMappingV1Manifest{}
@@ -193,6 +191,7 @@ func (r *GetambassadorIoMappingV1Manifest) Metadata(_ context.Context, request d
 	response.TypeName = request.ProviderTypeName + "_getambassador_io_mapping_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GetambassadorIoMappingV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Mapping is the Schema for the mappings API",
@@ -1338,8 +1337,8 @@ func (r *GetambassadorIoMappingV1Manifest) Read(ctx context.Context, request dat
 		return
 	}
 
-	model.ApiVersion = pointer.String("getambassador.io/v1")
-	model.Kind = pointer.String("Mapping")
+	model.ApiVersion = new("getambassador.io/v1")
+	model.Kind = new("Mapping")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package networking_karmada_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest{}
 
 func NewNetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest() datasource.DataSource {
 	return &NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest{}
@@ -66,6 +64,7 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Metadata(_ cont
 	response.TypeName = request.ProviderTypeName + "_networking_karmada_io_multi_cluster_service_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "MultiClusterService is a named abstraction of multi-cluster software service. The name field of MultiClusterService is the same as that of Service name. Services with the same name in different clusters are regarded as the same service and are associated with the same MultiClusterService. MultiClusterService can control the exposure of services to outside multiple clusters, and also enable service discovery between clusters.",
@@ -266,8 +265,8 @@ func (r *NetworkingKarmadaIoMultiClusterServiceV1Alpha1Manifest) Read(ctx contex
 		return
 	}
 
-	model.ApiVersion = pointer.String("networking.karmada.io/v1alpha1")
-	model.Kind = pointer.String("MultiClusterService")
+	model.ApiVersion = new("networking.karmada.io/v1alpha1")
+	model.Kind = new("MultiClusterService")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

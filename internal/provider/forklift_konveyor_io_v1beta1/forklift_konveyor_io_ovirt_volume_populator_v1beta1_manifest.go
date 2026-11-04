@@ -7,6 +7,7 @@ package forklift_konveyor_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest{}
 
 func NewForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest() datasource.DataSource {
 	return &ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest{}
@@ -62,6 +60,7 @@ func (r *ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_forklift_konveyor_io_ovirt_volume_populator_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "",
@@ -241,8 +240,8 @@ func (r *ForkliftKonveyorIoOvirtVolumePopulatorV1Beta1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("forklift.konveyor.io/v1beta1")
-	model.Kind = pointer.String("OvirtVolumePopulator")
+	model.ApiVersion = new("forklift.konveyor.io/v1beta1")
+	model.Kind = new("OvirtVolumePopulator")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

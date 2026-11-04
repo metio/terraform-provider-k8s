@@ -7,9 +7,10 @@ package azure_microsoft_com_v1beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/azure_microsoft_com_v1beta1"
-	"testing"
 )
 
 func TestAzureMicrosoftComAzureSqlServerV1Beta1Manifest_ValidateSchema(t *testing.T) {

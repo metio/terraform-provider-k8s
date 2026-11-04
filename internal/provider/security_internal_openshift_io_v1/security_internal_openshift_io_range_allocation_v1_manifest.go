@@ -7,6 +7,7 @@ package security_internal_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecurityInternalOpenshiftIoRangeAllocationV1Manifest{}
-)
+var _ datasource.DataSource = &SecurityInternalOpenshiftIoRangeAllocationV1Manifest{}
 
 func NewSecurityInternalOpenshiftIoRangeAllocationV1Manifest() datasource.DataSource {
 	return &SecurityInternalOpenshiftIoRangeAllocationV1Manifest{}
@@ -49,6 +47,7 @@ func (r *SecurityInternalOpenshiftIoRangeAllocationV1Manifest) Metadata(_ contex
 	response.TypeName = request.ProviderTypeName + "_security_internal_openshift_io_range_allocation_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecurityInternalOpenshiftIoRangeAllocationV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "RangeAllocation is used so we can easily expose a RangeAllocation typed for security group This is an internal API, not intended for external consumption.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -134,8 +133,8 @@ func (r *SecurityInternalOpenshiftIoRangeAllocationV1Manifest) Read(ctx context.
 		return
 	}
 
-	model.ApiVersion = pointer.String("security.internal.openshift.io/v1")
-	model.Kind = pointer.String("RangeAllocation")
+	model.ApiVersion = new("security.internal.openshift.io/v1")
+	model.Kind = new("RangeAllocation")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

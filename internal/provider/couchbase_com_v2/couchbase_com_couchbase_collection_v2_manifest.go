@@ -7,6 +7,8 @@ package couchbase_com_v2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CouchbaseComCouchbaseCollectionV2Manifest{}
-)
+var _ datasource.DataSource = &CouchbaseComCouchbaseCollectionV2Manifest{}
 
 func NewCouchbaseComCouchbaseCollectionV2Manifest() datasource.DataSource {
 	return &CouchbaseComCouchbaseCollectionV2Manifest{}
@@ -53,6 +51,7 @@ func (r *CouchbaseComCouchbaseCollectionV2Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_couchbase_com_couchbase_collection_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CouchbaseComCouchbaseCollectionV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection must be referenced by a 'CouchbaseScope' or 'CouchbaseScopeGroup' resource.",
@@ -164,8 +163,8 @@ func (r *CouchbaseComCouchbaseCollectionV2Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("couchbase.com/v2")
-	model.Kind = pointer.String("CouchbaseCollection")
+	model.ApiVersion = new("couchbase.com/v2")
+	model.Kind = new("CouchbaseCollection")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

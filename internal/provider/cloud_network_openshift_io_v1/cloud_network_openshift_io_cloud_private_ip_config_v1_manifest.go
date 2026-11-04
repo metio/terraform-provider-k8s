@@ -7,6 +7,7 @@ package cloud_network_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest{}
-)
+var _ datasource.DataSource = &CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest{}
 
 func NewCloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest() datasource.DataSource {
 	return &CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest{}
@@ -50,6 +48,7 @@ func (r *CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_cloud_network_openshift_io_cloud_private_ip_config_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "CloudPrivateIPConfig performs an assignment of a private IP address to the primary NIC associated with cloud VMs. This is done by specifying the IP and Kubernetes node which the IP should be assigned to. This CRD is intended to be used by the network plugin which manages the cluster network. The spec side represents the desired state requested by the network plugin, and the status side represents the current state that this CRD's controller has executed. No users will have permission to modify it, and if a cluster-admin decides to edit it for some reason, their changes will be overwritten the next time the network plugin reconciles the object. Note: the CR's name must specify the requested private IP address (can be IPv4 or IPv6).  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -136,8 +135,8 @@ func (r *CloudNetworkOpenshiftIoCloudPrivateIpconfigV1Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("cloud.network.openshift.io/v1")
-	model.Kind = pointer.String("CloudPrivateIPConfig")
+	model.ApiVersion = new("cloud.network.openshift.io/v1")
+	model.Kind = new("CloudPrivateIPConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

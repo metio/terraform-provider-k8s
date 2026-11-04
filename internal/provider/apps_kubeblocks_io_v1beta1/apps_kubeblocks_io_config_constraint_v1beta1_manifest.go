@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1beta1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoConfigConstraintV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoConfigConstraintV1Beta1Manifest{}
 
 func NewAppsKubeblocksIoConfigConstraintV1Beta1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoConfigConstraintV1Beta1Manifest{}
@@ -129,6 +127,7 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Metadata(_ context.Con
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_config_constraint_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ConfigConstraint manages the parameters across multiple configuration files contained in a single configure template. These configuration files should have the same format (e.g. ini, xml, properties, json). It provides the following functionalities: 1. **Parameter Value Validation**: Validates and ensures compliance of parameter values with defined constraints. 2. **Dynamic Reload on Modification**: Monitors parameter changes and triggers dynamic reloads to apply updates. 3. **Parameter Rendering in Templates**: Injects parameters into templates to generate up-to-date configuration files.",
@@ -762,8 +761,8 @@ func (r *AppsKubeblocksIoConfigConstraintV1Beta1Manifest) Read(ctx context.Conte
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1beta1")
-	model.Kind = pointer.String("ConfigConstraint")
+	model.ApiVersion = new("apps.kubeblocks.io/v1beta1")
+	model.Kind = new("ConfigConstraint")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

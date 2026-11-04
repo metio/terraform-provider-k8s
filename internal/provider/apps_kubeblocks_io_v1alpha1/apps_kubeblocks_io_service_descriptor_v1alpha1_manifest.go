@@ -7,6 +7,7 @@ package apps_kubeblocks_io_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest{}
 
 func NewAppsKubeblocksIoServiceDescriptorV1Alpha1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest{}
@@ -174,6 +172,7 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Metadata(_ context.C
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_service_descriptor_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ServiceDescriptor describes a service provided by external sources. It contains the necessary details such as the service's address and connection credentials. To enable a Cluster to access this service, the ServiceDescriptor's name should be specified in the Cluster configuration under 'clusterComponent.serviceRefs[*].serviceDescriptor'.",
@@ -1039,8 +1038,8 @@ func (r *AppsKubeblocksIoServiceDescriptorV1Alpha1Manifest) Read(ctx context.Con
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1alpha1")
-	model.Kind = pointer.String("ServiceDescriptor")
+	model.ApiVersion = new("apps.kubeblocks.io/v1alpha1")
+	model.Kind = new("ServiceDescriptor")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

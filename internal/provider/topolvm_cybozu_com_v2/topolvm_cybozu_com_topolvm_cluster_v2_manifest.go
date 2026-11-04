@@ -7,6 +7,7 @@ package topolvm_cybozu_com_v2
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TopolvmCybozuComTopolvmClusterV2Manifest{}
-)
+var _ datasource.DataSource = &TopolvmCybozuComTopolvmClusterV2Manifest{}
 
 func NewTopolvmCybozuComTopolvmClusterV2Manifest() datasource.DataSource {
 	return &TopolvmCybozuComTopolvmClusterV2Manifest{}
@@ -85,6 +83,7 @@ func (r *TopolvmCybozuComTopolvmClusterV2Manifest) Metadata(_ context.Context, r
 	response.TypeName = request.ProviderTypeName + "_topolvm_cybozu_com_topolvm_cluster_v2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TopolvmCybozuComTopolvmClusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TopolvmCluster is the Schema for the topolvmclusters API",
@@ -428,8 +427,8 @@ func (r *TopolvmCybozuComTopolvmClusterV2Manifest) Read(ctx context.Context, req
 		return
 	}
 
-	model.ApiVersion = pointer.String("topolvm.cybozu.com/v2")
-	model.Kind = pointer.String("TopolvmCluster")
+	model.ApiVersion = new("topolvm.cybozu.com/v2")
+	model.Kind = new("TopolvmCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

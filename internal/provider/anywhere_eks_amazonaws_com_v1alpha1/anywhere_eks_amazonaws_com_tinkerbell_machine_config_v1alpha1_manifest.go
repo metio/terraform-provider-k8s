@@ -7,6 +7,7 @@ package anywhere_eks_amazonaws_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest{}
 
 func NewAnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest() datasource.DataSource {
 	return &AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest{}
@@ -111,6 +109,7 @@ func (r *AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest) Metadat
 	response.TypeName = request.ProviderTypeName + "_anywhere_eks_amazonaws_com_tinkerbell_machine_config_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TinkerbellMachineConfig is the Schema for the tinkerbellmachineconfigs API.",
@@ -643,8 +642,8 @@ func (r *AnywhereEksAmazonawsComTinkerbellMachineConfigV1Alpha1Manifest) Read(ct
 		return
 	}
 
-	model.ApiVersion = pointer.String("anywhere.eks.amazonaws.com/v1alpha1")
-	model.Kind = pointer.String("TinkerbellMachineConfig")
+	model.ApiVersion = new("anywhere.eks.amazonaws.com/v1alpha1")
+	model.Kind = new("TinkerbellMachineConfig")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

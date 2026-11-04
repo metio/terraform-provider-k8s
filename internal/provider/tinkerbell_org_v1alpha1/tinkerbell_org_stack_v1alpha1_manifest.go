@@ -7,6 +7,7 @@ package tinkerbell_org_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &TinkerbellOrgStackV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &TinkerbellOrgStackV1Alpha1Manifest{}
 
 func NewTinkerbellOrgStackV1Alpha1Manifest() datasource.DataSource {
 	return &TinkerbellOrgStackV1Alpha1Manifest{}
@@ -128,6 +126,7 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Metadata(_ context.Context, request
 	response.TypeName = request.ProviderTypeName + "_tinkerbell_org_stack_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *TinkerbellOrgStackV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "Stack represents the tinkerbell stack that is being deployed in the kubernetes where the operator is deployed. Tinkerbell operator watches for different resources such as deployment, services, serviceAccounts, etc. One of those CRs is Stack which the operator will install the tink-stack based on its specs. Once the CR is deleted, the operator will delete all tinkerbell resources.",
@@ -719,8 +718,8 @@ func (r *TinkerbellOrgStackV1Alpha1Manifest) Read(ctx context.Context, request d
 		return
 	}
 
-	model.ApiVersion = pointer.String("tinkerbell.org/v1alpha1")
-	model.Kind = pointer.String("Stack")
+	model.ApiVersion = new("tinkerbell.org/v1alpha1")
+	model.Kind = new("Stack")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,8 @@ package gateway_networking_k8s_io_v1alpha2
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest{}
-)
+var _ datasource.DataSource = &GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest{}
 
 func NewGatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest() datasource.DataSource {
 	return &GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest{}
@@ -65,6 +63,7 @@ func (r *GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest) Metadata(_ conte
 	response.TypeName = request.ProviderTypeName + "_gateway_networking_k8s_io_backend_lb_policy_v1alpha2_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "BackendLBPolicy provides a way to define load balancing rules for a backend.",
@@ -276,8 +275,8 @@ func (r *GatewayNetworkingK8SIoBackendLbpolicyV1Alpha2Manifest) Read(ctx context
 		return
 	}
 
-	model.ApiVersion = pointer.String("gateway.networking.k8s.io/v1alpha2")
-	model.Kind = pointer.String("BackendLBPolicy")
+	model.ApiVersion = new("gateway.networking.k8s.io/v1alpha2")
+	model.Kind = new("BackendLBPolicy")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

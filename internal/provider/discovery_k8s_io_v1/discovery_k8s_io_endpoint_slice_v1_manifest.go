@@ -7,6 +7,7 @@ package discovery_k8s_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DiscoveryK8SIoEndpointSliceV1Manifest{}
-)
+var _ datasource.DataSource = &DiscoveryK8SIoEndpointSliceV1Manifest{}
 
 func NewDiscoveryK8SIoEndpointSliceV1Manifest() datasource.DataSource {
 	return &DiscoveryK8SIoEndpointSliceV1Manifest{}
@@ -81,6 +79,7 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_discovery_k8s_io_endpoint_slice_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
@@ -392,8 +391,8 @@ func (r *DiscoveryK8SIoEndpointSliceV1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("discovery.k8s.io/v1")
-	model.Kind = pointer.String("EndpointSlice")
+	model.ApiVersion = new("discovery.k8s.io/v1")
+	model.Kind = new("EndpointSlice")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

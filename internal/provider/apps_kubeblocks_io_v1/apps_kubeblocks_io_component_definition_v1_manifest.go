@@ -7,6 +7,8 @@ package apps_kubeblocks_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &AppsKubeblocksIoComponentDefinitionV1Manifest{}
-)
+var _ datasource.DataSource = &AppsKubeblocksIoComponentDefinitionV1Manifest{}
 
 func NewAppsKubeblocksIoComponentDefinitionV1Manifest() datasource.DataSource {
 	return &AppsKubeblocksIoComponentDefinitionV1Manifest{}
@@ -2098,6 +2096,7 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Metadata(_ context.Conte
 	response.TypeName = request.ProviderTypeName + "_apps_kubeblocks_io_component_definition_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "ComponentDefinition serves as a reusable blueprint for creating Components, encapsulating essential static settings such as Component description, Pod templates, configuration file templates, scripts, parameter lists, injected environment variables and their sources, and event handlers. ComponentDefinition works in conjunction with dynamic settings from the ClusterComponentSpec, to instantiate Components during Cluster creation. Key aspects that can be defined in a ComponentDefinition include: - PodSpec template: Specifies the PodSpec template used by the Component. - Configuration templates: Specify the configuration file templates required by the Component. - Scripts: Provide the necessary scripts for Component management and operations. - Storage volumes: Specify the storage volumes and their configurations for the Component. - Pod roles: Outlines various roles of Pods within the Component along with their capabilities. - Exposed Kubernetes Services: Specify the Services that need to be exposed by the Component. - System accounts: Define the system accounts required for the Component. - Monitoring and logging: Configure the exporter and logging settings for the Component. ComponentDefinitions also enable defining reactive behaviors of the Component in response to events, such as member join/leave, Component addition/deletion, role changes, switch over, and more. This allows for automatic event handling, thus encapsulating complex behaviors within the Component. Referencing a ComponentDefinition when creating individual Components ensures inheritance of predefined configurations, promoting reusability and consistency across different deployments and cluster topologies.",
@@ -16080,8 +16079,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Manifest) Read(ctx context.Context
 		return
 	}
 
-	model.ApiVersion = pointer.String("apps.kubeblocks.io/v1")
-	model.Kind = pointer.String("ComponentDefinition")
+	model.ApiVersion = new("apps.kubeblocks.io/v1")
+	model.Kind = new("ComponentDefinition")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

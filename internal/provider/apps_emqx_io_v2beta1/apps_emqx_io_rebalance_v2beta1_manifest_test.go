@@ -7,9 +7,10 @@ package apps_emqx_io_v2beta1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apps_emqx_io_v2beta1"
-	"testing"
 )
 
 func TestAppsEmqxIoRebalanceV2Beta1Manifest_ValidateSchema(t *testing.T) {

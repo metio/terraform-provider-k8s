@@ -7,6 +7,7 @@ package rds_services_k8s_aws_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &RdsServicesK8SAwsDbclusterV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &RdsServicesK8SAwsDbclusterV1Alpha1Manifest{}
 
 func NewRdsServicesK8SAwsDbclusterV1Alpha1Manifest() datasource.DataSource {
 	return &RdsServicesK8SAwsDbclusterV1Alpha1Manifest{}
@@ -153,6 +151,7 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Metadata(_ context.Context,
 	response.TypeName = request.ProviderTypeName + "_rds_services_k8s_aws_db_cluster_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DBCluster is the Schema for the DBClusters API",
@@ -979,8 +978,8 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Read(ctx context.Context, r
 		return
 	}
 
-	model.ApiVersion = pointer.String("rds.services.k8s.aws/v1alpha1")
-	model.Kind = pointer.String("DBCluster")
+	model.ApiVersion = new("rds.services.k8s.aws/v1alpha1")
+	model.Kind = new("DBCluster")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

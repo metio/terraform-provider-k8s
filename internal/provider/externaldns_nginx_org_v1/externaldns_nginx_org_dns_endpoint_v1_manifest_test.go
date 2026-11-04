@@ -7,9 +7,10 @@ package externaldns_nginx_org_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/externaldns_nginx_org_v1"
-	"testing"
 )
 
 func TestExternaldnsNginxOrgDnsendpointV1Manifest_ValidateSchema(t *testing.T) {

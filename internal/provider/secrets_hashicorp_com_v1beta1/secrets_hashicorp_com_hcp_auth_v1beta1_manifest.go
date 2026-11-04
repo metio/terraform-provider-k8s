@@ -7,6 +7,7 @@ package secrets_hashicorp_com_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &SecretsHashicorpComHcpauthV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &SecretsHashicorpComHcpauthV1Beta1Manifest{}
 
 func NewSecretsHashicorpComHcpauthV1Beta1Manifest() datasource.DataSource {
 	return &SecretsHashicorpComHcpauthV1Beta1Manifest{}
@@ -57,6 +55,7 @@ func (r *SecretsHashicorpComHcpauthV1Beta1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_secrets_hashicorp_com_hcp_auth_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *SecretsHashicorpComHcpauthV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "HCPAuth is the Schema for the hcpauths API",
@@ -200,8 +199,8 @@ func (r *SecretsHashicorpComHcpauthV1Beta1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("secrets.hashicorp.com/v1beta1")
-	model.Kind = pointer.String("HCPAuth")
+	model.ApiVersion = new("secrets.hashicorp.com/v1beta1")
+	model.Kind = new("HCPAuth")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

@@ -7,6 +7,7 @@ package dex_gpu_ninja_com_v1alpha1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &DexGpuNinjaComDexUserV1Alpha1Manifest{}
-)
+var _ datasource.DataSource = &DexGpuNinjaComDexUserV1Alpha1Manifest{}
 
 func NewDexGpuNinjaComDexUserV1Alpha1Manifest() datasource.DataSource {
 	return &DexGpuNinjaComDexUserV1Alpha1Manifest{}
@@ -55,6 +53,7 @@ func (r *DexGpuNinjaComDexUserV1Alpha1Manifest) Metadata(_ context.Context, requ
 	response.TypeName = request.ProviderTypeName + "_dex_gpu_ninja_com_dex_user_v1alpha1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *DexGpuNinjaComDexUserV1Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "DexUser is a user registered with Dex.",
@@ -178,8 +177,8 @@ func (r *DexGpuNinjaComDexUserV1Alpha1Manifest) Read(ctx context.Context, reques
 		return
 	}
 
-	model.ApiVersion = pointer.String("dex.gpu-ninja.com/v1alpha1")
-	model.Kind = pointer.String("DexUser")
+	model.ApiVersion = new("dex.gpu-ninja.com/v1alpha1")
+	model.Kind = new("DexUser")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

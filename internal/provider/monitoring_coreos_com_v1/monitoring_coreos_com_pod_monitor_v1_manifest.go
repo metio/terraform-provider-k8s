@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComPodMonitorV1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComPodMonitorV1Manifest{}
 
 func NewMonitoringCoreosComPodMonitorV1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComPodMonitorV1Manifest{}
@@ -232,6 +230,7 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_pod_monitor_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'PodMonitor' custom resource definition (CRD) defines how 'Prometheus' and 'PrometheusAgent' can scrape metrics from a group of pods. Among other things, it allows to specify: * The pods to scrape via label selectors. * The container ports to scrape. * Authentication credentials to use. * Target and metric relabeling. 'Prometheus' and 'PrometheusAgent' objects select 'PodMonitor' objects using label and namespace selectors.",
@@ -1590,8 +1589,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
-	model.Kind = pointer.String("PodMonitor")
+	model.ApiVersion = new("monitoring.coreos.com/v1")
+	model.Kind = new("PodMonitor")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

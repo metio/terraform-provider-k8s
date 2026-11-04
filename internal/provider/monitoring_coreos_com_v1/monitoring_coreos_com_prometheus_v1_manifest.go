@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComPrometheusV1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComPrometheusV1Manifest{}
 
 func NewMonitoringCoreosComPrometheusV1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComPrometheusV1Manifest{}
@@ -2136,6 +2134,7 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Metadata(_ context.Context, re
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_prometheus_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'Prometheus' custom resource definition (CRD) defines a desired [Prometheus](https://prometheus.io/docs/prometheus) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage, and Alertmanagers where firing alerts should be sent and many more. For each 'Prometheus' resource, the Operator deploys one or several 'StatefulSet' objects in the same namespace. The number of StatefulSets is equal to the number of shards which is 1 by default. The resource defines via label and namespace selectors which 'ServiceMonitor', 'PodMonitor', 'Probe' and 'PrometheusRule' objects should be associated to the deployed Prometheus instances. The Operator continuously reconciles the scrape and rules configuration and a sidecar container running in the Prometheus pods triggers a reload of the configuration when needed.",
@@ -16514,8 +16513,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Read(ctx context.Context, requ
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
-	model.Kind = pointer.String("Prometheus")
+	model.ApiVersion = new("monitoring.coreos.com/v1")
+	model.Kind = new("Prometheus")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

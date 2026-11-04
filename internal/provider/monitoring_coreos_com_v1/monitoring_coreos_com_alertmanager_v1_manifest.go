@@ -7,6 +7,8 @@ package monitoring_coreos_com_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,14 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &MonitoringCoreosComAlertmanagerV1Manifest{}
-)
+var _ datasource.DataSource = &MonitoringCoreosComAlertmanagerV1Manifest{}
 
 func NewMonitoringCoreosComAlertmanagerV1Manifest() datasource.DataSource {
 	return &MonitoringCoreosComAlertmanagerV1Manifest{}
@@ -1468,6 +1466,7 @@ func (r *MonitoringCoreosComAlertmanagerV1Manifest) Metadata(_ context.Context, 
 	response.TypeName = request.ProviderTypeName + "_monitoring_coreos_com_alertmanager_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *MonitoringCoreosComAlertmanagerV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "The 'Alertmanager' custom resource definition (CRD) defines a desired [Alertmanager](https://prometheus.io/docs/alerting) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage and many more. For each 'Alertmanager' resource, the Operator deploys a 'StatefulSet' in the same namespace. When there are two or more configured replicas, the Operator runs the Alertmanager instances in high-availability mode. The resource defines via label and namespace selectors which 'AlertmanagerConfig' objects should be associated to the deployed Alertmanager instances.",
@@ -11126,8 +11125,8 @@ func (r *MonitoringCoreosComAlertmanagerV1Manifest) Read(ctx context.Context, re
 		return
 	}
 
-	model.ApiVersion = pointer.String("monitoring.coreos.com/v1")
-	model.Kind = pointer.String("Alertmanager")
+	model.ApiVersion = new("monitoring.coreos.com/v1")
+	model.Kind = new("Alertmanager")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

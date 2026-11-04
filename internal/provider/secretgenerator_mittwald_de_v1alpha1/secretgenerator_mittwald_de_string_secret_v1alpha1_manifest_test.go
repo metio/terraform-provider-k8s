@@ -7,9 +7,10 @@ package secretgenerator_mittwald_de_v1alpha1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/secretgenerator_mittwald_de_v1alpha1"
-	"testing"
 )
 
 func TestSecretgeneratorMittwaldDeStringSecretV1Alpha1Manifest_ValidateSchema(t *testing.T) {

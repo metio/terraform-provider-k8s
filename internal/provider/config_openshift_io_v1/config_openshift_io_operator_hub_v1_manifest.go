@@ -7,6 +7,7 @@ package config_openshift_io_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &ConfigOpenshiftIoOperatorHubV1Manifest{}
-)
+var _ datasource.DataSource = &ConfigOpenshiftIoOperatorHubV1Manifest{}
 
 func NewConfigOpenshiftIoOperatorHubV1Manifest() datasource.DataSource {
 	return &ConfigOpenshiftIoOperatorHubV1Manifest{}
@@ -54,6 +52,7 @@ func (r *ConfigOpenshiftIoOperatorHubV1Manifest) Metadata(_ context.Context, req
 	response.TypeName = request.ProviderTypeName + "_config_openshift_io_operator_hub_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *ConfigOpenshiftIoOperatorHubV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "OperatorHub is the Schema for the operatorhubs API. It can be used to change the state of the default hub sources for OperatorHub on the cluster from enabled to disabled and vice versa.  Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).",
@@ -171,8 +170,8 @@ func (r *ConfigOpenshiftIoOperatorHubV1Manifest) Read(ctx context.Context, reque
 		return
 	}
 
-	model.ApiVersion = pointer.String("config.openshift.io/v1")
-	model.Kind = pointer.String("OperatorHub")
+	model.ApiVersion = new("config.openshift.io/v1")
+	model.Kind = new("OperatorHub")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

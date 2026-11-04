@@ -7,9 +7,10 @@ package lerentis_uploadfilter24_eu_v1beta4_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/lerentis_uploadfilter24_eu_v1beta4"
-	"testing"
 )
 
 func TestLerentisUploadfilter24EuBitwardenSecretV1Beta4Manifest_ValidateSchema(t *testing.T) {

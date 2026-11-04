@@ -7,9 +7,10 @@ package apisix_apache_org_v2_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/apisix_apache_org_v2"
-	"testing"
 )
 
 func TestApisixApacheOrgApisixPluginConfigV2Manifest_ValidateSchema(t *testing.T) {

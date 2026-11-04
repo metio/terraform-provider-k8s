@@ -7,6 +7,7 @@ package camel_apache_org_v1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -15,13 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &CamelApacheOrgIntegrationPlatformV1Manifest{}
-)
+var _ datasource.DataSource = &CamelApacheOrgIntegrationPlatformV1Manifest{}
 
 func NewCamelApacheOrgIntegrationPlatformV1Manifest() datasource.DataSource {
 	return &CamelApacheOrgIntegrationPlatformV1Manifest{}
@@ -505,6 +503,7 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Metadata(_ context.Context
 	response.TypeName = request.ProviderTypeName + "_camel_apache_org_integration_platform_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "IntegrationPlatform is the resource used to drive the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace. When the Camel K operator is installed in 'global' mode, you will need to specify an 'IntegrationPlatform' in each namespace where you want the Camel K operator to be executed.",
@@ -3970,8 +3969,8 @@ func (r *CamelApacheOrgIntegrationPlatformV1Manifest) Read(ctx context.Context, 
 		return
 	}
 
-	model.ApiVersion = pointer.String("camel.apache.org/v1")
-	model.Kind = pointer.String("IntegrationPlatform")
+	model.ApiVersion = new("camel.apache.org/v1")
+	model.Kind = new("IntegrationPlatform")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

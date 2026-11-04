@@ -7,6 +7,8 @@ package stunner_l7mp_io_v1
 
 import (
 	"context"
+	"regexp"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,14 +18,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
-	"regexp"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &StunnerL7MpIoUdprouteV1Manifest{}
-)
+var _ datasource.DataSource = &StunnerL7MpIoUdprouteV1Manifest{}
 
 func NewStunnerL7MpIoUdprouteV1Manifest() datasource.DataSource {
 	return &StunnerL7MpIoUdprouteV1Manifest{}
@@ -70,6 +68,7 @@ func (r *StunnerL7MpIoUdprouteV1Manifest) Metadata(_ context.Context, request da
 	response.TypeName = request.ProviderTypeName + "_stunner_l7mp_io_udp_route_v1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *StunnerL7MpIoUdprouteV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "UDPRoute provides a way to route UDP traffic. When combined with a Gateway listener, it can be used to forward traffic on the port specified by the listener to a set of backends specified by the UDPRoute. Differences from Gateway API UDPRoutes - port-ranges are correctly handled ([port, endPort]) - port is not mandatory - backend weight is not supported",
@@ -342,8 +341,8 @@ func (r *StunnerL7MpIoUdprouteV1Manifest) Read(ctx context.Context, request data
 		return
 	}
 
-	model.ApiVersion = pointer.String("stunner.l7mp.io/v1")
-	model.Kind = pointer.String("UDPRoute")
+	model.ApiVersion = new("stunner.l7mp.io/v1")
+	model.Kind = new("UDPRoute")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

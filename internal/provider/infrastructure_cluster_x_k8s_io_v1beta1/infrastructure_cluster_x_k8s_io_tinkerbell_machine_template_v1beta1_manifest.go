@@ -7,6 +7,7 @@ package infrastructure_cluster_x_k8s_io_v1beta1
 
 import (
 	"context"
+
 	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -16,13 +17,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
-	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 )
 
-var (
-	_ datasource.DataSource = &InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest{}
-)
+var _ datasource.DataSource = &InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest{}
 
 func NewInfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest() datasource.DataSource {
 	return &InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest{}
@@ -87,6 +85,7 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Me
 	response.TypeName = request.ProviderTypeName + "_infrastructure_cluster_x_k8s_io_tinkerbell_machine_template_v1beta1_manifest"
 }
 
+// #nosec G101 -- attribute names and descriptions, no credentials
 func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
 		Description:         "TinkerbellMachineTemplate is the Schema for the tinkerbellmachinetemplates API.",
@@ -411,8 +410,8 @@ func (r *InfrastructureClusterXK8SIoTinkerbellMachineTemplateV1Beta1Manifest) Re
 		return
 	}
 
-	model.ApiVersion = pointer.String("infrastructure.cluster.x-k8s.io/v1beta1")
-	model.Kind = pointer.String("TinkerbellMachineTemplate")
+	model.ApiVersion = new("infrastructure.cluster.x-k8s.io/v1beta1")
+	model.Kind = new("TinkerbellMachineTemplate")
 
 	y, err := yaml.Marshal(model)
 	if err != nil {

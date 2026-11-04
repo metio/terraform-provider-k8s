@@ -7,9 +7,10 @@ package onepassword_com_v1_test
 
 import (
 	"context"
+	"testing"
+
 	fwdatasource "github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/metio/terraform-provider-k8s/internal/provider/onepassword_com_v1"
-	"testing"
 )
 
 func TestOnepasswordComOnePasswordItemV1Manifest_ValidateSchema(t *testing.T) {
